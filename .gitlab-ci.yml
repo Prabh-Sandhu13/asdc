@@ -2,6 +2,10 @@ variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
   GIT_STRATEGY: "clone"
 
+before_script:
+  - chmod +x ./gradlew
+  - export GRADLE_USER_HOME =`pwd`/.gradle
+
 build:
   stage: build
   tags:
