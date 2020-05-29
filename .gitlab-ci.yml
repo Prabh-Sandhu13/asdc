@@ -9,7 +9,7 @@ before_script:
 build:
   stage: build
   tags:
-    - dalfcs_gitlab_docker_ci
+    - grad
   image: gradle:alpine
   script: ./gradlew --build-cache assemble
   only:
@@ -19,7 +19,7 @@ build:
 test:
   stage: test
   tags:
-    - dalfcs_gitlab_docker_ci
+    - grad
   image: gradle:alpine
   script: ./gradlew check
   only:
@@ -29,7 +29,7 @@ test:
 deploy-test:
   stage: deploy
   tags:
-    - dalfcs_gitlab_docker_ci
+    - grad
   image: ruby:2.6
   script: 
     - apt-get update -qy
@@ -42,7 +42,7 @@ deploy-test:
 deploy-prod:
   stage: deploy
   tags:
-    - dalfcs_gitlab_docker_ci
+    - grad
   image: ruby:2.6
   script: 
     - apt-get update -qy
