@@ -43,7 +43,7 @@ deploy-test:
 deploy-prod:
   stage: deploy
   tags:
-    - gdalfcs_gitlab_docker_ci
+    - dalfcs_gitlab_docker_ci
   image: ruby:2.3
   script: 
     - apt-get update -qy
