@@ -1,12 +1,16 @@
 package CSCI5308.GroupFormationTool;
 
+import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordRepository;
+import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordService;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
 import CSCI5308.GroupFormationTool.Database.DBConfiguration;
 import CSCI5308.GroupFormationTool.Database.IDBConfiguration;
+import CSCI5308.GroupFormationTool.Repository.ForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.Repository.UserRepository;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
+import CSCI5308.GroupFormationTool.Service.ForgotPasswordService;
 import CSCI5308.GroupFormationTool.Service.UserService;
 
 // Important for Dependency Injection
@@ -18,6 +22,8 @@ public class Injector {
 	private IUserRepository userRepository;
 	private IUserService userService;
 	private IPasswordEncryptor passwordEncryptor;
+	private IForgotPasswordService forgotPasswordService;
+	private IForgotPasswordRepository forgotPasswordRepository;
 	
 	private Injector() {
 
@@ -25,6 +31,9 @@ public class Injector {
 		userRepository = new UserRepository();
 		userService = new UserService();
 		passwordEncryptor = new BCryptEncryption();
+		forgotPasswordService = new ForgotPasswordService();
+		forgotPasswordRepository = new ForgotPasswordRepository();
+		
 	}
 
 	public static Injector instance() {
@@ -49,6 +58,14 @@ public class Injector {
 
 	public IUserService getUserService() {
 		return userService;
+	}
+	
+	public IForgotPasswordService getForgotPasswordService(){
+		return forgotPasswordService;
+	}
+	
+	public IForgotPasswordRepository getForgotPasswordRepository(){
+		return forgotPasswordRepository;
 	}
 
 }
