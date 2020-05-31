@@ -9,8 +9,9 @@ import CSCI5308.GroupFormationTool.Repository.UserRepository;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
 import CSCI5308.GroupFormationTool.Service.UserService;
 
+// Important for Dependency Injection
 public class Injector {
-
+	
 	private static Injector instance = null;
 
 	private IDBConfiguration dbConfiguration;

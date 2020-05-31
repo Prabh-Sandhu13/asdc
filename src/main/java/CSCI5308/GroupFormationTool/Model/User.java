@@ -1,45 +1,19 @@
 package CSCI5308.GroupFormationTool.Model;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import org.springframework.stereotype.Component;
-
-import CSCI5308.GroupFormationTool.Validators.PasswordMatches;
-import CSCI5308.GroupFormationTool.Validators.ValidEmail;
-
-@PasswordMatches
 public class User {
 
     private long id;
-    
-    @NotNull
-    @NotEmpty
+
     private String firstName;
-    
-    @NotNull
-    @NotEmpty
+
     private String lastName;
     
-    @NotNull
-    @NotEmpty
-    @Size(min = 9, max = 9)
     private String bannerId;
     
-    @NotNull
-    @NotEmpty
-    @ValidEmail
     private String emailId;
-    
-    @Size(min = 8)
-    @NotNull
-    @NotEmpty
+ 
     private String password;
     
-    @NotNull
-    @Size(min = 8)
-    @NotEmpty
     private String confirmPassword;
     
     private char roleType;

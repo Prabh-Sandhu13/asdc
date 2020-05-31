@@ -28,10 +28,9 @@ public class StoredProcedure
 	private void openConnection() throws SQLException
 	{
 		connection = ConnectionManager.instance().getDBConnection();
-		System.out.println(connection);
 	}
 
-	public void cleanup()
+	public void removeConnections()
 	{
 		try
 		{
@@ -53,7 +52,7 @@ public class StoredProcedure
 		}
 	}
 
-	public void setParameter(int paramIndex, String value) throws SQLException
+	public void setInputStringParameter(int paramIndex, String value) throws SQLException
 	{
 		statement.setString(paramIndex, value);
 	}
@@ -63,7 +62,7 @@ public class StoredProcedure
 		statement.registerOutParameter(paramIndex, java.sql.Types.VARCHAR);
 	}
 
-	public void setParameter(int paramIndex, long value) throws SQLException
+	public void setInputIntParameter(int paramIndex, long value) throws SQLException
 	{
 		statement.setLong(paramIndex, value);
 	}
