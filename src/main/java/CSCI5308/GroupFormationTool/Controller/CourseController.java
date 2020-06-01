@@ -60,7 +60,7 @@ public class CourseController {
 			else {
 
 				userCourseList = userCoursesService.getRoleBasedCourses(emailId);
-
+				System.out.println(userCourseList);
 				if (userCourseList.size() == 0) {
 					
 					userRepository.insertToTrace("Entered else if");
