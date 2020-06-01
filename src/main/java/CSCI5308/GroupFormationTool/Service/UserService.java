@@ -7,6 +7,7 @@ import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
+import CSCI5308.GroupFormationTool.ErrorHandling.InvalidDetailsException;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
 
@@ -18,6 +19,10 @@ public class UserService implements IUserService {
 
 	@Override
 	public boolean createUser(IUser user) {
+
+		if (!checkForValues(user)) {
+			return false;
+		}
 
 		if (!(user.getPassword().equals(user.getConfirmPassword()))) {
 			throw new PasswordException("The passwords do not match");
@@ -51,6 +56,16 @@ public class UserService implements IUserService {
 
 		return adminDetails.getEmailId().equalsIgnoreCase(emailId);
 
+	}
+
+	private boolean checkForValues(IUser user) {
+
+		if (user.getFirstName().isEmpty() || user.getLastName().isEmpty() || user.getEmailId().isEmpty()
+				|| user.getPassword().isEmpty() || user.getConfirmPassword().isEmpty()) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }
