@@ -5,14 +5,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class StoredProcedure
-{
+public class StoredProcedure {
 	private String storedProcedureName;
 	private Connection connection;
 	private CallableStatement statement;
 
-	public StoredProcedure(String storedProcedureName)  throws SQLException
-	{
+	public StoredProcedure(String storedProcedureName) throws SQLException {
 		this.storedProcedureName = storedProcedureName;
 		connection = null;
 		statement = null;
@@ -20,69 +18,53 @@ public class StoredProcedure
 		createStatement();
 	}
 
-	private void createStatement() throws SQLException
-	{
+	private void createStatement() throws SQLException {
 		statement = connection.prepareCall("{call " + storedProcedureName + "}");
 	}
 
-	private void openConnection() throws SQLException
-	{
+	private void openConnection() throws SQLException {
 		connection = ConnectionManager.instance().getDBConnection();
 	}
 
-	public void removeConnections()
-	{
-		try
-		{
-			if (null != statement)
-			{
+	public void removeConnections() {
+		try {
+			if (null != statement) {
 				statement.close();
 			}
-			if (null != connection)
-			{
-				if (!connection.isClosed())
-				{
+			if (null != connection) {
+				if (!connection.isClosed()) {
 					connection.close();
 				}
 			}
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 
 		}
 	}
 
-	public void setInputStringParameter(int paramIndex, String value) throws SQLException
-	{
+	public void setInputStringParameter(int paramIndex, String value) throws SQLException {
 		statement.setString(paramIndex, value);
 	}
 
-	public void registerOutputParameterString(int paramIndex) throws SQLException
-	{
+	public void registerOutputParameterString(int paramIndex) throws SQLException {
 		statement.registerOutParameter(paramIndex, java.sql.Types.VARCHAR);
 	}
 
-	public void setInputIntParameter(int paramIndex, long value) throws SQLException
-	{
+	public void setInputIntParameter(int paramIndex, long value) throws SQLException {
 		statement.setLong(paramIndex, value);
 	}
 
-	public void registerOutputParameterLong(int paramIndex) throws SQLException
-	{
+	public void registerOutputParameterLong(int paramIndex) throws SQLException {
 		statement.registerOutParameter(paramIndex, java.sql.Types.BIGINT);
 	}
 
-	public ResultSet executeWithResults() throws SQLException
-	{
-		if (statement.execute())
-		{
+	public ResultSet executeWithResults() throws SQLException {
+		if (statement.execute()) {
 			return statement.getResultSet();
 		}
 		return null;
 	}
 
-	public void execute() throws SQLException
-	{
+	public void execute() throws SQLException {
 		statement.execute();
 	}
 }
