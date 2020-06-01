@@ -1,12 +1,14 @@
 package CSCI5308.GroupFormationTool.Service;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
+import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
-import CSCI5308.GroupFormationTool.Model.User;
 
 public class UserService implements IUserService {
 
@@ -15,7 +17,7 @@ public class UserService implements IUserService {
 	private IPasswordEncryptor encryptor;
 
 	@Override
-	public boolean createUser(User user) {
+	public boolean createUser(IUser user) {
 
 		if (!(user.getPassword().equals(user.getConfirmPassword()))) {
 			throw new PasswordException("The passwords do not match");
@@ -28,7 +30,7 @@ public class UserService implements IUserService {
 
 		user.setPassword(encryptor.encoder(user.getPassword()));
 
-		User userByEmailId = userRepository.getUserByEmailId(user);
+		IUser userByEmailId = userRepository.getUserByEmailId(user);
 
 		if (userByEmailId == null) {
 			success = userRepository.createUser(user);
@@ -38,4 +40,17 @@ public class UserService implements IUserService {
 
 		return success;
 	}
+
+	@Override
+	public boolean checkCurrentUserIsAdmin() {
+
+		userRepository = Injector.instance().getUserRepository();
+		IUser adminDetails = userRepository.getAdminDetails();
+
+		String emailId = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+
+		return adminDetails.getEmailId().equalsIgnoreCase(emailId);
+
+	}
+
 }

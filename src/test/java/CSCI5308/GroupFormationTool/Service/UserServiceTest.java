@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UserServiceTest {
 
 	@Test
-	void createUser() {
+	void createUserTest() {
 
 		UserDBMock userDBMock = new UserDBMock();
 		User user = new User();

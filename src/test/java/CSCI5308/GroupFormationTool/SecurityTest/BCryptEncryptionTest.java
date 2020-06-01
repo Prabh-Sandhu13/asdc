@@ -33,7 +33,7 @@ public class BCryptEncryptionTest implements IPasswordEncryptor {
 
 		String encryptedPassword = encoder(password);
 
-		assertEquals("encrypted", encryptedPassword);
+		assertEquals(true, passwordMatch(password, encryptedPassword));
 
 	}
 }
