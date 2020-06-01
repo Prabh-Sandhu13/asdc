@@ -4,5 +4,5 @@ public interface IUserService {
 
     public boolean createUser(IUser user);
     
-    public boolean checkCurrentUserIsAdmin();
+    public boolean checkCurrentUserIsAdmin(String emailId);
 }

@@ -19,27 +19,46 @@
 
 	<div class="container">
 
-		<h3 class="text-center">Courses Available Are</h3>
 
-		<div class="table-responsive">
-			<table class="table table-bordered table-hover">
-				<thead>
-					<tr>
-						<th scope="col">Course Id</th>
-						<th scope="col">Course Name</th>
-						<th scope="col">Course Details</th>
-						<th scope="col">Course Credits</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="course : ${courses}">
-						<td th:text="${course.id}"></td>
-						<td th:text="${course.name}"></td>
-						<td th:text="${course.description}"></td>
-						<td th:text="${course.credits}"></td>
-					</tr>
-				</tbody>
-			</table>
+		<div th:if="${authenticationError}">
+			<div class="text-center">
+				<br /> <br />
+				<div>You are not logged in. Please login to continue.</div>
+				<br /> <a th:href="@{/login}" class="text-primary">Click to
+					Login</a>
+			</div>
+		</div>
+
+		<div th:if="${authenticationError == null}">
+			<h3 class="text-center">Courses Available Are</h3>
+
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">Course Id</th>
+							<th scope="col">Course Name</th>
+							<th scope="col">Course Details</th>
+							<th scope="col">Course Credits</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="course : ${courses}">
+							<td th:text="${course.id}"></td>
+							<td th:text="${course.name}"></td>
+							<td th:text="${course.description}"></td>
+							<td th:text="${course.credits}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<br />
+			<form th:action="@{/logout}" method="post" class="text-center">
+				<button type="submit" class="btn btn-danger btn-sm">Sign
+					Out</button>
+			</form>
+
 		</div>
 	</div>
 </body>

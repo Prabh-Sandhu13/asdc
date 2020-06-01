@@ -2,6 +2,7 @@ package CSCI5308.GroupFormationTool.Controller;
 
 import java.util.ArrayList;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -36,11 +37,11 @@ public class CourseController {
 		userService = Injector.instance().getUserService();
 		userCoursesService = Injector.instance().getUserCoursesService();
 
-		if (authentication.isAuthenticated()) {
-			
-			String emailId = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
 
-			if (userService.checkCurrentUserIsAdmin()) {
+			String emailId = authentication.getPrincipal().toString();
+
+			if (userService.checkCurrentUserIsAdmin(emailId)) {
 
 				courseList = courseService.getAllCourses();
 				modelAndView = new ModelAndView("/admin/allCourses");
@@ -64,6 +65,9 @@ public class CourseController {
 				}
 			}
 
+		} else {
+			modelAndView = new ModelAndView("/guest/guestCourses");
+			modelAndView.addObject("authenticationError", "Please login to continue");
 		}
 		return modelAndView;
 

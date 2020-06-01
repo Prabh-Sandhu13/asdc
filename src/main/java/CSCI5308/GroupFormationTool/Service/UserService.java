@@ -7,7 +7,6 @@ import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
-import CSCI5308.GroupFormationTool.ErrorHandling.InvalidDetailsException;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
 
@@ -47,13 +46,11 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public boolean checkCurrentUserIsAdmin() {
+	public boolean checkCurrentUserIsAdmin(String emailId) {
 
 		userRepository = Injector.instance().getUserRepository();
 		IUser adminDetails = userRepository.getAdminDetails();
-
-		String emailId = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
-
+		
 		return adminDetails.getEmailId().equalsIgnoreCase(emailId);
 
 	}

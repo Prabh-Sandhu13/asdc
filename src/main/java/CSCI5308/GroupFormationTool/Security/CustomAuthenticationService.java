@@ -45,7 +45,7 @@ public class CustomAuthenticationService implements AuthenticationManager {
 		}
 	}
 
-	// Authenticate against our database using the input banner ID and password.
+	// Authenticate against our database using the input email ID and password.
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		String emailId = authentication.getPrincipal().toString();
 		String password = authentication.getCredentials().toString();
@@ -61,7 +61,6 @@ public class CustomAuthenticationService implements AuthenticationManager {
 		if (user != null) {
 			return checkUser(password, user, authentication);
 		} else {
-			// No user with this banner id found.
 			throw new BadCredentialsException("1001");
 		}
 	}
