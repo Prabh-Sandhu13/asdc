@@ -30,11 +30,11 @@ public class GuestController {
 		if (userCoursesService.getRoleBasedCourses(emailId).size() > 0) {
 
 			model.addAttribute("authorizationError", "You are not authorized to use this page!!");
-			return "/guest/guestCourses";
+			return "guest/guestCourses";
 		} else {
 			courseList = courseService.getAllCourses();
 			model.addAttribute("courses", courseList);
-			return "/guest/guestCourses";
+			return "guest/guestCourses";
 		}
 	}
 

@@ -15,6 +15,7 @@ import CSCI5308.GroupFormationTool.AccessControl.ICourseService;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCourses;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesService;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
+import CSCI5308.GroupFormationTool.Repository.UserRepository;
 
 @Controller
 public class CourseController {
@@ -22,21 +23,29 @@ public class CourseController {
 	private ICourseService courseService;
 	private IUserService userService;
 	private IUserCoursesService userCoursesService;
+	private UserRepository userRepository;
 
 	@GetMapping("/courseList")
-	public String guestCourses(Model model) {
+	public String courseList(Model model) {
 
+		
+		userRepository = new UserRepository();
+		
+		userRepository.insertToTrace("Entered controller");
+		
 		courseService = Injector.instance().getCourseService();
 
 		ArrayList<ICourse> courseList = null;
 		ArrayList<IUserCourses> userCourseList = null;
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		
+
 		userService = Injector.instance().getUserService();
 		userCoursesService = Injector.instance().getUserCoursesService();
 
 		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+			
+			userRepository.insertToTrace("Entered if");
 
 			String emailId = authentication.getPrincipal().toString();
 
@@ -44,7 +53,7 @@ public class CourseController {
 
 				courseList = courseService.getAllCourses();
 				model.addAttribute("courses", courseList);
-				return "/admin/allCourses";
+				return "admin/allCourses";
 
 			}
 
@@ -53,19 +62,22 @@ public class CourseController {
 				userCourseList = userCoursesService.getRoleBasedCourses(emailId);
 
 				if (userCourseList.size() == 0) {
+					
+					userRepository.insertToTrace("Entered else if");
+					
 					courseList = courseService.getAllCourses();
 					model.addAttribute("courses", courseList);
-					return "/guest/guestCourses";
+					return "guest/guestCourses";
 				}
 
 				else {
 					model.addAttribute("courses", userCourseList);
-					return "/student/studentCourses";
+					return "student/studentCourses";
 				}
 			}
 
 		} else {
-			return "/guest/guestCourses";
+			return "guest/guestCourses";
 
 		}
 	}

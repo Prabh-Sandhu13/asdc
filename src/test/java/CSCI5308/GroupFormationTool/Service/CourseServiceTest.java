@@ -1,9 +1,6 @@
 package CSCI5308.GroupFormationTool.Service;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import javax.validation.constraints.AssertFalse;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
