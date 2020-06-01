@@ -8,7 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.ICourse;
@@ -24,16 +23,16 @@ public class CourseController {
 	private IUserService userService;
 	private IUserCoursesService userCoursesService;
 
-	@GetMapping("/guest/guestCourses")
-	public ModelAndView guestCourses(Model model) {
+	@GetMapping("/courseList")
+	public String guestCourses(Model model) {
 
 		courseService = Injector.instance().getCourseService();
 
-		ModelAndView modelAndView = null;
 		ArrayList<ICourse> courseList = null;
 		ArrayList<IUserCourses> userCourseList = null;
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
 		userService = Injector.instance().getUserService();
 		userCoursesService = Injector.instance().getUserCoursesService();
 
@@ -44,8 +43,8 @@ public class CourseController {
 			if (userService.checkCurrentUserIsAdmin(emailId)) {
 
 				courseList = courseService.getAllCourses();
-				modelAndView = new ModelAndView("/admin/allCourses");
-				modelAndView.addObject("courses", courseList);
+				model.addAttribute("courses", courseList);
+				return "/admin/allCourses";
 
 			}
 
@@ -55,22 +54,20 @@ public class CourseController {
 
 				if (userCourseList.size() == 0) {
 					courseList = courseService.getAllCourses();
-					modelAndView = new ModelAndView("/guest/guestCourses");
-					modelAndView.addObject("courses", courseList);
+					model.addAttribute("courses", courseList);
+					return "/guest/guestCourses";
 				}
 
 				else {
-					modelAndView = new ModelAndView("/student/studentCourses");
-					modelAndView.addObject("courses", courseList);
+					model.addAttribute("courses", userCourseList);
+					return "/student/studentCourses";
 				}
 			}
 
 		} else {
-			modelAndView = new ModelAndView("/guest/guestCourses");
-			modelAndView.addObject("authenticationError", "Please login to continue");
-		}
-		return modelAndView;
+			return "/guest/guestCourses";
 
+		}
 	}
 
 }
