@@ -24,15 +24,19 @@ public class ForgotPasswordController {
 		ModelAndView modelAndView = null;
 		
 		try {
-			
+			System.out.println(user.getEmailId());
 			forgotPasswordService = Injector.instance().getForgotPasswordService();
 			forgotPasswordService.sendMail(user);
 			modelAndView = new ModelAndView("forgotPassword");
+			modelAndView.addObject("Success", "An email with reset link has been succesfully sent!");
 			
 		}
 		catch (UserAlreadyExistsException uaex) {
 			modelAndView = new ModelAndView("forgotPassword");
 			modelAndView.addObject("userAlreadyExists", "An account with " + user.getEmailId() + " not found");
+		}
+		catch(Exception e) {
+			
 		}
 		
 		return modelAndView;

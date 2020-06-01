@@ -1,8 +1,13 @@
 package CSCI5308.GroupFormationTool;
 
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordService;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
+import CSCI5308.GroupFormationTool.AccessControl.ITokenGenerator;
 import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
 import CSCI5308.GroupFormationTool.Database.DBConfiguration;
@@ -10,7 +15,10 @@ import CSCI5308.GroupFormationTool.Database.IDBConfiguration;
 import CSCI5308.GroupFormationTool.Repository.ForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.Repository.UserRepository;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
+import CSCI5308.GroupFormationTool.Security.TokenGenerator;
 import CSCI5308.GroupFormationTool.Service.ForgotPasswordService;
+import CSCI5308.GroupFormationTool.Service.IMailService;
+import CSCI5308.GroupFormationTool.Service.MailService;
 import CSCI5308.GroupFormationTool.Service.UserService;
 
 // Important for Dependency Injection
@@ -22,8 +30,13 @@ public class Injector {
 	private IUserRepository userRepository;
 	private IUserService userService;
 	private IPasswordEncryptor passwordEncryptor;
+	private ITokenGenerator tokenGenerator;
 	private IForgotPasswordService forgotPasswordService;
 	private IForgotPasswordRepository forgotPasswordRepository;
+	private IMailService mailService;
+	private SimpleMailMessage msg;
+	private JavaMailSenderImpl jms;
+	
 	
 	private Injector() {
 
@@ -33,7 +46,11 @@ public class Injector {
 		passwordEncryptor = new BCryptEncryption();
 		forgotPasswordService = new ForgotPasswordService();
 		forgotPasswordRepository = new ForgotPasswordRepository();
-		
+		tokenGenerator = new TokenGenerator();
+		mailService = new MailService();
+		msg = new SimpleMailMessage();
+        jms = new JavaMailSenderImpl();
+        
 	}
 
 	public static Injector instance() {
@@ -67,5 +84,21 @@ public class Injector {
 	public IForgotPasswordRepository getForgotPasswordRepository(){
 		return forgotPasswordRepository;
 	}
+	
+	public ITokenGenerator getTokenGenerator(){
+		return tokenGenerator;
+	}
 
+	public IMailService getMailService(){
+		return mailService;
+	}
+	
+	public SimpleMailMessage getMailMessage(){
+		return msg;
+	}
+	
+	public JavaMailSenderImpl getJavaMailSender(){
+		return jms;
+	}
+	
 }
