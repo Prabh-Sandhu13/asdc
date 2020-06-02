@@ -1,5 +1,6 @@
 package CSCI5308.GroupFormationTool.Repository;
 
+import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import CSCI5308.GroupFormationTool.Model.User;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 public class UserRepository implements IUserRepository {
 
 	@Override
-	public boolean createUser(User user) {
+	public boolean createUser(IUser user) {
 
 		StoredProcedure storedProcedure = null;
 		try {
@@ -35,9 +36,9 @@ public class UserRepository implements IUserRepository {
 	}
 
 	@Override
-	public User getUserByEmailId(User user) {
+	public IUser getUserByEmailId(IUser user) {
 
-		User userByEmailId = null;
+		IUser userByEmailId = null;
 		StoredProcedure storedProcedure = null;
 		try {
 			storedProcedure = new StoredProcedure("sp_getUserByEmailId(?)");
@@ -72,9 +73,9 @@ public class UserRepository implements IUserRepository {
 	}
 
 	@Override
-	public User getUserByBannerId(User user) {
+	public IUser getUserByBannerId(IUser user) {
 		StoredProcedure storedProcedure = null;
-		User userByBannerId = null;
+		IUser userByBannerId = null;
 		try {
 			storedProcedure = new StoredProcedure("sp_getUserByBannerId(?)");
 			storedProcedure.setInputStringParameter(1, user.getBannerId());
@@ -100,6 +101,53 @@ public class UserRepository implements IUserRepository {
 			}
 		}
 		return userByBannerId;
+	}
+
+	@Override
+	public IUser getAdminDetails() {
+		StoredProcedure storedProcedure = null;
+		IUser adminDetails = null;
+		try {
+			storedProcedure = new StoredProcedure("sp_getAdminDetails");
+			ResultSet results = storedProcedure.executeWithResults();
+
+			if (results != null) {
+				while (results.next()) {
+					{
+						adminDetails = new User();
+						adminDetails.setBannerId(results.getString("banner_id"));
+						adminDetails.setEmailId(results.getString("email"));
+						adminDetails.setFirstName(results.getString("first_name"));
+						adminDetails.setLastName(results.getString("last_name"));
+					}
+				}
+			}
+
+		} catch (SQLException ex) {
+
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return adminDetails;
+	}
+
+	public boolean insertToTrace(String msg) {
+		StoredProcedure storedProcedure = null;
+		try {
+			storedProcedure = new StoredProcedure("insert_trace(?)");
+			storedProcedure.setInputStringParameter(1, msg);
+			storedProcedure.execute();
+
+		} catch (SQLException ex) {
+
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return true;
 	}
 
 }

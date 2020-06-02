@@ -1,6 +1,6 @@
 package CSCI5308.GroupFormationTool.Service;
 
-import CSCI5308.GroupFormationTool.DBMock.UserDBMock;
+import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.Model.User;
 
 import org.junit.jupiter.api.Test;
@@ -11,20 +11,21 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class UserServiceTest {
 
-	@Test
-	void createUser() {
+	UserService userService = new UserService();
 
-		UserDBMock userDBMock = new UserDBMock();
-		User user = new User();
+	@Test
+	void createUserTest() {
+
+		IUser user = new User();
 		user.setBannerId("B00854462");
-		user.setEmailId("padmeshdonthu1@gmail.com");
-		user.setFirstName("padmesh");
+		user.setEmailId("test@gmail.com");
+		user.setFirstName("");
 		user.setLastName("donthu");
 		user.setPassword("padmesh1234");
+		user.setConfirmPassword("padmesh1111");
 
-		assertEquals(null, userDBMock.getUserByEmailId(user));
+		assertEquals(false,userService.createUser(user));
 
-		assertEquals(true, userDBMock.createUser(user));
-
+		
 	}
 }

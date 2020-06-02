@@ -19,9 +19,8 @@ import CSCI5308.GroupFormationTool.Model.User;
 public class CustomAuthenticationService implements AuthenticationManager {
 	private static final String Admin_banner_id = "B00000000";
 
-	private Authentication checkUser(String password, User user, Authentication authentication)
+	private Authentication checkUser(String password, IUser user, Authentication authentication)
 			throws AuthenticationException {
-		// The admin password is not encrypted because it is hardcoded in the DB.
 		IPasswordEncryptor passwordEncryptor = Injector.instance().getPasswordEncryptor();
 
 		if (passwordEncryptor.passwordMatch(password, user.getPassword())) {
@@ -46,13 +45,13 @@ public class CustomAuthenticationService implements AuthenticationManager {
 		}
 	}
 
-	// Authenticate against our database using the input banner ID and password.
+	// Authenticate against our database using the input email ID and password.
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		String emailId = authentication.getPrincipal().toString();
 		String password = authentication.getCredentials().toString();
 		IUserRepository userRepository = Injector.instance().getUserRepository();
 
-		User user = new User();
+		IUser user = new User();
 		user.setEmailId(emailId);
 		try {
 			user = userRepository.getUserByEmailId(user);
@@ -62,7 +61,6 @@ public class CustomAuthenticationService implements AuthenticationManager {
 		if (user != null) {
 			return checkUser(password, user, authentication);
 		} else {
-			// No user with this banner id found.
 			throw new BadCredentialsException("1001");
 		}
 	}
