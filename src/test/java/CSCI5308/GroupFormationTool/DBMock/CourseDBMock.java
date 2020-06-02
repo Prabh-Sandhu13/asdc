@@ -50,4 +50,16 @@ public class CourseDBMock implements ICourseRepository {
 		return course;
 	}
 
+	@Override
+	public boolean createCourse(ICourse course) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteCourse(String id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

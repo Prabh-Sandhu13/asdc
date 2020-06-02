@@ -1,6 +1,8 @@
 package CSCI5308.GroupFormationTool.Model;
 
+import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.ICourse;
+import CSCI5308.GroupFormationTool.AccessControl.ICourseRepository;
 
 public class Course implements ICourse {
 
@@ -12,6 +14,8 @@ public class Course implements ICourse {
 
 	private String description;
 
+	ICourseRepository courseDB = Injector.instance().getCourseRepository();
+	
 	@Override
 	public String getId() {
 		return id;
@@ -57,6 +61,16 @@ public class Course implements ICourse {
 		name = null;
 		credits = -1;
 		description = null;
+	}
+	
+	public boolean createCourse(Course course)
+	{
+		return courseDB.createCourse(course);
+	}
+	
+	public boolean deleteCourse(String courseId)
+	{
+		return courseDB.deleteCourse(courseId);
 	}
 
 }
