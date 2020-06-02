@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCourses;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesRepository;
+import CSCI5308.GroupFormationTool.Model.Course;
 import CSCI5308.GroupFormationTool.Model.UserCourses;
 
 public class UserCoursesDBMock implements IUserCoursesRepository {
@@ -18,6 +19,14 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 	private String courseDescription;
 
 	private String userRole;
+	
+	private String id;
+
+	private String name;
+
+	private int credits;
+
+	private String description;
 
 	public UserCoursesDBMock() {
 		courseId = "CSCI5308";
@@ -25,6 +34,11 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 		courseDescription = "sample";
 		bannerId = "B00854462";
 		userRole = "student";
+		
+		id = "CSCI5308";
+		name = "Adv SDC";
+		credits = 3;
+		description = "sample";
 	}
 
 	public IUserCourses loadCourses(IUserCourses userCourses) {
@@ -57,20 +71,45 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
 	@Override
 	public String getUserRoleByEmailId(String emailId) {
-		// TODO Auto-generated method stub
-		return null;
+		if (emailId.equals("student@dal.ca")) {
+			return "Student";
+		} else if (emailId.equals("ta@dal.ca")) {
+			return "TA";
+		} else if (emailId.equals("instructor@dal.ca")) {
+			return "Instructor";
+		}
+		return "Guest";
+		
 	}
 
 	@Override
 	public ArrayList<ICourse> getStudentCourses(String emailId) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<ICourse> studentCourseList = new ArrayList<>();
+		ICourse course = new Course();
+
+		course.setCredits(credits);
+		course.setDescription(description);
+		course.setName(name);
+		course.setId(id);
+
+		studentCourseList.add(course);
+
+		return studentCourseList;
 	}
 
 	@Override
 	public ArrayList<ICourse> getTACourses(String emailId) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<ICourse> taCourseList = new ArrayList<>();
+		ICourse course = new Course();
+
+		course.setCredits(credits);
+		course.setDescription(description);
+		course.setName(name);
+		course.setId(id);
+
+		taCourseList.add(course);
+
+		return taCourseList;
 	}
 
 }
