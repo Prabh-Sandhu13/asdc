@@ -38,6 +38,8 @@ import CSCI5308.GroupFormationTool.Repository.UserRepository;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
 import CSCI5308.GroupFormationTool.Service.CourseService;
 import CSCI5308.GroupFormationTool.Service.UserCoursesService;
+import CSCI5308.GroupFormationTool.AccessControl.IStudentRepository;
+import CSCI5308.GroupFormationTool.Repository.StudentRepository;
 
 import CSCI5308.GroupFormationTool.Service.UserService;
 
@@ -62,7 +64,8 @@ public class Injector {
 	private ICourseService courseService;
 	private ICourseRepository courseRepository;
 	private IUserCoursesRepository userCoursesRepository;
-	private IUserCoursesService userCoursesService;
+	private IUserCoursesService userCoursesService;	
+    private IStudentRepository studentRepository;
 
 	private Injector() {
 
@@ -82,6 +85,7 @@ public class Injector {
 		courseRepository = new CourseRepository();
 		userCoursesRepository = new UserCoursesRepository();
 		userCoursesService = new UserCoursesService();
+		studentRepository = new StudentRepository();
 	}
 
 	public IUserCoursesRepository getUserCoursesRepository() {
@@ -149,5 +153,10 @@ public class Injector {
 
 	public ICourseRepository getCourseRepository() {
 		return courseRepository;
+	}
+	
+	public IStudentRepository getStudentRepository() {
+		return studentRepository;
+		
 	}
 }
