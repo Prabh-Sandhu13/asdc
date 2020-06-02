@@ -4,9 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCourses;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesRepository;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
+import CSCI5308.GroupFormationTool.Model.Course;
 import CSCI5308.GroupFormationTool.Model.UserCourses;
 
 public class UserCoursesRepository implements IUserCoursesRepository {
@@ -43,5 +45,101 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 			}
 		}
 		return courseList;
+	}
+
+	@Override
+	public String getUserRoleByEmailId(String emailId) {
+		StoredProcedure storedProcedure = null;
+		String role = "Guest";
+		try {
+			storedProcedure = new StoredProcedure("sp_getUserRoleByEmailId(?)");
+			storedProcedure.setInputStringParameter(1, emailId);
+			ResultSet results = storedProcedure.executeWithResults();
+			if (results != null) {
+				while (results.next()) {
+					{	String roleRet = results.getString("role_type");
+						role = roleRet;
+						if (roleRet.equals("TA")) {
+							break;
+						}
+					}
+				}
+			}
+
+		} catch (SQLException ex) {
+
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		System.out.println(role);
+		return role;
+	}
+
+	@Override
+	public ArrayList<ICourse> getStudentCourses(String emailId) {
+		StoredProcedure storedProcedure = null;
+		ArrayList<ICourse> studentCourseList = new ArrayList<ICourse>();
+		try {
+			storedProcedure = new StoredProcedure("sp_getStudentCoursesByEmailId(?)");
+			storedProcedure.setInputStringParameter(1, emailId);
+			ResultSet results = storedProcedure.executeWithResults();
+
+			if (results != null) {
+				while (results.next()) {
+					{
+						ICourse course = new Course();
+						course.setId(results.getString("course_id"));
+						course.setName(results.getString("course_name"));
+						course.setDescription(results.getString("course_details"));
+						course.setCredits(results.getInt("course_credits"));
+
+						studentCourseList.add(course);
+					}
+				}
+			}
+
+		} catch (SQLException ex) {
+
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return studentCourseList;
+	}
+	
+	@Override
+	public ArrayList<ICourse> getTACourses(String emailId) {
+		StoredProcedure storedProcedure = null;
+		ArrayList<ICourse> taCourseList = new ArrayList<ICourse>();
+		try {
+			storedProcedure = new StoredProcedure("sp_getTACoursesByEmailId(?)");
+			storedProcedure.setInputStringParameter(1, emailId);
+			ResultSet results = storedProcedure.executeWithResults();
+
+			if (results != null) {
+				while (results.next()) {
+					{
+						ICourse course = new Course();
+						course.setId(results.getString("course_id"));
+						course.setName(results.getString("course_name"));
+						course.setDescription(results.getString("course_details"));
+						course.setCredits(results.getInt("course_credits"));
+
+						taCourseList.add(course);
+					}
+				}
+			}
+
+		} catch (SQLException ex) {
+
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return taCourseList;
 	}
 }

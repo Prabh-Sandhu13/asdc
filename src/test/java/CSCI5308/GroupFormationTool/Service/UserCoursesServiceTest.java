@@ -17,5 +17,33 @@ public class UserCoursesServiceTest {
 		assertNotEquals(null, userCoursesService.getRoleBasedCourses(emailId));
 
 	}
+	
+	@Test
+	public void getUserRoleByEmailIdTest() {
+		String emailId = "stud@gmail.com";
+
+		UserCoursesService userCoursesService = new UserCoursesService();
+
+		assertNotEquals(null, userCoursesService.getUserRoleByEmailId(emailId));
+	}
+	
+	@Test
+	public void getStudentCoursesTest() {
+		String emailId = "stud@gmail.com";
+
+		UserCoursesService userCoursesService = new UserCoursesService();
+
+		assertNotEquals(null, userCoursesService.getStudentCourses(emailId));
+	}
+	
+	@Test
+	public void getTACoursesTest() {
+		String emailId = "stud@gmail.com";
+
+		UserCoursesService userCoursesService = new UserCoursesService();
+
+		assertNotEquals(null, userCoursesService.getTACourses(emailId));
+		
+	}
 
 }

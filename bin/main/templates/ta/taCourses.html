@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="icon" href="favicon.ico" />
-<title>Student Course List</title>
+<title>TA Course List</title>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -19,7 +19,7 @@
 
 	<div class="container">
 
-		<h3 class="text-center">Registered Courses</h3>
+		<h3 class="text-center">Registered Courses(Student)</h3>
 
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
@@ -32,7 +32,38 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="course : ${courses}" >
+					<tr th:each="course : ${studentCourses}" >
+						<td th:text="${course.id}"></td>
+						<td> 
+							<a th:text="${course.name}" 
+							th:href="@{/courseDetails?courseName={courseName} (courseName=${course.name})}">
+							</a>
+						</td>
+						<td th:text="${course.description}"></td>
+						<td th:text="${course.credits}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div>
+		</div>
+	</div>
+	<div class="container">
+
+		<h3 class="text-center">Registered Courses(TA)</h3>
+
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th scope="col">Course Id</th>
+						<th scope="col">Course Name</th>
+						<th scope="col">Course Details</th>
+						<th scope="col">Course Credits</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="course : ${taCourses}" >
 						<td th:text="${course.id}"></td>
 						<td> 
 							<a th:text="${course.name}" 
