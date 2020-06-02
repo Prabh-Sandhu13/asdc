@@ -59,7 +59,7 @@ public class ForgotPasswordService implements IForgotPasswordService{
 			
 			//Send Mail Here
 			// create the email
-			String URL = "http://localhost:8080/"+"resetPassword"+"?token="+token;
+			String URL = "http://formgroups22.herokuapp.com/"+"resetPassword"+"?token="+token;
 			msg.setTo(userByEmailId.getEmailId());
 			msg.setSubject("Complete Password Reset!");
 			msg.setFrom("noreply.group22@gmail.com");
