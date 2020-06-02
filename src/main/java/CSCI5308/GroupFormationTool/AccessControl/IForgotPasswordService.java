@@ -3,7 +3,7 @@ import CSCI5308.GroupFormationTool.Model.User;
 
 public interface IForgotPasswordService {
 
-	public boolean sendMail(User user);
-	public boolean updatePassword(User user, String token);
+	public boolean sendMail(IUser user);
+	public boolean updatePassword(IUser user, String token);
 	
 }

@@ -9,6 +9,7 @@ import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordService;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.AccessControl.ITokenGenerator;
+import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
 import CSCI5308.GroupFormationTool.ErrorHandling.TokenAlreadyExistException;
 import CSCI5308.GroupFormationTool.ErrorHandling.TokenExpiredException;
@@ -26,7 +27,7 @@ public class ForgotPasswordService implements IForgotPasswordService{
 	private IPasswordEncryptor encryptor;
 	
 	@Override
-	public boolean sendMail(User user) {
+	public boolean sendMail(IUser user) {
 		
 		userRepository = Injector.instance().getUserRepository();
 		forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
@@ -39,7 +40,7 @@ public class ForgotPasswordService implements IForgotPasswordService{
 		boolean success = false;
 		boolean tokenPresent = false;
 		//System.out.println(user.getEmailId());
-		User userByEmailId = forgotPasswordRepository.getUserId(user);
+		IUser userByEmailId = forgotPasswordRepository.getUserId(user);
 
 		if (userByEmailId != null) {
 			String token = forgotPasswordRepository.getToken(userByEmailId);
@@ -73,12 +74,12 @@ public class ForgotPasswordService implements IForgotPasswordService{
 	}
 
 	@Override
-	public boolean updatePassword(User user, String token) {
+	public boolean updatePassword(IUser user, String token) {
 		boolean updated = false;
 		forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
 		encryptor = Injector.instance().getPasswordEncryptor();
 		//System.out.println("This succeeded");
-		User userByEmailId = forgotPasswordRepository.getEmailByToken(user, token);
+		IUser userByEmailId = forgotPasswordRepository.getEmailByToken(user, token);
 		//System.out.println("Token :"+token);
 		if(userByEmailId !=null) {
 			

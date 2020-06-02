@@ -4,13 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordRepository;
+import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import CSCI5308.GroupFormationTool.Model.User;
 
 public class ForgotPasswordRepository implements IForgotPasswordRepository{
 
 	@Override
-	public boolean addToken(User user,String token) {
+	public boolean addToken(IUser user,String token) {
 		
 		boolean tokenAdded = false;
 		StoredProcedure storedProcedure = null;
@@ -37,7 +38,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 	}
 
 	@Override
-	public String getToken(User user) {
+	public String getToken(IUser user) {
 		
 		String token = "";
 		StoredProcedure storedProcedure = null;
@@ -66,7 +67,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 	}
 
 	@Override
-	public boolean updatePassword(User user, String password) {
+	public boolean updatePassword(IUser user, String password) {
 		
 		boolean passwordUpdated = false;
 		StoredProcedure storedProcedure = null;
@@ -90,7 +91,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 	}
 
 	@Override
-	public boolean deleteToken(User user, String token) {
+	public boolean deleteToken(IUser user, String token) {
 		boolean tokenDeleted = false;
 		StoredProcedure storedProcedure = null;
 		try {
@@ -112,7 +113,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 	}
 
 	@Override
-	public boolean updateToken(User user, String token) {
+	public boolean updateToken(IUser user, String token) {
 		boolean tokenUpdated = false;
 	//	System.out.println("In update");
 		StoredProcedure storedProcedure = null;
@@ -135,7 +136,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 	}
 
 	@Override
-	public User getUserId(User user) {
+	public IUser getUserId(IUser user) {
 
 		User userByEmailId = null;
 		StoredProcedure storedProcedure = null;
@@ -173,7 +174,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 	}
 
 	@Override
-	public User getEmailByToken(User user, String token) {
+	public IUser getEmailByToken(IUser user, String token) {
 		User userByEmailId = null;
 		StoredProcedure storedProcedure = null;
 		//System.out.println("In getemail");
