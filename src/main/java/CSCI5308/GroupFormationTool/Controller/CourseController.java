@@ -81,7 +81,7 @@ public class CourseController {
 					StudentCourseList = userCoursesService.getStudentCourses(emailId);
 					model.addAttribute("studentCourses", StudentCourseList);
 					model.addAttribute("taCourses", TACourseList);
-					return "/ta/taCourses";
+					return "ta/taCourses";
 				}
 			}
 
