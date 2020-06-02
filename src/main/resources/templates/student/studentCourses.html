@@ -36,7 +36,8 @@
 						<td th:text="${course.id}"></td>
 						<td> 
 							<a th:text="${course.name}" 
-							th:href="@{/courseDetails?courseName={courseName} (courseName=${course.name})}"></a>
+							th:href="@{/courseDetails?courseName={courseName} (courseName=${course.name})}">
+							</a>
 						</td>
 						<td th:text="${course.description}"></td>
 						<td th:text="${course.credits}"></td>

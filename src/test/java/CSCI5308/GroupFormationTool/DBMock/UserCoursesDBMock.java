@@ -67,4 +67,10 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 		return null;
 	}
 
+	@Override
+	public ArrayList<ICourse> getTACourses(String emailId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

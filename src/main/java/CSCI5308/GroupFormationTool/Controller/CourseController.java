@@ -39,6 +39,7 @@ public class CourseController {
 		ArrayList<IUserCourses> userCourseList = null;
 		String userRole = null;
 		ArrayList<ICourse> StudentCourseList = null;
+		ArrayList<ICourse> TACourseList = null;
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -75,6 +76,12 @@ public class CourseController {
 					StudentCourseList = userCoursesService.getStudentCourses(emailId);
 					model.addAttribute("courses", StudentCourseList);
 					return "student/studentCourses";
+				} else if (userRole.equals("TA")){
+					TACourseList = userCoursesService.getTACourses(emailId);
+					StudentCourseList = userCoursesService.getStudentCourses(emailId);
+					model.addAttribute("studentCourses", StudentCourseList);
+					model.addAttribute("taCourses", TACourseList);
+					return "/ta/taCourses";
 				}
 			}
 
