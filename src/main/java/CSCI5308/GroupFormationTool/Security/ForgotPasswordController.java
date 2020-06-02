@@ -55,6 +55,7 @@ public class ForgotPasswordController {
 		ModelAndView modelAndView = null;
 		try {
 			forgotPasswordService = Injector.instance().getForgotPasswordService();
+			
 			forgotPasswordService.updatePassword(user,receivedToken);
 			modelAndView = new ModelAndView("passwordResetSuccess");
 			modelAndView.addObject("Success", "Your password has been reset!");		

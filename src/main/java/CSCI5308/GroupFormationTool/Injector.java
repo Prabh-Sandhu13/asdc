@@ -8,10 +8,12 @@ import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordService;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.AccessControl.ITokenGenerator;
+import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
 import CSCI5308.GroupFormationTool.Database.DBConfiguration;
 import CSCI5308.GroupFormationTool.Database.IDBConfiguration;
+import CSCI5308.GroupFormationTool.Model.User;
 import CSCI5308.GroupFormationTool.Repository.ForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.Repository.UserRepository;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
@@ -50,7 +52,6 @@ public class Injector {
 		mailService = new MailService();
 		msg = new SimpleMailMessage();
         jms = new JavaMailSenderImpl();
-        
 	}
 
 	public static Injector instance() {

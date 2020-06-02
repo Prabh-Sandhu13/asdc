@@ -74,7 +74,6 @@ public class ForgotPasswordService implements IForgotPasswordService{
 
 	@Override
 	public boolean updatePassword(User user, String token) {
-		System.out.println("In upswd");
 		boolean updated = false;
 		forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
 		encryptor = Injector.instance().getPasswordEncryptor();
@@ -82,7 +81,9 @@ public class ForgotPasswordService implements IForgotPasswordService{
 		User userByEmailId = forgotPasswordRepository.getEmailByToken(user, token);
 		//System.out.println("Token :"+token);
 		if(userByEmailId !=null) {
+			
 			forgotPasswordRepository.updatePassword(userByEmailId,encryptor.encoder(user.getPassword()));
+			
 			updated = forgotPasswordRepository.deleteToken(user, token);
 		}
 		else {
