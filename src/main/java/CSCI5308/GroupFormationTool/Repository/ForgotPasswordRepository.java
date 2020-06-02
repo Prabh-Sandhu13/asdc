@@ -56,7 +56,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 
 		}
 		catch (SQLException ex) {
-
+			System.out.println(ex.getMessage());
 		} finally {
 			if (storedProcedure != null) {
 				storedProcedure.removeConnections();
@@ -66,9 +66,27 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 	}
 
 	@Override
-	public boolean updatePassword(User user) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updatePassword(User user, String password) {
+		
+		boolean passwordUpdated = false;
+		StoredProcedure storedProcedure = null;
+		try {
+			storedProcedure = new StoredProcedure("sp_updatePassword(?,?)");
+			storedProcedure.setInputStringParameter(1, user.getEmailId());
+			storedProcedure.setInputStringParameter(2, password);
+			storedProcedure.execute();
+			passwordUpdated = true;
+
+		}
+		catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return passwordUpdated;
+	
 	}
 
 	@Override
@@ -83,6 +101,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 
 		}
 		catch (SQLException ex) {
+			System.out.println(ex.getMessage());
 
 		} finally {
 			if (storedProcedure != null) {
@@ -106,7 +125,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 
 		}
 		catch (SQLException ex) {
-
+			System.out.println(ex.getMessage());
 		} finally {
 			if (storedProcedure != null) {
 				storedProcedure.removeConnections();
@@ -138,6 +157,44 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 						userByEmailId.setPassword(results.getString("password"));
 					}
 				}
+			}
+
+		} catch (SQLException ex) {
+			
+			System.out.println(ex.getMessage());
+
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return userByEmailId;
+
+	}
+
+	@Override
+	public User getEmailByToken(User user, String token) {
+		User userByEmailId = null;
+		StoredProcedure storedProcedure = null;
+		//System.out.println("In getemail");
+		try {
+			//System.out.println("In try");
+			storedProcedure = new StoredProcedure("sp_getEmailByToken(?)");
+			storedProcedure.setInputStringParameter(1, token);
+			ResultSet results = storedProcedure.executeWithResults();
+			//System.out.println("Entering result");	
+			if (results != null) {
+
+				while (results.next()) {
+					{
+						userByEmailId = new User();
+						userByEmailId.setId(Long.parseLong(results.getString("user_id")));
+						userByEmailId.setEmailId(results.getString("email"));
+					}
+				}
+			}
+			else {
+				System.out.println("No results");
 			}
 
 		} catch (SQLException ex) {

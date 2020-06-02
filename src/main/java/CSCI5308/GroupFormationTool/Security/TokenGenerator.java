@@ -9,7 +9,7 @@ public class TokenGenerator implements ITokenGenerator{
 	@Override
 	public String generator() {
 
-		return "http://localhost:8080/"+"resetPassword"+"?token="+UUID.randomUUID().toString();
+		return UUID.randomUUID().toString();
 	}
 
 }
