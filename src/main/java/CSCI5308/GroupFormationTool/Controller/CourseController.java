@@ -8,7 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseService;
@@ -37,6 +37,8 @@ public class CourseController {
 
 		ArrayList<ICourse> courseList = null;
 		ArrayList<IUserCourses> userCourseList = null;
+		String userRole = null;
+		ArrayList<ICourse> StudentCourseList = null;
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -55,31 +57,37 @@ public class CourseController {
 				model.addAttribute("courses", courseList);
 				return "admin/allCourses";
 
-			}
-
-			else {
+			} else {
 
 				userCourseList = userCoursesService.getRoleBasedCourses(emailId);
+				userRole = userCoursesService.getUserRoleByEmailId(emailId);
 				System.out.println(userCourseList);
-				if (userCourseList.size() == 0) {
-					
+
+				if (userRole.equals("Guest")) {
 					userRepository.insertToTrace("Entered else if");
-					
 					courseList = courseService.getAllCourses();
 					model.addAttribute("courses", courseList);
 					return "guest/guestCourses";
 				}
 
-				else {
-					model.addAttribute("courses", userCourseList);
+				else if (userRole.equals("Student")) {
+					
+					StudentCourseList = userCoursesService.getStudentCourses(emailId);
+					model.addAttribute("courses", StudentCourseList);
 					return "student/studentCourses";
 				}
 			}
 
-		} else {
-			return "guest/guestCourses";
+		} 
+		
+		return "guest/guestCourses";
 
-		}
+	}
+	
+	@GetMapping(value = "/courseDetails")
+	public String courseDetail(@RequestParam(value = "courseName") String courseName, Model model) {
+		model.addAttribute("courseName",courseName);
+		return "courseDetails";
 	}
 
 }

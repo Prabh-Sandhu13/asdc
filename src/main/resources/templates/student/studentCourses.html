@@ -32,9 +32,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="course : ${courses}">
+					<tr th:each="course : ${courses}" >
 						<td th:text="${course.id}"></td>
-						<td th:text="${course.name}"></td>
+						<td> 
+							<a th:text="${course.name}" 
+							th:href="@{/courseDetails?courseName={courseName} (courseName=${course.name})}"></a>
+						</td>
 						<td th:text="${course.description}"></td>
 						<td th:text="${course.credits}"></td>
 					</tr>
@@ -42,7 +45,6 @@
 			</table>
 		</div>
 		<div>
-			<a th:href="@{/register}" class="text-primary">Click on course name to view details!</a>
 		</div>
 	</div>
 </body>

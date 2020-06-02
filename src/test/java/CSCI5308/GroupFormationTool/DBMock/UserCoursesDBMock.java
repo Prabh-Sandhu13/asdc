@@ -2,6 +2,7 @@ package CSCI5308.GroupFormationTool.DBMock;
 
 import java.util.ArrayList;
 
+import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCourses;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesRepository;
 import CSCI5308.GroupFormationTool.Model.UserCourses;
@@ -52,6 +53,18 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
 		return courseList;
 
+	}
+
+	@Override
+	public String getUserRoleByEmailId(String emailId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<ICourse> getStudentCourses(String emailId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
