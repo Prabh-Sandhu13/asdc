@@ -50,7 +50,8 @@ public class CourseController {
 		String userRole = null;
 		ArrayList<ICourse> StudentCourseList = null;
 		ArrayList<ICourse> TACourseList = null;
-
+		ArrayList<ICourse> InstructorCourseList = null;
+		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
 		userService = Injector.instance().getUserService();
@@ -89,6 +90,10 @@ public class CourseController {
 					model.addAttribute("studentCourses", StudentCourseList);
 					model.addAttribute("taCourses", TACourseList);
 					return "ta/taCourses";
+				} else if (userRole.equals("Instructor")) {
+					InstructorCourseList = userCoursesService.getInstructorCourses(emailId);
+					model.addAttribute("courses", InstructorCourseList);
+					return "instructor/instructorCourses";
 				}
 			}
 
@@ -105,7 +110,7 @@ public class CourseController {
 	}
 	
 	@GetMapping("/uploadCSVFile")
-    public String uploadCSVFile() {
+    public String uploadCSVFile(@RequestParam(value = "courseId") String courseId) {
         return "instructor\\uploadCSVFile";
     }
 	

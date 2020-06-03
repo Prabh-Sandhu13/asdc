@@ -16,4 +16,6 @@ public interface IUserCoursesRepository {
 
 	public boolean addInstructorsToCourse(Long instructor, String courseId);
 
+	public ArrayList<ICourse> getInstructorCourses(String emailId);
+
 }

@@ -124,4 +124,19 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 		return false;
 	}
 
+	@Override
+	public ArrayList<ICourse> getInstructorCourses(String emailId) {
+		ArrayList<ICourse> instCourseList = new ArrayList<>();
+		ICourse course = new Course();
+
+		course.setCredits(credits);
+		course.setDescription(description);
+		course.setName(name);
+		course.setId(id);
+
+		instCourseList.add(course);
+
+		return instCourseList;
+	}
+
 }

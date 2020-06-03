@@ -62,6 +62,9 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 					{
 						String roleRet = results.getString("role_type");
 						role = roleRet;
+						if (roleRet.equals("Instructor")) {
+							break;
+						}
 						if (roleRet.equals("TA")) {
 							break;
 						}
@@ -175,6 +178,39 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 			}
 		}
 		return taCourseList;
+	}
+	
+	@Override
+	public ArrayList<ICourse> getInstructorCourses(String emailId) {
+		StoredProcedure storedProcedure = null;
+		ArrayList<ICourse> instructorCourseList = new ArrayList<ICourse>();
+		try {
+			storedProcedure = new StoredProcedure("sp_getInstructorCoursesByEmailId(?)");
+			storedProcedure.setInputStringParameter(1, emailId);
+
+			ResultSet results = storedProcedure.executeWithResults();
+
+			if (results != null) {
+				while (results.next()) {
+					{
+						ICourse course = new Course();
+						course.setId(results.getString("course_id"));
+						course.setName(results.getString("course_name"));
+						course.setDescription(results.getString("course_details"));
+						course.setCredits(results.getInt("course_credits"));
+
+						instructorCourseList.add(course);
+					}
+				}
+			}
+		} catch (SQLException ex) {
+
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return instructorCourseList;
 	}
 
 	@Override

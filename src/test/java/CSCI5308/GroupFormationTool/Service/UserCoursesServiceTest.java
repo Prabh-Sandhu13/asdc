@@ -16,6 +16,7 @@ public class UserCoursesServiceTest {
 
 		assertNotEquals(null, userCoursesService.getRoleBasedCourses(emailId));
 
+		
 	}
 	
 	@Test
@@ -43,6 +44,16 @@ public class UserCoursesServiceTest {
 		UserCoursesService userCoursesService = new UserCoursesService();
 
 		assertNotEquals(null, userCoursesService.getTACourses(emailId));
+		
+	}
+	
+	@Test
+	public void getInstructorCoursesTest() {
+		String emailId = "stud@gmail.com";
+
+		UserCoursesService userCoursesService = new UserCoursesService();
+
+		assertNotEquals(null, userCoursesService.getInstructorCourses(emailId));
 		
 	}
 
