@@ -64,4 +64,11 @@ public class UserCoursesService implements IUserCoursesService {
 		return userCoursesRepository.addInstructorsToCourse(instructor, courseId);
 	}
 
+	@Override
+	public ArrayList<ICourse> getInstructorCourses(String emailId) {
+		userCoursesRepository = Injector.instance().getUserCoursesRepository();
+
+		return userCoursesRepository.getInstructorCourses(emailId);
+	}
+
 }

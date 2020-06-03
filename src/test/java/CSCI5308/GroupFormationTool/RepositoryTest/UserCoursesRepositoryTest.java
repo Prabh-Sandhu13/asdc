@@ -78,5 +78,20 @@ public class UserCoursesRepositoryTest {
 		assertEquals(1, userCoursesRepository.getTACourses("ta@gmail.com").size());
 		
 	}
+	
+	@Test
+	public void getInstructorCoursesTest() {
+		userCoursesRepository = mock(UserCoursesRepository.class);
+
+		when(userCoursesRepository.getInstructorCourses("padmeshdonthu@gmail.com"))
+				.thenReturn(new ArrayList<ICourse>());
+
+		assertEquals(0, userCoursesRepository.getInstructorCourses("padmeshdonthu@gmail.com").size());
+		
+		when(userCoursesRepository.getInstructorCourses("inst@gmail.com"))
+		.thenReturn(userCoursesDBMock.getInstructorCourses("inst@gmail.com"));
+		assertEquals(1, userCoursesRepository.getInstructorCourses("inst@gmail.com").size());
+		
+	}
 
 }
