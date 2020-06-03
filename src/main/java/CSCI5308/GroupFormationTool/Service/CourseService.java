@@ -11,6 +11,7 @@ import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseRepository;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseService;
 import CSCI5308.GroupFormationTool.AccessControl.IMailService;
+import CSCI5308.GroupFormationTool.AccessControl.IStudentCSV;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 
 public class CourseService implements ICourseService {
@@ -38,7 +39,7 @@ public class CourseService implements ICourseService {
 
 	@Override
 	@Async
-	public boolean sendBatchMail(ArrayList<IUser> users, String courseID, String courseName) {
+	public boolean sendBatchMail(ArrayList<IStudentCSV> users, String courseID, String courseName) {
 		
 		boolean mailSent = true;
 		mailService = Injector.instance().getMailService();
@@ -49,11 +50,11 @@ public class CourseService implements ICourseService {
 		msg.setFrom("noreply.group22@gmail.com");
 		
 		for(int userCount = 0; userCount < users.size() ; userCount++) {
-			msg.setTo(users.get(userCount).getEmailId());
+			msg.setTo(users.get(userCount).getEmail());
 			msg.setText("Hi,\n\nYou have been added to Group Formation Tool as a student in course "
 					+courseID+" : "+courseName+".\n\n"
 					+"Following are your login credentials:\n\nLogin EmailId: "
-					+users.get(userCount).getEmailId()+"\nPassword: "+users.get(userCount).getPassword()
+					+users.get(userCount).getEmail()+"\nPassword: "+users.get(userCount).getPassword()
 					+"\n\n\nKind Regards,\nGroup Formation Tool Team-22");
 			mailService.sendEmail(jms, msg);
 		}

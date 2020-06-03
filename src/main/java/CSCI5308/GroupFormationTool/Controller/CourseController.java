@@ -28,6 +28,7 @@ import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseRepository;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseService;
+import CSCI5308.GroupFormationTool.AccessControl.IStudentCSV;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesService;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
@@ -179,23 +180,23 @@ public class CourseController {
                  * 
                  */
                 
-                ArrayList <IUser> users = new ArrayList<IUser>();
-                User u = new User();
+                ArrayList <IStudentCSV> users = new ArrayList<IStudentCSV>();
+            /*    StudentCSV u = new StudentCSV();
                 u.setEmailId("shah.30haard@gmail.com");
                 u.setPassword("B00827531"); 
                 User u1 = new User();
-                u1.setEmailId("shah.30haard@gmail.com");
-                u1.setPassword("B00434344");
+                u1.setEmailId("padmeshdonthu@gmail.com");
+                u1.setPassword("B00854462");
                 User u2 = new User();
-                u2.setEmailId("smitpan49@gmail.com");
-                u2.setPassword("B002222222");
+                u2.setEmailId("tn300318@dal.ca");
+                u2.setPassword("B00839890");
                 User u3 = new User();
-                u3.setEmailId("shah.30haard@gmail.com");
-                u2.setPassword("B0011111111");
+                u3.setEmailId("Pd616769@dal.ca");
+                u2.setPassword("B00839891");
                 users.add(u);
                 users.add(u1);
                 users.add(u2);
-                users.add(u3);
+                users.add(u3);*/
                 courseService.sendBatchMail(users, "CSCI 5408", "Adv SDC");
                 
                 model.addAttribute("students", students);
