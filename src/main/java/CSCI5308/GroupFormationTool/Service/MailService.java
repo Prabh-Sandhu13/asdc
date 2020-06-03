@@ -7,6 +7,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import CSCI5308.GroupFormationTool.Injector;
+import CSCI5308.GroupFormationTool.AccessControl.IMailService;
 
 public class MailService implements IMailService{
 

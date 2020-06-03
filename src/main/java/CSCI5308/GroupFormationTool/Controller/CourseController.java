@@ -28,10 +28,12 @@ import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseRepository;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseService;
+import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesService;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
 import CSCI5308.GroupFormationTool.Model.Course;
 import CSCI5308.GroupFormationTool.Model.StudentCSV;
+import CSCI5308.GroupFormationTool.Model.User;
 
 
 @Controller
@@ -171,8 +173,33 @@ public class CourseController {
 
                 StudentCSV student = new StudentCSV();
                 student.createStudent(students);
-
+                
+                /*
+                 * Sending mails testing, to be altered as per input
+                 * 
+                 */
+                
+                ArrayList <IUser> users = new ArrayList<IUser>();
+                User u = new User();
+                u.setEmailId("shah.30haard@gmail.com");
+                u.setPassword("B00827531"); 
+                User u1 = new User();
+                u1.setEmailId("shah.30haard@gmail.com");
+                u1.setPassword("B00434344");
+                User u2 = new User();
+                u2.setEmailId("smitpan49@gmail.com");
+                u2.setPassword("B002222222");
+                User u3 = new User();
+                u3.setEmailId("shah.30haard@gmail.com");
+                u2.setPassword("B0011111111");
+                users.add(u);
+                users.add(u1);
+                users.add(u2);
+                users.add(u3);
+                courseService.sendBatchMail(users, "CSCI 5408", "Adv SDC");
+                
                 model.addAttribute("students", students);
+                model.addAttribute("Success", "A mail has been sent to new students.");
                 model.addAttribute("status", true);
 
             } catch (Exception ex) {
@@ -180,7 +207,9 @@ public class CourseController {
                 model.addAttribute("status", false);
             }
         }
+        
 
+        
         return "instructor\\CSVSuccessTable";
     }
 

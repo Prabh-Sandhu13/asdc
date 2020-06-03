@@ -7,6 +7,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordService;
+import CSCI5308.GroupFormationTool.AccessControl.IMailService;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.AccessControl.ITokenGenerator;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;

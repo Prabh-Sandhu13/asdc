@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.Service;
+package CSCI5308.GroupFormationTool.AccessControl;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
