@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -29,14 +28,11 @@ import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseRepository;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseService;
-import CSCI5308.GroupFormationTool.AccessControl.IStudentCSV;
-import CSCI5308.GroupFormationTool.AccessControl.IUserCourses;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesService;
-import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
 import CSCI5308.GroupFormationTool.Model.Course;
 import CSCI5308.GroupFormationTool.Model.StudentCSV;
-import CSCI5308.GroupFormationTool.Repository.UserRepository;
+
 
 @Controller
 public class CourseController {
@@ -44,20 +40,13 @@ public class CourseController {
 	private ICourseService courseService;
 	private IUserService userService;
 	private IUserCoursesService userCoursesService;
-	private UserRepository userRepository;
 
 	@GetMapping("/courseList")
 	public String courseList(Model model) {
 
-		
-		userRepository = new UserRepository();
-		
-		userRepository.insertToTrace("Entered controller");
-		
 		courseService = Injector.instance().getCourseService();
 
 		ArrayList<ICourse> courseList = null;
-		ArrayList<IUserCourses> userCourseList = null;
 		String userRole = null;
 		ArrayList<ICourse> StudentCourseList = null;
 		ArrayList<ICourse> TACourseList = null;
@@ -68,8 +57,6 @@ public class CourseController {
 		userCoursesService = Injector.instance().getUserCoursesService();
 
 		if (!(authentication instanceof AnonymousAuthenticationToken)) {
-			
-			userRepository.insertToTrace("Entered if");
 
 			String emailId = authentication.getPrincipal().toString();
 
@@ -81,23 +68,22 @@ public class CourseController {
 
 			} else {
 
-				userCourseList = userCoursesService.getRoleBasedCourses(emailId);
 				userRole = userCoursesService.getUserRoleByEmailId(emailId);
-				System.out.println(userCourseList);
 
 				if (userRole.equals("Guest")) {
-					userRepository.insertToTrace("Entered else if");
+
 					courseList = courseService.getAllCourses();
+
 					model.addAttribute("courses", courseList);
 					return "guest/guestCourses";
 				}
 
 				else if (userRole.equals("Student")) {
-					
+
 					StudentCourseList = userCoursesService.getStudentCourses(emailId);
 					model.addAttribute("courses", StudentCourseList);
 					return "student/studentCourses";
-				} else if (userRole.equals("TA")){
+				} else if (userRole.equals("TA")) {
 					TACourseList = userCoursesService.getTACourses(emailId);
 					StudentCourseList = userCoursesService.getStudentCourses(emailId);
 					model.addAttribute("studentCourses", StudentCourseList);
@@ -106,15 +92,15 @@ public class CourseController {
 				}
 			}
 
-		} 
-		
+		}
+
 		return "guest/guestCourses";
 
 	}
-	
+
 	@GetMapping(value = "/courseDetails")
 	public String courseDetail(@RequestParam(value = "courseName") String courseName, Model model) {
-		model.addAttribute("courseName",courseName);
+		model.addAttribute("courseName", courseName);
 		return "courseDetails";
 	}
 	

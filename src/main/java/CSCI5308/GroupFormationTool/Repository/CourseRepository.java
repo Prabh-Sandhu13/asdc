@@ -47,23 +47,17 @@ public class CourseRepository implements ICourseRepository {
 	@Override
 	public boolean createCourse(ICourse course) {
 		StoredProcedure proc = null;
-		try
-		{
+		try {
 			proc = new StoredProcedure("sp_createCourse(?,?,?,?)");
 			proc.setInputStringParameter(1, course.getId());
 			proc.setInputStringParameter(2, course.getName());
 			proc.setInputIntParameter(3, course.getCredits());
 			proc.setInputStringParameter(4, course.getDescription());
 			proc.execute();
-		}
-		catch (SQLException ex)
-		{
+		} catch (SQLException ex) {
 			System.out.println(ex);
-		}
-		finally
-		{
-			if (null != proc)
-			{
+		} finally {
+			if (null != proc) {
 				proc.removeConnections();
 			}
 		}
@@ -73,23 +67,47 @@ public class CourseRepository implements ICourseRepository {
 	@Override
 	public boolean deleteCourse(String id) {
 		StoredProcedure proc = null;
-		try
-		{
+		try {
 			proc = new StoredProcedure("sp_deleteACourse(?)");
 			proc.setInputStringParameter(1, id);
 			proc.execute();
-		}
-		catch (SQLException ex)
-		{
+		} catch (SQLException ex) {
 			System.out.println(ex);
-		}
-		finally
-		{
-			if (null != proc)
-			{
+		} finally {
+			if (null != proc) {
 				proc.removeConnections();
 			}
 		}
 		return true;
-}
+	}
+
+	public ICourse getCourseById(String courseId) {
+		StoredProcedure storedProcedure = null;
+		ICourse course = new Course();
+		try {
+			storedProcedure = new StoredProcedure("sp_getCourseById(?)");
+			storedProcedure.setInputStringParameter(1, courseId);
+			ResultSet results = storedProcedure.executeWithResults();
+
+			if (results != null) {
+				while (results.next()) {
+					{
+						course.setId(results.getString("course_id"));
+						course.setName(results.getString("course_name"));
+						course.setDescription(results.getString("course_details"));
+						course.setCredits(results.getInt("course_credits"));
+					}
+				}
+			}
+
+		} catch (SQLException ex) {
+
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return course;
+	}
+
 }

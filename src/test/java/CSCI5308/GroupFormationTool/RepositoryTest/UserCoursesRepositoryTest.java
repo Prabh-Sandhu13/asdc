@@ -4,8 +4,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCourses;
 import CSCI5308.GroupFormationTool.DBMock.UserCoursesDBMock;
-import CSCI5308.GroupFormationTool.Model.UserCourses;
 import CSCI5308.GroupFormationTool.Repository.UserCoursesRepository;
 import static org.junit.jupiter.api.Assertions.*;
 

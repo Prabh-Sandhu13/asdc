@@ -132,22 +132,4 @@ public class UserRepository implements IUserRepository {
 		}
 		return adminDetails;
 	}
-
-	public boolean insertToTrace(String msg) {
-		StoredProcedure storedProcedure = null;
-		try {
-			storedProcedure = new StoredProcedure("insert_trace(?)");
-			storedProcedure.setInputStringParameter(1, msg);
-			storedProcedure.execute();
-
-		} catch (SQLException ex) {
-
-		} finally {
-			if (storedProcedure != null) {
-				storedProcedure.removeConnections();
-			}
-		}
-		return true;
-	}
-
 }

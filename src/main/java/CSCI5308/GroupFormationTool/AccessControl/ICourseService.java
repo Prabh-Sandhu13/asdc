@@ -8,4 +8,6 @@ public interface ICourseService {
 
 	public ArrayList<ICourse> getAllCourses();
 	
+	public ICourse getCourseById(String courseId);
+	
 }

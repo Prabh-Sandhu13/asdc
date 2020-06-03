@@ -62,4 +62,14 @@ public class CourseDBMock implements ICourseRepository {
 		return false;
 	}
 
+	public ICourse getCourseById(String courseId) {
+
+		ICourse course = new Course();
+		course.setCredits(credits);
+		course.setDescription(description);
+		course.setId(courseId);
+		course.setName(name);
+		return course;
+	}
+
 }

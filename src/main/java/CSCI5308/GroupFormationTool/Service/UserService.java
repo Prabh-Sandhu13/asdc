@@ -1,5 +1,7 @@
 package CSCI5308.GroupFormationTool.Service;
 
+import java.util.ArrayList;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import CSCI5308.GroupFormationTool.Injector;
@@ -50,7 +52,7 @@ public class UserService implements IUserService {
 
 		userRepository = Injector.instance().getUserRepository();
 		IUser adminDetails = userRepository.getAdminDetails();
-		
+
 		return adminDetails.getEmailId().equalsIgnoreCase(emailId);
 
 	}

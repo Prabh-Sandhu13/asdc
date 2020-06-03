@@ -20,4 +20,11 @@ public class CourseService implements ICourseService {
 
 	}
 
+	@Override
+	public ICourse getCourseById(String courseId) {
+		courseRepository = Injector.instance().getCourseRepository();
+
+		return courseRepository.getCourseById(courseId);
+	}
+
 }

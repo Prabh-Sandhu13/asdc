@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.DBMock;
 import java.util.ArrayList;
 
 import CSCI5308.GroupFormationTool.AccessControl.ICourse;
+import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCourses;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesRepository;
 import CSCI5308.GroupFormationTool.Model.Course;
@@ -19,7 +20,7 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 	private String courseDescription;
 
 	private String userRole;
-	
+
 	private String id;
 
 	private String name;
@@ -34,7 +35,7 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 		courseDescription = "sample";
 		bannerId = "B00854462";
 		userRole = "student";
-		
+
 		id = "CSCI5308";
 		name = "Adv SDC";
 		credits = 3;
@@ -79,7 +80,7 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 			return "Instructor";
 		}
 		return "Guest";
-		
+
 	}
 
 	@Override
@@ -110,6 +111,17 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 		taCourseList.add(course);
 
 		return taCourseList;
+	}
+
+	public ArrayList<IUser> usersCurrentlyNotInstructorsForCourse(String courseId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean addInstructorsToCourse(Long instructor, String courseId) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

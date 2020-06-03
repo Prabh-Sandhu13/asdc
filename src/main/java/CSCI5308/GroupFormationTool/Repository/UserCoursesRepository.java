@@ -9,6 +9,8 @@ import CSCI5308.GroupFormationTool.AccessControl.IUserCourses;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesRepository;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import CSCI5308.GroupFormationTool.Model.Course;
+import CSCI5308.GroupFormationTool.AccessControl.IUser;
+import CSCI5308.GroupFormationTool.Model.User;
 import CSCI5308.GroupFormationTool.Model.UserCourses;
 
 public class UserCoursesRepository implements IUserCoursesRepository {
@@ -57,7 +59,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 			ResultSet results = storedProcedure.executeWithResults();
 			if (results != null) {
 				while (results.next()) {
-					{	String roleRet = results.getString("role_type");
+					{
+						String roleRet = results.getString("role_type");
 						role = roleRet;
 						if (roleRet.equals("TA")) {
 							break;
@@ -73,7 +76,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 				storedProcedure.removeConnections();
 			}
 		}
-		System.out.println(role);
 		return role;
 	}
 
@@ -84,6 +86,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 		try {
 			storedProcedure = new StoredProcedure("sp_getStudentCoursesByEmailId(?)");
 			storedProcedure.setInputStringParameter(1, emailId);
+
 			ResultSet results = storedProcedure.executeWithResults();
 
 			if (results != null) {
@@ -99,7 +102,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 					}
 				}
 			}
-
 		} catch (SQLException ex) {
 
 		} finally {
@@ -109,7 +111,39 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 		}
 		return studentCourseList;
 	}
-	
+
+	public ArrayList<IUser> usersCurrentlyNotInstructorsForCourse(String courseId) {
+		StoredProcedure storedProcedure = null;
+		ArrayList<IUser> userList = new ArrayList<IUser>();
+		try {
+			storedProcedure = new StoredProcedure("sp_getUsersCurrentlyNotInstructorsForCourse(?)");
+			storedProcedure.setInputStringParameter(1, courseId);
+			ResultSet results = storedProcedure.executeWithResults();
+			if (results != null) {
+				while (results.next()) {
+					{
+						IUser user = new User();
+						user.setBannerId(results.getString("banner_id"));
+						user.setEmailId(results.getString("email"));
+						user.setFirstName(results.getString("first_name"));
+						user.setLastName(results.getString("last_name"));
+						user.setId(results.getLong("user_id"));
+
+						userList.add(user);
+					}
+				}
+			}
+
+		} catch (SQLException ex) {
+
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return userList;
+	}
+
 	@Override
 	public ArrayList<ICourse> getTACourses(String emailId) {
 		StoredProcedure storedProcedure = null;
@@ -141,5 +175,27 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 			}
 		}
 		return taCourseList;
+	}
+
+	@Override
+	public boolean addInstructorsToCourse(Long instructor, String courseId) {
+
+		StoredProcedure storedProcedure = null;
+		try {
+			storedProcedure = new StoredProcedure("sp_addInstructorsToCourse(?,?)");
+
+			storedProcedure.setInputIntParameter(1, instructor);
+			storedProcedure.setInputStringParameter(2, courseId);
+
+			storedProcedure.execute();
+
+		} catch (SQLException ex) {
+			return false;
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return true;
 	}
 }

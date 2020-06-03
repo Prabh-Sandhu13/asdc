@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool.Model;
 
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
-import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
 
 public class User implements IUser {
 

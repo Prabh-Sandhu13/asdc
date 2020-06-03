@@ -59,7 +59,7 @@ public class Course implements ICourse {
 	public Course() {
 		id = null;
 		name = null;
-		credits = -1;
+		credits = 3;
 		description = null;
 	}
 	
