@@ -212,6 +212,40 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 		}
 		return instructorCourseList;
 	}
+	
+	@Override
+	public ArrayList<IUser> getTAForCourse(String courseId) {
+		StoredProcedure storedProcedure = null;
+		ArrayList<IUser> taList = new ArrayList<IUser>();
+		try {
+			storedProcedure = new StoredProcedure("sp_getTAForCourse(?)");
+			storedProcedure.setInputStringParameter(1, courseId);
+
+			ResultSet results = storedProcedure.executeWithResults();
+
+			if (results != null) {
+				while (results.next()) {
+					{
+						IUser user = new User();
+						user.setBannerId(results.getString("banner_id"));
+						user.setEmailId(results.getString("email"));
+						user.setFirstName(results.getString("first_name"));
+						user.setLastName(results.getString("last_name"));
+						user.setId(results.getLong("user_id"));
+
+						taList.add(user);
+					}
+				}
+			}
+		} catch (SQLException ex) {
+
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return taList;
+	}
 
 	@Override
 	public boolean addInstructorsToCourse(Long instructor, String courseId) {
@@ -227,6 +261,95 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 
 		} catch (SQLException ex) {
 			return false;
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public boolean enrollTAForCourseUsingEmailId(User user, String courseId) {
+		StoredProcedure storedProcedure = null;
+		String emailId = user.getEmailId();
+		try {
+			storedProcedure = new StoredProcedure("sp_getUserIdByEmailId(?)");
+			storedProcedure.setInputStringParameter(1, emailId);
+
+			ResultSet results = storedProcedure.executeWithResults();
+			if (results != null) {
+				if (!(results.next())) {
+					System.out.println("user exists!!");
+					return false;
+				} else {
+					System.out.println("user does not exist!!");
+					System.out.println(results.getString("user_id"));
+					String userId = results.getString("user_id");
+					Boolean roleExists = getUserRoleForCourse(userId, courseId);
+					if(roleExists) {
+						return false;
+					} else {
+						return assignUserAsTA(userId, courseId);
+					}
+					
+				}
+			}
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			return false;
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return true;
+	}
+	
+	private boolean assignUserAsTA(String userId, String courseId) {
+		StoredProcedure storedProcedure = null;
+		try {
+			storedProcedure = new StoredProcedure("sp_addTAToCourse(?,?)");
+
+			storedProcedure.setInputStringParameter(1, userId);
+			storedProcedure.setInputStringParameter(2, courseId);
+
+			storedProcedure.execute();
+
+		} catch (SQLException ex) {
+			return false;
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return true;
+	}
+
+	public boolean getUserRoleForCourse(String userId, String courseId) {
+		StoredProcedure storedProcedure = null;
+		System.out.println("entered......."+userId+courseId);
+		try {
+			storedProcedure = new StoredProcedure("sp_getUserRoleForCourse(?,?)");
+			storedProcedure.setInputStringParameter(1, userId);
+			storedProcedure.setInputStringParameter(2, courseId);
+
+			ResultSet results = storedProcedure.executeWithResults();
+			if (results != null) {
+				if (!(results.next())) {
+					System.out.println("user role does not exist!!");
+					return false;
+				} else {
+					System.out.println(results.getString("role_id"));
+					System.out.println("user role exists!!");
+					return true;
+				}
+			}
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			return true;
 		} finally {
 			if (storedProcedure != null) {
 				storedProcedure.removeConnections();

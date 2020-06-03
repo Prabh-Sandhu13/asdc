@@ -2,6 +2,8 @@ package CSCI5308.GroupFormationTool.AccessControl;
 
 import java.util.ArrayList;
 
+import CSCI5308.GroupFormationTool.Model.User;
+
 public interface IUserCoursesService {
 	public ArrayList<IUserCourses> getRoleBasedCourses(String emailId);
 
@@ -16,5 +18,9 @@ public interface IUserCoursesService {
 	public boolean addInstructorsToCourse(Long instructor, String courseId);
 
 	public ArrayList<ICourse> getInstructorCourses(String emailId);
+
+	public ArrayList<IUser> getTAForCourse(String courseId);
+
+	public boolean enrollTAForCourseUsingEmailId(User user, String courseId);
 
 }

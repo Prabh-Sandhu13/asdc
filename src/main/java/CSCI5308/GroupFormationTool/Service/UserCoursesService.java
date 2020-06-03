@@ -8,6 +8,7 @@ import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCourses;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesService;
+import CSCI5308.GroupFormationTool.Model.User;
 
 public class UserCoursesService implements IUserCoursesService {
 
@@ -69,6 +70,20 @@ public class UserCoursesService implements IUserCoursesService {
 		userCoursesRepository = Injector.instance().getUserCoursesRepository();
 
 		return userCoursesRepository.getInstructorCourses(emailId);
+	}
+
+	@Override
+	public ArrayList<IUser> getTAForCourse(String courseId) {
+		userCoursesRepository = Injector.instance().getUserCoursesRepository();
+
+		return userCoursesRepository.getTAForCourse(courseId);
+	}
+
+	@Override
+	public boolean enrollTAForCourseUsingEmailId(User user, String courseId) {
+		userCoursesRepository = Injector.instance().getUserCoursesRepository();
+
+		return userCoursesRepository.enrollTAForCourseUsingEmailId(user,courseId);
 	}
 
 }

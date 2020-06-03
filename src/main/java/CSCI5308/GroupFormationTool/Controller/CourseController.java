@@ -28,10 +28,12 @@ import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseRepository;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseService;
+import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesService;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
 import CSCI5308.GroupFormationTool.Model.Course;
 import CSCI5308.GroupFormationTool.Model.StudentCSV;
+import CSCI5308.GroupFormationTool.Model.User;
 
 
 @Controller
@@ -107,6 +109,40 @@ public class CourseController {
 	public String courseDetail(@RequestParam(value = "courseName") String courseName, Model model) {
 		model.addAttribute("courseName", courseName);
 		return "courseDetails";
+	}
+	
+	@GetMapping(value = "/enrollTA")
+	public String enrollTA(@RequestParam(value = "courseId") String courseId, Model model) {
+		userCoursesService = Injector.instance().getUserCoursesService();
+		ArrayList<IUser> taList = null;
+		taList = userCoursesService.getTAForCourse(courseId);
+		System.out.println(taList);
+		User user = new User();
+		model.addAttribute("user", user);
+		model.addAttribute("taList", taList);
+		model.addAttribute("courseId", courseId);
+		return "ta/enrollTA";
+	}
+	
+	@PostMapping("/enrollTA")
+	public String addTA(@RequestParam(value = "courseId") String courseId,
+			@ModelAttribute User user, Model model)
+	{
+		userCoursesService = Injector.instance().getUserCoursesService();
+		boolean success = userCoursesService.enrollTAForCourseUsingEmailId(user, courseId);
+		System.out.println("_______**********"+success);
+		ArrayList<IUser> taList = null;
+		if(success) {
+			model.addAttribute("success", "added");
+		} else {
+			model.addAttribute("error", "not added");
+		}
+		taList = userCoursesService.getTAForCourse(courseId);
+		System.out.println(taList);
+		model.addAttribute("taList", taList);
+		model.addAttribute("courseId", courseId);
+//		user.setEmailId(null);
+		return "ta/enrollTA";
 	}
 	
 	@GetMapping("/uploadCSVFile")

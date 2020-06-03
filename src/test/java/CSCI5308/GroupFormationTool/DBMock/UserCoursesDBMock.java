@@ -7,6 +7,7 @@ import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCourses;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesRepository;
 import CSCI5308.GroupFormationTool.Model.Course;
+import CSCI5308.GroupFormationTool.Model.User;
 import CSCI5308.GroupFormationTool.Model.UserCourses;
 
 public class UserCoursesDBMock implements IUserCoursesRepository {
@@ -137,6 +138,18 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 		instCourseList.add(course);
 
 		return instCourseList;
+	}
+
+	@Override
+	public ArrayList<IUser> getTAForCourse(String courseId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean enrollTAForCourseUsingEmailId(User user, String courseId) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
