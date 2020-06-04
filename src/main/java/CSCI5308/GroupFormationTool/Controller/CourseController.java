@@ -1,12 +1,13 @@
 package CSCI5308.GroupFormationTool.Controller;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -146,7 +147,8 @@ public class CourseController {
 	}
 	
 	@GetMapping("/uploadCSVFile")
-    public String uploadCSVFile(@RequestParam(value = "courseId") String courseId) {
+    public String uploadCSVFile(@RequestParam(value = "courseId") String courseId, Model model) {
+		model.addAttribute("CourseId", courseId);
         return "instructor\\uploadCSVFile";
     }
 	
@@ -193,36 +195,40 @@ public class CourseController {
 	}	
 
 	// Code referenced from - "https://attacomsian.com/blog/spring-boot-upload-parse-csv-file#"
-	@PostMapping("/uploadCSVFile")
-    public String uploadCSVFile(@RequestParam("file") MultipartFile file, Model model) {
+		@PostMapping("/uploadCSVFile")
+	    public String uploadCSVFile(@RequestParam("file") MultipartFile file, Model model, @RequestParam(name = "courseId") String courseId) {
+			Map<Integer,List<StudentCSV>> studentLists = new HashMap<Integer,List<StudentCSV>>();
+	        if (file.isEmpty()) {
+	            model.addAttribute("message", "Please select a CSV file to upload.");
+	            model.addAttribute("status", false);
+	        } else {
 
-        if (file.isEmpty()) {
-            model.addAttribute("message", "Please select a CSV file to upload.");
-            model.addAttribute("status", false);
-        } else {
+	            try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
 
-            try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
+	                CsvToBean<StudentCSV> csvToBean = new CsvToBeanBuilder(reader)
+	                        .withType(StudentCSV.class)
+	                        .withIgnoreLeadingWhiteSpace(true)
+	                        .build();
 
-                CsvToBean<StudentCSV> csvToBean = new CsvToBeanBuilder(reader)
-                        .withType(StudentCSV.class)
-                        .withIgnoreLeadingWhiteSpace(true)
-                        .build();
+	                List<StudentCSV> students = (List<StudentCSV>)csvToBean.parse();
 
-                List<StudentCSV> students = (List<StudentCSV>)csvToBean.parse();
+	                StudentCSV student = new StudentCSV();
+	                System.out.println(courseId);
+	                studentLists = student.createStudent(students, courseId);
 
-                StudentCSV student = new StudentCSV();
-                student.createStudent(students);
+	                model.addAttribute("newStudentList", studentLists.get(0));
+	                model.addAttribute("oldStudentList", studentLists.get(1));
+	                model.addAttribute("badData", studentLists.get(2));
+	                
+	                model.addAttribute("status", true);
 
-                model.addAttribute("students", students);
-                model.addAttribute("status", true);
+	            } catch (Exception ex) {
+	                model.addAttribute("message", "An error occurred while processing the CSV file.");
+	                model.addAttribute("status", false);
+	            }
+	        }
 
-            } catch (Exception ex) {
-                model.addAttribute("message", "An error occurred while processing the CSV file.");
-                model.addAttribute("status", false);
-            }
-        }
-
-        return "instructor\\CSVSuccessTable";
-    }
+	        return "instructor\\CSVSuccessTable";
+	    }
 
 }
