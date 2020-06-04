@@ -142,13 +142,21 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
 	@Override
 	public ArrayList<IUser> getTAForCourse(String courseId) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<IUser> taList = new ArrayList<>();
+		IUser ta = new User();
+		ta.setBannerId(bannerId);
+		ta.setEmailId("stu@gmail.com");
+		ta.setFirstName("John");
+		ta.setLastName("sam");
+		taList.add(ta);
+		return taList;
 	}
 
 	@Override
 	public boolean enrollTAForCourseUsingEmailId(User user, String courseId) {
-		// TODO Auto-generated method stub
+		if(courseId=="1") {
+			return true;
+		}
 		return false;
 	}
 
