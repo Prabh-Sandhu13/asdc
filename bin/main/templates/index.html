@@ -21,8 +21,14 @@
 		</div>
 		<h1>Welcome to the CSCI5308 Group Formation Tool!</h1>
 		<div sec:authorize="isAuthenticated()">
-			<br /> <br />
-			<!-- Learned how to do this here: https://www.baeldung.com/thymeleaf-list -->
+			<br /> <br /> Welcome to Group Formation Tool. Group work can often
+			go awry when the members do not gel with each other. Group Formation
+			Tool is your one stop solution for forming the best groups that can
+			build a high quality product. While forming groups, we consider all
+			the dimensions of each member. With easy accessibility for different
+			users like Instructor, TA and Student, this tool aids the learning
+			experience for university courses. To explore more, view the courses
+			accessible to you. <br /><br/>
 			<div>
 				<a th:href="@{/courseList}" class="btn btn-primary btn-sm">View
 					Courses</a>
