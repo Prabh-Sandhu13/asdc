@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 import CSCI5308.GroupFormationTool.DBMock.CourseDBMock;
 import CSCI5308.GroupFormationTool.Model.Course;
-import CSCI5308.GroupFormationTool.Model.StudentCSV;
 
 @SpringBootTest
 public class CourseServiceTest {
@@ -25,7 +24,7 @@ public class CourseServiceTest {
 	}
 
 	@Test
-	public void getCourseById() {
+	public void getCourseByIdTest() {
 
 		CourseService courseService = new CourseService();
 
@@ -33,7 +32,7 @@ public class CourseServiceTest {
 	}
 
 	@Test
-	public void deleteCourse() {
+	public void deleteCourseTest() {
 
 		CourseService courseService = new CourseService();
 
@@ -41,7 +40,7 @@ public class CourseServiceTest {
 	}
 
 	@Test
-	public void createCourse() {
+	public void createCourseTest() {
 		CourseService courseService = new CourseService();
 
 		CourseDBMock courseDBMock = new CourseDBMock();
@@ -50,23 +49,5 @@ public class CourseServiceTest {
 		course = courseDBMock.loadCourses(course);
 
 		assertNotEquals(null, courseService.createCourse(course));
-	}
-
-	@Test
-	public void sendBatchMail() {
-
-		StudentCSV studentCSV = new StudentCSV();
-		List<StudentCSV> studentCSVs = new ArrayList<StudentCSV>();
-
-		studentCSV.setEmail("padmeshdonthu@gmail.com");
-		studentCSV.setFirstName("Padmesh");
-		studentCSV.setLastName("Donthu");
-		studentCSV.setPassword("NewPassword");
-		studentCSVs.add(studentCSV);
-
-		CourseService courseService = new CourseService();
-
-		assertEquals(true, courseService.sendBatchMail(studentCSVs, "CSCI5408"));
-
 	}
 }

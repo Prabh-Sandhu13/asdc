@@ -28,7 +28,7 @@ public class CourseRepositoryTest {
 	}
 
 	@Test
-	public void createCourse() {
+	public void createCourseTest() {
 		courseDBMock = new CourseDBMock();
 
 		ICourse course = new Course();
@@ -39,7 +39,7 @@ public class CourseRepositoryTest {
 	}
 
 	@Test
-	public void deleteCourse() {
+	public void deleteCourseTest() {
 		courseDBMock = new CourseDBMock();
 		assertEquals(true, courseDBMock.deleteCourse("1"));
 	}

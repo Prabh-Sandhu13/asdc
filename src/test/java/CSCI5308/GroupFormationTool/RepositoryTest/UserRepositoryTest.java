@@ -60,7 +60,7 @@ public class UserRepositoryTest {
 	}
 	
 	@Test
-	public void getAdminDetails() {
+	public void getAdminDetailsTest() {
 		userDBMock = new UserDBMock();
 
 		IUser user = new User();

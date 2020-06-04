@@ -24,14 +24,14 @@ public class CourseTest {
 	}
 
 	@Test
-	public void getId() {
+	public void getIdTest() {
 
 		ICourse course = createDefaultCourse();
 		assertEquals("CSCI5308", course.getId());
 	}
 
 	@Test
-	public void setId() {
+	public void setIdTest() {
 
 		ICourse course = new Course();
 		course.setId("CSCI5408");
@@ -39,28 +39,28 @@ public class CourseTest {
 	}
 
 	@Test
-	public void getName() {
+	public void getNameTest() {
 
 		ICourse course = createDefaultCourse();
 		assertEquals("Adv SDC", course.getName());
 	}
 
 	@Test
-	public void setName() {
+	public void setNameTest() {
 		ICourse course = new Course();
 		course.setName("Mobile");
 		assertEquals("Mobile", course.getName());
 	}
 
 	@Test
-	public void getCredits() {
+	public void getCreditsTest() {
 
 		ICourse course = createDefaultCourse();
 		assertEquals(3, course.getCredits());
 	}
 
 	@Test
-	public void setCredits() {
+	public void setCreditsTest() {
 
 		ICourse course = new Course();
 		course.setCredits(5);
@@ -68,14 +68,14 @@ public class CourseTest {
 	}
 
 	@Test
-	public void getDescription() {
+	public void getDescriptionTest() {
 
 		ICourse course = createDefaultCourse();
 		assertEquals("sample", course.getDescription());
 	}
 
 	@Test
-	public void setDescription() {
+	public void setDescriptionTest() {
 
 		ICourse course = new Course();
 		course.setDescription("example");

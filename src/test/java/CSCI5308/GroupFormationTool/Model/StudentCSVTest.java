@@ -25,13 +25,13 @@ public class StudentCSVTest {
 	}
 
 	@Test
-	public void getFirstName() {
+	public void getFirstNameTest() {
 		IStudentCSV studentCSV = createDefaultStudentCSV();
 		assertEquals("Tanu", studentCSV.getFirstName());
 	}
 
 	@Test
-	public void setFirstName() {
+	public void setFirstNameTest() {
 		IStudentCSV studentCSV = new StudentCSV();
 		studentCSV.setFirstName("Padmesh");
 		assertEquals("Padmesh",studentCSV.getFirstName());
@@ -39,13 +39,13 @@ public class StudentCSVTest {
 	}
 
 	@Test
-	public void getLastName() {
+	public void getLastNameTest() {
 		IStudentCSV studentCSV = createDefaultStudentCSV();
 		assertEquals("Gulia", studentCSV.getLastName());
 	}
 
 	@Test
-	public void setLastName() {
+	public void setLastNameTest() {
 		IStudentCSV studentCSV = new StudentCSV();
 		studentCSV.setLastName("Donthu");
 		assertEquals("Donthu",studentCSV.getLastName());
@@ -53,13 +53,13 @@ public class StudentCSVTest {
 	}
 
 	@Test
-	public void getBannerId() {
+	public void getBannerIdTest() {
 		IStudentCSV studentCSV = createDefaultStudentCSV();
 		assertEquals("B00839890", studentCSV.getBannerId());
 	}
 
 	@Test
-	public void setBannerId() {
+	public void setBannerIdTest() {
 		IStudentCSV studentCSV = new StudentCSV();
 		studentCSV.setBannerId("B0000000");
 		assertEquals("B0000000",studentCSV.getBannerId());
@@ -67,26 +67,26 @@ public class StudentCSVTest {
 	}
 
 	@Test
-	public void getEmailId() {
+	public void getEmailIdTest() {
 		IStudentCSV studentCSV = createDefaultStudentCSV();
 		assertEquals("tn300318@dal.ca", studentCSV.getEmail());
 	}
 
 	@Test
-	public void setEmailId() {
+	public void setEmailIdTest() {
 		IStudentCSV studentCSV = new StudentCSV();
 		studentCSV.setEmail("padmeshdonthu@gmail.com");
 		assertEquals("padmeshdonthu@gmail.com",studentCSV.getEmail());
 	}
 
 	@Test
-	public void getPassword() {
+	public void getPasswordTest() {
 		IStudentCSV studentCSV = createDefaultStudentCSV();
 		assertEquals("password1234", studentCSV.getPassword());
 	}
 
 	@Test
-	public void setPassword() {
+	public void setPasswordTest() {
 		IStudentCSV studentCSV = new StudentCSV();
 		studentCSV.setPassword("password");
 		assertEquals("password",studentCSV.getPassword());

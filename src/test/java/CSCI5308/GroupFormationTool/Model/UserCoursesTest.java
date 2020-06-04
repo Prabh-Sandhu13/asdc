@@ -24,14 +24,14 @@ public class UserCoursesTest {
 	}
 
 	@Test
-	public void getCourseId() {
+	public void getCourseIdTest() {
 
 		IUserCourses userCourses = createDefaultUserCourses();
 		assertEquals("CSCI5308", userCourses.getCourseId());
 	}
 
 	@Test
-	public void setId() {
+	public void setIdTest() {
 
 		IUserCourses userCourses = new UserCourses();
 		userCourses.setCourseId("CSCI5408");
@@ -39,28 +39,28 @@ public class UserCoursesTest {
 	}
 
 	@Test
-	public void getCourseName() {
+	public void getCourseNameTest() {
 
 		IUserCourses userCourses = createDefaultUserCourses();
 		assertEquals("Adv SDC", userCourses.getCourseName());
 	}
 
 	@Test
-	public void setCourseName() {
+	public void setCourseNameTest() {
 		IUserCourses userCourses = new UserCourses();
 		userCourses.setCourseName("Mobile");
 		assertEquals("Mobile", userCourses.getCourseName());
 	}
 
 	@Test
-	public void getCourseDescription() {
+	public void getCourseDescriptionTest() {
 
 		IUserCourses userCourses = createDefaultUserCourses();
 		assertEquals("sample", userCourses.getCourseDescription());
 	}
 
 	@Test
-	public void setCourseDescription() {
+	public void setCourseDescriptionTest() {
 
 		IUserCourses userCourses = new UserCourses();
 		userCourses.setCourseDescription("example");
@@ -69,14 +69,14 @@ public class UserCoursesTest {
 	}
 
 	@Test
-	public void getBannerId() {
+	public void getBannerIdTest() {
 
 		IUserCourses userCourses = createDefaultUserCourses();
 		assertEquals("B00854462", userCourses.getBannerId());
 	}
 
 	@Test
-	public void setBannerId() {
+	public void setBannerIdTest() {
 
 		IUserCourses userCourses = new UserCourses();
 		userCourses.setBannerId("B0000000");
@@ -85,14 +85,14 @@ public class UserCoursesTest {
 	}
 
 	@Test
-	public void getUserRole() {
+	public void getUserRoleTest() {
 
 		IUserCourses userCourses = createDefaultUserCourses();
 		assertEquals("student", userCourses.getUserRole());
 	}
 
 	@Test
-	public void setUserRole() {
+	public void setUserRoleTest() {
 
 		IUserCourses userCourses = new UserCourses();
 		userCourses.setUserRole("TA");

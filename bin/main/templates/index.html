@@ -20,7 +20,7 @@
 				Id: [[${#httpServletRequest.remoteUser}]]</h4>
 		</div>
 		<h1>Welcome to the CSCI5308 Group Formation Tool!</h1>
-		<div sec:authorize="isAuthenticated()">
+		<div sec:authorize="isAuthenticated()" style="padding: 20px;">
 			<br /> <br /> Welcome to Group Formation Tool. Group work can often
 			go awry when the members do not gel with each other. Group Formation
 			Tool is your one stop solution for forming the best groups that can
@@ -28,7 +28,8 @@
 			the dimensions of each member. With easy accessibility for different
 			users like Instructor, TA and Student, this tool aids the learning
 			experience for university courses. To explore more, view the courses
-			accessible to you. <br /><br/>
+			accessible to you. <br />
+			<br />
 			<div>
 				<a th:href="@{/courseList}" class="btn btn-primary btn-sm">View
 					Courses</a>

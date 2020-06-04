@@ -27,7 +27,7 @@ public class BCryptEncryptionTest implements IPasswordEncryptor {
 	}
 
 	@Test
-	void encryptPassword() {
+	void encryptPasswordTest() {
 
 		String password = "padmesh1234";
 
