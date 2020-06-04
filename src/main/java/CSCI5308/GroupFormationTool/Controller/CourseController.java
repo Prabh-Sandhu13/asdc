@@ -218,7 +218,6 @@ public class CourseController {
 	                List<StudentCSV> students = (List<StudentCSV>)csvToBean.parse();
 
 	               // StudentCSV student = new StudentCSV();
-	                studentService = new StudentService();
 	                System.out.println(courseId);
 	                studentLists = studentService.createStudent(students, courseId);
 	                

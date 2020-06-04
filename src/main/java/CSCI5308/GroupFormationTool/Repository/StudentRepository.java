@@ -35,7 +35,8 @@ List<StudentCSV> badData = new ArrayList<StudentCSV>();
 		
 		for(StudentCSV stu : student)
 		{
-			if(stu.getBannerId() == null || stu.getFirstName() == null || stu.getLastName() == null || stu.getEmail() == null)
+			if(stu.getBannerId() == null || stu.getFirstName() == null || stu.getLastName() == null || stu.getEmail() == null
+			||stu.getBannerId().equals("") || stu.getFirstName().equals("") || stu.getLastName().equals("") || stu.getEmail().equals(""))
 			{
 				badData.add(stu);
 			}
