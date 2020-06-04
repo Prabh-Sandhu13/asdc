@@ -2,8 +2,9 @@ package CSCI5308.GroupFormationTool.Service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
+import CSCI5308.GroupFormationTool.Model.User;
 import static org.junit.jupiter.api.Assertions.*;
+
 
 @SpringBootTest
 public class UserCoursesServiceTest {
@@ -55,6 +56,25 @@ public class UserCoursesServiceTest {
 
 		assertNotEquals(null, userCoursesService.getInstructorCourses(emailId));
 		
+	}
+	
+	@Test
+	public void getTAForCourseTest(){
+		String courseId="1";
+
+		UserCoursesService userCoursesService = new UserCoursesService();
+
+		assertNotEquals(null, userCoursesService.getTAForCourse(courseId));
+	}
+	
+	@Test
+	public void enrollTAForCourseUsingEmailIdTest() {
+		String courseId="1";
+		User user = new User();
+
+		UserCoursesService userCoursesService = new UserCoursesService();
+
+		assertNotEquals(null, userCoursesService.enrollTAForCourseUsingEmailId(user, courseId));
 	}
 
 }

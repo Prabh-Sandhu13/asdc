@@ -10,8 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import CSCI5308.GroupFormationTool.AccessControl.ICourse;
+import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCourses;
 import CSCI5308.GroupFormationTool.DBMock.UserCoursesDBMock;
+import CSCI5308.GroupFormationTool.Model.User;
 import CSCI5308.GroupFormationTool.Repository.UserCoursesRepository;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -92,6 +94,31 @@ public class UserCoursesRepositoryTest {
 		.thenReturn(userCoursesDBMock.getInstructorCourses("inst@gmail.com"));
 		assertEquals(1, userCoursesRepository.getInstructorCourses("inst@gmail.com").size());
 		
+	}
+	
+	@Test
+	public void getTAForCourseTest(){
+		userCoursesRepository = mock(UserCoursesRepository.class);
+		when(userCoursesRepository.getTAForCourse("1"))
+		.thenReturn(new ArrayList<IUser>());
+		assertEquals(0, userCoursesRepository.getTAForCourse("1").size());
+		
+		when(userCoursesRepository.getTAForCourse("1"))
+		.thenReturn(userCoursesDBMock.getTAForCourse("1"));
+		assertEquals(1, userCoursesRepository.getTAForCourse("1").size());
+	}
+	
+	@Test
+	public void enrollTAForCourseUsingEmailIdTest() {
+		userCoursesRepository = mock(UserCoursesRepository.class);
+		User user = new User();
+		when(userCoursesRepository.enrollTAForCourseUsingEmailId(user, "1"))
+		.thenReturn(false);
+		assertEquals(false, userCoursesRepository.enrollTAForCourseUsingEmailId(user, "1"));
+		
+		when(userCoursesRepository.enrollTAForCourseUsingEmailId(user, "1"))
+		.thenReturn(userCoursesDBMock.enrollTAForCourseUsingEmailId(user, "1"));
+		assertEquals(true, userCoursesRepository.enrollTAForCourseUsingEmailId(user, "1"));
 	}
 
 }
