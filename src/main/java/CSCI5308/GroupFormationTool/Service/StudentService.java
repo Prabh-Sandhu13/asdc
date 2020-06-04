@@ -10,10 +10,11 @@ import CSCI5308.GroupFormationTool.Model.StudentCSV;
 
 public class StudentService implements IStudentService{
 
-	IStudentRepository studentRepository = Injector.instance().getStudentRepository();
+	private IStudentRepository studentRepository;
 	
 	@Override
 	public Map<Integer, List<StudentCSV>> createStudent(List<StudentCSV> student, String courseId) {
+		studentRepository = Injector.instance().getStudentRepository();
 		return studentRepository.createStudent(student, courseId);
 	}
 

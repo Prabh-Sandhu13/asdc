@@ -25,7 +25,7 @@ public class StudentCSV implements IStudentCSV{
     
     private String password;
 
-    //IStudentRepository studentDB = Injector.instance().getStudentRepository();
+    IStudentRepository studentDB = Injector.instance().getStudentRepository();
     
 	public StudentCSV()
 	{
@@ -81,10 +81,10 @@ public class StudentCSV implements IStudentCSV{
         this.password = password;
     }
 	
-	/*
+	
 	public Map<Integer,List<StudentCSV>> createStudent(List<StudentCSV> student, String courseId)
 	{
 		return studentDB.createStudent(student, courseId);
 	}
-	*/
+	
 }

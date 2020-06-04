@@ -88,7 +88,7 @@ public class Injector {
 		userCoursesRepository = new UserCoursesRepository();
 		userCoursesService = new UserCoursesService();
 		studentRepository = new StudentRepository();
-		studentService =new StudentService();
+		studentService = new StudentService();
 	}
 
 	public IUserCoursesRepository getUserCoursesRepository() {
