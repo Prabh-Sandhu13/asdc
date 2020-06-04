@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CSCI5308.GroupFormationTool.RepositoryTest.StudentRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-06-04T21:36:13" hostname="Prabhjots-MacBook-Pro.local" time="0.011">
+  <properties/>
+  <testcase name="createStudentTest()" classname="CSCI5308.GroupFormationTool.RepositoryTest.StudentRepositoryTest" time="0.011"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

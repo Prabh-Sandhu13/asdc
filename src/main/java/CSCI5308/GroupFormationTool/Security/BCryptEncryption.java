@@ -19,7 +19,7 @@ public class BCryptEncryption implements IPasswordEncryptor {
     }
 
     @Override
-    public Boolean passwordMatch(String password, String encryptedPassword) {
+    public boolean passwordMatch(String password, String encryptedPassword) {
         return encode.matches(password, encryptedPassword);
     }
 }
