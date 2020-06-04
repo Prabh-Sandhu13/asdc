@@ -55,7 +55,7 @@ public class CourseService implements ICourseService {
 			msg.setText("Hi,\n\nYou have been added to Group Formation Tool as a student in course " + courseID
 					+ ".\n\n" + "Following are your login credentials:\n\nLogin using EmailId: "
 					+ users.get(userCount).getEmail() + "\nPassword: " + users.get(userCount).getPassword()
-					+"\n\nTo login, go to : https://formgroups22-prod.herokuapp.com/login" +"\n\n\nKind Regards,\nGroup Formation Tool Team-22");
+					+"\n\nTo login, go to : http://formgroups22.herokuapp.com/login" +"\n\n\nKind Regards,\nGroup Formation Tool Team-22");
 			mailService.sendEmail(jms, msg);
 		}
 
