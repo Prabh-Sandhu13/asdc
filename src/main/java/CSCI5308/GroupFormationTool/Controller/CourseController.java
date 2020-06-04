@@ -223,10 +223,11 @@ public class CourseController {
 				model.addAttribute("newStudentList", studentLists.get(0));
 				model.addAttribute("oldStudentList", studentLists.get(1));
 				model.addAttribute("badData", studentLists.get(2));
-
+				model.addAttribute("course", courseId);
 				model.addAttribute("status", true);
 
 			} catch (Exception ex) {
+				model.addAttribute("course", courseId);
 				model.addAttribute("message", "An error occurred while processing the CSV file.");
 				model.addAttribute("status", false);
 			}

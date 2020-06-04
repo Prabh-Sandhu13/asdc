@@ -1,5 +1,5 @@
 DELIMITER $$
-CREATE DEFINER=`CSCI5308_22_DEVINT_USER`@`%` PROCEDURE `sp_updatePassword`(
+CREATE PROCEDURE `sp_updatePassword`(
 IN emailID VARCHAR(255),
 IN pswd VARCHAR(255)
 )

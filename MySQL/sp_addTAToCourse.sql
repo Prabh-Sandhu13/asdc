@@ -1,4 +1,4 @@
-USE `CSCI5308_22_DEVINT`;
+
 DROP procedure IF EXISTS `sp_addTAToCourse`;
 
 DELIMITER $$

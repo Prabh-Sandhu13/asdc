@@ -14,5 +14,5 @@ BEGIN
 	WHERE course_id = courseId;
 
 	COMMIT;
-END $$;
-DELIMITER
+END $$
+DELIMITER ;

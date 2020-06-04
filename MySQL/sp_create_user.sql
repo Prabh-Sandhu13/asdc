@@ -10,7 +10,7 @@ CREATE PROCEDURE `sp_create_user`(
 	,IN password VARCHAR(255)
 	)
 BEGIN
-	BEGIN
+	
 	IF NOT EXISTS(Select * from users where email = emailId)
     THEN
 	INSERT INTO users(

@@ -115,14 +115,25 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 	}
 
 	public ArrayList<IUser> usersCurrentlyNotInstructorsForCourse(String courseId) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<IUser> usersCurrentlyNotInstructorsForCourse = new ArrayList<>();
+		IUser userCurrentlyNotInstructorsForCourse = new User();
+		userCurrentlyNotInstructorsForCourse.setBannerId(bannerId);
+		userCurrentlyNotInstructorsForCourse.setEmailId("stu@gmail.com");
+		userCurrentlyNotInstructorsForCourse.setFirstName("John");
+		userCurrentlyNotInstructorsForCourse.setLastName("sam");
+		usersCurrentlyNotInstructorsForCourse.add(userCurrentlyNotInstructorsForCourse);
+		return usersCurrentlyNotInstructorsForCourse;
 	}
 
 	@Override
 	public boolean addInstructorsToCourse(Long instructor, String courseId) {
-		// TODO Auto-generated method stub
-		return false;
+		IUser instructorUser = new User();
+		instructorUser.setBannerId(bannerId);
+		instructorUser.setEmailId("stu@gmail.com");
+		instructorUser.setFirstName("John");
+		instructorUser.setLastName("sam");
+		instructorUser.setId(instructor);
+		return true;
 	}
 
 	@Override
@@ -154,13 +165,19 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
 	@Override
 	public ArrayList<IUser> getInstructorsForCourse(String courseId) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<IUser> instructorList = new ArrayList<>();
+		IUser instructor = new User();
+		instructor.setBannerId(bannerId);
+		instructor.setEmailId("stu@gmail.com");
+		instructor.setFirstName("John");
+		instructor.setLastName("sam");
+		instructorList.add(instructor);
+		return instructorList;
 	}
 
 	@Override
 	public boolean enrollTAForCourseUsingEmailId(User user, String courseId) {
-		if(courseId=="1") {
+		if (courseId == "1") {
 			return true;
 		}
 		return false;
@@ -168,8 +185,15 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
 	@Override
 	public boolean getUserRoleForCourse(String userId, String courseId) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		IUserCourses userCourses = new UserCourses(); 
+			
+		userCourses.setBannerId(bannerId);
+		userCourses.setCourseDescription(courseDescription);
+		userCourses.setCourseId(courseId);
+		userCourses.setCourseName(courseName);
+		userCourses.setUserRole(userRole);
+		return true;
 	}
 
 }

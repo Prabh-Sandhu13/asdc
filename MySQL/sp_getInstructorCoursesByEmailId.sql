@@ -1,8 +1,8 @@
-USE `CSCI5308_22_DEVINT`;
+
 DROP procedure IF EXISTS `sp_getInstructorCoursesByEmailId`;
 
 DELIMITER $$
-USE `CSCI5308_22_DEVINT`$$
+
 CREATE PROCEDURE `sp_getInstructorCoursesByEmailId`(IN emailId VARCHAR(255))
 BEGIN
 	with course_info as (Select distinct course_id from role_assignment where user_id = 

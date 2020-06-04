@@ -8,11 +8,11 @@ import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import CSCI5308.GroupFormationTool.Model.User;
 
-public class ForgotPasswordRepository implements IForgotPasswordRepository{
+public class ForgotPasswordRepository implements IForgotPasswordRepository {
 
 	@Override
-	public boolean addToken(IUser user,String token) {
-		
+	public boolean addToken(IUser user, String token) {
+
 		boolean tokenAdded = false;
 		StoredProcedure storedProcedure = null;
 		try {
@@ -20,13 +20,12 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 			storedProcedure.setInputStringParameter(1, Long.toString(user.getId()));
 			storedProcedure.setInputStringParameter(2, user.getEmailId());
 			storedProcedure.setInputStringParameter(3, token);
-			
+
 			storedProcedure.execute();
 			tokenAdded = true;
 
-		}
-		catch (SQLException ex) {
-			System.out.println(""+ex.getMessage());
+		} catch (SQLException ex) {
+			System.out.println("" + ex.getMessage());
 
 		} finally {
 			if (storedProcedure != null) {
@@ -39,7 +38,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 
 	@Override
 	public String getToken(IUser user) {
-		
+
 		String token = "";
 		StoredProcedure storedProcedure = null;
 		try {
@@ -55,8 +54,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 				}
 			}
 
-		}
-		catch (SQLException ex) {
+		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 		} finally {
 			if (storedProcedure != null) {
@@ -68,7 +66,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 
 	@Override
 	public boolean updatePassword(IUser user, String password) {
-		
+
 		boolean passwordUpdated = false;
 		StoredProcedure storedProcedure = null;
 		try {
@@ -78,8 +76,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 			storedProcedure.execute();
 			passwordUpdated = true;
 
-		}
-		catch (SQLException ex) {
+		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 		} finally {
 			if (storedProcedure != null) {
@@ -87,7 +84,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 			}
 		}
 		return passwordUpdated;
-	
+
 	}
 
 	@Override
@@ -100,8 +97,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 			storedProcedure.execute();
 			tokenDeleted = true;
 
-		}
-		catch (SQLException ex) {
+		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 
 		} finally {
@@ -115,7 +111,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 	@Override
 	public boolean updateToken(IUser user, String token) {
 		boolean tokenUpdated = false;
-	//	System.out.println("In update");
+		// System.out.println("In update");
 		StoredProcedure storedProcedure = null;
 		try {
 			storedProcedure = new StoredProcedure("sp_updateToken(?,?)");
@@ -124,8 +120,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 			storedProcedure.execute();
 			tokenUpdated = true;
 
-		}
-		catch (SQLException ex) {
+		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 		} finally {
 			if (storedProcedure != null) {
@@ -161,7 +156,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 			}
 
 		} catch (SQLException ex) {
-			
+
 			System.out.println(ex.getMessage());
 
 		} finally {
@@ -177,13 +172,10 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 	public IUser getEmailByToken(IUser user, String token) {
 		User userByEmailId = null;
 		StoredProcedure storedProcedure = null;
-		//System.out.println("In getemail");
 		try {
-			//System.out.println("In try");
 			storedProcedure = new StoredProcedure("sp_getEmailByToken(?)");
 			storedProcedure.setInputStringParameter(1, token);
 			ResultSet results = storedProcedure.executeWithResults();
-			//System.out.println("Entering result");	
 			if (results != null) {
 
 				while (results.next()) {
@@ -194,12 +186,9 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository{
 					}
 				}
 			}
-			else {
-				System.out.println("No results");
-			}
 
 		} catch (SQLException ex) {
-			
+
 			System.out.println(ex.getMessage());
 
 		} finally {

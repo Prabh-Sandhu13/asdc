@@ -62,7 +62,7 @@ public class CourseService implements ICourseService {
 		return mailSent;
 	}
 
-	public boolean createCourse(Course course) {
+	public boolean createCourse(ICourse course) {
 		courseRepository = Injector.instance().getCourseRepository();
 
 		return courseRepository.createCourse(course);

@@ -330,7 +330,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 	@Override
 	public boolean getUserRoleForCourse(String userId, String courseId) {
 		StoredProcedure storedProcedure = null;
-		System.out.println("entered......." + userId + courseId);
 		try {
 			storedProcedure = new StoredProcedure("sp_getUserRoleForCourse(?,?)");
 			storedProcedure.setInputStringParameter(1, userId);
