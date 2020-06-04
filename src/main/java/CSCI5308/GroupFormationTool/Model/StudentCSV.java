@@ -1,6 +1,7 @@
 package CSCI5308.GroupFormationTool.Model;
 
 import java.util.List;
+import java.util.Map;
 
 import com.opencsv.bean.CsvBindByName;
 
@@ -22,7 +23,6 @@ public class StudentCSV implements IStudentCSV{
     @CsvBindByName
     private String bannerId;
     
-    @CsvBindByName
     private String password;
 
     IStudentRepository studentDB = Injector.instance().getStudentRepository();
@@ -67,6 +67,7 @@ public class StudentCSV implements IStudentCSV{
 	public String getPassword() {
 		return password;
 	}
+	
 
 	public void setPassword(String password) {
 		this.password = password;
@@ -80,8 +81,8 @@ public class StudentCSV implements IStudentCSV{
         this.password = password;
     }
 	
-	public boolean createStudent(List<StudentCSV> student)
+	public Map<Integer,List<StudentCSV>> createStudent(List<StudentCSV> student, String courseId)
 	{
-		return studentDB.createStudent(student);
+		return studentDB.createStudent(student, courseId);
 	}
 }
