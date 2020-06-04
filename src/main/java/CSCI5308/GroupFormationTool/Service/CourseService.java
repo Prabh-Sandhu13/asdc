@@ -1,6 +1,7 @@
 package CSCI5308.GroupFormationTool.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,6 +14,7 @@ import CSCI5308.GroupFormationTool.AccessControl.ICourseService;
 import CSCI5308.GroupFormationTool.AccessControl.IMailService;
 import CSCI5308.GroupFormationTool.AccessControl.IStudentCSV;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
+import CSCI5308.GroupFormationTool.Model.StudentCSV;
 
 public class CourseService implements ICourseService {
 
@@ -39,7 +41,7 @@ public class CourseService implements ICourseService {
 
 	@Override
 	@Async
-	public boolean sendBatchMail(ArrayList<IStudentCSV> users, String courseID, String courseName) {
+	public boolean sendBatchMail(List<StudentCSV> users, String courseID) {
 		
 		boolean mailSent = true;
 		mailService = Injector.instance().getMailService();
@@ -52,7 +54,7 @@ public class CourseService implements ICourseService {
 		for(int userCount = 0; userCount < users.size() ; userCount++) {
 			msg.setTo(users.get(userCount).getEmail());
 			msg.setText("Hi,\n\nYou have been added to Group Formation Tool as a student in course "
-					+courseID+" : "+courseName+".\n\n"
+					+courseID+".\n\n"
 					+"Following are your login credentials:\n\nLogin EmailId: "
 					+users.get(userCount).getEmail()+"\nPassword: "+users.get(userCount).getPassword()
 					+"\n\n\nKind Regards,\nGroup Formation Tool Team-22");

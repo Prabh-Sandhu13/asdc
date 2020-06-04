@@ -1,12 +1,13 @@
 package CSCI5308.GroupFormationTool.Controller;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -29,6 +30,7 @@ import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseRepository;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseService;
 import CSCI5308.GroupFormationTool.AccessControl.IStudentCSV;
+
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesService;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
@@ -112,8 +114,43 @@ public class CourseController {
 		return "courseDetails";
 	}
 	
+	@GetMapping(value = "/enrollTA")
+	public String enrollTA(@RequestParam(value = "courseId") String courseId, Model model) {
+		userCoursesService = Injector.instance().getUserCoursesService();
+		ArrayList<IUser> taList = null;
+		taList = userCoursesService.getTAForCourse(courseId);
+		System.out.println(taList);
+		User user = new User();
+		model.addAttribute("user", user);
+		model.addAttribute("taList", taList);
+		model.addAttribute("courseId", courseId);
+		return "ta/enrollTA";
+	}
+	
+	@PostMapping("/enrollTA")
+	public String addTA(@RequestParam(value = "courseId") String courseId,
+			@ModelAttribute User user, Model model)
+	{
+		userCoursesService = Injector.instance().getUserCoursesService();
+		boolean success = userCoursesService.enrollTAForCourseUsingEmailId(user, courseId);
+		System.out.println("_______**********"+success);
+		ArrayList<IUser> taList = null;
+		if(success) {
+			model.addAttribute("success", "added");
+		} else {
+			model.addAttribute("error", "not added");
+		}
+		taList = userCoursesService.getTAForCourse(courseId);
+		System.out.println(taList);
+		model.addAttribute("taList", taList);
+		model.addAttribute("courseId", courseId);
+//		user.setEmailId(null);
+		return "ta/enrollTA";
+	}
+	
 	@GetMapping("/uploadCSVFile")
-    public String uploadCSVFile(@RequestParam(value = "courseId") String courseId) {
+    public String uploadCSVFile(@RequestParam(value = "courseId") String courseId, Model model) {
+		model.addAttribute("CourseId", courseId);
         return "instructor\\uploadCSVFile";
     }
 	
@@ -160,68 +197,43 @@ public class CourseController {
 	}	
 
 	// Code referenced from - "https://attacomsian.com/blog/spring-boot-upload-parse-csv-file#"
-	@PostMapping("/uploadCSVFile")
-    public String uploadCSVFile(@RequestParam("file") MultipartFile file, Model model) {
+		@PostMapping("/uploadCSVFile")
+	    public String uploadCSVFile(@RequestParam("file") MultipartFile file, Model model, @RequestParam(name = "courseId") String courseId) {
+			Map<Integer,List<StudentCSV>> studentLists = new HashMap<Integer,List<StudentCSV>>();
+	        if (file.isEmpty()) {
+	            model.addAttribute("message", "Please select a CSV file to upload.");
+	            model.addAttribute("status", false);
+	        } else {
 
-        if (file.isEmpty()) {
-            model.addAttribute("message", "Please select a CSV file to upload.");
-            model.addAttribute("status", false);
-        } else {
+	            try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
 
-            try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
+	                CsvToBean<StudentCSV> csvToBean = new CsvToBeanBuilder(reader)
+	                        .withType(StudentCSV.class)
+	                        .withIgnoreLeadingWhiteSpace(true)
+	                        .build();
 
-                CsvToBean<StudentCSV> csvToBean = new CsvToBeanBuilder(reader)
-                        .withType(StudentCSV.class)
-                        .withIgnoreLeadingWhiteSpace(true)
-                        .build();
+	                List<StudentCSV> students = (List<StudentCSV>)csvToBean.parse();
 
-                List<StudentCSV> students = (List<StudentCSV>)csvToBean.parse();
+	                StudentCSV student = new StudentCSV();
+	                System.out.println(courseId);
+	                studentLists = student.createStudent(students, courseId);
+	                
+	                //ArrayList <IStudentCSV> users = new ArrayList<IStudentCSV>();
+	                courseService.sendBatchMail(studentLists.get(0), courseId);
 
-                StudentCSV student = new StudentCSV();
-                student.createStudent(students);
-                
-                /*
-                 * Sending mails testing, to be altered as per input
-                 * 
-                 */
-                
-                ArrayList <IStudentCSV> users = new ArrayList<IStudentCSV>();
-                StudentCSV u = new StudentCSV();
-                u.setEmail("shah.30haard@gmail.com");
-                u.setFirstName("Haard");
-                u.setPassword("jhbsau8aisiu");
-                users.add(u);
-                
-                /*    u.setEmailId("shah.30haard@gmail.com");
-                u.setPassword("B00827531"); 
-                User u1 = new User();
-                u1.setEmailId("padmeshdonthu@gmail.com");
-                u1.setPassword("B00854462");
-                User u2 = new User();
-                u2.setEmailId("tn300318@dal.ca");
-                u2.setPassword("B00839890");
-                User u3 = new User();
-                u3.setEmailId("Pd616769@dal.ca");
-                u2.setPassword("B00839891");
-                users.add(u);
-                users.add(u1);
-                users.add(u2);
-                users.add(u3);*/
-                courseService.sendBatchMail(users, "CSCI 5408", "Adv SDC");
-                
-                model.addAttribute("students", students);
-                model.addAttribute("Success", "A mail has been sent to new students.");
-                model.addAttribute("status", true);
+	                model.addAttribute("newStudentList", studentLists.get(0));
+	                model.addAttribute("oldStudentList", studentLists.get(1));
+	                model.addAttribute("badData", studentLists.get(2));
+	                
+	                model.addAttribute("status", true);
 
-            } catch (Exception ex) {
-                model.addAttribute("message", "An error occurred while processing the CSV file.");
-                model.addAttribute("status", false);
-            }
-        }
-        
+	            } catch (Exception ex) {
+	                model.addAttribute("message", "An error occurred while processing the CSV file.");
+	                model.addAttribute("status", false);
+	            }
+	        }
 
-        
-        return "instructor\\CSVSuccessTable";
-    }
+	        return "instructor\\CSVSuccessTable";
+	    }
 
 }

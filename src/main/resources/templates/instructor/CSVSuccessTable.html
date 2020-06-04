@@ -23,26 +23,68 @@
                 <strong>Error:</strong>
                 <span th:text="${message}"></span>
             </div>
-
+			<h3 style="color:green;">New Students</h3>
             <table class="table table-striped" th:if="${status}">
                 <thead>
                 <tr>
                     <th scope="col">SNo.</th>
                     <th scope="col">FirstName</th>
-                    <th scope="col">LatName</th>
+                    <th scope="col">LastName</th>
                     <th scope="col">Email</th>
-                    <th scope="col">BannerId</th>
-                    <th scope="col">Password</th>
+                    <th scope="col">BannerId</th>                   
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="student, i : ${students}">
+                <tr th:each="student, i : ${newStudentList}">
                     <th scope="row" th:text="${i.index + 1}"></th>
                     <td th:text="${student.firstName}"></td>
                     <td th:text="${student.lastName}"></td>
                     <td th:text="${student.email}"></td>
                     <td th:text="${student.bannerId}"></td>
-                    <td th:text="${student.password}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <br/>
+            <h3 style="color:blue;">Already exists for this course</h3>
+            <table class="table table-striped" th:if="${status}">
+                <thead>
+                <tr>
+                    <th scope="col">SNo.</th>
+                    <th scope="col">FirstName</th>
+                    <th scope="col">LastName</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">BannerId</th>                   
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student, i : ${oldStudentList}">
+                    <th scope="row" th:text="${i.index + 1}"></th>
+                    <td th:text="${student.firstName}"></td>
+                    <td th:text="${student.lastName}"></td>
+                    <td th:text="${student.email}"></td>
+                    <td th:text="${student.bannerId}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <br/>
+            <h3 style="color:red;">Please correct the data and try importing again!!</h3>
+            <table class="table table-striped" th:if="${status}">
+                <thead>
+                <tr>
+                    <th scope="col">SNo.</th>
+                    <th scope="col">FirstName</th>
+                    <th scope="col">LastName</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">BannerId</th>                   
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student, i : ${badData}">
+                    <th scope="row" th:text="${i.index + 1}"></th>
+                    <td th:text="${student.firstName}"></td>
+                    <td th:text="${student.lastName}"></td>
+                    <td th:text="${student.email}"></td>
+                    <td th:text="${student.bannerId}"></td>
                 </tr>
                 </tbody>
             </table>
