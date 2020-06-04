@@ -1,8 +1,6 @@
-DELIMITER $$
-
 DROP PROCEDURE IF EXISTS sp_createStudentFromCSV $$
-
-CREATE PROCEDURE `sp_createStudentFromCSV`(
+DELIMITER $$
+CREATE DEFINER=`CSCI5308_22_TEST_USER`@`%` PROCEDURE `sp_createStudentFromCSV`(
 	IN bannerId VARCHAR(40)
 	,IN firstName VARCHAR(40)
 	,IN lastName VARCHAR(40)

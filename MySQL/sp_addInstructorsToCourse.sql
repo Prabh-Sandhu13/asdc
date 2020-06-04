@@ -1,9 +1,6 @@
 DELIMITER $$
-
 DROP PROCEDURE IF EXISTS sp_addInstructorsToCourse $$
-
-
-CREATE PROCEDURE `sp_addInstructorsToCourse`(
+CREATE DEFINER=`CSCI5308_22_TEST_USER`@`%` PROCEDURE `sp_addInstructorsToCourse`(
 	IN instructor BIGINT
 	,IN courseId VARCHAR(40)
 	)

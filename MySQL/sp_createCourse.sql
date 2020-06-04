@@ -1,8 +1,6 @@
-DELIMITER $$
-
 DROP PROCEDURE IF EXISTS sp_createCourse $$
-
-CREATE PROCEDURE `sp_createCourse`(
+DELIMITER $$
+CREATE DEFINER=`CSCI5308_22_TEST_USER`@`%` PROCEDURE `sp_createCourse`(
 	 IN courseId VARCHAR(40)
 	,IN course_name VARCHAR(40)
 	,IN course_credits VARCHAR(40)

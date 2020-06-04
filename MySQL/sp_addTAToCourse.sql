@@ -1,9 +1,6 @@
-
 DROP procedure IF EXISTS `sp_addTAToCourse`;
-
 DELIMITER $$
-USE `CSCI5308_22_DEVINT`$$
-CREATE PROCEDURE `sp_addTAToCourse`(
+CREATE DEFINER=`CSCI5308_22_TEST_USER`@`%` PROCEDURE `sp_addTAToCourse`(
 	IN userId VARCHAR(40)
 	,IN courseId VARCHAR(40)
 	)
