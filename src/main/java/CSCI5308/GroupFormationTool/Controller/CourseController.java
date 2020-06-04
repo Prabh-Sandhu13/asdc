@@ -30,7 +30,7 @@ import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseRepository;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseService;
 import CSCI5308.GroupFormationTool.AccessControl.IStudentCSV;
-
+import CSCI5308.GroupFormationTool.AccessControl.IStudentService;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesService;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
@@ -45,6 +45,7 @@ public class CourseController {
 	private ICourseService courseService;
 	private IUserService userService;
 	private IUserCoursesService userCoursesService;
+	private IStudentService studentService;
 
 	@GetMapping("/courseList")
 	public String courseList(Model model) {
@@ -203,8 +204,9 @@ public class CourseController {
 	        if (file.isEmpty()) {
 	            model.addAttribute("message", "Please select a CSV file to upload.");
 	            model.addAttribute("status", false);
-	        } else {
-
+	        } 
+	        else {	
+	        	studentService = Injector.instance().getStudentService();
 	            try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
 
 	                CsvToBean<StudentCSV> csvToBean = new CsvToBeanBuilder(reader)
@@ -214,9 +216,9 @@ public class CourseController {
 
 	                List<StudentCSV> students = (List<StudentCSV>)csvToBean.parse();
 
-	                StudentCSV student = new StudentCSV();
+	                //StudentCSV student = new StudentCSV();
 	                System.out.println(courseId);
-	                studentLists = student.createStudent(students, courseId);
+	                studentLists = studentService.createStudent(students, courseId);
 	                
 	                //ArrayList <IStudentCSV> users = new ArrayList<IStudentCSV>();
 	                courseService.sendBatchMail(studentLists.get(0), courseId);

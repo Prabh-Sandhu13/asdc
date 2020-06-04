@@ -31,7 +31,7 @@ import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
 import CSCI5308.GroupFormationTool.Security.TokenGenerator;
 import CSCI5308.GroupFormationTool.Service.ForgotPasswordService;
 import CSCI5308.GroupFormationTool.Service.MailService;
-
+import CSCI5308.GroupFormationTool.Service.StudentService;
 import CSCI5308.GroupFormationTool.Repository.CourseRepository;
 import CSCI5308.GroupFormationTool.Repository.UserCoursesRepository;
 import CSCI5308.GroupFormationTool.Repository.UserRepository;
@@ -39,6 +39,7 @@ import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
 import CSCI5308.GroupFormationTool.Service.CourseService;
 import CSCI5308.GroupFormationTool.Service.UserCoursesService;
 import CSCI5308.GroupFormationTool.AccessControl.IStudentRepository;
+import CSCI5308.GroupFormationTool.AccessControl.IStudentService;
 import CSCI5308.GroupFormationTool.Repository.StudentRepository;
 
 import CSCI5308.GroupFormationTool.Service.UserService;
@@ -66,6 +67,7 @@ public class Injector {
 	private IUserCoursesRepository userCoursesRepository;
 	private IUserCoursesService userCoursesService;	
     private IStudentRepository studentRepository;
+    private IStudentService studentService;
 
 	private Injector() {
 
@@ -86,6 +88,7 @@ public class Injector {
 		userCoursesRepository = new UserCoursesRepository();
 		userCoursesService = new UserCoursesService();
 		studentRepository = new StudentRepository();
+		studentService =new StudentService();
 	}
 
 	public IUserCoursesRepository getUserCoursesRepository() {
@@ -157,6 +160,9 @@ public class Injector {
 	
 	public IStudentRepository getStudentRepository() {
 		return studentRepository;
-		
+	}
+	
+	public IStudentService getStudentService() {
+		return studentService;
 	}
 }
