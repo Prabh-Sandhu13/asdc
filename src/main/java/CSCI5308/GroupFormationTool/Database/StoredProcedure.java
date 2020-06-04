@@ -39,7 +39,6 @@ public class StoredProcedure {
 
 		} catch (Exception e) {
 
-
 		}
 	}
 
@@ -57,6 +56,14 @@ public class StoredProcedure {
 
 	public void registerOutputParameterLong(int paramIndex) throws SQLException {
 		statement.registerOutParameter(paramIndex, java.sql.Types.BIGINT);
+	}
+
+	public void registerOutputParameterBoolean(int paramIndex) throws SQLException {
+		statement.registerOutParameter(paramIndex, java.sql.Types.BOOLEAN);
+	}
+
+	public boolean getParameter(int paramIndex) throws SQLException {
+		return statement.getBoolean(paramIndex);
 	}
 
 	public ResultSet executeWithResults() throws SQLException {

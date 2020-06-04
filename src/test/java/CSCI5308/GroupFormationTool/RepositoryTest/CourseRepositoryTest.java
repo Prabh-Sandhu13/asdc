@@ -1,33 +1,47 @@
 package CSCI5308.GroupFormationTool.RepositoryTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.ICourse;
+import CSCI5308.GroupFormationTool.DBMock.CourseDBMock;
 import CSCI5308.GroupFormationTool.Model.Course;
-import CSCI5308.GroupFormationTool.Repository.CourseRepository;
 
 @SpringBootTest
 public class CourseRepositoryTest {
 
-	private CourseRepository courseRepository;
+	private CourseDBMock courseDBMock;
 
 	@Test
 	public void getAllCoursesTest() {
 
-		courseRepository = mock(CourseRepository.class);
+		courseDBMock = new CourseDBMock();
 
-		when(courseRepository.getAllCourses()).thenReturn(new ArrayList<ICourse>());
+		ArrayList<ICourse> courses = courseDBMock.getAllCourses();
 
-		assertEquals(0, courseRepository.getAllCourses().size());
-
+		assertEquals(1, courses.size());
 	}
+
+	@Test
+	public void createCourse() {
+		courseDBMock = new CourseDBMock();
+
+		ICourse course = new Course();
+
+		course = courseDBMock.loadCourses(course);
+
+		assertEquals(true, courseDBMock.createCourse(course));
+	}
+
+	@Test
+	public void deleteCourse() {
+		courseDBMock = new CourseDBMock();
+		assertEquals(true, courseDBMock.deleteCourse("1"));
+	}
+
 }

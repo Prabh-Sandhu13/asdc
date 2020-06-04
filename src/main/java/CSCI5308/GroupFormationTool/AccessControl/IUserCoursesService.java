@@ -18,6 +18,9 @@ public interface IUserCoursesService {
 	public boolean addInstructorsToCourse(Long instructor, String courseId);
 
 	public ArrayList<ICourse> getInstructorCourses(String emailId);
+	
+	public ArrayList<IUser> getInstructorsForCourse(String courseId);
+
 
 	public ArrayList<IUser> getTAForCourse(String courseId);
 

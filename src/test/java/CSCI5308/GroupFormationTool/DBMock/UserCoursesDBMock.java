@@ -153,10 +153,22 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 	}
 
 	@Override
+	public ArrayList<IUser> getInstructorsForCourse(String courseId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public boolean enrollTAForCourseUsingEmailId(User user, String courseId) {
 		if(courseId=="1") {
 			return true;
 		}
+		return false;
+	}
+
+	@Override
+	public boolean getUserRoleForCourse(String userId, String courseId) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 

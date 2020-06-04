@@ -27,6 +27,16 @@
 		</div>
 
 		<div sec:authorize="isAuthenticated()">
+
+			<div th:if="${successMessage}"
+				class="validation-message alert alert-success" role="alert"
+				th:text="${successMessage}"></div>
+
+			<div th:if="${failureMessage}"
+				class="validation-message alert alert-danger" role="alert"
+				th:text="${failureMessage}"></div>
+
+
 			<h1>List of Courses</h1>
 			<a href="/admin/addCourse">Add a new Course</a> <br> <br>
 			<div class="table-responsive">

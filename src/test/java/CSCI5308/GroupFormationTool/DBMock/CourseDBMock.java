@@ -52,13 +52,18 @@ public class CourseDBMock implements ICourseRepository {
 
 	@Override
 	public boolean createCourse(ICourse course) {
-		// TODO Auto-generated method stub
-		return false;
+		course.setCredits(credits);
+		course.setDescription(description);
+		course.setName(name);
+		course.setId(id);
+		return true;
 	}
 
 	@Override
 	public boolean deleteCourse(String id) {
-		// TODO Auto-generated method stub
+
+		if (id.equals("1"))
+			return true;
 		return false;
 	}
 

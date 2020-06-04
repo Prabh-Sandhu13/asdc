@@ -24,4 +24,8 @@ public interface IUserCoursesRepository {
 
 	public boolean enrollTAForCourseUsingEmailId(User user, String courseId);
 
+	public ArrayList<IUser> getInstructorsForCourse(String courseId);
+	
+	public boolean getUserRoleForCourse(String userId, String courseId);
+
 }

@@ -1,9 +1,5 @@
 package CSCI5308.GroupFormationTool.Service;
 
-import java.util.ArrayList;
-
-import org.springframework.security.core.context.SecurityContextHolder;
-
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;

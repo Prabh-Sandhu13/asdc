@@ -19,30 +19,25 @@ import CSCI5308.GroupFormationTool.AccessControl.*;
 
 public class StudentRepository implements IStudentRepository {
 
-private IPasswordEncryptor encryptor;
-List<String> emails = new ArrayList<>();
-List<StudentCSV> newStudents = new ArrayList<StudentCSV>();
-List<StudentCSV> oldStudents = new ArrayList<StudentCSV>();
-List<StudentCSV> badData = new ArrayList<StudentCSV>();
-	
+	private IPasswordEncryptor encryptor;
+
 	@Override
-	public Map<Integer,List<StudentCSV>> createStudent(List<StudentCSV> student, String courseId)
-	{
+	public Map<Integer, List<StudentCSV>> createStudent(List<StudentCSV> student, String courseId) {
+		List<StudentCSV> newStudents = new ArrayList<StudentCSV>();
+		List<StudentCSV> oldStudents = new ArrayList<StudentCSV>();
+		List<StudentCSV> badData = new ArrayList<StudentCSV>();
 		encryptor = Injector.instance().getPasswordEncryptor();
 		RandomStringGenerator pwdGenerator = new RandomStringGenerator.Builder().withinRange(33, 45).build();
-		
-		Map<Integer,List<StudentCSV>> studentLists = new HashMap<Integer,List<StudentCSV>>();
-		
-		for(StudentCSV stu : student)
-		{
-			if(stu.getBannerId() == null || stu.getFirstName() == null || stu.getLastName() == null || stu.getEmail() == null
-			||stu.getBannerId().equals("") || stu.getFirstName().equals("") || stu.getLastName().equals("") || stu.getEmail().equals(""))
-			{
+
+		Map<Integer, List<StudentCSV>> studentLists = new HashMap<Integer, List<StudentCSV>>();
+
+		for (StudentCSV stu : student) {
+			if (stu.getBannerId() == null || stu.getFirstName() == null || stu.getLastName() == null
+					|| stu.getEmail() == null || stu.getBannerId().equals("") || stu.getFirstName().equals("")
+					|| stu.getLastName().equals("") || stu.getEmail().equals("")) {
 				badData.add(stu);
-			}
-			else
-			{
-				try {	
+			} else {
+				try {
 					Connection con = ConnectionManager.instance().getDBConnection();
 					CallableStatement cstmt = con.prepareCall("{call sp_createStudentFromCSV(?,?,?,?,?,?,?)}");
 					cstmt.setString(1, stu.getBannerId());
@@ -56,37 +51,29 @@ List<StudentCSV> badData = new ArrayList<StudentCSV>();
 					cstmt.registerOutParameter(7, Types.BOOLEAN);
 					cstmt.execute();
 					Boolean studentStatus = cstmt.getBoolean(7);
-					System.out.println(studentStatus);
-					
-					if(studentStatus)
-					{
+
+					if (studentStatus) {
 						newStudents.add(stu);
-					}
-					else
-					{
-						try
-						{
-						oldStudents.add(stu);
-						}
-						catch(Exception ex)
-						{
+					} else {
+						try {
+							oldStudents.add(stu);
+						} catch (Exception ex) {
 							System.out.println(ex);
 							ex.getStackTrace();
 						}
 					}
-					
+
 				} catch (SQLException ex) {
-					// TODO Auto-generated catch block
 					System.out.println(ex);
 					ex.printStackTrace();
 				}
-			}				
+			}
 		}
-		
-		studentLists.put(0,newStudents);		
+
+		studentLists.put(0, newStudents);
 		studentLists.put(1, oldStudents);
 		studentLists.put(2, badData);
-		
+
 		return studentLists;
 	}
 }

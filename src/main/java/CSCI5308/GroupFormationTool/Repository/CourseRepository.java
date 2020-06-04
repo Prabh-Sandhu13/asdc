@@ -47,13 +47,19 @@ public class CourseRepository implements ICourseRepository {
 	@Override
 	public boolean createCourse(ICourse course) {
 		StoredProcedure proc = null;
+		boolean status = true;
+		
 		try {
-			proc = new StoredProcedure("sp_createCourse(?,?,?,?)");
+			proc = new StoredProcedure("sp_createCourse(?,?,?,?,?)");
 			proc.setInputStringParameter(1, course.getId());
 			proc.setInputStringParameter(2, course.getName());
 			proc.setInputIntParameter(3, course.getCredits());
 			proc.setInputStringParameter(4, course.getDescription());
+			proc.registerOutputParameterBoolean(5);
 			proc.execute();
+			
+			status = proc.getParameter(5);
+			
 		} catch (SQLException ex) {
 			System.out.println(ex);
 		} finally {
@@ -61,16 +67,21 @@ public class CourseRepository implements ICourseRepository {
 				proc.removeConnections();
 			}
 		}
-		return true;
+		return status;
 	}
 
 	@Override
 	public boolean deleteCourse(String id) {
 		StoredProcedure proc = null;
+		boolean status = true;
 		try {
-			proc = new StoredProcedure("sp_deleteACourse(?)");
+			proc = new StoredProcedure("sp_deleteACourse(?,?)");
 			proc.setInputStringParameter(1, id);
+			proc.registerOutputParameterBoolean(2);
 			proc.execute();
+
+			status = proc.getParameter(2);
+
 		} catch (SQLException ex) {
 			System.out.println(ex);
 		} finally {
@@ -78,7 +89,7 @@ public class CourseRepository implements ICourseRepository {
 				proc.removeConnections();
 			}
 		}
-		return true;
+		return status;
 	}
 
 	public ICourse getCourseById(String courseId) {

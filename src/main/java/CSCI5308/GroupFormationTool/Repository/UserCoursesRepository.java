@@ -179,7 +179,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 		}
 		return taCourseList;
 	}
-	
+
 	@Override
 	public ArrayList<ICourse> getInstructorCourses(String emailId) {
 		StoredProcedure storedProcedure = null;
@@ -212,7 +212,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 		}
 		return instructorCourseList;
 	}
-	
+
 	@Override
 	public ArrayList<IUser> getTAForCourse(String courseId) {
 		StoredProcedure storedProcedure = null;
@@ -287,12 +287,12 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 					System.out.println(results.getString("user_id"));
 					String userId = results.getString("user_id");
 					Boolean roleExists = getUserRoleForCourse(userId, courseId);
-					if(roleExists) {
+					if (roleExists) {
 						return false;
 					} else {
 						return assignUserAsTA(userId, courseId);
 					}
-					
+
 				}
 			}
 
@@ -306,7 +306,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 		}
 		return true;
 	}
-	
+
 	private boolean assignUserAsTA(String userId, String courseId) {
 		StoredProcedure storedProcedure = null;
 		try {
@@ -327,9 +327,10 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 		return true;
 	}
 
+	@Override
 	public boolean getUserRoleForCourse(String userId, String courseId) {
 		StoredProcedure storedProcedure = null;
-		System.out.println("entered......."+userId+courseId);
+		System.out.println("entered......." + userId + courseId);
 		try {
 			storedProcedure = new StoredProcedure("sp_getUserRoleForCourse(?,?)");
 			storedProcedure.setInputStringParameter(1, userId);
@@ -349,12 +350,46 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 
 		} catch (SQLException ex) {
 			ex.printStackTrace();
-			return true;
 		} finally {
 			if (storedProcedure != null) {
 				storedProcedure.removeConnections();
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public ArrayList<IUser> getInstructorsForCourse(String courseId) {
+		StoredProcedure storedProcedure = null;
+		ArrayList<IUser> instructorList = new ArrayList<IUser>();
+		try {
+			storedProcedure = new StoredProcedure("sp_getInstructorsForCourse(?)");
+			storedProcedure.setInputStringParameter(1, courseId);
+
+			ResultSet results = storedProcedure.executeWithResults();
+
+			if (results != null) {
+				while (results.next()) {
+					{
+						IUser user = new User();
+						user.setFirstName(results.getString("first_name"));
+						user.setLastName(results.getString("last_name"));
+						user.setEmailId(results.getString("email"));
+						user.setBannerId(results.getString("banner_id"));
+
+						instructorList.add(user);
+
+					}
+				}
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+
+		return instructorList;
 	}
 }

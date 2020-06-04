@@ -83,7 +83,15 @@ public class UserCoursesService implements IUserCoursesService {
 	public boolean enrollTAForCourseUsingEmailId(User user, String courseId) {
 		userCoursesRepository = Injector.instance().getUserCoursesRepository();
 
-		return userCoursesRepository.enrollTAForCourseUsingEmailId(user,courseId);
+		return userCoursesRepository.enrollTAForCourseUsingEmailId(user, courseId);
+
+	}
+
+	@Override
+	public ArrayList<IUser> getInstructorsForCourse(String courseId) {
+		userCoursesRepository = Injector.instance().getUserCoursesRepository();
+
+		return userCoursesRepository.getInstructorsForCourse(courseId);
 	}
 
 }

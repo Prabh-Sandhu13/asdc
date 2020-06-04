@@ -34,9 +34,9 @@
 				Choose from these users to assign as the instructor:</h3>
 			<br />
 			<form th:action="@{/admin/assignInstructor(id=${course.id})}"
-				method="post" class="m-t col-md-4 col-md-offset-4" role="form"
-				data-toggle="validator">
-				<div class="table-responsive">
+				method="post" role="form" data-toggle="validator">
+				<div class="table-responsive"
+					style="position: relative; height: 200px; overflow: auto; display: block;">
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr>
@@ -58,6 +58,40 @@
 				<br /> <a th:href="@{/courseList}"
 					class="btn btn-danger btn-sm btn-block">Cancel</a>
 			</form>
+
+			<div th:if="${instructorList !=null and !instructorList.empty} ">
+				<h3 class="text-center"
+					th:text="'The currently assigned instructors for ' + ${course.name} + ' are'">
+				</h3>
+				<br />
+				<div class="table-responsive">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th scope="col">First Name</th>
+								<th scope="col">Last Name</th>
+								<th scope="col">Email Id</th>
+								<th scope="col">Banner Id</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="instructor : ${instructorList}">
+								<td th:text="${instructor.firstName}"></td>
+								<td th:text="${instructor.lastName}"></td>
+								<td th:text="${instructor.emailId}"></td>
+								<td th:text="${instructor.bannerId}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<br />
+				<form th:action="@{/logout}" method="post" class="text-center">
+					<button type="submit" class="btn btn-danger btn-sm">Sign
+						Out</button>
+				</form>
+				<br />
+			</div>
+
 		</div>
 	</div>
 

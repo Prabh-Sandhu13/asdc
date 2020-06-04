@@ -42,6 +42,9 @@ public class AdminController {
 		ArrayList<IUser> allUsersCurrentlyNotInstructors = userCoursesService
 				.usersCurrentlyNotInstructorsForCourse(courseId);
 
+		ArrayList<IUser> instructorList = userCoursesService.getInstructorsForCourse(courseId);
+
+		model.addAttribute("instructorList", instructorList);
 		model.addAttribute("course", course);
 		model.addAttribute("users", allUsersCurrentlyNotInstructors);
 		return "admin/assignInstructor";
@@ -52,12 +55,20 @@ public class AdminController {
 			@RequestParam(name = "id") String courseId, Model model) {
 
 		userCoursesService = Injector.instance().getUserCoursesService();
+		courseService = Injector.instance().getCourseService();
+
+		ICourse course = courseService.getCourseById(courseId);
 
 		boolean success = userCoursesService.addInstructorsToCourse(instructor, courseId);
 
-		if (success) {
+		ArrayList<IUser> instructorList = userCoursesService.getInstructorsForCourse(courseId);
 
-			return "redirect:/courseList";
+		model.addAttribute("instructorList", instructorList);
+		model.addAttribute("course", course);
+
+		if (success) {
+			model.addAttribute("success", "Instructor successfully added");
+			return "redirect:/admin/assignInstructor?courseId=" + courseId;
 		} else {
 			model.addAttribute("failure", "Instructor could not be added");
 			return "redirect:/admin/assignInstructor?courseId=" + courseId;

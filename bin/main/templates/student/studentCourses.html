@@ -32,21 +32,18 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="course : ${courses}" >
+					<tr th:each="course : ${courses}">
 						<td th:text="${course.id}"></td>
-						<td> 
-							<a th:text="${course.name}" 
+						<td><a th:text="${course.name}"
 							th:href="@{/courseDetails?courseName={courseName} (courseName=${course.name})}">
-							</a>
-						</td>
+						</a></td>
 						<td th:text="${course.description}"></td>
 						<td th:text="${course.credits}"></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<div>
-		</div>
+		<div></div>
 	</div>
 </body>
 </html>
