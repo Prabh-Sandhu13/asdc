@@ -186,8 +186,13 @@ public class CourseController {
                  */
                 
                 ArrayList <IStudentCSV> users = new ArrayList<IStudentCSV>();
-            /*    StudentCSV u = new StudentCSV();
-                u.setEmailId("shah.30haard@gmail.com");
+                StudentCSV u = new StudentCSV();
+                u.setEmail("shah.30haard@gmail.com");
+                u.setFirstName("Haard");
+                u.setPassword("jhbsau8aisiu");
+                users.add(u);
+                
+                /*    u.setEmailId("shah.30haard@gmail.com");
                 u.setPassword("B00827531"); 
                 User u1 = new User();
                 u1.setEmailId("padmeshdonthu@gmail.com");
