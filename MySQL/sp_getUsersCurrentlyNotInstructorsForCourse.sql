@@ -21,5 +21,5 @@ WHERE user_id NOT IN (
 
 	COMMIT;
 	
-END $$;
-DELIMITER
+END $$
+DELIMITER ;
