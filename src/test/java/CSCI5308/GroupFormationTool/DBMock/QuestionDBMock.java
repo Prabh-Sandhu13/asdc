@@ -1,13 +1,14 @@
 package CSCI5308.GroupFormationTool.DBMock;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import CSCI5308.GroupFormationTool.AccessControl.IQuestion;
-import CSCI5308.GroupFormationTool.AccessControl.IQuestionRepository;
+import CSCI5308.GroupFormationTool.AccessControl.IQuestionManagerRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.Model.User;
 
-public class QuestionDBMock implements IQuestionRepository {
+public class QuestionDBMock implements IQuestionManagerRepository {
 
 	private int id;
 
@@ -41,6 +42,12 @@ public class QuestionDBMock implements IQuestionRepository {
 		question.setType(type);
 
 		return question;
+	}
+
+	@Override
+	public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -9,13 +9,13 @@ import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordService;
 import CSCI5308.GroupFormationTool.AccessControl.IMailService;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
+import CSCI5308.GroupFormationTool.AccessControl.IQuestionManagerRepository;
+import CSCI5308.GroupFormationTool.AccessControl.IQuestionManagerService;
 import CSCI5308.GroupFormationTool.AccessControl.ITokenGenerator;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 
 import CSCI5308.GroupFormationTool.AccessControl.ICourseRepository;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseService;
-import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
-import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesService;
 
@@ -23,19 +23,18 @@ import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
 import CSCI5308.GroupFormationTool.Database.DBConfiguration;
 import CSCI5308.GroupFormationTool.Database.IDBConfiguration;
-import CSCI5308.GroupFormationTool.Model.User;
 
 import CSCI5308.GroupFormationTool.Repository.ForgotPasswordRepository;
+import CSCI5308.GroupFormationTool.Repository.QuestionManagerRepository;
 import CSCI5308.GroupFormationTool.Repository.UserRepository;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
 import CSCI5308.GroupFormationTool.Security.TokenGenerator;
 import CSCI5308.GroupFormationTool.Service.ForgotPasswordService;
 import CSCI5308.GroupFormationTool.Service.MailService;
+import CSCI5308.GroupFormationTool.Service.QuestionManagerService;
 import CSCI5308.GroupFormationTool.Service.StudentService;
 import CSCI5308.GroupFormationTool.Repository.CourseRepository;
 import CSCI5308.GroupFormationTool.Repository.UserCoursesRepository;
-import CSCI5308.GroupFormationTool.Repository.UserRepository;
-import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
 import CSCI5308.GroupFormationTool.Service.CourseService;
 import CSCI5308.GroupFormationTool.Service.UserCoursesService;
 import CSCI5308.GroupFormationTool.AccessControl.IStudentRepository;
@@ -68,6 +67,8 @@ public class Injector {
 	private IUserCoursesService userCoursesService;	
     private IStudentRepository studentRepository;
     private IStudentService studentService;
+    private IQuestionManagerService questionManagerService;
+    private IQuestionManagerRepository questionManagerRepository;
 
 	private Injector() {
 
@@ -89,6 +90,8 @@ public class Injector {
 		userCoursesService = new UserCoursesService();
 		studentRepository = new StudentRepository();
 		studentService = new StudentService();
+		questionManagerService = new QuestionManagerService();
+		questionManagerRepository = new QuestionManagerRepository();
 	}
 
 	public IUserCoursesRepository getUserCoursesRepository() {
@@ -164,5 +167,13 @@ public class Injector {
 	
 	public IStudentService getStudentService() {
 		return studentService;
+	}
+
+	public IQuestionManagerRepository getQuestionManagerRepository() {
+		return questionManagerRepository;
+	}
+
+	public IQuestionManagerService getQuestionManagerService() {
+		return questionManagerService;
 	}
 }

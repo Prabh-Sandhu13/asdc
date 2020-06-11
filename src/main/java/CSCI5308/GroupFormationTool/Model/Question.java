@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.Model;
 
-import java.sql.Date;
 import java.util.Calendar;
 
 import CSCI5308.GroupFormationTool.AccessControl.IQuestion;
