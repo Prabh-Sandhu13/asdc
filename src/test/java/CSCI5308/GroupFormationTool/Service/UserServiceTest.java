@@ -24,8 +24,7 @@ public class UserServiceTest {
 		user.setPassword("padmesh1234");
 		user.setConfirmPassword("padmesh1111");
 
-		assertEquals(false,userService.createUser(user));
+		assertEquals(false, userService.createUser(user));
 
-		
 	}
 }

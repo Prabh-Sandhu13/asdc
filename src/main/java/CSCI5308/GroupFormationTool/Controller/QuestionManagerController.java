@@ -37,4 +37,11 @@ public class QuestionManagerController {
 
 	}
 
+	@GetMapping("/questionManager/createQuestion")
+	public String createQuestion(Model model) {
+
+		return "questionManager/createQuestion";
+
+	}
+
 }

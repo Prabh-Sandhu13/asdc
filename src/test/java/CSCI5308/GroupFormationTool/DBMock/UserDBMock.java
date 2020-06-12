@@ -92,9 +92,8 @@ public class UserDBMock implements IUserRepository {
 
 		return user;
 	}
-	
-	public IUser loadUserWithID(IUser user)
-	{
+
+	public IUser loadUserWithID(IUser user) {
 		user.setBannerId(bannerId);
 		user.setConfirmPassword(confirmPassword);
 		user.setEmailId(emailId);
@@ -102,7 +101,7 @@ public class UserDBMock implements IUserRepository {
 		user.setId(id);
 		user.setLastName(lastName);
 		user.setPassword(password);
-		
+
 		return user;
 	}
 

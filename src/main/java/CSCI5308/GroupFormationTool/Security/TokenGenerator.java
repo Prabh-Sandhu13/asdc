@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import CSCI5308.GroupFormationTool.AccessControl.ITokenGenerator;
 
-public class TokenGenerator implements ITokenGenerator{
+public class TokenGenerator implements ITokenGenerator {
 
 	@Override
 	public String generator() {

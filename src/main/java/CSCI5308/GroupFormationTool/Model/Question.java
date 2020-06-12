@@ -1,13 +1,13 @@
 package CSCI5308.GroupFormationTool.Model;
 
-import java.util.Calendar;
+import java.sql.Date;
 
 import CSCI5308.GroupFormationTool.AccessControl.IQuestion;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 
 public class Question implements IQuestion {
 
-	private int id;
+	private long id;
 
 	private IUser instructor;
 
@@ -17,7 +17,7 @@ public class Question implements IQuestion {
 
 	private int type;
 
-	private Calendar createdDate;
+	private Date createdDate;
 
 	public Question() {
 		this.id = -1;
@@ -25,14 +25,14 @@ public class Question implements IQuestion {
 		this.title = null;
 		this.text = null;
 		this.type = -1;
-		createdDate = null;
+		this.createdDate = null;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -68,11 +68,11 @@ public class Question implements IQuestion {
 		this.type = type;
 	}
 
-	public Calendar getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Calendar createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 

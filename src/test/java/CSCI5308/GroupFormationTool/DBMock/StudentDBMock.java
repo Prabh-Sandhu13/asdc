@@ -78,13 +78,13 @@ public class StudentDBMock implements IStudentRepository {
 		oldUsers.setEmail("padmeshdonth@gmail.com");
 		oldUsers.setBannerId("B00854462");
 		oldUsers.setPassword("testsample");
-		
+
 		List<StudentCSV> oldUsersList = new ArrayList<>();
 
 		oldUsersList.add(oldUsers);
 
-		Map<Integer,List<StudentCSV>> map = new HashMap<>();
-		
+		Map<Integer, List<StudentCSV>> map = new HashMap<>();
+
 		map.put(0, newUsersList);
 		map.put(1, oldUsersList);
 

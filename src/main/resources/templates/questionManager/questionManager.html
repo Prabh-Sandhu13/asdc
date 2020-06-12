@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="icon" href="favicon.ico" />
-<title>Instructor Course List</title>
+<title>Instructor Question Manager</title>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -27,13 +27,57 @@
 		</div>
 
 		<div sec:authorize="isAuthenticated()">
-			<div>Not implemented yet!!</div>
+			<h3 class="text-center">Questions</h3>
+
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th scope="col">Question Title</th>
+							<th scope="col">Question Text</th>
+							<th scope="col">Created On</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="question : ${questionList}"
+							th:if="${questionList!=null and !questionList.empty} ">
+							<td th:text="${question.title}"></td>
+							<td th:text="${question.text}"></td>
+							<td th:text="${question.createdDate}"></td>
+							<td><a class="text-danger"
+								th:href="@{/questionManager/deleteQuestion?questionId={questionId} (questionId=${question.id})}">
+									<span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete
+									Question
+							</a></td>
+						</tr>
+						<tr th:if="${questionList ==null or questionList.empty}">
+
+							<td colspan=4>No questions available yet!!</td>
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
 			<br /> <br />
-			<form th:action="@{/logout}" method="post" class="text-center">
-				<button type="submit" class="btn btn-danger btn-sm">Sign
-					Out</button>
-			</form>
+
+			<div class="text-center">
+				<a th:href="@{/questionManager/createQuestion}"
+					class="btn btn-primary btn-md"> <span
+					class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp; Create a
+					question
+				</a>
+			</div>
+
+
+			<br /> <br />
+			<div class="text-center">
+				<a th:href="@{/courseList}">
+					<button type="submit" class="btn btn-success btn-sm">Back
+						to your courses</button>
+				</a>
+			</div>
 
 		</div>
 	</div>

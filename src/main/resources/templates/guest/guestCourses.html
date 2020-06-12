@@ -27,7 +27,8 @@
 
 		<div sec:authorize="isAuthenticated()">
 
-			<div th:if="${authorizationError == null and courses!=null and !courses.empty} ">
+			<div
+				th:if="${authorizationError == null and courses!=null and !courses.empty} ">
 				<h3 class="text-center">Courses Available Are</h3>
 
 				<div class="table-responsive">
@@ -57,8 +58,9 @@
 				</form>
 
 			</div>
-			
-			<div th:if="${authorizationError == null and courses ==null or courses.empty} ">
+
+			<div
+				th:if="${authorizationError == null and courses ==null or courses.empty} ">
 				<h3 class="text-center">Courses Available Are</h3>
 
 				<div class="table-responsive">
@@ -73,7 +75,7 @@
 						</thead>
 						<tbody>
 							<tr>
-							<td colspan =3>No courses available!!</td>
+								<td colspan=3>No courses available!!</td>
 							</tr>
 						</tbody>
 					</table>
@@ -85,9 +87,9 @@
 				</form>
 
 			</div>
-			
-			
-			
+
+
+
 			<div th:unless="${authorizationError==null}"
 				class="validation-message alert alert-danger" role="alert"
 				th:text="${authorizationError}"></div>

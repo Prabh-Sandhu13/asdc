@@ -104,5 +104,4 @@ public class User implements IUser {
 		confirmPassword = null;
 	}
 
-
 }

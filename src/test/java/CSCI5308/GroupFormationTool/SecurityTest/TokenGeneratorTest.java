@@ -15,10 +15,9 @@ public class TokenGeneratorTest implements ITokenGenerator {
 		return "randomly-generated-token";
 	}
 
-	
 	@Test
 	void encryptPasswordTest() {
-		
+
 		String token = generator();
 		assertEquals("randomly-generated-token", token);
 

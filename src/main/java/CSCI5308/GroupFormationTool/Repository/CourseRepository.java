@@ -48,7 +48,7 @@ public class CourseRepository implements ICourseRepository {
 	public boolean createCourse(ICourse course) {
 		StoredProcedure proc = null;
 		boolean status = true;
-		
+
 		try {
 			proc = new StoredProcedure("sp_createCourse(?,?,?,?,?)");
 			proc.setInputStringParameter(1, course.getId());
@@ -57,9 +57,9 @@ public class CourseRepository implements ICourseRepository {
 			proc.setInputStringParameter(4, course.getDescription());
 			proc.registerOutputParameterBoolean(5);
 			proc.execute();
-			
+
 			status = proc.getParameter(5);
-			
+
 		} catch (SQLException ex) {
 			System.out.println(ex);
 		} finally {

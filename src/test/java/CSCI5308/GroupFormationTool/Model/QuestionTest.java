@@ -7,6 +7,8 @@ import CSCI5308.GroupFormationTool.AccessControl.IQuestion;
 import CSCI5308.GroupFormationTool.DBMock.QuestionDBMock;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.sql.Date;
 import java.util.Calendar;
 
 @SpringBootTest
@@ -97,19 +99,16 @@ public class QuestionTest {
 	@Test
 	public void getCreatedDateTest() {
 		IQuestion question = createDefaultQuestion();
-		Calendar myCal = Calendar.getInstance();
-		myCal.set(2020, 06, 11);
-		System.out.println(myCal.toString());
-		System.out.println(question.getCreatedDate().toString());
-		assertEquals(myCal.getTime().toString(), question.getCreatedDate().getTime().toString());
+		assertEquals("1969-12-31", question.getCreatedDate().toString());
 
 	}
 
 	@Test
 	public void setCreatedDateTest() {
 		IQuestion question = new Question();
-		question.setCreatedDate(null);
-		assertEquals(null, question.getCreatedDate());
+		Date date = new Date(0);
+		question.setCreatedDate(date);
+		assertEquals("1969-12-31", question.getCreatedDate().toString());
 
 	}
 

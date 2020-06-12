@@ -185,9 +185,9 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
 	@Override
 	public boolean getUserRoleForCourse(String userId, String courseId) {
-		
-		IUserCourses userCourses = new UserCourses(); 
-			
+
+		IUserCourses userCourses = new UserCourses();
+
 		userCourses.setBannerId(bannerId);
 		userCourses.setCourseDescription(courseDescription);
 		userCourses.setCourseId(courseId);

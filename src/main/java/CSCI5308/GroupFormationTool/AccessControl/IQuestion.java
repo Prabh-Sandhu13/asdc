@@ -1,12 +1,12 @@
 package CSCI5308.GroupFormationTool.AccessControl;
 
-import java.util.Calendar;
+import java.sql.Date;
 
 public interface IQuestion {
 
-	public int getId();
+	public long getId();
 
-	public void setId(int id);
+	public void setId(long id);
 
 	public IUser getInstructor();
 
@@ -24,8 +24,8 @@ public interface IQuestion {
 
 	public void setType(int type);
 
-	public Calendar getCreatedDate();
+	public Date getCreatedDate();
 
-	public void setCreatedDate(Calendar createdDate);
+	public void setCreatedDate(Date createdDate);
 
 }
