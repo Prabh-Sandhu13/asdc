@@ -102,9 +102,10 @@ public class ForgotPasswordService implements IForgotPasswordService{
 			throw new PasswordHistoryException("Your new password cannot be same as previous " + forgotPasswordRepository.getSettingValue("Password History") + " passwords!");
 		}
 		
-		forgotPasswordRepository.updatePassword(userByEmailId,encryptor.encoder(user.getPassword()));	
+		String encrypted_password = encryptor.encoder(user.getPassword());
+		forgotPasswordRepository.updatePassword(userByEmailId, encrypted_password);	
+		forgotPasswordRepository.addPasswordHistory(userByEmailId, encrypted_password);
 		updated = forgotPasswordRepository.deleteToken(user, token);
-		
 		
 		return updated;
 	}
@@ -118,20 +119,18 @@ public class ForgotPasswordService implements IForgotPasswordService{
 		if(null == settingValue) {
 			return false;
 		}
-		else {
-			
+		else {		
 			String encrypted_password = encryptor.encoder(enteredPassword);
 			ArrayList<String> nPasswords = forgotPasswordRepository.getNPasswords(user, settingValue);
-			System.out.println("Typed: "+(encrypted_password));
+			
 			for (int listIndex = 0; listIndex < nPasswords.size() ; listIndex ++) {
-			//	System.out.println(nPasswords.get(listIndex));
+			
 				if(encryptor.passwordMatch(enteredPassword, nPasswords.get(listIndex))) {
 					violation = true;
 					break;
 				}
 			}
 		}
-		// System.out.println("Violated? " + violation);
 		return violation;
 	}
 

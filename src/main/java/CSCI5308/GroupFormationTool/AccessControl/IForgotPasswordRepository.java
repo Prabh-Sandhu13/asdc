@@ -11,5 +11,7 @@ public interface IForgotPasswordRepository {
     public IUser getUserId(IUser user);
     public IUser getEmailByToken(IUser user,String token);
     public String getSettingValue(String settingName);
+    public boolean addPasswordHistory(IUser user, String password);
     public ArrayList<String> getNPasswords(IUser user, String num);
+    
 }

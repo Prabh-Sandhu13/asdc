@@ -85,4 +85,10 @@ public class ForgotPasswordDBMock implements IForgotPasswordRepository {
 		return null;
 	}
 
+	@Override
+	public boolean addPasswordHistory(IUser user, String password) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
