@@ -2,6 +2,7 @@ package CSCI5308.GroupFormationTool.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
@@ -229,6 +230,46 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
 		}		
 		
 		return settingValue;
+	}
+
+	@Override
+	public ArrayList<String> getNPasswords(IUser user, String num) {
+		
+		ArrayList<String> nPasswords= new ArrayList<String>();
+		StoredProcedure storedProcedure = null;
+		try {
+			storedProcedure = new StoredProcedure("sp_getNPasswords(?,?)");
+			storedProcedure.setInputStringParameter(1, ""+user.getId());
+			storedProcedure.setInputStringParameter(2, ""+num);
+			ResultSet results = storedProcedure.executeWithResults();
+			if (results != null) {
+				
+				
+				while (results.next()) {
+					{
+						
+						nPasswords.add(results.getString("encrypted_password"));
+					}
+				}
+			}
+
+		} catch (SQLException ex) {
+
+			System.out.println(ex.getMessage());
+
+		} 
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		
+		
+		
+		return nPasswords;
 	}
 
 }

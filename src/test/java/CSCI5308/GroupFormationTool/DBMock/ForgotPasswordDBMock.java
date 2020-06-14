@@ -1,5 +1,7 @@
 package CSCI5308.GroupFormationTool.DBMock;
 
+import java.util.ArrayList;
+
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 
@@ -73,6 +75,12 @@ public class ForgotPasswordDBMock implements IForgotPasswordRepository {
 
 	@Override
 	public String getSettingValue(String settingName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<String> getNPasswords(IUser user, String num) {
 		// TODO Auto-generated method stub
 		return null;
 	}

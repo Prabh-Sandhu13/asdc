@@ -1,5 +1,7 @@
 package CSCI5308.GroupFormationTool.AccessControl;
 
+import java.util.ArrayList;
+
 public interface IForgotPasswordRepository {
     public boolean addToken(IUser user, String token);
     public String getToken(IUser user);
@@ -9,4 +11,5 @@ public interface IForgotPasswordRepository {
     public IUser getUserId(IUser user);
     public IUser getEmailByToken(IUser user,String token);
     public String getSettingValue(String settingName);
+    public ArrayList<String> getNPasswords(IUser user, String num);
 }

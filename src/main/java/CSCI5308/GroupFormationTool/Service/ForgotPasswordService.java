@@ -1,5 +1,7 @@
 package CSCI5308.GroupFormationTool.Service;
 
+import java.util.ArrayList;
+
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 
 import org.springframework.mail.SimpleMailMessage;
@@ -92,30 +94,45 @@ public class ForgotPasswordService implements IForgotPasswordService{
 		encryptor = Injector.instance().getPasswordEncryptor();
 		IUser userByEmailId = forgotPasswordRepository.getEmailByToken(user, token);
 		
-		if(isHistoryViolated(userByEmailId)) {
-			throw new PasswordHistoryException("Your new password cannot be same as previous " + 2 + "passwords!");
+		if(null == userByEmailId) {
+			throw new TokenExpiredException("Token expired");
 		}
 		
-		if(userByEmailId !=null) {
-			
-			forgotPasswordRepository.updatePassword(userByEmailId,encryptor.encoder(user.getPassword()));
-			
-			updated = forgotPasswordRepository.deleteToken(user, token);
+		if(isHistoryViolated(userByEmailId,user.getPassword())) {
+			throw new PasswordHistoryException("Your new password cannot be same as previous " + forgotPasswordRepository.getSettingValue("Password History") + " passwords!");
 		}
-		else {
-				throw new TokenExpiredException("Token expired");
-		}
+		
+		forgotPasswordRepository.updatePassword(userByEmailId,encryptor.encoder(user.getPassword()));	
+		updated = forgotPasswordRepository.deleteToken(user, token);
+		
+		
 		return updated;
 	}
 
 	@Override
-	public boolean isHistoryViolated(IUser user) {
+	public boolean isHistoryViolated(IUser user, String enteredPassword) {
 		boolean violation = false;
 		forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
+		encryptor = Injector.instance().getPasswordEncryptor();
 		String settingValue = forgotPasswordRepository.getSettingValue("Password History");
-		System.out.println("History : "+settingValue);
-		
-		return true;
+		if(null == settingValue) {
+			return false;
+		}
+		else {
+			
+			String encrypted_password = encryptor.encoder(enteredPassword);
+			ArrayList<String> nPasswords = forgotPasswordRepository.getNPasswords(user, settingValue);
+			System.out.println("Typed: "+(encrypted_password));
+			for (int listIndex = 0; listIndex < nPasswords.size() ; listIndex ++) {
+			//	System.out.println(nPasswords.get(listIndex));
+				if(encryptor.passwordMatch(enteredPassword, nPasswords.get(listIndex))) {
+					violation = true;
+					break;
+				}
+			}
+		}
+		// System.out.println("Violated? " + violation);
+		return violation;
 	}
 
 
