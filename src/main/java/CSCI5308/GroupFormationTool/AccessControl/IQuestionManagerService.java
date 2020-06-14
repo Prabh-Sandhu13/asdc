@@ -7,8 +7,7 @@ public interface IQuestionManagerService {
 
 	ArrayList<IQuestion> getQuestionListForInstructor(String emailId);
 
-	long createQuestion(String title, String text, int type, List<String> optionText, List<String> optionValue,
-			String emailId);
+	long createQuestion(IQuestion question, List<String> optionText, List<String> optionValue);
 
 	IQuestion getQuestionById(long questionId);
 

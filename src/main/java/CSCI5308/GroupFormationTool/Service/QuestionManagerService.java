@@ -3,7 +3,6 @@ package CSCI5308.GroupFormationTool.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IChoice;
 import CSCI5308.GroupFormationTool.AccessControl.IQuestion;
@@ -32,39 +31,36 @@ public class QuestionManagerService implements IQuestionManagerService {
 	}
 
 	@Override
-	public long createQuestion(String title, String text, int type, List<String> optionText, List<String> optionValue,
-			String emailId) {
+	public long createQuestion(IQuestion question, List<String> optionText, List<String> optionValue) {
 
-		if (checkIfInvalid(title, text, type, optionText, optionValue)) {
+		int type = question.getType();
+
+		if (checkIfInvalid(question.getTitle(), question.getText(), type, optionText, optionValue)) {
 			return invalidData;
 		} else {
-			IQuestion question = new Question();
 
-			IUser user = new User();
+			try {
 
-			ArrayList<IChoice> choices = new ArrayList<>();
+				ArrayList<IChoice> choices = new ArrayList<>();
 
-			question.setText(text);
-			question.setTitle(title);
-			question.setType(type);
-			user.setEmailId(emailId);
-			question.setInstructor(user);
+				if (type == MCQMultiple || type == MCQOne) {
 
-			if (type == MCQMultiple || type == MCQOne) {
+					for (int i = 0; i < optionText.size(); i++) {
 
-				for (int i = 0; i < optionText.size(); i++) {
+						IChoice choice = new Choice();
+						choice.setText(optionText.get(i));
+						choice.setValue(Integer.parseInt(optionValue.get(i)));
 
-					IChoice choice = new Choice();
-					choice.setText(optionText.get(i));
-					choice.setValue(Integer.parseInt(optionValue.get(i)));
+						choices.add(choice);
 
-					choices.add(choice);
+					}
+					question.setChoices(choices);
 
+				} else {
+					question.setChoices(null);
 				}
-				question.setChoices(choices);
-
-			} else {
-				question.setChoices(null);
+			} catch (Exception ex) {
+				return invalidData;
 			}
 
 			questionManagerRepository = Injector.instance().getQuestionManagerRepository();

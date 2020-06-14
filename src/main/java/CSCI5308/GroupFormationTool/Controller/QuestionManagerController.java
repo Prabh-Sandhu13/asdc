@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IQuestion;
 import CSCI5308.GroupFormationTool.AccessControl.IQuestionManagerService;
+import CSCI5308.GroupFormationTool.AccessControl.IUser;
+import CSCI5308.GroupFormationTool.Model.Question;
+import CSCI5308.GroupFormationTool.Model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,10 +65,20 @@ public class QuestionManagerController {
 
 		long outcome;
 
+		IQuestion question = new Question();
+		IUser instructor = new User();
+
 		if (!(authentication instanceof AnonymousAuthenticationToken)) {
 
-			outcome = questionManagerService.createQuestion(title, text, Integer.parseInt(type), optionText,
-					optionValue, authentication.getPrincipal().toString());
+			question.setText(text);
+			question.setTitle(title);
+			question.setType(Integer.parseInt(type));
+
+			instructor.setEmailId(authentication.getPrincipal().toString());
+
+			question.setInstructor(instructor);
+
+			outcome = questionManagerService.createQuestion(question, optionText, optionValue);
 
 			if (outcome == sqlError) {
 
@@ -74,7 +87,7 @@ public class QuestionManagerController {
 
 			} else if (outcome == invalidData) {
 				model.addAttribute("invalidData",
-						"You have not entered data in one or more fields! Please enter and try again");
+						"One or more fields have invalid/empty data! Please enter and try again");
 				return "questionManager/createQuestion";
 			} else {
 				return "redirect:/questionManager/viewQuestion?questionId=" + outcome;
