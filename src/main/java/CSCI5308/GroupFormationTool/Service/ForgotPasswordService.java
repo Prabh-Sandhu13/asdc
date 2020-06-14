@@ -47,7 +47,6 @@ public class ForgotPasswordService implements IForgotPasswordService{
 		
 		boolean success = false;
 		boolean tokenPresent = false;
-		//System.out.println(user.getEmailId());
 		IUser userByEmailId = forgotPasswordRepository.getUserId(user);
 
 		if (userByEmailId != null) {
@@ -60,13 +59,10 @@ public class ForgotPasswordService implements IForgotPasswordService{
 				
 			}
 			else {
-				//If token exists
 				token = tokenGenerator.generator();
 				tokenPresent = forgotPasswordRepository.updateToken(userByEmailId, token);
 			}
-			
-			//Send Mail Here
-			// create the email
+
 			String URL = "http://formgroups22.herokuapp.com/"+"resetPassword"+"?token="+token;
 			msg.setTo(userByEmailId.getEmailId());
 			msg.setSubject("Complete Password Reset!");
