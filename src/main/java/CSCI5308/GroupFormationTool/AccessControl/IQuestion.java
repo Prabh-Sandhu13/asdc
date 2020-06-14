@@ -1,6 +1,9 @@
 package CSCI5308.GroupFormationTool.AccessControl;
 
 import java.sql.Date;
+import java.util.ArrayList;
+
+import CSCI5308.GroupFormationTool.Model.Choice;
 
 public interface IQuestion {
 
@@ -27,5 +30,9 @@ public interface IQuestion {
 	public Date getCreatedDate();
 
 	public void setCreatedDate(Date createdDate);
+
+	public ArrayList<IChoice> getChoices();
+
+	public void setChoices(ArrayList<IChoice> choices);
 
 }

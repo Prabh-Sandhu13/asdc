@@ -36,7 +36,6 @@
 							<th scope="col">Question Title</th>
 							<th scope="col">Question Text</th>
 							<th scope="col">Created On</th>
-							<th scope="col">Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -45,15 +44,11 @@
 							<td th:text="${question.title}"></td>
 							<td th:text="${question.text}"></td>
 							<td th:text="${question.createdDate}"></td>
-							<td><a class="text-danger"
-								th:href="@{/questionManager/deleteQuestion?questionId={questionId} (questionId=${question.id})}">
-									<span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete
-									Question
-							</a></td>
 						</tr>
 						<tr th:if="${questionList ==null or questionList.empty}">
 
-							<td colspan=4>No questions available yet!!</td>
+							<td colspan=3 style="color: red">No questions available
+								yet!!</td>
 
 						</tr>
 					</tbody>

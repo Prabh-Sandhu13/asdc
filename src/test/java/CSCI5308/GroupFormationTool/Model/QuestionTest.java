@@ -3,13 +3,14 @@ package CSCI5308.GroupFormationTool.Model;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import CSCI5308.GroupFormationTool.AccessControl.IChoice;
 import CSCI5308.GroupFormationTool.AccessControl.IQuestion;
 import CSCI5308.GroupFormationTool.DBMock.QuestionDBMock;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Date;
-import java.util.Calendar;
+import java.util.ArrayList;
 
 @SpringBootTest
 public class QuestionTest {
@@ -109,6 +110,30 @@ public class QuestionTest {
 		Date date = new Date(0);
 		question.setCreatedDate(date);
 		assertEquals("1969-12-31", question.getCreatedDate().toString());
+
+	}
+
+	@Test
+	public void getChoicesTest() {
+		IQuestion question = createDefaultQuestion();
+		assertEquals(1, question.getChoices().size());
+
+	}
+
+	@Test
+	public void setChoicesTest() {
+		IQuestion question = new Question();
+
+		IChoice choice = new Choice();
+		choice.setText("sample");
+		choice.setValue(1);
+
+		ArrayList<IChoice> choices = new ArrayList<>();
+		choices.add(choice);
+
+		question.setChoices(choices);
+
+		assertEquals(1, question.getChoices().size());
 
 	}
 

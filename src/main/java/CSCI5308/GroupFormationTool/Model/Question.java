@@ -1,7 +1,9 @@
 package CSCI5308.GroupFormationTool.Model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
+import CSCI5308.GroupFormationTool.AccessControl.IChoice;
 import CSCI5308.GroupFormationTool.AccessControl.IQuestion;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 
@@ -19,6 +21,8 @@ public class Question implements IQuestion {
 
 	private Date createdDate;
 
+	private ArrayList<IChoice> choices;
+
 	public Question() {
 		this.id = -1;
 		this.instructor = null;
@@ -26,6 +30,7 @@ public class Question implements IQuestion {
 		this.text = null;
 		this.type = -1;
 		this.createdDate = null;
+		this.choices = null;
 	}
 
 	public long getId() {
@@ -74,6 +79,14 @@ public class Question implements IQuestion {
 
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
+	}
+
+	public ArrayList<IChoice> getChoices() {
+		return choices;
+	}
+
+	public void setChoices(ArrayList<IChoice> choices) {
+		this.choices = choices;
 	}
 
 }

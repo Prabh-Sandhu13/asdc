@@ -4,9 +4,11 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import CSCI5308.GroupFormationTool.AccessControl.IChoice;
 import CSCI5308.GroupFormationTool.AccessControl.IQuestion;
 import CSCI5308.GroupFormationTool.AccessControl.IQuestionManagerRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
+import CSCI5308.GroupFormationTool.Model.Choice;
 import CSCI5308.GroupFormationTool.Model.Question;
 import CSCI5308.GroupFormationTool.Model.User;
 
@@ -24,6 +26,8 @@ public class QuestionDBMock implements IQuestionManagerRepository {
 
 	private Date createdDate;
 
+	private ArrayList<IChoice> choices;
+
 	public QuestionDBMock() {
 		id = 1;
 		instructor = new UserDBMock().loadUserWithID(new User());
@@ -31,6 +35,16 @@ public class QuestionDBMock implements IQuestionManagerRepository {
 		text = "Sample question";
 		type = 1;
 		createdDate = new Date(0);
+
+		choices = new ArrayList<>();
+
+		IChoice choice = new Choice();
+
+		choice.setText("Amateur");
+		choice.setValue(1);
+
+		choices.add(choice);
+
 	}
 
 	public IQuestion loadQuestion(IQuestion question) {
@@ -41,6 +55,7 @@ public class QuestionDBMock implements IQuestionManagerRepository {
 		question.setText(text);
 		question.setTitle(title);
 		question.setType(type);
+		question.setChoices(choices);
 
 		return question;
 	}
@@ -59,10 +74,59 @@ public class QuestionDBMock implements IQuestionManagerRepository {
 		question.setText(text);
 		question.setTitle(title);
 		question.setType(type);
+		question.setChoices(choices);
 
 		questionList.add(question);
 
 		return questionList;
+
+	}
+
+	@Override
+	public long createQuestion(IQuestion question) {
+
+		IUser user = new User();
+
+		question.setCreatedDate(createdDate);
+		question.setId(id);
+		question.setInstructor(new UserDBMock().getUserByEmailId(user));
+		question.setText(text);
+		question.setTitle(title);
+		question.setType(type);
+		question.setChoices(choices);
+
+		return question.getId();
+
+	}
+
+	@Override
+	public IQuestion getQuestionById(long questionId) {
+		IUser user = new User();
+		IQuestion question = new Question();
+		question.setCreatedDate(createdDate);
+		question.setId(questionId);
+		question.setInstructor(new UserDBMock().getUserByEmailId(user));
+		question.setText(text);
+		question.setTitle(title);
+		question.setType(type);
+		question.setChoices(choices);
+
+		return question;
+	}
+
+	@Override
+	public ArrayList<IChoice> getOptionsForTheQuestion(long questionId) {
+		IUser user = new User();
+		IQuestion question = new Question();
+		question.setCreatedDate(createdDate);
+		question.setId(questionId);
+		question.setInstructor(new UserDBMock().getUserByEmailId(user));
+		question.setText(text);
+		question.setTitle(title);
+		question.setType(type);
+		question.setChoices(choices);
+
+		return question.getChoices();
 
 	}
 

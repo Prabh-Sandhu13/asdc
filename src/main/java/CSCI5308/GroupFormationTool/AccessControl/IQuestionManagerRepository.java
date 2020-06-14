@@ -6,4 +6,10 @@ public interface IQuestionManagerRepository {
 
 	ArrayList<IQuestion> getQuestionListForInstructor(String emailId);
 
+	long createQuestion(IQuestion question);
+
+	IQuestion getQuestionById(long questionId);
+	
+	ArrayList<IChoice> getOptionsForTheQuestion(long questionId);
+
 }
