@@ -200,4 +200,35 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
 
 	}
 
+	@Override
+	public String getSettingValue(String settingName) {
+		String settingValue = null;
+		StoredProcedure storedProcedure = null;
+		try {
+			storedProcedure = new StoredProcedure("sp_getSettingvalue(?)");
+			storedProcedure.setInputStringParameter(1, settingName);
+			ResultSet results = storedProcedure.executeWithResults();
+			if (results != null) {
+
+				while (results.next()) {
+					{
+						
+						settingValue = results.getString("pSetting_value");
+					}
+				}
+			}
+
+		} catch (SQLException ex) {
+
+			System.out.println(ex.getMessage());
+
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}		
+		
+		return settingValue;
+	}
+
 }

@@ -71,4 +71,10 @@ public class ForgotPasswordDBMock implements IForgotPasswordRepository {
 		}
 	}
 
+	@Override
+	public String getSettingValue(String settingName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

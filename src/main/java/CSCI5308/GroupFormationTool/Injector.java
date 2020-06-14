@@ -58,9 +58,8 @@ public class Injector {
 	private IForgotPasswordService forgotPasswordService;
 	private IForgotPasswordRepository forgotPasswordRepository;
 	private IMailService mailService;
-	private SimpleMailMessage msg;
-	private JavaMailSenderImpl jms;
-	
+	private SimpleMailMessage mailMessage;
+	private JavaMailSenderImpl mailSender;
 	
 	private ICourseService courseService;
 	private ICourseRepository courseRepository;
@@ -80,8 +79,8 @@ public class Injector {
 		forgotPasswordRepository = new ForgotPasswordRepository();
 		tokenGenerator = new TokenGenerator();
 		mailService = new MailService();
-		msg = new SimpleMailMessage();
-        jms = new JavaMailSenderImpl();
+		mailMessage = new SimpleMailMessage();
+        mailSender = new JavaMailSenderImpl();
 
 		courseService = new CourseService();
 		courseRepository = new CourseRepository();
@@ -142,11 +141,11 @@ public class Injector {
 	}
 	
 	public SimpleMailMessage getMailMessage(){
-		return msg;
+		return mailMessage;
 	}
 	
 	public JavaMailSenderImpl getJavaMailSender(){
-		return jms;
+		return mailSender;
 	}
 	
 

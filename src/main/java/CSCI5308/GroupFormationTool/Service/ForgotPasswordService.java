@@ -15,6 +15,8 @@ import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.AccessControl.ITokenGenerator;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
+import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
+import CSCI5308.GroupFormationTool.ErrorHandling.PasswordHistoryException;
 import CSCI5308.GroupFormationTool.ErrorHandling.TokenAlreadyExistException;
 import CSCI5308.GroupFormationTool.ErrorHandling.TokenExpiredException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
@@ -79,12 +81,21 @@ public class ForgotPasswordService implements IForgotPasswordService{
 
 	@Override
 	public boolean updatePassword(IUser user, String token) {
+		
+		if (!(user.getPassword().equals(user.getConfirmPassword()))) {
+			throw new PasswordException("The passwords do not match");
+		}
+		
+		
 		boolean updated = false;
 		forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
 		encryptor = Injector.instance().getPasswordEncryptor();
-		//System.out.println("This succeeded");
 		IUser userByEmailId = forgotPasswordRepository.getEmailByToken(user, token);
-		//System.out.println("Token :"+token);
+		
+		if(isHistoryViolated(userByEmailId)) {
+			throw new PasswordHistoryException("Your new password cannot be same as previous " + 2 + "passwords!");
+		}
+		
 		if(userByEmailId !=null) {
 			
 			forgotPasswordRepository.updatePassword(userByEmailId,encryptor.encoder(user.getPassword()));
@@ -95,6 +106,16 @@ public class ForgotPasswordService implements IForgotPasswordService{
 				throw new TokenExpiredException("Token expired");
 		}
 		return updated;
+	}
+
+	@Override
+	public boolean isHistoryViolated(IUser user) {
+		boolean violation = false;
+		forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
+		String settingValue = forgotPasswordRepository.getSettingValue("Password History");
+		System.out.println("History : "+settingValue);
+		
+		return true;
 	}
 
 
