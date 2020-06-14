@@ -1,10 +1,8 @@
 package CSCI5308.GroupFormationTool.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
 
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IChoice;
