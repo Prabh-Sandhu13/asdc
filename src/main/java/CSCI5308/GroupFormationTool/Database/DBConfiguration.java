@@ -4,11 +4,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DBConfiguration implements IDBConfiguration {
-	private static final String URL = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_22_TEST?useSSL=false"
+	private static final String URL = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_22_DEVINT?useSSL=false"
 			+"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	
+//	private static final String URL = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_22_TEST?useSSL=false"
+//			+"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
-	private static final String USER = "CSCI5308_22_TEST_USER";
-	private static final String PASSWORD = "CSCI5308_22_TEST_22546";
+	private static final String USER = "CSCI5308_22_DEVINT_USER";
+	private static final String PASSWORD = "CSCI5308_22_DEVINT_22320";
+
 
 	@Override
 	public String getDBUserName() {

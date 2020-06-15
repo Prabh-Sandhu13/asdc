@@ -29,4 +29,6 @@ public interface IUser {
 	public String getConfirmPassword();
 
 	public void setConfirmPassword(String confirmPassword);
+	
+	public String passwordSPolicyCheck(String password);
 }

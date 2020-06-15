@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordService;
+import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
+import CSCI5308.GroupFormationTool.ErrorHandling.PasswordHistoryException;
 import CSCI5308.GroupFormationTool.ErrorHandling.TokenExpiredException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
 import CSCI5308.GroupFormationTool.Model.User;
@@ -64,9 +66,18 @@ public class ForgotPasswordController {
 			modelAndView = new ModelAndView("resetPassword");
 			modelAndView.addObject("Error", "The renew password link has expired, please renew it again");
 		}
+		catch(PasswordException pex) {
+			modelAndView = new ModelAndView("redirect:/resetPassword");
+			modelAndView.addObject("token", receivedToken);
+			modelAndView.addObject("passwordError", "The passwords do not match. Please try again !");
+		}
+		catch(PasswordHistoryException phe) {
+			modelAndView = new ModelAndView("redirect:/resetPassword");
+			modelAndView.addObject("token", receivedToken);
+			modelAndView.addObject("passwordError", phe.getMessage());
+		}
 		catch(Exception e) {
 			modelAndView = new ModelAndView("resetPassword");
-			
 			modelAndView.addObject("Error", "Something went wrong, please try again");
 		}
 		
