@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import CSCI5308.GroupFormationTool.AccessControl.IPolicy;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
+import CSCI5308.GroupFormationTool.Model.Policy;
 import CSCI5308.GroupFormationTool.Model.User;
 
 public class UserDBMock implements IUserRepository {
@@ -111,8 +112,14 @@ public class UserDBMock implements IUserRepository {
 
 	@Override
 	public ArrayList<IPolicy> passwordSPolicyCheck(String password) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<IPolicy> policies = new ArrayList<IPolicy>();
+		IPolicy policy = new Policy();
+		policy.setId(0);
+		policy.setEnabled(1);
+		policy.setSetting("Min length");
+		policy.setValue("3");
+		policies.add(policy);
+		return policies;
 	}
 
 }
