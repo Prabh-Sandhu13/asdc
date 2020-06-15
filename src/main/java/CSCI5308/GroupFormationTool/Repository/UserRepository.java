@@ -148,7 +148,6 @@ public class UserRepository implements IUserRepository {
 			if (results != null) {
 				while (results.next()) {
 					{
-						System.out.println(results.getInt("pSetting_id"));
 						policy = new Policy();
 						policy.setId(results.getInt("pSetting_id"));
 						policy.setSetting(results.getString("pSetting"));
