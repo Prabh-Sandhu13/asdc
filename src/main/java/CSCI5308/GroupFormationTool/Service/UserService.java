@@ -1,7 +1,10 @@
 package CSCI5308.GroupFormationTool.Service;
 
+import java.util.ArrayList;
+
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
+import CSCI5308.GroupFormationTool.AccessControl.IPolicy;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
@@ -13,6 +16,7 @@ public class UserService implements IUserService {
 	private IUserRepository userRepository;
 
 	private IPasswordEncryptor encryptor;
+	private String err = null;
 
 	@Override
 	public boolean createUser(IUser user) {
@@ -61,6 +65,36 @@ public class UserService implements IUserService {
 		} else {
 			return true;
 		}
+	}
+	
+	private String checkPasswordSecurity(String password,ArrayList<IPolicy> policies) {
+		
+		policies.forEach(policy -> {
+			int id = policy.getId();
+			String val = policy.getValue();
+			switch(id){
+			// Min value policy
+			case 0:
+				if (password.length() < Integer.parseInt(val)) {
+					err = "Minimum length of password should be "+val;
+				}
+				break;
+			case 1:
+				if (password.length() > Integer.parseInt(val)) {
+					err = "Minimum length of password should be "+val;
+				}
+				break;
+			default:
+		}
+		});
+		return err;
+	}
+	
+	@Override
+	public String passwordSPolicyCheck(String password) {
+		userRepository = Injector.instance().getUserRepository();
+		ArrayList<IPolicy> policies=userRepository.passwordSPolicyCheck(password);
+		return checkPasswordSecurity(password, policies);
 	}
 
 }

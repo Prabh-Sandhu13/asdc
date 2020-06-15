@@ -1,6 +1,8 @@
 package CSCI5308.GroupFormationTool.Model;
 
+import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
+import CSCI5308.GroupFormationTool.AccessControl.IUserService;
 
 public class User implements IUser {
 
@@ -17,6 +19,8 @@ public class User implements IUser {
 	private String password;
 
 	private String confirmPassword;
+	
+	private IUserService userService;
 
 	@Override
 	public long getId() {
@@ -102,6 +106,12 @@ public class User implements IUser {
 		password = null;
 
 		confirmPassword = null;
+	}
+	
+	@Override
+	public String passwordSPolicyCheck(String password) {
+		userService = Injector.instance().getUserService();
+		return userService.passwordSPolicyCheck(password);
 	}
 
 

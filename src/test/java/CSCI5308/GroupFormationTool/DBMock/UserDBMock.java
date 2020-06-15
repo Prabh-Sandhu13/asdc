@@ -1,5 +1,8 @@
 package CSCI5308.GroupFormationTool.DBMock;
 
+import java.util.ArrayList;
+
+import CSCI5308.GroupFormationTool.AccessControl.IPolicy;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
 import CSCI5308.GroupFormationTool.Model.User;
@@ -104,6 +107,12 @@ public class UserDBMock implements IUserRepository {
 		user.setPassword(password);
 		
 		return user;
+	}
+
+	@Override
+	public ArrayList<IPolicy> passwordSPolicyCheck(String password) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

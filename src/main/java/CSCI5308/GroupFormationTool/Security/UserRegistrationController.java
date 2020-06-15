@@ -21,23 +21,30 @@ public class UserRegistrationController implements WebMvcConfigurer {
 
 		ModelAndView modelAndView = null;
 		boolean success = false;
-		try {
-			userService = Injector.instance().getUserService();
-			success = userService.createUser(user);
-
-			if (success) {
-				modelAndView = new ModelAndView("login");
-			} else {
+		String password = user.getPassword();
+		String passwordSecurityErr = user.passwordSPolicyCheck(password);
+		if(passwordSecurityErr != null) {
+			modelAndView = new ModelAndView("signup");
+			modelAndView.addObject("passwordError", passwordSecurityErr);
+		} else {
+			try {
+				userService = Injector.instance().getUserService();
+				success = userService.createUser(user);
+	
+				if (success) {
+					modelAndView = new ModelAndView("login");
+				} else {
+					modelAndView = new ModelAndView("signup");
+					modelAndView.addObject("invalidDetails", "One or more mandatory fields are not entered.");
+				}
+	
+			} catch (UserAlreadyExistsException uaex) {
 				modelAndView = new ModelAndView("signup");
-				modelAndView.addObject("invalidDetails", "One or more mandatory fields are not entered.");
+				modelAndView.addObject("userAlreadyExists", "An account with " + user.getEmailId() + " already exists.");
+			} catch (PasswordException pex) {
+				modelAndView = new ModelAndView("signup");
+				modelAndView.addObject("passwordError", "The passwords do not match");
 			}
-
-		} catch (UserAlreadyExistsException uaex) {
-			modelAndView = new ModelAndView("signup");
-			modelAndView.addObject("userAlreadyExists", "An account with " + user.getEmailId() + " already exists.");
-		} catch (PasswordException pex) {
-			modelAndView = new ModelAndView("signup");
-			modelAndView.addObject("passwordError", "The passwords do not match");
 		}
 		return modelAndView;
 	}
