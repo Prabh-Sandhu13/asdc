@@ -12,9 +12,7 @@ public class DBConfiguration implements IDBConfiguration {
 
 	private static final String USER = "CSCI5308_22_DEVINT_USER";
 	private static final String PASSWORD = "CSCI5308_22_DEVINT_22320";
-	
-//	private static final String USER = "CSCI5308_22_TEST_USER";
-//	private static final String PASSWORD = "CSCI5308_22_TEST_22546";
+
 
 	@Override
 	public String getDBUserName() {
