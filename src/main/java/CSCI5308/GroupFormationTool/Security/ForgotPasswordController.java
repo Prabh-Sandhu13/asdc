@@ -30,7 +30,7 @@ public class ForgotPasswordController {
 		
 		try {
 			forgotPasswordService = Injector.instance().getForgotPasswordService();
-			forgotPasswordService.sendMail(user);
+			forgotPasswordService.notifyUser(user);
 			modelAndView = new ModelAndView("MailSentSuccess");
 			modelAndView.addObject("Success", "An email with reset link has been succesfully sent!");
 			

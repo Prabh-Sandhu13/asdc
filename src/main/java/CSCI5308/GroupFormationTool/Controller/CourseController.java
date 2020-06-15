@@ -218,7 +218,7 @@ public class CourseController {
 
 				studentLists = studentService.createStudent(students, courseId);
 
-				courseService.sendBatchMail(studentLists.get(0), courseId);
+			//	courseService.sendBatchMail(studentLists.get(0), courseId);
 
 				model.addAttribute("newStudentList", studentLists.get(0));
 				model.addAttribute("oldStudentList", studentLists.get(1));

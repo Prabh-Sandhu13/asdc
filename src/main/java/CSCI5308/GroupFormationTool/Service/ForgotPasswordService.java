@@ -32,20 +32,17 @@ public class ForgotPasswordService implements IForgotPasswordService{
 	private ITokenGenerator tokenGenerator;
 	private IPasswordHistoryService passwordHistoryService;
 	private IMailService mailService;
-	private SimpleMailMessage msg;
-	private JavaMailSender jms;
 	private IPasswordEncryptor encryptor;
 	
 	@Override
-	public boolean sendMail(IUser user) {
+	public boolean notifyUser(IUser user) {
 		
 		userRepository = Injector.instance().getUserRepository();
 		forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
 		tokenGenerator = Injector.instance().getTokenGenerator();
 		mailService = Injector.instance().getMailService();
-		msg = Injector.instance().getMailMessage();
 		encryptor = Injector.instance().getPasswordEncryptor();
-		jms = mailService.getJavaMailSender();
+		
 		
 		boolean success = false;
 		boolean tokenPresent = false;
@@ -53,26 +50,21 @@ public class ForgotPasswordService implements IForgotPasswordService{
 
 		if (userByEmailId != null) {
 			String token = forgotPasswordRepository.getToken(userByEmailId);
-			//System.out.println(token);
 			if (token.equals("")) {
 				//If no token exists
 				token = tokenGenerator.generator();
-				tokenPresent = forgotPasswordRepository.addToken(userByEmailId, token);
-				
+				tokenPresent = forgotPasswordRepository.addToken(userByEmailId, token);			
 			}
+			
 			else {
 				token = tokenGenerator.generator();
 				tokenPresent = forgotPasswordRepository.updateToken(userByEmailId, token);
 			}
 
-			String URL = "http://formgroups22.herokuapp.com/"+"resetPassword"+"?token="+token;
-			msg.setTo(userByEmailId.getEmailId());
-			msg.setSubject("Complete Password Reset!");
-			msg.setFrom("noreply.group22@gmail.com");
-			msg.setText("To reset your password, follow this link: "+ URL);
-			mailService.sendEmail(jms, msg);
+			mailService.sendForgotPasswordMail(userByEmailId, token);
 			
-		} else {
+		} 
+		else {
 			throw new UserAlreadyExistsException("An account with " + user.getEmailId() + " not found!");
 		}
 	

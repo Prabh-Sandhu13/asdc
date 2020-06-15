@@ -38,30 +38,6 @@ public class CourseService implements ICourseService {
 		return courseRepository.getCourseById(courseId);
 	}
 
-	@Override
-	@Async
-	public boolean sendBatchMail(List<StudentCSV> users, String courseID) {
-
-		boolean mailSent = true;
-		mailService = Injector.instance().getMailService();
-		msg = Injector.instance().getMailMessage();
-		jms = mailService.getJavaMailSender();
-
-		msg.setSubject("New Student Registration!");
-		msg.setFrom("noreply.group22@gmail.com");
-
-		for (int userCount = 0; userCount < users.size(); userCount++) {
-			msg.setTo(users.get(userCount).getEmail());
-			msg.setText("Hi,\n\nYou have been added to Group Formation Tool as a student in course " + courseID
-					+ ".\n\n" + "Following are your login credentials:\n\nLogin using EmailId: "
-					+ users.get(userCount).getEmail() + "\nPassword: " + users.get(userCount).getPassword()
-					+"\n\nTo login, go to : http://formgroups22.herokuapp.com/login" +"\n\n\nKind Regards,\nGroup Formation Tool Team-22");
-			mailService.sendEmail(jms, msg);
-		}
-
-		return mailSent;
-	}
-
 	public boolean createCourse(ICourse course) {
 		courseRepository = Injector.instance().getCourseRepository();
 
