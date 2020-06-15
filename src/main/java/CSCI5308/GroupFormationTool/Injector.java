@@ -9,6 +9,8 @@ import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordService;
 import CSCI5308.GroupFormationTool.AccessControl.IMailService;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
+import CSCI5308.GroupFormationTool.AccessControl.IPasswordHistoryRepository;
+import CSCI5308.GroupFormationTool.AccessControl.IPasswordHistoryService;
 import CSCI5308.GroupFormationTool.AccessControl.ITokenGenerator;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 
@@ -26,11 +28,13 @@ import CSCI5308.GroupFormationTool.Database.IDBConfiguration;
 import CSCI5308.GroupFormationTool.Model.User;
 
 import CSCI5308.GroupFormationTool.Repository.ForgotPasswordRepository;
+import CSCI5308.GroupFormationTool.Repository.PasswordHistoryRepository;
 import CSCI5308.GroupFormationTool.Repository.UserRepository;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
 import CSCI5308.GroupFormationTool.Security.TokenGenerator;
 import CSCI5308.GroupFormationTool.Service.ForgotPasswordService;
 import CSCI5308.GroupFormationTool.Service.MailService;
+import CSCI5308.GroupFormationTool.Service.PasswordHistoryService;
 import CSCI5308.GroupFormationTool.Service.StudentService;
 import CSCI5308.GroupFormationTool.Repository.CourseRepository;
 import CSCI5308.GroupFormationTool.Repository.UserCoursesRepository;
@@ -58,6 +62,8 @@ public class Injector {
 	private IForgotPasswordService forgotPasswordService;
 	private IForgotPasswordRepository forgotPasswordRepository;
 	private IMailService mailService;
+	private IPasswordHistoryService passwordHistoryService;
+	private IPasswordHistoryRepository passwordHistoryRepository;
 	private SimpleMailMessage mailMessage;
 	private JavaMailSenderImpl mailSender;
 	
@@ -78,6 +84,8 @@ public class Injector {
 		forgotPasswordService = new ForgotPasswordService();
 		forgotPasswordRepository = new ForgotPasswordRepository();
 		tokenGenerator = new TokenGenerator();
+		passwordHistoryService = new PasswordHistoryService();
+		passwordHistoryRepository = new PasswordHistoryRepository();
 		mailService = new MailService();
 		mailMessage = new SimpleMailMessage();
         mailSender = new JavaMailSenderImpl();
@@ -89,6 +97,8 @@ public class Injector {
 		studentRepository = new StudentRepository();
 		studentService = new StudentService();
 	}
+
+
 
 	public IUserCoursesRepository getUserCoursesRepository() {
 		return userCoursesRepository;
@@ -164,4 +174,12 @@ public class Injector {
 	public IStudentService getStudentService() {
 		return studentService;
 	}
+	public IPasswordHistoryRepository getPasswordHistoryRepository() {
+		return passwordHistoryRepository;
+	}
+
+	public IPasswordHistoryService getPasswordHistoryService() {
+		return passwordHistoryService;
+	}
+
 }

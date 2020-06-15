@@ -43,30 +43,9 @@ public class ForgotPasswordServiceTest {
 		assertEquals(user,fpDBMock.getEmailByToken(user, "token"));
 		assertEquals(true,fpDBMock.updatePassword(user, "password"));
 		assertEquals(true,fpDBMock.deleteToken(user, "token"));
-		
-		assertEquals(false,fpDBMock.addPasswordHistory(user, ""));
-		assertEquals(false,fpDBMock.addPasswordHistory(user, null));
-		assertEquals(false,fpDBMock.addPasswordHistory(null, "password"));
-		assertEquals(true,fpDBMock.addPasswordHistory(user, "password"));
+
 	}
 	
-	@Test
-	void isHistoryViolatedTest() {
-		user.setId(123);
-		user.setBannerId("B00827531");
-		user.setEmailId("haard.shah@dal.ca");
-		user.setFirstName("haard");
-		user.setLastName("shah");
-		user.setPassword("pswd12345");
-		
-		assertEquals(null, fpDBMock.getSettingValue(null));
-		assertEquals("value", fpDBMock.getSettingValue("Password History"));
-		
-		assertEquals(null, fpDBMock.getNPasswords(null,"3"));
-		assertEquals(null, fpDBMock.getNPasswords(user,""));
-		assertEquals(null, fpDBMock.getNPasswords(user,null));
-		assertEquals(3, fpDBMock.getNPasswords(user,"3").size());
-		
-	}
+
 
 }

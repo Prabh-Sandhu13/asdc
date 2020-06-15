@@ -202,6 +202,8 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
 		return userByEmailId;
 
 	}
+	
+	/*
 
 	@Override
 	public String getSettingValue(String settingName) {
@@ -299,5 +301,6 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
 		}
 		return historyAdded;
 	}
+	*/
 
 }

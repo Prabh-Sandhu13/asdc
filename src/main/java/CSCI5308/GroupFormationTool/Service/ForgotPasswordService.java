@@ -14,6 +14,7 @@ import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordService;
 import CSCI5308.GroupFormationTool.AccessControl.IMailService;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
+import CSCI5308.GroupFormationTool.AccessControl.IPasswordHistoryService;
 import CSCI5308.GroupFormationTool.AccessControl.ITokenGenerator;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
@@ -29,6 +30,7 @@ public class ForgotPasswordService implements IForgotPasswordService{
 	private IUserRepository userRepository;
 	private IForgotPasswordRepository forgotPasswordRepository;
 	private ITokenGenerator tokenGenerator;
+	private IPasswordHistoryService passwordHistoryService;
 	private IMailService mailService;
 	private SimpleMailMessage msg;
 	private JavaMailSender jms;
@@ -86,49 +88,29 @@ public class ForgotPasswordService implements IForgotPasswordService{
 		
 		
 		boolean updated = false;
+		boolean isHistoryViolated = false;
 		forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
+		passwordHistoryService = Injector.instance().getPasswordHistoryService();
 		encryptor = Injector.instance().getPasswordEncryptor();
 		IUser userByEmailId = forgotPasswordRepository.getEmailByToken(user, token);
+		
 		
 		if(null == userByEmailId) {
 			throw new TokenExpiredException("Token expired");
 		}
 		
-		if(isHistoryViolated(userByEmailId,user.getPassword())) {
-			throw new PasswordHistoryException("Your new password cannot be same as previous " + forgotPasswordRepository.getSettingValue("Password History") + " passwords!");
+		isHistoryViolated = passwordHistoryService.isHistoryViolated(userByEmailId,user.getPassword());
+		
+		if(isHistoryViolated) {
+			throw new PasswordHistoryException("Your new password cannot be same as previous " + passwordHistoryService.getSettingValue("Password History") + " passwords!");
 		}
 		
 		String encrypted_password = encryptor.encoder(user.getPassword());
 		forgotPasswordRepository.updatePassword(userByEmailId, encrypted_password);	
-		forgotPasswordRepository.addPasswordHistory(userByEmailId, encrypted_password);
+		passwordHistoryService.addPasswordHistory(userByEmailId, encrypted_password);
+		
 		updated = forgotPasswordRepository.deleteToken(user, token);
 		
 		return updated;
 	}
-
-	@Override
-	public boolean isHistoryViolated(IUser user, String enteredPassword) {
-		boolean violation = false;
-		forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
-		encryptor = Injector.instance().getPasswordEncryptor();
-		String settingValue = forgotPasswordRepository.getSettingValue("Password History");
-		if(null == settingValue) {
-			return false;
-		}
-		else {		
-			String encrypted_password = encryptor.encoder(enteredPassword);
-			ArrayList<String> nPasswords = forgotPasswordRepository.getNPasswords(user, settingValue);
-			
-			for (int listIndex = 0; listIndex < nPasswords.size() ; listIndex ++) {
-			
-				if(encryptor.passwordMatch(enteredPassword, nPasswords.get(listIndex))) {
-					violation = true;
-					break;
-				}
-			}
-		}
-		return violation;
-	}
-
-
 }
