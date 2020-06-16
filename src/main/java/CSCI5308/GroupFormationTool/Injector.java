@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool;
 
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordRepository;
@@ -12,13 +11,12 @@ import CSCI5308.GroupFormationTool.AccessControl.IPasswordHistoryRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordHistoryService;
 import CSCI5308.GroupFormationTool.AccessControl.IPolicyRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IPolicyService;
+import CSCI5308.GroupFormationTool.AccessControl.IQuestionManagerRepository;
+import CSCI5308.GroupFormationTool.AccessControl.IQuestionManagerService;
 import CSCI5308.GroupFormationTool.AccessControl.ITokenGenerator;
-import CSCI5308.GroupFormationTool.AccessControl.IUser;
 
 import CSCI5308.GroupFormationTool.AccessControl.ICourseRepository;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseService;
-import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
-import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUserCoursesService;
 
@@ -26,11 +24,11 @@ import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
 import CSCI5308.GroupFormationTool.Database.DBConfiguration;
 import CSCI5308.GroupFormationTool.Database.IDBConfiguration;
-import CSCI5308.GroupFormationTool.Model.User;
 
 import CSCI5308.GroupFormationTool.Repository.ForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.Repository.PasswordHistoryRepository;
 import CSCI5308.GroupFormationTool.Repository.PolicyRepository;
+import CSCI5308.GroupFormationTool.Repository.QuestionManagerRepository;
 import CSCI5308.GroupFormationTool.Repository.UserRepository;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
 import CSCI5308.GroupFormationTool.Security.TokenGenerator;
@@ -38,11 +36,10 @@ import CSCI5308.GroupFormationTool.Service.ForgotPasswordService;
 import CSCI5308.GroupFormationTool.Service.MailService;
 import CSCI5308.GroupFormationTool.Service.PasswordHistoryService;
 import CSCI5308.GroupFormationTool.Service.PolicyService;
+import CSCI5308.GroupFormationTool.Service.QuestionManagerService;
 import CSCI5308.GroupFormationTool.Service.StudentService;
 import CSCI5308.GroupFormationTool.Repository.CourseRepository;
 import CSCI5308.GroupFormationTool.Repository.UserCoursesRepository;
-import CSCI5308.GroupFormationTool.Repository.UserRepository;
-import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
 import CSCI5308.GroupFormationTool.Service.CourseService;
 import CSCI5308.GroupFormationTool.Service.UserCoursesService;
 import CSCI5308.GroupFormationTool.AccessControl.IStudentRepository;
@@ -77,6 +74,8 @@ public class Injector {
 	private IStudentService studentService;
 	private IPolicyRepository policyRepository;
 	private IPolicyService policyService;
+	private IQuestionManagerService questionManagerService;
+	private IQuestionManagerRepository questionManagerRepository;
 
 	private Injector() {
 
@@ -100,7 +99,8 @@ public class Injector {
 		studentService = new StudentService();
 		policyRepository = new PolicyRepository();
 		policyService = new PolicyService();
-
+		questionManagerService = new QuestionManagerService();
+		questionManagerRepository = new QuestionManagerRepository();
 	}
 
 	public IUserCoursesRepository getUserCoursesRepository() {
@@ -192,4 +192,11 @@ public class Injector {
 		return policyService;
 	}
 
+	public IQuestionManagerRepository getQuestionManagerRepository() {
+		return questionManagerRepository;
+	}
+
+	public IQuestionManagerService getQuestionManagerService() {
+		return questionManagerService;
+	}
 }

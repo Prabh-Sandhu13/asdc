@@ -7,21 +7,18 @@ import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.DBMock.UserDBMock;
 import static org.junit.jupiter.api.Assertions.*;
 
-
 @SpringBootTest
 public class UserTest {
-	
-	
-	private IUser createDefaultUser()
-	{
+
+	private IUser createDefaultUser() {
 		UserDBMock userDbMock = new UserDBMock();
 		IUser user = loadUser(userDbMock);
 		return user;
 	}
-	
+
 	private IUser loadUser(UserDBMock userDBMock) {
-		
-		IUser user = new User();		
+
+		IUser user = new User();
 		user = userDBMock.loadUserWithID(user);
 		return user;
 	}
@@ -37,7 +34,7 @@ public class UserTest {
 		IUser u = new User();
 		u.setId(2);
 		assertEquals(2, u.getId());
-	
+
 	}
 
 	@Test
@@ -50,8 +47,8 @@ public class UserTest {
 	public void setFirstNameTest() {
 		IUser u = new User();
 		u.setFirstName("Padmesh");
-		assertEquals("Padmesh",u.getFirstName());
-	
+		assertEquals("Padmesh", u.getFirstName());
+
 	}
 
 	@Test
@@ -64,8 +61,8 @@ public class UserTest {
 	public void setLastNameTest() {
 		IUser u = new User();
 		u.setLastName("Donthu");
-		assertEquals("Donthu",u.getLastName());
-	
+		assertEquals("Donthu", u.getLastName());
+
 	}
 
 	@Test
@@ -78,8 +75,8 @@ public class UserTest {
 	public void setBannerIdTest() {
 		IUser u = new User();
 		u.setBannerId("B0000000");
-		assertEquals("B0000000",u.getBannerId());
-	
+		assertEquals("B0000000", u.getBannerId());
+
 	}
 
 	@Test
@@ -92,7 +89,7 @@ public class UserTest {
 	public void setEmailIdTest() {
 		IUser u = new User();
 		u.setBannerId("padmeshdonthu@gmail.com");
-		assertEquals("padmeshdonthu@gmail.com",u.getBannerId());
+		assertEquals("padmeshdonthu@gmail.com", u.getBannerId());
 	}
 
 	@Test
@@ -105,7 +102,7 @@ public class UserTest {
 	public void setPasswordTest() {
 		IUser u = new User();
 		u.setPassword("password");
-		assertEquals("password",u.getPassword());
+		assertEquals("password", u.getPassword());
 	}
 
 	@Test
@@ -118,7 +115,7 @@ public class UserTest {
 	public void setConfirmPasswordTest() {
 		IUser u = new User();
 		u.setConfirmPassword("password");
-		assertEquals("password",u.getConfirmPassword());
+		assertEquals("password", u.getConfirmPassword());
 	}
-	
+
 }

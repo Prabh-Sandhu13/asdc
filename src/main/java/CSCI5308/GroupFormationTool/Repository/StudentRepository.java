@@ -30,20 +30,21 @@ public class StudentRepository implements IStudentRepository {
 
 		Map<Integer, List<StudentCSV>> studentLists = new HashMap<Integer, List<StudentCSV>>();
 
-		for (StudentCSV stu : student) {
-			if (stu.getBannerId() == null || stu.getFirstName() == null || stu.getLastName() == null
-					|| stu.getEmail() == null || stu.getBannerId().equals("") || stu.getFirstName().equals("")
-					|| stu.getLastName().equals("") || stu.getEmail().equals("")) {
-				badData.add(stu);
+		for (StudentCSV studentRow : student) {
+			if (studentRow.getBannerId() == null || studentRow.getFirstName() == null
+					|| studentRow.getLastName() == null || studentRow.getEmail() == null
+					|| studentRow.getBannerId().equals("") || studentRow.getFirstName().equals("")
+					|| studentRow.getLastName().equals("") || studentRow.getEmail().equals("")) {
+				badData.add(studentRow);
 			} else {
 				try {
 					storedProcedure = new StoredProcedure("sp_createStudentFromCSV(?,?,?,?,?,?,?)");
-					storedProcedure.setInputStringParameter(1, stu.getBannerId());
-					storedProcedure.setInputStringParameter(2, stu.getFirstName());
-					storedProcedure.setInputStringParameter(3, stu.getLastName());
-					storedProcedure.setInputStringParameter(4, stu.getEmail());
+					storedProcedure.setInputStringParameter(1, studentRow.getBannerId());
+					storedProcedure.setInputStringParameter(2, studentRow.getFirstName());
+					storedProcedure.setInputStringParameter(3, studentRow.getLastName());
+					storedProcedure.setInputStringParameter(4, studentRow.getEmail());
 					String password = pwdGenerator.generate(10);
-					stu.setPassword(password);
+					studentRow.setPassword(password);
 					storedProcedure.setInputStringParameter(5, encryptor.encoder(password));
 					storedProcedure.setInputStringParameter(6, courseId);
 					storedProcedure.registerOutputParameterBoolean(7);
@@ -51,9 +52,9 @@ public class StudentRepository implements IStudentRepository {
 					Boolean studentStatus = storedProcedure.getParameter(7);
 
 					if (studentStatus) {
-						newStudents.add(stu);
+						newStudents.add(studentRow);
 					} else {
-						oldStudents.add(stu);
+						oldStudents.add(studentRow);
 					}
 
 				} catch (SQLException ex) {

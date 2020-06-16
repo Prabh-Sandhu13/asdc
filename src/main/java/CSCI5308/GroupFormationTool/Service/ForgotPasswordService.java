@@ -1,7 +1,5 @@
 package CSCI5308.GroupFormationTool.Service;
 
-import org.springframework.web.servlet.ModelAndView;
-
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordService;
@@ -61,7 +59,7 @@ public class ForgotPasswordService implements IForgotPasswordService {
 
 	@Override
 	public boolean updatePassword(IUser user, String token) {
-		
+
 		policyService = Injector.instance().getPolicyService();
 		String password = user.getPassword();
 		String passwordSecurityError = policyService.passwordSPolicyCheck(password);
@@ -69,7 +67,7 @@ public class ForgotPasswordService implements IForgotPasswordService {
 		if (passwordSecurityError != null) {
 			throw new PasswordException(passwordSecurityError);
 		}
-		
+
 		if (!(user.getPassword().equals(user.getConfirmPassword()))) {
 			throw new PasswordException("The passwords do not match. Please try again!");
 		}

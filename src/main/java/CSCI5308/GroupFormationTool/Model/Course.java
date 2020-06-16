@@ -58,6 +58,5 @@ public class Course implements ICourse {
 		credits = 3;
 		description = null;
 	}
-	
 
 }

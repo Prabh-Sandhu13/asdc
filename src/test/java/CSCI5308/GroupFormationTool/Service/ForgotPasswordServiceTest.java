@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.Service;
 import CSCI5308.GroupFormationTool.DBMock.ForgotPasswordDBMock;
-import CSCI5308.GroupFormationTool.DBMock.UserDBMock;
 import CSCI5308.GroupFormationTool.Model.User;
 
 import org.junit.jupiter.api.Test;
@@ -46,6 +45,4 @@ public class ForgotPasswordServiceTest {
 
 	}
 	
-
-
 }

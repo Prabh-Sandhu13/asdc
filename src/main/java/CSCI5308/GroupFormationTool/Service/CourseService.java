@@ -7,7 +7,6 @@ import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseRepository;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseService;
 
-
 public class CourseService implements ICourseService {
 
 	private ICourseRepository courseRepository;

@@ -66,6 +66,10 @@ public class StoredProcedure {
 		return statement.getBoolean(paramIndex);
 	}
 
+	public long getParameterLong(int paramIndex) throws SQLException {
+		return statement.getLong(paramIndex);
+	}
+
 	public ResultSet executeWithResults() throws SQLException {
 		if (statement.execute()) {
 			return statement.getResultSet();
