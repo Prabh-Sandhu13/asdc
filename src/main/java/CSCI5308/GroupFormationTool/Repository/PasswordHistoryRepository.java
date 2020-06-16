@@ -10,7 +10,7 @@ import CSCI5308.GroupFormationTool.AccessControl.IPasswordHistoryRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
-public class PasswordHistoryRepository implements IPasswordHistoryRepository{
+public class PasswordHistoryRepository implements IPasswordHistoryRepository {
 
 	@Override
 	public String getSettingValue(String settingName) {
@@ -24,7 +24,7 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository{
 
 				while (results.next()) {
 					{
-						
+
 						settingValue = results.getString("pSetting_value");
 					}
 				}
@@ -38,27 +38,26 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository{
 			if (storedProcedure != null) {
 				storedProcedure.removeConnections();
 			}
-		}		
-		
+		}
+
 		return settingValue;
 	}
 
 	@Override
 	public ArrayList<String> getNPasswords(IUser user, String num) {
-		
-		ArrayList<String> nPasswords= new ArrayList<String>();
+
+		ArrayList<String> nPasswords = new ArrayList<String>();
 		StoredProcedure storedProcedure = null;
 		try {
 			storedProcedure = new StoredProcedure("sp_getNPasswords(?,?)");
-			storedProcedure.setInputStringParameter(1, ""+user.getId());
-			storedProcedure.setInputStringParameter(2, ""+num);
+			storedProcedure.setInputStringParameter(1, "" + user.getId());
+			storedProcedure.setInputStringParameter(2, "" + num);
 			ResultSet results = storedProcedure.executeWithResults();
 			if (results != null) {
-				
-				
+
 				while (results.next()) {
 					{
-						
+
 						nPasswords.add(results.getString("encrypted_password"));
 					}
 				}
@@ -68,18 +67,14 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository{
 
 			System.out.println(ex.getMessage());
 
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}
-		finally {
+		} finally {
 			if (storedProcedure != null) {
 				storedProcedure.removeConnections();
 			}
 		}
-		
-		
-		
+
 		return nPasswords;
 	}
 
@@ -89,7 +84,7 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository{
 		StoredProcedure storedProcedure = null;
 		Date currentDate = new Date();
 		SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		
+
 		try {
 			storedProcedure = new StoredProcedure("sp_addPasswordHistory(?,?,?)");
 			storedProcedure.setInputStringParameter(1, Long.toString(user.getId()));

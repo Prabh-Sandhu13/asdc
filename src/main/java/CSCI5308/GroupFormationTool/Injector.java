@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool;
 
-
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -11,6 +10,8 @@ import CSCI5308.GroupFormationTool.AccessControl.IMailService;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordHistoryRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordHistoryService;
+import CSCI5308.GroupFormationTool.AccessControl.IPolicyRepository;
+import CSCI5308.GroupFormationTool.AccessControl.IPolicyService;
 import CSCI5308.GroupFormationTool.AccessControl.ITokenGenerator;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 
@@ -29,12 +30,14 @@ import CSCI5308.GroupFormationTool.Model.User;
 
 import CSCI5308.GroupFormationTool.Repository.ForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.Repository.PasswordHistoryRepository;
+import CSCI5308.GroupFormationTool.Repository.PolicyRepository;
 import CSCI5308.GroupFormationTool.Repository.UserRepository;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
 import CSCI5308.GroupFormationTool.Security.TokenGenerator;
 import CSCI5308.GroupFormationTool.Service.ForgotPasswordService;
 import CSCI5308.GroupFormationTool.Service.MailService;
 import CSCI5308.GroupFormationTool.Service.PasswordHistoryService;
+import CSCI5308.GroupFormationTool.Service.PolicyService;
 import CSCI5308.GroupFormationTool.Service.StudentService;
 import CSCI5308.GroupFormationTool.Repository.CourseRepository;
 import CSCI5308.GroupFormationTool.Repository.UserCoursesRepository;
@@ -66,13 +69,14 @@ public class Injector {
 	private IPasswordHistoryRepository passwordHistoryRepository;
 	private SimpleMailMessage mailMessage;
 	private JavaMailSenderImpl mailSender;
-	
 	private ICourseService courseService;
 	private ICourseRepository courseRepository;
 	private IUserCoursesRepository userCoursesRepository;
-	private IUserCoursesService userCoursesService;	
-    private IStudentRepository studentRepository;
-    private IStudentService studentService;
+	private IUserCoursesService userCoursesService;
+	private IStudentRepository studentRepository;
+	private IStudentService studentService;
+	private IPolicyRepository policyRepository;
+	private IPolicyService policyService;
 
 	private Injector() {
 
@@ -80,7 +84,6 @@ public class Injector {
 		userRepository = new UserRepository();
 		userService = new UserService();
 		passwordEncryptor = new BCryptEncryption();
-
 		forgotPasswordService = new ForgotPasswordService();
 		forgotPasswordRepository = new ForgotPasswordRepository();
 		tokenGenerator = new TokenGenerator();
@@ -88,17 +91,17 @@ public class Injector {
 		passwordHistoryRepository = new PasswordHistoryRepository();
 		mailService = new MailService();
 		mailMessage = new SimpleMailMessage();
-        mailSender = new JavaMailSenderImpl();
-
+		mailSender = new JavaMailSenderImpl();
 		courseService = new CourseService();
 		courseRepository = new CourseRepository();
 		userCoursesRepository = new UserCoursesRepository();
 		userCoursesService = new UserCoursesService();
 		studentRepository = new StudentRepository();
 		studentService = new StudentService();
+		policyRepository = new PolicyRepository();
+		policyService = new PolicyService();
+
 	}
-
-
 
 	public IUserCoursesRepository getUserCoursesRepository() {
 		return userCoursesRepository;
@@ -132,32 +135,30 @@ public class Injector {
 	public IUserService getUserService() {
 		return userService;
 	}
-	
-	public IForgotPasswordService getForgotPasswordService(){
+
+	public IForgotPasswordService getForgotPasswordService() {
 		return forgotPasswordService;
 	}
-	
-	public IForgotPasswordRepository getForgotPasswordRepository(){
+
+	public IForgotPasswordRepository getForgotPasswordRepository() {
 		return forgotPasswordRepository;
 	}
-	
-	public ITokenGenerator getTokenGenerator(){
+
+	public ITokenGenerator getTokenGenerator() {
 		return tokenGenerator;
 	}
 
-
-	public IMailService getMailService(){
+	public IMailService getMailService() {
 		return mailService;
 	}
-	
-	public SimpleMailMessage getMailMessage(){
+
+	public SimpleMailMessage getMailMessage() {
 		return mailMessage;
 	}
-	
-	public JavaMailSenderImpl getJavaMailSender(){
+
+	public JavaMailSenderImpl getJavaMailSender() {
 		return mailSender;
 	}
-	
 
 	public ICourseService getCourseService() {
 		return courseService;
@@ -166,20 +167,29 @@ public class Injector {
 	public ICourseRepository getCourseRepository() {
 		return courseRepository;
 	}
-	
+
 	public IStudentRepository getStudentRepository() {
 		return studentRepository;
 	}
-	
+
 	public IStudentService getStudentService() {
 		return studentService;
 	}
+
 	public IPasswordHistoryRepository getPasswordHistoryRepository() {
 		return passwordHistoryRepository;
 	}
 
 	public IPasswordHistoryService getPasswordHistoryService() {
 		return passwordHistoryService;
+	}
+
+	public IPolicyRepository getPolicyRepository() {
+		return policyRepository;
+	}
+
+	public IPolicyService getPolicyService() {
+		return policyService;
 	}
 
 }

@@ -8,30 +8,30 @@ import CSCI5308.GroupFormationTool.AccessControl.IPasswordHistoryRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordHistoryService;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 
-public class PasswordHistoryService implements IPasswordHistoryService{
+public class PasswordHistoryService implements IPasswordHistoryService {
 
 	private IPasswordHistoryRepository passwordHistoryRepository;
 	private IPasswordEncryptor encryptor;
-	
+
 	@Override
 	public boolean isHistoryViolated(IUser user, String enteredPassword) {
-		
+
 		passwordHistoryRepository = Injector.instance().getPasswordHistoryRepository();
 		encryptor = Injector.instance().getPasswordEncryptor();
 		boolean violation = false;
 
 		encryptor = Injector.instance().getPasswordEncryptor();
 		String settingValue = passwordHistoryRepository.getSettingValue("Password History");
-		if(null == settingValue) {
+
+		if (settingValue == null) {
 			return false;
-		}
-		else {		
+		} else {
 			String encrypted_password = encryptor.encoder(enteredPassword);
-			ArrayList<String> nPasswords = 	passwordHistoryRepository.getNPasswords(user, settingValue);
-			
-			for (int listIndex = 0; listIndex < nPasswords.size() ; listIndex ++) {
-			
-				if(encryptor.passwordMatch(enteredPassword, nPasswords.get(listIndex))) {
+			ArrayList<String> nPasswords = passwordHistoryRepository.getNPasswords(user, settingValue);
+
+			for (int listIndex = 0; listIndex < nPasswords.size(); listIndex++) {
+
+				if (encryptor.passwordMatch(enteredPassword, nPasswords.get(listIndex))) {
 					violation = true;
 					break;
 				}
@@ -42,16 +42,14 @@ public class PasswordHistoryService implements IPasswordHistoryService{
 
 	@Override
 	public void addPasswordHistory(IUser user, String encrypted_password) {
+
 		passwordHistoryRepository.addPasswordHistory(user, encrypted_password);
-		
 	}
 
 	@Override
 	public String getSettingValue(String settingName) {
-		
+
 		return passwordHistoryRepository.getSettingValue(settingName);
 	}
-	
-	
-	
+
 }

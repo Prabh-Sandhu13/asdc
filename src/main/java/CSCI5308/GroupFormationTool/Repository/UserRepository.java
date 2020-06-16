@@ -63,7 +63,7 @@ public class UserRepository implements IUserRepository {
 			}
 
 		} catch (SQLException ex) {
-			
+
 			System.out.println(ex.getMessage());
 
 		} finally {
@@ -134,37 +134,5 @@ public class UserRepository implements IUserRepository {
 			}
 		}
 		return adminDetails;
-	}
-
-	@Override
-	public ArrayList<IPolicy> passwordSPolicyCheck(String password) {
-		ArrayList<IPolicy> policies = new ArrayList<IPolicy>();
-		StoredProcedure storedProcedure = null;
-		IPolicy policy = null;
-		try {
-			storedProcedure = new StoredProcedure("sp_getPasswordConfigSettings");
-			ResultSet results = storedProcedure.executeWithResults();
-
-			if (results != null) {
-				while (results.next()) {
-					{
-						policy = new Policy();
-						policy.setId(results.getInt("pSetting_id"));
-						policy.setSetting(results.getString("pSetting"));
-						policy.setValue(results.getString("pSetting_value"));
-						policy.setEnabled(results.getInt("is_enabled"));
-						policies.add(policy);
-					}
-				}
-			}
-
-		} catch (SQLException ex) {
-
-		} finally {
-			if (storedProcedure != null) {
-				storedProcedure.removeConnections();
-			}
-		}
-		return policies;
 	}
 }

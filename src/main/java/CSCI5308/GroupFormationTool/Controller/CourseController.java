@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
+import CSCI5308.GroupFormationTool.DomainConstants;
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseRepository;
@@ -203,30 +204,27 @@ public class CourseController {
 	@PostMapping("/uploadCSVFile")
 	public String uploadCSVFile(@RequestParam("file") MultipartFile file, Model model,
 			@RequestParam(name = "courseId") String courseId) {
+
 		Map<Integer, List<StudentCSV>> studentLists = new HashMap<Integer, List<StudentCSV>>();
+
 		if (file.isEmpty()) {
 			model.addAttribute("message", "Please select a CSV file to upload.");
 			model.addAttribute("status", false);
 		} else {
+
 			studentService = Injector.instance().getStudentService();
-			try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
 
-				CsvToBean<StudentCSV> csvToBean = new CsvToBeanBuilder(reader).withType(StudentCSV.class)
-						.withIgnoreLeadingWhiteSpace(true).build();
+			studentLists = studentService.createStudent(file, courseId);
 
-				List<StudentCSV> students = (List<StudentCSV>) csvToBean.parse();
+			if (studentLists != null) {
 
-				studentLists = studentService.createStudent(students, courseId);
-
-			//	courseService.sendBatchMail(studentLists.get(0), courseId);
-
-				model.addAttribute("newStudentList", studentLists.get(0));
-				model.addAttribute("oldStudentList", studentLists.get(1));
-				model.addAttribute("badData", studentLists.get(2));
+				model.addAttribute("newStudentList", studentLists.get(DomainConstants.newStudents));
+				model.addAttribute("oldStudentList", studentLists.get(DomainConstants.oldStudents));
+				model.addAttribute("badData", studentLists.get(DomainConstants.badData));
 				model.addAttribute("course", courseId);
 				model.addAttribute("status", true);
 
-			} catch (Exception ex) {
+			} else {
 				model.addAttribute("course", courseId);
 				model.addAttribute("message", "An error occurred while processing the CSV file.");
 				model.addAttribute("status", false);

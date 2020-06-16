@@ -1,11 +1,7 @@
 package CSCI5308.GroupFormationTool.DBMock;
 
-import java.util.ArrayList;
-
-import CSCI5308.GroupFormationTool.AccessControl.IPolicy;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
-import CSCI5308.GroupFormationTool.Model.Policy;
 import CSCI5308.GroupFormationTool.Model.User;
 
 public class UserDBMock implements IUserRepository {
@@ -96,9 +92,8 @@ public class UserDBMock implements IUserRepository {
 
 		return user;
 	}
-	
-	public IUser loadUserWithID(IUser user)
-	{
+
+	public IUser loadUserWithID(IUser user) {
 		user.setBannerId(bannerId);
 		user.setConfirmPassword(confirmPassword);
 		user.setEmailId(emailId);
@@ -106,20 +101,8 @@ public class UserDBMock implements IUserRepository {
 		user.setId(id);
 		user.setLastName(lastName);
 		user.setPassword(password);
-		
-		return user;
-	}
 
-	@Override
-	public ArrayList<IPolicy> passwordSPolicyCheck(String password) {
-		ArrayList<IPolicy> policies = new ArrayList<IPolicy>();
-		IPolicy policy = new Policy();
-		policy.setId(0);
-		policy.setEnabled(1);
-		policy.setSetting("Min length");
-		policy.setValue("3");
-		policies.add(policy);
-		return policies;
+		return user;
 	}
 
 }
