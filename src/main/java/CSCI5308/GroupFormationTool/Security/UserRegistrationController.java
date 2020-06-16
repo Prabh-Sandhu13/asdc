@@ -21,7 +21,7 @@ public class UserRegistrationController implements WebMvcConfigurer {
 
 	private IUserService userService;
 	private IPolicyService policyService;
-	
+
 	@PostMapping("/register")
 	public ModelAndView createUser(User user) {
 
@@ -40,13 +40,11 @@ public class UserRegistrationController implements WebMvcConfigurer {
 
 		} catch (UserAlreadyExistsException uaex) {
 			modelAndView = new ModelAndView("signup");
-			modelAndView.addObject("userAlreadyExists",
-					"An account with " + user.getEmailId() + " already exists.");
+			modelAndView.addObject("userAlreadyExists", "An account with " + user.getEmailId() + " already exists.");
 		} catch (PasswordException pex) {
 			modelAndView = new ModelAndView("signup");
 			modelAndView.addObject("passwordError", pex.getMessage());
 		}
-
 
 		return modelAndView;
 	}
@@ -55,7 +53,7 @@ public class UserRegistrationController implements WebMvcConfigurer {
 	public String register(User user, Model model) {
 		policyService = Injector.instance().getPolicyService();
 		ArrayList<IPolicy> policies = policyService.getPolicies();
-		model.addAttribute("policies",policies);
+		model.addAttribute("policies", policies);
 		return "signup";
 	}
 
