@@ -1,16 +1,19 @@
 package CSCI5308.GroupFormationTool.AccessControl;
 
-import java.util.List;
-
+import CSCI5308.GroupFormationTool.Model.StudentCSV;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-import CSCI5308.GroupFormationTool.Model.StudentCSV;
+import java.util.List;
 
 public interface IMailService {
-	public void sendEmail(JavaMailSender javaMailSender, SimpleMailMessage msg);
-	public boolean sendForgotPasswordMail(IUser user, String token);
-	public boolean sendBatchMail(List<StudentCSV> list, String courseID);
-	public JavaMailSenderImpl setupMailSender(JavaMailSenderImpl javaMailSender);
+
+	void sendEmail(JavaMailSender javaMailSender, SimpleMailMessage msg);
+
+    boolean sendForgotPasswordMail(IUser user, String token);
+
+    boolean sendBatchMail(List<StudentCSV> list, String courseID);
+
+    JavaMailSenderImpl setupMailSender(JavaMailSenderImpl javaMailSender);
 }

@@ -3,36 +3,34 @@ package CSCI5308.GroupFormationTool.AccessControl;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import CSCI5308.GroupFormationTool.Model.Choice;
-
 public interface IQuestion {
 
-	public long getId();
+    long getId();
 
-	public void setId(long id);
+    void setId(long id);
 
-	public IUser getInstructor();
+    IUser getInstructor();
 
-	public void setInstructor(IUser instructor);
+    void setInstructor(IUser instructor);
 
-	public String getTitle();
+    String getTitle();
 
-	public void setTitle(String title);
+    void setTitle(String title);
 
-	public String getText();
+    String getText();
 
-	public void setText(String text);
+    void setText(String text);
 
-	public int getType();
+    int getType();
 
-	public void setType(int type);
+    void setType(int type);
 
-	public Date getCreatedDate();
+    Date getCreatedDate();
 
-	public void setCreatedDate(Date createdDate);
+    void setCreatedDate(Date createdDate);
 
-	public ArrayList<IChoice> getChoices();
+    ArrayList<IChoice> getChoices();
 
-	public void setChoices(ArrayList<IChoice> choices);
+    void setChoices(ArrayList<IChoice> choices);
 
 }

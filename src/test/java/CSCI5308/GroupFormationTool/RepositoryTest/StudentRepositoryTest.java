@@ -1,31 +1,30 @@
 package CSCI5308.GroupFormationTool.RepositoryTest;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import CSCI5308.GroupFormationTool.Model.StudentCSV;
+import CSCI5308.GroupFormationTool.Repository.StudentRepository;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-
-import CSCI5308.GroupFormationTool.Model.StudentCSV;
-import CSCI5308.GroupFormationTool.Repository.StudentRepository;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class StudentRepositoryTest {
 
-	private StudentRepository studentRepository;
+    private StudentRepository studentRepository;
 
-	@Test
-	public void createStudentTest() {
+    @Test
+    public void createStudentTest() {
 
-		studentRepository = mock(StudentRepository.class);
+        studentRepository = mock(StudentRepository.class);
 
-		List<StudentCSV> student = new ArrayList<StudentCSV>();
+        List<StudentCSV> student = new ArrayList<StudentCSV>();
 
-		when(studentRepository.createStudent(student, "2")).thenReturn(null);
+        when(studentRepository.createStudent(student, "2")).thenReturn(null);
 
-		assertEquals(null, studentRepository.createStudent(student, "2"));
-	}
+        assertEquals(null, studentRepository.createStudent(student, "2"));
+    }
 
 }

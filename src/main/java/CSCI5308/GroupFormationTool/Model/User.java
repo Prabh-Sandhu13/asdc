@@ -1,111 +1,110 @@
 package CSCI5308.GroupFormationTool.Model;
 
-import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
 
 public class User implements IUser {
 
-	private long id;
+    private long id;
 
-	private String firstName;
+    private String firstName;
 
-	private String lastName;
+    private String lastName;
 
-	private String bannerId;
+    private String bannerId;
 
-	private String emailId;
+    private String emailId;
 
-	private String password;
+    private String password;
 
-	private String confirmPassword;
-	
-	private IUserService userService;
+    private String confirmPassword;
 
-	@Override
-	public long getId() {
-		return id;
-	}
+    private IUserService userService;
 
-	@Override
-	public void setId(long id) {
-		this.id = id;
-	}
+    public User() {
+        id = -1;
 
-	@Override
-	public String getFirstName() {
-		return firstName;
-	}
+        firstName = null;
 
-	@Override
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+        lastName = null;
 
-	@Override
-	public String getLastName() {
-		return lastName;
-	}
+        bannerId = null;
 
-	@Override
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+        emailId = null;
 
-	@Override
-	public String getBannerId() {
-		return bannerId;
-	}
+        password = null;
 
-	@Override
-	public void setBannerId(String bannerId) {
-		this.bannerId = bannerId;
-	}
+        confirmPassword = null;
+    }
 
-	@Override
-	public String getEmailId() {
-		return emailId;
-	}
+    @Override
+    public long getId() {
+        return id;
+    }
 
-	@Override
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
+    @Override
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	@Override
-	public String getPassword() {
-		return password;
-	}
+    @Override
+    public String getFirstName() {
+        return firstName;
+    }
 
-	@Override
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    @Override
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	@Override
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
+    @Override
+    public String getLastName() {
+        return lastName;
+    }
 
-	@Override
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
+    @Override
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public User() {
-		id = -1;
+    @Override
+    public String getBannerId() {
+        return bannerId;
+    }
 
-		firstName = null;
+    @Override
+    public void setBannerId(String bannerId) {
+        this.bannerId = bannerId;
+    }
 
-		lastName = null;
+    @Override
+    public String getEmailId() {
+        return emailId;
+    }
 
-		bannerId = null;
+    @Override
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
 
-		emailId = null;
+    @Override
+    public String getPassword() {
+        return password;
+    }
 
-		password = null;
+    @Override
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-		confirmPassword = null;
-	}
+    @Override
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    @Override
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 
 }

@@ -2,12 +2,12 @@ package CSCI5308.GroupFormationTool.AccessControl;
 
 public interface IChoice {
 
-	public String getText();
+    String getText();
 
-	public void setText(String text);
+    void setText(String text);
 
-	public int getValue();
+    int getValue();
 
-	public void setValue(int value);
+    void setValue(int value);
 
 }

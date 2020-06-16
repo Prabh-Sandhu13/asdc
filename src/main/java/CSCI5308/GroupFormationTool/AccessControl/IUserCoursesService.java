@@ -1,29 +1,29 @@
 package CSCI5308.GroupFormationTool.AccessControl;
 
-import java.util.ArrayList;
-
 import CSCI5308.GroupFormationTool.Model.User;
 
+import java.util.ArrayList;
+
 public interface IUserCoursesService {
-	public ArrayList<IUserCourses> getRoleBasedCourses(String emailId);
 
-	public ArrayList<ICourse> getStudentCourses(String emailId);
+    ArrayList<IUserCourses> getRoleBasedCourses(String emailId);
 
-	public String getUserRoleByEmailId(String emailId);
+    ArrayList<ICourse> getStudentCourses(String emailId);
 
-	public ArrayList<ICourse> getTACourses(String emailId);
+    String getUserRoleByEmailId(String emailId);
 
-	public ArrayList<IUser> usersCurrentlyNotInstructorsForCourse(String courseId);
+    ArrayList<ICourse> getTACourses(String emailId);
 
-	public boolean addInstructorsToCourse(Long instructor, String courseId);
+    ArrayList<IUser> usersCurrentlyNotInstructorsForCourse(String courseId);
 
-	public ArrayList<ICourse> getInstructorCourses(String emailId);
-	
-	public ArrayList<IUser> getInstructorsForCourse(String courseId);
+    boolean addInstructorsToCourse(Long instructor, String courseId);
 
+    ArrayList<ICourse> getInstructorCourses(String emailId);
 
-	public ArrayList<IUser> getTAForCourse(String courseId);
+    ArrayList<IUser> getInstructorsForCourse(String courseId);
 
-	public boolean enrollTAForCourseUsingEmailId(User user, String courseId);
+    ArrayList<IUser> getTAForCourse(String courseId);
+
+    boolean enrollTAForCourseUsingEmailId(User user, String courseId);
 
 }

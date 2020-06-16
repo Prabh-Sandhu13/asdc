@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.Database;
+package CSCI5308.GroupFormationTool.AccessControl;
 
 public interface IDBConfiguration {
 	public String getDBUserName();

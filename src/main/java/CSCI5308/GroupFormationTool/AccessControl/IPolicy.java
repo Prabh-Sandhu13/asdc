@@ -2,20 +2,20 @@ package CSCI5308.GroupFormationTool.AccessControl;
 
 public interface IPolicy {
 
-	public int getId();
+    int getId();
 
-	public void setId(int id);
+    void setId(int id);
 
-	public String getSetting();
+    String getSetting();
 
-	public void setSetting(String setting);
+    void setSetting(String setting);
 
-	public String getValue();
+    String getValue();
 
-	public void setValue(String value);
+    void setValue(String value);
 
-	public int getEnabled();
+    int getEnabled();
 
-	public void setEnabled(int enabled);
+    void setEnabled(int enabled);
 
 }

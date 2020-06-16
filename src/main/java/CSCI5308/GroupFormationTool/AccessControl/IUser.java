@@ -2,32 +2,32 @@ package CSCI5308.GroupFormationTool.AccessControl;
 
 public interface IUser {
 
-	public long getId();
+    long getId();
 
-	public void setId(long id);
+    void setId(long id);
 
-	public String getFirstName();
+    String getFirstName();
 
-	public void setFirstName(String firstName);
+    void setFirstName(String firstName);
 
-	public String getLastName();
+    String getLastName();
 
-	public void setLastName(String lastName);
+    void setLastName(String lastName);
 
-	public String getBannerId();
+    String getBannerId();
 
-	public void setBannerId(String bannerId);
+    void setBannerId(String bannerId);
 
-	public String getEmailId();
+    String getEmailId();
 
-	public void setEmailId(String emailId);
+    void setEmailId(String emailId);
 
-	public String getPassword();
+    String getPassword();
 
-	public void setPassword(String password);
+    void setPassword(String password);
 
-	public String getConfirmPassword();
+    String getConfirmPassword();
 
-	public void setConfirmPassword(String confirmPassword);
-	
+    void setConfirmPassword(String confirmPassword);
+
 }

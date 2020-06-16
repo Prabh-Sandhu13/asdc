@@ -1,81 +1,81 @@
 package CSCI5308.GroupFormationTool.DBMock;
 
-import java.util.ArrayList;
-
 import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 import CSCI5308.GroupFormationTool.AccessControl.ICourseRepository;
 import CSCI5308.GroupFormationTool.Model.Course;
 
+import java.util.ArrayList;
+
 public class CourseDBMock implements ICourseRepository {
 
-	private String id;
+    private String id;
 
-	private String name;
+    private String name;
 
-	private int credits;
+    private int credits;
 
-	private String description;
+    private String description;
 
-	public CourseDBMock() {
+    public CourseDBMock() {
 
-		id = "CSCI5308";
-		name = "Adv SDC";
-		credits = 3;
-		description = "sample";
+        id = "CSCI5308";
+        name = "Adv SDC";
+        credits = 3;
+        description = "sample";
 
-	}
+    }
 
-	@Override
-	public ArrayList<ICourse> getAllCourses() {
+    @Override
+    public ArrayList<ICourse> getAllCourses() {
 
-		ArrayList<ICourse> courseList = new ArrayList<>();
-		ICourse course = new Course();
+        ArrayList<ICourse> courseList = new ArrayList<>();
+        ICourse course = new Course();
 
-		course.setCredits(credits);
-		course.setDescription(description);
-		course.setName(name);
-		course.setId(id);
+        course.setCredits(credits);
+        course.setDescription(description);
+        course.setName(name);
+        course.setId(id);
 
-		courseList.add(course);
+        courseList.add(course);
 
-		return courseList;
-	}
+        return courseList;
+    }
 
-	public ICourse loadCourses(ICourse course) {
-		course.setCredits(credits);
-		course.setDescription(description);
-		course.setId(id);
-		course.setName(name);
+    public ICourse loadCourses(ICourse course) {
+        course.setCredits(credits);
+        course.setDescription(description);
+        course.setId(id);
+        course.setName(name);
 
-		return course;
-	}
+        return course;
+    }
 
-	@Override
-	public boolean createCourse(ICourse course) {
-		course.setCredits(credits);
-		course.setDescription(description);
-		course.setName(name);
-		course.setId(id);
-		return true;
-	}
+    @Override
+    public boolean createCourse(ICourse course) {
+        course.setCredits(credits);
+        course.setDescription(description);
+        course.setName(name);
+        course.setId(id);
+        return true;
+    }
 
-	@Override
-	public boolean deleteCourse(String id) {
+    @Override
+    public boolean deleteCourse(String id) {
 
-		if (id.equals("1"))
-			return true;
-		return false;
-	}
+        if (id.equals("1"))
+            return true;
+        return false;
+    }
 
-	@Override
-	public ICourse getCourseById(String courseId) {
+    @Override
+    public ICourse getCourseById(String courseId) {
 
-		ICourse course = new Course();
-		course.setCredits(credits);
-		course.setDescription(description);
-		course.setId(courseId);
-		course.setName(name);
-		return course;
-	}
+        ICourse course = new Course();
+        course.setCredits(credits);
+        course.setDescription(description);
+        course.setId(courseId);
+        course.setName(name);
+        return course;
+    }
 
 }

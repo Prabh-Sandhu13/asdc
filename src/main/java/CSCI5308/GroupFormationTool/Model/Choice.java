@@ -2,31 +2,31 @@ package CSCI5308.GroupFormationTool.Model;
 
 import CSCI5308.GroupFormationTool.AccessControl.IChoice;
 
-public class Choice implements IChoice{
+public class Choice implements IChoice {
 
-	private String text;
+    private String text;
 
-	private int value;
+    private int value;
 
-	public String getText() {
-		return text;
-	}
+    public Choice() {
+        text = null;
+        value = -1;
+    }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    public String getText() {
+        return text;
+    }
 
-	public int getValue() {
-		return value;
-	}
+    public void setText(String text) {
+        this.text = text;
+    }
 
-	public void setValue(int value) {
-		this.value = value;
-	}
+    public int getValue() {
+        return value;
+    }
 
-	public Choice() {
-		text = null;
-		value = -1;
-	}
+    public void setValue(int value) {
+        this.value = value;
+    }
 
 }

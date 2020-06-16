@@ -1,20 +1,21 @@
 package CSCI5308.GroupFormationTool.AccessControl;
 
 public interface ICourse {
-	public String getId();
 
-	public void setId(String id);
+    String getId();
 
-	public String getName();
+    void setId(String id);
 
-	public void setName(String name);
+    String getName();
 
-	public int getCredits();
+    void setName(String name);
 
-	public void setCredits(int credits);
+    int getCredits();
 
-	public String getDescription();
+    void setCredits(int credits);
 
-	public void setDescription(String description);
+    String getDescription();
+
+    void setDescription(String description);
 
 }

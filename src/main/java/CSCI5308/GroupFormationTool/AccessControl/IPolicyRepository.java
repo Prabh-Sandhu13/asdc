@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public interface IPolicyRepository {
 
-	public ArrayList<IPolicy> passwordSPolicyCheck(String password);
-	public ArrayList<IPolicy> getPolicies();
+    ArrayList<IPolicy> passwordSPolicyCheck(String password);
+
+    ArrayList<IPolicy> getPolicies();
 
 }

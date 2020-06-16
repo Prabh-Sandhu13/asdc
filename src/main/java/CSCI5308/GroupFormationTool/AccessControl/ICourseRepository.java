@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 public interface ICourseRepository {
 
-	public ArrayList<ICourse> getAllCourses();
-	public boolean createCourse(ICourse course);
-	public boolean deleteCourse(String id);	
-	public ICourse getCourseById(String courseId);
+    ArrayList<ICourse> getAllCourses();
+
+    boolean createCourse(ICourse course);
+
+    boolean deleteCourse(String id);
+
+    ICourse getCourseById(String courseId);
 
 }

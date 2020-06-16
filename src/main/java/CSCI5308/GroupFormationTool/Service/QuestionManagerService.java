@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import CSCI5308.GroupFormationTool.DomainConstants;
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IChoice;
 import CSCI5308.GroupFormationTool.AccessControl.IQuestion;
@@ -11,16 +12,10 @@ import CSCI5308.GroupFormationTool.AccessControl.IQuestionManagerService;
 import CSCI5308.GroupFormationTool.Model.Choice;
 
 public class QuestionManagerService implements IQuestionManagerService {
-
-	private final static int MCQOne = 2;
-	private final static int MCQMultiple = 3;
-	private final static long invalidData = 0;
-
 	IQuestionManagerRepository questionManagerRepository;
 
 	@Override
 	public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
-
 		questionManagerRepository = Injector.instance().getQuestionManagerRepository();
 
 		return questionManagerRepository.getQuestionListForInstructor(emailId);
@@ -29,18 +24,17 @@ public class QuestionManagerService implements IQuestionManagerService {
 
 	@Override
 	public long createQuestion(IQuestion question, List<String> optionText, List<String> optionValue) {
-
 		int type = question.getType();
 
 		if (checkIfInvalid(question.getTitle(), question.getText(), type, optionText, optionValue)) {
-			return invalidData;
+			return DomainConstants.invalidData;
 		} else {
 
 			try {
 
 				ArrayList<IChoice> choices = new ArrayList<>();
 
-				if (type == MCQMultiple || type == MCQOne) {
+				if (type == DomainConstants.MCQMultiple || type == DomainConstants.MCQOne) {
 
 					for (int i = 0; i < optionText.size(); i++) {
 
@@ -57,7 +51,7 @@ public class QuestionManagerService implements IQuestionManagerService {
 					question.setChoices(null);
 				}
 			} catch (Exception ex) {
-				return invalidData;
+				return DomainConstants.invalidData;
 			}
 
 			questionManagerRepository = Injector.instance().getQuestionManagerRepository();
@@ -73,7 +67,7 @@ public class QuestionManagerService implements IQuestionManagerService {
 		if (title == null || title.isEmpty() || text == null || text.isEmpty()) {
 			return true;
 		}
-		if (type == MCQMultiple || type == MCQOne) {
+		if (type == DomainConstants.MCQMultiple || type == DomainConstants.MCQOne) {
 			if (optionText == null || optionText.isEmpty() || optionText.contains("") || optionValue == null
 					|| optionValue.isEmpty() || optionValue.contains("")) {
 				return true;
@@ -84,14 +78,13 @@ public class QuestionManagerService implements IQuestionManagerService {
 
 	@Override
 	public IQuestion getQuestionById(long questionId) {
-
 		questionManagerRepository = Injector.instance().getQuestionManagerRepository();
 
 		IQuestion question = questionManagerRepository.getQuestionById(questionId);
 
 		ArrayList<IChoice> choiceList = null;
 
-		if (question.getType() == MCQMultiple || question.getType() == MCQOne) {
+		if (question.getType() == DomainConstants.MCQMultiple || question.getType() == DomainConstants.MCQOne) {
 			choiceList = questionManagerRepository.getOptionsForTheQuestion(questionId);
 		}
 
@@ -102,7 +95,6 @@ public class QuestionManagerService implements IQuestionManagerService {
 	}
 
 	public boolean deleteQuestion(long questionId) {
-
 		questionManagerRepository = Injector.instance().getQuestionManagerRepository();
 
 		return questionManagerRepository.deleteQuestion(questionId);
@@ -111,7 +103,6 @@ public class QuestionManagerService implements IQuestionManagerService {
 
 	@Override
 	public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy) {
-
 		questionManagerRepository = Injector.instance().getQuestionManagerRepository();
 
 		return questionManagerRepository.getSortedQuestionListForInstructor(emailId, sortBy);

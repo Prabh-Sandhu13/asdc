@@ -6,109 +6,109 @@ import CSCI5308.GroupFormationTool.Model.User;
 
 public class UserDBMock implements IUserRepository {
 
-	private long id;
+    private long id;
 
-	private String firstName;
+    private String firstName;
 
-	private String lastName;
+    private String lastName;
 
-	private String bannerId;
+    private String bannerId;
 
-	private String emailId;
+    private String emailId;
 
-	private String password;
+    private String password;
 
-	private String confirmPassword;
+    private String confirmPassword;
 
-	public UserDBMock() {
-		setToDefaults();
-	}
+    public UserDBMock() {
+        setToDefaults();
+    }
 
-	public void setToDefaults() {
-		id = 1;
+    public void setToDefaults() {
+        id = 1;
 
-		firstName = "Test";
+        firstName = "Test";
 
-		lastName = "User";
+        lastName = "User";
 
-		bannerId = "B00854462";
+        bannerId = "B00854462";
 
-		emailId = "padmeshdonthu@gmail.com";
+        emailId = "padmeshdonthu@gmail.com";
 
-		password = "password";
+        password = "password";
 
-		confirmPassword = "password";
-	}
+        confirmPassword = "password";
+    }
 
-	@Override
-	public boolean createUser(IUser user) {
+    @Override
+    public boolean createUser(IUser user) {
 
-		user.setBannerId(bannerId);
-		user.setConfirmPassword(confirmPassword);
-		user.setEmailId(emailId);
-		user.setFirstName(firstName);
-		user.setId(id);
-		user.setLastName(lastName);
-		user.setPassword(password);
-		return true;
-	}
+        user.setBannerId(bannerId);
+        user.setConfirmPassword(confirmPassword);
+        user.setEmailId(emailId);
+        user.setFirstName(firstName);
+        user.setId(id);
+        user.setLastName(lastName);
+        user.setPassword(password);
+        return true;
+    }
 
-	@Override
-	public IUser getUserByEmailId(IUser user) {
+    @Override
+    public IUser getUserByEmailId(IUser user) {
 
-		user.setBannerId(bannerId);
-		user.setConfirmPassword(confirmPassword);
-		user.setEmailId(user.getEmailId());
-		user.setFirstName(firstName);
-		user.setId(id);
-		user.setLastName(lastName);
-		user.setPassword(password);
-		return user;
-	}
+        user.setBannerId(bannerId);
+        user.setConfirmPassword(confirmPassword);
+        user.setEmailId(user.getEmailId());
+        user.setFirstName(firstName);
+        user.setId(id);
+        user.setLastName(lastName);
+        user.setPassword(password);
+        return user;
+    }
 
-	@Override
-	public IUser getUserByBannerId(IUser user) {
-		user.setBannerId(user.getBannerId());
-		user.setConfirmPassword(confirmPassword);
-		user.setEmailId(user.getEmailId());
-		user.setFirstName(firstName);
-		user.setId(id);
-		user.setLastName(lastName);
-		user.setPassword(password);
-		return user;
-	}
+    @Override
+    public IUser getUserByBannerId(IUser user) {
+        user.setBannerId(user.getBannerId());
+        user.setConfirmPassword(confirmPassword);
+        user.setEmailId(user.getEmailId());
+        user.setFirstName(firstName);
+        user.setId(id);
+        user.setLastName(lastName);
+        user.setPassword(password);
+        return user;
+    }
 
-	@Override
-	public IUser getAdminDetails() {
+    @Override
+    public IUser getAdminDetails() {
 
-		IUser user = new User();
-		user.setBannerId("B0000000");
-		user.setConfirmPassword("administrator");
-		user.setEmailId("admin@gmail.com");
-		user.setFirstName("AdminFname");
-		user.setId(0);
-		user.setLastName("AdminLname");
-		user.setPassword("administrator");
+        IUser user = new User();
+        user.setBannerId("B0000000");
+        user.setConfirmPassword("administrator");
+        user.setEmailId("admin@gmail.com");
+        user.setFirstName("AdminFname");
+        user.setId(0);
+        user.setLastName("AdminLname");
+        user.setPassword("administrator");
 
-		return user;
-	}
+        return user;
+    }
 
-	public IUser loadUserWithID(IUser user) {
-		user.setBannerId(bannerId);
-		user.setConfirmPassword(confirmPassword);
-		user.setEmailId(emailId);
-		user.setFirstName(firstName);
-		user.setId(id);
-		user.setLastName(lastName);
-		user.setPassword(password);
+    public IUser loadUserWithID(IUser user) {
+        user.setBannerId(bannerId);
+        user.setConfirmPassword(confirmPassword);
+        user.setEmailId(emailId);
+        user.setFirstName(firstName);
+        user.setId(id);
+        user.setLastName(lastName);
+        user.setPassword(password);
 
-		return user;
-	}
+        return user;
+    }
 
-	@Override
-	public IUser getUserIdByEmailId(IUser user) {
-		user.setId(id);
-		return user;
-	}
+    @Override
+    public IUser getUserIdByEmailId(IUser user) {
+        user.setId(id);
+        return user;
+    }
 
 }

@@ -4,59 +4,59 @@ import CSCI5308.GroupFormationTool.AccessControl.ICourse;
 
 public class Course implements ICourse {
 
-	private String id;
+    private String id;
 
-	private String name;
+    private String name;
 
-	private int credits;
+    private int credits;
 
-	private String description;
-	
-	@Override
-	public String getId() {
-		return id;
-	}
+    private String description;
 
-	@Override
-	public void setId(String id) {
-		this.id = id;
-	}
+    public Course() {
+        id = null;
+        name = null;
+        credits = 3;
+        description = null;
+    }
 
-	@Override
-	public String getName() {
-		return name;
-	}
+    @Override
+    public String getId() {
+        return id;
+    }
 
-	@Override
-	public void setName(String name) {
-		this.name = name;
-	}
+    @Override
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	@Override
-	public int getCredits() {
-		return credits;
-	}
+    @Override
+    public String getName() {
+        return name;
+    }
 
-	@Override
-	public void setCredits(int credits) {
-		this.credits = credits;
-	}
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	@Override
-	public String getDescription() {
-		return description;
-	}
+    @Override
+    public int getCredits() {
+        return credits;
+    }
 
-	@Override
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    @Override
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
 
-	public Course() {
-		id = null;
-		name = null;
-		credits = 3;
-		description = null;
-	}
+    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
 }
