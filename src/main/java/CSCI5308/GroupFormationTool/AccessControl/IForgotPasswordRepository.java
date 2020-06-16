@@ -10,8 +10,8 @@ public interface IForgotPasswordRepository {
     public boolean deleteToken(IUser user, String token);
     public IUser getUserId(IUser user);
     public IUser getEmailByToken(IUser user,String token);
-    public String getSettingValue(String settingName);
+/*    public String getSettingValue(String settingName);
     public boolean addPasswordHistory(IUser user, String password);
     public ArrayList<String> getNPasswords(IUser user, String num);
-    
+  */  
 }

@@ -107,12 +107,5 @@ public class User implements IUser {
 
 		confirmPassword = null;
 	}
-	
-	@Override
-	public String passwordSPolicyCheck(String password) {
-		userService = Injector.instance().getUserService();
-		return userService.passwordSPolicyCheck(password);
-	}
-
 
 }

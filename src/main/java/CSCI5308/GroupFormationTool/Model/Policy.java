@@ -2,22 +2,22 @@ package CSCI5308.GroupFormationTool.Model;
 
 import CSCI5308.GroupFormationTool.AccessControl.IPolicy;
 
-public class Policy implements IPolicy{
+public class Policy implements IPolicy {
 	private int id;
 	private String setting;
 	private String value;
 	private int enabled;
-	
+
 	@Override
 	public int getId() {
 		return id;
 	}
-	
+
 	@Override
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	@Override
 	public String getSetting() {
 		return setting;

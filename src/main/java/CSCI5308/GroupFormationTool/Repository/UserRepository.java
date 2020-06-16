@@ -37,6 +37,38 @@ public class UserRepository implements IUserRepository {
 		}
 		return true;
 	}
+	
+	@Override
+	public IUser getUserIdByEmailId(IUser user) {
+
+		User userWithUserId = null;
+		StoredProcedure storedProcedure = null;
+		try {
+			storedProcedure = new StoredProcedure("sp_getUserId(?)");
+			storedProcedure.setInputStringParameter(1, user.getEmailId());
+			ResultSet results = storedProcedure.executeWithResults();
+
+			if (results != null) {
+
+				while (results.next()) {
+					{
+						userWithUserId = new User();
+						userWithUserId.setId(Long.parseLong(results.getString("user_id")));
+					}
+				}
+			}
+
+		} catch (SQLException ex) {
+
+			System.out.println(ex.getMessage());
+
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return userWithUserId;
+	}
 
 	@Override
 	public IUser getUserByEmailId(IUser user) {
@@ -63,7 +95,7 @@ public class UserRepository implements IUserRepository {
 			}
 
 		} catch (SQLException ex) {
-			
+
 			System.out.println(ex.getMessage());
 
 		} finally {
@@ -134,37 +166,5 @@ public class UserRepository implements IUserRepository {
 			}
 		}
 		return adminDetails;
-	}
-
-	@Override
-	public ArrayList<IPolicy> passwordSPolicyCheck(String password) {
-		ArrayList<IPolicy> policies = new ArrayList<IPolicy>();
-		StoredProcedure storedProcedure = null;
-		IPolicy policy = null;
-		try {
-			storedProcedure = new StoredProcedure("sp_getPasswordConfigSettings");
-			ResultSet results = storedProcedure.executeWithResults();
-
-			if (results != null) {
-				while (results.next()) {
-					{
-						policy = new Policy();
-						policy.setId(results.getInt("pSetting_id"));
-						policy.setSetting(results.getString("pSetting"));
-						policy.setValue(results.getString("pSetting_value"));
-						policy.setEnabled(results.getInt("is_enabled"));
-						policies.add(policy);
-					}
-				}
-			}
-
-		} catch (SQLException ex) {
-
-		} finally {
-			if (storedProcedure != null) {
-				storedProcedure.removeConnections();
-			}
-		}
-		return policies;
 	}
 }

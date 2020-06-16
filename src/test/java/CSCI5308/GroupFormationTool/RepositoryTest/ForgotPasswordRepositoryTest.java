@@ -74,46 +74,4 @@ public class ForgotPasswordRepositoryTest {
 		
 	}
 	
-	@Test
-	public void getSettingvalueTest() {
-		forgotPasswordRepository = mock(ForgotPasswordRepository.class);
-		when(forgotPasswordRepository.getSettingValue("Password History")).thenReturn("value");
-		when(forgotPasswordRepository.getSettingValue(null)).thenReturn(null);
-		
-		assertEquals(null, forgotPasswordRepository.getSettingValue(null));
-		assertEquals("value", forgotPasswordRepository.getSettingValue("Password History"));
-	}
-	
-	@Test
-	public void getNPasswordsTest() {
-		ArrayList<String> nPasswords = new ArrayList<String>();
-		nPasswords.add("hostory1");
-		nPasswords.add("hostory2");
-		nPasswords.add("hostory3");
-		
-		forgotPasswordRepository = mock(ForgotPasswordRepository.class);
-		when(forgotPasswordRepository.getNPasswords(user, "3")).thenReturn(nPasswords);
-		when(forgotPasswordRepository.getNPasswords(user, null)).thenReturn(null);
-		when(forgotPasswordRepository.getNPasswords(null, "3")).thenReturn(null);
-		
-		assertEquals(null, forgotPasswordRepository.getNPasswords(user, null));
-		assertEquals(null, forgotPasswordRepository.getNPasswords(null, "3"));
-		assertEquals(3, forgotPasswordRepository.getNPasswords(user, "3").size());
-	}
-	
-	@Test
-	public void addPasswordHistoryTest() {
-		forgotPasswordRepository = mock(ForgotPasswordRepository.class);
-		when(forgotPasswordRepository.addPasswordHistory(user, "")).thenReturn(false);
-		when(forgotPasswordRepository.addPasswordHistory(user, null)).thenReturn(false);
-		when(forgotPasswordRepository.addPasswordHistory(null,"password")).thenReturn(false);
-		when(forgotPasswordRepository.addPasswordHistory(user, "password")).thenReturn(true);
-		
-		assertEquals(false, forgotPasswordRepository.addPasswordHistory(user, ""));
-		assertEquals(false, forgotPasswordRepository.addPasswordHistory(user, null));
-		assertEquals(false, forgotPasswordRepository.addPasswordHistory(null,"password"));
-		assertEquals(true, forgotPasswordRepository.addPasswordHistory(user, "password"));
-	}
-	
-	
 }

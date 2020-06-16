@@ -1,9 +1,6 @@
 package CSCI5308.GroupFormationTool.Repository;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,8 +8,8 @@ import java.util.Map;
 
 import org.apache.commons.text.RandomStringGenerator;
 
+import CSCI5308.GroupFormationTool.DomainConstants;
 import CSCI5308.GroupFormationTool.Injector;
-import CSCI5308.GroupFormationTool.Database.ConnectionManager;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import CSCI5308.GroupFormationTool.Model.StudentCSV;
 import CSCI5308.GroupFormationTool.AccessControl.*;
@@ -70,9 +67,9 @@ public class StudentRepository implements IStudentRepository {
 			}
 		}
 
-		studentLists.put(0, newStudents);
-		studentLists.put(1, oldStudents);
-		studentLists.put(2, badData);
+		studentLists.put(DomainConstants.newStudents, newStudents);
+		studentLists.put(DomainConstants.oldStudents, oldStudents);
+		studentLists.put(DomainConstants.badData, badData);
 
 		return studentLists;
 	}

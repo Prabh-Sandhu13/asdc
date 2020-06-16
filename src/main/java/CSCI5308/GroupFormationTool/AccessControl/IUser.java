@@ -30,5 +30,4 @@ public interface IUser {
 
 	public void setConfirmPassword(String confirmPassword);
 	
-	public String passwordSPolicyCheck(String password);
 }

@@ -16,6 +16,4 @@ public interface ICourseService {
 
 	boolean createCourse(ICourse course);
 	
-	public boolean sendBatchMail(List<StudentCSV> list, String courseID);
-	
 }

@@ -121,8 +121,4 @@ public class UserTest {
 		assertEquals("password",u.getConfirmPassword());
 	}
 	
-	@Test
-	public void passwordSPolicyCheckTest() {
-	}
-	
 }

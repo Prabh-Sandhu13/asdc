@@ -1,134 +1,103 @@
 package CSCI5308.GroupFormationTool.Service;
 
-import java.util.ArrayList;
-
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordService;
 import CSCI5308.GroupFormationTool.AccessControl.IMailService;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
+import CSCI5308.GroupFormationTool.AccessControl.IPasswordHistoryService;
+import CSCI5308.GroupFormationTool.AccessControl.IPolicyService;
 import CSCI5308.GroupFormationTool.AccessControl.ITokenGenerator;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
-import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordHistoryException;
-import CSCI5308.GroupFormationTool.ErrorHandling.TokenAlreadyExistException;
 import CSCI5308.GroupFormationTool.ErrorHandling.TokenExpiredException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
-import CSCI5308.GroupFormationTool.Model.User;
 
-public class ForgotPasswordService implements IForgotPasswordService{
+public class ForgotPasswordService implements IForgotPasswordService {
 
-	private IUserRepository userRepository;
 	private IForgotPasswordRepository forgotPasswordRepository;
 	private ITokenGenerator tokenGenerator;
+	private IPasswordHistoryService passwordHistoryService;
 	private IMailService mailService;
-	private SimpleMailMessage msg;
-	private JavaMailSender jms;
 	private IPasswordEncryptor encryptor;
-	
+	private IPolicyService policyService;
+
 	@Override
-	public boolean sendMail(IUser user) {
-		
-		userRepository = Injector.instance().getUserRepository();
+	public boolean notifyUser(IUser user) {
+
 		forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
 		tokenGenerator = Injector.instance().getTokenGenerator();
 		mailService = Injector.instance().getMailService();
-		msg = Injector.instance().getMailMessage();
 		encryptor = Injector.instance().getPasswordEncryptor();
-		jms = mailService.getJavaMailSender();
-		
+
 		boolean success = false;
 		boolean tokenPresent = false;
 		IUser userByEmailId = forgotPasswordRepository.getUserId(user);
 
 		if (userByEmailId != null) {
 			String token = forgotPasswordRepository.getToken(userByEmailId);
-			//System.out.println(token);
 			if (token.equals("")) {
-				//If no token exists
+				// If no token exists
 				token = tokenGenerator.generator();
 				tokenPresent = forgotPasswordRepository.addToken(userByEmailId, token);
-				
 			}
+
 			else {
 				token = tokenGenerator.generator();
 				tokenPresent = forgotPasswordRepository.updateToken(userByEmailId, token);
 			}
 
-			String URL = "http://formgroups22.herokuapp.com/"+"resetPassword"+"?token="+token;
-			msg.setTo(userByEmailId.getEmailId());
-			msg.setSubject("Complete Password Reset!");
-			msg.setFrom("noreply.group22@gmail.com");
-			msg.setText("To reset your password, follow this link: "+ URL);
-			mailService.sendEmail(jms, msg);
-			
+			mailService.sendForgotPasswordMail(userByEmailId, token);
+
 		} else {
 			throw new UserAlreadyExistsException("An account with " + user.getEmailId() + " not found!");
 		}
-	
+
 		return success;
 	}
 
 	@Override
 	public boolean updatePassword(IUser user, String token) {
 		
-		if (!(user.getPassword().equals(user.getConfirmPassword()))) {
-			throw new PasswordException("The passwords do not match");
+		policyService = Injector.instance().getPolicyService();
+		String password = user.getPassword();
+		String passwordSecurityError = policyService.passwordSPolicyCheck(password);
+
+		if (passwordSecurityError != null) {
+			throw new PasswordException(passwordSecurityError);
 		}
 		
-		
+		if (!(user.getPassword().equals(user.getConfirmPassword()))) {
+			throw new PasswordException("The passwords do not match. Please try again!");
+		}
+
 		boolean updated = false;
+		boolean isHistoryViolated = false;
 		forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
+		passwordHistoryService = Injector.instance().getPasswordHistoryService();
 		encryptor = Injector.instance().getPasswordEncryptor();
 		IUser userByEmailId = forgotPasswordRepository.getEmailByToken(user, token);
-		
-		if(null == userByEmailId) {
+
+		if (null == userByEmailId) {
 			throw new TokenExpiredException("Token expired");
 		}
-		
-		if(isHistoryViolated(userByEmailId,user.getPassword())) {
-			throw new PasswordHistoryException("Your new password cannot be same as previous " + forgotPasswordRepository.getSettingValue("Password History") + " passwords!");
+
+		isHistoryViolated = passwordHistoryService.isHistoryViolated(userByEmailId, user.getPassword());
+
+		if (isHistoryViolated) {
+			throw new PasswordHistoryException("Your new password cannot be same as previous "
+					+ passwordHistoryService.getSettingValue("Password History") + " passwords!");
 		}
-		
+
 		String encrypted_password = encryptor.encoder(user.getPassword());
-		forgotPasswordRepository.updatePassword(userByEmailId, encrypted_password);	
-		forgotPasswordRepository.addPasswordHistory(userByEmailId, encrypted_password);
+		forgotPasswordRepository.updatePassword(userByEmailId, encrypted_password);
+		passwordHistoryService.addPasswordHistory(userByEmailId, encrypted_password);
+
 		updated = forgotPasswordRepository.deleteToken(user, token);
-		
+
 		return updated;
 	}
-
-	@Override
-	public boolean isHistoryViolated(IUser user, String enteredPassword) {
-		boolean violation = false;
-		forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
-		encryptor = Injector.instance().getPasswordEncryptor();
-		String settingValue = forgotPasswordRepository.getSettingValue("Password History");
-		if(null == settingValue) {
-			return false;
-		}
-		else {		
-			String encrypted_password = encryptor.encoder(enteredPassword);
-			ArrayList<String> nPasswords = forgotPasswordRepository.getNPasswords(user, settingValue);
-			
-			for (int listIndex = 0; listIndex < nPasswords.size() ; listIndex ++) {
-			
-				if(encryptor.passwordMatch(enteredPassword, nPasswords.get(listIndex))) {
-					violation = true;
-					break;
-				}
-			}
-		}
-		return violation;
-	}
-
-
 }
