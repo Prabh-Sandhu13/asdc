@@ -42,13 +42,13 @@ public class PasswordHistoryService implements IPasswordHistoryService {
 
 	@Override
 	public void addPasswordHistory(IUser user, String encrypted_password) {
-
+		passwordHistoryRepository = Injector.instance().getPasswordHistoryRepository();
 		passwordHistoryRepository.addPasswordHistory(user, encrypted_password);
 	}
 
 	@Override
 	public String getSettingValue(String settingName) {
-
+		passwordHistoryRepository = Injector.instance().getPasswordHistoryRepository();
 		return passwordHistoryRepository.getSettingValue(settingName);
 	}
 

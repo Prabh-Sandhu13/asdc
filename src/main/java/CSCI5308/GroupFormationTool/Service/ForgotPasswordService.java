@@ -1,11 +1,14 @@
 package CSCI5308.GroupFormationTool.Service;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordService;
 import CSCI5308.GroupFormationTool.AccessControl.IMailService;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordHistoryService;
+import CSCI5308.GroupFormationTool.AccessControl.IPolicyService;
 import CSCI5308.GroupFormationTool.AccessControl.ITokenGenerator;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
@@ -20,6 +23,7 @@ public class ForgotPasswordService implements IForgotPasswordService {
 	private IPasswordHistoryService passwordHistoryService;
 	private IMailService mailService;
 	private IPasswordEncryptor encryptor;
+	private IPolicyService policyService;
 
 	@Override
 	public boolean notifyUser(IUser user) {
@@ -57,9 +61,17 @@ public class ForgotPasswordService implements IForgotPasswordService {
 
 	@Override
 	public boolean updatePassword(IUser user, String token) {
+		
+		policyService = Injector.instance().getPolicyService();
+		String password = user.getPassword();
+		String passwordSecurityError = policyService.passwordSPolicyCheck(password);
 
+		if (passwordSecurityError != null) {
+			throw new PasswordException(passwordSecurityError);
+		}
+		
 		if (!(user.getPassword().equals(user.getConfirmPassword()))) {
-			throw new PasswordException("The passwords do not match");
+			throw new PasswordException("The passwords do not match. Please try again!");
 		}
 
 		boolean updated = false;

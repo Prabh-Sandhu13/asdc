@@ -49,7 +49,7 @@ public class MailService implements IMailService {
 		mailSender = setupMailSender(Injector.instance().getJavaMailSender());
 		msg = Injector.instance().getMailMessage();
 
-		String URL = DomainConstants.domainUrl + token;
+		String URL = DomainConstants.domainUrl+"/resetPassword?token=" + token;
 
 		msg.setTo(userByEmailId.getEmailId());
 		msg.setSubject(DomainConstants.forgotPasswordSubject);
@@ -78,7 +78,7 @@ public class MailService implements IMailService {
 			msg.setText("Hi,\n\nYou have been added to Group Formation Tool as a student in course " + courseID
 					+ ".\n\n" + "Following are your login credentials:\n\nLogin using EmailId: "
 					+ users.get(userCount).getEmail() + "\nPassword: " + users.get(userCount).getPassword()
-					+ "\n\nTo login, go to : http://formgroups22.herokuapp.com/login"
+					+ "\n\nTo login, go to : "+ DomainConstants.domainUrl + "/login"
 					+ "\n\n\nKind Regards,\nGroup Formation Tool Team-22");
 			
 			sendEmail(mailSender, msg);

@@ -37,6 +37,38 @@ public class UserRepository implements IUserRepository {
 		}
 		return true;
 	}
+	
+	@Override
+	public IUser getUserIdByEmailId(IUser user) {
+
+		User userWithUserId = null;
+		StoredProcedure storedProcedure = null;
+		try {
+			storedProcedure = new StoredProcedure("sp_getUserId(?)");
+			storedProcedure.setInputStringParameter(1, user.getEmailId());
+			ResultSet results = storedProcedure.executeWithResults();
+
+			if (results != null) {
+
+				while (results.next()) {
+					{
+						userWithUserId = new User();
+						userWithUserId.setId(Long.parseLong(results.getString("user_id")));
+					}
+				}
+			}
+
+		} catch (SQLException ex) {
+
+			System.out.println(ex.getMessage());
+
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return userWithUserId;
+	}
 
 	@Override
 	public IUser getUserByEmailId(IUser user) {

@@ -2,9 +2,13 @@ package CSCI5308.GroupFormationTool.Service;
 
 import java.util.ArrayList;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
+import CSCI5308.GroupFormationTool.AccessControl.IPasswordHistoryService;
 import CSCI5308.GroupFormationTool.AccessControl.IPolicy;
+import CSCI5308.GroupFormationTool.AccessControl.IPolicyService;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
@@ -17,19 +21,32 @@ public class UserService implements IUserService {
 
 	private IPasswordEncryptor encryptor;
 
+	private IPolicyService policyService;
+	
+	private IPasswordHistoryService passwordHistoryService;
+	
 	@Override
 	public boolean createUser(IUser user) {
 
 		if (!checkForValues(user)) {
 			return false;
 		}
+		
+		policyService = Injector.instance().getPolicyService();
 
+		String password = user.getPassword();
+		String passwordSecurityError = policyService.passwordSPolicyCheck(password);
+
+		if (passwordSecurityError != null) {
+			throw new PasswordException(passwordSecurityError);
+		}
+		
 		if (!(user.getPassword().equals(user.getConfirmPassword()))) {
-			throw new PasswordException("The passwords do not match");
+			throw new PasswordException("The passwords do not match. Please try again!");
 		}
 
 		userRepository = Injector.instance().getUserRepository();
-
+		passwordHistoryService = Injector.instance().getPasswordHistoryService();
 		boolean success = false;
 		encryptor = Injector.instance().getPasswordEncryptor();
 
@@ -39,6 +56,8 @@ public class UserService implements IUserService {
 
 		if (userByEmailId == null) {
 			success = userRepository.createUser(user);
+			IUser userWithUserId = userRepository.getUserIdByEmailId(user);
+			passwordHistoryService.addPasswordHistory(userWithUserId, user.getPassword());
 		} else {
 			throw new UserAlreadyExistsException("An account with " + user.getEmailId() + " already exists!!");
 		}

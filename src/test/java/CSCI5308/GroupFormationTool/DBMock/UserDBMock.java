@@ -105,4 +105,10 @@ public class UserDBMock implements IUserRepository {
 		return user;
 	}
 
+	@Override
+	public IUser getUserIdByEmailId(IUser user) {
+		user.setId(id);
+		return user;
+	}
+
 }

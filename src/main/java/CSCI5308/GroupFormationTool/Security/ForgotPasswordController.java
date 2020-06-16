@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordService;
+import CSCI5308.GroupFormationTool.AccessControl.IPolicyService;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordHistoryException;
 import CSCI5308.GroupFormationTool.ErrorHandling.TokenExpiredException;
@@ -57,10 +58,10 @@ public class ForgotPasswordController {
 		ModelAndView modelAndView = null;
 		try {
 			forgotPasswordService = Injector.instance().getForgotPasswordService();
-			
 			forgotPasswordService.updatePassword(user,receivedToken);
 			modelAndView = new ModelAndView("passwordResetSuccess");
 			modelAndView.addObject("Success", "Your password has been reset!");		
+
 		}
 		catch(TokenExpiredException tee) {
 			modelAndView = new ModelAndView("resetPassword");
@@ -69,7 +70,7 @@ public class ForgotPasswordController {
 		catch(PasswordException pex) {
 			modelAndView = new ModelAndView("redirect:/resetPassword");
 			modelAndView.addObject("token", receivedToken);
-			modelAndView.addObject("passwordError", "The passwords do not match. Please try again !");
+			modelAndView.addObject("passwordError", pex.getMessage());
 		}
 		catch(PasswordHistoryException phe) {
 			modelAndView = new ModelAndView("redirect:/resetPassword");

@@ -15,42 +15,32 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class UserRegistrationController implements WebMvcConfigurer {
 
 	private IUserService userService;
-	private IPolicyService policyService;
 
 	@PostMapping("/register")
 	public ModelAndView createUser(User user) {
 
 		ModelAndView modelAndView = null;
 		boolean success = false;
-		policyService = Injector.instance().getPolicyService();
+		try {
+			userService = Injector.instance().getUserService();
+			success = userService.createUser(user);
 
-		String password = user.getPassword();
-		String passwordSecurityError = policyService.passwordSPolicyCheck(password);
-
-		if (passwordSecurityError != null) {
-			modelAndView = new ModelAndView("signup");
-			modelAndView.addObject("passwordError", passwordSecurityError);
-		} else {
-			try {
-				userService = Injector.instance().getUserService();
-				success = userService.createUser(user);
-
-				if (success) {
-					modelAndView = new ModelAndView("login");
-				} else {
-					modelAndView = new ModelAndView("signup");
-					modelAndView.addObject("invalidDetails", "One or more mandatory fields are not entered.");
-				}
-
-			} catch (UserAlreadyExistsException uaex) {
+			if (success) {
+				modelAndView = new ModelAndView("login");
+			} else {
 				modelAndView = new ModelAndView("signup");
-				modelAndView.addObject("userAlreadyExists",
-						"An account with " + user.getEmailId() + " already exists.");
-			} catch (PasswordException pex) {
-				modelAndView = new ModelAndView("signup");
-				modelAndView.addObject("passwordError", "The passwords do not match");
+				modelAndView.addObject("invalidDetails", "One or more mandatory fields are not entered.");
 			}
+
+		} catch (UserAlreadyExistsException uaex) {
+			modelAndView = new ModelAndView("signup");
+			modelAndView.addObject("userAlreadyExists",
+					"An account with " + user.getEmailId() + " already exists.");
+		} catch (PasswordException pex) {
+			modelAndView = new ModelAndView("signup");
+			modelAndView.addObject("passwordError", pex.getMessage());
 		}
+
 
 		return modelAndView;
 	}
