@@ -99,4 +99,13 @@ public class PolicyService implements IPolicyService {
 		ArrayList<IPolicy> policies = policyRepository.passwordSPolicyCheck(password);
 		return checkPasswordSecurity(password, policies);
 	}
+
+	@Override
+	public ArrayList<IPolicy> getPolicies() {
+
+		policyRepository = Injector.instance().getPolicyRepository();
+		ArrayList<IPolicy> policies = policyRepository.getPolicies();
+		return policies;
+	}
+	
 }

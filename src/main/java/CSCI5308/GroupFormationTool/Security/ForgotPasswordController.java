@@ -1,11 +1,15 @@
 package CSCI5308.GroupFormationTool.Security;
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordService;
+import CSCI5308.GroupFormationTool.AccessControl.IPolicy;
 import CSCI5308.GroupFormationTool.AccessControl.IPolicyService;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordHistoryException;
@@ -19,6 +23,7 @@ public class ForgotPasswordController {
 	
 	private IForgotPasswordService forgotPasswordService;
 	private String receivedToken;
+	private IPolicyService policyService;
 	
 	@GetMapping("/forgotPassword")
 	public String register(User user) {
@@ -48,8 +53,12 @@ public class ForgotPasswordController {
 	}
 		
 	@GetMapping("/resetPassword")
-	public String reset(User user,@RequestParam(name="token", required = false) String token) {
+	public String reset(User user,@RequestParam(name="token", required = false) String token, Model model) {
 		receivedToken = token;
+		policyService = Injector.instance().getPolicyService();
+		ArrayList<IPolicy> policies = policyService.getPolicies();
+		model.addAttribute("policies",policies);
+
 		return "resetPassword";
 	}
 	

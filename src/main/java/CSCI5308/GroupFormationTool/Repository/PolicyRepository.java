@@ -42,4 +42,35 @@ public class PolicyRepository implements IPolicyRepository {
 		}
 		return policies;
 	}
+
+	@Override
+	public ArrayList<IPolicy> getPolicies() {
+		ArrayList<IPolicy> policies = new ArrayList<IPolicy>();
+		StoredProcedure storedProcedure = null;
+		IPolicy policy = null;
+		try {
+			storedProcedure = new StoredProcedure("sp_getPolicies");
+			ResultSet results = storedProcedure.executeWithResults();
+
+			if (results != null) {
+				while (results.next()) {
+					{
+						policy = new Policy();
+						policy.setId(results.getInt("pSetting_id"));
+						policy.setSetting(results.getString("pSetting"));
+						policy.setValue(results.getString("pSetting_value"));
+						policies.add(policy);
+					}
+				}
+			}
+
+		} catch (SQLException ex) {
+
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		return policies;
+	}
 }
