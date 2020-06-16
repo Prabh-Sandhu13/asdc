@@ -185,7 +185,7 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
 	}
 
 	public boolean deleteQuestion(long questionId) {
-		
+
 		StoredProcedure proc = null;
 		boolean status = true;
 		try {
@@ -205,7 +205,7 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
 		}
 		return status;
 	}
-	
+
 	public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy) {
 
 		StoredProcedure storedProcedure = null;
@@ -239,7 +239,7 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
 				storedProcedure.removeConnections();
 			}
 		}
-		
+
 		return questionList;
 
 	}

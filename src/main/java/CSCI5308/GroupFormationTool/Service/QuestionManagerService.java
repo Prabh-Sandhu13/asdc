@@ -8,10 +8,7 @@ import CSCI5308.GroupFormationTool.AccessControl.IChoice;
 import CSCI5308.GroupFormationTool.AccessControl.IQuestion;
 import CSCI5308.GroupFormationTool.AccessControl.IQuestionManagerRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IQuestionManagerService;
-import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.Model.Choice;
-import CSCI5308.GroupFormationTool.Model.Question;
-import CSCI5308.GroupFormationTool.Model.User;
 
 public class QuestionManagerService implements IQuestionManagerService {
 
@@ -105,12 +102,11 @@ public class QuestionManagerService implements IQuestionManagerService {
 	}
 
 	public boolean deleteQuestion(long questionId) {
-			
-			questionManagerRepository = Injector.instance().getQuestionManagerRepository();
 
-			return questionManagerRepository.deleteQuestion(questionId);
+		questionManagerRepository = Injector.instance().getQuestionManagerRepository();
 
-		
+		return questionManagerRepository.deleteQuestion(questionId);
+
 	}
 
 	@Override

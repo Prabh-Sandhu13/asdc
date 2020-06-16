@@ -29,17 +29,20 @@
 		<div sec:authorize="isAuthenticated()">
 			<h3 class="text-center">Questions</h3>
 
-			<label>Sort by :
-            <a th:href="@{/questionManager/sortQuestion(sortby='title')}">
-				<button type="submit" value="delete">question Title
-                    </button>
+			<div>
+				Sort by: <br /> <a
+					th:href="@{/questionManager/sortQuestion(sortby='title')}">
+					<button type="submit" class="btn btn-primary btn-sm">Question
+						Title</button>
+				</a> <a
+					th:href="@{/questionManager/sortQuestion(sortby='created_date')}">
+					<button type="submit" class="btn btn-primary btn-sm">Created
+						date</button>
 				</a>
-				<a th:href="@{/questionManager/sortQuestion(sortby='created_date')}">
-				<button type="submit" value="delete">created date
-                    </button>
-				</a>
-        	</label>
-        
+			</div>
+
+			<br /> <br />
+
 			<div class="table-responsive">
 				<table class="table table-bordered table-hover">
 					<thead>
@@ -47,8 +50,8 @@
 							<th scope="col">Question Title</th>
 							<th scope="col">Question Text</th>
 							<th scope="col">Created On</th>
-							<th scope="col">Delete a Question</th>
-							<th scope="col">View a Question</th>
+							<th scope="col">Delete Question</th>
+							<th scope="col">View Question</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -57,22 +60,15 @@
 							<td th:text="${question.title}"></td>
 							<td th:text="${question.text}"></td>
 							<td th:text="${question.createdDate}"></td>
-							
-							
-							
-				<td><a th:href="@{/questionManager/deleteQuestion?questionId={quesId} (quesId=${question.id})}">
-				<button type="submit" value="delete"
-                            th:onclick="return confirm('Are you sure you want to delete the question')">
-                        Delete
-                    </button>
-				</a>
-					
-				</td>			
-				
-				<td><a th:href="@{/questionManager/viewQuestion?questionId={quesId} (quesId=${question.id})}"
-					class="btn btn-primary btn-md"> <span
-					class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp; View question
-				</a></td>
+							<td><a class="text-danger"
+								th:href="@{/questionManager/deleteQuestion?questionId={quesId} (quesId=${question.id})}"
+								th:onclick="return confirm('Are you sure you want to delete the question?')">
+									<span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete
+							</a></td>
+
+							<td><a
+								th:href="@{/questionManager/viewQuestion?questionId={quesId} (quesId=${question.id})}">View
+							</a></td>
 						</tr>
 						<tr th:if="${questionList ==null or questionList.empty}">
 
@@ -105,6 +101,5 @@
 
 		</div>
 	</div>
-
 </body>
 </html>
