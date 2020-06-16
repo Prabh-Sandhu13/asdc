@@ -104,4 +104,21 @@ public class QuestionManagerService implements IQuestionManagerService {
 
 	}
 
+	public boolean deleteQuestion(long questionId) {
+			
+			questionManagerRepository = Injector.instance().getQuestionManagerRepository();
+
+			return questionManagerRepository.deleteQuestion(questionId);
+
+		
+	}
+
+	@Override
+	public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy) {
+
+		questionManagerRepository = Injector.instance().getQuestionManagerRepository();
+
+		return questionManagerRepository.getSortedQuestionListForInstructor(emailId, sortBy);
+
+	}
 }

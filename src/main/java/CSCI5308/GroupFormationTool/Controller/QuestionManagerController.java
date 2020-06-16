@@ -117,4 +117,53 @@ public class QuestionManagerController {
 
 	}
 
+	@GetMapping("/questionManager/deleteQuestion")
+	public String deleteQuestion(@RequestParam("questionId") long questionId, Model model) {
+
+		questionManagerService = Injector.instance().getQuestionManagerService();
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+			boolean status = questionManagerService.deleteQuestion(questionId);
+			
+			if (!(authentication instanceof AnonymousAuthenticationToken)) {
+				
+			if(status)
+			{
+				model.addAttribute("successMessage", "The question " + questionId + " is successfully deleted!");
+			}
+			else
+			{
+				model.addAttribute("failureMessage", "The question can not not be deleted.");
+			}
+			
+			String emailId = authentication.getPrincipal().toString();
+			ArrayList<IQuestion> questionList = questionManagerService.getQuestionListForInstructor(emailId);
+
+			model.addAttribute("questionList", questionList);
+	}
+			
+			return "questionManager/questionManager";
+	}
+	
+	
+	@GetMapping("/questionManager/sortQuestion")
+    public String sortQuestion(@RequestParam("sortby") String sortBy, Model model) {
+		questionManagerService = Injector.instance().getQuestionManagerService();
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			
+			if (!(authentication instanceof AnonymousAuthenticationToken)) {
+				
+			String emailId = authentication.getPrincipal().toString();
+			ArrayList<IQuestion> questionList = questionManagerService.getSortedQuestionListForInstructor(emailId, sortBy);
+
+			model.addAttribute("questionList", questionList);
+				
+				
+	}
+			
+			return "questionManager/questionManager";
+    }
+	
 }

@@ -11,5 +11,9 @@ public interface IQuestionManagerRepository {
 	IQuestion getQuestionById(long questionId);
 	
 	ArrayList<IChoice> getOptionsForTheQuestion(long questionId);
+	
+	boolean deleteQuestion(long questionId);
+	
+	ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy);
 
 }

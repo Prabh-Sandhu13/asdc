@@ -130,4 +130,15 @@ public class QuestionDBMock implements IQuestionManagerRepository {
 
 	}
 
+	@Override
+	public boolean deleteQuestion(long questionId)
+	{
+		return true;
+	}
+
+	@Override
+	public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

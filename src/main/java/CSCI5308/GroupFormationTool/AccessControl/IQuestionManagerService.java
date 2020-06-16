@@ -10,5 +10,9 @@ public interface IQuestionManagerService {
 	long createQuestion(IQuestion question, List<String> optionText, List<String> optionValue);
 
 	IQuestion getQuestionById(long questionId);
+	
+	boolean deleteQuestion(long questionId);
+	
+	ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy);
 
 }

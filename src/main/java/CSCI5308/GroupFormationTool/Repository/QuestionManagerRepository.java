@@ -184,4 +184,63 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
 		return choiceList;
 	}
 
+	public boolean deleteQuestion(long questionId) {
+		
+		StoredProcedure proc = null;
+		boolean status = true;
+		try {
+			proc = new StoredProcedure("sp_deleteAQuestion(?,?)");
+			proc.setInputIntParameter(1, questionId);
+			proc.registerOutputParameterBoolean(2);
+			proc.execute();
+
+			status = proc.getParameter(2);
+
+		} catch (SQLException ex) {
+			System.out.println(ex);
+		} finally {
+			if (null != proc) {
+				proc.removeConnections();
+			}
+		}
+		return status;
+	}
+	
+	public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy) {
+
+		StoredProcedure storedProcedure = null;
+		ArrayList<IQuestion> questionList = new ArrayList<IQuestion>();
+		try {
+			storedProcedure = new StoredProcedure("sp_getSortedQuestionsForInstructor(?,?)");
+			storedProcedure.setInputStringParameter(1, emailId);
+			storedProcedure.setInputStringParameter(2, sortBy);
+
+			ResultSet results = storedProcedure.executeWithResults();
+
+			if (results != null) {
+				while (results.next()) {
+					{
+						IQuestion question = new Question();
+						question.setId(results.getLong("question_id"));
+						question.setText(results.getString("question_text"));
+						question.setType(results.getInt("qtype_id"));
+						question.setTitle(results.getString("title"));
+						question.setCreatedDate(results.getDate("created_date"));
+
+						questionList.add(question);
+					}
+				}
+			}
+
+		} catch (SQLException ex) {
+
+		} finally {
+			if (storedProcedure != null) {
+				storedProcedure.removeConnections();
+			}
+		}
+		
+		return questionList;
+
+	}
 }
