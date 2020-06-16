@@ -14,7 +14,7 @@ public final class DomainConstants {
 	public static final String mailPassword = "dalhousiemacs";
 
 	// Domain Url
-	public static final String domainUrl = "http://localhost:8080";
+	public static final String domainUrl = "http://formgroups22.herokuapp.com";
 
 	// Forgot Password
 	public static final String forgotPasswordSubject = "Complete Password Reset!";
