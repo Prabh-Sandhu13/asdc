@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.DBMock;
 
-import java.util.ArrayList;
 
 import CSCI5308.GroupFormationTool.AccessControl.IForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;

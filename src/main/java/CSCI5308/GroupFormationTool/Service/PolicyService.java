@@ -11,20 +11,15 @@ public class PolicyService implements IPolicyService {
 
 	private IPolicyRepository policyRepository;
 
-	private String errorMessage = null;
-	private int upperCaseCharacters = 0;
-	private int lowerCaseCharacters = 0;
-	private int digits = 0;
-	private int specialCharacters = 0;
 
 	private String checkPasswordSecurity(String password, ArrayList<IPolicy> policies) {
 
 		int passwordSettingEnabled = 1;
-		errorMessage = null;
-		upperCaseCharacters = 0;
-		lowerCaseCharacters = 0;
-		digits = 0;
-		specialCharacters = 0;
+		String errorMessage = null;
+		int upperCaseCharacters = 0;
+		int lowerCaseCharacters = 0;
+		int digits = 0;
+		int specialCharacters = 0;
 
 		for (int i = 0; i < password.length(); i++) {
 			char ch = password.charAt(i);
@@ -38,9 +33,11 @@ public class PolicyService implements IPolicyService {
 				specialCharacters++;
 			}
 		}
-		policies.forEach(policy -> {
+		for (int counter = 0; counter < policies.size(); counter++) { 
+			IPolicy policy = policies.get(counter);
+			
 			if (errorMessage != null) {
-				return;
+				break;
 			}
 
 			int id = policy.getId();
@@ -88,7 +85,7 @@ public class PolicyService implements IPolicyService {
 				default:
 				}
 			}
-		});
+		}
 		return errorMessage;
 	}
 
