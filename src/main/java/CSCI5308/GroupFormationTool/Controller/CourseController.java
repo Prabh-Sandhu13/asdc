@@ -6,7 +6,6 @@ import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.Model.Course;
 import CSCI5308.GroupFormationTool.Model.StudentCSV;
 import CSCI5308.GroupFormationTool.Model.User;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -43,46 +42,43 @@ public class CourseController {
         userService = Injector.instance().getUserService();
         userCoursesService = Injector.instance().getUserCoursesService();
 
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
 
-            String emailId = authentication.getPrincipal().toString();
+        String emailId = authentication.getPrincipal().toString();
 
-            if (userService.checkCurrentUserIsAdmin(emailId)) {
+        if (userService.checkCurrentUserIsAdmin(emailId)) {
+
+            courseList = courseService.getAllCourses();
+            model.addAttribute("courses", courseList);
+            return "admin/allCourses";
+
+        } else {
+
+            userRole = userCoursesService.getUserRoleByEmailId(emailId);
+
+            if (userRole.equals("Guest")) {
 
                 courseList = courseService.getAllCourses();
+
                 model.addAttribute("courses", courseList);
-                return "admin/allCourses";
+                return "guest/guestCourses";
+            } else if (userRole.equals("Student")) {
 
-            } else {
+                StudentCourseList = userCoursesService.getStudentCourses(emailId);
+                model.addAttribute("courses", StudentCourseList);
+                return "student/studentCourses";
 
-                userRole = userCoursesService.getUserRoleByEmailId(emailId);
+            } else if (userRole.equals("TA")) {
+                TACourseList = userCoursesService.getTACourses(emailId);
+                StudentCourseList = userCoursesService.getStudentCourses(emailId);
+                model.addAttribute("studentCourses", StudentCourseList);
+                model.addAttribute("taCourses", TACourseList);
+                return "ta/taCourses";
 
-                if (userRole.equals("Guest")) {
-
-                    courseList = courseService.getAllCourses();
-
-                    model.addAttribute("courses", courseList);
-                    return "guest/guestCourses";
-                } else if (userRole.equals("Student")) {
-
-                    StudentCourseList = userCoursesService.getStudentCourses(emailId);
-                    model.addAttribute("courses", StudentCourseList);
-                    return "student/studentCourses";
-
-                } else if (userRole.equals("TA")) {
-                    TACourseList = userCoursesService.getTACourses(emailId);
-                    StudentCourseList = userCoursesService.getStudentCourses(emailId);
-                    model.addAttribute("studentCourses", StudentCourseList);
-                    model.addAttribute("taCourses", TACourseList);
-                    return "ta/taCourses";
-
-                } else if (userRole.equals("Instructor")) {
-                    InstructorCourseList = userCoursesService.getInstructorCourses(emailId);
-                    model.addAttribute("courses", InstructorCourseList);
-                    return "instructor/instructorCourses";
-                }
+            } else if (userRole.equals("Instructor")) {
+                InstructorCourseList = userCoursesService.getInstructorCourses(emailId);
+                model.addAttribute("courses", InstructorCourseList);
+                return "instructor/instructorCourses";
             }
-
         }
 
         return "guest/guestCourses";

@@ -16,13 +16,10 @@ public class GuestController {
 
     @GetMapping("/guest/guestCourses")
     public String guestCourses(Model model) {
-
         courseService = Injector.instance().getCourseService();
         ArrayList<ICourse> courseList = null;
-
         courseList = courseService.getAllCourses();
         model.addAttribute("courses", courseList);
-
         return "guest/guestCourses";
     }
 }
