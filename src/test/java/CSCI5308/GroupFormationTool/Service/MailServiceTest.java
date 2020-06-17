@@ -71,6 +71,5 @@ public class MailServiceTest {
 
         when(mailService.sendBatchMail(studentCSVList, "CSCI 5308")).thenReturn(true);
         assertTrue(mailService.sendBatchMail(studentCSVList, "CSCI 5308"));
-
     }
 }

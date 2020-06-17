@@ -32,9 +32,7 @@ public class PolicyRepository implements IPolicyRepository {
                     }
                 }
             }
-
         } catch (SQLException ex) {
-
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -65,7 +63,6 @@ public class PolicyRepository implements IPolicyRepository {
             }
 
         } catch (SQLException ex) {
-
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();

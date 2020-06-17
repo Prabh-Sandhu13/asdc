@@ -24,8 +24,6 @@ public class ForgotPasswordService implements IForgotPasswordService {
         mailService = Injector.instance().getMailService();
         encryptor = Injector.instance().getPasswordEncryptor();
 
-        boolean success = true;
-        boolean tokenPresent = false;
         IUser userByEmailId = forgotPasswordRepository.getUserId(user);
 
         if (userByEmailId != null) {
@@ -33,19 +31,16 @@ public class ForgotPasswordService implements IForgotPasswordService {
             if (token.equals("")) {
                 // If no token exists
                 token = tokenGenerator.generator();
-                tokenPresent = forgotPasswordRepository.addToken(userByEmailId, token);
+                forgotPasswordRepository.addToken(userByEmailId, token);
             } else {
                 token = tokenGenerator.generator();
-                tokenPresent = forgotPasswordRepository.updateToken(userByEmailId, token);
+                forgotPasswordRepository.updateToken(userByEmailId, token);
             }
-
             mailService.sendForgotPasswordMail(userByEmailId, token);
-
         } else {
             throw new UserAlreadyExistsException("An account with " + user.getEmailId() + " not found!");
         }
-
-        return success;
+        return true;
     }
 
     @Override
@@ -70,7 +65,7 @@ public class ForgotPasswordService implements IForgotPasswordService {
         encryptor = Injector.instance().getPasswordEncryptor();
         IUser userByEmailId = forgotPasswordRepository.getEmailByToken(user, token);
 
-        if (null == userByEmailId) {
+        if (userByEmailId == null) {
             throw new TokenExpiredException("Token expired");
         }
 
@@ -84,7 +79,6 @@ public class ForgotPasswordService implements IForgotPasswordService {
         String encrypted_password = encryptor.encoder(user.getPassword());
         forgotPasswordRepository.updatePassword(userByEmailId, encrypted_password);
         passwordHistoryService.addPasswordHistory(userByEmailId, encrypted_password);
-
         updated = forgotPasswordRepository.deleteToken(user, token);
 
         return updated;

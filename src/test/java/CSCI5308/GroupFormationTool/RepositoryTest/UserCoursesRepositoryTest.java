@@ -19,7 +19,6 @@ public class UserCoursesRepositoryTest {
 
     @Test
     public void getRoleBasedCoursesTest() {
-
         ArrayList<IUserCourses> userCoursesList = new ArrayList<>();
         IUserCourses userCourses = new UserCourses();
 
@@ -75,14 +74,10 @@ public class UserCoursesRepositoryTest {
 
         assertFalse(userCoursesList.isEmpty());
         assertTrue(userCoursesList instanceof ArrayList);
-
     }
 
     @Test
     public void getUserRoleByEmailIdTest() {
-
-        String emailId = "padmeshdonthu@gmail.com";
-
         UserCoursesRepository userCoursesRepository = mock(UserCoursesRepository.class);
 
         when(userCoursesRepository.getUserRoleByEmailId("padmeshdonthu@gmail.com"))
@@ -108,7 +103,6 @@ public class UserCoursesRepositoryTest {
 
     @Test
     public void getStudentCoursesTest() {
-
         ArrayList<IUserCourses> userCoursesList = new ArrayList<>();
         IUserCourses userCourses = new UserCourses();
 
@@ -130,15 +124,7 @@ public class UserCoursesRepositoryTest {
         assertFalse(userCoursesList.get(0).getCourseName().isEmpty());
         assertFalse(userCoursesList.get(0).getUserRole().isEmpty());
         assertFalse(userCoursesList.get(0).getCourseId().isEmpty());
-
-        assertTrue(userCoursesList.get(0).getCourseId() instanceof String);
-        assertTrue(userCoursesList.get(0).getUserRole() instanceof String);
-        assertTrue(userCoursesList.get(0).getCourseName() instanceof String);
-        assertTrue(userCoursesList.get(0).getCourseDescription() instanceof String);
-        assertTrue(userCoursesList.get(0).getBannerId() instanceof String);
-
         assertFalse(userCoursesList.isEmpty());
-        assertTrue(userCoursesList instanceof ArrayList);
     }
 
     @Test
@@ -165,16 +151,7 @@ public class UserCoursesRepositoryTest {
         assertFalse(userCoursesList.get(0).getCourseName().isEmpty());
         assertFalse(userCoursesList.get(0).getUserRole().isEmpty());
         assertFalse(userCoursesList.get(0).getCourseId().isEmpty());
-
-        assertTrue(userCoursesList.get(0).getCourseId() instanceof String);
-        assertTrue(userCoursesList.get(0).getUserRole() instanceof String);
-        assertTrue(userCoursesList.get(0).getCourseName() instanceof String);
-        assertTrue(userCoursesList.get(0).getCourseDescription() instanceof String);
-        assertTrue(userCoursesList.get(0).getBannerId() instanceof String);
-
         assertFalse(userCoursesList.isEmpty());
-        assertTrue(userCoursesList instanceof ArrayList);
-
     }
 
     @Test
@@ -201,16 +178,7 @@ public class UserCoursesRepositoryTest {
         assertFalse(userCoursesList.get(0).getCourseName().isEmpty());
         assertFalse(userCoursesList.get(0).getUserRole().isEmpty());
         assertFalse(userCoursesList.get(0).getCourseId().isEmpty());
-
-        assertTrue(userCoursesList.get(0).getCourseId() instanceof String);
-        assertTrue(userCoursesList.get(0).getUserRole() instanceof String);
-        assertTrue(userCoursesList.get(0).getCourseName() instanceof String);
-        assertTrue(userCoursesList.get(0).getCourseDescription() instanceof String);
-        assertTrue(userCoursesList.get(0).getBannerId() instanceof String);
-
         assertFalse(userCoursesList.isEmpty());
-        assertTrue(userCoursesList instanceof ArrayList);
-
     }
 
     @Test
@@ -232,7 +200,6 @@ public class UserCoursesRepositoryTest {
         assertFalse(user.getFirstName().isEmpty());
         assertFalse(user.getEmailId().isEmpty());
         assertFalse(user.getBannerId().isEmpty());
-
     }
 
     @Test

@@ -30,7 +30,6 @@ public class PolicyServiceTest {
 
     @Test
     public void passwordPolicyCheckTest() {
-
         String password = "Padmes$1";
         ArrayList<IPolicy> policies = new ArrayList<>();
 
@@ -125,8 +124,5 @@ public class PolicyServiceTest {
 
         when(policyRepository.getPolicies()).thenReturn(null);
         assertFalse(policyService.getPolicies() instanceof ArrayList);
-
     }
-
-
 }

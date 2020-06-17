@@ -28,7 +28,6 @@ public class CourseRepository implements ICourseRepository {
                         course.setName(results.getString("course_name"));
                         course.setDescription(results.getString("course_details"));
                         course.setCredits(results.getInt("course_credits"));
-
                         courseList.add(course);
                     }
                 }
@@ -57,7 +56,6 @@ public class CourseRepository implements ICourseRepository {
             proc.setInputStringParameter(4, course.getDescription());
             proc.registerOutputParameterBoolean(5);
             proc.execute();
-
             status = proc.getParameter(5);
 
         } catch (SQLException ex) {
@@ -79,7 +77,6 @@ public class CourseRepository implements ICourseRepository {
             proc.setInputStringParameter(1, id);
             proc.registerOutputParameterBoolean(2);
             proc.execute();
-
             status = proc.getParameter(2);
 
         } catch (SQLException ex) {

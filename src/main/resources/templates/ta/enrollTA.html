@@ -16,9 +16,7 @@
 
 </head>
 <body style="background-color: #e7ebee">
-
 <div class="container" style="padding:20px;">
-
     <form autocomplete="off" action="#"
           th:action="@{/enrollTA?courseId={courseId} (courseId=${courseId})}"
           method="post" class="m-t col-md-4 col-md-offset-4" role="form"
@@ -31,12 +29,10 @@
         </div>
         <br>
         <h4>Enter details to add TA!</h4>
-
         <div class="form-group input-group has-feedback">
             <input type="email" name="username" th:field="*{emailId}"
                    placeholder="Add by Email Address" class="form-control" required/>
         </div>
-
         <div class="text-center">
             <button type="submit" class="btn btn-primary btn-sm btn-block"
                     style="width: 120px; margin-left: 40px;">Add TA
@@ -45,9 +41,7 @@
     </form>
 </div>
 <div class="container">
-
     <h3 class="text-center">Enrolled TA(s)</h3>
-
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead>

@@ -66,7 +66,6 @@ public class QuestionManagerController {
         } else {
             return "redirect:/questionManager/viewQuestion?questionId=" + outcome;
         }
-
     }
 
     @GetMapping("/questionManager/viewQuestion")
@@ -94,7 +93,6 @@ public class QuestionManagerController {
         return "questionManager/questionManager";
     }
 
-
     @GetMapping("/questionManager/sortQuestion")
     public String sortQuestion(@RequestParam("sortby") String sortBy, Model model) {
         questionManagerService = Injector.instance().getQuestionManagerService();
@@ -104,5 +102,4 @@ public class QuestionManagerController {
         model.addAttribute("questionList", questionList);
         return "questionManager/questionManager";
     }
-
 }

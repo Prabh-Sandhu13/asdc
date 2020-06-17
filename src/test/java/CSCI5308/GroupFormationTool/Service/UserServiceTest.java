@@ -85,7 +85,6 @@ public class UserServiceTest {
 
     @Test
     void checkCurrentUserIsAdminTest() {
-
         String emailId = "padmeshd@gmail.com";
 
         IUser admin = new User();
@@ -100,6 +99,5 @@ public class UserServiceTest {
         emailId = "padmeshdonthu@gmail.com";
         when(userRepository.getAdminDetails()).thenReturn(admin);
         assertTrue(userService.checkCurrentUserIsAdmin(emailId));
-
     }
 }

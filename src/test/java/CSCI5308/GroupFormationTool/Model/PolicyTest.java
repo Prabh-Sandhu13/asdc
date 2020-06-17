@@ -14,7 +14,6 @@ public class PolicyTest {
 	@Test
 	public void getIdTest() {
 		IPolicy policy = new Policy();
-
 		policy.setId(0);
 		assertEquals(0,policy.getId());
 	}
@@ -30,10 +29,8 @@ public class PolicyTest {
 	public void getSettingTest() {
 		IPolicy policy = new Policy();
 		assertNull(policy.getSetting());
-
 		policy.setSetting("Minimum length");
 		assertEquals("Minimum length",policy.getSetting());
-
 	}
 
 	@Test
@@ -41,14 +38,12 @@ public class PolicyTest {
 		IPolicy policy = new Policy();
 		policy.setSetting("Max length");
 		assertEquals("Max length",policy.getSetting());
-
 	}
 
 	@Test
 	public void getValueTest() {
 		IPolicy policy = new Policy();
 		assertNull(policy.getValue());
-
 		policy.setValue("3");
 		assertEquals("3",policy.getValue());
 	}
@@ -63,7 +58,6 @@ public class PolicyTest {
 	@Test
 	public void getEnabledTest() {
 		IPolicy policy = new Policy();
-
 		policy.setEnabled(0);
 		assertEquals(0,policy.getEnabled());
 	}

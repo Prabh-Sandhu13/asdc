@@ -27,12 +27,8 @@ public class BCryptEncryptionTest implements IPasswordEncryptor {
 
     @Test
     void encryptPasswordTest() {
-
         String password = "padmesh1234";
-
         String encryptedPassword = encoder(password);
-
         assertEquals(true, passwordMatch(password, encryptedPassword));
-
     }
 }

@@ -12,7 +12,6 @@ public class UserRepositoryTest {
 
     @Test
     public void createUserTest() {
-
         User user = new User();
         user.setBannerId("B00854462");
         user.setEmailId("padmeshdonthu@gmail.com");
@@ -34,14 +33,6 @@ public class UserRepositoryTest {
         assertFalse(user.getBannerId().isEmpty());
         assertFalse(user.getPassword().isEmpty());
         assertFalse(user.getConfirmPassword().isEmpty());
-
-        assertTrue(user.getBannerId() instanceof String);
-        assertTrue(user.getEmailId() instanceof String);
-        assertTrue(user.getFirstName() instanceof String);
-        assertTrue(user.getLastName() instanceof String);
-        assertTrue(user.getPassword() instanceof String);
-        assertTrue(user.getConfirmPassword() instanceof String);
-
     }
 
     @Test
@@ -68,14 +59,6 @@ public class UserRepositoryTest {
         assertFalse(user.getBannerId().isEmpty());
         assertFalse(user.getPassword().isEmpty());
         assertFalse(user.getConfirmPassword().isEmpty());
-
-        assertTrue(user.getBannerId() instanceof String);
-        assertTrue(user.getEmailId() instanceof String);
-        assertTrue(user.getFirstName() instanceof String);
-        assertTrue(user.getLastName() instanceof String);
-        assertTrue(user.getPassword() instanceof String);
-        assertTrue(user.getConfirmPassword() instanceof String);
-
     }
 
     @Test
@@ -102,19 +85,10 @@ public class UserRepositoryTest {
         assertFalse(user.getBannerId().isEmpty());
         assertFalse(user.getPassword().isEmpty());
         assertFalse(user.getConfirmPassword().isEmpty());
-
-        assertTrue(user.getBannerId() instanceof String);
-        assertTrue(user.getEmailId() instanceof String);
-        assertTrue(user.getFirstName() instanceof String);
-        assertTrue(user.getLastName() instanceof String);
-        assertTrue(user.getPassword() instanceof String);
-        assertTrue(user.getConfirmPassword() instanceof String);
-
     }
 
     @Test
     public void getAdminDetailsTest() {
-
         String bannerId = "B00000000";
         User user = new User();
         user.setBannerId(bannerId);
@@ -137,14 +111,5 @@ public class UserRepositoryTest {
         assertFalse(user.getBannerId().isEmpty());
         assertFalse(user.getPassword().isEmpty());
         assertFalse(user.getConfirmPassword().isEmpty());
-
-        assertTrue(user.getBannerId() instanceof String);
-        assertTrue(user.getEmailId() instanceof String);
-        assertTrue(user.getFirstName() instanceof String);
-        assertTrue(user.getLastName() instanceof String);
-        assertTrue(user.getPassword() instanceof String);
-        assertTrue(user.getConfirmPassword() instanceof String);
-
     }
-
 }

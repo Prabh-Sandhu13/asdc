@@ -36,18 +36,14 @@ public class QuestionDBMock implements IQuestionManagerRepository {
         createdDate = new Date(0);
 
         choices = new ArrayList<>();
-
         IChoice choice = new Choice();
 
         choice.setText("Amateur");
         choice.setValue(1);
-
         choices.add(choice);
-
     }
 
     public IQuestion loadQuestion(IQuestion question) {
-
         question.setCreatedDate(createdDate);
         question.setId(id);
         question.setInstructor(instructor);
@@ -55,13 +51,11 @@ public class QuestionDBMock implements IQuestionManagerRepository {
         question.setTitle(title);
         question.setType(type);
         question.setChoices(choices);
-
         return question;
     }
 
     @Override
     public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
-
         ArrayList<IQuestion> questionList = new ArrayList<>();
         IQuestion question = new Question();
         IUser user = new User();
@@ -74,18 +68,13 @@ public class QuestionDBMock implements IQuestionManagerRepository {
         question.setTitle(title);
         question.setType(type);
         question.setChoices(choices);
-
         questionList.add(question);
-
         return questionList;
-
     }
 
     @Override
     public long createQuestion(IQuestion question) {
-
         IUser user = new User();
-
         question.setCreatedDate(createdDate);
         question.setId(id);
         question.setInstructor(new UserDBMock().getUserByEmailId(user));
@@ -93,9 +82,7 @@ public class QuestionDBMock implements IQuestionManagerRepository {
         question.setTitle(title);
         question.setType(type);
         question.setChoices(choices);
-
         return question.getId();
-
     }
 
     @Override
@@ -109,7 +96,6 @@ public class QuestionDBMock implements IQuestionManagerRepository {
         question.setTitle(title);
         question.setType(type);
         question.setChoices(choices);
-
         return question;
     }
 
@@ -124,19 +110,34 @@ public class QuestionDBMock implements IQuestionManagerRepository {
         question.setTitle(title);
         question.setType(type);
         question.setChoices(choices);
-
         return question.getChoices();
 
     }
 
     @Override
     public boolean deleteQuestion(long questionId) {
-        return true;
+        if (questionId == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy) {
-        // TODO Auto-generated method stub
-        return null;
+        ArrayList<IQuestion> questionList = new ArrayList<>();
+        IQuestion question = new Question();
+        IUser user = new User();
+        user.setEmailId(emailId);
+
+        question.setCreatedDate(createdDate);
+        question.setId(id);
+        question.setInstructor(new UserDBMock().getUserByEmailId(user));
+        question.setText(text);
+        question.setTitle(title);
+        question.setType(type);
+        question.setChoices(choices);
+        questionList.add(question);
+        return questionList;
     }
 }

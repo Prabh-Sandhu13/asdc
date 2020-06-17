@@ -33,21 +33,17 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
                         question.setType(results.getInt("qtype_id"));
                         question.setTitle(results.getString("title"));
                         question.setCreatedDate(results.getDate("created_date"));
-
                         questionList.add(question);
                     }
                 }
             }
-
         } catch (SQLException ex) {
-
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
         }
         return questionList;
-
     }
 
     @Override
@@ -58,16 +54,12 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
 
         try {
             storedProcedure = new StoredProcedure("sp_createQuestion(?,?,?,?,?)");
-
             storedProcedure.setInputStringParameter(1, question.getTitle());
             storedProcedure.setInputStringParameter(2, question.getText());
             storedProcedure.setInputStringParameter(3, question.getInstructor().getEmailId());
             storedProcedure.setInputIntParameter(4, question.getType());
-
             storedProcedure.registerOutputParameterLong(5);
-
             storedProcedure.execute();
-
             questionId = storedProcedure.getParameterLong(5);
 
         } catch (SQLException ex) {
@@ -77,18 +69,14 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
                 storedProcedure.removeConnections();
             }
         }
-
         if (question.getChoices() != null) {
-
             for (IChoice choice : question.getChoices()) {
-
                 if (!saveChoice(choice, questionId)) {
                     return -1;
                 }
             }
 
         }
-
         return questionId;
     }
 
@@ -101,7 +89,6 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
             storedProcedure.setInputStringParameter(1, choice.getText());
             storedProcedure.setInputIntParameter(2, choice.getValue());
             storedProcedure.setInputIntParameter(3, questionId);
-
             storedProcedure.execute();
 
         } catch (SQLException ex) {
@@ -111,7 +98,6 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
                 storedProcedure.removeConnections();
             }
         }
-
         return true;
     }
 
@@ -122,7 +108,6 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
         try {
             storedProcedure = new StoredProcedure("sp_getQuestionById(?)");
             storedProcedure.setInputIntParameter(1, questionId);
-
             ResultSet results = storedProcedure.executeWithResults();
 
             if (results != null) {
@@ -133,19 +118,16 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
                         question.setType(results.getInt("qtype_id"));
                         question.setTitle(results.getString("title"));
                         question.setCreatedDate(results.getDate("created_date"));
-
                     }
                 }
             }
 
         } catch (SQLException ex) {
-
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
         }
-
         return question;
     }
 
@@ -157,7 +139,6 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
         try {
             storedProcedure = new StoredProcedure("sp_getOptionsForQuestion(?)");
             storedProcedure.setInputIntParameter(1, questionId);
-
             ResultSet results = storedProcedure.executeWithResults();
 
             if (results != null) {
@@ -174,13 +155,11 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
             }
 
         } catch (SQLException ex) {
-
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
         }
-
         return choiceList;
     }
 
@@ -226,7 +205,6 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
                         question.setType(results.getInt("qtype_id"));
                         question.setTitle(results.getString("title"));
                         question.setCreatedDate(results.getDate("created_date"));
-
                         questionList.add(question);
                     }
                 }
@@ -239,8 +217,6 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
                 storedProcedure.removeConnections();
             }
         }
-
         return questionList;
-
     }
 }

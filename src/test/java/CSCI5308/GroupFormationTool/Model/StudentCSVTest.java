@@ -33,7 +33,6 @@ public class StudentCSVTest {
         IStudentCSV studentCSV = new StudentCSV();
         studentCSV.setFirstName("Padmesh");
         assertEquals("Padmesh", studentCSV.getFirstName());
-
     }
 
     @Test
@@ -47,7 +46,6 @@ public class StudentCSVTest {
         IStudentCSV studentCSV = new StudentCSV();
         studentCSV.setLastName("Donthu");
         assertEquals("Donthu", studentCSV.getLastName());
-
     }
 
     @Test
@@ -61,7 +59,6 @@ public class StudentCSVTest {
         IStudentCSV studentCSV = new StudentCSV();
         studentCSV.setBannerId("B0000000");
         assertEquals("B0000000", studentCSV.getBannerId());
-
     }
 
     @Test
@@ -92,7 +89,6 @@ public class StudentCSVTest {
 
     @Test
     public void StudentCSVParameterizedTest() {
-
         IStudentCSV studentCSV = new StudentCSV("Padmesh",
                 "Donthu", "padmeshdonthu@gmail.com",
                 "B00854462", "sample123");

@@ -100,6 +100,11 @@ class QuestionManagerServiceTest {
         assertFalse(questionManagerService.createQuestion(question, optionText, optionValue) == 0);
         assertTrue(questionManagerService.createQuestion(question, optionText, optionValue) == 1);
 
+        optionText.add("Sample");
+        optionValue.add("3");
+        assertFalse(questionManagerService.createQuestion(question, optionText, optionValue) == 0);
+        assertTrue(questionManagerService.createQuestion(question, optionText, optionValue) == 1);
+
         when(questionManagerRepository.createQuestion(question)).thenReturn(DomainConstants.invalidData);
         assertFalse(questionManagerService.createQuestion(question, new ArrayList<>(), optionValue) == 1);
         assertTrue(questionManagerService.createQuestion(question, optionText, optionValue)
@@ -148,7 +153,6 @@ class QuestionManagerServiceTest {
         when(questionManagerRepository.getOptionsForTheQuestion(questionId)).thenReturn(choices);
         assertFalse(questionManagerService.getQuestionById(questionId) == null);
         assertTrue(questionManagerService.getQuestionById(questionId).getText().equals("Spring text"));
-
     }
 
     @Test
@@ -203,6 +207,5 @@ class QuestionManagerServiceTest {
                 isEmpty());
         assertTrue(questionManagerService.getSortedQuestionListForInstructor(sortBy, user.getEmailId()).
                 size() == 2);
-
     }
 }

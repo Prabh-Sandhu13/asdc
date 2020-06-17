@@ -17,7 +17,6 @@
 </head>
 <body style="background-color: #e7ebee">
 <div class="container" style="padding: 20px;font-size:24px;">
-
     <div sec:authorize="!isAuthenticated()">
         <!-- Send them to login. -->
         <p>You have not yet logged in to the application. Please login to
@@ -26,15 +25,10 @@
     </div>
 
     <div sec:authorize="isAuthenticated()">
-
         <h3 class="text-center">View your Question</h3>
-
         <div th:if="${question ==null}">
-
             The question does not exist!!!
-
         </div>
-
         <div th:if="${question !=null && question.type == 1}">
             <div class="form-group input-group has-feedback" style="width:100%;">
                 <label for="response" th:text="${question.text}"></label> <input
@@ -81,17 +75,14 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
         <div th:if="${question !=null && question.type == 4}">
-
             <div class="form-group input-group has-feedback" style="width:100%;">
                 <label th:text="${question.text}"></label>
                 <textarea name="response" id="response" rows="4"
                           placeholder="Enter your response here" class="form-control" required></textarea>
                 <span class="form-control-feedback" aria-hidden="true"></span>
             </div>
-
         </div>
         <div><a th:href="@{/questionManager/deleteQuestion?questionId={quesId} (quesId=${question.id})}">
             <button type="submit" value="delete" class="btn btn-danger btn-md"

@@ -29,7 +29,6 @@ public class ForgotPasswordRepositoryTest {
         assertFalse(forgotPasswordRepository.addToken(null, "sampleToken"));
         assertFalse(forgotPasswordRepository.addToken(user, null));
         assertFalse(forgotPasswordRepository.addToken(user, ""));
-        
     }
 
     @Test
@@ -37,9 +36,10 @@ public class ForgotPasswordRepositoryTest {
         forgotPasswordRepository = mock(ForgotPasswordRepository.class);
         when(forgotPasswordRepository.getToken(user)).thenReturn(null);
         assertFalse(forgotPasswordRepository.getToken(user) != null);
+
         user.setEmailId("haard.shah@dal.ca");
+
         when(forgotPasswordRepository.getToken(user)).thenReturn("token");
-        
         assertTrue(forgotPasswordRepository.getToken(user).equals("token"));
         
     }
@@ -80,7 +80,6 @@ public class ForgotPasswordRepositoryTest {
         when(forgotPasswordRepository.deleteToken(user, null)).thenReturn(false);
         when(forgotPasswordRepository.deleteToken(null, "newToken")).thenReturn(false);
         
-        
         assertFalse(forgotPasswordRepository.deleteToken(null, "token"));
         assertFalse(forgotPasswordRepository.deleteToken(user, null));
         assertFalse(forgotPasswordRepository.deleteToken(user, ""));
@@ -96,7 +95,6 @@ public class ForgotPasswordRepositoryTest {
         user.setEmailId("haard.shah@dal.ca");
         when(forgotPasswordRepository.getUserId(user)).thenReturn(user);
         assertTrue(forgotPasswordRepository.getUserId(user).getEmailId().equals("haard.shah@dal.ca"));
-        
     }
 
     @Test
@@ -109,8 +107,5 @@ public class ForgotPasswordRepositoryTest {
         assertFalse(forgotPasswordRepository.getEmailByToken(user, null) != null);
         assertTrue(forgotPasswordRepository.getEmailByToken(null, "token") == null);
         assertTrue(forgotPasswordRepository.getEmailByToken(user, "token") != null);
-        
-
     }
-
 }

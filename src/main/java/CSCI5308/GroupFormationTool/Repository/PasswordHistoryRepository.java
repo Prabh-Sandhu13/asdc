@@ -21,25 +21,19 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
             storedProcedure.setInputStringParameter(1, settingName);
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
-
                 while (results.next()) {
                     {
-
                         settingValue = results.getString("pSetting_value");
                     }
                 }
             }
-
         } catch (SQLException ex) {
-
             System.out.println(ex.getMessage());
-
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
         }
-
         return settingValue;
     }
 
@@ -54,19 +48,14 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
             storedProcedure.setInputStringParameter(2, "" + num);
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
-
                 while (results.next()) {
                     {
-
                         nPasswords.add(results.getString("encrypted_password"));
                     }
                 }
             }
-
         } catch (SQLException ex) {
-
             System.out.println(ex.getMessage());
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
@@ -74,7 +63,6 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
                 storedProcedure.removeConnections();
             }
         }
-
         return nPasswords;
     }
 
@@ -95,7 +83,6 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
 
         } catch (SQLException ex) {
             System.out.println("" + ex.getMessage());
-
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();

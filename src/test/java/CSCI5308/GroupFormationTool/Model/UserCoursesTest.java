@@ -59,7 +59,6 @@ public class UserCoursesTest {
         IUserCourses userCourses = new UserCourses();
         userCourses.setCourseDescription("example");
         assertEquals("example", userCourses.getCourseDescription());
-
     }
 
     @Test
@@ -73,7 +72,6 @@ public class UserCoursesTest {
         IUserCourses userCourses = new UserCourses();
         userCourses.setBannerId("B0000000");
         assertEquals("B0000000", userCourses.getBannerId());
-
     }
 
     @Test
@@ -87,7 +85,6 @@ public class UserCoursesTest {
         IUserCourses userCourses = new UserCourses();
         userCourses.setUserRole("TA");
         assertEquals("TA", userCourses.getUserRole());
-
     }
 
 }

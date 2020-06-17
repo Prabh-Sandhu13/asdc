@@ -22,7 +22,6 @@ public class UserService implements IUserService {
         }
 
         policyService = Injector.instance().getPolicyService();
-
         String password = user.getPassword();
         String passwordSecurityError = policyService.passwordSPolicyCheck(password);
 
@@ -40,7 +39,6 @@ public class UserService implements IUserService {
         encryptor = Injector.instance().getPasswordEncryptor();
 
         user.setPassword(encryptor.encoder(user.getPassword()));
-
         IUser userByEmailId = userRepository.getUserByEmailId(user);
 
         if (userByEmailId == null) {
@@ -50,7 +48,6 @@ public class UserService implements IUserService {
         } else {
             throw new UserAlreadyExistsException("An account with " + user.getEmailId() + " already exists!!");
         }
-
         return success;
     }
 
@@ -63,8 +60,8 @@ public class UserService implements IUserService {
     }
 
     private boolean checkForValues(IUser user) {
-
         boolean outcome = true;
+
         if (user.getFirstName().isEmpty() || user.getLastName().isEmpty() || user.getEmailId().isEmpty()
                 || user.getPassword().isEmpty() || user.getConfirmPassword().isEmpty()) {
             outcome = false;

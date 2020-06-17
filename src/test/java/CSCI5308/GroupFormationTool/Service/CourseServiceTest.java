@@ -47,7 +47,7 @@ public class CourseServiceTest {
         courses.add(course);
 
         when(courseRepository.getAllCourses()).thenReturn(courses);
-        assertTrue(courseService.getAllCourses() instanceof ArrayList);
+        assertTrue(courseService.getAllCourses().size() == 2);
         assertFalse(courseService.getAllCourses().isEmpty());
 
         courses = new ArrayList<>();
@@ -55,7 +55,6 @@ public class CourseServiceTest {
         when(courseRepository.getAllCourses()).thenReturn(courses);
         assertTrue(courseService.getAllCourses().isEmpty());
         assertFalse(courseService.getAllCourses().size() > 1);
-
     }
 
     @Test
@@ -76,7 +75,6 @@ public class CourseServiceTest {
         when(courseRepository.getCourseById(courseId)).thenReturn(course);
         assertFalse(courseId.equals(courseService.getCourseById(courseId).getId()));
         assertTrue(courseService.getCourseById(courseId).getDescription() == null);
-
     }
 
     @Test
@@ -116,6 +114,5 @@ public class CourseServiceTest {
         userCourses = new UserCourses();
         when(courseRepository.deleteCourse(courseId)).thenReturn(courseId.equals(userCourses.getCourseId()));
         assertFalse(courseService.deleteCourse(courseId));
-
     }
 }

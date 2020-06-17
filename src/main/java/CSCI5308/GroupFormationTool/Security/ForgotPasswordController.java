@@ -44,9 +44,7 @@ public class ForgotPasswordController {
             modelAndView = new ModelAndView("forgotPassword");
             modelAndView.addObject("userAlreadyExists", "An account with " + user.getEmailId() + " not found");
         } catch (Exception e) {
-
         }
-
         return modelAndView;
     }
 
@@ -56,7 +54,6 @@ public class ForgotPasswordController {
         policyService = Injector.instance().getPolicyService();
         ArrayList<IPolicy> policies = policyService.getPolicies();
         model.addAttribute("policies", policies);
-
         return "resetPassword";
     }
 
@@ -84,7 +81,6 @@ public class ForgotPasswordController {
             modelAndView = new ModelAndView("resetPassword");
             modelAndView.addObject("Error", "Something went wrong, please try again");
         }
-
         return modelAndView;
     }
 }

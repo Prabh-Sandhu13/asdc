@@ -33,18 +33,14 @@ public class StudentService implements IStudentService {
             CsvToBean<StudentCSV> csvToBean = new CsvToBeanBuilder<StudentCSV>(reader).withType(StudentCSV.class)
                     .withIgnoreLeadingWhiteSpace(true).build();
 
-            List<StudentCSV> students = (List<StudentCSV>) csvToBean.parse();
+            List<StudentCSV> students = csvToBean.parse();
             studentLists = studentRepository.createStudent(students, courseId);
 
             mailService.sendBatchMail(studentLists.get(DomainConstants.newStudents), courseId);
 
         } catch (Exception ex) {
-
             return null;
         }
-
         return studentLists;
-
     }
-
 }

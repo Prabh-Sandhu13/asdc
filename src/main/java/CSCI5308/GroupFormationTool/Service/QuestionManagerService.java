@@ -8,8 +8,7 @@ import CSCI5308.GroupFormationTool.DomainConstants;
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.Model.Choice;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class QuestionManagerService implements IQuestionManagerService {
     IQuestionManagerRepository questionManagerRepository;
@@ -17,7 +16,6 @@ public class QuestionManagerService implements IQuestionManagerService {
     @Override
     public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
         questionManagerRepository = Injector.instance().getQuestionManagerRepository();
-
         return questionManagerRepository.getQuestionListForInstructor(emailId);
 
     }
@@ -25,25 +23,41 @@ public class QuestionManagerService implements IQuestionManagerService {
     @Override
     public long createQuestion(IQuestion question, List<String> optionText, List<String> optionValue) {
         int type = question.getType();
+        Set<String> optionTextSet = new HashSet<>();
+        Set<String> optionValueSet = new HashSet<>();
 
         if (checkIfInvalid(question.getTitle(), question.getText(), type, optionText, optionValue)) {
             return DomainConstants.invalidData;
         } else {
-
             ArrayList<IChoice> choices = new ArrayList<>();
+            for (String text : optionText) {
+                optionTextSet.add(text);
+            }
+            for (String value : optionValue) {
+                optionValueSet.add(value);
+            }
 
             if (type == DomainConstants.MCQMultiple || type == DomainConstants.MCQOne) {
 
-                for (int i = 0; i < optionText.size(); i++) {
+                if (optionTextSet.size() == optionValueSet.size()) {
+                    Iterator<String> optionTextIterator = optionTextSet.iterator();
+                    Iterator<String> optionValueIterator = optionValueSet.iterator();
 
-                    IChoice choice = new Choice();
-                    choice.setText(optionText.get(i));
-                    choice.setValue(Integer.parseInt(optionValue.get(i)));
-                    choices.add(choice);
+                    while (optionTextIterator.hasNext() && optionValueIterator.hasNext()) {
+                        IChoice choice = new Choice();
+                        choice.setText(optionTextIterator.next());
+                        choice.setValue(Integer.parseInt(optionValueIterator.next()));
+                        choices.add(choice);
+                    }
+                } else {
+                    for (int i = 0; i < optionText.size(); i++) {
+                        IChoice choice = new Choice();
+                        choice.setText(optionText.get(i));
+                        choice.setValue(Integer.parseInt(optionValue.get(i)));
+                        choices.add(choice);
+                    }
                 }
-
                 question.setChoices(choices);
-
             } else {
                 question.setChoices(null);
             }
@@ -70,19 +84,14 @@ public class QuestionManagerService implements IQuestionManagerService {
     @Override
     public IQuestion getQuestionById(long questionId) {
         questionManagerRepository = Injector.instance().getQuestionManagerRepository();
-
         IQuestion question = questionManagerRepository.getQuestionById(questionId);
-
         ArrayList<IChoice> choiceList = null;
 
         if (question.getType() == DomainConstants.MCQMultiple || question.getType() == DomainConstants.MCQOne) {
             choiceList = questionManagerRepository.getOptionsForTheQuestion(questionId);
         }
-
         question.setChoices(choiceList);
-
         return question;
-
     }
 
     @Override

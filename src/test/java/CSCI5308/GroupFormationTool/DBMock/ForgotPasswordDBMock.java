@@ -44,7 +44,6 @@ public class ForgotPasswordDBMock implements IForgotPasswordRepository {
 
     @Override
     public boolean deleteToken(IUser user, String token) {
-
         if (user == null || token.equals("") || token.equals(null)) {
             return false;
         } else {
@@ -63,7 +62,6 @@ public class ForgotPasswordDBMock implements IForgotPasswordRepository {
 
     @Override
     public IUser getEmailByToken(IUser user, String token) {
-
         if (user != null && user.getEmailId().equalsIgnoreCase("haard.shah@dal.ca")) {
             return user;
         } else {

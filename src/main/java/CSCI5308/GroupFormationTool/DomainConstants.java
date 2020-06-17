@@ -31,9 +31,9 @@ public final class DomainConstants {
     public final static long sqlError = -1;
 
     // Database
-    public static final String URL = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_22_DEVINT?useSSL=false"
+    public static final String URL = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_22_TEST?useSSL=false"
             + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    public static final String USER = "CSCI5308_22_DEVINT_USER";
-    public static final String PASSWORD = "CSCI5308_22_DEVINT_22320";
+    public static final String USER = "CSCI5308_22_TEST_USER";
+    public static final String PASSWORD = "CSCI5308_22_TEST_22546";
 
 }

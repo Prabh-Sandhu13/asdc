@@ -62,21 +62,16 @@ public class QuestionRepositoryTest {
         assertFalse(question.getInstructor() == null);
         assertFalse(question.getType() == DomainConstants.MCQMultiple);
 
-        assertTrue(question.getChoices() instanceof ArrayList);
+        assertTrue(question.getChoices() != null);
         assertTrue(question.getId() == 1);
-        assertTrue(question.getText() instanceof String);
-        assertTrue(question.getTitle() instanceof String);
-        assertTrue(question.getInstructor() instanceof User);
+        assertTrue(question.getText().equals("Spring text"));
+        assertTrue(question.getTitle().equals("Spring title"));
+        assertTrue(question.getInstructor().getEmailId().equals("padmeshdonthu@gmail.com"));
         assertTrue(question.getType() == DomainConstants.MCQOne);
-        assertTrue(question.getCreatedDate() instanceof Date);
-
     }
 
     @Test
     void getOptionsForTheQuestionTest() {
-
-        long questionId = 1;
-        int questionType = DomainConstants.MCQMultiple;
         ArrayList<IChoice> choices = new ArrayList<>();
         IChoice choice = new Choice();
         choice.setText("Amateur");
@@ -94,7 +89,7 @@ public class QuestionRepositoryTest {
         assertFalse(choices.get(0).getValue() == 0);
         assertFalse(choices.get(0).getText().isEmpty());
 
-        assertTrue(choices.get(0).getText() instanceof String);
+        assertTrue(choices.get(0).getText().equals("Amateur"));
         assertTrue(choices.get(0).getValue() == 1);
 
         assertTrue(choices.get(1).getText().length() < 100);
@@ -103,25 +98,19 @@ public class QuestionRepositoryTest {
         assertFalse(choices.get(1).getValue() == 0);
         assertFalse(choices.get(1).getText().isEmpty());
 
-        assertTrue(choices.get(1).getText() instanceof String);
+        assertTrue(choices.get(1).getText().equals("Beginner"));
         assertTrue(choices.get(1).getValue() == 2);
 
         assertFalse(choices.isEmpty());
         assertTrue(choices.size() == 2);
 
-        questionId = 2;
-        questionType = DomainConstants.numeric;
-
         choices = new ArrayList<>();
-
         assertTrue(choices.isEmpty());
         assertFalse(choices.size() > 2);
-
     }
 
     @Test
     void getQuestionByIdTest() {
-
         long questionId = 1;
         Question question = new Question();
         ArrayList<IChoice> choices = new ArrayList<>();
@@ -154,7 +143,6 @@ public class QuestionRepositoryTest {
         assertTrue(question.getChoices().size() < 100);
         assertTrue(question.getType() < 10);
 
-
         assertFalse(question.getCreatedDate() == null);
         assertFalse(question.getId() == 0);
         assertFalse(question.getTitle().isEmpty());
@@ -163,14 +151,12 @@ public class QuestionRepositoryTest {
         assertFalse(question.getInstructor() == null);
         assertFalse(question.getType() == DomainConstants.MCQMultiple);
 
-        assertTrue(question.getChoices() instanceof ArrayList);
+        assertTrue(question.getChoices().size() == 2);
         assertTrue(question.getId() == questionId);
-        assertTrue(question.getText() instanceof String);
-        assertTrue(question.getTitle() instanceof String);
-        assertTrue(question.getInstructor() instanceof User);
+        assertTrue(question.getText().equals("Spring text"));
+        assertTrue(question.getTitle().equals("Spring title"));
+        assertTrue(question.getInstructor().getEmailId().equals("padmeshdonthu@gmail.com"));
         assertTrue(question.getType() == DomainConstants.MCQOne);
-        assertTrue(question.getCreatedDate() instanceof Date);
-
     }
 
     @Test
@@ -276,8 +262,6 @@ public class QuestionRepositoryTest {
         assertTrue(question.getId() == questionId);
         assertFalse(question.getId() == 3);
         assertTrue(question.getChoices() == null);
-        assertFalse(question.getChoices() instanceof ArrayList);
-
     }
 
     @Test
@@ -338,15 +322,8 @@ public class QuestionRepositoryTest {
         assertFalse(questions.get(1).getInstructor() == null);
         assertFalse(questions.get(1).getType() == DomainConstants.MCQMultiple);
 
-        assertTrue(questions.get(1).getChoices() instanceof ArrayList);
         assertTrue(questions.get(1).getId() == 1);
-        assertTrue(questions.get(1).getText() instanceof String);
-        assertTrue(questions.get(1).getTitle() instanceof String);
-        assertTrue(questions.get(1).getInstructor() instanceof User);
         assertTrue(questions.get(1).getType() == DomainConstants.MCQOne);
-        assertTrue(questions.get(1).getCreatedDate() instanceof Date);
-
-
         assertTrue(questions.get(0).getText().length() < 200);
         assertTrue(questions.get(0).getTitle().length() < 100);
         assertTrue(questions.get(0).getId() < 10);
@@ -358,20 +335,14 @@ public class QuestionRepositoryTest {
         assertFalse(questions.get(0).getId() == 0);
         assertFalse(questions.get(0).getTitle().isEmpty());
         assertFalse(questions.get(0).getText().isEmpty());
-        assertFalse(questions.get(0).getChoices() instanceof ArrayList);
         assertFalse(questions.get(0).getInstructor() == null);
         assertFalse(questions.get(0).getType() == DomainConstants.MCQOne);
 
         assertTrue(questions.get(0).getId() == 2);
-        assertTrue(questions.get(0).getText() instanceof String);
-        assertTrue(questions.get(0).getTitle() instanceof String);
         assertTrue(questions.get(0).getInstructor() instanceof User);
         assertTrue(questions.get(0).getType() == DomainConstants.numeric);
-        assertTrue(questions.get(0).getCreatedDate() instanceof Date);
 
         assertFalse(questions.isEmpty());
-        assertTrue(questions instanceof ArrayList);
-
     }
 
 }

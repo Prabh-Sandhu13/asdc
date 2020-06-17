@@ -35,7 +35,6 @@ public class PolicyRepositoryTest {
 		assertFalse(policy.getId() < 0);
 		assertFalse(policy.getValue().isEmpty());
 		assertTrue(policy.getSetting().equals("Maximum length"));
-		
 	}
 	
 	@Test
@@ -68,5 +67,4 @@ public class PolicyRepositoryTest {
         assertFalse(policyList.isEmpty());
         assertTrue(policyList.size() == 2);
 	}
-
 }

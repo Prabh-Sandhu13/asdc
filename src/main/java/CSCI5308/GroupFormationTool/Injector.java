@@ -72,10 +72,6 @@ public class Injector {
         return instance;
     }
 
-    public void setMailSender(JavaMailSenderImpl mailSender) {
-        this.mailSender = mailSender;
-    }
-
     public IUserCoursesRepository getUserCoursesRepository() {
         return userCoursesRepository;
     }
@@ -86,10 +82,6 @@ public class Injector {
 
     public IUserCoursesService getUserCoursesService() {
         return userCoursesService;
-    }
-
-    public void setUserCoursesService(IUserCoursesService userCoursesService) {
-        this.userCoursesService = userCoursesService;
     }
 
     public IPasswordEncryptor getPasswordEncryptor() {
@@ -112,24 +104,12 @@ public class Injector {
         return dbConfiguration;
     }
 
-    public void setDbConfiguration(IDBConfiguration dbConfiguration) {
-        this.dbConfiguration = dbConfiguration;
-    }
-
     public IUserService getUserService() {
         return userService;
     }
 
-    public void setUserService(IUserService userService) {
-        this.userService = userService;
-    }
-
     public IForgotPasswordService getForgotPasswordService() {
         return forgotPasswordService;
-    }
-
-    public void setForgotPasswordService(IForgotPasswordService forgotPasswordService) {
-        this.forgotPasswordService = forgotPasswordService;
     }
 
     public IForgotPasswordRepository getForgotPasswordRepository() {
@@ -144,10 +124,6 @@ public class Injector {
         return tokenGenerator;
     }
 
-    public void setTokenGenerator(ITokenGenerator tokenGenerator) {
-        this.tokenGenerator = tokenGenerator;
-    }
-
     public IMailService getMailService() {
         return mailService;
     }
@@ -160,20 +136,12 @@ public class Injector {
         return mailMessage;
     }
 
-    public void setMailMessage(SimpleMailMessage mailMessage) {
-        this.mailMessage = mailMessage;
-    }
-
     public JavaMailSenderImpl getJavaMailSender() {
         return mailSender;
     }
 
     public ICourseService getCourseService() {
         return courseService;
-    }
-
-    public void setCourseService(ICourseService courseService) {
-        this.courseService = courseService;
     }
 
     public ICourseRepository getCourseRepository() {
@@ -194,10 +162,6 @@ public class Injector {
 
     public IStudentService getStudentService() {
         return studentService;
-    }
-
-    public void setStudentService(IStudentService studentService) {
-        this.studentService = studentService;
     }
 
     public IPasswordHistoryRepository getPasswordHistoryRepository() {
@@ -242,9 +206,5 @@ public class Injector {
 
     public IQuestionManagerService getQuestionManagerService() {
         return questionManagerService;
-    }
-
-    public void setQuestionManagerService(IQuestionManagerService questionManagerService) {
-        this.questionManagerService = questionManagerService;
     }
 }

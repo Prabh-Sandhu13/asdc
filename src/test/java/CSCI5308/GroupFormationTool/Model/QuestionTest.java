@@ -56,7 +56,6 @@ public class QuestionTest {
     public void getTitleTest() {
         IQuestion question = createDefaultQuestion();
         assertEquals("Sample", question.getTitle());
-
     }
 
     @Test
@@ -70,7 +69,6 @@ public class QuestionTest {
     public void getTextTest() {
         IQuestion question = createDefaultQuestion();
         assertEquals("Sample question", question.getText());
-
     }
 
     @Test
@@ -84,7 +82,6 @@ public class QuestionTest {
     public void getTypeTest() {
         IQuestion question = createDefaultQuestion();
         assertEquals(1, question.getType());
-
     }
 
     @Test
@@ -98,7 +95,6 @@ public class QuestionTest {
     public void getCreatedDateTest() {
         IQuestion question = createDefaultQuestion();
         assertEquals("1969-12-31", question.getCreatedDate().toString());
-
     }
 
     @Test
@@ -107,31 +103,23 @@ public class QuestionTest {
         Date date = new Date(0);
         question.setCreatedDate(date);
         assertEquals("1969-12-31", question.getCreatedDate().toString());
-
     }
 
     @Test
     public void getChoicesTest() {
         IQuestion question = createDefaultQuestion();
         assertEquals(1, question.getChoices().size());
-
     }
 
     @Test
     public void setChoicesTest() {
         IQuestion question = new Question();
-
+        ArrayList<IChoice> choices = new ArrayList<>();
         IChoice choice = new Choice();
         choice.setText("sample");
         choice.setValue(1);
-
-        ArrayList<IChoice> choices = new ArrayList<>();
         choices.add(choice);
-
         question.setChoices(choices);
-
         assertEquals(1, question.getChoices().size());
-
     }
-
 }

@@ -16,9 +16,7 @@
 
 </head>
 <body style="background-color: #e7ebee">
-
 <div class="container">
-
     <div sec:authorize="!isAuthenticated()">
         <!-- Send them to login. -->
         <p>You have not logged in to the application. Please login to
@@ -36,13 +34,11 @@
              class="validation-message alert alert-danger" role="alert"
              th:text="${failureMessage}"></div>
 
-
         <h1>List of Courses</h1>
         <a href="/admin/addCourse">Add a new Course</a> <br> <br>
         <div class="table-responsive">
             <table class="table table-bordered table-hover table-striped">
                 <tr>
-
                     <th>Course Id</th>
 
                     <th>Name</th>

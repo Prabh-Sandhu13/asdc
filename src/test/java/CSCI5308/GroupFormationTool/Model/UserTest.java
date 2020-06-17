@@ -24,97 +24,93 @@ public class UserTest {
 
     @Test
     public void getIdTest() {
-        IUser u = createDefaultUser();
-        assertEquals(1, u.getId());
+        IUser user = createDefaultUser();
+        assertEquals(1, user.getId());
     }
 
     @Test
     public void setIdTest() {
-        IUser u = new User();
-        u.setId(2);
-        assertEquals(2, u.getId());
-
+        IUser user = new User();
+        user.setId(2);
+        assertEquals(2, user.getId());
     }
 
     @Test
     public void getFirstNameTest() {
-        IUser u = createDefaultUser();
-        assertEquals("Test", u.getFirstName());
+        IUser user = createDefaultUser();
+        assertEquals("Test", user.getFirstName());
     }
 
     @Test
     public void setFirstNameTest() {
-        IUser u = new User();
-        u.setFirstName("Padmesh");
-        assertEquals("Padmesh", u.getFirstName());
-
+        IUser user = new User();
+        user.setFirstName("Padmesh");
+        assertEquals("Padmesh", user.getFirstName());
     }
 
     @Test
     public void getLastNameTest() {
-        IUser u = createDefaultUser();
-        assertEquals("User", u.getLastName());
+        IUser user = createDefaultUser();
+        assertEquals("User", user.getLastName());
     }
 
     @Test
     public void setLastNameTest() {
-        IUser u = new User();
-        u.setLastName("Donthu");
-        assertEquals("Donthu", u.getLastName());
-
+        IUser user = new User();
+        user.setLastName("Donthu");
+        assertEquals("Donthu", user.getLastName());
     }
 
     @Test
     public void getBannerIdTest() {
-        IUser u = createDefaultUser();
-        assertEquals("B00854462", u.getBannerId());
+        IUser user = createDefaultUser();
+        assertEquals("B00854462", user.getBannerId());
     }
 
     @Test
     public void setBannerIdTest() {
-        IUser u = new User();
-        u.setBannerId("B0000000");
-        assertEquals("B0000000", u.getBannerId());
-
+        IUser user = new User();
+        user.setBannerId("B0000000");
+        assertEquals("B0000000", user.getBannerId());
     }
 
     @Test
     public void getEmailIdTest() {
-        IUser u = createDefaultUser();
-        assertEquals("padmeshdonthu@gmail.com", u.getEmailId());
+        IUser user = createDefaultUser();
+        assertEquals("padmeshdonthu@gmail.com", user.getEmailId());
     }
 
     @Test
     public void setEmailIdTest() {
-        IUser u = new User();
-        u.setBannerId("padmeshdonthu@gmail.com");
-        assertEquals("padmeshdonthu@gmail.com", u.getBannerId());
+        IUser user = new User();
+        user.setBannerId("padmeshdonthu@gmail.com");
+        assertEquals("padmeshdonthu@gmail.com", user.getBannerId());
     }
 
     @Test
     public void getPasswordTest() {
-        IUser u = createDefaultUser();
-        assertEquals("password", u.getPassword());
+        IUser user = createDefaultUser();
+        assertEquals("password", user.getPassword());
     }
 
     @Test
     public void setPasswordTest() {
-        IUser u = new User();
-        u.setPassword("password");
-        assertEquals("password", u.getPassword());
+        IUser user = new User();
+        user.setPassword("password");
+        assertEquals("password", user.getPassword());
     }
 
     @Test
     public void getConfirmPasswordTest() {
-        IUser u = createDefaultUser();
-        assertEquals("password", u.getConfirmPassword());
+        IUser user = createDefaultUser();
+        assertEquals("password", user.getConfirmPassword());
     }
 
     @Test
     public void setConfirmPasswordTest() {
-        IUser u = new User();
-        u.setConfirmPassword("password");
-        assertEquals("password", u.getConfirmPassword());
+        IUser user = new User();
+        user.setConfirmPassword("password");
+        assertEquals("password", user.getConfirmPassword());
     }
 
 }

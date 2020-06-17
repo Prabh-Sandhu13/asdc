@@ -42,7 +42,6 @@ public class UserDBMock implements IUserRepository {
 
     @Override
     public boolean createUser(IUser user) {
-
         user.setBannerId(bannerId);
         user.setConfirmPassword(confirmPassword);
         user.setEmailId(emailId);
@@ -55,20 +54,7 @@ public class UserDBMock implements IUserRepository {
 
     @Override
     public IUser getUserByEmailId(IUser user) {
-
         user.setBannerId(bannerId);
-        user.setConfirmPassword(confirmPassword);
-        user.setEmailId(user.getEmailId());
-        user.setFirstName(firstName);
-        user.setId(id);
-        user.setLastName(lastName);
-        user.setPassword(password);
-        return user;
-    }
-
-    @Override
-    public IUser getUserByBannerId(IUser user) {
-        user.setBannerId(user.getBannerId());
         user.setConfirmPassword(confirmPassword);
         user.setEmailId(user.getEmailId());
         user.setFirstName(firstName);
@@ -80,7 +66,6 @@ public class UserDBMock implements IUserRepository {
 
     @Override
     public IUser getAdminDetails() {
-
         IUser user = new User();
         user.setBannerId("B0000000");
         user.setConfirmPassword("administrator");
@@ -89,7 +74,6 @@ public class UserDBMock implements IUserRepository {
         user.setId(0);
         user.setLastName("AdminLname");
         user.setPassword("administrator");
-
         return user;
     }
 
@@ -101,7 +85,6 @@ public class UserDBMock implements IUserRepository {
         user.setId(id);
         user.setLastName(lastName);
         user.setPassword(password);
-
         return user;
     }
 
@@ -110,5 +93,4 @@ public class UserDBMock implements IUserRepository {
         user.setId(id);
         return user;
     }
-
 }

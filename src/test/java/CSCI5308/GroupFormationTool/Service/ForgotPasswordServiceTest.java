@@ -70,7 +70,6 @@ public class ForgotPasswordServiceTest {
 
         String expectedMsg = "An account with " + user.getEmailId() + " not found!";
         String actualMsg = exception.getMessage();
-
         assertTrue(expectedMsg.equals(actualMsg));
     }
 
@@ -140,7 +139,5 @@ public class ForgotPasswordServiceTest {
         expectedMsg = "The passwords do not match. Please try again!";
         actualMsg = passwordException.getMessage();
         assertTrue(expectedMsg.equals(actualMsg));
-
     }
-
 }

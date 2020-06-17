@@ -36,7 +36,6 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
         courseDescription = "sample";
         bannerId = "B00854462";
         userRole = "student";
-
         id = "CSCI5308";
         name = "Adv SDC";
         credits = 3;
@@ -44,7 +43,6 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
     }
 
     public IUserCourses loadCourses(IUserCourses userCourses) {
-
         userCourses.setBannerId(bannerId);
         userCourses.setCourseDescription(courseDescription);
         userCourses.setCourseId(courseId);
@@ -55,20 +53,15 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
     @Override
     public ArrayList<IUserCourses> getRoleBasedCourses(String emailId) {
-
         ArrayList<IUserCourses> courseList = new ArrayList<>();
         IUserCourses courses = new UserCourses();
-
         courses.setBannerId(bannerId);
         courses.setCourseDescription(courseDescription);
         courses.setCourseName(courseName);
         courses.setUserRole(userRole);
         courses.setCourseId(courseId);
-
         courseList.add(courses);
-
         return courseList;
-
     }
 
     @Override
@@ -81,21 +74,17 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
             return "Instructor";
         }
         return "Guest";
-
     }
 
     @Override
     public ArrayList<ICourse> getStudentCourses(String emailId) {
         ArrayList<ICourse> studentCourseList = new ArrayList<>();
         ICourse course = new Course();
-
         course.setCredits(credits);
         course.setDescription(description);
         course.setName(name);
         course.setId(id);
-
         studentCourseList.add(course);
-
         return studentCourseList;
     }
 
@@ -108,15 +97,14 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
         course.setDescription(description);
         course.setName(name);
         course.setId(id);
-
         taCourseList.add(course);
-
         return taCourseList;
     }
 
     public ArrayList<IUser> usersCurrentlyNotInstructorsForCourse(String courseId) {
         ArrayList<IUser> usersCurrentlyNotInstructorsForCourse = new ArrayList<>();
         IUser userCurrentlyNotInstructorsForCourse = new User();
+
         userCurrentlyNotInstructorsForCourse.setBannerId(bannerId);
         userCurrentlyNotInstructorsForCourse.setEmailId("stu@gmail.com");
         userCurrentlyNotInstructorsForCourse.setFirstName("John");
@@ -145,9 +133,7 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
         course.setDescription(description);
         course.setName(name);
         course.setId(id);
-
         instCourseList.add(course);
-
         return instCourseList;
     }
 
@@ -185,7 +171,6 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
     @Override
     public boolean getUserRoleForCourse(String userId, String courseId) {
-
         IUserCourses userCourses = new UserCourses();
 
         userCourses.setBannerId(bannerId);

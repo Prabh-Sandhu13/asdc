@@ -45,7 +45,6 @@ public class UserRegistrationController implements WebMvcConfigurer {
             modelAndView = new ModelAndView("signup");
             modelAndView.addObject("passwordError", pex.getMessage());
         }
-
         return modelAndView;
     }
 
@@ -57,5 +56,4 @@ public class UserRegistrationController implements WebMvcConfigurer {
         model.addAttribute("policies", policies);
         return "signup";
     }
-
 }

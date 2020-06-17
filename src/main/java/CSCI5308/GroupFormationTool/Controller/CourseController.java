@@ -42,7 +42,6 @@ public class CourseController {
         userService = Injector.instance().getUserService();
         userCoursesService = Injector.instance().getUserCoursesService();
 
-
         String emailId = authentication.getPrincipal().toString();
 
         if (userService.checkCurrentUserIsAdmin(emailId)) {
@@ -80,9 +79,7 @@ public class CourseController {
                 return "instructor/instructorCourses";
             }
         }
-
         return "guest/guestCourses";
-
     }
 
     @GetMapping(value = "/courseDetails")
@@ -118,7 +115,6 @@ public class CourseController {
         taList = userCoursesService.getTAForCourse(courseId);
         model.addAttribute("taList", taList);
         model.addAttribute("courseId", courseId);
-//		user.setEmailId(null);
         return "ta/enrollTA";
     }
 
@@ -153,7 +149,6 @@ public class CourseController {
         } else {
             model.addAttribute("failureMessage",
                     "The course " + course.getName() + " could not be added since the " + "course already exists!");
-
         }
         model.addAttribute("courses", allCourses);
         return "admin\\allCourses";
@@ -175,8 +170,7 @@ public class CourseController {
         return "admin\\allCourses";
     }
 
-    // Code referenced from -
-    // "https://attacomsian.com/blog/spring-boot-upload-parse-csv-file#"
+    // Code referred from "https://attacomsian.com/blog/spring-boot-upload-parse-csv-file#"
     @PostMapping("/uploadCSVFile")
     public String uploadCSVFile(@RequestParam("file") MultipartFile file, Model model,
                                 @RequestParam(name = "courseId") String courseId) {
@@ -187,9 +181,7 @@ public class CourseController {
             model.addAttribute("message", "Please select a CSV file to upload.");
             model.addAttribute("status", false);
         } else {
-
             studentService = Injector.instance().getStudentService();
-
             studentLists = studentService.createStudent(file, courseId);
 
             if (studentLists != null) {
@@ -206,7 +198,6 @@ public class CourseController {
                 model.addAttribute("status", false);
             }
         }
-
         return "instructor\\CSVSuccessTable";
     }
 

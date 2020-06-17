@@ -21,11 +21,9 @@ public class UserRepository implements IUserRepository {
             storedProcedure.setInputStringParameter(3, user.getLastName());
             storedProcedure.setInputStringParameter(4, user.getEmailId());
             storedProcedure.setInputStringParameter(5, user.getPassword());
-
             storedProcedure.execute();
 
         } catch (SQLException ex) {
-
             return false;
         } finally {
             if (storedProcedure != null) {
@@ -46,7 +44,6 @@ public class UserRepository implements IUserRepository {
             ResultSet results = storedProcedure.executeWithResults();
 
             if (results != null) {
-
                 while (results.next()) {
                     {
                         userWithUserId = new User();
@@ -54,11 +51,8 @@ public class UserRepository implements IUserRepository {
                     }
                 }
             }
-
         } catch (SQLException ex) {
-
             System.out.println(ex.getMessage());
-
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -92,47 +86,13 @@ public class UserRepository implements IUserRepository {
             }
 
         } catch (SQLException ex) {
-
             System.out.println(ex.getMessage());
-
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
         }
         return userByEmailId;
-
-    }
-
-    @Override
-    public IUser getUserByBannerId(IUser user) {
-        StoredProcedure storedProcedure = null;
-        IUser userByBannerId = null;
-        try {
-            storedProcedure = new StoredProcedure("sp_getUserByBannerId(?)");
-            storedProcedure.setInputStringParameter(1, user.getBannerId());
-            ResultSet results = storedProcedure.executeWithResults();
-
-            if (results != null) {
-                while (results.next()) {
-                    {
-                        userByBannerId = new User();
-                        userByBannerId.setBannerId(results.getString("banner_id"));
-                        userByBannerId.setEmailId(results.getString("email"));
-                        userByBannerId.setFirstName(results.getString("first_name"));
-                        userByBannerId.setLastName(results.getString("last_name"));
-                    }
-                }
-            }
-
-        } catch (SQLException ex) {
-
-        } finally {
-            if (storedProcedure != null) {
-                storedProcedure.removeConnections();
-            }
-        }
-        return userByBannerId;
     }
 
     @Override
@@ -156,7 +116,6 @@ public class UserRepository implements IUserRepository {
             }
 
         } catch (SQLException ex) {
-
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();

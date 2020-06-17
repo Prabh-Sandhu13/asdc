@@ -21,19 +21,14 @@
 		margin-bottom: 2rem;
 		border-top: 3px solid #2e6da4;
 	}
-
 	textarea {
 		resize: vertical;
 	}
-
-
     </style>
 
 </head>
 <body style="background-color: #e7ebee">
-
 <div class="container" style="padding: 10px;">
-
     <div sec:authorize="!isAuthenticated()">
         <!-- Send them to login. -->
         <p>You have not yet logged in to the application. Please login to
@@ -123,13 +118,9 @@
                                                 placeholder="Option stored as value" class="form-control"/> <span
                             class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
-
                 </div>
-
             </div>
-
             <div id="addedChoices" class="container" style="display: none"></div>
-
             <div class="row" id="addMoreBtn" style="display: none">
                 <div class="text-right">
                     <button type="button" onclick="showMoreOptions()" style="right: 0"
@@ -139,17 +130,13 @@
                     </button>
                 </div>
             </div>
-
             <hr/>
-
             <div class="text-right">
                 <button type="submit" style="right: 0"
                         class="btn btn-primary btn-md">Save Question
                 </button>
             </div>
-
         </form>
-
         <br/>
         <div class="text-center">
             <a th:href="@{/questionManager/questionManager}"
@@ -158,8 +145,6 @@
                 Question List
             </a>
         </div>
-
-
     </div>
 </div>
 
@@ -170,7 +155,6 @@
 			.addEventListener(
 					'change',
 					function(e) {
-
 						if (this.value == 2 || this.value == 3) {
 							document.getElementById("choices").style.display = "block";
 							document.getElementById("addMoreBtn").style.display = "block";
@@ -179,14 +163,11 @@
 							document.getElementById("addMoreBtn").style.display = "none";
 							document.getElementById("addedChoices").innerHTML = '';
 							document.getElementById("addedChoices").style.display = "none";
-
 						}
-
 					});
 
 	function showMoreOptions() {
 		document.getElementById("addedChoices").style.display = "block";
-
 		document.getElementById("addedChoices").innerHTML += "<br /><div class='row' style='margin-left: -30px'>"
 				+ "<div class='col-xs-6' style='width: 35%;'><label for='questionTitle'>Enter the option displayed as"
 				+ " here</label> <input type='text' name='optionText'"
@@ -198,6 +179,5 @@
 				+ " /> <span class='glyphicon form-control-feedback'"
 				+ "aria-hidden='true'></span></div></div>";
 	}
-
 </script>
 </html>

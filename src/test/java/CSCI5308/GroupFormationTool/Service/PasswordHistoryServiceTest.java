@@ -60,7 +60,6 @@ public class PasswordHistoryServiceTest {
         when(passwordHistoryRepository.getNPasswords(user, num)).thenReturn(passwords);
         when(bCryptEncryption.passwordMatch(encryptedPassword, passwords.get(2))).thenReturn(true);
         assertTrue(passwordHistoryService.isHistoryViolated(user, user.getPassword()));
-
     }
 
     @Test
@@ -76,7 +75,6 @@ public class PasswordHistoryServiceTest {
         String encryptedPassword = "encrypted12345";
         when(passwordHistoryRepository.addPasswordHistory(user, encryptedPassword)).thenReturn(true);
         passwordHistoryService.addPasswordHistory(user, encryptedPassword);
-
     }
 
     @Test
@@ -85,6 +83,5 @@ public class PasswordHistoryServiceTest {
         when(passwordHistoryRepository.getSettingValue(settingName)).thenReturn("6");
         assertFalse(passwordHistoryService.getSettingValue(settingName).isEmpty());
         assertTrue(passwordHistoryService.getSettingValue(settingName).equals("6"));
-
     }
 }

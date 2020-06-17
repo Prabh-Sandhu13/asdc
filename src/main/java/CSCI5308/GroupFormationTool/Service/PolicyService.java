@@ -90,7 +90,6 @@ public class PolicyService implements IPolicyService {
 
     @Override
     public String passwordSPolicyCheck(String password) {
-
         policyRepository = Injector.instance().getPolicyRepository();
         ArrayList<IPolicy> policies = policyRepository.passwordSPolicyCheck(password);
         return checkPasswordSecurity(password, policies);
@@ -98,7 +97,6 @@ public class PolicyService implements IPolicyService {
 
     @Override
     public ArrayList<IPolicy> getPolicies() {
-
         policyRepository = Injector.instance().getPolicyRepository();
         ArrayList<IPolicy> policies = policyRepository.getPolicies();
         return policies;

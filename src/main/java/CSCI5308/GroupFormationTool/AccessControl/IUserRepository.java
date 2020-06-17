@@ -6,8 +6,6 @@ public interface IUserRepository {
 
     IUser getUserByEmailId(IUser user);
 
-    IUser getUserByBannerId(IUser user);
-
     IUser getAdminDetails();
 
     IUser getUserIdByEmailId(IUser user);

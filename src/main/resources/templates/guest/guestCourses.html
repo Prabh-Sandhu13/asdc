@@ -16,7 +16,6 @@
 
 </head>
 <body style="background-color: #e7ebee">
-
 <div class="container">
     <div sec:authorize="!isAuthenticated()">
         <!-- Send them to login. -->
@@ -30,7 +29,6 @@
         <div
                 th:if="${authorizationError == null and courses!=null and !courses.empty} ">
             <h3 class="text-center">Courses Available Are</h3>
-
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
@@ -59,11 +57,9 @@
             </form>
 
         </div>
-
         <div
                 th:if="${authorizationError == null and courses ==null or courses.empty} ">
             <h3 class="text-center">Courses Available Are</h3>
-
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>

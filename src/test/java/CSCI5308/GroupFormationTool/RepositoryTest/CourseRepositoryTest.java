@@ -21,31 +21,28 @@ public class CourseRepositoryTest {
     public void deleteCourseTest() {
 
         Course course = new Course();
+        String deletedId = "CSCI 5308";
+
         course.setName("New Course");
         course.setCredits(3);
         course.setDescription("New course description");
-
-        String deletedId = "CSCI 5308";
         course.setId(deletedId);
 
         assertFalse(course.getId().isEmpty());
         assertTrue(course.getId().equals(deletedId));
         assertTrue(course.getId().length() < 200);
-        assertTrue(course.getId() instanceof String);
+        assertTrue(course.getId().equals(deletedId));
         assertFalse(course.getId().equals("1"));
-
     }
 
     @Test
     void getAllCourses() {
-
         ArrayList<Course> courseList = new ArrayList<>();
         Course course = new Course();
         course.setName("New Course");
         course.setCredits(3);
         course.setDescription("New course description");
         course.setId("CSCI 5308");
-
         courseList.add(course);
 
         course = new Course();
@@ -53,7 +50,6 @@ public class CourseRepositoryTest {
         course.setCredits(4);
         course.setDescription("New course description 2");
         course.setId("CSCI 5408");
-
         courseList.add(course);
 
         assertTrue(courseList.get(0).getId().length() < 100);
@@ -65,10 +61,10 @@ public class CourseRepositoryTest {
         assertFalse(courseList.get(0).getId().isEmpty());
         assertFalse(courseList.get(0).getCredits() == 0);
         assertFalse(courseList.get(0).getDescription().isEmpty());
-        assertTrue(courseList.get(0).getName() instanceof String);
-        assertTrue(courseList.get(0).getId() instanceof String);
+        assertTrue(courseList.get(0).getName().equals("New Course"));
+        assertTrue(courseList.get(0).getId().equals("CSCI 5308"));
         assertTrue(courseList.get(0).getCredits() == 3);
-        assertTrue(courseList.get(0).getDescription() instanceof String);
+        assertTrue(courseList.get(0).getDescription().equals("New course description"));
 
         assertTrue(courseList.get(1).getId().length() < 100);
         assertTrue(courseList.get(1).getId().length() < 10);
@@ -79,15 +75,13 @@ public class CourseRepositoryTest {
         assertFalse(courseList.get(1).getId().isEmpty());
         assertFalse(courseList.get(1).getCredits() == 0);
         assertFalse(courseList.get(1).getDescription().isEmpty());
-        assertTrue(courseList.get(1).getName() instanceof String);
-        assertTrue(courseList.get(1).getId() instanceof String);
+        assertTrue(courseList.get(1).getName().equals("New Course 2"));
+        assertTrue(courseList.get(1).getId().equals("CSCI 5408"));
         assertTrue(courseList.get(1).getCredits() == 4);
-        assertTrue(courseList.get(1).getDescription() instanceof String);
+        assertTrue(courseList.get(1).getDescription().equals("New course description 2"));
 
         assertFalse(courseList.isEmpty());
         assertTrue(courseList.size() == 2);
-        assertTrue(courseList instanceof ArrayList);
-
     }
 
     @Test
@@ -106,11 +100,10 @@ public class CourseRepositoryTest {
         assertFalse(course.getId().isEmpty());
         assertFalse(course.getCredits() == 0);
         assertFalse(course.getDescription().isEmpty());
-        assertTrue(course.getName() instanceof String);
-        assertTrue(course.getId() instanceof String);
+        assertTrue(course.getName().equals("New Course"));
+        assertTrue(course.getId().equals("CSCI 5308"));
         assertTrue(course.getCredits() == 3);
-        assertTrue(course.getDescription() instanceof String);
-
+        assertTrue(course.getDescription().equals("New course description"));
     }
 
     @Test
@@ -131,13 +124,12 @@ public class CourseRepositoryTest {
         assertFalse(course.getId().isEmpty());
         assertFalse(course.getCredits() == 0);
         assertFalse(course.getDescription().isEmpty());
-        assertTrue(course.getName() instanceof String);
-        assertTrue(course.getId() instanceof String);
+        assertTrue(course.getName().equals("New Course"));
+        assertTrue(course.getId().equals("CSCI 5308"));
         assertTrue(course.getCredits() == 6);
-        assertTrue(course.getDescription() instanceof String);
+        assertTrue(course.getDescription().equals("New course description"));
 
         courseId = "CSCI 222220";
-
         course = new Course();
 
         assertTrue(course.getId() == null);

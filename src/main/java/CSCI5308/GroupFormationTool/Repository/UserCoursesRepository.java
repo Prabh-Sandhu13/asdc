@@ -33,14 +33,12 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                         userCourse.setCourseName(results.getString("course_name"));
                         userCourse.setUserRole(results.getString("user_role"));
                         userCourse.setCourseDescription(results.getString("course_details"));
-
                         courseList.add(userCourse);
                     }
                 }
             }
 
         } catch (SQLException ex) {
-
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -73,7 +71,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             }
 
         } catch (SQLException ex) {
-
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -100,13 +97,11 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                         course.setName(results.getString("course_name"));
                         course.setDescription(results.getString("course_details"));
                         course.setCredits(results.getInt("course_credits"));
-
                         studentCourseList.add(course);
                     }
                 }
             }
         } catch (SQLException ex) {
-
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -131,7 +126,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                         user.setFirstName(results.getString("first_name"));
                         user.setLastName(results.getString("last_name"));
                         user.setId(results.getLong("user_id"));
-
                         userList.add(user);
                     }
                 }
@@ -164,7 +158,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                         course.setName(results.getString("course_name"));
                         course.setDescription(results.getString("course_details"));
                         course.setCredits(results.getInt("course_credits"));
-
                         taCourseList.add(course);
                     }
                 }
@@ -187,7 +180,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         try {
             storedProcedure = new StoredProcedure("sp_getInstructorCoursesByEmailId(?)");
             storedProcedure.setInputStringParameter(1, emailId);
-
             ResultSet results = storedProcedure.executeWithResults();
 
             if (results != null) {
@@ -198,7 +190,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                         course.setName(results.getString("course_name"));
                         course.setDescription(results.getString("course_details"));
                         course.setCredits(results.getInt("course_credits"));
-
                         instructorCourseList.add(course);
                     }
                 }
@@ -220,7 +211,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         try {
             storedProcedure = new StoredProcedure("sp_getTAForCourse(?)");
             storedProcedure.setInputStringParameter(1, courseId);
-
             ResultSet results = storedProcedure.executeWithResults();
 
             if (results != null) {
@@ -253,10 +243,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         StoredProcedure storedProcedure = null;
         try {
             storedProcedure = new StoredProcedure("sp_addInstructorsToCourse(?,?)");
-
             storedProcedure.setInputIntParameter(1, instructor);
             storedProcedure.setInputStringParameter(2, courseId);
-
             storedProcedure.execute();
 
         } catch (SQLException ex) {
@@ -292,7 +280,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                     } else {
                         return assignUserAsTA(userId, courseId);
                     }
-
                 }
             }
 
@@ -311,10 +298,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         StoredProcedure storedProcedure = null;
         try {
             storedProcedure = new StoredProcedure("sp_addTAToCourse(?,?)");
-
             storedProcedure.setInputStringParameter(1, userId);
             storedProcedure.setInputStringParameter(2, courseId);
-
             storedProcedure.execute();
 
         } catch (SQLException ex) {
@@ -334,8 +319,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             storedProcedure = new StoredProcedure("sp_getUserRoleForCourse(?,?)");
             storedProcedure.setInputStringParameter(1, userId);
             storedProcedure.setInputStringParameter(2, courseId);
-
             ResultSet results = storedProcedure.executeWithResults();
+
             if (results != null) {
                 if (!(results.next())) {
                     System.out.println("user role does not exist!!");
@@ -375,9 +360,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                         user.setLastName(results.getString("last_name"));
                         user.setEmailId(results.getString("email"));
                         user.setBannerId(results.getString("banner_id"));
-
                         instructorList.add(user);
-
                     }
                 }
             }
@@ -388,7 +371,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                 storedProcedure.removeConnections();
             }
         }
-
         return instructorList;
     }
 }

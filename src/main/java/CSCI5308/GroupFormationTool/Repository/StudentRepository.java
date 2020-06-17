@@ -19,32 +19,27 @@ public class StudentRepository implements IStudentRepository {
     private IPasswordEncryptor encryptor;
 
     @Override
-    public Map<Integer, List<StudentCSV>> createStudent(List<StudentCSV> student, String courseId) {
+    public Map<Integer, List<StudentCSV>> createStudent(List<StudentCSV> studentCSVList, String courseId) {
         List<StudentCSV> newStudents = new ArrayList<StudentCSV>();
         List<StudentCSV> oldStudents = new ArrayList<StudentCSV>();
         List<StudentCSV> badData = new ArrayList<StudentCSV>();
         encryptor = Injector.instance().getPasswordEncryptor();
         StoredProcedure storedProcedure = null;
-
         RandomStringGenerator pwdGenerator = new RandomStringGenerator.Builder().withinRange(33, 45).build();
-
         Map<Integer, List<StudentCSV>> studentLists = new HashMap<Integer, List<StudentCSV>>();
 
-        for (StudentCSV studentRow : student) {
-            if (studentRow.getBannerId() == null || studentRow.getFirstName() == null
-                    || studentRow.getLastName() == null || studentRow.getEmail() == null
-                    || studentRow.getBannerId().equals("") || studentRow.getFirstName().equals("")
-                    || studentRow.getLastName().equals("") || studentRow.getEmail().equals("")) {
-                badData.add(studentRow);
+        for (StudentCSV studentCSV : studentCSVList) {
+            if (checkForBadData(studentCSV)) {
+                badData.add(studentCSV);
             } else {
                 try {
                     storedProcedure = new StoredProcedure("sp_createStudentFromCSV(?,?,?,?,?,?,?)");
-                    storedProcedure.setInputStringParameter(1, studentRow.getBannerId());
-                    storedProcedure.setInputStringParameter(2, studentRow.getFirstName());
-                    storedProcedure.setInputStringParameter(3, studentRow.getLastName());
-                    storedProcedure.setInputStringParameter(4, studentRow.getEmail());
+                    storedProcedure.setInputStringParameter(1, studentCSV.getBannerId());
+                    storedProcedure.setInputStringParameter(2, studentCSV.getFirstName());
+                    storedProcedure.setInputStringParameter(3, studentCSV.getLastName());
+                    storedProcedure.setInputStringParameter(4, studentCSV.getEmail());
                     String password = pwdGenerator.generate(10);
-                    studentRow.setPassword(password);
+                    studentCSV.setPassword(password);
                     storedProcedure.setInputStringParameter(5, encryptor.encoder(password));
                     storedProcedure.setInputStringParameter(6, courseId);
                     storedProcedure.registerOutputParameterBoolean(7);
@@ -52,9 +47,9 @@ public class StudentRepository implements IStudentRepository {
                     Boolean studentStatus = storedProcedure.getParameter(7);
 
                     if (studentStatus) {
-                        newStudents.add(studentRow);
+                        newStudents.add(studentCSV);
                     } else {
-                        oldStudents.add(studentRow);
+                        oldStudents.add(studentCSV);
                     }
 
                 } catch (SQLException ex) {
@@ -64,14 +59,22 @@ public class StudentRepository implements IStudentRepository {
                         storedProcedure.removeConnections();
                     }
                 }
-
             }
         }
-
         studentLists.put(DomainConstants.newStudents, newStudents);
         studentLists.put(DomainConstants.oldStudents, oldStudents);
         studentLists.put(DomainConstants.badData, badData);
-
         return studentLists;
+    }
+
+    private boolean checkForBadData(StudentCSV studentCSV) {
+        if (studentCSV.getBannerId() == null || studentCSV.getFirstName() == null
+                || studentCSV.getLastName() == null || studentCSV.getEmail() == null
+                || studentCSV.getBannerId().equals("") || studentCSV.getFirstName().equals("")
+                || studentCSV.getLastName().equals("") || studentCSV.getEmail().equals("")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

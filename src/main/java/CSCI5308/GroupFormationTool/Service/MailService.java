@@ -56,7 +56,6 @@ public class MailService implements IMailService {
         msg.setText(DomainConstants.forgotPasswordText + URL);
 
         sendEmail(mailSender, msg);
-
         return true;
     }
 
@@ -81,7 +80,6 @@ public class MailService implements IMailService {
 
             sendEmail(mailSender, msg);
         }
-
         return true;
     }
 
