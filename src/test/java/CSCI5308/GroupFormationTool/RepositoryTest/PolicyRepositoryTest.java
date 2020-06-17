@@ -2,17 +2,18 @@ package CSCI5308.GroupFormationTool.RepositoryTest;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import CSCI5308.GroupFormationTool.AccessControl.IPolicy;
-import CSCI5308.GroupFormationTool.AccessControl.IPolicyRepository;
-import CSCI5308.GroupFormationTool.DBMock.PolicyDBMock;
+import CSCI5308.GroupFormationTool.Model.Policy;
 import CSCI5308.GroupFormationTool.Repository.PolicyRepository;
 
 
@@ -20,35 +21,52 @@ import CSCI5308.GroupFormationTool.Repository.PolicyRepository;
 @SpringBootTest
 public class PolicyRepositoryTest {
 	
-	private IPolicyRepository policyRepo;
-	IPolicyRepository policyMock = new PolicyDBMock();
+    @InjectMocks
+    public PolicyRepository policyRepository = new PolicyRepository();
+
 	@Test
 	public void passwordSPolicyCheckTest() {
-		policyRepo = mock(PolicyRepository.class);
-
-		when(policyRepo.passwordSPolicyCheck("password"))
-				.thenReturn(new ArrayList<IPolicy>());
-
-		assertEquals(0, policyRepo.passwordSPolicyCheck("password").size());
+		Policy policy = new Policy();
+		policy.setId(1);
+		policy.setSetting("Maximum length");
+		policy.setValue("9");
+		policy.setEnabled(1);
 		
-		when(policyRepo.passwordSPolicyCheck("password"))
-		.thenReturn(policyMock.getPolicies());
-		assertEquals(1, policyRepo.passwordSPolicyCheck("password").size());
+		assertFalse(policy.getId() < 0);
+		assertFalse(policy.getValue().isEmpty());
+		assertTrue(policy.getSetting().equals("Maximum length"));
 		
 	}
 	
 	@Test
 	public void getPoliciesTest() {
-		policyRepo = mock(PolicyRepository.class);
-
-		when(policyRepo.getPolicies())
-				.thenReturn(new ArrayList<IPolicy>());
-
-		assertEquals(0, policyRepo.getPolicies().size());
+        ArrayList<Policy> policyList = new ArrayList<Policy>();
+        
+		Policy policy = new Policy();
+		policy.setId(1);
+		policy.setSetting("Maximum length");
+		policy.setValue("9");
+		policy.setEnabled(1);
+		policyList.add(policy);
 		
-		when(policyRepo.getPolicies())
-		.thenReturn(policyMock.getPolicies());
-		assertEquals(1, policyRepo.getPolicies().size());
+		policy = new Policy();
+		policy.setId(2);
+		policy.setSetting("Minimum length");
+		policy.setValue("3");
+		policy.setEnabled(1);
+		policyList.add(policy);
+		
+        assertTrue(policyList.get(0).getId() > 0);
+        assertTrue(policyList.get(0).getSetting().equals("Maximum length"));
+        assertTrue(policyList.get(0).getValue().length() > 0);
+
+        assertFalse(policyList.get(0).getSetting().isEmpty());
+        assertFalse(policyList.get(0).getId() < 0);
+        assertFalse(policyList.get(0).getEnabled() == 0);
+        assertTrue(policyList.get(0).getId() == 1);
+		
+        assertFalse(policyList.isEmpty());
+        assertTrue(policyList.size() == 2);
 	}
 
 }

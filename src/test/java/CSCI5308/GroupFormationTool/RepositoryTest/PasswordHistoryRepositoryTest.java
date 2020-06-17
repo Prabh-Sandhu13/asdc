@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -21,8 +23,8 @@ public class PasswordHistoryRepositoryTest {
         when(passwordHistoryRepository.getSettingValue("Password History")).thenReturn("value");
         when(passwordHistoryRepository.getSettingValue(null)).thenReturn(null);
 
-        assertEquals(null, passwordHistoryRepository.getSettingValue(null));
-        assertEquals("value", passwordHistoryRepository.getSettingValue("Password History"));
+        assertFalse(passwordHistoryRepository.getSettingValue(null) != null);
+        assertTrue(passwordHistoryRepository.getSettingValue("Password History").equals("value"));
     }
 
     @Test
@@ -37,9 +39,9 @@ public class PasswordHistoryRepositoryTest {
         when(passwordHistoryRepository.getNPasswords(user, null)).thenReturn(null);
         when(passwordHistoryRepository.getNPasswords(null, "3")).thenReturn(null);
 
-        assertEquals(null, passwordHistoryRepository.getNPasswords(user, null));
-        assertEquals(null, passwordHistoryRepository.getNPasswords(null, "3"));
-        assertEquals(3, passwordHistoryRepository.getNPasswords(user, "3").size());
+        assertFalse(passwordHistoryRepository.getNPasswords(user, null) != null);
+        assertFalse( passwordHistoryRepository.getNPasswords(null, "3") != null);
+        assertTrue(passwordHistoryRepository.getNPasswords(user, "3").size() == 3);
     }
 
     @Test
@@ -50,9 +52,9 @@ public class PasswordHistoryRepositoryTest {
         when(passwordHistoryRepository.addPasswordHistory(null, "password")).thenReturn(false);
         when(passwordHistoryRepository.addPasswordHistory(user, "password")).thenReturn(true);
 
-        assertEquals(false, passwordHistoryRepository.addPasswordHistory(user, ""));
-        assertEquals(false, passwordHistoryRepository.addPasswordHistory(user, null));
-        assertEquals(false, passwordHistoryRepository.addPasswordHistory(null, "password"));
-        assertEquals(true, passwordHistoryRepository.addPasswordHistory(user, "password"));
+        assertFalse(passwordHistoryRepository.addPasswordHistory(user, ""));
+        assertFalse(passwordHistoryRepository.addPasswordHistory(user, null));
+        assertFalse(passwordHistoryRepository.addPasswordHistory(null, "password"));
+        assertTrue(passwordHistoryRepository.addPasswordHistory(user, "password"));
     }
 }
