@@ -30,7 +30,7 @@ public class PasswordHistoryServiceTest {
     }
 
     @Test
-    void isHistoryViolated() {
+    void isHistoryViolatedTest() {
         User user = new User();
         user.setId(123);
         user.setBannerId("B00827531");
@@ -64,7 +64,7 @@ public class PasswordHistoryServiceTest {
     }
 
     @Test
-    void addPasswordHistory() {
+    void addPasswordHistoryTest() {
         User user = new User();
         user.setId(123);
         user.setBannerId("B00827531");
@@ -80,7 +80,7 @@ public class PasswordHistoryServiceTest {
     }
 
     @Test
-    void getSettingValue() {
+    void getSettingValueTest() {
         String settingName = "Password History";
         when(passwordHistoryRepository.getSettingValue(settingName)).thenReturn("6");
         assertFalse(passwordHistoryService.getSettingValue(settingName).isEmpty());

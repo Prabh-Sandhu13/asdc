@@ -32,7 +32,7 @@ class QuestionManagerServiceTest {
     }
 
     @Test
-    void getQuestionListForInstructor() {
+    void getQuestionListForInstructorTest() {
         IQuestion question = new Question();
         ArrayList<IChoice> choices = new ArrayList<>();
         ArrayList<IQuestion> questions = new ArrayList<>();
@@ -75,7 +75,7 @@ class QuestionManagerServiceTest {
     }
 
     @Test
-    void createQuestion() {
+    void createQuestionTest() {
         IQuestion question = new Question();
 
         User user = new User();
@@ -119,7 +119,7 @@ class QuestionManagerServiceTest {
     }
 
     @Test
-    void getQuestionById() {
+    void getQuestionByIdTest() {
         long questionId = 1;
         Question question = new Question();
         ArrayList<IChoice> choices = new ArrayList<>();
@@ -152,15 +152,14 @@ class QuestionManagerServiceTest {
     }
 
     @Test
-    void deleteQuestion() {
+    void deleteQuestionTest() {
         long questionId = 1;
         when(questionManagerRepository.deleteQuestion(questionId)).thenReturn(true);
         assertTrue(questionManagerService.deleteQuestion(questionId));
-
     }
 
     @Test
-    void getSortedQuestionListForInstructor() {
+    void getSortedQuestionListForInstructorTest() {
         String sortBy = "title";
         IQuestion question = new Question();
         ArrayList<IChoice> choices = new ArrayList<>();

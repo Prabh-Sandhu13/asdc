@@ -30,7 +30,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    void getAllCourses() {
+    void getAllCoursesTest() {
         ArrayList<ICourse> courses = new ArrayList<>();
         ICourse course = new Course();
         course.setName("Course 1");
@@ -59,7 +59,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    void getCourseById() {
+    void getCourseByIdTest() {
         String courseId = "CSCI 5000";
         ICourse course = new Course();
         course.setName("Course 1");
@@ -80,7 +80,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    void createCourse() {
+    void createCourseTest() {
         ICourse course = new Course();
         course.setName("Course 1");
         course.setCredits(3);
@@ -101,7 +101,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    void deleteCourse() {
+    void deleteCourseTest() {
         String courseId = "CSCI 5100";
         UserCourses userCourses = new UserCourses();
         userCourses.setBannerId("B00854462");

@@ -308,8 +308,9 @@ public class QuestionRepositoryTest {
         question.setTitle("Sample title");
         question.setType(DomainConstants.numeric);
         question.setChoices(null);
-        questions.add(question);
+        questions.add(0, question);
 
+        question = new Question();
         question.setCreatedDate(new Date(System.currentTimeMillis()));
         question.setId(1);
         question.setInstructor(user);
@@ -317,7 +318,10 @@ public class QuestionRepositoryTest {
         question.setTitle("Spring title");
         question.setType(DomainConstants.MCQOne);
         question.setChoices(choices);
-        questions.add(question);
+        questions.add(1, question);
+
+        System.out.println(questions.get(0).getChoices());
+        System.out.println(questions.get(1).getChoices());
 
         assertTrue(questions.get(1).getText().length() < 200);
         assertTrue(questions.get(1).getTitle().length() < 100);
@@ -347,8 +351,8 @@ public class QuestionRepositoryTest {
         assertTrue(questions.get(0).getTitle().length() < 100);
         assertTrue(questions.get(0).getId() < 10);
         assertTrue(questions.get(0).getInstructor().getEmailId().length() < 100);
-        assertTrue(questions.get(0).getChoices() == null);
         assertTrue(questions.get(0).getType() < 10);
+        assertTrue(questions.get(0).getChoices() == null);
 
         assertFalse(questions.get(0).getCreatedDate() == null);
         assertFalse(questions.get(0).getId() == 0);

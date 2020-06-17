@@ -28,14 +28,14 @@ public class MailServiceTest {
     }
 
     @Test
-    void setupMailSender() {
+    void setupMailSenderTest() {
         assertTrue(mailService.setupMailSender(javaMailSender) instanceof JavaMailSenderImpl);
         assertTrue(mailService.setupMailSender(javaMailSender).getHost().equals(DomainConstants.smtpHost));
         assertFalse(mailService.setupMailSender(javaMailSender).getPassword().isEmpty());
     }
 
     @Test
-    void sendForgotPasswordMail() {
+    void sendForgotPasswordMailTest() {
 
         User user = new User();
         user.setId(123);
@@ -52,7 +52,7 @@ public class MailServiceTest {
     }
 
     @Test
-    void sendBatchMail() {
+    void sendBatchMailTest() {
 
         ArrayList<StudentCSV> studentCSVList = new ArrayList<>();
 

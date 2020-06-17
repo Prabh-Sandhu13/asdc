@@ -44,14 +44,14 @@ public class QuestionManagerService implements IQuestionManagerService {
 
                 question.setChoices(choices);
 
-            }
-            else {
+            } else {
                 question.setChoices(null);
             }
             questionManagerRepository = Injector.instance().getQuestionManagerRepository();
             return questionManagerRepository.createQuestion(question);
         }
     }
+
     private boolean checkIfInvalid(String title, String text, int type, List<String> optionText,
                                    List<String> optionValue) {
 
@@ -85,6 +85,7 @@ public class QuestionManagerService implements IQuestionManagerService {
 
     }
 
+    @Override
     public boolean deleteQuestion(long questionId) {
         questionManagerRepository = Injector.instance().getQuestionManagerRepository();
         return questionManagerRepository.deleteQuestion(questionId);

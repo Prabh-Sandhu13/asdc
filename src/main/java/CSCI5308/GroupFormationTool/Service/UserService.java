@@ -58,18 +58,18 @@ public class UserService implements IUserService {
     public boolean checkCurrentUserIsAdmin(String emailId) {
         userRepository = Injector.instance().getUserRepository();
         IUser adminDetails = userRepository.getAdminDetails();
-
-        return adminDetails.getEmailId().equalsIgnoreCase(emailId);
-
+        boolean outcome = adminDetails.getEmailId().equalsIgnoreCase(emailId);
+        return outcome;
     }
 
     private boolean checkForValues(IUser user) {
+
+        boolean outcome = true;
         if (user.getFirstName().isEmpty() || user.getLastName().isEmpty() || user.getEmailId().isEmpty()
                 || user.getPassword().isEmpty() || user.getConfirmPassword().isEmpty()) {
-            return false;
-        } else {
-            return true;
+            outcome = false;
         }
+        return outcome;
     }
 
 }
