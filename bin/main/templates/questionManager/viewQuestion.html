@@ -29,11 +29,85 @@
 
 			<h3 class="text-center">View Question</h3>
 
-			// unimplemented
+			<div th:if="${question ==null}">
 
+				The question does not exist!!!
 
+			</div>
+			
+			<div th:if="${question !=null && question.type == 1}">			
+				
+				<div id="numericType" class="container" style="display: block;">
+
+					<div class="form-group input-group has-feedback" style="width: 70%;">
+					<label for="response" th:text="${question.text}"></label> <input
+						type="text" id="response" name="response"
+						placeholder="Enter your response here" class="form-control" required /> <span
+						class="glyphicon form-control-feedback" aria-hidden="true"></span>
+				</div>
+
+				</div>				
+
+			</div>
+			<div th:if="${question !=null && question.type == 2}">
+
+				<div class="form-group input-group has-feedback" style="width: 70%;">
+					<label for="questionText" th:text="${question.text}"></label> 
+					<table>
+					<tbody>
+            		<tr th:each="data, iter : ${question.choices}">
+            		<td><input type="radio" name="option" th:text="${data.text}" th:id="|td${iter.index}|"></td>
+                		
+            		</tr>
+            		</tbody>
+            		</table>
+				</div>
+
+			</div>
+			<div th:if="${question !=null && question.type == 3}">
+
+				<div class="form-group input-group has-feedback" style="width: 70%;">
+					<label for="questionText" th:text="${question.text}"></label> 
+					<table>
+					<tbody>
+            		<tr th:each="data, iter : ${question.choices}">
+            		<td><input type="checkbox" name="option" th:text="${data.text}" th:id="|td${iter.index}|"></td>
+                		
+            		</tr>
+            		</tbody>
+            		</table>
+				</div>
+
+			</div>
+			<div th:if="${question !=null && question.type == 4}">
+
+				<div class="form-group input-group has-feedback" style="width: 70%;">
+					<label for="questionText" th:text="${question.text}"></label>
+					<textarea name="response" id="response" rows="4"
+						placeholder="Enter your response here" class="form-control" required></textarea>
+					<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+				</div>
+
+			</div>
+			<div><a th:href="@{/questionManager/deleteQuestion?questionId={quesId} (quesId=${question.id})}">
+				<button type="submit" value="delete" class="btn btn-primary btn-md"
+                            th:onclick="return confirm('Are you sure you want to delete the question')">
+                        Delete
+                </button>
+				</a>
+			</div>
+			<div class="text-center">
+				<a th:href="@{/questionManager/questionManager}"
+					class="btn btn-primary btn-md"> <span
+					class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp; Back to
+					Question List
+				</a>
+			</div>
+					
+			</div>
+			
 		</div>
-	</div>
+	
 
 </body>
 </html>
