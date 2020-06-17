@@ -64,7 +64,7 @@ public class MailService implements IMailService {
     @Async
     public boolean sendBatchMail(List<StudentCSV> users, String courseID) {
 
-		mailSender = setupMailSender(Injector.instance().getJavaMailSender());
+        mailSender = setupMailSender(Injector.instance().getJavaMailSender());
         msg = Injector.instance().getMailMessage();
 
         msg.setSubject(DomainConstants.registrationSubject);

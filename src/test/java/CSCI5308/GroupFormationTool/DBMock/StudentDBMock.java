@@ -31,6 +31,14 @@ public class StudentDBMock implements IStudentRepository {
 
     }
 
+    public StudentDBMock(String firstName, String lastName, String email, String bannerId, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.bannerId = bannerId;
+        this.password = password;
+    }
+
     public ArrayList<IStudentCSV> getAllStudents() {
 
         ArrayList<IStudentCSV> studentList = new ArrayList<>();

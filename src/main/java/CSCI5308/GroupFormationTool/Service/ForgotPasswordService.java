@@ -24,7 +24,7 @@ public class ForgotPasswordService implements IForgotPasswordService {
         mailService = Injector.instance().getMailService();
         encryptor = Injector.instance().getPasswordEncryptor();
 
-        boolean success = false;
+        boolean success = true;
         boolean tokenPresent = false;
         IUser userByEmailId = forgotPasswordRepository.getUserId(user);
 

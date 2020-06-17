@@ -72,48 +72,96 @@ public class Injector {
         return instance;
     }
 
+    public void setMailSender(JavaMailSenderImpl mailSender) {
+        this.mailSender = mailSender;
+    }
+
     public IUserCoursesRepository getUserCoursesRepository() {
         return userCoursesRepository;
+    }
+
+    public void setUserCoursesRepository(IUserCoursesRepository userCoursesRepository) {
+        this.userCoursesRepository = userCoursesRepository;
     }
 
     public IUserCoursesService getUserCoursesService() {
         return userCoursesService;
     }
 
+    public void setUserCoursesService(IUserCoursesService userCoursesService) {
+        this.userCoursesService = userCoursesService;
+    }
+
     public IPasswordEncryptor getPasswordEncryptor() {
         return passwordEncryptor;
+    }
+
+    public void setPasswordEncryptor(IPasswordEncryptor passwordEncryptor) {
+        this.passwordEncryptor = passwordEncryptor;
     }
 
     public IUserRepository getUserRepository() {
         return userRepository;
     }
 
+    public void setUserRepository(IUserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public IDBConfiguration getDbConfiguration() {
         return dbConfiguration;
+    }
+
+    public void setDbConfiguration(IDBConfiguration dbConfiguration) {
+        this.dbConfiguration = dbConfiguration;
     }
 
     public IUserService getUserService() {
         return userService;
     }
 
+    public void setUserService(IUserService userService) {
+        this.userService = userService;
+    }
+
     public IForgotPasswordService getForgotPasswordService() {
         return forgotPasswordService;
+    }
+
+    public void setForgotPasswordService(IForgotPasswordService forgotPasswordService) {
+        this.forgotPasswordService = forgotPasswordService;
     }
 
     public IForgotPasswordRepository getForgotPasswordRepository() {
         return forgotPasswordRepository;
     }
 
+    public void setForgotPasswordRepository(IForgotPasswordRepository forgotPasswordRepository) {
+        this.forgotPasswordRepository = forgotPasswordRepository;
+    }
+
     public ITokenGenerator getTokenGenerator() {
         return tokenGenerator;
+    }
+
+    public void setTokenGenerator(ITokenGenerator tokenGenerator) {
+        this.tokenGenerator = tokenGenerator;
     }
 
     public IMailService getMailService() {
         return mailService;
     }
 
+    public void setMailService(IMailService mailService) {
+        this.mailService = mailService;
+    }
+
     public SimpleMailMessage getMailMessage() {
         return mailMessage;
+    }
+
+    public void setMailMessage(SimpleMailMessage mailMessage) {
+        this.mailMessage = mailMessage;
     }
 
     public JavaMailSenderImpl getJavaMailSender() {
@@ -124,39 +172,79 @@ public class Injector {
         return courseService;
     }
 
+    public void setCourseService(ICourseService courseService) {
+        this.courseService = courseService;
+    }
+
     public ICourseRepository getCourseRepository() {
         return courseRepository;
+    }
+
+    public void setCourseRepository(ICourseRepository courseRepository) {
+        this.courseRepository = courseRepository;
     }
 
     public IStudentRepository getStudentRepository() {
         return studentRepository;
     }
 
+    public void setStudentRepository(IStudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
     public IStudentService getStudentService() {
         return studentService;
+    }
+
+    public void setStudentService(IStudentService studentService) {
+        this.studentService = studentService;
     }
 
     public IPasswordHistoryRepository getPasswordHistoryRepository() {
         return passwordHistoryRepository;
     }
 
+    public void setPasswordHistoryRepository(IPasswordHistoryRepository passwordHistoryRepository) {
+        this.passwordHistoryRepository = passwordHistoryRepository;
+    }
+
     public IPasswordHistoryService getPasswordHistoryService() {
         return passwordHistoryService;
+    }
+
+    public void setPasswordHistoryService(IPasswordHistoryService passwordHistoryService) {
+        this.passwordHistoryService = passwordHistoryService;
     }
 
     public IPolicyRepository getPolicyRepository() {
         return policyRepository;
     }
 
+    public void setPolicyRepository(IPolicyRepository policyRepository) {
+        this.policyRepository = policyRepository;
+    }
+
     public IPolicyService getPolicyService() {
         return policyService;
+    }
+
+    public void setPolicyService(IPolicyService policyService) {
+        this.policyService = policyService;
     }
 
     public IQuestionManagerRepository getQuestionManagerRepository() {
         return questionManagerRepository;
     }
 
+    public void setQuestionManagerRepository(IQuestionManagerRepository questionManagerRepository) {
+        this.questionManagerRepository = questionManagerRepository;
+    }
+
     public IQuestionManagerService getQuestionManagerService() {
         return questionManagerService;
+    }
+
+    public void setQuestionManagerService(IQuestionManagerService questionManagerService) {
+        this.questionManagerService = questionManagerService;
     }
 }

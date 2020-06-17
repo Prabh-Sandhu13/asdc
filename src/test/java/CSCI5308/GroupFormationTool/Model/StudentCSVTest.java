@@ -5,7 +5,7 @@ import CSCI5308.GroupFormationTool.DBMock.StudentDBMock;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class StudentCSVTest {
@@ -88,6 +88,22 @@ public class StudentCSVTest {
         IStudentCSV studentCSV = new StudentCSV();
         studentCSV.setPassword("password");
         assertEquals("password", studentCSV.getPassword());
+    }
+
+    @Test
+    public void StudentCSVParameterizedTest() {
+
+        IStudentCSV studentCSV = new StudentCSV("Padmesh",
+                "Donthu", "padmeshdonthu@gmail.com",
+                "B00854462", "sample123");
+
+        assertEquals("Padmesh", studentCSV.getFirstName());
+        assertFalse(studentCSV.getLastName() == null);
+        assertTrue(studentCSV.getEmail().equals("padmeshdonthu@gmail.com"));
+        assertFalse(studentCSV.getPassword().isEmpty());
+        assertTrue(studentCSV.getPassword().length() < 200);
+        assertFalse(studentCSV.getBannerId().isEmpty());
+        assertTrue(studentCSV.getBannerId().length() < 100);
     }
 
 }

@@ -24,6 +24,7 @@ public final class DomainConstants {
     public static final String registrationSubject = "New Student Registration!";
 
     // Questions
+    public static final int numeric = 1;
     public static final int MCQOne = 2;
     public static final int MCQMultiple = 3;
     public final static long invalidData = 0;

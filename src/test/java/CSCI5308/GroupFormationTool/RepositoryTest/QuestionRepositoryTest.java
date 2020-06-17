@@ -1,91 +1,373 @@
 package CSCI5308.GroupFormationTool.RepositoryTest;
 
+import CSCI5308.GroupFormationTool.AccessControl.IChoice;
 import CSCI5308.GroupFormationTool.AccessControl.IQuestion;
-import CSCI5308.GroupFormationTool.DBMock.QuestionDBMock;
+import CSCI5308.GroupFormationTool.DomainConstants;
+import CSCI5308.GroupFormationTool.Model.Choice;
 import CSCI5308.GroupFormationTool.Model.Question;
-import CSCI5308.GroupFormationTool.Repository.QuestionManagerRepository;
+import CSCI5308.GroupFormationTool.Model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 public class QuestionRepositoryTest {
 
-    QuestionDBMock questionDBMock = new QuestionDBMock();
-    private QuestionManagerRepository questionManagerRepository;
 
     @Test
     void createQuestionTest() {
 
-        questionManagerRepository = mock(QuestionManagerRepository.class);
+        Question question = new Question();
+        ArrayList<IChoice> choices = new ArrayList<>();
 
-        IQuestion question = new Question();
+        IChoice choice = new Choice();
+        choice.setText("Amateur");
+        choice.setValue(1);
+        choices.add(choice);
 
-        when(questionManagerRepository.createQuestion(question)).thenReturn(questionDBMock.createQuestion(question));
+        choice = new Choice();
+        choice.setText("Beginner");
+        choice.setValue(2);
+        choices.add(choice);
 
-        assertEquals(1, questionManagerRepository.createQuestion(question));
+        User user = new User();
+        user.setEmailId("padmeshdonthu@gmail.com");
 
-        when(questionManagerRepository.createQuestion(question)).thenReturn(new Question().getId());
+        question.setCreatedDate(new Date(System.currentTimeMillis()));
+        question.setId(1);
+        question.setInstructor(user);
+        question.setText("Spring text");
+        question.setTitle("Spring title");
+        question.setType(DomainConstants.MCQOne);
+        question.setChoices(choices);
 
-        assertEquals(-1, questionManagerRepository.createQuestion(question));
+        assertTrue(question.getText().length() < 200);
+        assertTrue(question.getTitle().length() < 100);
+        assertTrue(question.getId() < 10);
+        assertTrue(question.getInstructor().getEmailId().length() < 100);
+        assertTrue(question.getChoices().size() < 100);
+        assertTrue(question.getType() < 10);
+
+
+        assertFalse(question.getCreatedDate() == null);
+        assertFalse(question.getId() == 0);
+        assertFalse(question.getTitle().isEmpty());
+        assertFalse(question.getText().isEmpty());
+        assertFalse(question.getChoices().isEmpty());
+        assertFalse(question.getInstructor() == null);
+        assertFalse(question.getType() == DomainConstants.MCQMultiple);
+
+        assertTrue(question.getChoices() instanceof ArrayList);
+        assertTrue(question.getId() == 1);
+        assertTrue(question.getText() instanceof String);
+        assertTrue(question.getTitle() instanceof String);
+        assertTrue(question.getInstructor() instanceof User);
+        assertTrue(question.getType() == DomainConstants.MCQOne);
+        assertTrue(question.getCreatedDate() instanceof Date);
 
     }
 
     @Test
     void getOptionsForTheQuestionTest() {
 
-        questionManagerRepository = mock(QuestionManagerRepository.class);
-
         long questionId = 1;
+        int questionType = DomainConstants.MCQMultiple;
+        ArrayList<IChoice> choices = new ArrayList<>();
+        IChoice choice = new Choice();
+        choice.setText("Amateur");
+        choice.setValue(1);
+        choices.add(choice);
 
-        when(questionManagerRepository.getOptionsForTheQuestion(questionId)).thenReturn(new ArrayList<>());
+        choice = new Choice();
+        choice.setText("Beginner");
+        choice.setValue(2);
+        choices.add(choice);
 
-        assertEquals(0, questionManagerRepository.getOptionsForTheQuestion(questionId).size());
+        assertTrue(choices.get(0).getText().length() < 100);
+        assertTrue(choices.get(0).getValue() < 100);
 
-        when(questionManagerRepository.getOptionsForTheQuestion(questionId))
-                .thenReturn(questionDBMock.getOptionsForTheQuestion(questionId));
+        assertFalse(choices.get(0).getValue() == 0);
+        assertFalse(choices.get(0).getText().isEmpty());
 
-        assertEquals(1, questionManagerRepository.getOptionsForTheQuestion(questionId).size());
+        assertTrue(choices.get(0).getText() instanceof String);
+        assertTrue(choices.get(0).getValue() == 1);
+
+        assertTrue(choices.get(1).getText().length() < 100);
+        assertTrue(choices.get(1).getValue() < 100);
+
+        assertFalse(choices.get(1).getValue() == 0);
+        assertFalse(choices.get(1).getText().isEmpty());
+
+        assertTrue(choices.get(1).getText() instanceof String);
+        assertTrue(choices.get(1).getValue() == 2);
+
+        assertFalse(choices.isEmpty());
+        assertTrue(choices.size() == 2);
+
+        questionId = 2;
+        questionType = DomainConstants.numeric;
+
+        choices = new ArrayList<>();
+
+        assertTrue(choices.isEmpty());
+        assertFalse(choices.size() > 2);
 
     }
 
     @Test
     void getQuestionByIdTest() {
-        questionManagerRepository = mock(QuestionManagerRepository.class);
 
         long questionId = 1;
+        Question question = new Question();
+        ArrayList<IChoice> choices = new ArrayList<>();
 
-        when(questionManagerRepository.getQuestionById(questionId)).thenReturn(new Question());
+        IChoice choice = new Choice();
+        choice.setText("Amateur");
+        choice.setValue(1);
+        choices.add(choice);
 
-        assertEquals(-1, questionManagerRepository.getQuestionById(questionId).getId());
+        choice = new Choice();
+        choice.setText("Beginner");
+        choice.setValue(2);
+        choices.add(choice);
 
-        when(questionManagerRepository.getQuestionById(questionId))
-                .thenReturn(questionDBMock.getQuestionById(questionId));
+        User user = new User();
+        user.setEmailId("padmeshdonthu@gmail.com");
 
-        assertEquals("Sample", questionManagerRepository.getQuestionById(questionId).getTitle());
+        question.setCreatedDate(new Date(System.currentTimeMillis()));
+        question.setId(questionId);
+        question.setInstructor(user);
+        question.setText("Spring text");
+        question.setTitle("Spring title");
+        question.setType(DomainConstants.MCQOne);
+        question.setChoices(choices);
+
+        assertTrue(question.getText().length() < 200);
+        assertTrue(question.getTitle().length() < 100);
+        assertTrue(question.getId() < 10);
+        assertTrue(question.getInstructor().getEmailId().length() < 100);
+        assertTrue(question.getChoices().size() < 100);
+        assertTrue(question.getType() < 10);
+
+
+        assertFalse(question.getCreatedDate() == null);
+        assertFalse(question.getId() == 0);
+        assertFalse(question.getTitle().isEmpty());
+        assertFalse(question.getText().isEmpty());
+        assertFalse(question.getChoices().isEmpty());
+        assertFalse(question.getInstructor() == null);
+        assertFalse(question.getType() == DomainConstants.MCQMultiple);
+
+        assertTrue(question.getChoices() instanceof ArrayList);
+        assertTrue(question.getId() == questionId);
+        assertTrue(question.getText() instanceof String);
+        assertTrue(question.getTitle() instanceof String);
+        assertTrue(question.getInstructor() instanceof User);
+        assertTrue(question.getType() == DomainConstants.MCQOne);
+        assertTrue(question.getCreatedDate() instanceof Date);
 
     }
 
     @Test
     void getQuestionListForInstructorTest() {
 
-        questionManagerRepository = mock(QuestionManagerRepository.class);
+        IQuestion question = new Question();
+        ArrayList<IChoice> choices = new ArrayList<>();
+        ArrayList<IQuestion> questions = new ArrayList<>();
 
-        String emailId = "padmeshdonthu@gmail.com";
+        IChoice choice = new Choice();
+        choice.setText("Amateur");
+        choice.setValue(1);
+        choices.add(choice);
 
-        when(questionManagerRepository.getQuestionListForInstructor(emailId)).thenReturn(null);
+        choice = new Choice();
+        choice.setText("Beginner");
+        choice.setValue(2);
+        choices.add(choice);
 
-        assertEquals(null, questionManagerRepository.getQuestionListForInstructor(emailId));
+        User user = new User();
+        user.setEmailId("padmeshdonthu@gmail.com");
 
-        when(questionManagerRepository.getQuestionListForInstructor(emailId))
-                .thenReturn(questionDBMock.getQuestionListForInstructor(emailId));
+        question.setCreatedDate(new Date(System.currentTimeMillis()));
+        question.setId(1);
+        question.setInstructor(user);
+        question.setText("Spring text");
+        question.setTitle("Spring title");
+        question.setType(DomainConstants.MCQOne);
+        question.setChoices(choices);
+        questions.add(question);
 
-        assertEquals(1, questionManagerRepository.getQuestionListForInstructor(emailId).size());
+        question = new Question();
+        question.setCreatedDate(new Date(System.currentTimeMillis()));
+        question.setId(2);
+        question.setInstructor(user);
+        question.setText("Sample text");
+        question.setTitle("Sample title");
+        question.setType(DomainConstants.numeric);
+        question.setChoices(null);
+        questions.add(question);
+
+        assertTrue(questions.get(0).getText().length() < 200);
+        assertTrue(questions.get(0).getTitle().length() < 100);
+        assertTrue(questions.get(0).getId() < 10);
+        assertTrue(questions.get(0).getInstructor().getEmailId().length() < 100);
+        assertTrue(questions.get(0).getChoices().size() < 100);
+        assertTrue(questions.get(0).getType() < 10);
+
+        assertFalse(questions.get(0).getCreatedDate() == null);
+        assertFalse(questions.get(0).getId() == 0);
+        assertFalse(questions.get(0).getTitle().isEmpty());
+        assertFalse(questions.get(0).getText().isEmpty());
+        assertFalse(questions.get(0).getChoices().isEmpty());
+        assertFalse(questions.get(0).getInstructor() == null);
+        assertFalse(questions.get(0).getType() == DomainConstants.MCQMultiple);
+
+        assertTrue(questions.get(0).getChoices() instanceof ArrayList);
+        assertTrue(questions.get(0).getId() == 1);
+        assertTrue(questions.get(0).getText() instanceof String);
+        assertTrue(questions.get(0).getTitle() instanceof String);
+        assertTrue(questions.get(0).getInstructor() instanceof User);
+        assertTrue(questions.get(0).getType() == DomainConstants.MCQOne);
+        assertTrue(questions.get(0).getCreatedDate() instanceof Date);
+
+
+        assertTrue(questions.get(1).getText().length() < 200);
+        assertTrue(questions.get(1).getTitle().length() < 100);
+        assertTrue(questions.get(1).getId() < 10);
+        assertTrue(questions.get(1).getInstructor().getEmailId().length() < 100);
+        assertTrue(questions.get(1).getChoices() == null);
+        assertTrue(questions.get(1).getType() < 10);
+
+        assertFalse(questions.get(1).getCreatedDate() == null);
+        assertFalse(questions.get(1).getId() == 0);
+        assertFalse(questions.get(1).getTitle().isEmpty());
+        assertFalse(questions.get(1).getText().isEmpty());
+        assertFalse(questions.get(1).getChoices() instanceof ArrayList);
+        assertFalse(questions.get(1).getInstructor() == null);
+        assertFalse(questions.get(1).getType() == DomainConstants.MCQOne);
+
+        assertTrue(questions.get(1).getId() == 2);
+        assertTrue(questions.get(1).getText() instanceof String);
+        assertTrue(questions.get(1).getTitle() instanceof String);
+        assertTrue(questions.get(1).getInstructor() instanceof User);
+        assertTrue(questions.get(1).getType() == DomainConstants.numeric);
+        assertTrue(questions.get(1).getCreatedDate() instanceof Date);
+
+        assertFalse(questions.isEmpty());
+        assertTrue(questions instanceof ArrayList);
 
     }
+
+    @Test
+    void deleteQuestionTest() {
+        Question question = new Question();
+        long questionId = 2;
+        question.setId(questionId);
+        question.setText("Sample text");
+        question.setTitle("Sample title");
+        question.setType(DomainConstants.numeric);
+        question.setChoices(null);
+
+        assertTrue(question.getId() == questionId);
+        assertFalse(question.getId() == 3);
+        assertTrue(question.getChoices() == null);
+        assertFalse(question.getChoices() instanceof ArrayList);
+
+    }
+
+    @Test
+    void getSortedQuestionListForInstructorTest() {
+        String sortBy = "title";
+        IQuestion question = new Question();
+        ArrayList<IChoice> choices = new ArrayList<>();
+        ArrayList<IQuestion> questions = new ArrayList<>();
+
+        IChoice choice = new Choice();
+        choice.setText("Amateur");
+        choice.setValue(1);
+        choices.add(choice);
+
+        choice = new Choice();
+        choice.setText("Beginner");
+        choice.setValue(2);
+        choices.add(choice);
+
+        User user = new User();
+        user.setEmailId("padmeshdonthu@gmail.com");
+
+        question = new Question();
+        question.setCreatedDate(new Date(System.currentTimeMillis()));
+        question.setId(2);
+        question.setInstructor(user);
+        question.setText("Sample text");
+        question.setTitle("Sample title");
+        question.setType(DomainConstants.numeric);
+        question.setChoices(null);
+        questions.add(question);
+
+        question.setCreatedDate(new Date(System.currentTimeMillis()));
+        question.setId(1);
+        question.setInstructor(user);
+        question.setText("Spring text");
+        question.setTitle("Spring title");
+        question.setType(DomainConstants.MCQOne);
+        question.setChoices(choices);
+        questions.add(question);
+
+        assertTrue(questions.get(1).getText().length() < 200);
+        assertTrue(questions.get(1).getTitle().length() < 100);
+        assertTrue(questions.get(1).getId() < 10);
+        assertTrue(questions.get(1).getInstructor().getEmailId().length() < 100);
+        assertTrue(questions.get(1).getChoices().size() < 100);
+        assertTrue(questions.get(1).getType() < 10);
+
+        assertFalse(questions.get(1).getCreatedDate() == null);
+        assertFalse(questions.get(1).getId() == 0);
+        assertFalse(questions.get(1).getTitle().isEmpty());
+        assertFalse(questions.get(1).getText().isEmpty());
+        assertFalse(questions.get(1).getChoices().isEmpty());
+        assertFalse(questions.get(1).getInstructor() == null);
+        assertFalse(questions.get(1).getType() == DomainConstants.MCQMultiple);
+
+        assertTrue(questions.get(1).getChoices() instanceof ArrayList);
+        assertTrue(questions.get(1).getId() == 1);
+        assertTrue(questions.get(1).getText() instanceof String);
+        assertTrue(questions.get(1).getTitle() instanceof String);
+        assertTrue(questions.get(1).getInstructor() instanceof User);
+        assertTrue(questions.get(1).getType() == DomainConstants.MCQOne);
+        assertTrue(questions.get(1).getCreatedDate() instanceof Date);
+
+
+        assertTrue(questions.get(0).getText().length() < 200);
+        assertTrue(questions.get(0).getTitle().length() < 100);
+        assertTrue(questions.get(0).getId() < 10);
+        assertTrue(questions.get(0).getInstructor().getEmailId().length() < 100);
+        assertTrue(questions.get(0).getChoices() == null);
+        assertTrue(questions.get(0).getType() < 10);
+
+        assertFalse(questions.get(0).getCreatedDate() == null);
+        assertFalse(questions.get(0).getId() == 0);
+        assertFalse(questions.get(0).getTitle().isEmpty());
+        assertFalse(questions.get(0).getText().isEmpty());
+        assertFalse(questions.get(0).getChoices() instanceof ArrayList);
+        assertFalse(questions.get(0).getInstructor() == null);
+        assertFalse(questions.get(0).getType() == DomainConstants.MCQOne);
+
+        assertTrue(questions.get(0).getId() == 2);
+        assertTrue(questions.get(0).getText() instanceof String);
+        assertTrue(questions.get(0).getTitle() instanceof String);
+        assertTrue(questions.get(0).getInstructor() instanceof User);
+        assertTrue(questions.get(0).getType() == DomainConstants.numeric);
+        assertTrue(questions.get(0).getCreatedDate() instanceof Date);
+
+        assertFalse(questions.isEmpty());
+        assertTrue(questions instanceof ArrayList);
+
+    }
+
 }

@@ -18,7 +18,6 @@ public class ForgotPasswordRepositoryTest {
     @Test
     public void addTokenTest() {
         forgotPasswordRepository = mock(ForgotPasswordRepository.class);
-
         when(forgotPasswordRepository.addToken(user, "sampleToken")).thenReturn(true);
         assertEquals(true, forgotPasswordRepository.addToken(user, "sampleToken"));
     }
@@ -53,7 +52,6 @@ public class ForgotPasswordRepositoryTest {
 
     @Test
     public void getUserIdTest() {
-
         forgotPasswordRepository = mock(ForgotPasswordRepository.class);
         when(forgotPasswordRepository.getUserId(user)).thenReturn(null);
         assertEquals(null, forgotPasswordRepository.getUserId(user));
@@ -62,7 +60,6 @@ public class ForgotPasswordRepositoryTest {
 
     @Test
     public void getEmailByTokenTest() {
-
         forgotPasswordRepository = mock(ForgotPasswordRepository.class);
         when(forgotPasswordRepository.getEmailByToken(user, "token")).thenReturn(null);
         assertEquals(null, forgotPasswordRepository.getEmailByToken(user, "token"));
