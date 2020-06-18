@@ -14,7 +14,7 @@ public final class DomainConstants {
     public static final String mailPassword = "dalhousiemacs";
 
     // Domain Url
-    public static final String domainUrl = "https://formgroups22-prod.herokuapp.com";
+    public static final String domainUrl = "http://formgroups22.herokuapp.com";
 
     // Forgot Password
     public static final String forgotPasswordSubject = "Complete Password Reset!";
@@ -31,9 +31,9 @@ public final class DomainConstants {
     public final static long sqlError = -1;
 
     // Database
-    public static final String URL = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_22_PRODUCTION?useSSL=false"
+    public static final String URL = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_22_TEST?useSSL=false"
             + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    public static final String USER = "CSCI5308_22_PRODUCTION_USER";
-    public static final String PASSWORD = "CSCI5308_22_PRODUCTION_22986";
+    public static final String USER = "CSCI5308_22_TEST_USER";
+    public static final String PASSWORD = "CSCI5308_22_TEST_22546";
 
 }
