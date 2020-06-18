@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.Service;
 import CSCI5308.GroupFormationTool.AccessControl.*;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
+import CSCI5308.GroupFormationTool.DomainConstants;
 import CSCI5308.GroupFormationTool.Injector;
 
 public class UserService implements IUserService {
@@ -30,7 +31,7 @@ public class UserService implements IUserService {
         }
 
         if (!(user.getPassword().equals(user.getConfirmPassword()))) {
-            throw new PasswordException("The passwords do not match. Please try again!");
+            throw new PasswordException(DomainConstants.passwordsDontMatch);
         }
 
         userRepository = Injector.instance().getUserRepository();
@@ -46,7 +47,8 @@ public class UserService implements IUserService {
             IUser userWithUserId = userRepository.getUserIdByEmailId(user);
             passwordHistoryService.addPasswordHistory(userWithUserId, user.getPassword());
         } else {
-            throw new UserAlreadyExistsException("An account with " + user.getEmailId() + " already exists!!");
+            throw new UserAlreadyExistsException(DomainConstants.userAlreadyExists
+            		.replace("[[emailId]]", user.getEmailId()));
         }
         return success;
     }

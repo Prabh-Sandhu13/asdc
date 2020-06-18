@@ -5,6 +5,7 @@ import CSCI5308.GroupFormationTool.AccessControl.IPolicyService;
 import CSCI5308.GroupFormationTool.AccessControl.IUserService;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
+import CSCI5308.GroupFormationTool.DomainConstants;
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.Model.User;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,6 @@ public class UserRegistrationController implements WebMvcConfigurer {
 
     @PostMapping("/register")
     public ModelAndView createUser(User user) {
-
         ModelAndView modelAndView = null;
         boolean success = false;
         try {
@@ -35,12 +35,13 @@ public class UserRegistrationController implements WebMvcConfigurer {
                 modelAndView = new ModelAndView("login");
             } else {
                 modelAndView = new ModelAndView("signup");
-                modelAndView.addObject("invalidDetails", "One or more mandatory fields are not entered.");
+                modelAndView.addObject("invalidDetails", DomainConstants.signupInvalidDetails);
             }
 
         } catch (UserAlreadyExistsException uaex) {
             modelAndView = new ModelAndView("signup");
-            modelAndView.addObject("userAlreadyExists", "An account with " + user.getEmailId() + " already exists.");
+            modelAndView.addObject("userAlreadyExists", DomainConstants.userAlreadyExists
+            		.replace("[[emailId]]",user.getEmailId()));
         } catch (PasswordException pex) {
             modelAndView = new ModelAndView("signup");
             modelAndView.addObject("passwordError", pex.getMessage());
@@ -50,7 +51,6 @@ public class UserRegistrationController implements WebMvcConfigurer {
 
     @GetMapping("/register")
     public String register(User user, Model model) {
-
         policyService = Injector.instance().getPolicyService();
         ArrayList<IPolicy> policies = policyService.getPolicies();
         model.addAttribute("policies", policies);

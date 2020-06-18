@@ -5,6 +5,7 @@ import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordHistoryException;
 import CSCI5308.GroupFormationTool.ErrorHandling.TokenExpiredException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
+import CSCI5308.GroupFormationTool.DomainConstants;
 import CSCI5308.GroupFormationTool.Injector;
 
 public class ForgotPasswordService implements IForgotPasswordService {
@@ -38,7 +39,8 @@ public class ForgotPasswordService implements IForgotPasswordService {
             }
             mailService.sendForgotPasswordMail(userByEmailId, token);
         } else {
-            throw new UserAlreadyExistsException("An account with " + user.getEmailId() + " not found!");
+            throw new UserAlreadyExistsException(DomainConstants.userDoesNotExists
+            		.replace("[[emailId]]", user.getEmailId()));
         }
         return true;
     }
@@ -55,7 +57,7 @@ public class ForgotPasswordService implements IForgotPasswordService {
         }
 
         if (!(user.getPassword().equals(user.getConfirmPassword()))) {
-            throw new PasswordException("The passwords do not match. Please try again!");
+            throw new PasswordException(DomainConstants.passwordsDontMatch);
         }
 
         boolean updated = false;
@@ -66,14 +68,14 @@ public class ForgotPasswordService implements IForgotPasswordService {
         IUser userByEmailId = forgotPasswordRepository.getEmailByToken(user, token);
 
         if (userByEmailId == null) {
-            throw new TokenExpiredException("Token expired");
+            throw new TokenExpiredException(DomainConstants.tokenExpiredMessage);
         }
 
         isHistoryViolated = passwordHistoryService.isHistoryViolated(userByEmailId, user.getPassword());
 
         if (isHistoryViolated) {
-            throw new PasswordHistoryException("Your new password cannot be same as previous "
-                    + passwordHistoryService.getSettingValue("Password History") + " passwords!");
+            throw new PasswordHistoryException(DomainConstants.passwordHistoryMessage
+            		.replace("[[history]]", passwordHistoryService.getSettingValue(DomainConstants.passwordHistory)));
         }
 
         String encrypted_password = encryptor.encoder(user.getPassword());

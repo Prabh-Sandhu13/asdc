@@ -108,9 +108,9 @@ public class CourseController {
         boolean success = userCoursesService.enrollTAForCourseUsingEmailId(user, courseId);
         ArrayList<IUser> taList = null;
         if (success) {
-            model.addAttribute("success", "added");
+            model.addAttribute("success", DomainConstants.taAddSuccess);
         } else {
-            model.addAttribute("error", "not added");
+            model.addAttribute("error", DomainConstants.taAddFailure);
         }
         taList = userCoursesService.getTAForCourse(courseId);
         model.addAttribute("taList", taList);
@@ -145,10 +145,9 @@ public class CourseController {
         List<ICourse> allCourses = courseRepository.getAllCourses();
 
         if (status) {
-            model.addAttribute("successMessage", "The course " + course.getName() + " was successfully added!");
+            model.addAttribute("successMessage", DomainConstants.addCourseSuccess);
         } else {
-            model.addAttribute("failureMessage",
-                    "The course " + course.getName() + " could not be added since the " + "course already exists!");
+            model.addAttribute("failureMessage", DomainConstants.addCourseFailure);
         }
         model.addAttribute("courses", allCourses);
         return "admin\\allCourses";
@@ -161,10 +160,9 @@ public class CourseController {
         List<ICourse> allCourses = courseRepository.getAllCourses();
 
         if (status) {
-            model.addAttribute("successMessage", "The course " + id + " was successfully deleted!");
+            model.addAttribute("successMessage", DomainConstants.deleteCourseSuccess);
         } else {
-            model.addAttribute("failureMessage",
-                    "The course could not be deleted since the course is used by a student/TA/instructor.");
+            model.addAttribute("failureMessage", DomainConstants.deleteCourseFailure);
         }
         model.addAttribute("courses", allCourses);
         return "admin\\allCourses";
@@ -178,7 +176,7 @@ public class CourseController {
         Map<Integer, List<StudentCSV>> studentLists = new HashMap<Integer, List<StudentCSV>>();
 
         if (file.isEmpty()) {
-            model.addAttribute("message", "Please select a CSV file to upload.");
+            model.addAttribute("message", DomainConstants.invalidFile);
             model.addAttribute("status", false);
         } else {
             studentService = Injector.instance().getStudentService();
@@ -194,7 +192,7 @@ public class CourseController {
 
             } else {
                 model.addAttribute("course", courseId);
-                model.addAttribute("message", "An error occurred while processing the CSV file.");
+                model.addAttribute("message", DomainConstants.csvFileProcessingError);
                 model.addAttribute("status", false);
             }
         }

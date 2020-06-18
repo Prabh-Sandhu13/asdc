@@ -1,5 +1,6 @@
 package CSCI5308.GroupFormationTool.Repository;
 
+import CSCI5308.GroupFormationTool.DomainConstants;
 import CSCI5308.GroupFormationTool.AccessControl.IChoice;
 import CSCI5308.GroupFormationTool.AccessControl.IQuestion;
 import CSCI5308.GroupFormationTool.AccessControl.IQuestionManagerRepository;
@@ -63,7 +64,7 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
             questionId = storedProcedure.getParameterLong(5);
 
         } catch (SQLException ex) {
-            return -1;
+            return DomainConstants.sqlError;
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -72,7 +73,7 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
         if (question.getChoices() != null) {
             for (IChoice choice : question.getChoices()) {
                 if (!saveChoice(choice, questionId)) {
-                    return -1;
+                    return DomainConstants.sqlError;
                 }
             }
 
