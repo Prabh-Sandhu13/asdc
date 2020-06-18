@@ -77,10 +77,12 @@ public class PolicyService implements IPolicyService {
                         break;
                     // A set of characters that are not allowed
                     case 5:
-                        if (password != null && password.contains(val)) {
-                            errorMessage = "" + val + " not allowed in password ";
+                        for (int i = 0; i < val.length(); i++) {
+                            if (password != null && password.indexOf(val.charAt(i)) >= 0) {
+                                errorMessage = "" + val + " not allowed in password ";
+                                break;
+                            }
                         }
-                        break;
                     default:
                 }
             }
