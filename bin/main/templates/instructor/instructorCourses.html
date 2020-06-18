@@ -16,9 +16,7 @@
 
 </head>
 <body style="background-color: #e7ebee">
-
 <div class="container">
-
     <div sec:authorize="!isAuthenticated()">
         <!-- Send them to login. -->
         <p>You have not logged in to the application. Please login to
@@ -27,10 +25,7 @@
     </div>
 
     <div sec:authorize="isAuthenticated()">
-
-
         <h3 class="text-center">Courses</h3>
-
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
                 <thead>
@@ -59,8 +54,6 @@
                     <td><a
                             th:href="@{/enrollTA?courseId={courseId} (courseId=${course.id})}"><span
                             class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add TA</a></td>
-
-
                 </tr>
                 </tbody>
             </table>

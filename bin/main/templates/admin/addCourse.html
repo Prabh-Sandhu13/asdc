@@ -17,8 +17,6 @@
 </head>
 <body style="background-color: #e7ebee">
 <div class="flex align-items-center text-center">
-
-
     <div sec:authorize="!isAuthenticated()">
         <!-- Send them to login. -->
         <p>You have not logged in to the application. Please login to
@@ -32,7 +30,6 @@
               th:object="${course}" method="post"
               class="m-t col-md-4 col-md-offset-4" role="form"
               data-toggle="validator">
-
 
             <div class="form-group input-group has-feedback">
 					<span class="input-group-addon"> <span

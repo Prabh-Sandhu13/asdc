@@ -16,9 +16,7 @@
 
 </head>
 <body style="background-color: #e7ebee">
-
 <div class="container">
-
     <div sec:authorize="!isAuthenticated()">
         <!-- Send them to login. -->
         <p>You have not yet logged in to the application. Please login to
@@ -28,7 +26,6 @@
 
     <div sec:authorize="isAuthenticated()">
         <h3 class="text-center">Questions</h3>
-
         <div>
             Sort by: <br/> <a
                 th:href="@{/questionManager/sortQuestion(sortby='title')}">
@@ -42,9 +39,7 @@
             </button>
         </a>
         </div>
-
         <br/> <br/>
-
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
                 <thead>
@@ -67,14 +62,13 @@
                            th:onclick="return confirm('Are you sure you want to delete the question?')">
                         <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete
                     </a></td>
-
                     <td><a
                             th:href="@{/questionManager/viewQuestion?questionId={quesId} (quesId=${question.id})}">View
                     </a></td>
                 </tr>
                 <tr th:if="${questionList ==null or questionList.empty}">
 
-                    <td colspan=3 style="color: red">No questions available
+                    <td colspan=5 style="color: red">No questions available
                         yet!!
                     </td>
 
@@ -82,9 +76,7 @@
                 </tbody>
             </table>
         </div>
-
         <br/> <br/>
-
         <div class="text-center">
             <a th:href="@{/questionManager/createQuestion}"
                class="btn btn-primary btn-md"> <span
@@ -92,8 +84,6 @@
                 question
             </a>
         </div>
-
-
         <br/> <br/>
         <div class="text-center">
             <a th:href="@{/courseList}">
