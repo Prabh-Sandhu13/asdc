@@ -20,13 +20,13 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">81</div>
+<div class="counter">139</div>
 <p>tests</p>
 </div>
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">0</div>
+<div class="counter">1</div>
 <p>failures</p>
 </div>
 </td>
@@ -38,7 +38,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">3.275s</div>
+<div class="counter">1.120s</div>
 <p>duration</p>
 </div>
 </td>
@@ -47,8 +47,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox success" id="successRate">
-<div class="percent">100%</div>
+<div class="infoBox failures" id="successRate">
+<div class="percent">99%</div>
 <p>successful</p>
 </div>
 </td>
@@ -58,13 +58,25 @@
 <div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#tab0">Packages</a>
+<a href="#tab0">Failed tests</a>
 </li>
 <li>
-<a href="#tab1">Classes</a>
+<a href="#tab1">Packages</a>
+</li>
+<li>
+<a href="#tab2">Classes</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
+<h2>Failed tests</h2>
+<ul class="linkList">
+<li>
+<a href="classes/CSCI5308.GroupFormationTool.Service.StudentServiceTest.html">StudentServiceTest</a>.
+<a href="classes/CSCI5308.GroupFormationTool.Service.StudentServiceTest.html#createStudent()">createStudent()</a>
+</li>
+</ul>
+</div>
+<div id="tab1" class="tab">
 <h2>Packages</h2>
 <table>
 <thead>
@@ -85,27 +97,27 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.378s</td>
+<td>0.416s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
 <td class="success">
 <a href="packages/CSCI5308.GroupFormationTool.Model.html">CSCI5308.GroupFormationTool.Model</a>
 </td>
-<td>42</td>
+<td>69</td>
 <td>0</td>
 <td>0</td>
-<td>0.057s</td>
+<td>0.073s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
 <td class="success">
 <a href="packages/CSCI5308.GroupFormationTool.RepositoryTest.html">CSCI5308.GroupFormationTool.RepositoryTest</a>
 </td>
-<td>22</td>
+<td>35</td>
 <td>0</td>
 <td>0</td>
-<td>0.184s</td>
+<td>0.215s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -115,23 +127,23 @@
 <td>2</td>
 <td>0</td>
 <td>0</td>
-<td>0.002s</td>
+<td>0.003s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
-<td class="success">
+<td class="failures">
 <a href="packages/CSCI5308.GroupFormationTool.Service.html">CSCI5308.GroupFormationTool.Service</a>
 </td>
-<td>14</td>
+<td>32</td>
+<td>1</td>
 <td>0</td>
-<td>0</td>
-<td>2.654s</td>
-<td class="success">100%</td>
+<td>0.413s</td>
+<td class="failures">96%</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="tab1" class="tab">
+<div id="tab2" class="tab">
 <h2>Classes</h2>
 <table>
 <thead>
@@ -152,7 +164,17 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.378s</td>
+<td>0.416s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="classes/CSCI5308.GroupFormationTool.Model.ChoiceTest.html">CSCI5308.GroupFormationTool.Model.ChoiceTest</a>
+</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0.004s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -162,17 +184,37 @@
 <td>8</td>
 <td>0</td>
 <td>0</td>
-<td>0.010s</td>
+<td>0.009s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="classes/CSCI5308.GroupFormationTool.Model.PolicyTest.html">CSCI5308.GroupFormationTool.Model.PolicyTest</a>
+</td>
+<td>8</td>
+<td>0</td>
+<td>0</td>
+<td>0.008s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="classes/CSCI5308.GroupFormationTool.Model.QuestionTest.html">CSCI5308.GroupFormationTool.Model.QuestionTest</a>
+</td>
+<td>14</td>
+<td>0</td>
+<td>0</td>
+<td>0.016s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
 <td class="success">
 <a href="classes/CSCI5308.GroupFormationTool.Model.StudentCSVTest.html">CSCI5308.GroupFormationTool.Model.StudentCSVTest</a>
 </td>
-<td>10</td>
+<td>11</td>
 <td>0</td>
 <td>0</td>
-<td>0.018s</td>
+<td>0.014s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -182,7 +224,7 @@
 <td>10</td>
 <td>0</td>
 <td>0</td>
-<td>0.012s</td>
+<td>0.011s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -192,17 +234,17 @@
 <td>14</td>
 <td>0</td>
 <td>0</td>
-<td>0.017s</td>
+<td>0.011s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
 <td class="success">
 <a href="classes/CSCI5308.GroupFormationTool.RepositoryTest.CourseRepositoryTest.html">CSCI5308.GroupFormationTool.RepositoryTest.CourseRepositoryTest</a>
 </td>
-<td>3</td>
+<td>4</td>
 <td>0</td>
 <td>0</td>
-<td>0.004s</td>
+<td>0.006s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -212,7 +254,37 @@
 <td>7</td>
 <td>0</td>
 <td>0</td>
-<td>0.122s</td>
+<td>0.131s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="classes/CSCI5308.GroupFormationTool.RepositoryTest.PasswordHistoryRepositoryTest.html">CSCI5308.GroupFormationTool.RepositoryTest.PasswordHistoryRepositoryTest</a>
+</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0.017s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="classes/CSCI5308.GroupFormationTool.RepositoryTest.PolicyRepositoryTest.html">CSCI5308.GroupFormationTool.RepositoryTest.PolicyRepositoryTest</a>
+</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0.003s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="classes/CSCI5308.GroupFormationTool.RepositoryTest.QuestionRepositoryTest.html">CSCI5308.GroupFormationTool.RepositoryTest.QuestionRepositoryTest</a>
+</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>0.009s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -222,17 +294,17 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.010s</td>
+<td>0.001s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
 <td class="success">
 <a href="classes/CSCI5308.GroupFormationTool.RepositoryTest.UserCoursesRepositoryTest.html">CSCI5308.GroupFormationTool.RepositoryTest.UserCoursesRepositoryTest</a>
 </td>
-<td>7</td>
+<td>8</td>
 <td>0</td>
 <td>0</td>
-<td>0.040s</td>
+<td>0.043s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -242,7 +314,7 @@
 <td>4</td>
 <td>0</td>
 <td>0</td>
-<td>0.008s</td>
+<td>0.005s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -262,7 +334,7 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.001s</td>
+<td>0.002s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -272,7 +344,7 @@
 <td>4</td>
 <td>0</td>
 <td>0</td>
-<td>1.202s</td>
+<td>0.014s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -282,27 +354,77 @@
 <td>2</td>
 <td>0</td>
 <td>0</td>
-<td>0.003s</td>
+<td>0.023s</td>
 <td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="classes/CSCI5308.GroupFormationTool.Service.MailServiceTest.html">CSCI5308.GroupFormationTool.Service.MailServiceTest</a>
+</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0.002s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="classes/CSCI5308.GroupFormationTool.Service.PasswordHistoryServiceTest.html">CSCI5308.GroupFormationTool.Service.PasswordHistoryServiceTest</a>
+</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0.011s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="classes/CSCI5308.GroupFormationTool.Service.PolicyServiceTest.html">CSCI5308.GroupFormationTool.Service.PolicyServiceTest</a>
+</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0.011s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="success">
+<a href="classes/CSCI5308.GroupFormationTool.Service.QuestionManagerServiceTest.html">CSCI5308.GroupFormationTool.Service.QuestionManagerServiceTest</a>
+</td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>0.016s</td>
+<td class="success">100%</td>
+</tr>
+<tr>
+<td class="failures">
+<a href="classes/CSCI5308.GroupFormationTool.Service.StudentServiceTest.html">CSCI5308.GroupFormationTool.Service.StudentServiceTest</a>
+</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0.075s</td>
+<td class="failures">0%</td>
 </tr>
 <tr>
 <td class="success">
 <a href="classes/CSCI5308.GroupFormationTool.Service.UserCoursesServiceTest.html">CSCI5308.GroupFormationTool.Service.UserCoursesServiceTest</a>
 </td>
-<td>7</td>
+<td>10</td>
 <td>0</td>
 <td>0</td>
-<td>1.448s</td>
+<td>0.015s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
 <td class="success">
 <a href="classes/CSCI5308.GroupFormationTool.Service.UserServiceTest.html">CSCI5308.GroupFormationTool.Service.UserServiceTest</a>
 </td>
-<td>1</td>
+<td>2</td>
 <td>0</td>
 <td>0</td>
-<td>0.001s</td>
+<td>0.246s</td>
 <td class="success">100%</td>
 </tr>
 </tbody>
@@ -316,7 +438,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.3</a> at Jun. 4, 2020, 6:50:11 p.m.</p>
+<a href="http://www.gradle.org">Gradle 6.3</a> at Jun. 18, 2020, 5:08:57 p.m.</p>
 </div>
 </div>
 </body>
