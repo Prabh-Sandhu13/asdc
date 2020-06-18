@@ -1,6 +1,7 @@
 package CSCI5308.GroupFormationTool.Controller;
 
 import CSCI5308.GroupFormationTool.AccessControl.*;
+import CSCI5308.GroupFormationTool.DomainConstants;
 import CSCI5308.GroupFormationTool.Injector;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,9 +63,9 @@ public class AdminController {
         model.addAttribute("course", course);
 
         if (success) {
-            model.addAttribute("success", "Instructor successfully added");
+            model.addAttribute("success", DomainConstants.instructorAddSuccess);
         } else {
-            model.addAttribute("failure", "Instructor could not be added");
+            model.addAttribute("failure", DomainConstants.instructorAddFailure);
         }
         return "redirect:/admin/assignInstructor?courseId=" + courseId;
 

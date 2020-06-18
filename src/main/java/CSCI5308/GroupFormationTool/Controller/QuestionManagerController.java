@@ -57,11 +57,10 @@ public class QuestionManagerController {
         outcome = questionManagerService.createQuestion(question, optionText, optionValue);
 
         if (outcome == DomainConstants.sqlError) {
-            model.addAttribute("errorMsg", "There was a problem in adding your question. Please try again!");
+            model.addAttribute("errorMsg", DomainConstants.sqlErrorMessage);
             return "questionManager/createQuestion";
         } else if (outcome == DomainConstants.invalidData) {
-            model.addAttribute("invalidData",
-                    "One or more fields have invalid/empty data! Please enter and try again");
+            model.addAttribute("invalidData", DomainConstants.invalidDataMessage);
             return "questionManager/createQuestion";
         } else {
             return "redirect:/questionManager/viewQuestion?questionId=" + outcome;
@@ -83,9 +82,9 @@ public class QuestionManagerController {
         boolean status = questionManagerService.deleteQuestion(questionId);
 
         if (status) {
-            model.addAttribute("successMessage", "The question " + questionId + " is successfully deleted!");
+            model.addAttribute("successMessage", DomainConstants.deleteQuestionSuccess);
         } else {
-            model.addAttribute("failureMessage", "The question can not not be deleted.");
+            model.addAttribute("failureMessage", DomainConstants.deleteQuestionFailure);
         }
         String emailId = authentication.getPrincipal().toString();
         ArrayList<IQuestion> questionList = questionManagerService.getQuestionListForInstructor(emailId);

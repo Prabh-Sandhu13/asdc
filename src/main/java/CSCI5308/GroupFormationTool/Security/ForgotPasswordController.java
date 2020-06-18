@@ -7,6 +7,7 @@ import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordHistoryException;
 import CSCI5308.GroupFormationTool.ErrorHandling.TokenExpiredException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
+import CSCI5308.GroupFormationTool.DomainConstants;
 import CSCI5308.GroupFormationTool.Injector;
 import CSCI5308.GroupFormationTool.Model.User;
 import org.springframework.stereotype.Controller;
@@ -38,11 +39,12 @@ public class ForgotPasswordController {
             forgotPasswordService = Injector.instance().getForgotPasswordService();
             forgotPasswordService.notifyUser(user);
             modelAndView = new ModelAndView("MailSentSuccess");
-            modelAndView.addObject("Success", "An email with reset link has been succesfully sent!");
+            modelAndView.addObject("Success", DomainConstants.mailSentSuccess);
 
         } catch (UserAlreadyExistsException uaex) {
             modelAndView = new ModelAndView("forgotPassword");
-            modelAndView.addObject("userAlreadyExists", "An account with " + user.getEmailId() + " not found");
+            modelAndView.addObject("userAlreadyExists", DomainConstants.userDoesNotExists
+            		.replace("[[emailId]]", user.getEmailId()));
         } catch (Exception e) {
         }
         return modelAndView;
@@ -64,11 +66,10 @@ public class ForgotPasswordController {
             forgotPasswordService = Injector.instance().getForgotPasswordService();
             forgotPasswordService.updatePassword(user, receivedToken);
             modelAndView = new ModelAndView("passwordResetSuccess");
-            modelAndView.addObject("Success", "Your password has been reset!");
-
+            modelAndView.addObject("Success", DomainConstants.passwordResetMessage);
         } catch (TokenExpiredException tee) {
             modelAndView = new ModelAndView("resetPassword");
-            modelAndView.addObject("Error", "The renew password link has expired, please renew it again");
+            modelAndView.addObject("Error", DomainConstants.tokenExpiredMessage);
         } catch (PasswordException pex) {
             modelAndView = new ModelAndView("redirect:/resetPassword");
             modelAndView.addObject("token", receivedToken);
@@ -79,7 +80,7 @@ public class ForgotPasswordController {
             modelAndView.addObject("passwordError", phe.getMessage());
         } catch (Exception e) {
             modelAndView = new ModelAndView("resetPassword");
-            modelAndView.addObject("Error", "Something went wrong, please try again");
+            modelAndView.addObject("Error", DomainConstants.error);
         }
         return modelAndView;
     }

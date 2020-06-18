@@ -111,7 +111,6 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
     @Override
     public boolean updateToken(IUser user, String token) {
         boolean tokenUpdated = false;
-        // System.out.println("In update");
         StoredProcedure storedProcedure = null;
         try {
             storedProcedure = new StoredProcedure("sp_updateToken(?,?)");

@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.Service;
 import CSCI5308.GroupFormationTool.AccessControl.IPolicy;
 import CSCI5308.GroupFormationTool.AccessControl.IPolicyRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IPolicyService;
+import CSCI5308.GroupFormationTool.DomainConstants;
 import CSCI5308.GroupFormationTool.Injector;
 
 import java.util.ArrayList;
@@ -48,38 +49,38 @@ public class PolicyService implements IPolicyService {
                     // Minimum Length policy
                     case 0:
                         if (password.length() < Integer.parseInt(val)) {
-                            errorMessage = "Minimum length of password should be " + val;
+                            errorMessage = DomainConstants.passwordMinimumLength + val;
                         }
                         break;
                     // Maximum Length policy
                     case 1:
                         if (password.length() > Integer.parseInt(val)) {
-                            errorMessage = "Maximum length of password should be " + val;
+                            errorMessage = DomainConstants.passwordMaximumLength + val;
                         }
                         break;
                     // Minimum number of uppercase characters
                     case 2:
                         if (upperCaseCharacters < Integer.parseInt(val)) {
-                            errorMessage = "Minimum number of uppercase characters in password should be " + val;
+                            errorMessage = DomainConstants.passwordUppercaseMinimumLength + val;
                         }
                         break;
                     // Minimum number of lowercase characters
                     case 3:
                         if (lowerCaseCharacters < Integer.parseInt(val)) {
-                            errorMessage = "Minimum number of lowercase characters in password should be " + val;
+                            errorMessage = DomainConstants.passwordLowercaseMinimumLength + val;
                         }
                         break;
                     // Minimum number of symbols or special characters
                     case 4:
                         if (specialCharacters < Integer.parseInt(val)) {
-                            errorMessage = "Minimum number of symbols or special characters in password should be " + val;
+                            errorMessage = DomainConstants.passwordSpecialSymbolsMinimumLength + val;
                         }
                         break;
                     // A set of characters that are not allowed
                     case 5:
                         for (int i = 0; i < val.length(); i++) {
                             if (password != null && password.indexOf(val.charAt(i)) >= 0) {
-                                errorMessage = "" + val + " not allowed in password ";
+                                errorMessage = "" + val + DomainConstants.passwordCharactersNotAllowed;
                                 break;
                             }
                         }

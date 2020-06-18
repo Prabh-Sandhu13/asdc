@@ -4,6 +4,7 @@ import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordHistoryRepository;
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordHistoryService;
 import CSCI5308.GroupFormationTool.AccessControl.IUser;
+import CSCI5308.GroupFormationTool.DomainConstants;
 import CSCI5308.GroupFormationTool.Injector;
 
 import java.util.ArrayList;
@@ -21,12 +22,11 @@ public class PasswordHistoryService implements IPasswordHistoryService {
         boolean violation = false;
 
         encryptor = Injector.instance().getPasswordEncryptor();
-        String settingValue = passwordHistoryRepository.getSettingValue("Password History");
+        String settingValue = passwordHistoryRepository.getSettingValue(DomainConstants.passwordHistory);
 
         if (settingValue == null) {
             return false;
         } else {
-            String encrypted_password = encryptor.encoder(enteredPassword);
             ArrayList<String> nPasswords = passwordHistoryRepository.getNPasswords(user, settingValue);
 
             for (int listIndex = 0; listIndex < nPasswords.size(); listIndex++) {

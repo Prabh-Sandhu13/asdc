@@ -268,11 +268,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
                 if (!(results.next())) {
-                    System.out.println("user exists!!");
                     return false;
                 } else {
-                    System.out.println("user does not exist!!");
-                    System.out.println(results.getString("user_id"));
                     String userId = results.getString("user_id");
                     Boolean roleExists = getUserRoleForCourse(userId, courseId);
                     if (roleExists) {
@@ -323,11 +320,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 
             if (results != null) {
                 if (!(results.next())) {
-                    System.out.println("user role does not exist!!");
                     return false;
                 } else {
-                    System.out.println(results.getString("role_id"));
-                    System.out.println("user role exists!!");
                     return true;
                 }
             }

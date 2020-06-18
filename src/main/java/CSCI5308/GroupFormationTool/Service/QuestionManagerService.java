@@ -23,8 +23,8 @@ public class QuestionManagerService implements IQuestionManagerService {
     @Override
     public long createQuestion(IQuestion question, List<String> optionText, List<String> optionValue) {
         int type = question.getType();
-        Set<String> optionTextSet = new HashSet<>();
-        Set<String> optionValueSet = new HashSet<>();
+        Set<String> optionTextSet = new LinkedHashSet<>();
+        Set<String> optionValueSet = new LinkedHashSet<>();
 
         if (checkIfInvalid(question.getTitle(), question.getText(), type, optionText, optionValue)) {
             return DomainConstants.invalidData;
