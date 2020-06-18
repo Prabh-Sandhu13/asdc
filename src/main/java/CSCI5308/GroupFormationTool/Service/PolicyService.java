@@ -83,7 +83,6 @@ public class PolicyService implements IPolicyService {
                                 break;
                             }
                         }
-                        break;
                     default:
                 }
             }
