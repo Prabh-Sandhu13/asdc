@@ -1,23 +1,24 @@
 package CSCI5308.GroupFormationTool.AccessControl;
 
 public interface IUserCourses {
-	public String getCourseId();
 
-	public void setCourseId(String courseId);
+    String getCourseId();
 
-	public String getBannerId();
+    void setCourseId(String courseId);
 
-	public void setBannerId(String bannerId);
+    String getBannerId();
 
-	public String getCourseName();
+    void setBannerId(String bannerId);
 
-	public void setCourseName(String courseName);
+    String getCourseName();
 
-	public String getCourseDescription();
+    void setCourseName(String courseName);
 
-	public void setCourseDescription(String courseDescription);
+    String getCourseDescription();
 
-	public String getUserRole();
+    void setCourseDescription(String courseDescription);
 
-	public void setUserRole(String userRole);
+    String getUserRole();
+
+    void setUserRole(String userRole);
 }

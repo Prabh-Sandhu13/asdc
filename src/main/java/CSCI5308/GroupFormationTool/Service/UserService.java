@@ -1,66 +1,72 @@
 package CSCI5308.GroupFormationTool.Service;
 
-import CSCI5308.GroupFormationTool.Injector;
-import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
-import CSCI5308.GroupFormationTool.AccessControl.IUser;
-import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
-import CSCI5308.GroupFormationTool.AccessControl.IUserService;
+import CSCI5308.GroupFormationTool.AccessControl.*;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
+import CSCI5308.GroupFormationTool.Injector;
 
 public class UserService implements IUserService {
 
-	private IUserRepository userRepository;
+    private IUserRepository userRepository;
 
-	private IPasswordEncryptor encryptor;
+    private IPasswordEncryptor encryptor;
 
-	@Override
-	public boolean createUser(IUser user) {
+    private IPolicyService policyService;
 
-		if (!checkForValues(user)) {
-			return false;
-		}
+    private IPasswordHistoryService passwordHistoryService;
 
-		if (!(user.getPassword().equals(user.getConfirmPassword()))) {
-			throw new PasswordException("The passwords do not match");
-		}
+    @Override
+    public boolean createUser(IUser user) {
+        if (!checkForValues(user)) {
+            return false;
+        }
 
-		userRepository = Injector.instance().getUserRepository();
+        policyService = Injector.instance().getPolicyService();
+        String password = user.getPassword();
+        String passwordSecurityError = policyService.passwordSPolicyCheck(password);
 
-		boolean success = false;
-		encryptor = Injector.instance().getPasswordEncryptor();
+        if (passwordSecurityError != null) {
+            throw new PasswordException(passwordSecurityError);
+        }
 
-		user.setPassword(encryptor.encoder(user.getPassword()));
+        if (!(user.getPassword().equals(user.getConfirmPassword()))) {
+            throw new PasswordException("The passwords do not match. Please try again!");
+        }
 
-		IUser userByEmailId = userRepository.getUserByEmailId(user);
+        userRepository = Injector.instance().getUserRepository();
+        passwordHistoryService = Injector.instance().getPasswordHistoryService();
+        boolean success = false;
+        encryptor = Injector.instance().getPasswordEncryptor();
 
-		if (userByEmailId == null) {
-			success = userRepository.createUser(user);
-		} else {
-			throw new UserAlreadyExistsException("An account with " + user.getEmailId() + " already exists!!");
-		}
+        user.setPassword(encryptor.encoder(user.getPassword()));
+        IUser userByEmailId = userRepository.getUserByEmailId(user);
 
-		return success;
-	}
+        if (userByEmailId == null) {
+            success = userRepository.createUser(user);
+            IUser userWithUserId = userRepository.getUserIdByEmailId(user);
+            passwordHistoryService.addPasswordHistory(userWithUserId, user.getPassword());
+        } else {
+            throw new UserAlreadyExistsException("An account with " + user.getEmailId() + " already exists!!");
+        }
+        return success;
+    }
 
-	@Override
-	public boolean checkCurrentUserIsAdmin(String emailId) {
+    @Override
+    public boolean checkCurrentUserIsAdmin(String emailId) {
+        userRepository = Injector.instance().getUserRepository();
+        IUser adminDetails = userRepository.getAdminDetails();
+        boolean outcome = adminDetails.getEmailId().equalsIgnoreCase(emailId);
+        return outcome;
+    }
 
-		userRepository = Injector.instance().getUserRepository();
-		IUser adminDetails = userRepository.getAdminDetails();
+    private boolean checkForValues(IUser user) {
+        boolean outcome = true;
 
-		return adminDetails.getEmailId().equalsIgnoreCase(emailId);
-
-	}
-
-	private boolean checkForValues(IUser user) {
-
-		if (user.getFirstName().isEmpty() || user.getLastName().isEmpty() || user.getEmailId().isEmpty()
-				|| user.getPassword().isEmpty() || user.getConfirmPassword().isEmpty()) {
-			return false;
-		} else {
-			return true;
-		}
-	}
+        if (user.getFirstName().isEmpty() || user.getLastName().isEmpty() || user.getEmailId().isEmpty()
+                || user.getPassword().isEmpty() || user.getConfirmPassword().isEmpty()) {
+            outcome = false;
+        }
+        return outcome;
+    }
 
 }

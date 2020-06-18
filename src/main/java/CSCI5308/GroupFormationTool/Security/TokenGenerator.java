@@ -1,15 +1,14 @@
 package CSCI5308.GroupFormationTool.Security;
 
-import java.util.UUID;
-
 import CSCI5308.GroupFormationTool.AccessControl.ITokenGenerator;
 
-public class TokenGenerator implements ITokenGenerator{
+import java.util.UUID;
 
-	@Override
-	public String generator() {
+public class TokenGenerator implements ITokenGenerator {
 
-		return UUID.randomUUID().toString();
-	}
+    @Override
+    public String generator() {
+        return UUID.randomUUID().toString();
+    }
 
 }

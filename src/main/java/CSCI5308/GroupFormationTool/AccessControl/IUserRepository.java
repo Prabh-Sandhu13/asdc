@@ -2,8 +2,11 @@ package CSCI5308.GroupFormationTool.AccessControl;
 
 public interface IUserRepository {
 
-    public boolean createUser(IUser user);
-    public IUser getUserByEmailId(IUser user);
-    public IUser getUserByBannerId(IUser user);  
-    public IUser getAdminDetails();
+    boolean createUser(IUser user);
+
+    IUser getUserByEmailId(IUser user);
+
+    IUser getAdminDetails();
+
+    IUser getUserIdByEmailId(IUser user);
 }

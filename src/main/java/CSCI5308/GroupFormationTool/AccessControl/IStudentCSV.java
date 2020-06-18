@@ -2,23 +2,23 @@ package CSCI5308.GroupFormationTool.AccessControl;
 
 public interface IStudentCSV {
 
-	public String getFirstName();
-	
-	public void setFirstName(String firstName);
+    String getFirstName();
 
-	public String getLastName();
+    void setFirstName(String firstName);
 
-	public void setLastName(String lastName);
+    String getLastName();
 
-	public String getEmail();
+    void setLastName(String lastName);
 
-	public void setEmail(String email);
+    String getEmail();
 
-	public String getBannerId();
+    void setEmail(String email);
 
-	public void setBannerId(String bannerId);
-	
-	public String getPassword();
+    String getBannerId();
 
-	public void setPassword(String password);
+    void setBannerId(String bannerId);
+
+    String getPassword();
+
+    void setPassword(String password);
 }

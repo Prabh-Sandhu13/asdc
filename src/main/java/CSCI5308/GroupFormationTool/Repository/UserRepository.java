@@ -10,126 +10,117 @@ import java.sql.SQLException;
 
 public class UserRepository implements IUserRepository {
 
-	@Override
-	public boolean createUser(IUser user) {
+    @Override
+    public boolean createUser(IUser user) {
 
-		StoredProcedure storedProcedure = null;
-		try {
-			storedProcedure = new StoredProcedure("sp_create_user(?,?,?,?,?)");
-			storedProcedure.setInputStringParameter(1, user.getBannerId());
-			storedProcedure.setInputStringParameter(2, user.getFirstName());
-			storedProcedure.setInputStringParameter(3, user.getLastName());
-			storedProcedure.setInputStringParameter(4, user.getEmailId());
-			storedProcedure.setInputStringParameter(5, user.getPassword());
+        StoredProcedure storedProcedure = null;
+        try {
+            storedProcedure = new StoredProcedure("sp_create_user(?,?,?,?,?)");
+            storedProcedure.setInputStringParameter(1, user.getBannerId());
+            storedProcedure.setInputStringParameter(2, user.getFirstName());
+            storedProcedure.setInputStringParameter(3, user.getLastName());
+            storedProcedure.setInputStringParameter(4, user.getEmailId());
+            storedProcedure.setInputStringParameter(5, user.getPassword());
+            storedProcedure.execute();
 
-			storedProcedure.execute();
+        } catch (SQLException ex) {
+            return false;
+        } finally {
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+        return true;
+    }
 
-		} catch (SQLException ex) {
+    @Override
+    public IUser getUserIdByEmailId(IUser user) {
 
-			return false;
-		} finally {
-			if (storedProcedure != null) {
-				storedProcedure.removeConnections();
-			}
-		}
-		return true;
-	}
+        User userWithUserId = null;
+        StoredProcedure storedProcedure = null;
+        try {
+            storedProcedure = new StoredProcedure("sp_getUserId(?)");
+            storedProcedure.setInputStringParameter(1, user.getEmailId());
+            ResultSet results = storedProcedure.executeWithResults();
 
-	@Override
-	public IUser getUserByEmailId(IUser user) {
+            if (results != null) {
+                while (results.next()) {
+                    {
+                        userWithUserId = new User();
+                        userWithUserId.setId(Long.parseLong(results.getString("user_id")));
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+        return userWithUserId;
+    }
 
-		IUser userByEmailId = null;
-		StoredProcedure storedProcedure = null;
-		try {
-			storedProcedure = new StoredProcedure("sp_getUserByEmailId(?)");
-			storedProcedure.setInputStringParameter(1, user.getEmailId());
-			ResultSet results = storedProcedure.executeWithResults();
+    @Override
+    public IUser getUserByEmailId(IUser user) {
 
-			if (results != null) {
+        IUser userByEmailId = null;
+        StoredProcedure storedProcedure = null;
+        try {
+            storedProcedure = new StoredProcedure("sp_getUserByEmailId(?)");
+            storedProcedure.setInputStringParameter(1, user.getEmailId());
+            ResultSet results = storedProcedure.executeWithResults();
 
-				while (results.next()) {
-					{
-						userByEmailId = new User();
-						userByEmailId.setBannerId(results.getString("banner_id"));
-						userByEmailId.setEmailId(results.getString("email"));
-						userByEmailId.setFirstName(results.getString("first_name"));
-						userByEmailId.setLastName(results.getString("last_name"));
-						userByEmailId.setPassword(results.getString("password"));
-					}
-				}
-			}
+            if (results != null) {
 
-		} catch (SQLException ex) {
-			
-			System.out.println(ex.getMessage());
+                while (results.next()) {
+                    {
+                        userByEmailId = new User();
+                        userByEmailId.setBannerId(results.getString("banner_id"));
+                        userByEmailId.setEmailId(results.getString("email"));
+                        userByEmailId.setFirstName(results.getString("first_name"));
+                        userByEmailId.setLastName(results.getString("last_name"));
+                        userByEmailId.setPassword(results.getString("password"));
+                    }
+                }
+            }
 
-		} finally {
-			if (storedProcedure != null) {
-				storedProcedure.removeConnections();
-			}
-		}
-		return userByEmailId;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+        return userByEmailId;
+    }
 
-	}
+    @Override
+    public IUser getAdminDetails() {
+        StoredProcedure storedProcedure = null;
+        IUser adminDetails = null;
+        try {
+            storedProcedure = new StoredProcedure("sp_getAdminDetails");
+            ResultSet results = storedProcedure.executeWithResults();
 
-	@Override
-	public IUser getUserByBannerId(IUser user) {
-		StoredProcedure storedProcedure = null;
-		IUser userByBannerId = null;
-		try {
-			storedProcedure = new StoredProcedure("sp_getUserByBannerId(?)");
-			storedProcedure.setInputStringParameter(1, user.getBannerId());
-			ResultSet results = storedProcedure.executeWithResults();
+            if (results != null) {
+                while (results.next()) {
+                    {
+                        adminDetails = new User();
+                        adminDetails.setBannerId(results.getString("banner_id"));
+                        adminDetails.setEmailId(results.getString("email"));
+                        adminDetails.setFirstName(results.getString("first_name"));
+                        adminDetails.setLastName(results.getString("last_name"));
+                    }
+                }
+            }
 
-			if (results != null) {
-				while (results.next()) {
-					{
-						userByBannerId = new User();
-						userByBannerId.setBannerId(results.getString("banner_id"));
-						userByBannerId.setEmailId(results.getString("email"));
-						userByBannerId.setFirstName(results.getString("first_name"));
-						userByBannerId.setLastName(results.getString("last_name"));
-					}
-				}
-			}
-
-		} catch (SQLException ex) {
-
-		} finally {
-			if (storedProcedure != null) {
-				storedProcedure.removeConnections();
-			}
-		}
-		return userByBannerId;
-	}
-
-	@Override
-	public IUser getAdminDetails() {
-		StoredProcedure storedProcedure = null;
-		IUser adminDetails = null;
-		try {
-			storedProcedure = new StoredProcedure("sp_getAdminDetails");
-			ResultSet results = storedProcedure.executeWithResults();
-
-			if (results != null) {
-				while (results.next()) {
-					{
-						adminDetails = new User();
-						adminDetails.setBannerId(results.getString("banner_id"));
-						adminDetails.setEmailId(results.getString("email"));
-						adminDetails.setFirstName(results.getString("first_name"));
-						adminDetails.setLastName(results.getString("last_name"));
-					}
-				}
-			}
-
-		} catch (SQLException ex) {
-
-		} finally {
-			if (storedProcedure != null) {
-				storedProcedure.removeConnections();
-			}
-		}
-		return adminDetails;
-	}
+        } catch (SQLException ex) {
+        } finally {
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+        return adminDetails;
+    }
 }

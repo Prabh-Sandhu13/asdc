@@ -4,72 +4,72 @@ import CSCI5308.GroupFormationTool.AccessControl.IUserCourses;
 
 public class UserCourses implements IUserCourses {
 
-	private String courseId;
+    private String courseId;
 
-	private String bannerId;
+    private String bannerId;
 
-	private String courseName;
+    private String courseName;
 
-	private String courseDescription;
+    private String courseDescription;
 
-	private String userRole;
+    private String userRole;
 
-	@Override
-	public String getCourseId() {
-		return courseId;
-	}
+    public UserCourses() {
+        courseId = null;
+        courseName = null;
+        courseDescription = null;
+        bannerId = null;
+        userRole = null;
+    }
 
-	@Override
-	public void setCourseId(String courseId) {
-		this.courseId = courseId;
-	}
+    @Override
+    public String getCourseId() {
+        return courseId;
+    }
 
-	@Override
-	public String getBannerId() {
-		return bannerId;
-	}
+    @Override
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
+    }
 
-	@Override
-	public void setBannerId(String bannerId) {
-		this.bannerId = bannerId;
-	}
+    @Override
+    public String getBannerId() {
+        return bannerId;
+    }
 
-	@Override
-	public String getCourseName() {
-		return courseName;
-	}
+    @Override
+    public void setBannerId(String bannerId) {
+        this.bannerId = bannerId;
+    }
 
-	@Override
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
-	}
+    @Override
+    public String getCourseName() {
+        return courseName;
+    }
 
-	@Override
-	public String getCourseDescription() {
-		return courseDescription;
-	}
+    @Override
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
 
-	@Override
-	public void setCourseDescription(String courseDescription) {
-		this.courseDescription = courseDescription;
-	}
+    @Override
+    public String getCourseDescription() {
+        return courseDescription;
+    }
 
-	@Override
-	public String getUserRole() {
-		return userRole;
-	}
+    @Override
+    public void setCourseDescription(String courseDescription) {
+        this.courseDescription = courseDescription;
+    }
 
-	@Override
-	public void setUserRole(String userRole) {
-		this.userRole = userRole;
-	}
+    @Override
+    public String getUserRole() {
+        return userRole;
+    }
 
-	public UserCourses() {
-		courseId = null;
-		courseName = null;
-		courseDescription = null;
-		bannerId = null;
-		userRole = null;
-	}
+    @Override
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
 
 }

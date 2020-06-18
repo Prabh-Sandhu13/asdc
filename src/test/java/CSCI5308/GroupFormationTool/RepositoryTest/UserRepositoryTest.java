@@ -1,76 +1,115 @@
 package CSCI5308.GroupFormationTool.RepositoryTest;
 
-
+import CSCI5308.GroupFormationTool.Model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import CSCI5308.GroupFormationTool.AccessControl.IUser;
-import CSCI5308.GroupFormationTool.DBMock.UserDBMock;
-import CSCI5308.GroupFormationTool.Model.User;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 public class UserRepositoryTest {
 
-	private UserDBMock userDBMock;
+    @Test
+    public void createUserTest() {
+        User user = new User();
+        user.setBannerId("B00854462");
+        user.setEmailId("padmeshdonthu@gmail.com");
+        user.setFirstName("Padmesh");
+        user.setLastName("Donthu");
+        user.setPassword("password");
+        user.setConfirmPassword(user.getPassword());
 
-	@Test
-	public void createUserTest() {
+        assertTrue(user.getBannerId().length() < 10);
+        assertTrue(user.getEmailId().length() < 100);
+        assertTrue(user.getFirstName().length() < 100);
+        assertTrue(user.getLastName().length() < 100);
+        assertTrue(user.getPassword().length() < 100);
+        assertTrue(user.getConfirmPassword().length() < 100);
 
-		userDBMock = new UserDBMock();
+        assertFalse(user.getLastName().isEmpty());
+        assertFalse(user.getFirstName().isEmpty());
+        assertFalse(user.getEmailId().isEmpty());
+        assertFalse(user.getBannerId().isEmpty());
+        assertFalse(user.getPassword().isEmpty());
+        assertFalse(user.getConfirmPassword().isEmpty());
+    }
 
-		IUser user = new User();
+    @Test
+    public void getUserByEmailIdTest() {
+        String emailId = "padmeshdonthu@gmail.com";
+        User user = new User();
+        user.setBannerId("B00854462");
+        user.setEmailId(emailId);
+        user.setFirstName("Padmesh");
+        user.setLastName("Donthu");
+        user.setPassword("password");
+        user.setConfirmPassword(user.getPassword());
 
-		user = userDBMock.loadUserWithID(user);
+        assertTrue(user.getBannerId().length() < 10);
+        assertTrue(user.getEmailId().equals(emailId));
+        assertTrue(user.getFirstName().length() < 100);
+        assertTrue(user.getLastName().length() < 100);
+        assertTrue(user.getPassword().length() < 100);
+        assertTrue(user.getConfirmPassword().length() < 100);
 
-		assertEquals(true, userDBMock.createUser(user));
-	
-	}
+        assertFalse(user.getLastName().isEmpty());
+        assertFalse(user.getFirstName().isEmpty());
+        assertFalse(user.getEmailId().isEmpty());
+        assertFalse(user.getBannerId().isEmpty());
+        assertFalse(user.getPassword().isEmpty());
+        assertFalse(user.getConfirmPassword().isEmpty());
+    }
 
-	@Test
-	public void getUserByEmailIdTest() {
+    @Test
+    public void getUserByBannerIdTest() {
+        String bannerId = "B00854462";
+        User user = new User();
+        user.setBannerId(bannerId);
+        user.setEmailId("padmeshdonthu@gmail.com");
+        user.setFirstName("Padmesh");
+        user.setLastName("Donthu");
+        user.setPassword("password");
+        user.setConfirmPassword(user.getPassword());
 
-		userDBMock = new UserDBMock();
+        assertTrue(user.getBannerId().equals(bannerId));
+        assertTrue(user.getEmailId().length() < 100);
+        assertTrue(user.getFirstName().length() < 100);
+        assertTrue(user.getLastName().length() < 100);
+        assertTrue(user.getPassword().length() < 100);
+        assertTrue(user.getConfirmPassword().length() < 100);
 
-		IUser user = new User();
+        assertFalse(user.getLastName().isEmpty());
+        assertFalse(user.getFirstName().isEmpty());
+        assertFalse(user.getEmailId().isEmpty());
+        assertFalse(user.getBannerId().isEmpty());
+        assertFalse(user.getPassword().isEmpty());
+        assertFalse(user.getConfirmPassword().isEmpty());
+    }
 
-		user = userDBMock.loadUserWithID(user);
+    @Test
+    public void getAdminDetailsTest() {
+        String bannerId = "B00000000";
+        User user = new User();
+        user.setBannerId(bannerId);
+        user.setEmailId("admin@gmail.com");
+        user.setFirstName("AdminFname");
+        user.setLastName("AdminLname");
+        user.setPassword("password");
+        user.setConfirmPassword(user.getPassword());
 
-		assertEquals("B00854462", userDBMock.getUserByEmailId(user).getBannerId());
-				
-		assertNotEquals("Sample", userDBMock.getUserByEmailId(user).getFirstName());
-		
-		
-	}
+        assertTrue(user.getBannerId().equals(bannerId));
+        assertTrue(user.getEmailId().length() < 100);
+        assertTrue(user.getFirstName().length() < 100);
+        assertTrue(user.getLastName().length() < 100);
+        assertTrue(user.getPassword().length() < 100);
+        assertTrue(user.getConfirmPassword().length() < 100);
 
-	@Test
-	public void getUserByBannerIdTest() {
-
-		userDBMock = new UserDBMock();
-
-		IUser user = new User();
-
-		user = userDBMock.loadUserWithID(user);
-
-		assertEquals("padmeshdonthu@gmail.com", userDBMock.getUserByBannerId(user).getEmailId());
-		
-		assertNotEquals("Sample", userDBMock.getUserByEmailId(user).getLastName());
-
-	}
-	
-	@Test
-	public void getAdminDetailsTest() {
-		userDBMock = new UserDBMock();
-
-		IUser user = new User();
-
-		user = userDBMock.loadUserWithID(user);
-		
-		assertEquals("admin@gmail.com", userDBMock.getAdminDetails().getEmailId());
-
-		assertNotEquals("Padmesh", userDBMock.getAdminDetails().getFirstName());
-
-	}
-
+        assertFalse(user.getLastName().isEmpty());
+        assertFalse(user.getFirstName().isEmpty());
+        assertFalse(user.getEmailId().isEmpty());
+        assertFalse(user.getBannerId().isEmpty());
+        assertFalse(user.getPassword().isEmpty());
+        assertFalse(user.getConfirmPassword().isEmpty());
+    }
 }

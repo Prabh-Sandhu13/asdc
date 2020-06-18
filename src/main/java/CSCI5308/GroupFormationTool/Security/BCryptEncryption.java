@@ -2,9 +2,7 @@ package CSCI5308.GroupFormationTool.Security;
 
 import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
 
-@Service
 public class BCryptEncryption implements IPasswordEncryptor {
 
     private BCryptPasswordEncoder encode;
