@@ -68,7 +68,7 @@ public class ForgotPasswordServiceTest {
             forgotPasswordService.notifyUser(user);
         });
 
-        String expectedMsg = "An account with " + user.getEmailId() + " not found!";
+        String expectedMsg = "An account with " + user.getEmailId() + " not found";
         String actualMsg = exception.getMessage();
         assertTrue(expectedMsg.equals(actualMsg));
     }
@@ -112,7 +112,7 @@ public class ForgotPasswordServiceTest {
             forgotPasswordService.updatePassword(user, token);
         });
 
-        expectedMsg = "Token expired";
+        expectedMsg = "The renew password link has expired, please renew it again";
         actualMsg = tokenExpiredException.getMessage();
         assertTrue(expectedMsg.equals(actualMsg));
 

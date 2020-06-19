@@ -76,7 +76,7 @@ public class UserServiceTest {
             userService.createUser(user);
         });
 
-        String userAlreadyExistsErrorMessage = "An account with " + user.getEmailId() + " already exists!!";
+        String userAlreadyExistsErrorMessage = "An account with " + user.getEmailId() + " already exists.";
         assertTrue(userAlreadyExistsException.getMessage().equals(userAlreadyExistsErrorMessage));
 
         user.setEmailId("");
