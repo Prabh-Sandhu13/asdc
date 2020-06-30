@@ -7,6 +7,5 @@ import java.util.List;
 import java.util.Map;
 
 public interface IStudentService {
-
     Map<Integer, List<StudentCSV>> createStudent(MultipartFile file, String courseId);
 }

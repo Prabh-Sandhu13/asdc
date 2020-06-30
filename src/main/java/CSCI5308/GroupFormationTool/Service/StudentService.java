@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,9 @@ public class StudentService implements IStudentService {
     public Map<Integer, List<StudentCSV>> createStudent(MultipartFile file, String courseId) {
         studentRepository = Injector.instance().getStudentRepository();
         mailService = Injector.instance().getMailService();
-
+        
+        List<StudentCSV> badData = new ArrayList<StudentCSV>();
+        List<StudentCSV> properData = new ArrayList<StudentCSV>();
         Map<Integer, List<StudentCSV>> studentLists = null;
 
         try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
@@ -34,7 +37,16 @@ public class StudentService implements IStudentService {
                     .withIgnoreLeadingWhiteSpace(true).build();
 
             List<StudentCSV> students = csvToBean.parse();
-            studentLists = studentRepository.createStudent(students, courseId);
+            for (StudentCSV studentCSV : students) {
+                if (checkForBadData(studentCSV)) {
+                    badData.add(studentCSV);
+                }
+                else {
+                	properData.add(studentCSV);
+                }
+            }
+            studentLists = studentRepository.createStudent(properData, courseId);
+            studentLists.put(DomainConstants.badData, badData);
 
             mailService.sendBatchMail(studentLists.get(DomainConstants.newStudents), courseId);
 
@@ -42,5 +54,16 @@ public class StudentService implements IStudentService {
             return null;
         }
         return studentLists;
+    }
+    
+    private boolean checkForBadData(StudentCSV studentCSV) {
+        if (studentCSV.getBannerId() == null || studentCSV.getFirstName() == null
+                || studentCSV.getLastName() == null || studentCSV.getEmail() == null
+                || studentCSV.getBannerId().equals("") || studentCSV.getFirstName().equals("")
+                || studentCSV.getLastName().equals("") || studentCSV.getEmail().equals("")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

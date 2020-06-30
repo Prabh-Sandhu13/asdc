@@ -29,9 +29,6 @@ public class StudentRepository implements IStudentRepository {
         Map<Integer, List<StudentCSV>> studentLists = new HashMap<Integer, List<StudentCSV>>();
 
         for (StudentCSV studentCSV : studentCSVList) {
-            if (checkForBadData(studentCSV)) {
-                badData.add(studentCSV);
-            } else {
                 try {
                     storedProcedure = new StoredProcedure("sp_createStudentFromCSV(?,?,?,?,?,?,?)");
                     storedProcedure.setInputStringParameter(1, studentCSV.getBannerId());
@@ -59,22 +56,12 @@ public class StudentRepository implements IStudentRepository {
                         storedProcedure.removeConnections();
                     }
                 }
-            }
+            
         }
         studentLists.put(DomainConstants.newStudents, newStudents);
         studentLists.put(DomainConstants.oldStudents, oldStudents);
-        studentLists.put(DomainConstants.badData, badData);
+        
         return studentLists;
     }
 
-    private boolean checkForBadData(StudentCSV studentCSV) {
-        if (studentCSV.getBannerId() == null || studentCSV.getFirstName() == null
-                || studentCSV.getLastName() == null || studentCSV.getEmail() == null
-                || studentCSV.getBannerId().equals("") || studentCSV.getFirstName().equals("")
-                || studentCSV.getLastName().equals("") || studentCSV.getEmail().equals("")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

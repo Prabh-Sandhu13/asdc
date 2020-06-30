@@ -36,7 +36,9 @@ public class Injector {
     private IPolicyRepository policyRepository;
     private IPolicyService policyService;
     private IQuestionManagerService questionManagerService;
+    private IQuestionAdminService questionAdminService;
     private IQuestionManagerRepository questionManagerRepository;
+    private IQuestionAdminRepository questionAdminRepository;
 
     private Injector() {
 
@@ -62,6 +64,8 @@ public class Injector {
         policyService = new PolicyService();
         questionManagerService = new QuestionManagerService();
         questionManagerRepository = new QuestionManagerRepository();
+        questionAdminRepository = new QuestionAdminRepository();
+        questionAdminService = new QuestionAdminService();
     }
 
     public static Injector instance() {
@@ -204,7 +208,20 @@ public class Injector {
         this.questionManagerRepository = questionManagerRepository;
     }
 
+    public IQuestionAdminRepository getQuestionAdminRepository() {
+        return questionAdminRepository;
+    }
+
+    public void setQuestionAdminRepository(IQuestionAdminRepository questionAdminRepository) {
+        this.questionAdminRepository = questionAdminRepository;
+    }
+    
     public IQuestionManagerService getQuestionManagerService() {
         return questionManagerService;
     }
+    
+    public IQuestionAdminService getQuestionAdminService() {
+        return questionAdminService;
+    }
+    
 }

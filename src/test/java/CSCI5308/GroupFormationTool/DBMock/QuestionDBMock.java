@@ -55,6 +55,29 @@ public class QuestionDBMock implements IQuestionManagerRepository {
     }
 
     @Override
+    public boolean deleteQuestion(long questionId) {
+        if (questionId == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    @Override
+    public long createQuestion(IQuestion question) {
+        IUser user = new User();
+        question.setCreatedDate(createdDate);
+        question.setId(id);
+        question.setInstructor(new UserDBMock().getUserByEmailId(user));
+        question.setText(text);
+        question.setTitle(title);
+        question.setType(type);
+        question.setChoices(choices);
+        return question.getId();
+    }
+/*
+    
+    @Override
     public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
         ArrayList<IQuestion> questionList = new ArrayList<>();
         IQuestion question = new Question();
@@ -72,18 +95,6 @@ public class QuestionDBMock implements IQuestionManagerRepository {
         return questionList;
     }
 
-    @Override
-    public long createQuestion(IQuestion question) {
-        IUser user = new User();
-        question.setCreatedDate(createdDate);
-        question.setId(id);
-        question.setInstructor(new UserDBMock().getUserByEmailId(user));
-        question.setText(text);
-        question.setTitle(title);
-        question.setType(type);
-        question.setChoices(choices);
-        return question.getId();
-    }
 
     @Override
     public IQuestion getQuestionById(long questionId) {
@@ -114,14 +125,6 @@ public class QuestionDBMock implements IQuestionManagerRepository {
 
     }
 
-    @Override
-    public boolean deleteQuestion(long questionId) {
-        if (questionId == 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     @Override
     public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy) {
@@ -140,4 +143,5 @@ public class QuestionDBMock implements IQuestionManagerRepository {
         questionList.add(question);
         return questionList;
     }
+    */
 }

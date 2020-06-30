@@ -14,17 +14,10 @@ public class QuestionManagerService implements IQuestionManagerService {
     IQuestionManagerRepository questionManagerRepository;
 
     @Override
-    public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
-        questionManagerRepository = Injector.instance().getQuestionManagerRepository();
-        return questionManagerRepository.getQuestionListForInstructor(emailId);
-
-    }
-
-    @Override
     public long createQuestion(IQuestion question, List<String> optionText, List<String> optionValue) {
         int type = question.getType();
-        Set<String> optionTextSet = new LinkedHashSet<>();
-        Set<String> optionValueSet = new LinkedHashSet<>();
+        Set<String> optionTextSet = new HashSet<>();
+        Set<String> optionValueSet = new HashSet<>();
 
         if (checkIfInvalid(question.getTitle(), question.getText(), type, optionText, optionValue)) {
             return DomainConstants.invalidData;
@@ -81,18 +74,7 @@ public class QuestionManagerService implements IQuestionManagerService {
         return false;
     }
 
-    @Override
-    public IQuestion getQuestionById(long questionId) {
-        questionManagerRepository = Injector.instance().getQuestionManagerRepository();
-        IQuestion question = questionManagerRepository.getQuestionById(questionId);
-        ArrayList<IChoice> choiceList = null;
 
-        if (question.getType() == DomainConstants.MCQMultiple || question.getType() == DomainConstants.MCQOne) {
-            choiceList = questionManagerRepository.getOptionsForTheQuestion(questionId);
-        }
-        question.setChoices(choiceList);
-        return question;
-    }
 
     @Override
     public boolean deleteQuestion(long questionId) {
@@ -100,9 +82,5 @@ public class QuestionManagerService implements IQuestionManagerService {
         return questionManagerRepository.deleteQuestion(questionId);
     }
 
-    @Override
-    public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy) {
-        questionManagerRepository = Injector.instance().getQuestionManagerRepository();
-        return questionManagerRepository.getSortedQuestionListForInstructor(emailId, sortBy);
-    }
+
 }
