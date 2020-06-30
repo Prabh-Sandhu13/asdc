@@ -25,8 +25,6 @@ public class QuestionManagerController {
     IQuestionManagerService questionManagerService;
     IQuestionAdminService questionAdminService;
 
-
-
     @GetMapping("/questionManager/createQuestion")
     public String createQuestion(Model model) {
         return "questionManager/createQuestion";

@@ -36,7 +36,6 @@ class UserCoursesServiceTest {
     void getRoleBasedCoursesTest() {
         String emailId = "tanugulia@gmail.com";
         ArrayList<IUserCourses> courseList = new ArrayList<IUserCourses>();
-
         IUserCourses userCourse = new UserCourses();
         userCourse.setBannerId("B00839890");
         userCourse.setCourseId("1");
@@ -44,7 +43,6 @@ class UserCoursesServiceTest {
         userCourse.setUserRole("admin");
         userCourse.setCourseDescription("course description");
         courseList.add(userCourse);
-
         when(userCoursesRepository.getRoleBasedCourses(emailId)).thenReturn(courseList);
         assertTrue(userCoursesService.getRoleBasedCourses(emailId) instanceof ArrayList);
         assertFalse(userCoursesService.getRoleBasedCourses(emailId).isEmpty());
@@ -54,7 +52,6 @@ class UserCoursesServiceTest {
     void getUserRoleByEmailIdTest() {
         String emailId = "stud@gmail.com";
         String role = "Guest";
-
         when(userCoursesRepository.getUserRoleByEmailId(emailId)).thenReturn(role);
         assertTrue(userCoursesService.getUserRoleByEmailId(emailId).equals(role));
         assertFalse(userCoursesService.getUserRoleByEmailId(emailId).isEmpty());
@@ -64,14 +61,12 @@ class UserCoursesServiceTest {
     void getStudentCoursesTest() {
         String emailId = "stud@gmail.com";
         ArrayList<ICourse> studentCourseList = new ArrayList<ICourse>();
-
         ICourse course = new Course();
         course.setId("1");
         course.setName("Web");
         course.setDescription("description");
         course.setCredits(4);
         studentCourseList.add(course);
-
         when(userCoursesRepository.getStudentCourses(emailId)).thenReturn(studentCourseList);
         assertTrue(userCoursesService.getStudentCourses(emailId) instanceof ArrayList);
         assertFalse(userCoursesService.getStudentCourses(emailId).isEmpty());
@@ -86,7 +81,6 @@ class UserCoursesServiceTest {
         course.setName("Web");
         course.setDescription("description");
         course.setCredits(4);
-
         taCourseList.add(course);
         when(userCoursesRepository.getTACourses(emailId)).thenReturn(taCourseList);
         assertTrue(userCoursesService.getTACourses(emailId) instanceof ArrayList);
@@ -104,7 +98,6 @@ class UserCoursesServiceTest {
         user.setLastName("gulia");
         user.setId(2);
         userList.add(user);
-
         when(userCoursesRepository.usersCurrentlyNotInstructorsForCourse(courseId)).thenReturn(userList);
         assertTrue(userCoursesService.usersCurrentlyNotInstructorsForCourse(courseId) instanceof ArrayList);
         assertFalse(userCoursesService.usersCurrentlyNotInstructorsForCourse(courseId).isEmpty());
@@ -114,10 +107,8 @@ class UserCoursesServiceTest {
     void addInstructorsToCourseTest() {
         Long instructor = (long) 1;
         String courseId = "2";
-
         when(userCoursesRepository.addInstructorsToCourse(instructor, courseId)).thenReturn(true);
         assertTrue(userCoursesService.addInstructorsToCourse(instructor, courseId));
-
         String invcourseId = "";
         when(userCoursesRepository.addInstructorsToCourse(instructor, invcourseId)).thenReturn(false);
         assertFalse(userCoursesService.addInstructorsToCourse(instructor, invcourseId));
@@ -133,7 +124,6 @@ class UserCoursesServiceTest {
         course.setDescription("description");
         course.setCredits(4);
         instructorCourseList.add(course);
-
         when(userCoursesRepository.getInstructorCourses(emailId)).thenReturn(instructorCourseList);
         assertTrue(userCoursesService.getInstructorCourses(emailId) instanceof ArrayList);
         assertFalse(userCoursesService.getInstructorCourses(emailId).isEmpty());
@@ -150,7 +140,6 @@ class UserCoursesServiceTest {
         user.setLastName("gulia");
         user.setId(2);
         taList.add(user);
-
         when(userCoursesRepository.getTAForCourse(courseId)).thenReturn(taList);
         assertTrue(userCoursesService.getTAForCourse(courseId) instanceof ArrayList);
         assertFalse(userCoursesService.getTAForCourse(courseId).isEmpty());
@@ -165,10 +154,8 @@ class UserCoursesServiceTest {
         user.setFirstName("tanu");
         user.setLastName("gulia");
         user.setId(2);
-
         when(userCoursesRepository.enrollTAForCourseUsingEmailId(user, courseId)).thenReturn(true);
         assertTrue(userCoursesService.enrollTAForCourseUsingEmailId(user, courseId));
-
         User existingUser = new User();
         existingUser.setBannerId("B00839890");
         existingUser.setEmailId("tn300318@dal.ca");
@@ -182,7 +169,6 @@ class UserCoursesServiceTest {
     @Test
     void getInstructorsForCourseTest() {
         String courseId = "1";
-
         ArrayList<IUser> instructorList = new ArrayList<IUser>();
         IUser user = new User();
         user.setBannerId("B00839890");
@@ -191,7 +177,6 @@ class UserCoursesServiceTest {
         user.setLastName("gulia");
         user.setId(2);
         instructorList.add(user);
-
         when(userCoursesRepository.getInstructorsForCourse(courseId)).thenReturn(instructorList);
         assertTrue(userCoursesService.getInstructorsForCourse(courseId) instanceof ArrayList);
         assertFalse(userCoursesService.getInstructorsForCourse(courseId).isEmpty());

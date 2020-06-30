@@ -18,7 +18,6 @@
 <body style="background-color: #e7ebee">
 <div class="container">
     <div sec:authorize="!isAuthenticated()">
-        <!-- Send them to login. -->
         <p>You have not yet logged in to the application. Please login to
             continue...</p>
         <a th:href="@{/login}">Click here to log in!</a>

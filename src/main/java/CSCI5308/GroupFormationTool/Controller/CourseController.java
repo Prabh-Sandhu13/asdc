@@ -33,9 +33,9 @@ public class CourseController {
 
         ArrayList<ICourse> courseList = null;
         String userRole = null;
-        ArrayList<ICourse> StudentCourseList = null;
-        ArrayList<ICourse> TACourseList = null;
-        ArrayList<ICourse> InstructorCourseList = null;
+        ArrayList<ICourse> studentCourseList = null;
+        ArrayList<ICourse> taCourseList = null;
+        ArrayList<ICourse> instructorCourseList = null;
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -45,37 +45,28 @@ public class CourseController {
         String emailId = authentication.getPrincipal().toString();
 
         if (userService.checkCurrentUserIsAdmin(emailId)) {
-
             courseList = courseService.getAllCourses();
             model.addAttribute("courses", courseList);
             return "admin/allCourses";
-
         } else {
-
             userRole = userCoursesService.getUserRoleByEmailId(emailId);
-
-            if (userRole.equals("Guest")) {
-
+            if (userRole.equals(DomainConstants.guestRole)) {
                 courseList = courseService.getAllCourses();
-
                 model.addAttribute("courses", courseList);
                 return "guest/guestCourses";
-            } else if (userRole.equals("Student")) {
-
-                StudentCourseList = userCoursesService.getStudentCourses(emailId);
-                model.addAttribute("courses", StudentCourseList);
+            } else if (userRole.equals(DomainConstants.studentRole)) {
+                studentCourseList = userCoursesService.getStudentCourses(emailId);
+                model.addAttribute("courses", studentCourseList);
                 return "student/studentCourses";
-
-            } else if (userRole.equals("TA")) {
-                TACourseList = userCoursesService.getTACourses(emailId);
-                StudentCourseList = userCoursesService.getStudentCourses(emailId);
-                model.addAttribute("studentCourses", StudentCourseList);
-                model.addAttribute("taCourses", TACourseList);
+            } else if (userRole.equals(DomainConstants.tARole)) {
+                taCourseList = userCoursesService.getTACourses(emailId);
+                studentCourseList = userCoursesService.getStudentCourses(emailId);
+                model.addAttribute("studentCourses", studentCourseList);
+                model.addAttribute("taCourses", taCourseList);
                 return "ta/taCourses";
-
-            } else if (userRole.equals("Instructor")) {
-                InstructorCourseList = userCoursesService.getInstructorCourses(emailId);
-                model.addAttribute("courses", InstructorCourseList);
+            } else if (userRole.equals(DomainConstants.instructorRole)) {
+                instructorCourseList = userCoursesService.getInstructorCourses(emailId);
+                model.addAttribute("courses", instructorCourseList);
                 return "instructor/instructorCourses";
             }
         }
@@ -103,7 +94,6 @@ public class CourseController {
 
     @PostMapping("/enrollTA")
     public String addTA(@RequestParam(value = "courseId") String courseId, @ModelAttribute User user, Model model) {
-
         userCoursesService = Injector.instance().getUserCoursesService();
         boolean success = userCoursesService.enrollTAForCourseUsingEmailId(user, courseId);
         ArrayList<IUser> taList = null;
@@ -183,13 +173,11 @@ public class CourseController {
             studentLists = studentService.createStudent(file, courseId);
 
             if (studentLists != null) {
-
                 model.addAttribute("newStudentList", studentLists.get(DomainConstants.newStudents));
                 model.addAttribute("oldStudentList", studentLists.get(DomainConstants.oldStudents));
                 model.addAttribute("badData", studentLists.get(DomainConstants.badData));
                 model.addAttribute("course", courseId);
                 model.addAttribute("status", true);
-
             } else {
                 model.addAttribute("course", courseId);
                 model.addAttribute("message", DomainConstants.csvFileProcessingError);

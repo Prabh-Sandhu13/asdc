@@ -1,9 +1,6 @@
 package CSCI5308.GroupFormationTool.DBMock;
 
-import CSCI5308.GroupFormationTool.AccessControl.IChoice;
-import CSCI5308.GroupFormationTool.AccessControl.IQuestion;
-import CSCI5308.GroupFormationTool.AccessControl.IQuestionManagerRepository;
-import CSCI5308.GroupFormationTool.AccessControl.IUser;
+import CSCI5308.GroupFormationTool.AccessControl.*;
 import CSCI5308.GroupFormationTool.Model.Choice;
 import CSCI5308.GroupFormationTool.Model.Question;
 import CSCI5308.GroupFormationTool.Model.User;
@@ -11,7 +8,7 @@ import CSCI5308.GroupFormationTool.Model.User;
 import java.sql.Date;
 import java.util.ArrayList;
 
-public class QuestionDBMock implements IQuestionManagerRepository {
+public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdminRepository {
 
     private long id;
 
@@ -34,10 +31,8 @@ public class QuestionDBMock implements IQuestionManagerRepository {
         text = "Sample question";
         type = 1;
         createdDate = new Date(0);
-
         choices = new ArrayList<>();
         IChoice choice = new Choice();
-
         choice.setText("Amateur");
         choice.setValue(1);
         choices.add(choice);
@@ -62,7 +57,7 @@ public class QuestionDBMock implements IQuestionManagerRepository {
             return false;
         }
     }
-    
+
     @Override
     public long createQuestion(IQuestion question) {
         IUser user = new User();
@@ -75,15 +70,13 @@ public class QuestionDBMock implements IQuestionManagerRepository {
         question.setChoices(choices);
         return question.getId();
     }
-/*
-    
+
     @Override
     public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
         ArrayList<IQuestion> questionList = new ArrayList<>();
         IQuestion question = new Question();
         IUser user = new User();
         user.setEmailId(emailId);
-
         question.setCreatedDate(createdDate);
         question.setId(id);
         question.setInstructor(new UserDBMock().getUserByEmailId(user));
@@ -122,7 +115,6 @@ public class QuestionDBMock implements IQuestionManagerRepository {
         question.setType(type);
         question.setChoices(choices);
         return question.getChoices();
-
     }
 
 
@@ -132,7 +124,6 @@ public class QuestionDBMock implements IQuestionManagerRepository {
         IQuestion question = new Question();
         IUser user = new User();
         user.setEmailId(emailId);
-
         question.setCreatedDate(createdDate);
         question.setId(id);
         question.setInstructor(new UserDBMock().getUserByEmailId(user));
@@ -143,5 +134,5 @@ public class QuestionDBMock implements IQuestionManagerRepository {
         questionList.add(question);
         return questionList;
     }
-    */
+
 }

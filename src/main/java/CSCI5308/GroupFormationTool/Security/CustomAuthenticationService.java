@@ -27,7 +27,6 @@ public class CustomAuthenticationService implements AuthenticationManager {
 
         if (passwordEncryptor.passwordMatch(password, user.getPassword())) {
 
-            // Grant ADMIN rights system-wide, this is used to protect controller mappings.
             List<GrantedAuthority> rights = new ArrayList<GrantedAuthority>();
 
             if (user.getBannerId().toUpperCase().equals(Admin_banner_id)) {
@@ -37,7 +36,6 @@ public class CustomAuthenticationService implements AuthenticationManager {
                 rights.add(new SimpleGrantedAuthority("USER"));
 
             }
-            // Return valid authentication token.
             UsernamePasswordAuthenticationToken token;
             token = new UsernamePasswordAuthenticationToken(authentication.getPrincipal(),
                     authentication.getCredentials(), rights);

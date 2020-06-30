@@ -42,10 +42,7 @@ public class MailServiceTest {
         user.setLastName("shah");
         user.setPassword("pswd12345");
         user.setConfirmPassword("pswd12345");
-
         String token = "sample token";
-
-        // Doing this since sendMail method of JavaMailSenderImpl object cannot be mocked.
         when(mailService.sendForgotPasswordMail(user, token)).thenReturn(true);
         assertTrue(mailService.sendForgotPasswordMail(user, token));
     }
@@ -55,20 +52,17 @@ public class MailServiceTest {
         mailService = mock(MailService.class);
         ArrayList<StudentCSV> studentCSVList = new ArrayList<>();
         StudentCSV studentCSV = new StudentCSV();
-
         studentCSV.setFirstName("Padmesh");
         studentCSV.setLastName("Donthu");
         studentCSV.setBannerId("B00854462");
         studentCSV.setEmail("padmeshdonthu@gmail.com");
         studentCSVList.add(studentCSV);
-
         studentCSV = new StudentCSV();
         studentCSV.setFirstName("Padmesh");
         studentCSV.setLastName("Kumar");
         studentCSV.setBannerId("B00854461");
         studentCSV.setEmail("padmeshd1996@gmail.com");
         studentCSVList.add(studentCSV);
-
         when(mailService.sendBatchMail(studentCSVList, "CSCI 5308")).thenReturn(true);
         assertTrue(mailService.sendBatchMail(studentCSVList, "CSCI 5308"));
     }

@@ -38,20 +38,16 @@ public class CourseServiceTest {
         course.setId("CSCI 5000");
         course.setDescription("Course 1 description");
         courses.add(course);
-
         course = new Course();
         course.setName("Course 2");
         course.setCredits(4);
         course.setId("CSCI 6000");
         course.setDescription("Course 2 description");
         courses.add(course);
-
         when(courseRepository.getAllCourses()).thenReturn(courses);
         assertTrue(courseService.getAllCourses().size() == 2);
         assertFalse(courseService.getAllCourses().isEmpty());
-
         courses = new ArrayList<>();
-
         when(courseRepository.getAllCourses()).thenReturn(courses);
         assertTrue(courseService.getAllCourses().isEmpty());
         assertFalse(courseService.getAllCourses().size() > 1);
@@ -65,11 +61,9 @@ public class CourseServiceTest {
         course.setCredits(3);
         course.setId(courseId);
         course.setDescription("Course 1 description");
-
         when(courseRepository.getCourseById(courseId)).thenReturn(course);
         assertTrue(courseService.getCourseById(courseId).getId().equals(courseId));
         assertFalse(courseService.getCourseById(courseId).getCredits() == 0);
-
         courseId = "CSCI 9182";
         course = new Course();
         when(courseRepository.getCourseById(courseId)).thenReturn(course);
@@ -84,16 +78,13 @@ public class CourseServiceTest {
         course.setCredits(3);
         course.setId("CSCI 5200");
         course.setDescription("Course 1 description");
-
         when(courseRepository.createCourse(course)).thenReturn(true);
         assertTrue(courseService.createCourse(course));
-
         course = new Course();
         course.setName("Course 1");
         course.setCredits(3);
         course.setId("CSCI 5200");
         course.setDescription("Course 1 description");
-
         when(courseRepository.createCourse(course)).thenReturn(false);
         assertFalse(courseService.createCourse(course));
     }
@@ -106,10 +97,8 @@ public class CourseServiceTest {
         userCourses.setCourseDescription("Sample");
         userCourses.setCourseId(courseId);
         userCourses.setCourseName("New Course");
-
         when(courseRepository.deleteCourse(courseId)).thenReturn(userCourses.getCourseId().equals(courseId));
         assertTrue(courseService.deleteCourse(courseId));
-
         courseId = "CSCI 3220";
         userCourses = new UserCourses();
         when(courseRepository.deleteCourse(courseId)).thenReturn(courseId.equals(userCourses.getCourseId()));

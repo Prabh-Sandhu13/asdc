@@ -84,8 +84,7 @@ public class StudentServiceTest {
         String courseId = "CSCI 5308";
         ArrayList<StudentCSV> studentCSVs = new ArrayList<>();
         HashMap<Integer, List<StudentCSV>> studentLists = new HashMap<>();
-
         when(studentRepository.createStudent(studentCSVs, courseId)).thenReturn(studentLists);
-        // assertTrue(studentService.createStudent(multipartFile, courseId).size() == 0);
+        assertTrue(studentService.createStudent(multipartFile, courseId).size() == 0);
     }
 }

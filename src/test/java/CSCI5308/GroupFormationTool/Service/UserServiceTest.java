@@ -42,14 +42,12 @@ public class UserServiceTest {
         user.setPassword("Padmesh1$");
         user.setConfirmPassword("Padmesh1$");
         String encryptedPassword = "encryptedPadmesh1$";
-
         when(policyService.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
         when(userRepository.getUserByEmailId(user)).thenReturn(null);
         when(userRepository.createUser(user)).thenReturn(true);
         when(userRepository.getUserIdByEmailId(user)).thenReturn(user);
         doNothing().when(passwordHistoryService).addPasswordHistory(user, encryptedPassword);
         assertTrue(userService.createUser(user));
-
         user.setPassword("pa");
         user.setConfirmPassword("pa");
         String passwordErrorMessage = "Minimum number of characters is 3";
@@ -58,27 +56,21 @@ public class UserServiceTest {
             userService.createUser(user);
         });
         assertTrue(passwordException.getMessage().equals(passwordErrorMessage));
-
-
         user.setPassword("Padmesh1$");
         user.setConfirmPassword("Padmesh1");
         passwordErrorMessage = "The passwords do not match. Please try again!";
         passwordException = assertThrows(PasswordException.class, () -> {
             userService.createUser(user);
         });
-
         assertTrue(passwordException.getMessage().equals(passwordErrorMessage));
-
         user.setConfirmPassword("Padmesh1$");
         when(policyService.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
         when(userRepository.getUserByEmailId(user)).thenReturn(user);
         UserAlreadyExistsException userAlreadyExistsException = assertThrows(UserAlreadyExistsException.class, () -> {
             userService.createUser(user);
         });
-
         String userAlreadyExistsErrorMessage = "An account with " + user.getEmailId() + " already exists.";
         assertTrue(userAlreadyExistsException.getMessage().equals(userAlreadyExistsErrorMessage));
-
         user.setEmailId("");
         assertFalse(userService.createUser(user));
     }
@@ -86,16 +78,13 @@ public class UserServiceTest {
     @Test
     void checkCurrentUserIsAdminTest() {
         String emailId = "padmeshd@gmail.com";
-
         IUser admin = new User();
         admin.setBannerId("B00854462");
         admin.setEmailId("padmeshdonthu@gmail.com");
         admin.setFirstName("Padmesh");
         admin.setLastName("Donthu");
-
         when(userRepository.getAdminDetails()).thenReturn(admin);
         assertFalse(userService.checkCurrentUserIsAdmin(emailId));
-
         emailId = "padmeshdonthu@gmail.com";
         when(userRepository.getAdminDetails()).thenReturn(admin);
         assertTrue(userService.checkCurrentUserIsAdmin(emailId));

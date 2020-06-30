@@ -26,7 +26,7 @@ public class StudentService implements IStudentService {
     public Map<Integer, List<StudentCSV>> createStudent(MultipartFile file, String courseId) {
         studentRepository = Injector.instance().getStudentRepository();
         mailService = Injector.instance().getMailService();
-        
+
         List<StudentCSV> badData = new ArrayList<StudentCSV>();
         List<StudentCSV> properData = new ArrayList<StudentCSV>();
         Map<Integer, List<StudentCSV>> studentLists = null;
@@ -40,22 +40,22 @@ public class StudentService implements IStudentService {
             for (StudentCSV studentCSV : students) {
                 if (checkForBadData(studentCSV)) {
                     badData.add(studentCSV);
-                }
-                else {
-                	properData.add(studentCSV);
+                } else {
+                    properData.add(studentCSV);
                 }
             }
             studentLists = studentRepository.createStudent(properData, courseId);
-            studentLists.put(DomainConstants.badData, badData);
-
-            mailService.sendBatchMail(studentLists.get(DomainConstants.newStudents), courseId);
+            if (studentLists != null && studentLists.size() > 0) {
+                studentLists.put(DomainConstants.badData, badData);
+                mailService.sendBatchMail(studentLists.get(DomainConstants.newStudents), courseId);
+            }
 
         } catch (Exception ex) {
             return null;
         }
         return studentLists;
     }
-    
+
     private boolean checkForBadData(StudentCSV studentCSV) {
         if (studentCSV.getBannerId() == null || studentCSV.getFirstName() == null
                 || studentCSV.getLastName() == null || studentCSV.getEmail() == null

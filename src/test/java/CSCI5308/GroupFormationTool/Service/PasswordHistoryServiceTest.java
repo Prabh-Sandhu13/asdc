@@ -38,24 +38,19 @@ public class PasswordHistoryServiceTest {
         user.setFirstName("haard");
         user.setLastName("shah");
         user.setPassword("pswd12345");
-
         String num = "5";
         String encryptedPassword = "encrypted12345";
         ArrayList<String> passwords = new ArrayList<>();
         passwords.add("Password");
         passwords.add("qwerty");
-
         when(bCryptEncryption.encoder(user.getPassword())).thenReturn(encryptedPassword);
         when(passwordHistoryRepository.getSettingValue("Password History")).thenReturn(null);
         assertFalse(passwordHistoryService.isHistoryViolated(user, user.getPassword()));
-
         when(passwordHistoryRepository.getSettingValue("Password History")).thenReturn(num);
         when(passwordHistoryRepository.getNPasswords(user, num)).thenReturn(passwords);
         assertFalse(passwordHistoryService.isHistoryViolated(user, user.getPassword()));
-
         passwords.add("encrypted12345");
         user.setPassword("encrypted12345");
-
         when(passwordHistoryRepository.getSettingValue("Password History")).thenReturn(num);
         when(passwordHistoryRepository.getNPasswords(user, num)).thenReturn(passwords);
         when(bCryptEncryption.passwordMatch(encryptedPassword, passwords.get(2))).thenReturn(true);
@@ -71,7 +66,6 @@ public class PasswordHistoryServiceTest {
         user.setFirstName("haard");
         user.setLastName("shah");
         user.setPassword("pswd12345");
-
         String encryptedPassword = "encrypted12345";
         when(passwordHistoryRepository.addPasswordHistory(user, encryptedPassword)).thenReturn(true);
         passwordHistoryService.addPasswordHistory(user, encryptedPassword);
