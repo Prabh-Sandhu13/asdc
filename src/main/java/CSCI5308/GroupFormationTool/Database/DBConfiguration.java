@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool.Database;
 
-import CSCI5308.GroupFormationTool.AccessControl.IDBConfiguration;
-import CSCI5308.GroupFormationTool.DomainConstants;
+import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import org.springframework.stereotype.Service;
 
 @Service

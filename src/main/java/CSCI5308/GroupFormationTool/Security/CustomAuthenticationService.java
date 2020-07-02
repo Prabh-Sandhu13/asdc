@@ -1,10 +1,9 @@
 package CSCI5308.GroupFormationTool.Security;
 
-import CSCI5308.GroupFormationTool.AccessControl.IPasswordEncryptor;
-import CSCI5308.GroupFormationTool.AccessControl.IUser;
-import CSCI5308.GroupFormationTool.AccessControl.IUserRepository;
-import CSCI5308.GroupFormationTool.Injector;
-import CSCI5308.GroupFormationTool.Model.User;
+import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.IUserRepository;
+import CSCI5308.GroupFormationTool.Common.Injector;
+import CSCI5308.GroupFormationTool.User.User;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;

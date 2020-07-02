@@ -1,13 +1,13 @@
 package CSCI5308.GroupFormationTool.Security;
 
-import CSCI5308.GroupFormationTool.AccessControl.IPolicy;
-import CSCI5308.GroupFormationTool.AccessControl.IPolicyService;
-import CSCI5308.GroupFormationTool.AccessControl.IUserService;
+import CSCI5308.GroupFormationTool.Password.IPolicy;
+import CSCI5308.GroupFormationTool.Password.IPolicyService;
+import CSCI5308.GroupFormationTool.User.IUserService;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
-import CSCI5308.GroupFormationTool.DomainConstants;
-import CSCI5308.GroupFormationTool.Injector;
-import CSCI5308.GroupFormationTool.Model.User;
+import CSCI5308.GroupFormationTool.Common.DomainConstants;
+import CSCI5308.GroupFormationTool.Common.Injector;
+import CSCI5308.GroupFormationTool.User.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
