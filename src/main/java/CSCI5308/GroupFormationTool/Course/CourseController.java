@@ -46,30 +46,30 @@ public class CourseController {
         if (userService.checkCurrentUserIsAdmin(emailId)) {
             courseList = courseService.getAllCourses();
             model.addAttribute("courses", courseList);
-            return "admin/allCourses";
+            return "course/allCourses";
         } else {
             userRole = userCoursesService.getUserRoleByEmailId(emailId);
             if (userRole.equals(DomainConstants.guestRole)) {
                 courseList = courseService.getAllCourses();
                 model.addAttribute("courses", courseList);
-                return "guest/guestCourses";
+                return "course/guestCourses";
             } else if (userRole.equals(DomainConstants.studentRole)) {
                 studentCourseList = userCoursesService.getStudentCourses(emailId);
                 model.addAttribute("courses", studentCourseList);
-                return "student/studentCourses";
+                return "course/studentCourses";
             } else if (userRole.equals(DomainConstants.tARole)) {
                 taCourseList = userCoursesService.getTACourses(emailId);
                 studentCourseList = userCoursesService.getStudentCourses(emailId);
                 model.addAttribute("studentCourses", studentCourseList);
                 model.addAttribute("taCourses", taCourseList);
-                return "ta/taCourses";
+                return "course/taCourses";
             } else if (userRole.equals(DomainConstants.instructorRole)) {
                 instructorCourseList = userCoursesService.getInstructorCourses(emailId);
                 model.addAttribute("courses", instructorCourseList);
-                return "instructor/instructorCourses";
+                return "course/instructorCourses";
             }
         }
-        return "guest/guestCourses";
+        return "course/guestCourses";
     }
 
     @GetMapping(value = "/courseDetails")

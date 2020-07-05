@@ -18,6 +18,6 @@ public class GuestController {
         ArrayList<ICourse> courseList = null;
         courseList = courseService.getAllCourses();
         model.addAttribute("courses", courseList);
-        return "guest/guestCourses";
+        return "course/guestCourses";
     }
 }

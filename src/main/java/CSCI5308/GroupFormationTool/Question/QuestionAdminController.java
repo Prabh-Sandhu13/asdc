@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.Question;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,35 +12,32 @@ import java.util.ArrayList;
 @Controller
 public class QuestionAdminController {
 
-    IQuestionAdminService questionAdminService;
-
     @GetMapping("/questionManager/questionManager")
     public String questionList(Model model) {
-        questionAdminService = Injector.instance().getQuestionAdminService();
+        IQuestion question = new Question();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String emailId = authentication.getPrincipal().toString();
-        ArrayList<IQuestion> questionList = questionAdminService.getQuestionListForInstructor(emailId);
+        ArrayList<IQuestion> questionList = question.getQuestionListForInstructor(emailId);
         model.addAttribute("questionList", questionList);
-        return "questionManager/questionManager";
+        return "question/questionManager";
     }
 
     @GetMapping("/questionManager/viewQuestion")
     public String viewQuestion(@RequestParam("questionId") long questionId, Model model) {
-        questionAdminService = Injector.instance().getQuestionAdminService();
-        IQuestion question = questionAdminService.getQuestionById(questionId);
+        IQuestion question = new Question();
+        question = question.getQuestionById(questionId);
         model.addAttribute("question", question);
-        return "questionManager/viewQuestion";
+        return "question/viewQuestion";
     }
-
 
     @GetMapping("/questionManager/sortQuestion")
     public String sortQuestion(@RequestParam("sortby") String sortField, Model model) {
-        questionAdminService = Injector.instance().getQuestionAdminService();
+        IQuestion question = new Question();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String emailId = authentication.getPrincipal().toString();
-        ArrayList<IQuestion> questionList = questionAdminService.getSortedQuestionListForInstructor(emailId, sortField);
+        ArrayList<IQuestion> questionList = question.getSortedQuestionListForInstructor(emailId, sortField);
         model.addAttribute("questionList", questionList);
-        return "questionManager/questionManager";
+        return "question/questionManager";
     }
 
 }

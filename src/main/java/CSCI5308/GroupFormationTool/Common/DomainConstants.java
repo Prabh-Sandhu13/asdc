@@ -59,11 +59,9 @@ public final class DomainConstants {
     public static final String passwordSpecialSymbolsMinimumLength = "Minimum number of symbols or special "
             + "characters in password should be ";
     public static final String passwordCharactersNotAllowed = " not allowed in password ";
-
     public static final String guestRole = "Guest";
     public static final String tARole = "TA";
     public static final String instructorRole = "Instructor";
     public static final String studentRole = "Student";
-
 
 }

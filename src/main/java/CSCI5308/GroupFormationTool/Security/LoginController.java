@@ -5,13 +5,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class LoginController {
+
     @GetMapping("/login")
     public String login(Model model) {
-        return "login";
+        return "user/login";
     }
 
     @GetMapping("/login-error")
     public String loginError(Model model) {
-        return "login-error";
+        return "user/login-error";
     }
 }
