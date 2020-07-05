@@ -24,7 +24,7 @@ public class AdminController {
         ICourseRepository courseDB = Injector.instance().getCourseRepository();
         List<ICourse> allCourses = courseDB.getAllCourses();
         model.addAttribute("courses", allCourses);
-        return "admin/allCourses";
+        return "course/allCourses";
     }
 
     @GetMapping("/admin/assignInstructor")
@@ -43,7 +43,7 @@ public class AdminController {
         model.addAttribute("instructorList", instructorList);
         model.addAttribute("course", course);
         model.addAttribute("users", allUsersCurrentlyNotInstructors);
-        return "admin/assignInstructor";
+        return "course/assignInstructor";
     }
 
     @PostMapping("/admin/assignInstructor")
@@ -67,7 +67,7 @@ public class AdminController {
         } else {
             model.addAttribute("failure", DomainConstants.instructorAddFailure);
         }
-        return "redirect:/admin/assignInstructor?courseId=" + courseId;
+        return "redirect:/course/assignInstructor?courseId=" + courseId;
 
     }
 }

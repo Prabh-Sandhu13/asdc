@@ -39,11 +39,11 @@ public class UserRegistrationController implements WebMvcConfigurer {
             }
 
         } catch (UserAlreadyExistsException uaex) {
-            modelAndView = new ModelAndView("signup");
+            modelAndView = new ModelAndView("user/signup");
             modelAndView.addObject("userAlreadyExists", DomainConstants.userAlreadyExists
             		.replace("[[emailId]]",user.getEmailId()));
         } catch (PasswordException pex) {
-            modelAndView = new ModelAndView("signup");
+            modelAndView = new ModelAndView("user/signup");
             modelAndView.addObject("passwordError", pex.getMessage());
         }
         return modelAndView;
@@ -54,6 +54,6 @@ public class UserRegistrationController implements WebMvcConfigurer {
         policyService = Injector.instance().getPolicyService();
         ArrayList<IPolicy> policies = policyService.getPolicies();
         model.addAttribute("policies", policies);
-        return "signup";
+        return "user/signup";
     }
 }

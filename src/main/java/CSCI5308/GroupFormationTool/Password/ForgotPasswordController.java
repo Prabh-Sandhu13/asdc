@@ -35,11 +35,11 @@ public class ForgotPasswordController {
         try {
             forgotPasswordService = Injector.instance().getForgotPasswordService();
             forgotPasswordService.notifyUser(user);
-            modelAndView = new ModelAndView("MailSentSuccess");
+            modelAndView = new ModelAndView("password/MailSentSuccess");
             modelAndView.addObject("Success", DomainConstants.mailSentSuccess);
 
         } catch (UserAlreadyExistsException uaex) {
-            modelAndView = new ModelAndView("forgotPassword");
+            modelAndView = new ModelAndView("password/forgotPassword");
             modelAndView.addObject("userAlreadyExists", DomainConstants.userDoesNotExists
             		.replace("[[emailId]]", user.getEmailId()));
         } catch (Exception e) {
@@ -53,7 +53,7 @@ public class ForgotPasswordController {
         policyService = Injector.instance().getPolicyService();
         ArrayList<IPolicy> policies = policyService.getPolicies();
         model.addAttribute("policies", policies);
-        return "resetPassword";
+        return "password/resetPassword";
     }
 
     @PostMapping("/resetPassword")
@@ -62,21 +62,21 @@ public class ForgotPasswordController {
         try {
             forgotPasswordService = Injector.instance().getForgotPasswordService();
             forgotPasswordService.updatePassword(user, receivedToken);
-            modelAndView = new ModelAndView("passwordResetSuccess");
+            modelAndView = new ModelAndView("password/passwordResetSuccess");
             modelAndView.addObject("Success", DomainConstants.passwordResetMessage);
         } catch (TokenExpiredException tee) {
-            modelAndView = new ModelAndView("resetPassword");
+            modelAndView = new ModelAndView("password/resetPassword");
             modelAndView.addObject("Error", DomainConstants.tokenExpiredMessage);
         } catch (PasswordException pex) {
-            modelAndView = new ModelAndView("redirect:/resetPassword");
+            modelAndView = new ModelAndView("redirect:/password/resetPassword");
             modelAndView.addObject("token", receivedToken);
             modelAndView.addObject("passwordError", pex.getMessage());
         } catch (PasswordHistoryException phe) {
-            modelAndView = new ModelAndView("redirect:/resetPassword");
+            modelAndView = new ModelAndView("redirect:/password/resetPassword");
             modelAndView.addObject("token", receivedToken);
             modelAndView.addObject("passwordError", phe.getMessage());
         } catch (Exception e) {
-            modelAndView = new ModelAndView("resetPassword");
+            modelAndView = new ModelAndView("password/resetPassword");
             modelAndView.addObject("Error", DomainConstants.error);
         }
         return modelAndView;

@@ -1,9 +1,11 @@
 package CSCI5308.GroupFormationTool.Question;
 
+import CSCI5308.GroupFormationTool.Common.DomainConstants;
+import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.IUser;
 
 import java.sql.Date;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Question implements IQuestion {
 
@@ -20,6 +22,10 @@ public class Question implements IQuestion {
     private Date createdDate;
 
     private ArrayList<IChoice> choices;
+
+    private IQuestionManagerRepository questionManagerRepository;
+
+    private IQuestionAdminRepository questionAdminRepository;
 
     public Question() {
         this.id = -1;
@@ -85,6 +91,97 @@ public class Question implements IQuestion {
 
     public void setChoices(ArrayList<IChoice> choices) {
         this.choices = choices;
+    }
+
+    @Override
+    public long createQuestion(List<String> optionText, List<String> optionValue) {
+        int type = this.type;
+        Set<String> optionTextSet = new HashSet<>();
+        Set<String> optionValueSet = new HashSet<>();
+
+        if (checkIfInvalid(optionText, optionValue)) {
+            return DomainConstants.invalidData;
+        } else {
+            ArrayList<IChoice> choices = new ArrayList<>();
+            for (String text : optionText) {
+                optionTextSet.add(text);
+            }
+            for (String value : optionValue) {
+                optionValueSet.add(value);
+            }
+
+            if (type == DomainConstants.MCQMultiple || type == DomainConstants.MCQOne) {
+
+                if (optionTextSet.size() == optionValueSet.size()) {
+                    Iterator<String> optionTextIterator = optionTextSet.iterator();
+                    Iterator<String> optionValueIterator = optionValueSet.iterator();
+
+                    while (optionTextIterator.hasNext() && optionValueIterator.hasNext()) {
+                        IChoice choice = new Choice();
+                        choice.setText(optionTextIterator.next());
+                        choice.setValue(Integer.parseInt(optionValueIterator.next()));
+                        choices.add(choice);
+                    }
+                } else {
+                    for (int i = 0; i < optionText.size(); i++) {
+                        IChoice choice = new Choice();
+                        choice.setText(optionText.get(i));
+                        choice.setValue(Integer.parseInt(optionValue.get(i)));
+                        choices.add(choice);
+                    }
+                }
+                this.setChoices(choices);
+            } else {
+                this.setChoices(null);
+            }
+            questionManagerRepository = Injector.instance().getQuestionManagerRepository();
+            return questionManagerRepository.createQuestion(this);
+        }
+    }
+
+    @Override
+    public boolean deleteQuestion(long questionId) {
+        questionManagerRepository = Injector.instance().getQuestionManagerRepository();
+        return questionManagerRepository.deleteQuestion(questionId);
+    }
+
+    @Override
+    public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
+        questionAdminRepository = Injector.instance().getQuestionAdminRepository();
+        return questionAdminRepository.getQuestionListForInstructor(emailId);
+    }
+
+    @Override
+    public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy) {
+        questionAdminRepository = Injector.instance().getQuestionAdminRepository();
+        return questionAdminRepository.getSortedQuestionListForInstructor(emailId, sortBy);
+    }
+
+    @Override
+    public IQuestion getQuestionById(long questionId) {
+        questionAdminRepository = Injector.instance().getQuestionAdminRepository();
+        IQuestion question = questionAdminRepository.getQuestionById(questionId);
+        ArrayList<IChoice> choiceList = null;
+
+        if (question.getType() == DomainConstants.MCQMultiple || question.getType() == DomainConstants.MCQOne) {
+            choiceList = questionAdminRepository.getOptionsForTheQuestion(questionId);
+        }
+        question.setChoices(choiceList);
+        return question;
+    }
+
+    private boolean checkIfInvalid(List<String> optionText, List<String> optionValue) {
+
+        if (this.title == null || this.title.isEmpty() || this.text == null || this.text.isEmpty()) {
+            return true;
+        }
+        if (this.type == DomainConstants.MCQMultiple || this.type == DomainConstants.MCQOne) {
+            if (optionText == null || optionText.isEmpty() || optionText.contains("") || optionValue == null
+                    || optionValue.isEmpty() || optionValue.contains("")) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

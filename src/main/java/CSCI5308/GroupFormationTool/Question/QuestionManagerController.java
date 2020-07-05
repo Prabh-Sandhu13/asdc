@@ -1,8 +1,7 @@
 package CSCI5308.GroupFormationTool.Question;
 
-import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
+import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,12 +17,9 @@ import java.util.List;
 @Controller
 public class QuestionManagerController {
 
-    IQuestionManagerService questionManagerService;
-    IQuestionAdminService questionAdminService;
-
     @GetMapping("/questionManager/createQuestion")
     public String createQuestion(Model model) {
-        return "questionManager/createQuestion";
+        return "question/createQuestion";
     }
 
     @PostMapping("/questionManager/createQuestion")
@@ -32,7 +28,6 @@ public class QuestionManagerController {
                                @RequestParam("optionText") List<String> optionText,
                                @RequestParam("optionValue") List<String> optionValue) {
 
-        questionManagerService = Injector.instance().getQuestionManagerService();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         long outcome;
         IQuestion question = new Question();
@@ -42,27 +37,25 @@ public class QuestionManagerController {
         question.setType(Integer.parseInt(type));
         instructor.setEmailId(authentication.getPrincipal().toString());
         question.setInstructor(instructor);
-        outcome = questionManagerService.createQuestion(question, optionText, optionValue);
+        outcome = question.createQuestion(optionText, optionValue);
 
         if (outcome == DomainConstants.sqlError) {
             model.addAttribute("errorMsg", "There was a problem in adding your question. Please try again!");
-            return "questionManager/createQuestion";
+            return "question/createQuestion";
         } else if (outcome == DomainConstants.invalidData) {
             model.addAttribute("invalidData",
                     "One or more fields have invalid/empty data! Please enter and try again");
-            return "questionManager/createQuestion";
+            return "question/createQuestion";
         } else {
             return "redirect:/questionManager/viewQuestion?questionId=" + outcome;
         }
     }
 
-
     @GetMapping("/questionManager/deleteQuestion")
     public String deleteQuestion(@RequestParam("questionId") long questionId, Model model) {
-        questionManagerService = Injector.instance().getQuestionManagerService();
-        questionAdminService = Injector.instance().getQuestionAdminService();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean status = questionManagerService.deleteQuestion(questionId);
+        IQuestion question = new Question();
+        boolean status = question.deleteQuestion(questionId);
 
         if (status) {
             model.addAttribute("successMessage", "The question " + questionId + " is successfully deleted!");
@@ -70,9 +63,9 @@ public class QuestionManagerController {
             model.addAttribute("failureMessage", "The question can not not be deleted.");
         }
         String emailId = authentication.getPrincipal().toString();
-        ArrayList<IQuestion> questionList = questionAdminService.getQuestionListForInstructor(emailId);
+        ArrayList<IQuestion> questionList = question.getQuestionListForInstructor(emailId);
         model.addAttribute("questionList", questionList);
-        return "questionManager/questionManager";
+        return "question/questionManager";
     }
 
 }

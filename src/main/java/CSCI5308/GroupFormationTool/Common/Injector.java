@@ -6,9 +6,11 @@ import CSCI5308.GroupFormationTool.Database.IDBConfiguration;
 import CSCI5308.GroupFormationTool.Mail.IMailService;
 import CSCI5308.GroupFormationTool.Mail.MailService;
 import CSCI5308.GroupFormationTool.Password.*;
-import CSCI5308.GroupFormationTool.Question.*;
+import CSCI5308.GroupFormationTool.Question.IQuestionAdminRepository;
+import CSCI5308.GroupFormationTool.Question.IQuestionManagerRepository;
+import CSCI5308.GroupFormationTool.Question.QuestionAdminRepository;
+import CSCI5308.GroupFormationTool.Question.QuestionManagerRepository;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
-import CSCI5308.GroupFormationTool.Password.TokenGenerator;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.User.IUserRepository;
 import CSCI5308.GroupFormationTool.User.IUserService;
@@ -42,8 +44,6 @@ public class Injector {
     private IStudentService studentService;
     private IPolicyRepository policyRepository;
     private IPolicyService policyService;
-    private IQuestionManagerService questionManagerService;
-    private IQuestionAdminService questionAdminService;
     private IQuestionManagerRepository questionManagerRepository;
     private IQuestionAdminRepository questionAdminRepository;
 
@@ -69,10 +69,8 @@ public class Injector {
         studentService = new StudentService();
         policyRepository = new PolicyRepository();
         policyService = new PolicyService();
-        questionManagerService = new QuestionManagerService();
         questionManagerRepository = new QuestionManagerRepository();
         questionAdminRepository = new QuestionAdminRepository();
-        questionAdminService = new QuestionAdminService();
     }
 
     public static Injector instance() {
@@ -222,13 +220,5 @@ public class Injector {
     public void setQuestionAdminRepository(IQuestionAdminRepository questionAdminRepository) {
         this.questionAdminRepository = questionAdminRepository;
     }
-    
-    public IQuestionManagerService getQuestionManagerService() {
-        return questionManagerService;
-    }
-    
-    public IQuestionAdminService getQuestionAdminService() {
-        return questionAdminService;
-    }
-    
+
 }
