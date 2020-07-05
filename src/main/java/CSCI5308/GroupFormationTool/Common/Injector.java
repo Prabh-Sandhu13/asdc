@@ -3,8 +3,8 @@ package CSCI5308.GroupFormationTool.Common;
 import CSCI5308.GroupFormationTool.Course.*;
 import CSCI5308.GroupFormationTool.Database.DBConfiguration;
 import CSCI5308.GroupFormationTool.Database.IDBConfiguration;
-import CSCI5308.GroupFormationTool.Mail.IMailService;
-import CSCI5308.GroupFormationTool.Mail.MailService;
+import CSCI5308.GroupFormationTool.Mail.IMailManager;
+import CSCI5308.GroupFormationTool.Mail.MailManager;
 import CSCI5308.GroupFormationTool.Password.*;
 import CSCI5308.GroupFormationTool.Question.IQuestionAdminRepository;
 import CSCI5308.GroupFormationTool.Question.IQuestionManagerRepository;
@@ -31,7 +31,7 @@ public class Injector {
     private ITokenGenerator tokenGenerator;
     private IForgotPasswordManager forgotPasswordManager;
     private IForgotPasswordRepository forgotPasswordRepository;
-    private IMailService mailService;
+    private IMailManager mailManager;
     private IPasswordHistoryManager passwordHistoryManager;
     private IPasswordHistoryRepository passwordHistoryRepository;
     private SimpleMailMessage mailMessage;
@@ -58,7 +58,7 @@ public class Injector {
         tokenGenerator = new TokenGenerator();
         passwordHistoryManager = new PasswordHistoryManager();
         passwordHistoryRepository = new PasswordHistoryRepository();
-        mailService = new MailService();
+        mailManager = new MailManager();
         mailMessage = new SimpleMailMessage();
         mailSender = new JavaMailSenderImpl();
         courseService = new CourseService();
@@ -117,7 +117,7 @@ public class Injector {
         return userService;
     }
 
-    public IForgotPasswordManager getForgotPasswordService() {
+    public IForgotPasswordManager getForgotPasswordManager() {
         return forgotPasswordManager;
     }
 
@@ -133,12 +133,12 @@ public class Injector {
         return tokenGenerator;
     }
 
-    public IMailService getMailService() {
-        return mailService;
+    public IMailManager getMailManager() {
+        return mailManager;
     }
 
-    public void setMailService(IMailService mailService) {
-        this.mailService = mailService;
+    public void setMailManager(IMailManager mailManager) {
+        this.mailManager = mailManager;
     }
 
     public SimpleMailMessage getMailMessage() {
@@ -181,11 +181,11 @@ public class Injector {
         this.passwordHistoryRepository = passwordHistoryRepository;
     }
 
-    public IPasswordHistoryManager getPasswordHistoryService() {
+    public IPasswordHistoryManager getPasswordHistoryManager() {
         return passwordHistoryManager;
     }
 
-    public void setPasswordHistoryService(IPasswordHistoryManager passwordHistoryManager) {
+    public void setPasswordHistoryManager(IPasswordHistoryManager passwordHistoryManager) {
         this.passwordHistoryManager = passwordHistoryManager;
     }
 

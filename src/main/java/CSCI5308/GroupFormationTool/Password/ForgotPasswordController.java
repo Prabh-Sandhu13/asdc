@@ -33,7 +33,7 @@ public class ForgotPasswordController {
         ModelAndView modelAndView = null;
 
         try {
-            forgotPasswordManager = Injector.instance().getForgotPasswordService();
+            forgotPasswordManager = Injector.instance().getForgotPasswordManager();
             forgotPasswordManager.notifyUser(user);
             modelAndView = new ModelAndView("password/MailSentSuccess");
             modelAndView.addObject("Success", DomainConstants.mailSentSuccess);
@@ -60,7 +60,7 @@ public class ForgotPasswordController {
     public ModelAndView updatePassword(User user) {
         ModelAndView modelAndView = null;
         try {
-            forgotPasswordManager = Injector.instance().getForgotPasswordService();
+            forgotPasswordManager = Injector.instance().getForgotPasswordManager();
             forgotPasswordManager.updatePassword(user, receivedToken);
             modelAndView = new ModelAndView("password/passwordResetSuccess");
             modelAndView.addObject("Success", DomainConstants.passwordResetMessage);

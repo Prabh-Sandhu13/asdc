@@ -6,7 +6,7 @@ import CSCI5308.GroupFormationTool.ErrorHandling.TokenExpiredException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.Mail.IMailService;
+import CSCI5308.GroupFormationTool.Mail.IMailManager;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.User.IUser;
 
@@ -15,7 +15,7 @@ public class ForgotPasswordManager implements IForgotPasswordManager {
     private IForgotPasswordRepository forgotPasswordRepository;
     private ITokenGenerator tokenGenerator;
     private IPasswordHistoryManager passwordHistoryManager;
-    private IMailService mailService;
+    private IMailManager mailManager;
     private IPasswordEncryptor encryptor;
     private IPolicyService policyService;
 
@@ -24,7 +24,7 @@ public class ForgotPasswordManager implements IForgotPasswordManager {
 
         forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
         tokenGenerator = Injector.instance().getTokenGenerator();
-        mailService = Injector.instance().getMailService();
+        mailManager = Injector.instance().getMailManager();
         encryptor = Injector.instance().getPasswordEncryptor();
 
         IUser userByEmailId = forgotPasswordRepository.getUserId(user);
@@ -39,7 +39,7 @@ public class ForgotPasswordManager implements IForgotPasswordManager {
                 token = tokenGenerator.generator();
                 forgotPasswordRepository.updateToken(userByEmailId, token);
             }
-            mailService.sendForgotPasswordMail(userByEmailId, token);
+            mailManager.sendForgotPasswordMail(userByEmailId, token);
         } else {
             throw new UserAlreadyExistsException(DomainConstants.userDoesNotExists
             		.replace("[[emailId]]", user.getEmailId()));
@@ -65,7 +65,7 @@ public class ForgotPasswordManager implements IForgotPasswordManager {
         boolean updated = false;
         boolean isHistoryViolated = false;
         forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
-        passwordHistoryManager = Injector.instance().getPasswordHistoryService();
+        passwordHistoryManager = Injector.instance().getPasswordHistoryManager();
         encryptor = Injector.instance().getPasswordEncryptor();
         IUser userByEmailId = forgotPasswordRepository.getEmailByToken(user, token);
 

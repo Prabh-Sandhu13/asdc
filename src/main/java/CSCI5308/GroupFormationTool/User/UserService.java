@@ -37,7 +37,7 @@ public class UserService implements IUserService {
         }
 
         userRepository = Injector.instance().getUserRepository();
-        passwordHistoryManager = Injector.instance().getPasswordHistoryService();
+        passwordHistoryManager = Injector.instance().getPasswordHistoryManager();
         boolean success = false;
         encryptor = Injector.instance().getPasswordEncryptor();
 

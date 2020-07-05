@@ -5,7 +5,7 @@ import CSCI5308.GroupFormationTool.ErrorHandling.PasswordHistoryException;
 import CSCI5308.GroupFormationTool.ErrorHandling.TokenExpiredException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.Mail.MailService;
+import CSCI5308.GroupFormationTool.Mail.MailManager;
 import CSCI5308.GroupFormationTool.User.User;
 import CSCI5308.GroupFormationTool.Password.ForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.Password.ForgotPasswordManager;
@@ -24,21 +24,21 @@ public class ForgotPasswordManagerTest {
 
     public ForgotPasswordRepository forgotPasswordRepository;
     public ForgotPasswordManager forgotPasswordManager;
-    public MailService mailService;
+    public MailManager mailManager;
     public PolicyService policyService;
     public PasswordHistoryManager passwordHistoryManager;
 
     @BeforeEach
     public void init() {
         forgotPasswordRepository = mock(ForgotPasswordRepository.class);
-        mailService = mock(MailService.class);
+        mailManager = mock(MailManager.class);
         policyService = mock(PolicyService.class);
         passwordHistoryManager = mock(PasswordHistoryManager.class);
         forgotPasswordManager = new ForgotPasswordManager();
         Injector.instance().setForgotPasswordRepository(forgotPasswordRepository);
-        Injector.instance().setMailService(mailService);
+        Injector.instance().setMailManager(mailManager);
         Injector.instance().setPolicyService(policyService);
-        Injector.instance().setPasswordHistoryService(passwordHistoryManager);
+        Injector.instance().setPasswordHistoryManager(passwordHistoryManager);
     }
 
     @Test
@@ -54,13 +54,13 @@ public class ForgotPasswordManagerTest {
         when(forgotPasswordRepository.getUserId(user)).thenReturn(user);
         when(forgotPasswordRepository.getToken(user)).thenReturn(token);
         when(forgotPasswordRepository.updateToken(user, token)).thenReturn(true);
-        when(mailService.sendForgotPasswordMail(user, token)).thenReturn(true);
+        when(mailManager.sendForgotPasswordMail(user, token)).thenReturn(true);
         assertTrue(forgotPasswordManager.notifyUser(user));
         token = "";
         when(forgotPasswordRepository.getUserId(user)).thenReturn(user);
         when(forgotPasswordRepository.getToken(user)).thenReturn(token);
         when(forgotPasswordRepository.addToken(user, token)).thenReturn(true);
-        when(mailService.sendForgotPasswordMail(user, token)).thenReturn(true);
+        when(mailManager.sendForgotPasswordMail(user, token)).thenReturn(true);
         assertTrue(forgotPasswordManager.notifyUser(user));
         when(forgotPasswordRepository.getUserId(user)).thenReturn(null);
         UserAlreadyExistsException exception = assertThrows(UserAlreadyExistsException.class, () -> {

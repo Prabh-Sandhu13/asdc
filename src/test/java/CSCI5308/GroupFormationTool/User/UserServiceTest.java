@@ -32,7 +32,7 @@ public class UserServiceTest {
         policyService = mock(PolicyService.class);
         Injector.instance().setPolicyService(policyService);
         passwordHistoryManager = mock(PasswordHistoryManager.class);
-        Injector.instance().setPasswordHistoryService(passwordHistoryManager);
+        Injector.instance().setPasswordHistoryManager(passwordHistoryManager);
     }
 
     @Test

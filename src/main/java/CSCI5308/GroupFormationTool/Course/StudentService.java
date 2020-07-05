@@ -1,6 +1,6 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.Mail.IMailService;
+import CSCI5308.GroupFormationTool.Mail.IMailManager;
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import com.opencsv.bean.CsvToBean;
@@ -17,12 +17,12 @@ import java.util.Map;
 public class StudentService implements IStudentService {
 
     private IStudentRepository studentRepository;
-    private IMailService mailService;
+    private IMailManager mailManager;
 
     @Override
     public Map<Integer, List<StudentCSV>> createStudent(MultipartFile file, String courseId) {
         studentRepository = Injector.instance().getStudentRepository();
-        mailService = Injector.instance().getMailService();
+        mailManager = Injector.instance().getMailManager();
 
         List<StudentCSV> badData = new ArrayList<StudentCSV>();
         List<StudentCSV> properData = new ArrayList<StudentCSV>();
@@ -44,7 +44,7 @@ public class StudentService implements IStudentService {
             studentLists = studentRepository.createStudent(properData, courseId);
             if (studentLists != null && studentLists.size() > 0) {
                 studentLists.put(DomainConstants.badData, badData);
-                mailService.sendBatchMail(studentLists.get(DomainConstants.newStudents), courseId);
+                mailManager.sendBatchMail(studentLists.get(DomainConstants.newStudents), courseId);
             }
 
         } catch (Exception ex) {
