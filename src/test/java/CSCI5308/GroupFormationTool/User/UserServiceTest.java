@@ -5,7 +5,7 @@ import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.User;
-import CSCI5308.GroupFormationTool.Password.PasswordHistoryService;
+import CSCI5308.GroupFormationTool.Password.PasswordHistoryManager;
 import CSCI5308.GroupFormationTool.Password.PolicyService;
 import CSCI5308.GroupFormationTool.User.UserRepository;
 import CSCI5308.GroupFormationTool.User.UserService;
@@ -22,7 +22,7 @@ public class UserServiceTest {
     UserService userService;
     UserRepository userRepository;
     PolicyService policyService;
-    PasswordHistoryService passwordHistoryService;
+    PasswordHistoryManager passwordHistoryManager;
 
     @BeforeEach
     public void init() {
@@ -31,8 +31,8 @@ public class UserServiceTest {
         Injector.instance().setUserRepository(userRepository);
         policyService = mock(PolicyService.class);
         Injector.instance().setPolicyService(policyService);
-        passwordHistoryService = mock(PasswordHistoryService.class);
-        Injector.instance().setPasswordHistoryService(passwordHistoryService);
+        passwordHistoryManager = mock(PasswordHistoryManager.class);
+        Injector.instance().setPasswordHistoryService(passwordHistoryManager);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class UserServiceTest {
         when(userRepository.getUserByEmailId(user)).thenReturn(null);
         when(userRepository.createUser(user)).thenReturn(true);
         when(userRepository.getUserIdByEmailId(user)).thenReturn(user);
-        doNothing().when(passwordHistoryService).addPasswordHistory(user, encryptedPassword);
+        doNothing().when(passwordHistoryManager).addPasswordHistory(user, encryptedPassword);
         assertTrue(userService.createUser(user));
         user.setPassword("pa");
         user.setConfirmPassword("pa");

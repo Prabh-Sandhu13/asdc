@@ -5,7 +5,7 @@ import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
-import CSCI5308.GroupFormationTool.Password.IPasswordHistoryService;
+import CSCI5308.GroupFormationTool.Password.IPasswordHistoryManager;
 import CSCI5308.GroupFormationTool.Password.IPolicyService;
 
 public class UserService implements IUserService {
@@ -16,7 +16,7 @@ public class UserService implements IUserService {
 
     private IPolicyService policyService;
 
-    private IPasswordHistoryService passwordHistoryService;
+    private IPasswordHistoryManager passwordHistoryManager;
 
     @Override
     public boolean createUser(IUser user) {
@@ -37,7 +37,7 @@ public class UserService implements IUserService {
         }
 
         userRepository = Injector.instance().getUserRepository();
-        passwordHistoryService = Injector.instance().getPasswordHistoryService();
+        passwordHistoryManager = Injector.instance().getPasswordHistoryService();
         boolean success = false;
         encryptor = Injector.instance().getPasswordEncryptor();
 
@@ -47,7 +47,7 @@ public class UserService implements IUserService {
         if (userByEmailId == null) {
             success = userRepository.createUser(user);
             IUser userWithUserId = userRepository.getUserIdByEmailId(user);
-            passwordHistoryService.addPasswordHistory(userWithUserId, user.getPassword());
+            passwordHistoryManager.addPasswordHistory(userWithUserId, user.getPassword());
         } else {
             throw new UserAlreadyExistsException(DomainConstants.userAlreadyExists
             		.replace("[[emailId]]", user.getEmailId()));

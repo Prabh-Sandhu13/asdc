@@ -56,7 +56,6 @@ public class QuestionManagerController {
         }
     }
 
-
     @GetMapping("/questionManager/deleteQuestion")
     public String deleteQuestion(@RequestParam("questionId") long questionId, Model model) {
         questionManagerService = Injector.instance().getQuestionManagerService();

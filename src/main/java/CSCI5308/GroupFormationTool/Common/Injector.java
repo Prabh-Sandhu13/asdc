@@ -27,10 +27,10 @@ public class Injector {
     private IPasswordEncryptor passwordEncryptor;
 
     private ITokenGenerator tokenGenerator;
-    private IForgotPasswordService forgotPasswordService;
+    private IForgotPasswordManager forgotPasswordManager;
     private IForgotPasswordRepository forgotPasswordRepository;
     private IMailService mailService;
-    private IPasswordHistoryService passwordHistoryService;
+    private IPasswordHistoryManager passwordHistoryManager;
     private IPasswordHistoryRepository passwordHistoryRepository;
     private SimpleMailMessage mailMessage;
     private JavaMailSenderImpl mailSender;
@@ -53,10 +53,10 @@ public class Injector {
         userRepository = new UserRepository();
         userService = new UserService();
         passwordEncryptor = new BCryptEncryption();
-        forgotPasswordService = new ForgotPasswordService();
+        forgotPasswordManager = new ForgotPasswordManager();
         forgotPasswordRepository = new ForgotPasswordRepository();
         tokenGenerator = new TokenGenerator();
-        passwordHistoryService = new PasswordHistoryService();
+        passwordHistoryManager = new PasswordHistoryManager();
         passwordHistoryRepository = new PasswordHistoryRepository();
         mailService = new MailService();
         mailMessage = new SimpleMailMessage();
@@ -119,8 +119,8 @@ public class Injector {
         return userService;
     }
 
-    public IForgotPasswordService getForgotPasswordService() {
-        return forgotPasswordService;
+    public IForgotPasswordManager getForgotPasswordService() {
+        return forgotPasswordManager;
     }
 
     public IForgotPasswordRepository getForgotPasswordRepository() {
@@ -183,12 +183,12 @@ public class Injector {
         this.passwordHistoryRepository = passwordHistoryRepository;
     }
 
-    public IPasswordHistoryService getPasswordHistoryService() {
-        return passwordHistoryService;
+    public IPasswordHistoryManager getPasswordHistoryService() {
+        return passwordHistoryManager;
     }
 
-    public void setPasswordHistoryService(IPasswordHistoryService passwordHistoryService) {
-        this.passwordHistoryService = passwordHistoryService;
+    public void setPasswordHistoryService(IPasswordHistoryManager passwordHistoryManager) {
+        this.passwordHistoryManager = passwordHistoryManager;
     }
 
     public IPolicyRepository getPolicyRepository() {

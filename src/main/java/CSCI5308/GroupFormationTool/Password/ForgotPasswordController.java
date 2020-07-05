@@ -19,7 +19,7 @@ import java.util.ArrayList;
 @Controller
 public class ForgotPasswordController {
 
-    private IForgotPasswordService forgotPasswordService;
+    private IForgotPasswordManager forgotPasswordManager;
     private String receivedToken;
     private IPolicyService policyService;
 
@@ -33,8 +33,8 @@ public class ForgotPasswordController {
         ModelAndView modelAndView = null;
 
         try {
-            forgotPasswordService = Injector.instance().getForgotPasswordService();
-            forgotPasswordService.notifyUser(user);
+            forgotPasswordManager = Injector.instance().getForgotPasswordService();
+            forgotPasswordManager.notifyUser(user);
             modelAndView = new ModelAndView("MailSentSuccess");
             modelAndView.addObject("Success", DomainConstants.mailSentSuccess);
 
@@ -60,8 +60,8 @@ public class ForgotPasswordController {
     public ModelAndView updatePassword(User user) {
         ModelAndView modelAndView = null;
         try {
-            forgotPasswordService = Injector.instance().getForgotPasswordService();
-            forgotPasswordService.updatePassword(user, receivedToken);
+            forgotPasswordManager = Injector.instance().getForgotPasswordService();
+            forgotPasswordManager.updatePassword(user, receivedToken);
             modelAndView = new ModelAndView("passwordResetSuccess");
             modelAndView.addObject("Success", DomainConstants.passwordResetMessage);
         } catch (TokenExpiredException tee) {
