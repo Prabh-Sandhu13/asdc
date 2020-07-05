@@ -16,7 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomAuthenticationService implements AuthenticationManager {
+public class CustomAuthenticationManager implements AuthenticationManager {
 
     private static final String Admin_banner_id = "B00000000";
 
@@ -43,8 +43,7 @@ public class CustomAuthenticationService implements AuthenticationManager {
             throw new BadCredentialsException("1000");
         }
     }
-
-    // Authenticate against our database using the input email ID and password.
+    
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String emailId = authentication.getPrincipal().toString();
         String password = authentication.getCredentials().toString();

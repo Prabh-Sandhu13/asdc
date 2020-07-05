@@ -23,7 +23,7 @@ public class CourseController {
     private ICourseService courseService;
     private IUserService userService;
     private IUserCoursesService userCoursesService;
-    private IStudentService studentService;
+    private IStudentCSV studentCSV;
 
     @GetMapping("/courseList")
     public String courseList(Model model) {
@@ -75,7 +75,7 @@ public class CourseController {
     @GetMapping(value = "/courseDetails")
     public String courseDetail(@RequestParam(value = "courseName") String courseName, Model model) {
         model.addAttribute("courseName", courseName);
-        return "courseDetails";
+        return "course/courseDetails";
     }
 
     @GetMapping(value = "/enrollTA")
@@ -88,7 +88,7 @@ public class CourseController {
         model.addAttribute("user", user);
         model.addAttribute("taList", taList);
         model.addAttribute("courseId", courseId);
-        return "ta/enrollTA";
+        return "course/enrollTA";
     }
 
     @PostMapping("/enrollTA")
@@ -104,13 +104,13 @@ public class CourseController {
         taList = userCoursesService.getTAForCourse(courseId);
         model.addAttribute("taList", taList);
         model.addAttribute("courseId", courseId);
-        return "ta/enrollTA";
+        return "course/enrollTA";
     }
 
     @GetMapping("/uploadCSVFile")
     public String uploadCSVFile(@RequestParam(value = "courseId") String courseId, Model model) {
         model.addAttribute("CourseId", courseId);
-        return "instructor\\uploadCSVFile";
+        return "course/uploadCSVFile";
     }
 
     @GetMapping("/admin/allAdminCourses")
@@ -118,13 +118,13 @@ public class CourseController {
         ICourseRepository courseDB = Injector.instance().getCourseRepository();
         List<ICourse> allCourses = courseDB.getAllCourses();
         model.addAttribute("courses", allCourses);
-        return "admin\\allCourses";
+        return "course/allCourses";
     }
 
     @GetMapping("/admin/addCourse")
     public String addCourseForm(Model model) {
         model.addAttribute("course", new Course());
-        return "admin\\addCourse";
+        return "course/addCourse";
     }
 
     @PostMapping("/admin/addCourse")
@@ -139,7 +139,7 @@ public class CourseController {
             model.addAttribute("failureMessage", DomainConstants.addCourseFailure);
         }
         model.addAttribute("courses", allCourses);
-        return "admin\\allCourses";
+        return "course/allCourses";
     }
 
     @RequestMapping(value = "/admin/deleteCourse", method = {RequestMethod.GET, RequestMethod.POST})
@@ -154,7 +154,7 @@ public class CourseController {
             model.addAttribute("failureMessage", DomainConstants.deleteCourseFailure);
         }
         model.addAttribute("courses", allCourses);
-        return "admin\\allCourses";
+        return "course/allCourses";
     }
 
     // Code referred from "https://attacomsian.com/blog/spring-boot-upload-parse-csv-file#"
@@ -168,8 +168,8 @@ public class CourseController {
             model.addAttribute("message", DomainConstants.invalidFile);
             model.addAttribute("status", false);
         } else {
-            studentService = Injector.instance().getStudentService();
-            studentLists = studentService.createStudent(file, courseId);
+            studentCSV = Injector.instance().getStudentCSV();
+            studentLists = studentCSV.createStudent(file, courseId);
 
             if (studentLists != null) {
                 model.addAttribute("newStudentList", studentLists.get(DomainConstants.newStudents));
@@ -183,7 +183,7 @@ public class CourseController {
                 model.addAttribute("status", false);
             }
         }
-        return "instructor\\CSVSuccessTable";
+        return "course/CSVSuccessTable";
     }
 
 }

@@ -41,7 +41,7 @@ public class Injector {
     private IUserCoursesRepository userCoursesRepository;
     private IUserCoursesService userCoursesService;
     private IStudentRepository studentRepository;
-    private IStudentService studentService;
+    private IStudentCSV studentCSV;
     private IPolicyRepository policyRepository;
     private IPolicyService policyService;
     private IQuestionManagerRepository questionManagerRepository;
@@ -66,7 +66,7 @@ public class Injector {
         userCoursesRepository = new UserCoursesRepository();
         userCoursesService = new UserCoursesService();
         studentRepository = new StudentRepository();
-        studentService = new StudentService();
+        studentCSV = new StudentCSV();
         policyRepository = new PolicyRepository();
         policyService = new PolicyService();
         questionManagerRepository = new QuestionManagerRepository();
@@ -169,8 +169,8 @@ public class Injector {
         this.studentRepository = studentRepository;
     }
 
-    public IStudentService getStudentService() {
-        return studentService;
+    public IStudentCSV getStudentCSV() {
+        return studentCSV;
     }
 
     public IPasswordHistoryRepository getPasswordHistoryRepository() {

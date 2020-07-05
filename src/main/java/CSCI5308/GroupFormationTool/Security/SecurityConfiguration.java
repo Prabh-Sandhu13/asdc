@@ -25,6 +25,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
-        return new CustomAuthenticationService();
+        return new CustomAuthenticationManager();
     }
 }

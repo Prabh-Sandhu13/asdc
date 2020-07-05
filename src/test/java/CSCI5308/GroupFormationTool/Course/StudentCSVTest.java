@@ -1,16 +1,41 @@
 package CSCI5308.GroupFormationTool.Course;
 
+import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Course.IStudentCSV;
 import CSCI5308.GroupFormationTool.Course.StudentCSV;
 import CSCI5308.GroupFormationTool.Course.StudentDBMock;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.web.multipart.MultipartFile;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @SpringBootTest
 public class StudentCSVTest {
 
+    public StudentCSV studentCSV;
+    public StudentRepository studentRepository;
+
+    @BeforeEach
+    public void init() {
+        studentCSV = new StudentCSV();
+        studentRepository = mock(StudentRepository.class);
+        Injector.instance().setStudentRepository(studentRepository);
+    }
+	
     private IStudentCSV createDefaultStudentCSV() {
         StudentDBMock studentDBMock = new StudentDBMock();
         IStudentCSV studentCSV = loadStudentCSV(studentDBMock);
@@ -102,5 +127,62 @@ public class StudentCSVTest {
         assertFalse(studentCSV.getBannerId().isEmpty());
         assertTrue(studentCSV.getBannerId().length() < 100);
     }
+
+    @Test
+    void createStudent() {
+        String data = "firstName,lastName,email,bannerId\n";
+        data += "padmesh,donthu,padmeshdonthu@gmail.com,B00854462";
+        String finalData = data;
+        MultipartFile multipartFile = new MultipartFile() {
+
+            @Override
+            public String getName() {
+                return "sample";
+            }
+
+            @Override
+            public String getOriginalFilename() {
+                return "sample";
+            }
+
+            @Override
+            public String getContentType() {
+                return MediaType.TEXT_PLAIN_VALUE;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public long getSize() {
+                return finalData.length();
+            }
+
+            @Override
+            public byte[] getBytes() throws IOException {
+                return finalData.getBytes();
+            }
+
+            @Override
+            public InputStream getInputStream() throws IOException {
+                InputStream inputStream = new ByteArrayInputStream(finalData.getBytes());
+                return inputStream;
+            }
+
+            @Override
+            public void transferTo(File dest) throws IOException, IllegalStateException {
+                // not reqd
+            }
+        };
+
+        String courseId = "CSCI 5308";
+        ArrayList<StudentCSV> studentCSVs = new ArrayList<>();
+        HashMap<Integer, List<StudentCSV>> studentLists = new HashMap<>();
+        when(studentRepository.createStudent(studentCSVs, courseId)).thenReturn(studentLists);
+        assertTrue(studentCSV.createStudent(multipartFile, courseId).size() == 0);
+    }
+
 
 }

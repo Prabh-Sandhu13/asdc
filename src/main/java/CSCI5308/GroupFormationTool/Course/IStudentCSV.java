@@ -1,5 +1,10 @@
 package CSCI5308.GroupFormationTool.Course;
 
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public interface IStudentCSV {
 
     String getFirstName();
@@ -21,4 +26,6 @@ public interface IStudentCSV {
     String getPassword();
 
     void setPassword(String password);
+
+	Map<Integer, List<StudentCSV>> createStudent(MultipartFile file, String courseId);
 }
