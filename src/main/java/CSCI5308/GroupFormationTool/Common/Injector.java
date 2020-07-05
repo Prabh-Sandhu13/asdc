@@ -39,7 +39,6 @@ public class Injector {
     private ICourseService courseService;
     private ICourseRepository courseRepository;
     private IUserCoursesRepository userCoursesRepository;
-    private IUserCoursesService userCoursesService;
     private IStudentRepository studentRepository;
     private IStudentCSV studentCSV;
     private IPolicyRepository policyRepository;
@@ -64,7 +63,6 @@ public class Injector {
         courseService = new CourseService();
         courseRepository = new CourseRepository();
         userCoursesRepository = new UserCoursesRepository();
-        userCoursesService = new UserCoursesService();
         studentRepository = new StudentRepository();
         studentCSV = new StudentCSV();
         policyRepository = new PolicyRepository();
@@ -87,10 +85,6 @@ public class Injector {
 
     public void setUserCoursesRepository(IUserCoursesRepository userCoursesRepository) {
         this.userCoursesRepository = userCoursesRepository;
-    }
-
-    public IUserCoursesService getUserCoursesService() {
-        return userCoursesService;
     }
 
     public IPasswordEncryptor getPasswordEncryptor() {

@@ -1,5 +1,11 @@
 package CSCI5308.GroupFormationTool.Course;
 
+import CSCI5308.GroupFormationTool.Common.Injector;
+import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.User;
+
+import java.util.ArrayList;
+
 public class UserCourses implements IUserCourses {
 
     private String courseId;
@@ -11,6 +17,8 @@ public class UserCourses implements IUserCourses {
     private String courseDescription;
 
     private String userRole;
+
+    IUserCoursesRepository userCoursesRepository;
 
     public UserCourses() {
         courseId = null;
@@ -68,6 +76,60 @@ public class UserCourses implements IUserCourses {
     @Override
     public void setUserRole(String userRole) {
         this.userRole = userRole;
+    }
+
+    @Override
+    public String getUserRoleByEmailId(String emailId) {
+        userCoursesRepository = Injector.instance().getUserCoursesRepository();
+        return userCoursesRepository.getUserRoleByEmailId(emailId);
+    }
+
+    @Override
+    public ArrayList<ICourse> getStudentCourses(String emailId) {
+        userCoursesRepository = Injector.instance().getUserCoursesRepository();
+        return userCoursesRepository.getStudentCourses(emailId);
+    }
+
+    @Override
+    public ArrayList<ICourse> getTACourses(String emailId) {
+        userCoursesRepository = Injector.instance().getUserCoursesRepository();
+        return userCoursesRepository.getTACourses(emailId);
+    }
+
+    @Override
+    public ArrayList<IUser> usersCurrentlyNotInstructorsForCourse(String courseId) {
+        userCoursesRepository = Injector.instance().getUserCoursesRepository();
+        return userCoursesRepository.usersCurrentlyNotInstructorsForCourse(courseId);
+    }
+
+    @Override
+    public boolean addInstructorsToCourse(Long instructor, String courseId) {
+        userCoursesRepository = Injector.instance().getUserCoursesRepository();
+        return userCoursesRepository.addInstructorsToCourse(instructor, courseId);
+    }
+
+    @Override
+    public ArrayList<ICourse> getInstructorCourses(String emailId) {
+        userCoursesRepository = Injector.instance().getUserCoursesRepository();
+        return userCoursesRepository.getInstructorCourses(emailId);
+    }
+
+    @Override
+    public ArrayList<IUser> getTAForCourse(String courseId) {
+        userCoursesRepository = Injector.instance().getUserCoursesRepository();
+        return userCoursesRepository.getTAForCourse(courseId);
+    }
+
+    @Override
+    public boolean enrollTAForCourseUsingEmailId(User user, String courseId) {
+        userCoursesRepository = Injector.instance().getUserCoursesRepository();
+        return userCoursesRepository.enrollTAForCourseUsingEmailId(user, courseId);
+    }
+
+    @Override
+    public ArrayList<IUser> getInstructorsForCourse(String courseId) {
+        userCoursesRepository = Injector.instance().getUserCoursesRepository();
+        return userCoursesRepository.getInstructorsForCourse(courseId);
     }
 
 }

@@ -18,65 +18,6 @@ import static org.mockito.Mockito.when;
 public class UserCoursesRepositoryTest {
 
     @Test
-    public void getRoleBasedCoursesTest() {
-        ArrayList<IUserCourses> userCoursesList = new ArrayList<>();
-        IUserCourses userCourses = new UserCourses();
-
-        userCourses.setBannerId("B00854462");
-        userCourses.setCourseDescription("Sample description");
-        userCourses.setCourseId("CSCI 5308");
-        userCourses.setCourseName("Sample Text");
-        userCourses.setUserRole("Student");
-        userCoursesList.add(userCourses);
-
-        userCourses.setBannerId("B00854462");
-        userCourses.setCourseDescription("Sample description 2");
-        userCourses.setCourseId("CSCI 5309");
-        userCourses.setCourseName("Sample Text 2");
-        userCourses.setUserRole("Student");
-        userCoursesList.add(userCourses);
-
-        assertTrue(userCoursesList.get(0).getBannerId().length() < 200);
-        assertTrue(userCoursesList.get(0).getCourseDescription().length() < 100);
-        assertTrue(userCoursesList.get(0).getCourseId().length() < 10);
-        assertTrue(userCoursesList.get(0).getUserRole().length() < 100);
-        assertTrue(userCoursesList.get(0).getCourseName().length() < 100);
-
-        assertFalse(userCoursesList.get(0).getBannerId() == null);
-        assertFalse(userCoursesList.get(0).getCourseDescription() == null);
-        assertFalse(userCoursesList.get(0).getCourseName().isEmpty());
-        assertFalse(userCoursesList.get(0).getUserRole().isEmpty());
-        assertFalse(userCoursesList.get(0).getCourseId().isEmpty());
-
-        assertTrue(userCoursesList.get(0).getCourseId() instanceof String);
-        assertTrue(userCoursesList.get(0).getUserRole() instanceof String);
-        assertTrue(userCoursesList.get(0).getCourseName() instanceof String);
-        assertTrue(userCoursesList.get(0).getCourseDescription() instanceof String);
-        assertTrue(userCoursesList.get(0).getBannerId() instanceof String);
-
-        assertTrue(userCoursesList.get(1).getBannerId().length() < 200);
-        assertTrue(userCoursesList.get(1).getCourseDescription().length() < 100);
-        assertTrue(userCoursesList.get(1).getCourseId().length() < 10);
-        assertTrue(userCoursesList.get(1).getUserRole().length() < 100);
-        assertTrue(userCoursesList.get(1).getCourseName().length() < 100);
-
-        assertFalse(userCoursesList.get(1).getBannerId() == null);
-        assertFalse(userCoursesList.get(1).getCourseDescription() == null);
-        assertFalse(userCoursesList.get(1).getCourseName().isEmpty());
-        assertFalse(userCoursesList.get(1).getUserRole().isEmpty());
-        assertFalse(userCoursesList.get(1).getCourseId().isEmpty());
-
-        assertTrue(userCoursesList.get(1).getCourseId() instanceof String);
-        assertTrue(userCoursesList.get(1).getUserRole() instanceof String);
-        assertTrue(userCoursesList.get(1).getCourseName() instanceof String);
-        assertTrue(userCoursesList.get(1).getCourseDescription() instanceof String);
-        assertTrue(userCoursesList.get(1).getBannerId() instanceof String);
-
-        assertFalse(userCoursesList.isEmpty());
-        assertTrue(userCoursesList instanceof ArrayList);
-    }
-
-    @Test
     public void getUserRoleByEmailIdTest() {
         UserCoursesRepository userCoursesRepository = mock(UserCoursesRepository.class);
 

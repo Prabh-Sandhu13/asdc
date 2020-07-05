@@ -22,7 +22,6 @@ public class CourseController {
 
     private ICourseService courseService;
     private IUserService userService;
-    private IUserCoursesService userCoursesService;
     private IStudentCSV studentCSV;
 
     @GetMapping("/courseList")
@@ -35,12 +34,11 @@ public class CourseController {
         ArrayList<ICourse> studentCourseList = null;
         ArrayList<ICourse> taCourseList = null;
         ArrayList<ICourse> instructorCourseList = null;
+        IUserCourses userCourses = new UserCourses();
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         userService = Injector.instance().getUserService();
-        userCoursesService = Injector.instance().getUserCoursesService();
-
         String emailId = authentication.getPrincipal().toString();
 
         if (userService.checkCurrentUserIsAdmin(emailId)) {
@@ -48,23 +46,23 @@ public class CourseController {
             model.addAttribute("courses", courseList);
             return "course/allCourses";
         } else {
-            userRole = userCoursesService.getUserRoleByEmailId(emailId);
+            userRole = userCourses.getUserRoleByEmailId(emailId);
             if (userRole.equals(DomainConstants.guestRole)) {
                 courseList = courseService.getAllCourses();
                 model.addAttribute("courses", courseList);
                 return "course/guestCourses";
             } else if (userRole.equals(DomainConstants.studentRole)) {
-                studentCourseList = userCoursesService.getStudentCourses(emailId);
+                studentCourseList = userCourses.getStudentCourses(emailId);
                 model.addAttribute("courses", studentCourseList);
                 return "course/studentCourses";
             } else if (userRole.equals(DomainConstants.tARole)) {
-                taCourseList = userCoursesService.getTACourses(emailId);
-                studentCourseList = userCoursesService.getStudentCourses(emailId);
+                taCourseList = userCourses.getTACourses(emailId);
+                studentCourseList = userCourses.getStudentCourses(emailId);
                 model.addAttribute("studentCourses", studentCourseList);
                 model.addAttribute("taCourses", taCourseList);
                 return "course/taCourses";
             } else if (userRole.equals(DomainConstants.instructorRole)) {
-                instructorCourseList = userCoursesService.getInstructorCourses(emailId);
+                instructorCourseList = userCourses.getInstructorCourses(emailId);
                 model.addAttribute("courses", instructorCourseList);
                 return "course/instructorCourses";
             }
@@ -81,9 +79,9 @@ public class CourseController {
     @GetMapping(value = "/enrollTA")
     public String enrollTA(@RequestParam(value = "courseId") String courseId, Model model) {
 
-        userCoursesService = Injector.instance().getUserCoursesService();
         ArrayList<IUser> taList = null;
-        taList = userCoursesService.getTAForCourse(courseId);
+        IUserCourses userCourses = new UserCourses();
+        taList = userCourses.getTAForCourse(courseId);
         User user = new User();
         model.addAttribute("user", user);
         model.addAttribute("taList", taList);
@@ -93,15 +91,15 @@ public class CourseController {
 
     @PostMapping("/enrollTA")
     public String addTA(@RequestParam(value = "courseId") String courseId, @ModelAttribute User user, Model model) {
-        userCoursesService = Injector.instance().getUserCoursesService();
-        boolean success = userCoursesService.enrollTAForCourseUsingEmailId(user, courseId);
+        IUserCourses userCourses = new UserCourses();
+        boolean success = userCourses.enrollTAForCourseUsingEmailId(user, courseId);
         ArrayList<IUser> taList = null;
         if (success) {
             model.addAttribute("success", DomainConstants.taAddSuccess);
         } else {
             model.addAttribute("error", DomainConstants.taAddFailure);
         }
-        taList = userCoursesService.getTAForCourse(courseId);
+        taList = userCourses.getTAForCourse(courseId);
         model.addAttribute("taList", taList);
         model.addAttribute("courseId", courseId);
         return "course/enrollTA";

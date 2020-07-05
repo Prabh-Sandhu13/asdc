@@ -15,7 +15,6 @@ import java.util.List;
 @Controller
 public class AdminController {
 
-    IUserCoursesService userCoursesService;
     ICourseService courseService;
 
     @GetMapping("/admin/allCourses")
@@ -30,15 +29,15 @@ public class AdminController {
     @GetMapping("/admin/assignInstructor")
     public String assignInstructor(Model model, @RequestParam(name = "courseId") String courseId) {
 
-        userCoursesService = Injector.instance().getUserCoursesService();
+        IUserCourses userCourses = new UserCourses();
         courseService = Injector.instance().getCourseService();
 
         ICourse course = courseService.getCourseById(courseId);
 
-        ArrayList<IUser> allUsersCurrentlyNotInstructors = userCoursesService
+        ArrayList<IUser> allUsersCurrentlyNotInstructors = userCourses
                 .usersCurrentlyNotInstructorsForCourse(courseId);
 
-        ArrayList<IUser> instructorList = userCoursesService.getInstructorsForCourse(courseId);
+        ArrayList<IUser> instructorList = userCourses.getInstructorsForCourse(courseId);
 
         model.addAttribute("instructorList", instructorList);
         model.addAttribute("course", course);
@@ -50,14 +49,14 @@ public class AdminController {
     public String assignInstructorToCourse(@RequestParam(name = "instructor") Long instructor,
                                            @RequestParam(name = "id") String courseId, Model model) {
 
-        userCoursesService = Injector.instance().getUserCoursesService();
+        IUserCourses userCourses = new UserCourses();
         courseService = Injector.instance().getCourseService();
 
         ICourse course = courseService.getCourseById(courseId);
 
-        boolean success = userCoursesService.addInstructorsToCourse(instructor, courseId);
+        boolean success = userCourses.addInstructorsToCourse(instructor, courseId);
 
-        ArrayList<IUser> instructorList = userCoursesService.getInstructorsForCourse(courseId);
+        ArrayList<IUser> instructorList = userCourses.getInstructorsForCourse(courseId);
 
         model.addAttribute("instructorList", instructorList);
         model.addAttribute("course", course);

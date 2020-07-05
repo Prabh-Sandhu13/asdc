@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 public interface IUserCoursesRepository {
 
-    ArrayList<IUserCourses> getRoleBasedCourses(String emailId);
-
     String getUserRoleByEmailId(String emailId);
 
     ArrayList<ICourse> getStudentCourses(String emailId);

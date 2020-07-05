@@ -1,5 +1,7 @@
 package CSCI5308.GroupFormationTool.Course;
 
+import java.util.ArrayList;
+
 public interface ICourse {
 
     String getId();

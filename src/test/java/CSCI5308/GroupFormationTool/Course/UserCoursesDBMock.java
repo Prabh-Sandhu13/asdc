@@ -1,12 +1,7 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.Course.ICourse;
 import CSCI5308.GroupFormationTool.User.IUser;
-import CSCI5308.GroupFormationTool.Course.IUserCourses;
-import CSCI5308.GroupFormationTool.Course.IUserCoursesRepository;
-import CSCI5308.GroupFormationTool.Course.Course;
 import CSCI5308.GroupFormationTool.User.User;
-import CSCI5308.GroupFormationTool.Course.UserCourses;
 
 import java.util.ArrayList;
 
@@ -49,19 +44,6 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
         userCourses.setCourseName(courseName);
         userCourses.setUserRole(userRole);
         return userCourses;
-    }
-
-    @Override
-    public ArrayList<IUserCourses> getRoleBasedCourses(String emailId) {
-        ArrayList<IUserCourses> courseList = new ArrayList<>();
-        IUserCourses courses = new UserCourses();
-        courses.setBannerId(bannerId);
-        courses.setCourseDescription(courseDescription);
-        courses.setCourseName(courseName);
-        courses.setUserRole(userRole);
-        courses.setCourseId(courseId);
-        courseList.add(courses);
-        return courseList;
     }
 
     @Override
