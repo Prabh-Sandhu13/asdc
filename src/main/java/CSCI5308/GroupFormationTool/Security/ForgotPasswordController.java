@@ -24,7 +24,7 @@ public class ForgotPasswordController {
 
     private IForgotPasswordService forgotPasswordService;
     private String receivedToken;
-    private IPolicyService policyService;
+    private IPolicy policy;
 
     @GetMapping("/forgotPassword")
     public String register(User user) {
@@ -53,8 +53,8 @@ public class ForgotPasswordController {
     @GetMapping("/resetPassword")
     public String reset(User user, @RequestParam(name = "token", required = false) String token, Model model) {
         receivedToken = token;
-        policyService = Injector.instance().getPolicyService();
-        ArrayList<IPolicy> policies = policyService.getPolicies();
+        policy = Injector.instance().getPolicy();
+        ArrayList<IPolicy> policies = policy.getPolicies();
         model.addAttribute("policies", policies);
         return "resetPassword";
     }
