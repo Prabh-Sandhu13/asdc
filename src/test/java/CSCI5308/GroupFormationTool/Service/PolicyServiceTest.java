@@ -18,12 +18,12 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class PolicyServiceTest {
 
-    private PolicyService policyService;
+    private Policy policyService;
     private PolicyRepository policyRepository;
 
     @BeforeEach
     public void init() {
-        policyService = new PolicyService();
+        policyService = new Policy();
         policyRepository = mock(PolicyRepository.class);
         Injector.instance().setPolicyRepository(policyRepository);
     }
