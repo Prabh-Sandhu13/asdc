@@ -39,10 +39,7 @@ public class QuestionManagerController {
         question.setInstructor(instructor);
         outcome = question.createQuestion(optionText, optionValue);
 
-        if (outcome == DomainConstants.sqlError) {
-            model.addAttribute("errorMsg", "There was a problem in adding your question. Please try again!");
-            return "question/createQuestion";
-        } else if (outcome == DomainConstants.invalidData) {
+        if (outcome == DomainConstants.invalidData) {
             model.addAttribute("invalidData",
                     "One or more fields have invalid/empty data! Please enter and try again");
             return "question/createQuestion";
@@ -56,7 +53,6 @@ public class QuestionManagerController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         IQuestion question = new Question();
         boolean status = question.deleteQuestion(questionId);
-
         if (status) {
             model.addAttribute("successMessage", "The question " + questionId + " is successfully deleted!");
         } else {
@@ -67,5 +63,4 @@ public class QuestionManagerController {
         model.addAttribute("questionList", questionList);
         return "question/questionManager";
     }
-
 }

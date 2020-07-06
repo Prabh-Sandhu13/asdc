@@ -135,7 +135,8 @@ public class Question implements IQuestion {
                 this.setChoices(null);
             }
             questionManagerRepository = Injector.instance().getQuestionManagerRepository();
-            return questionManagerRepository.createQuestion(this);
+            long outcome = questionManagerRepository.createQuestion(this);
+            return outcome;
         }
     }
 
