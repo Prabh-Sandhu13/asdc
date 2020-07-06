@@ -2,6 +2,8 @@ package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
+import CSCI5308.GroupFormationTool.Question.IQuestion;
+import CSCI5308.GroupFormationTool.Question.Question;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserService;
 import CSCI5308.GroupFormationTool.User.User;
@@ -20,14 +22,11 @@ import java.util.Map;
 @Controller
 public class CourseController {
 
-    private ICourseService courseService;
     private IUserService userService;
     private IStudentCSV studentCSV;
 
     @GetMapping("/courseList")
     public String courseList(Model model) {
-
-        courseService = Injector.instance().getCourseService();
 
         ArrayList<ICourse> courseList = null;
         String userRole = null;
@@ -40,15 +39,16 @@ public class CourseController {
 
         userService = Injector.instance().getUserService();
         String emailId = authentication.getPrincipal().toString();
+        ICourse course = new Course();
 
         if (userService.checkCurrentUserIsAdmin(emailId)) {
-            courseList = courseService.getAllCourses();
+            courseList = course.getAllCourses();
             model.addAttribute("courses", courseList);
             return "course/allCourses";
         } else {
             userRole = userCourses.getUserRoleByEmailId(emailId);
             if (userRole.equals(DomainConstants.guestRole)) {
-                courseList = courseService.getAllCourses();
+                courseList = course.getAllCourses();
                 model.addAttribute("courses", courseList);
                 return "course/guestCourses";
             } else if (userRole.equals(DomainConstants.studentRole)) {
@@ -127,9 +127,8 @@ public class CourseController {
 
     @PostMapping("/admin/addCourse")
     public String addCourse(@ModelAttribute Course course, Model model) {
-        ICourseRepository courseRepository = Injector.instance().getCourseRepository();
-        boolean status = courseRepository.createCourse(course);
-        List<ICourse> allCourses = courseRepository.getAllCourses();
+        boolean status = course.createCourse();
+        List<ICourse> allCourses = course.getAllCourses();
 
         if (status) {
             model.addAttribute("successMessage", DomainConstants.addCourseSuccess);
@@ -142,9 +141,9 @@ public class CourseController {
 
     @RequestMapping(value = "/admin/deleteCourse", method = {RequestMethod.GET, RequestMethod.POST})
     public String deleteCourse(@RequestParam String id, Model model) {
-        ICourseRepository courseRepository = Injector.instance().getCourseRepository();
-        boolean status = courseRepository.deleteCourse(id);
-        List<ICourse> allCourses = courseRepository.getAllCourses();
+        ICourse course= new Course();
+        boolean status = course.deleteCourse(id);
+        List<ICourse> allCourses = course.getAllCourses();
 
         if (status) {
             model.addAttribute("successMessage", DomainConstants.deleteCourseSuccess);

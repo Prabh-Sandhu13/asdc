@@ -1,5 +1,8 @@
 package CSCI5308.GroupFormationTool.Course;
 
+import java.util.ArrayList;
+
+import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Course.ICourse;
 
 public class Course implements ICourse {
@@ -11,6 +14,8 @@ public class Course implements ICourse {
     private int credits;
 
     private String description;
+    
+    private ICourseRepository courseRepository;
 
     public Course() {
         id = null;
@@ -59,5 +64,27 @@ public class Course implements ICourse {
         this.description = description;
     }
 
+    @Override
+    public ArrayList<ICourse> getAllCourses() {
+        courseRepository = Injector.instance().getCourseRepository();
+        return courseRepository.getAllCourses();
+    }
+
+    @Override
+    public ICourse getCourseById(String courseId) {
+        courseRepository = Injector.instance().getCourseRepository();
+        return courseRepository.getCourseById(courseId);
+    }
+
+    public boolean createCourse() {
+        courseRepository = Injector.instance().getCourseRepository();
+        return courseRepository.createCourse(this);
+    }
+
+    @Override
+    public boolean deleteCourse(String courseId) {
+        courseRepository = Injector.instance().getCourseRepository();
+        return courseRepository.deleteCourse(courseId);
+    }
 
 }

@@ -15,8 +15,6 @@ import java.util.List;
 @Controller
 public class AdminController {
 
-    ICourseService courseService;
-
     @GetMapping("/admin/allCourses")
     public String adminCourses(Model model) {
 
@@ -30,9 +28,9 @@ public class AdminController {
     public String assignInstructor(Model model, @RequestParam(name = "courseId") String courseId) {
 
         IUserCourses userCourses = new UserCourses();
-        courseService = Injector.instance().getCourseService();
+        ICourse course = new Course();
 
-        ICourse course = courseService.getCourseById(courseId);
+        ICourse courseById = course.getCourseById(courseId);
 
         ArrayList<IUser> allUsersCurrentlyNotInstructors = userCourses
                 .usersCurrentlyNotInstructorsForCourse(courseId);
@@ -40,7 +38,7 @@ public class AdminController {
         ArrayList<IUser> instructorList = userCourses.getInstructorsForCourse(courseId);
 
         model.addAttribute("instructorList", instructorList);
-        model.addAttribute("course", course);
+        model.addAttribute("course", courseById);
         model.addAttribute("users", allUsersCurrentlyNotInstructors);
         return "course/assignInstructor";
     }
@@ -50,16 +48,16 @@ public class AdminController {
                                            @RequestParam(name = "id") String courseId, Model model) {
 
         IUserCourses userCourses = new UserCourses();
-        courseService = Injector.instance().getCourseService();
+        ICourse course = new Course();
 
-        ICourse course = courseService.getCourseById(courseId);
+        ICourse courseById = course.getCourseById(courseId);
 
         boolean success = userCourses.addInstructorsToCourse(instructor, courseId);
 
         ArrayList<IUser> instructorList = userCourses.getInstructorsForCourse(courseId);
 
         model.addAttribute("instructorList", instructorList);
-        model.addAttribute("course", course);
+        model.addAttribute("course", courseById);
 
         if (success) {
             model.addAttribute("success", DomainConstants.instructorAddSuccess);

@@ -36,7 +36,6 @@ public class Injector {
     private IPasswordHistoryRepository passwordHistoryRepository;
     private SimpleMailMessage mailMessage;
     private JavaMailSenderImpl mailSender;
-    private ICourseService courseService;
     private ICourseRepository courseRepository;
     private IUserCoursesRepository userCoursesRepository;
     private IStudentRepository studentRepository;
@@ -60,7 +59,6 @@ public class Injector {
         mailManager = new MailManager();
         mailMessage = new SimpleMailMessage();
         mailSender = new JavaMailSenderImpl();
-        courseService = new CourseService();
         courseRepository = new CourseRepository();
         userCoursesRepository = new UserCoursesRepository();
         studentRepository = new StudentRepository();
@@ -141,10 +139,6 @@ public class Injector {
 
     public JavaMailSenderImpl getJavaMailSender() {
         return mailSender;
-    }
-
-    public ICourseService getCourseService() {
-        return courseService;
     }
 
     public ICourseRepository getCourseRepository() {
