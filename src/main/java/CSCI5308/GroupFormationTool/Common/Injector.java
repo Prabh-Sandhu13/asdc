@@ -12,10 +12,10 @@ import CSCI5308.GroupFormationTool.Question.QuestionAdminRepository;
 import CSCI5308.GroupFormationTool.Question.QuestionManagerRepository;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
+import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserRepository;
-import CSCI5308.GroupFormationTool.User.IUserService;
+import CSCI5308.GroupFormationTool.User.User;
 import CSCI5308.GroupFormationTool.User.UserRepository;
-import CSCI5308.GroupFormationTool.User.UserService;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
@@ -25,7 +25,7 @@ public class Injector {
 
     private IDBConfiguration dbConfiguration;
     private IUserRepository userRepository;
-    private IUserService userService;
+    private IUser user;
     private IPasswordEncryptor passwordEncryptor;
 
     private ITokenGenerator tokenGenerator;
@@ -41,7 +41,7 @@ public class Injector {
     private IStudentRepository studentRepository;
     private IStudentCSV studentCSV;
     private IPolicyRepository policyRepository;
-    private IPolicyService policyService;
+    private IPolicy policy;
     private IQuestionManagerRepository questionManagerRepository;
     private IQuestionAdminRepository questionAdminRepository;
 
@@ -49,7 +49,7 @@ public class Injector {
 
         dbConfiguration = new DBConfiguration();
         userRepository = new UserRepository();
-        userService = new UserService();
+        user = new User();
         passwordEncryptor = new BCryptEncryption();
         forgotPasswordManager = new ForgotPasswordManager();
         forgotPasswordRepository = new ForgotPasswordRepository();
@@ -64,7 +64,7 @@ public class Injector {
         studentRepository = new StudentRepository();
         studentCSV = new StudentCSV();
         policyRepository = new PolicyRepository();
-        policyService = new PolicyService();
+        policy = new Policy();
         questionManagerRepository = new QuestionManagerRepository();
         questionAdminRepository = new QuestionAdminRepository();
     }
@@ -105,8 +105,8 @@ public class Injector {
         return dbConfiguration;
     }
 
-    public IUserService getUserService() {
-        return userService;
+    public IUser getUser() {
+        return user;
     }
 
     public IForgotPasswordManager getForgotPasswordManager() {
@@ -185,12 +185,12 @@ public class Injector {
         this.policyRepository = policyRepository;
     }
 
-    public IPolicyService getPolicyService() {
-        return policyService;
+    public IPolicy getPolicy() {
+        return policy;
     }
 
-    public void setPolicyService(IPolicyService policyService) {
-        this.policyService = policyService;
+    public void setPolicy(IPolicy policy) {
+        this.policy = policy;
     }
 
     public IQuestionManagerRepository getQuestionManagerRepository() {

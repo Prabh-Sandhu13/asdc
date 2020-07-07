@@ -1,5 +1,7 @@
 package CSCI5308.GroupFormationTool.Password;
 
+import java.util.ArrayList;
+
 public interface IPolicy {
 
     int getId();
@@ -17,5 +19,9 @@ public interface IPolicy {
     int getEnabled();
 
     void setEnabled(int enabled);
+
+	ArrayList<IPolicy> getPolicies();
+
+	String passwordSPolicyCheck(String password);
 
 }

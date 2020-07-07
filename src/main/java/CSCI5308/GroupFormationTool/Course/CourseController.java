@@ -2,10 +2,7 @@ package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.Question.IQuestion;
-import CSCI5308.GroupFormationTool.Question.Question;
 import CSCI5308.GroupFormationTool.User.IUser;
-import CSCI5308.GroupFormationTool.User.IUserService;
 import CSCI5308.GroupFormationTool.User.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,7 +19,7 @@ import java.util.Map;
 @Controller
 public class CourseController {
 
-    private IUserService userService;
+    private IUser userInstance;
     private IStudentCSV studentCSV;
 
     @GetMapping("/courseList")
@@ -37,11 +34,11 @@ public class CourseController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        userService = Injector.instance().getUserService();
+        userInstance = Injector.instance().getUser();
         String emailId = authentication.getPrincipal().toString();
         ICourse course = new Course();
 
-        if (userService.checkCurrentUserIsAdmin(emailId)) {
+        if (userInstance.checkCurrentUserIsAdmin(emailId)) {
             courseList = course.getAllCourses();
             model.addAttribute("courses", courseList);
             return "course/allCourses";

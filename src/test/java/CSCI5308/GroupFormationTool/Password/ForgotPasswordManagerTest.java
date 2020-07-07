@@ -10,7 +10,6 @@ import CSCI5308.GroupFormationTool.User.User;
 import CSCI5308.GroupFormationTool.Password.ForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.Password.ForgotPasswordManager;
 import CSCI5308.GroupFormationTool.Password.PasswordHistoryManager;
-import CSCI5308.GroupFormationTool.Password.PolicyService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,19 +24,19 @@ public class ForgotPasswordManagerTest {
     public ForgotPasswordRepository forgotPasswordRepository;
     public ForgotPasswordManager forgotPasswordManager;
     public MailManager mailManager;
-    public PolicyService policyService;
+    public Policy policyInstance;
     public PasswordHistoryManager passwordHistoryManager;
 
     @BeforeEach
     public void init() {
         forgotPasswordRepository = mock(ForgotPasswordRepository.class);
         mailManager = mock(MailManager.class);
-        policyService = mock(PolicyService.class);
+        policyInstance = mock(Policy.class);
         passwordHistoryManager = mock(PasswordHistoryManager.class);
         forgotPasswordManager = new ForgotPasswordManager();
         Injector.instance().setForgotPasswordRepository(forgotPasswordRepository);
         Injector.instance().setMailManager(mailManager);
-        Injector.instance().setPolicyService(policyService);
+        Injector.instance().setPolicy(policyInstance);
         Injector.instance().setPasswordHistoryManager(passwordHistoryManager);
     }
 
@@ -84,21 +83,21 @@ public class ForgotPasswordManagerTest {
         String token = "sample token";
         String passwordErrorMessage = "Error";
         String encryptedPassword = "encryptedpswd12345";
-        when(policyService.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
+        when(policyInstance.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
         when(forgotPasswordRepository.getEmailByToken(user, token)).thenReturn(user);
         when(passwordHistoryManager.isHistoryViolated(user, user.getPassword())).thenReturn(false);
         when(forgotPasswordRepository.updatePassword(user, encryptedPassword)).thenReturn(true);
         doNothing().when(passwordHistoryManager).addPasswordHistory(user, encryptedPassword);
         when(forgotPasswordRepository.deleteToken(user, token)).thenReturn(true);
         assertTrue(forgotPasswordManager.updatePassword(user, token));
-        when(policyService.passwordSPolicyCheck(user.getPassword())).thenReturn(passwordErrorMessage);
+        when(policyInstance.passwordSPolicyCheck(user.getPassword())).thenReturn(passwordErrorMessage);
         PasswordException passwordException = assertThrows(PasswordException.class, () -> {
             forgotPasswordManager.updatePassword(user, token);
         });
         String expectedMsg = "Error";
         String actualMsg = passwordException.getMessage();
         assertTrue(expectedMsg.equals(actualMsg));
-        when(policyService.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
+        when(policyInstance.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
         when(forgotPasswordRepository.getEmailByToken(user, token)).thenReturn(null);
         TokenExpiredException tokenExpiredException = assertThrows(TokenExpiredException.class, () -> {
             forgotPasswordManager.updatePassword(user, token);
@@ -106,7 +105,7 @@ public class ForgotPasswordManagerTest {
         expectedMsg = "The renew password link has expired, please renew it again";
         actualMsg = tokenExpiredException.getMessage();
         assertTrue(expectedMsg.equals(actualMsg));
-        when(policyService.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
+        when(policyInstance.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
         when(forgotPasswordRepository.getEmailByToken(user, token)).thenReturn(user);
         when(passwordHistoryManager.getSettingValue("Password History")).thenReturn("5");
         when(passwordHistoryManager.isHistoryViolated(user, user.getPassword())).thenReturn(true);
@@ -117,7 +116,7 @@ public class ForgotPasswordManagerTest {
         actualMsg = passwordHistoryException.getMessage();
         assertTrue(expectedMsg.equals(actualMsg));
         user.setConfirmPassword("somethingelse");
-        when(policyService.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
+        when(policyInstance.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
         passwordException = assertThrows(PasswordException.class, () -> {
             forgotPasswordManager.updatePassword(user, token);
         });
