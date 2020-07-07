@@ -15,7 +15,7 @@ public class ForgotPasswordService implements IForgotPasswordService {
     private IPasswordHistoryService passwordHistoryService;
     private IMailService mailService;
     private IPasswordEncryptor encryptor;
-    private IPolicy policy;
+    private IPolicyService policyService;
 
     @Override
     public boolean notifyUser(IUser user) {
@@ -48,9 +48,9 @@ public class ForgotPasswordService implements IForgotPasswordService {
     @Override
     public boolean updatePassword(IUser user, String token) {
 
-        policy = Injector.instance().getPolicy();
+        policyService = Injector.instance().getPolicyService();
         String password = user.getPassword();
-        String passwordSecurityError = policy.passwordSPolicyCheck(password);
+        String passwordSecurityError = policyService.passwordSPolicyCheck(password);
 
         if (passwordSecurityError != null) {
             throw new PasswordException(passwordSecurityError);

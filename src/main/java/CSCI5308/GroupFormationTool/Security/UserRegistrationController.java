@@ -1,7 +1,8 @@
 package CSCI5308.GroupFormationTool.Security;
 
 import CSCI5308.GroupFormationTool.AccessControl.IPolicy;
-import CSCI5308.GroupFormationTool.AccessControl.IUser;
+import CSCI5308.GroupFormationTool.AccessControl.IPolicyService;
+import CSCI5308.GroupFormationTool.AccessControl.IUserService;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
 import CSCI5308.GroupFormationTool.DomainConstants;
@@ -19,16 +20,16 @@ import java.util.ArrayList;
 @Controller
 public class UserRegistrationController implements WebMvcConfigurer {
 
-    private IUser userInstance;
-    private IPolicy policy;
+    private IUserService userService;
+    private IPolicyService policyService;
 
     @PostMapping("/register")
     public ModelAndView createUser(User user) {
         ModelAndView modelAndView = null;
         boolean success = false;
         try {
-        	userInstance =  Injector.instance().getUser();
-            success = userInstance.createUser(user);
+            userService = Injector.instance().getUserService();
+            success = userService.createUser(user);
 
             if (success) {
                 modelAndView = new ModelAndView("login");
@@ -50,8 +51,8 @@ public class UserRegistrationController implements WebMvcConfigurer {
 
     @GetMapping("/register")
     public String register(User user, Model model) {
-        policy = Injector.instance().getPolicy();
-        ArrayList<IPolicy> policies = policy.getPolicies();
+        policyService = Injector.instance().getPolicyService();
+        ArrayList<IPolicy> policies = policyService.getPolicies();
         model.addAttribute("policies", policies);
         return "signup";
     }

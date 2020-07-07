@@ -4,7 +4,6 @@ import CSCI5308.GroupFormationTool.AccessControl.IUser;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
 import CSCI5308.GroupFormationTool.Injector;
-import CSCI5308.GroupFormationTool.Model.Policy;
 import CSCI5308.GroupFormationTool.Model.User;
 import CSCI5308.GroupFormationTool.Repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,17 +16,17 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 public class UserServiceTest {
 
-    User userInstance;
+    UserService userService;
     UserRepository userRepository;
-    Policy policyService;
+    PolicyService policyService;
     PasswordHistoryService passwordHistoryService;
 
     @BeforeEach
     public void init() {
-    	userInstance = new User();
+        userService = new UserService();
         userRepository = mock(UserRepository.class);
         Injector.instance().setUserRepository(userRepository);
-        policyService = mock(Policy.class);
+        policyService = mock(PolicyService.class);
         Injector.instance().setPolicyService(policyService);
         passwordHistoryService = mock(PasswordHistoryService.class);
         Injector.instance().setPasswordHistoryService(passwordHistoryService);
@@ -49,14 +48,14 @@ public class UserServiceTest {
         when(userRepository.createUser(user)).thenReturn(true);
         when(userRepository.getUserIdByEmailId(user)).thenReturn(user);
         doNothing().when(passwordHistoryService).addPasswordHistory(user, encryptedPassword);
-        assertTrue(userInstance.createUser(user));
+        assertTrue(userService.createUser(user));
 
         user.setPassword("pa");
         user.setConfirmPassword("pa");
         String passwordErrorMessage = "Minimum number of characters is 3";
         when(policyService.passwordSPolicyCheck(user.getPassword())).thenReturn(passwordErrorMessage);
         PasswordException passwordException = assertThrows(PasswordException.class, () -> {
-        	userInstance.createUser(user);
+            userService.createUser(user);
         });
         assertTrue(passwordException.getMessage().equals(passwordErrorMessage));
 
@@ -65,7 +64,7 @@ public class UserServiceTest {
         user.setConfirmPassword("Padmesh1");
         passwordErrorMessage = "The passwords do not match. Please try again!";
         passwordException = assertThrows(PasswordException.class, () -> {
-        	userInstance.createUser(user);
+            userService.createUser(user);
         });
 
         assertTrue(passwordException.getMessage().equals(passwordErrorMessage));
@@ -74,14 +73,14 @@ public class UserServiceTest {
         when(policyService.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
         when(userRepository.getUserByEmailId(user)).thenReturn(user);
         UserAlreadyExistsException userAlreadyExistsException = assertThrows(UserAlreadyExistsException.class, () -> {
-        	userInstance.createUser(user);
+            userService.createUser(user);
         });
 
         String userAlreadyExistsErrorMessage = "An account with " + user.getEmailId() + " already exists.";
         assertTrue(userAlreadyExistsException.getMessage().equals(userAlreadyExistsErrorMessage));
 
         user.setEmailId("");
-        assertFalse(userInstance.createUser(user));
+        assertFalse(userService.createUser(user));
     }
 
     @Test
@@ -95,10 +94,10 @@ public class UserServiceTest {
         admin.setLastName("Donthu");
 
         when(userRepository.getAdminDetails()).thenReturn(admin);
-        assertFalse(userInstance.checkCurrentUserIsAdmin(emailId));
+        assertFalse(userService.checkCurrentUserIsAdmin(emailId));
 
         emailId = "padmeshdonthu@gmail.com";
         when(userRepository.getAdminDetails()).thenReturn(admin);
-        assertTrue(userInstance.checkCurrentUserIsAdmin(emailId));
+        assertTrue(userService.checkCurrentUserIsAdmin(emailId));
     }
 }

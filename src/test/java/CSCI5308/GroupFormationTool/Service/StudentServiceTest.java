@@ -27,7 +27,7 @@ public class StudentServiceTest {
 
     @BeforeEach
     public void init() {
-        studentService = mock(StudentService.class);
+        studentService = new StudentService();
         studentRepository = mock(StudentRepository.class);
         Injector.instance().setStudentRepository(studentRepository);
     }

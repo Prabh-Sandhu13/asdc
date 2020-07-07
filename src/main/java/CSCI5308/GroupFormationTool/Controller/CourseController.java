@@ -22,7 +22,7 @@ import java.util.Map;
 public class CourseController {
 
     private ICourseService courseService;
-    private IUser userInstance;
+    private IUserService userService;
     private IUserCoursesService userCoursesService;
     private IStudentService studentService;
 
@@ -39,12 +39,12 @@ public class CourseController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        userInstance = Injector.instance().getUser();
+        userService = Injector.instance().getUserService();
         userCoursesService = Injector.instance().getUserCoursesService();
 
         String emailId = authentication.getPrincipal().toString();
 
-        if (userInstance.checkCurrentUserIsAdmin(emailId)) {
+        if (userService.checkCurrentUserIsAdmin(emailId)) {
 
             courseList = courseService.getAllCourses();
             model.addAttribute("courses", courseList);

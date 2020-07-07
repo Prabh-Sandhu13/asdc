@@ -2,8 +2,6 @@ package CSCI5308.GroupFormationTool;
 
 import CSCI5308.GroupFormationTool.AccessControl.*;
 import CSCI5308.GroupFormationTool.Database.DBConfiguration;
-import CSCI5308.GroupFormationTool.Model.Policy;
-import CSCI5308.GroupFormationTool.Model.User;
 import CSCI5308.GroupFormationTool.Repository.*;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
 import CSCI5308.GroupFormationTool.Security.TokenGenerator;
@@ -18,7 +16,7 @@ public class Injector {
 
     private IDBConfiguration dbConfiguration;
     private IUserRepository userRepository;
-    private IUser user;
+    private IUserService userService;
     private IPasswordEncryptor passwordEncryptor;
 
     private ITokenGenerator tokenGenerator;
@@ -36,7 +34,7 @@ public class Injector {
     private IStudentRepository studentRepository;
     private IStudentService studentService;
     private IPolicyRepository policyRepository;
-    private IPolicy policy;
+    private IPolicyService policyService;
     private IQuestionManagerService questionManagerService;
     private IQuestionManagerRepository questionManagerRepository;
 
@@ -44,7 +42,7 @@ public class Injector {
 
         dbConfiguration = new DBConfiguration();
         userRepository = new UserRepository();
-        user = new User();
+        userService = new UserService();
         passwordEncryptor = new BCryptEncryption();
         forgotPasswordService = new ForgotPasswordService();
         forgotPasswordRepository = new ForgotPasswordRepository();
@@ -61,7 +59,7 @@ public class Injector {
         studentRepository = new StudentRepository();
         studentService = new StudentService();
         policyRepository = new PolicyRepository();
-        policy = new Policy();
+        policyService = new PolicyService();
         questionManagerService = new QuestionManagerService();
         questionManagerRepository = new QuestionManagerRepository();
     }
@@ -106,8 +104,8 @@ public class Injector {
         return dbConfiguration;
     }
 
-    public IUser getUser() {
-        return user;
+    public IUserService getUserService() {
+        return userService;
     }
 
     public IForgotPasswordService getForgotPasswordService() {
@@ -190,12 +188,12 @@ public class Injector {
         this.policyRepository = policyRepository;
     }
 
-    public IPolicy getPolicy() {
-        return policy;
+    public IPolicyService getPolicyService() {
+        return policyService;
     }
 
-    public void setPolicyService(IPolicy policy) {
-        this.policy = policy;
+    public void setPolicyService(IPolicyService policyService) {
+        this.policyService = policyService;
     }
 
     public IQuestionManagerRepository getQuestionManagerRepository() {

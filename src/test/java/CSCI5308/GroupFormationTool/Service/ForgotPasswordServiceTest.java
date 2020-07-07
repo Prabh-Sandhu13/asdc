@@ -5,7 +5,6 @@ import CSCI5308.GroupFormationTool.ErrorHandling.PasswordHistoryException;
 import CSCI5308.GroupFormationTool.ErrorHandling.TokenExpiredException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
 import CSCI5308.GroupFormationTool.Injector;
-import CSCI5308.GroupFormationTool.Model.Policy;
 import CSCI5308.GroupFormationTool.Model.User;
 import CSCI5308.GroupFormationTool.Repository.ForgotPasswordRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,14 +21,14 @@ public class ForgotPasswordServiceTest {
     public ForgotPasswordRepository forgotPasswordRepository;
     public ForgotPasswordService forgotPasswordService;
     public MailService mailService;
-    public Policy policyService;
+    public PolicyService policyService;
     public PasswordHistoryService passwordHistoryService;
 
     @BeforeEach
     public void init() {
         forgotPasswordRepository = mock(ForgotPasswordRepository.class);
         mailService = mock(MailService.class);
-        policyService = mock(Policy.class);
+        policyService = mock(PolicyService.class);
         passwordHistoryService = mock(PasswordHistoryService.class);
         forgotPasswordService = new ForgotPasswordService();
         Injector.instance().setForgotPasswordRepository(forgotPasswordRepository);

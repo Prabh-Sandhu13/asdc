@@ -1,7 +1,5 @@
 package CSCI5308.GroupFormationTool.AccessControl;
 
-import java.util.ArrayList;
-
 public interface IPolicy {
 
     int getId();
@@ -19,9 +17,5 @@ public interface IPolicy {
     int getEnabled();
 
     void setEnabled(int enabled);
-
-	String passwordSPolicyCheck(String password);
-
-	ArrayList<IPolicy> getPolicies();
 
 }
