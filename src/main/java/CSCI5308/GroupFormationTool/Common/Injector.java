@@ -27,7 +27,6 @@ public class Injector {
     private IUserRepository userRepository;
     private IUser user;
     private IPasswordEncryptor passwordEncryptor;
-
     private ITokenGenerator tokenGenerator;
     private IForgotPasswordManager forgotPasswordManager;
     private IForgotPasswordRepository forgotPasswordRepository;
@@ -44,6 +43,7 @@ public class Injector {
     private IPolicy policy;
     private IQuestionManagerRepository questionManagerRepository;
     private IQuestionAdminRepository questionAdminRepository;
+    private IAbstractFactory abstractFactory;
 
     private Injector() {
 
@@ -67,6 +67,7 @@ public class Injector {
         policy = new Policy();
         questionManagerRepository = new QuestionManagerRepository();
         questionAdminRepository = new QuestionAdminRepository();
+        abstractFactory = new AbstractFactory();
     }
 
     public static Injector instance() {
@@ -209,4 +210,7 @@ public class Injector {
         this.questionAdminRepository = questionAdminRepository;
     }
 
+    public IAbstractFactory getAbstractFactory() {
+        return abstractFactory;
+    }
 }

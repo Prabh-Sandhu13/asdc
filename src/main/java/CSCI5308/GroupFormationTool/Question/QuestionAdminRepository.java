@@ -4,15 +4,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import CSCI5308.GroupFormationTool.Common.FactoryProducer;
+import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
 public class QuestionAdminRepository implements IQuestionAdminRepository{
+
+    private IQuestionAbstractFactory questionAbstractFactory = FactoryProducer.
+            getFactory().createQuestionAbstractFactory();
 
     @Override
     public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
 
         StoredProcedure storedProcedure = null;
-        ArrayList<IQuestion> questionList = new ArrayList<IQuestion>();
+        ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
         try {
             storedProcedure = new StoredProcedure("sp_getQuestionsForInstructor(?)");
             storedProcedure.setInputStringParameter(1, emailId);
@@ -22,7 +27,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository{
             if (results != null) {
                 while (results.next()) {
                     {
-                        IQuestion question = new Question();
+                        IQuestion question = questionAbstractFactory.createQuestionInstance();
                         question.setId(results.getLong("question_id"));
                         question.setText(results.getString("question_text"));
                         question.setType(results.getInt("qtype_id"));
@@ -40,12 +45,12 @@ public class QuestionAdminRepository implements IQuestionAdminRepository{
         }
         return questionList;
     }
-    
+
 
     @Override
     public IQuestion getQuestionById(long questionId) {
         StoredProcedure storedProcedure = null;
-        IQuestion question = new Question();
+        IQuestion question = questionAbstractFactory.createQuestionInstance();
         try {
             storedProcedure = new StoredProcedure("sp_getQuestionById(?)");
             storedProcedure.setInputIntParameter(1, questionId);
@@ -76,7 +81,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository{
     public ArrayList<IChoice> getOptionsForTheQuestion(long questionId) {
 
         StoredProcedure storedProcedure = null;
-        ArrayList<IChoice> choiceList = new ArrayList<>();
+        ArrayList<IChoice> choiceList = questionAbstractFactory.createChoiceListInstance();
         try {
             storedProcedure = new StoredProcedure("sp_getOptionsForQuestion(?)");
             storedProcedure.setInputIntParameter(1, questionId);
@@ -85,12 +90,10 @@ public class QuestionAdminRepository implements IQuestionAdminRepository{
             if (results != null) {
                 while (results.next()) {
                     {
-
-                        IChoice choice = new Choice();
+                        IChoice choice = questionAbstractFactory.createChoiceInstance();
                         choice.setText(results.getString("options_text"));
                         choice.setValue(results.getInt("options_value"));
                         choiceList.add(choice);
-
                     }
                 }
             }
@@ -110,7 +113,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository{
     public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy) {
 
         StoredProcedure storedProcedure = null;
-        ArrayList<IQuestion> questionList = new ArrayList<IQuestion>();
+        ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
         try {
             storedProcedure = new StoredProcedure("sp_getSortedQuestionsForInstructor(?,?)");
             storedProcedure.setInputStringParameter(1, emailId);
@@ -121,7 +124,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository{
             if (results != null) {
                 while (results.next()) {
                     {
-                        IQuestion question = new Question();
+                        IQuestion question = questionAbstractFactory.createQuestionInstance();
                         question.setId(results.getLong("question_id"));
                         question.setText(results.getString("question_text"));
                         question.setType(results.getInt("qtype_id"));

@@ -2,6 +2,7 @@ package CSCI5308.GroupFormationTool.Question;
 
 import java.sql.SQLException;
 
+import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
 public class QuestionManagerRepository implements IQuestionManagerRepository {

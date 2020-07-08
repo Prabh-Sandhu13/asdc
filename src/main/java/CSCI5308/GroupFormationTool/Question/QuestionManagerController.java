@@ -1,6 +1,7 @@
 package CSCI5308.GroupFormationTool.Question;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
+import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.User;
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,9 @@ import java.util.List;
 @Controller
 public class QuestionManagerController {
 
+    private IQuestionAbstractFactory questionAbstractFactory = FactoryProducer.
+            getFactory().createQuestionAbstractFactory();
+
     @GetMapping("/questionManager/createQuestion")
     public String createQuestion(Model model) {
         return "question/createQuestion";
@@ -30,7 +34,7 @@ public class QuestionManagerController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         long outcome;
-        IQuestion question = new Question();
+        IQuestion question = questionAbstractFactory.createQuestionInstance();
         IUser instructor = new User();
         question.setText(text);
         question.setTitle(title);
@@ -51,7 +55,7 @@ public class QuestionManagerController {
     @GetMapping("/questionManager/deleteQuestion")
     public String deleteQuestion(@RequestParam("questionId") long questionId, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        IQuestion question = new Question();
+        IQuestion question = questionAbstractFactory.createQuestionInstance();
         boolean status = question.deleteQuestion(questionId);
         if (status) {
             model.addAttribute("successMessage", "The question " + questionId + " is successfully deleted!");

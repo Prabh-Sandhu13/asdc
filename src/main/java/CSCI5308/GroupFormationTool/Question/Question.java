@@ -27,6 +27,9 @@ public class Question implements IQuestion {
 
     private IQuestionAdminRepository questionAdminRepository;
 
+    private IQuestionAbstractFactory questionAbstractFactory = Injector.instance().
+            getAbstractFactory().createQuestionAbstractFactory();
+
     public Question() {
         this.id = -1;
         this.instructor = null;
@@ -102,7 +105,7 @@ public class Question implements IQuestion {
         if (checkIfInvalid(optionText, optionValue)) {
             return DomainConstants.invalidData;
         } else {
-            ArrayList<IChoice> choices = new ArrayList<>();
+            ArrayList<IChoice> choices = questionAbstractFactory.createChoiceListInstance();
             for (String text : optionText) {
                 optionTextSet.add(text);
             }
@@ -117,14 +120,14 @@ public class Question implements IQuestion {
                     Iterator<String> optionValueIterator = optionValueSet.iterator();
 
                     while (optionTextIterator.hasNext() && optionValueIterator.hasNext()) {
-                        IChoice choice = new Choice();
+                        IChoice choice = questionAbstractFactory.createChoiceInstance();
                         choice.setText(optionTextIterator.next());
                         choice.setValue(Integer.parseInt(optionValueIterator.next()));
                         choices.add(choice);
                     }
                 } else {
                     for (int i = 0; i < optionText.size(); i++) {
-                        IChoice choice = new Choice();
+                        IChoice choice = questionAbstractFactory.createChoiceInstance();
                         choice.setText(optionText.get(i));
                         choice.setValue(Integer.parseInt(optionValue.get(i)));
                         choices.add(choice);
@@ -135,8 +138,7 @@ public class Question implements IQuestion {
                 this.setChoices(null);
             }
             questionManagerRepository = Injector.instance().getQuestionManagerRepository();
-            long outcome = questionManagerRepository.createQuestion(this);
-            return outcome;
+            return questionManagerRepository.createQuestion(this);
         }
     }
 
