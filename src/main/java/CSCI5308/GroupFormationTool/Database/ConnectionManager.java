@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool.Database;
 
-import CSCI5308.GroupFormationTool.AccessControl.IDBConfiguration;
-import CSCI5308.GroupFormationTool.Injector;
+import CSCI5308.GroupFormationTool.Common.Injector;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
