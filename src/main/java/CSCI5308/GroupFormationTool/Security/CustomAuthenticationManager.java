@@ -4,8 +4,8 @@ import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUserRepository;
-import CSCI5308.GroupFormationTool.User.User;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,6 +17,8 @@ import java.util.List;
 public class CustomAuthenticationManager implements AuthenticationManager {
 
     private static final String Admin_banner_id = "B00000000";
+    private IUserAbstractFactory userAbstractFactory = FactoryProducer.
+            getFactory().createUserAbstractFactory();
 
     private ISecurityAbstractFactory securityAbstractFactory = FactoryProducer.getFactory().
             createSecurityAbstractFactory();
@@ -48,7 +50,7 @@ public class CustomAuthenticationManager implements AuthenticationManager {
         String password = authentication.getCredentials().toString();
         IUserRepository userRepository = Injector.instance().getUserRepository();
 
-        IUser user = new User();
+        IUser user = userAbstractFactory.createUserInstance();
         user.setEmailId(emailId);
         try {
             user = userRepository.getUserByEmailId(user);

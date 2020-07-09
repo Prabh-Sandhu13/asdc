@@ -3,15 +3,15 @@ package CSCI5308.GroupFormationTool.Password;
 import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
-import CSCI5308.GroupFormationTool.User.User;
-import com.sun.mail.imap.protocol.ID;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ForgotPasswordRepository implements IForgotPasswordRepository {
-
+    private IUserAbstractFactory userAbstractFactory = FactoryProducer.
+        getFactory().createUserAbstractFactory();
     private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
             createDatabaseAbstractFactory();
 
@@ -137,7 +137,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
     @Override
     public IUser getUserId(IUser user) {
 
-        User userByEmailId = null;
+        IUser userByEmailId = null;
         StoredProcedure storedProcedure = null;
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getUserId(?)");
@@ -148,7 +148,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
 
                 while (results.next()) {
                     {
-                        userByEmailId = new User();
+                        userByEmailId = userAbstractFactory.createUserInstance();
                         userByEmailId.setId(Long.parseLong(results.getString("user_id")));
                         userByEmailId.setBannerId(results.getString("banner_id"));
                         userByEmailId.setEmailId(results.getString("email"));
@@ -174,7 +174,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
 
     @Override
     public IUser getEmailByToken(IUser user, String token) {
-        User userByEmailId = null;
+        IUser userByEmailId = null;
         StoredProcedure storedProcedure = null;
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getEmailByToken(?)");
@@ -184,8 +184,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
 
                 while (results.next()) {
                     {
-                        userByEmailId = new User();
-                        userByEmailId.setId(Long.parseLong(results.getString("user_id")));
+                        userByEmailId = userAbstractFactory.createUserInstance();                        userByEmailId.setId(Long.parseLong(results.getString("user_id")));
                         userByEmailId.setEmailId(results.getString("email"));
                     }
                 }

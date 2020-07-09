@@ -9,6 +9,8 @@ import java.sql.SQLException;
 
 public class UserRepository implements IUserRepository {
 
+    private IUserAbstractFactory userAbstractFactory = FactoryProducer.
+            getFactory().createUserAbstractFactory();
     private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
             createDatabaseAbstractFactory();
 
@@ -39,7 +41,7 @@ public class UserRepository implements IUserRepository {
     @Override
     public IUser getUserIdByEmailId(IUser user) {
 
-        User userWithUserId = null;
+        IUser userWithUserId = null;
         StoredProcedure storedProcedure = null;
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getUserId(?)");
@@ -49,7 +51,7 @@ public class UserRepository implements IUserRepository {
             if (results != null) {
                 while (results.next()) {
                     {
-                        userWithUserId = new User();
+                        userWithUserId = userAbstractFactory.createUserInstance();
                         userWithUserId.setId(Long.parseLong(results.getString("user_id")));
                     }
                 }
@@ -78,7 +80,7 @@ public class UserRepository implements IUserRepository {
 
                 while (results.next()) {
                     {
-                        userByEmailId = new User();
+                        userByEmailId = userAbstractFactory.createUserInstance();
                         userByEmailId.setBannerId(results.getString("banner_id"));
                         userByEmailId.setEmailId(results.getString("email"));
                         userByEmailId.setFirstName(results.getString("first_name"));
@@ -109,7 +111,7 @@ public class UserRepository implements IUserRepository {
             if (results != null) {
                 while (results.next()) {
                     {
-                        adminDetails = new User();
+                        adminDetails = userAbstractFactory.createUserInstance();
                         adminDetails.setBannerId(results.getString("banner_id"));
                         adminDetails.setEmailId(results.getString("email"));
                         adminDetails.setFirstName(results.getString("first_name"));

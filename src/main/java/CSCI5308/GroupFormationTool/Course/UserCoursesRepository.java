@@ -3,8 +3,8 @@ package CSCI5308.GroupFormationTool.Course;
 import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
-import CSCI5308.GroupFormationTool.User.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 public class UserCoursesRepository implements IUserCoursesRepository {
 
+    private IUserAbstractFactory userAbstractFactory = FactoryProducer.
+       getFactory().createUserAbstractFactory();
     private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
             createDatabaseAbstractFactory();
 
@@ -82,7 +84,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 
     public ArrayList<IUser> usersCurrentlyNotInstructorsForCourse(String courseId) {
         StoredProcedure storedProcedure = null;
-        ArrayList<IUser> userList = new ArrayList<IUser>();
+        ArrayList<IUser> userList = userAbstractFactory.createUserListInstance();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getUsersCurrentlyNotInstructorsForCourse(?)");
@@ -91,7 +93,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             if (results != null) {
                 while (results.next()) {
                     {
-                        IUser user = new User();
+                        IUser user = userAbstractFactory.createUserInstance();
                         user.setBannerId(results.getString("banner_id"));
                         user.setEmailId(results.getString("email"));
                         user.setFirstName(results.getString("first_name"));
@@ -180,7 +182,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     @Override
     public ArrayList<IUser> getTAForCourse(String courseId) {
         StoredProcedure storedProcedure = null;
-        ArrayList<IUser> taList = new ArrayList<IUser>();
+        ArrayList<IUser> taList = userAbstractFactory.createUserListInstance();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getTAForCourse(?)");
             storedProcedure.setInputStringParameter(1, courseId);
@@ -189,7 +191,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             if (results != null) {
                 while (results.next()) {
                     {
-                        IUser user = new User();
+                        IUser user = userAbstractFactory.createUserInstance();
                         user.setBannerId(results.getString("banner_id"));
                         user.setEmailId(results.getString("email"));
                         user.setFirstName(results.getString("first_name"));
@@ -316,7 +318,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     @Override
     public ArrayList<IUser> getInstructorsForCourse(String courseId) {
         StoredProcedure storedProcedure = null;
-        ArrayList<IUser> instructorList = new ArrayList<IUser>();
+        ArrayList<IUser> instructorList = userAbstractFactory.createUserListInstance();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getInstructorsForCourse(?)");
@@ -327,7 +329,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             if (results != null) {
                 while (results.next()) {
                     {
-                        IUser user = new User();
+                        IUser user = userAbstractFactory.createUserInstance();
                         user.setFirstName(results.getString("first_name"));
                         user.setLastName(results.getString("last_name"));
                         user.setEmailId(results.getString("email"));

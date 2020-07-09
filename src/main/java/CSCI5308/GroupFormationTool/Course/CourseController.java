@@ -1,8 +1,10 @@
 package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
+import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +23,8 @@ public class CourseController {
 
     private IUser userInstance;
     private IStudentCSV studentCSV;
+    private IUserAbstractFactory userAbstractFactory = FactoryProducer.
+            getFactory().createUserAbstractFactory();
 
     @GetMapping("/courseList")
     public String courseList(Model model) {
@@ -79,7 +83,7 @@ public class CourseController {
         ArrayList<IUser> taList = null;
         IUserCourses userCourses = new UserCourses();
         taList = userCourses.getTAForCourse(courseId);
-        User user = new User();
+        IUser user = userAbstractFactory.createUserInstance();
         model.addAttribute("user", user);
         model.addAttribute("taList", taList);
         model.addAttribute("courseId", courseId);
