@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import CSCI5308.GroupFormationTool.Common.FactoryProducer;
-import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
 public class QuestionAdminRepository implements IQuestionAdminRepository{

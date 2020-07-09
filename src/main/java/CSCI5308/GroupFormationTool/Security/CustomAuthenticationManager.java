@@ -1,9 +1,10 @@
 package CSCI5308.GroupFormationTool.Security;
 
 import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUserRepository;
+import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.User.User;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -19,6 +20,8 @@ import java.util.List;
 public class CustomAuthenticationManager implements AuthenticationManager {
 
     private static final String Admin_banner_id = "B00000000";
+    private IUserAbstractFactory userAbstractFactory = FactoryProducer.
+            getFactory().createUserAbstractFactory();
 
     private Authentication checkUser(String password, IUser user, Authentication authentication)
             throws AuthenticationException {
@@ -49,7 +52,7 @@ public class CustomAuthenticationManager implements AuthenticationManager {
         String password = authentication.getCredentials().toString();
         IUserRepository userRepository = Injector.instance().getUserRepository();
 
-        IUser user = new User();
+        IUser user = userAbstractFactory.createUserInstance();
         user.setEmailId(emailId);
         try {
             user = userRepository.getUserByEmailId(user);
