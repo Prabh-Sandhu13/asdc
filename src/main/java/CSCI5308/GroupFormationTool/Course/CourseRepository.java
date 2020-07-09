@@ -1,6 +1,8 @@
 package CSCI5308.GroupFormationTool.Course;
 
+import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import CSCI5308.GroupFormationTool.Course.ICourseRepository;
+import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
 import java.sql.ResultSet;
@@ -9,13 +11,16 @@ import java.util.ArrayList;
 
 public class CourseRepository implements ICourseRepository {
 
+    private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
+            createDatabaseAbstractFactory();
+
     @Override
     public ArrayList<ICourse> getAllCourses() {
 
         StoredProcedure storedProcedure = null;
         ArrayList<ICourse> courseList = new ArrayList<ICourse>();
         try {
-            storedProcedure = new StoredProcedure("sp_getAllCourseDetails");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getAllCourseDetails");
             ResultSet results = storedProcedure.executeWithResults();
 
             if (results != null) {
@@ -43,24 +48,25 @@ public class CourseRepository implements ICourseRepository {
 
     @Override
     public boolean createCourse(ICourse course) {
-        StoredProcedure proc = null;
+        StoredProcedure storedProcedure = null;
         boolean status = true;
 
         try {
-            proc = new StoredProcedure("sp_createCourse(?,?,?,?,?)");
-            proc.setInputStringParameter(1, course.getId());
-            proc.setInputStringParameter(2, course.getName());
-            proc.setInputIntParameter(3, course.getCredits());
-            proc.setInputStringParameter(4, course.getDescription());
-            proc.registerOutputParameterBoolean(5);
-            proc.execute();
-            status = proc.getParameter(5);
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_createCourse(?,?,?,?,?)");
+            storedProcedure.setInputStringParameter(1, course.getId());
+            storedProcedure.setInputStringParameter(2, course.getName());
+            storedProcedure.setInputIntParameter(3, course.getCredits());
+            storedProcedure.setInputStringParameter(4, course.getDescription());
+            storedProcedure.registerOutputParameterBoolean(5);
+            storedProcedure.execute();
+            status = storedProcedure.getParameter(5);
 
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
-            if (null != proc) {
-                proc.removeConnections();
+            if (null != storedProcedure) {
+                storedProcedure.removeConnections();
             }
         }
         return status;
@@ -68,20 +74,20 @@ public class CourseRepository implements ICourseRepository {
 
     @Override
     public boolean deleteCourse(String id) {
-        StoredProcedure proc = null;
+        StoredProcedure storedProcedure = null;
         boolean status = true;
         try {
-            proc = new StoredProcedure("sp_deleteACourse(?,?)");
-            proc.setInputStringParameter(1, id);
-            proc.registerOutputParameterBoolean(2);
-            proc.execute();
-            status = proc.getParameter(2);
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_deleteACourse(?,?)");
+            storedProcedure.setInputStringParameter(1, id);
+            storedProcedure.registerOutputParameterBoolean(2);
+            storedProcedure.execute();
+            status = storedProcedure.getParameter(2);
 
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
-            if (null != proc) {
-                proc.removeConnections();
+            if (null != storedProcedure) {
+                storedProcedure.removeConnections();
             }
         }
         return status;
@@ -91,7 +97,7 @@ public class CourseRepository implements ICourseRepository {
         StoredProcedure storedProcedure = null;
         ICourse course = new Course();
         try {
-            storedProcedure = new StoredProcedure("sp_getCourseById(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getCourseById(?)");
             storedProcedure.setInputStringParameter(1, courseId);
             ResultSet results = storedProcedure.executeWithResults();
 

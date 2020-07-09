@@ -84,7 +84,7 @@ public class QuestionAdminControllerTest {
     }
 
     @Test
-    void viewQuestion() throws Exception {
+    void viewQuestionTest() throws Exception {
         long questionId = 1;
         IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
         question.setCreatedDate(new Date(System.currentTimeMillis()));
@@ -106,7 +106,7 @@ public class QuestionAdminControllerTest {
     }
 
     @Test
-    void sortQuestion() throws Exception {
+    void sortQuestionTest() throws Exception {
         String sortField = "title";
         IQuestion question;
         ArrayList<IChoice> choices = questionAbstractFactoryTest.createChoiceListInstance();

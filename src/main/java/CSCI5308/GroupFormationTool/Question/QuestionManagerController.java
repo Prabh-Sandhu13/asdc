@@ -3,7 +3,7 @@ package CSCI5308.GroupFormationTool.Question;
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import CSCI5308.GroupFormationTool.User.IUser;
-import CSCI5308.GroupFormationTool.User.User;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,6 +20,8 @@ public class QuestionManagerController {
 
     private IQuestionAbstractFactory questionAbstractFactory = FactoryProducer.
             getFactory().createQuestionAbstractFactory();
+    private IUserAbstractFactory userAbstractFactory = FactoryProducer.
+            getFactory().createUserAbstractFactory();
 
     @GetMapping("/questionManager/createQuestion")
     public String createQuestion(Model model) {
@@ -35,7 +37,7 @@ public class QuestionManagerController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         long outcome;
         IQuestion question = questionAbstractFactory.createQuestionInstance();
-        IUser instructor = new User();
+        IUser instructor = userAbstractFactory.createUserInstance();
         question.setText(text);
         question.setTitle(title);
         question.setType(Integer.parseInt(type));

@@ -1,5 +1,7 @@
 package CSCI5308.GroupFormationTool.Password;
 
+import CSCI5308.GroupFormationTool.Common.FactoryProducer;
+import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
 import java.sql.ResultSet;
@@ -8,13 +10,17 @@ import java.util.ArrayList;
 
 public class PolicyRepository implements IPolicyRepository {
 
+    private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
+            createDatabaseAbstractFactory();
+
     @Override
     public ArrayList<IPolicy> passwordSPolicyCheck(String password) {
         ArrayList<IPolicy> policies = new ArrayList<IPolicy>();
         StoredProcedure storedProcedure = null;
         IPolicy policy = null;
         try {
-            storedProcedure = new StoredProcedure("sp_getPasswordConfigSettings");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getPasswordConfigSettings");
             ResultSet results = storedProcedure.executeWithResults();
 
             if (results != null) {
@@ -44,7 +50,7 @@ public class PolicyRepository implements IPolicyRepository {
         StoredProcedure storedProcedure = null;
         IPolicy policy = null;
         try {
-            storedProcedure = new StoredProcedure("sp_getPolicies");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getPolicies");
             ResultSet results = storedProcedure.executeWithResults();
 
             if (results != null) {

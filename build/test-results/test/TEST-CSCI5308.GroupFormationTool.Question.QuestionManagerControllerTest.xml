@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-07-07T18:40:37" hostname="Prabhjots-MacBook-Pro.local" time="0.336">
+<testsuite name="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-07-09T16:37:34" hostname="Prabhjots-MacBook-Pro.local" time="0.039">
   <properties/>
-  <testcase name="saveQuestion()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" time="0.314"/>
-  <testcase name="createQuestion()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" time="0.008"/>
-  <testcase name="deleteQuestion()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" time="0.013"/>
-  <system-out><![CDATA[2020-07-07 15:40:36.852  INFO 22184 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest], using SpringBootContextLoader
-2020-07-07 15:40:36.853  INFO 22184 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2020-07-07 15:40:36.853  INFO 22184 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest]: QuestionManagerControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2020-07-07 15:40:36.861  INFO 22184 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration CSCI5308.GroupFormationTool.GroupFormationToolApplication for test class CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest
-2020-07-07 15:40:36.862  INFO 22184 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2020-07-07 15:40:36.863  INFO 22184 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@7e93beea, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@148bc474, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@35bf5578, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@720e7138, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1189f57d, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@5beb2b5c, org.springframework.test.context.event.EventPublishingTestExecutionListener@14b0a1cc, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@153695d3, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@4bcaa815, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@4979cbfb, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@5856add9, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@796f330d, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@677ba635]
+  <testcase name="saveQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" time="0.025"/>
+  <testcase name="deleteQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" time="0.009"/>
+  <testcase name="createQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" time="0.004"/>
+  <system-out><![CDATA[2020-07-09 13:37:34.291  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest], using SpringBootContextLoader
+2020-07-09 13:37:34.292  INFO 7318 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2020-07-09 13:37:34.292  INFO 7318 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest]: QuestionManagerControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2020-07-09 13:37:34.293  INFO 7318 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration CSCI5308.GroupFormationTool.GroupFormationToolApplication for test class CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest
+2020-07-09 13:37:34.294  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2020-07-09 13:37:34.294  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@390fdcee, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@35f3b827, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@667c55ca, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@437ffd48, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4d0a165, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@2c4a0358, org.springframework.test.context.event.EventPublishingTestExecutionListener@289cd11e, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@1435fcf8, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@15efac92, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@69c33db4, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@271905b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@1c70ff94, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@74934bb4]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -19,21 +19,21 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-07 15:40:36.884  INFO 22184 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Starting QuestionManagerControllerTest on Prabhjots-MacBook-Pro.local with PID 22184 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-07 15:40:36.885  INFO 22184 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : No active profile set, falling back to default profiles: default
-2020-07-07 15:40:37.070  INFO 22184 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
-2020-07-07 15:40:37.125  INFO 22184 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4d4a63b6, org.springframework.security.web.context.SecurityContextPersistenceFilter@23ed14ae, org.springframework.security.web.header.HeaderWriterFilter@7e5f3735, org.springframework.security.web.csrf.CsrfFilter@68915d7, org.springframework.security.web.authentication.logout.LogoutFilter@568ae799, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@471dc5f5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@53be0d73, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@54df6eae, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@28102769, org.springframework.security.web.session.SessionManagementFilter@6d849364, org.springframework.security.web.access.ExceptionTranslationFilter@6ad34e1e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6a31b675]
-2020-07-07 15:40:37.227  INFO 22184 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-07-07 15:40:37.253  INFO 22184 --- [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2020-07-07 15:40:37.367  INFO 22184 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2020-07-07 15:40:37.367  INFO 22184 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2020-07-07 15:40:37.376  INFO 22184 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 8 ms
-2020-07-07 15:40:37.386  INFO 22184 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Started QuestionManagerControllerTest in 0.521 seconds (JVM running for 5.489)
+2020-07-09 13:37:34.305  INFO 7318 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Starting QuestionManagerControllerTest on Prabhjots-MacBook-Pro.local with PID 7318 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-09 13:37:34.306  INFO 7318 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : No active profile set, falling back to default profiles: default
+2020-07-09 13:37:34.428  INFO 7318 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
+2020-07-09 13:37:34.472  INFO 7318 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3d2687bd, org.springframework.security.web.context.SecurityContextPersistenceFilter@50389ebd, org.springframework.security.web.header.HeaderWriterFilter@3096a9c, org.springframework.security.web.csrf.CsrfFilter@604269c7, org.springframework.security.web.authentication.logout.LogoutFilter@6be6b49a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@45244f1c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2acaecbe, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@625f2ef1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@25dd57e6, org.springframework.security.web.session.SessionManagementFilter@23c7d753, org.springframework.security.web.access.ExceptionTranslationFilter@248bd074, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3f7dc31]
+2020-07-09 13:37:34.530  INFO 7318 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-09 13:37:34.549  INFO 7318 --- [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-07-09 13:37:34.618  INFO 7318 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2020-07-09 13:37:34.618  INFO 7318 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2020-07-09 13:37:34.622  INFO 7318 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2020-07-09 13:37:34.629  INFO 7318 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Started QuestionManagerControllerTest in 0.333 seconds (JVM running for 6.858)
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /questionManager/createQuestion
-       Parameters = {questionTitle=[Sample title], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[bc77cb29-8deb-4c6a-a500-acaaa696ceae]}
+       Parameters = {questionTitle=[Sample title], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[46488a9b-7f85-4ce1-8e3d-ad4467bd7010]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}
@@ -70,7 +70,7 @@ MockHttpServletResponse:
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /questionManager/createQuestion
-       Parameters = {questionTitle=[], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[981d4bb7-958b-42c4-8a8a-d064ff2e68f9]}
+       Parameters = {questionTitle=[], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[7adf390a-c087-47ad-b14d-83a6907f3d64]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}
@@ -178,11 +178,143 @@ MockHttpServletResponse:
 
 MockHttpServletRequest:
       HTTP Method = GET
+      Request URI = /questionManager/deleteQuestion
+       Parameters = {questionId=[1]}
+          Headers = []
+             Body = <no character encoding set>
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@402f991d}
+
+Handler:
+             Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
+           Method = CSCI5308.GroupFormationTool.Question.QuestionManagerController#deleteQuestion(long, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = question/questionManager
+             View = null
+        Attribute = successMessage
+            value = The question 1 is successfully deleted!
+        Attribute = questionList
+            value = []
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="favicon.ico"/>
+    <title>Instructor Question Manager</title>
+    <link
+            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous"/>
+
+</head>
+<body style="background-color: #e7ebee">
+<div class="container">
+    <div>
+        <p>You have not yet logged in to the application. Please login to
+            continue...</p>
+        <a href="/login">Click here to log in!</a>
+    </div>
+
+    
+</div>
+</body>
+</html>
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /questionManager/deleteQuestion
+       Parameters = {questionId=[1]}
+          Headers = []
+             Body = <no character encoding set>
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@1a881fe}
+
+Handler:
+             Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
+           Method = CSCI5308.GroupFormationTool.Question.QuestionManagerController#deleteQuestion(long, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = question/questionManager
+             View = null
+        Attribute = failureMessage
+            value = The question can not not be deleted.
+        Attribute = questionList
+            value = []
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="favicon.ico"/>
+    <title>Instructor Question Manager</title>
+    <link
+            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous"/>
+
+</head>
+<body style="background-color: #e7ebee">
+<div class="container">
+    <div>
+        <p>You have not yet logged in to the application. Please login to
+            continue...</p>
+        <a href="/login">Click here to log in!</a>
+    </div>
+
+    
+</div>
+</body>
+</html>
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
       Request URI = /questionManager/createQuestion
        Parameters = {}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@333f4288}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@1b0fa21e}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
@@ -280,138 +412,6 @@ MockHttpServletResponse:
 </script>
 </html>
 
-    Forwarded URL = null
-   Redirected URL = null
-          Cookies = []
-
-MockHttpServletRequest:
-      HTTP Method = GET
-      Request URI = /questionManager/deleteQuestion
-       Parameters = {questionId=[1]}
-          Headers = []
-             Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@2b1a7475}
-
-Handler:
-             Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
-           Method = CSCI5308.GroupFormationTool.Question.QuestionManagerController#deleteQuestion(long, Model)
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = null
-
-ModelAndView:
-        View name = question/questionManager
-             View = null
-        Attribute = successMessage
-            value = The question 1 is successfully deleted!
-        Attribute = questionList
-            value = []
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 200
-    Error message = null
-          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
-     Content type = text/html;charset=UTF-8
-             Body = <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" href="favicon.ico"/>
-    <title>Instructor Question Manager</title>
-    <link
-            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous"/>
-
-</head>
-<body style="background-color: #e7ebee">
-<div class="container">
-    <div>
-        <p>You have not yet logged in to the application. Please login to
-            continue...</p>
-        <a href="/login">Click here to log in!</a>
-    </div>
-
-    
-</div>
-</body>
-</html>
-    Forwarded URL = null
-   Redirected URL = null
-          Cookies = []
-
-MockHttpServletRequest:
-      HTTP Method = GET
-      Request URI = /questionManager/deleteQuestion
-       Parameters = {questionId=[1]}
-          Headers = []
-             Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@4cd012d4}
-
-Handler:
-             Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
-           Method = CSCI5308.GroupFormationTool.Question.QuestionManagerController#deleteQuestion(long, Model)
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = null
-
-ModelAndView:
-        View name = question/questionManager
-             View = null
-        Attribute = failureMessage
-            value = The question can not not be deleted.
-        Attribute = questionList
-            value = []
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 200
-    Error message = null
-          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
-     Content type = text/html;charset=UTF-8
-             Body = <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" href="favicon.ico"/>
-    <title>Instructor Question Manager</title>
-    <link
-            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous"/>
-
-</head>
-<body style="background-color: #e7ebee">
-<div class="container">
-    <div>
-        <p>You have not yet logged in to the application. Please login to
-            continue...</p>
-        <a href="/login">Click here to log in!</a>
-    </div>
-
-    
-</div>
-</body>
-</html>
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
