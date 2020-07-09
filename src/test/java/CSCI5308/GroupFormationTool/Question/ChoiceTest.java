@@ -1,8 +1,6 @@
 package CSCI5308.GroupFormationTool.Question;
 
-import CSCI5308.GroupFormationTool.Question.IChoice;
-import CSCI5308.GroupFormationTool.Question.ChoiceDBMock;
-import CSCI5308.GroupFormationTool.Question.Choice;
+import CSCI5308.GroupFormationTool.FactoryProducerTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -11,14 +9,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 public class ChoiceTest {
 
+    private IQuestionAbstractFactoryTest questionAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createQuestionAbstractFactoryTest();
+
     public IChoice createDefaultChoice() {
-        ChoiceDBMock choiceDBMock = new ChoiceDBMock();
+        ChoiceDBMock choiceDBMock = questionAbstractFactoryTest.createChoiceDBMock();
         IChoice choice = loadChoice(choiceDBMock);
         return choice;
     }
 
     public IChoice loadChoice(ChoiceDBMock choiceDBMock) {
-        IChoice choice = new Choice();
+        IChoice choice = questionAbstractFactoryTest.createChoiceInstance();
         choice = choiceDBMock.loadChoice(choice);
         return choice;
     }
@@ -31,7 +32,7 @@ public class ChoiceTest {
 
     @Test
     public void setText() {
-        IChoice choice = new Choice();
+        IChoice choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Beginner");
         assertEquals("Beginner", choice.getText());
     }
@@ -44,7 +45,7 @@ public class ChoiceTest {
 
     @Test
     public void setValue() {
-        IChoice choice = new Choice();
+        IChoice choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setValue(2);
         assertEquals(2, choice.getValue());
     }

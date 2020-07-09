@@ -1,7 +1,7 @@
 package CSCI5308.GroupFormationTool.Course;
 
+import CSCI5308.GroupFormationTool.FactoryProducerTest;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
@@ -12,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 public class CourseRepositoryTest {
 
-    @InjectMocks
-    public CourseRepository courseRepository = new CourseRepository();
+    private ICourseAbstractFactoryTest courseAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createCourseAbstractFactoryTest();
 
     @Test
     public void deleteCourseTest() {
 
-        Course course = new Course();
+        ICourse course = courseAbstractFactoryTest.createCourseInstance();
         String deletedId = "CSCI 5308";
 
         course.setName("New Course");
@@ -35,15 +35,15 @@ public class CourseRepositoryTest {
 
     @Test
     void getAllCourses() {
-        ArrayList<Course> courseList = new ArrayList<>();
-        Course course = new Course();
+        ArrayList<ICourse> courseList = courseAbstractFactoryTest.createCourseListInstance();
+        ICourse course = courseAbstractFactoryTest.createCourseInstance();
         course.setName("New Course");
         course.setCredits(3);
         course.setDescription("New course description");
         course.setId("CSCI 5308");
         courseList.add(course);
 
-        course = new Course();
+        course = courseAbstractFactoryTest.createCourseInstance();
         course.setName("New Course 2");
         course.setCredits(4);
         course.setDescription("New course description 2");
@@ -84,7 +84,7 @@ public class CourseRepositoryTest {
 
     @Test
     void createCourse() {
-        Course course = new Course();
+        ICourse course = courseAbstractFactoryTest.createCourseInstance();
         course.setName("New Course");
         course.setCredits(3);
         course.setDescription("New course description");
@@ -108,7 +108,7 @@ public class CourseRepositoryTest {
     void getCourseById() {
         String courseId = "CSCI 5308";
 
-        Course course = new Course();
+        ICourse course = courseAbstractFactoryTest.createCourseInstance();
         course.setName("New Course");
         course.setCredits(6);
         course.setDescription("New course description");
@@ -128,7 +128,7 @@ public class CourseRepositoryTest {
         assertTrue(course.getDescription().equals("New course description"));
 
         courseId = "CSCI 222220";
-        course = new Course();
+        course = courseAbstractFactoryTest.createCourseInstance();
 
         assertTrue(course.getId() == null);
         assertTrue(course.getDescription() == null);

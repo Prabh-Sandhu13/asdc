@@ -1,8 +1,9 @@
 package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Common.Injector;
+import CSCI5308.GroupFormationTool.FactoryProducerTest;
 import CSCI5308.GroupFormationTool.User.IUser;
-import CSCI5308.GroupFormationTool.User.User;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,29 +11,32 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
 public class UserCoursesTest {
 
     public UserCoursesRepository userCoursesRepository;
-    IUserCourses userCourses = new UserCourses();
+    private ICourseAbstractFactoryTest courseAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createCourseAbstractFactoryTest();
+    IUserCourses userCourses = courseAbstractFactoryTest.createUserCoursesInstance();
+    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createUserAbstractFactoryTest();
 
     @BeforeEach
     public void init() {
-        userCoursesRepository = mock(UserCoursesRepository.class);
+        userCoursesRepository = courseAbstractFactoryTest.createUserCoursesRepositoryMock();
         Injector.instance().setUserCoursesRepository(userCoursesRepository);
     }
 
     public IUserCourses createDefaultUserCourses() {
-        UserCoursesDBMock userCoursesDBMock = new UserCoursesDBMock();
+        UserCoursesDBMock userCoursesDBMock = courseAbstractFactoryTest.createUserCoursesDBMock();
         IUserCourses userCourses = loadUserCourses(userCoursesDBMock);
         return userCourses;
     }
 
     public IUserCourses loadUserCourses(UserCoursesDBMock userCoursesDBMock) {
-        IUserCourses userCourses = new UserCourses();
+        IUserCourses userCourses = courseAbstractFactoryTest.createUserCoursesInstance();
         userCourses = userCoursesDBMock.loadCourses(userCourses);
         return userCourses;
     }
@@ -45,7 +49,7 @@ public class UserCoursesTest {
 
     @Test
     public void setIdTest() {
-        IUserCourses userCourses = new UserCourses();
+        IUserCourses userCourses = courseAbstractFactoryTest.createUserCoursesInstance();
         userCourses.setCourseId("CSCI5408");
         assertEquals("CSCI5408", userCourses.getCourseId());
     }
@@ -58,7 +62,7 @@ public class UserCoursesTest {
 
     @Test
     public void setCourseNameTest() {
-        IUserCourses userCourses = new UserCourses();
+        IUserCourses userCourses = courseAbstractFactoryTest.createUserCoursesInstance();
         userCourses.setCourseName("Mobile");
         assertEquals("Mobile", userCourses.getCourseName());
     }
@@ -71,7 +75,7 @@ public class UserCoursesTest {
 
     @Test
     public void setCourseDescriptionTest() {
-        IUserCourses userCourses = new UserCourses();
+        IUserCourses userCourses = courseAbstractFactoryTest.createUserCoursesInstance();
         userCourses.setCourseDescription("example");
         assertEquals("example", userCourses.getCourseDescription());
     }
@@ -84,7 +88,7 @@ public class UserCoursesTest {
 
     @Test
     public void setBannerIdTest() {
-        IUserCourses userCourses = new UserCourses();
+        IUserCourses userCourses = courseAbstractFactoryTest.createUserCoursesInstance();
         userCourses.setBannerId("B0000000");
         assertEquals("B0000000", userCourses.getBannerId());
     }
@@ -97,7 +101,7 @@ public class UserCoursesTest {
 
     @Test
     public void setUserRoleTest() {
-        IUserCourses userCourses = new UserCourses();
+        IUserCourses userCourses = courseAbstractFactoryTest.createUserCoursesInstance();
         userCourses.setUserRole("TA");
         assertEquals("TA", userCourses.getUserRole());
     }
@@ -114,8 +118,8 @@ public class UserCoursesTest {
     @Test
     void getStudentCoursesTest() {
         String emailId = "stud@gmail.com";
-        ArrayList<ICourse> studentCourseList = new ArrayList<ICourse>();
-        ICourse course = new Course();
+        ArrayList<ICourse> studentCourseList = courseAbstractFactoryTest.createCourseListInstance();
+        ICourse course = courseAbstractFactoryTest.createCourseInstance();
         course.setId("1");
         course.setName("Web");
         course.setDescription("description");
@@ -129,8 +133,8 @@ public class UserCoursesTest {
     @Test
     void getTACoursesTest() {
         String emailId = "stud@gmail.com";
-        ArrayList<ICourse> taCourseList = new ArrayList<ICourse>();
-        ICourse course = new Course();
+        ArrayList<ICourse> taCourseList = courseAbstractFactoryTest.createCourseListInstance();
+        ICourse course = courseAbstractFactoryTest.createCourseInstance();
         course.setId("1");
         course.setName("Web");
         course.setDescription("description");
@@ -144,8 +148,8 @@ public class UserCoursesTest {
     @Test
     void usersCurrentlyNotInstructorsForCourseTest() {
         String courseId = "1";
-        ArrayList<IUser> userList = new ArrayList<IUser>();
-        IUser user = new User();
+        ArrayList<IUser> userList = userAbstractFactoryTest.createUserListInstance();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setBannerId("B00839890");
         user.setEmailId("tn300318@dal.ca");
         user.setFirstName("tanu");
@@ -171,8 +175,8 @@ public class UserCoursesTest {
     @Test
     void getInstructorCoursesTest() {
         String emailId = "stud@gmail.com";
-        ArrayList<ICourse> instructorCourseList = new ArrayList<ICourse>();
-        ICourse course = new Course();
+        ArrayList<ICourse> instructorCourseList = courseAbstractFactoryTest.createCourseListInstance();
+        ICourse course = courseAbstractFactoryTest.createCourseInstance();
         course.setId("1");
         course.setName("Web");
         course.setDescription("description");
@@ -186,8 +190,8 @@ public class UserCoursesTest {
     @Test
     void getTAForCourseTest() {
         String courseId = "1";
-        ArrayList<IUser> taList = new ArrayList<IUser>();
-        IUser user = new User();
+        ArrayList<IUser> taList = userAbstractFactoryTest.createUserListInstance();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setBannerId("B00839890");
         user.setEmailId("tn300318@dal.ca");
         user.setFirstName("tanu");
@@ -202,7 +206,7 @@ public class UserCoursesTest {
     @Test
     void enrollTAForCourseUsingEmailIdTest() {
         String courseId = "1";
-        User user = new User();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setBannerId("B00839890");
         user.setEmailId("tn300318@dal.ca");
         user.setFirstName("tanu");
@@ -210,7 +214,7 @@ public class UserCoursesTest {
         user.setId(2);
         when(userCoursesRepository.enrollTAForCourseUsingEmailId(user, courseId)).thenReturn(true);
         assertTrue(userCourses.enrollTAForCourseUsingEmailId(user, courseId));
-        User existingUser = new User();
+        IUser existingUser = userAbstractFactoryTest.createUserInstance();
         existingUser.setBannerId("B00839890");
         existingUser.setEmailId("tn300318@dal.ca");
         existingUser.setFirstName("tanu");
@@ -223,8 +227,8 @@ public class UserCoursesTest {
     @Test
     void getInstructorsForCourseTest() {
         String courseId = "1";
-        ArrayList<IUser> instructorList = new ArrayList<IUser>();
-        IUser user = new User();
+        ArrayList<IUser> instructorList = userAbstractFactoryTest.createUserListInstance();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setBannerId("B00839890");
         user.setEmailId("tn300318@dal.ca");
         user.setFirstName("tanu");

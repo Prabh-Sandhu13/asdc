@@ -1,39 +1,49 @@
 package CSCI5308.GroupFormationTool.Password;
 
+import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordHistoryException;
 import CSCI5308.GroupFormationTool.ErrorHandling.TokenExpiredException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
-import CSCI5308.GroupFormationTool.Common.Injector;
+import CSCI5308.GroupFormationTool.FactoryProducerTest;
+import CSCI5308.GroupFormationTool.Mail.IMailManagerAbstractFactoryTest;
 import CSCI5308.GroupFormationTool.Mail.MailManager;
-import CSCI5308.GroupFormationTool.User.User;
-import CSCI5308.GroupFormationTool.Password.ForgotPasswordRepository;
-import CSCI5308.GroupFormationTool.Password.ForgotPasswordManager;
-import CSCI5308.GroupFormationTool.Password.PasswordHistoryManager;
+import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 public class ForgotPasswordManagerTest {
 
     public ForgotPasswordRepository forgotPasswordRepository;
-    public ForgotPasswordManager forgotPasswordManager;
+    public IForgotPasswordManager forgotPasswordManager;
     public MailManager mailManager;
     public Policy policyInstance;
     public PasswordHistoryManager passwordHistoryManager;
 
+    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createPasswordAbstractFactoryTest();
+
+    private IMailManagerAbstractFactoryTest mailManagerAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createMailManagerAbstractFactoryTest();
+
+    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createUserAbstractFactoryTest();
+
     @BeforeEach
     public void init() {
-        forgotPasswordRepository = mock(ForgotPasswordRepository.class);
-        mailManager = mock(MailManager.class);
-        policyInstance = mock(Policy.class);
-        passwordHistoryManager = mock(PasswordHistoryManager.class);
-        forgotPasswordManager = new ForgotPasswordManager();
+        forgotPasswordRepository = passwordAbstractFactoryTest.createForgotPasswordRepositoryMock();
+        mailManager = mailManagerAbstractFactoryTest.createMailManagerMock();
+        policyInstance = passwordAbstractFactoryTest.createPolicyMock();
+        passwordHistoryManager = passwordAbstractFactoryTest.createPasswordHistoryManagerMock();
+        forgotPasswordManager = passwordAbstractFactoryTest.createForgotPasswordManagerInstance();
         Injector.instance().setForgotPasswordRepository(forgotPasswordRepository);
         Injector.instance().setMailManager(mailManager);
         Injector.instance().setPolicy(policyInstance);
@@ -42,7 +52,7 @@ public class ForgotPasswordManagerTest {
 
     @Test
     void notifyUserTest() {
-        User user = new User();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setId(123);
         user.setBannerId("B00827531");
         user.setEmailId("haard.shah@dal.ca");
@@ -72,7 +82,7 @@ public class ForgotPasswordManagerTest {
 
     @Test
     void updatePasswordTest() {
-        User user = new User();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setId(123);
         user.setBannerId("B00827531");
         user.setEmailId("haard.shah@dal.ca");

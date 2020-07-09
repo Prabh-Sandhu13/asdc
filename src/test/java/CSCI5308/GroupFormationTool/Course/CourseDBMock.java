@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.Course;
 import CSCI5308.GroupFormationTool.Course.ICourse;
 import CSCI5308.GroupFormationTool.Course.ICourseRepository;
 import CSCI5308.GroupFormationTool.Course.Course;
+import CSCI5308.GroupFormationTool.FactoryProducerTest;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,9 @@ public class CourseDBMock implements ICourseRepository {
 
     private String description;
 
+    private ICourseAbstractFactoryTest courseAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createCourseAbstractFactoryTest();
+
     public CourseDBMock() {
         id = "CSCI5308";
         name = "Adv SDC";
@@ -25,9 +29,8 @@ public class CourseDBMock implements ICourseRepository {
 
     @Override
     public ArrayList<ICourse> getAllCourses() {
-        ArrayList<ICourse> courseList = new ArrayList<>();
-        ICourse course = new Course();
-
+        ArrayList<ICourse> courseList = courseAbstractFactoryTest.createCourseListInstance();
+        ICourse course = courseAbstractFactoryTest.createCourseInstance();
         course.setCredits(credits);
         course.setDescription(description);
         course.setName(name);
@@ -62,7 +65,7 @@ public class CourseDBMock implements ICourseRepository {
 
     @Override
     public ICourse getCourseById(String courseId) {
-        ICourse course = new Course();
+        ICourse course = courseAbstractFactoryTest.createCourseInstance();
         course.setCredits(credits);
         course.setDescription(description);
         course.setId(courseId);

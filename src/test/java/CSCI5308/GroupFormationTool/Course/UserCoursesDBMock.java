@@ -1,6 +1,8 @@
 package CSCI5308.GroupFormationTool.Course;
 
+import CSCI5308.GroupFormationTool.FactoryProducerTest;
 import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
 import CSCI5308.GroupFormationTool.User.User;
 
 import java.util.ArrayList;
@@ -24,6 +26,12 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
     private int credits;
 
     private String description;
+
+    private ICourseAbstractFactoryTest courseAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createCourseAbstractFactoryTest();
+
+    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createUserAbstractFactoryTest();
 
     public UserCoursesDBMock() {
         courseId = "CSCI5308";
@@ -60,8 +68,8 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
     @Override
     public ArrayList<ICourse> getStudentCourses(String emailId) {
-        ArrayList<ICourse> studentCourseList = new ArrayList<>();
-        ICourse course = new Course();
+        ArrayList<ICourse> studentCourseList = courseAbstractFactoryTest.createCourseListInstance();
+        ICourse course = courseAbstractFactoryTest.createCourseInstance();
         course.setCredits(credits);
         course.setDescription(description);
         course.setName(name);
@@ -72,9 +80,8 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
     @Override
     public ArrayList<ICourse> getTACourses(String emailId) {
-        ArrayList<ICourse> taCourseList = new ArrayList<>();
-        ICourse course = new Course();
-
+        ArrayList<ICourse> taCourseList = courseAbstractFactoryTest.createCourseListInstance();
+        ICourse course = courseAbstractFactoryTest.createCourseInstance();
         course.setCredits(credits);
         course.setDescription(description);
         course.setName(name);
@@ -84,9 +91,8 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
     }
 
     public ArrayList<IUser> usersCurrentlyNotInstructorsForCourse(String courseId) {
-        ArrayList<IUser> usersCurrentlyNotInstructorsForCourse = new ArrayList<>();
-        IUser userCurrentlyNotInstructorsForCourse = new User();
-
+        ArrayList<IUser> usersCurrentlyNotInstructorsForCourse = userAbstractFactoryTest.createUserListInstance();
+        IUser userCurrentlyNotInstructorsForCourse = userAbstractFactoryTest.createUserInstance();
         userCurrentlyNotInstructorsForCourse.setBannerId(bannerId);
         userCurrentlyNotInstructorsForCourse.setEmailId("stu@gmail.com");
         userCurrentlyNotInstructorsForCourse.setFirstName("John");
@@ -97,7 +103,7 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
     @Override
     public boolean addInstructorsToCourse(Long instructor, String courseId) {
-        IUser instructorUser = new User();
+        IUser instructorUser = userAbstractFactoryTest.createUserInstance();
         instructorUser.setBannerId(bannerId);
         instructorUser.setEmailId("stu@gmail.com");
         instructorUser.setFirstName("John");
@@ -108,9 +114,8 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
     @Override
     public ArrayList<ICourse> getInstructorCourses(String emailId) {
-        ArrayList<ICourse> instCourseList = new ArrayList<>();
-        ICourse course = new Course();
-
+        ArrayList<ICourse> instCourseList = courseAbstractFactoryTest.createCourseListInstance();
+        ICourse course = courseAbstractFactoryTest.createCourseInstance();
         course.setCredits(credits);
         course.setDescription(description);
         course.setName(name);
@@ -121,8 +126,8 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
     @Override
     public ArrayList<IUser> getTAForCourse(String courseId) {
-        ArrayList<IUser> taList = new ArrayList<>();
-        IUser ta = new User();
+        ArrayList<IUser> taList = userAbstractFactoryTest.createUserListInstance();
+        IUser ta = userAbstractFactoryTest.createUserInstance();
         ta.setBannerId(bannerId);
         ta.setEmailId("stu@gmail.com");
         ta.setFirstName("John");
@@ -133,8 +138,8 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
     @Override
     public ArrayList<IUser> getInstructorsForCourse(String courseId) {
-        ArrayList<IUser> instructorList = new ArrayList<>();
-        IUser instructor = new User();
+        ArrayList<IUser> instructorList = userAbstractFactoryTest.createUserListInstance();
+        IUser instructor = userAbstractFactoryTest.createUserInstance();
         instructor.setBannerId(bannerId);
         instructor.setEmailId("stu@gmail.com");
         instructor.setFirstName("John");
@@ -144,7 +149,7 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
     }
 
     @Override
-    public boolean enrollTAForCourseUsingEmailId(User user, String courseId) {
+    public boolean enrollTAForCourseUsingEmailId(IUser user, String courseId) {
         if (courseId == "1") {
             return true;
         }
@@ -153,8 +158,7 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
     @Override
     public boolean getUserRoleForCourse(String userId, String courseId) {
-        IUserCourses userCourses = new UserCourses();
-
+        IUserCourses userCourses = courseAbstractFactoryTest.createUserCoursesInstance();
         userCourses.setBannerId(bannerId);
         userCourses.setCourseDescription(courseDescription);
         userCourses.setCourseId(courseId);

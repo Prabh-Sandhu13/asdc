@@ -1,30 +1,40 @@
 package CSCI5308.GroupFormationTool.Password;
 
-import CSCI5308.GroupFormationTool.User.User;
-import CSCI5308.GroupFormationTool.Password.ForgotPasswordRepository;
+import CSCI5308.GroupFormationTool.FactoryProducerTest;
+import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
 public class ForgotPasswordRepositoryTest {
 
-    User user = new User();
+    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createPasswordAbstractFactoryTest();
     private ForgotPasswordRepository forgotPasswordRepository;
+
+    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createUserAbstractFactoryTest();
+
+    IUser user = userAbstractFactoryTest.createUserInstance();
+
+    @BeforeEach
+    void init() {
+        forgotPasswordRepository = passwordAbstractFactoryTest.createForgotPasswordRepositoryMock();
+    }
 
     @Test
     public void addTokenTest() {
-        forgotPasswordRepository = mock(ForgotPasswordRepository.class);
         when(forgotPasswordRepository.addToken(user, "sampleToken")).thenReturn(true);
         when(forgotPasswordRepository.addToken(null, "sampleToken")).thenReturn(false);
         when(forgotPasswordRepository.addToken(user, null)).thenReturn(false);
         when(forgotPasswordRepository.addToken(user, "")).thenReturn(false);
-        
+
         assertTrue(forgotPasswordRepository.addToken(user, "sampleToken"));
         assertFalse(forgotPasswordRepository.addToken(null, "sampleToken"));
         assertFalse(forgotPasswordRepository.addToken(user, null));
@@ -33,7 +43,6 @@ public class ForgotPasswordRepositoryTest {
 
     @Test
     public void getTokenTest() {
-        forgotPasswordRepository = mock(ForgotPasswordRepository.class);
         when(forgotPasswordRepository.getToken(user)).thenReturn(null);
         assertFalse(forgotPasswordRepository.getToken(user) != null);
 
@@ -41,17 +50,16 @@ public class ForgotPasswordRepositoryTest {
 
         when(forgotPasswordRepository.getToken(user)).thenReturn("token");
         assertTrue(forgotPasswordRepository.getToken(user).equals("token"));
-        
+
     }
 
     @Test
     public void updatePasswordTest() {
-        forgotPasswordRepository = mock(ForgotPasswordRepository.class);
         when(forgotPasswordRepository.updatePassword(user, "encryptedPassword")).thenReturn(true);
         when(forgotPasswordRepository.updatePassword(user, "")).thenReturn(false);
         when(forgotPasswordRepository.updatePassword(user, null)).thenReturn(false);
         when(forgotPasswordRepository.updatePassword(null, "encryptedPassword")).thenReturn(false);
-        
+
         assertFalse(forgotPasswordRepository.updatePassword(null, "encryptedPassword"));
         assertFalse(forgotPasswordRepository.updatePassword(user, null));
         assertFalse(forgotPasswordRepository.updatePassword(user, ""));
@@ -60,7 +68,6 @@ public class ForgotPasswordRepositoryTest {
 
     @Test
     public void updateTokenTest() {
-        forgotPasswordRepository = mock(ForgotPasswordRepository.class);
         when(forgotPasswordRepository.updateToken(user, "newToken")).thenReturn(true);
         when(forgotPasswordRepository.updateToken(user, "")).thenReturn(false);
         when(forgotPasswordRepository.updateToken(user, null)).thenReturn(false);
@@ -74,12 +81,11 @@ public class ForgotPasswordRepositoryTest {
 
     @Test
     public void deleteTokenTest() {
-        forgotPasswordRepository = mock(ForgotPasswordRepository.class);
         when(forgotPasswordRepository.deleteToken(user, "token")).thenReturn(true);
         when(forgotPasswordRepository.deleteToken(user, "")).thenReturn(false);
         when(forgotPasswordRepository.deleteToken(user, null)).thenReturn(false);
         when(forgotPasswordRepository.deleteToken(null, "newToken")).thenReturn(false);
-        
+
         assertFalse(forgotPasswordRepository.deleteToken(null, "token"));
         assertFalse(forgotPasswordRepository.deleteToken(user, null));
         assertFalse(forgotPasswordRepository.deleteToken(user, ""));
@@ -88,10 +94,9 @@ public class ForgotPasswordRepositoryTest {
 
     @Test
     public void getUserIdTest() {
-        forgotPasswordRepository = mock(ForgotPasswordRepository.class);
         when(forgotPasswordRepository.getUserId(user)).thenReturn(null);
         assertFalse(forgotPasswordRepository.getUserId(user) != null);
-        
+
         user.setEmailId("haard.shah@dal.ca");
         when(forgotPasswordRepository.getUserId(user)).thenReturn(user);
         assertTrue(forgotPasswordRepository.getUserId(user).getEmailId().equals("haard.shah@dal.ca"));
@@ -99,11 +104,10 @@ public class ForgotPasswordRepositoryTest {
 
     @Test
     public void getEmailByTokenTest() {
-        forgotPasswordRepository = mock(ForgotPasswordRepository.class);
         when(forgotPasswordRepository.getEmailByToken(user, null)).thenReturn(null);
-        when(forgotPasswordRepository.getEmailByToken(null,"token")).thenReturn(null);
-        when(forgotPasswordRepository.getEmailByToken(user,"token")).thenReturn(user);
-        
+        when(forgotPasswordRepository.getEmailByToken(null, "token")).thenReturn(null);
+        when(forgotPasswordRepository.getEmailByToken(user, "token")).thenReturn(user);
+
         assertFalse(forgotPasswordRepository.getEmailByToken(user, null) != null);
         assertTrue(forgotPasswordRepository.getEmailByToken(null, "token") == null);
         assertTrue(forgotPasswordRepository.getEmailByToken(user, "token") != null);

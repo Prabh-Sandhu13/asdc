@@ -221,7 +221,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     }
 
     @Override
-    public boolean enrollTAForCourseUsingEmailId(User user, String courseId) {
+    public boolean enrollTAForCourseUsingEmailId(IUser user, String courseId) {
         StoredProcedure storedProcedure = null;
         String emailId = user.getEmailId();
         try {

@@ -1,8 +1,6 @@
 package CSCI5308.GroupFormationTool.User;
 
-import CSCI5308.GroupFormationTool.User.IUser;
-import CSCI5308.GroupFormationTool.User.IUserRepository;
-import CSCI5308.GroupFormationTool.User.User;
+import CSCI5308.GroupFormationTool.FactoryProducerTest;
 
 public class UserDBMock implements IUserRepository {
 
@@ -19,6 +17,9 @@ public class UserDBMock implements IUserRepository {
     private String password;
 
     private String confirmPassword;
+
+    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createUserAbstractFactoryTest();
 
     public UserDBMock() {
         setToDefaults();
@@ -66,7 +67,7 @@ public class UserDBMock implements IUserRepository {
 
     @Override
     public IUser getAdminDetails() {
-        IUser user = new User();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setBannerId("B0000000");
         user.setConfirmPassword("administrator");
         user.setEmailId("admin@gmail.com");

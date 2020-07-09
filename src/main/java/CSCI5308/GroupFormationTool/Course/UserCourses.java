@@ -121,7 +121,7 @@ public class UserCourses implements IUserCourses {
     }
 
     @Override
-    public boolean enrollTAForCourseUsingEmailId(User user, String courseId) {
+    public boolean enrollTAForCourseUsingEmailId(IUser user, String courseId) {
         userCoursesRepository = Injector.instance().getUserCoursesRepository();
         return userCoursesRepository.enrollTAForCourseUsingEmailId(user, courseId);
     }

@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.Course;
 import CSCI5308.GroupFormationTool.Course.IStudentCSV;
 import CSCI5308.GroupFormationTool.Course.IStudentRepository;
 import CSCI5308.GroupFormationTool.Course.StudentCSV;
+import CSCI5308.GroupFormationTool.FactoryProducerTest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,6 +22,9 @@ public class StudentDBMock implements IStudentRepository {
 
     private String password;
 
+    private ICourseAbstractFactoryTest courseAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createCourseAbstractFactoryTest();
+
     public StudentDBMock() {
         firstName = "Tanu";
         lastName = "Gulia";
@@ -32,9 +36,9 @@ public class StudentDBMock implements IStudentRepository {
     @Override
     public Map<Integer, List<StudentCSV>> createStudent(List<StudentCSV> student, String courseId) {
 
-        StudentCSV newUsers = new StudentCSV();
-        List<StudentCSV> oldUsersList = new ArrayList<>();
-        List<StudentCSV> newUsersList = new ArrayList<>();
+        StudentCSV newUsers = courseAbstractFactoryTest.createStudentCSVInstance();
+        List<StudentCSV> oldUsersList = courseAbstractFactoryTest.createStudentCSVListInstance();
+        List<StudentCSV> newUsersList = courseAbstractFactoryTest.createStudentCSVListInstance();
 
         newUsers.setFirstName(firstName);
         newUsers.setLastName(lastName);
@@ -43,7 +47,7 @@ public class StudentDBMock implements IStudentRepository {
         newUsers.setPassword(password);
         newUsersList.add(newUsers);
 
-        StudentCSV oldUsers = new StudentCSV();
+        StudentCSV oldUsers = courseAbstractFactoryTest.createStudentCSVInstance();
         oldUsers.setFirstName("Padmesh");
         oldUsers.setLastName("Donthu");
         oldUsers.setEmail("padmeshdonth@gmail.com");
@@ -51,7 +55,7 @@ public class StudentDBMock implements IStudentRepository {
         oldUsers.setPassword("testsample");
         oldUsersList.add(oldUsers);
 
-        Map<Integer, List<StudentCSV>> map = new HashMap<>();
+        Map<Integer, List<StudentCSV>> map = courseAbstractFactoryTest.createStudentListHashMap();
         map.put(0, newUsersList);
         map.put(1, oldUsersList);
         return map;

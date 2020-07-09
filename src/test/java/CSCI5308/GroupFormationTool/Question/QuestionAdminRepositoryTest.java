@@ -1,10 +1,13 @@
 package CSCI5308.GroupFormationTool.Question;
 
+import CSCI5308.GroupFormationTool.FactoryProducerTest;
 import CSCI5308.GroupFormationTool.Question.IChoice;
 import CSCI5308.GroupFormationTool.Question.IQuestion;
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Question.Choice;
 import CSCI5308.GroupFormationTool.Question.Question;
+import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
 import CSCI5308.GroupFormationTool.User.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,15 +21,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 public class QuestionAdminRepositoryTest {
 
+    private IQuestionAbstractFactoryTest questionAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createQuestionAbstractFactoryTest();
+
+    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createUserAbstractFactoryTest();
+
     @Test
     void getOptionsForTheQuestionTest() {
-        ArrayList<IChoice> choices = new ArrayList<>();
-        IChoice choice = new Choice();
+        ArrayList<IChoice> choices = questionAbstractFactoryTest.createChoiceListInstance();
+        IChoice choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Amateur");
         choice.setValue(1);
         choices.add(choice);
 
-        choice = new Choice();
+        choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Beginner");
         choice.setValue(2);
         choices.add(choice);
@@ -52,7 +61,7 @@ public class QuestionAdminRepositoryTest {
         assertFalse(choices.isEmpty());
         assertTrue(choices.size() == 2);
 
-        choices = new ArrayList<>();
+        choices = questionAbstractFactoryTest.createChoiceListInstance();
         assertTrue(choices.isEmpty());
         assertFalse(choices.size() > 2);
     }
@@ -60,20 +69,20 @@ public class QuestionAdminRepositoryTest {
     @Test
     void getQuestionByIdTest() {
         long questionId = 1;
-        Question question = new Question();
-        ArrayList<IChoice> choices = new ArrayList<>();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
+        ArrayList<IChoice> choices = questionAbstractFactoryTest.createChoiceListInstance();
 
-        IChoice choice = new Choice();
+        IChoice choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Amateur");
         choice.setValue(1);
         choices.add(choice);
 
-        choice = new Choice();
+        choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Beginner");
         choice.setValue(2);
         choices.add(choice);
 
-        User user = new User();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setEmailId("padmeshdonthu@gmail.com");
 
         question.setCreatedDate(new Date(System.currentTimeMillis()));
@@ -110,21 +119,21 @@ public class QuestionAdminRepositoryTest {
     @Test
     void getQuestionListForInstructorTest() {
 
-        IQuestion question = new Question();
-        ArrayList<IChoice> choices = new ArrayList<>();
-        ArrayList<IQuestion> questions = new ArrayList<>();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
+        ArrayList<IChoice> choices = questionAbstractFactoryTest.createChoiceListInstance();
+        ArrayList<IQuestion> questions = questionAbstractFactoryTest.createQuestionListInstance();
 
-        IChoice choice = new Choice();
+        IChoice choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Amateur");
         choice.setValue(1);
         choices.add(choice);
 
-        choice = new Choice();
+        choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Beginner");
         choice.setValue(2);
         choices.add(choice);
 
-        User user = new User();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setEmailId("padmeshdonthu@gmail.com");
 
         question.setCreatedDate(new Date(System.currentTimeMillis()));
@@ -136,7 +145,7 @@ public class QuestionAdminRepositoryTest {
         question.setChoices(choices);
         questions.add(question);
 
-        question = new Question();
+        question = questionAbstractFactoryTest.createQuestionInstance();
         question.setCreatedDate(new Date(System.currentTimeMillis()));
         question.setId(2);
         question.setInstructor(user);
@@ -200,24 +209,24 @@ public class QuestionAdminRepositoryTest {
     @Test
     void getSortedQuestionListForInstructorTest() {
         String sortBy = "title";
-        IQuestion question = new Question();
-        ArrayList<IChoice> choices = new ArrayList<>();
-        ArrayList<IQuestion> questions = new ArrayList<>();
+        IQuestion question;
+        ArrayList<IChoice> choices = questionAbstractFactoryTest.createChoiceListInstance();
+        ArrayList<IQuestion> questions = questionAbstractFactoryTest.createQuestionListInstance();
 
-        IChoice choice = new Choice();
+        IChoice choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Amateur");
         choice.setValue(1);
         choices.add(choice);
 
-        choice = new Choice();
+        choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Beginner");
         choice.setValue(2);
         choices.add(choice);
 
-        User user = new User();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setEmailId("padmeshdonthu@gmail.com");
 
-        question = new Question();
+        question = questionAbstractFactoryTest.createQuestionInstance();
         question.setCreatedDate(new Date(System.currentTimeMillis()));
         question.setId(2);
         question.setInstructor(user);
@@ -227,7 +236,7 @@ public class QuestionAdminRepositoryTest {
         question.setChoices(null);
         questions.add(0, question);
 
-        question = new Question();
+        question = questionAbstractFactoryTest.createQuestionInstance();
         question.setCreatedDate(new Date(System.currentTimeMillis()));
         question.setId(1);
         question.setInstructor(user);
@@ -236,9 +245,6 @@ public class QuestionAdminRepositoryTest {
         question.setType(DomainConstants.MCQOne);
         question.setChoices(choices);
         questions.add(1, question);
-
-        System.out.println(questions.get(0).getChoices());
-        System.out.println(questions.get(1).getChoices());
 
         assertTrue(questions.get(1).getText().length() < 200);
         assertTrue(questions.get(1).getTitle().length() < 100);

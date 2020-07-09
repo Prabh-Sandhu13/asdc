@@ -1,9 +1,8 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.Course.IUserCourses;
-import CSCI5308.GroupFormationTool.User.User;
-import CSCI5308.GroupFormationTool.Course.UserCourses;
-import CSCI5308.GroupFormationTool.Course.UserCoursesRepository;
+import CSCI5308.GroupFormationTool.FactoryProducerTest;
+import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -11,15 +10,20 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
 public class UserCoursesRepositoryTest {
 
+    private ICourseAbstractFactoryTest courseAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createCourseAbstractFactoryTest();
+
+    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createUserAbstractFactoryTest();
+
     @Test
     public void getUserRoleByEmailIdTest() {
-        UserCoursesRepository userCoursesRepository = mock(UserCoursesRepository.class);
+        UserCoursesRepository userCoursesRepository = courseAbstractFactoryTest.createUserCoursesRepositoryMock();
 
         when(userCoursesRepository.getUserRoleByEmailId("padmeshdonthu@gmail.com"))
                 .thenReturn("Guest");
@@ -44,8 +48,8 @@ public class UserCoursesRepositoryTest {
 
     @Test
     public void getStudentCoursesTest() {
-        ArrayList<IUserCourses> userCoursesList = new ArrayList<>();
-        IUserCourses userCourses = new UserCourses();
+        ArrayList<IUserCourses> userCoursesList = courseAbstractFactoryTest.createUserCoursesListInstance();
+        IUserCourses userCourses = courseAbstractFactoryTest.createUserCoursesInstance();
 
         userCourses.setBannerId("B00854462");
         userCourses.setCourseDescription("Sample description");
@@ -71,8 +75,8 @@ public class UserCoursesRepositoryTest {
     @Test
     public void getTACoursesTest() {
 
-        ArrayList<IUserCourses> userCoursesList = new ArrayList<>();
-        IUserCourses userCourses = new UserCourses();
+        ArrayList<IUserCourses> userCoursesList = courseAbstractFactoryTest.createUserCoursesListInstance();
+        IUserCourses userCourses = courseAbstractFactoryTest.createUserCoursesInstance();
 
         userCourses.setBannerId("B00854462");
         userCourses.setCourseDescription("Sample description");
@@ -98,8 +102,8 @@ public class UserCoursesRepositoryTest {
     @Test
     public void getInstructorCoursesTest() {
 
-        ArrayList<IUserCourses> userCoursesList = new ArrayList<>();
-        IUserCourses userCourses = new UserCourses();
+        ArrayList<IUserCourses> userCoursesList = courseAbstractFactoryTest.createUserCoursesListInstance();
+        IUserCourses userCourses = courseAbstractFactoryTest.createUserCoursesInstance();
 
         userCourses.setBannerId("B00854462");
         userCourses.setCourseDescription("Sample description");
@@ -126,7 +130,7 @@ public class UserCoursesRepositoryTest {
     public void getTAForCourseTest() {
 
         String courseId = "CSCI 5308";
-        User user = new User();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setBannerId("B00854462");
         user.setEmailId("padmeshdonthu@gmail.com");
         user.setFirstName("Padmesh");
@@ -146,8 +150,8 @@ public class UserCoursesRepositoryTest {
     @Test
     public void enrollTAForCourseUsingEmailIdTest() {
 
-        UserCoursesRepository userCoursesRepository = mock(UserCoursesRepository.class);
-        User user = new User();
+        UserCoursesRepository userCoursesRepository = courseAbstractFactoryTest.createUserCoursesRepositoryMock();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         when(userCoursesRepository.enrollTAForCourseUsingEmailId(user, "1")).thenReturn(false);
         assertFalse(userCoursesRepository.enrollTAForCourseUsingEmailId(user, "1"));
 
@@ -159,7 +163,7 @@ public class UserCoursesRepositoryTest {
     @Test
     public void getInstructorsForCourseTest() {
         String courseId = "CSCI 5308";
-        User user = new User();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setBannerId("B00854462");
         user.setEmailId("padmeshdonthu@gmail.com");
         user.setFirstName("Padmesh");

@@ -1,10 +1,11 @@
 package CSCI5308.GroupFormationTool.Password;
 
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.User.User;
-import CSCI5308.GroupFormationTool.Password.PasswordHistoryRepository;
-import CSCI5308.GroupFormationTool.Password.PasswordHistoryManager;
+import CSCI5308.GroupFormationTool.FactoryProducerTest;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
+import CSCI5308.GroupFormationTool.Security.ISecurityAbstractFactoryTest;
+import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,6 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class PasswordHistoryManagerTest {
@@ -21,18 +21,27 @@ public class PasswordHistoryManagerTest {
     public PasswordHistoryRepository passwordHistoryRepository;
     public BCryptEncryption bCryptEncryption;
 
+    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createPasswordAbstractFactoryTest();
+
+    private ISecurityAbstractFactoryTest securityAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createSecurityAbstractFactoryTest();
+
+    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
+            createUserAbstractFactoryTest();
+
     @BeforeEach
     public void init() {
-        passwordHistoryManager = new PasswordHistoryManager();
-        passwordHistoryRepository = mock(PasswordHistoryRepository.class);
-        bCryptEncryption = mock(BCryptEncryption.class);
+        passwordHistoryManager = passwordAbstractFactoryTest.createPasswordHistoryManagerInstance();
+        passwordHistoryRepository = passwordAbstractFactoryTest.createPasswordHistoryRepositoryMock();
+        bCryptEncryption = securityAbstractFactoryTest.createBCryptEncryptionMock();
         Injector.instance().setPasswordHistoryRepository(passwordHistoryRepository);
         Injector.instance().setPasswordEncryptor(bCryptEncryption);
     }
 
     @Test
     void isHistoryViolatedTest() {
-        User user = new User();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setId(123);
         user.setBannerId("B00827531");
         user.setEmailId("haard.shah@dal.ca");
@@ -60,7 +69,7 @@ public class PasswordHistoryManagerTest {
 
     @Test
     void addPasswordHistoryTest() {
-        User user = new User();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setId(123);
         user.setBannerId("B00827531");
         user.setEmailId("haard.shah@dal.ca");
