@@ -41,7 +41,7 @@ public class QuestionManagerControllerTest {
     }
 
     @Test
-    void createQuestion() throws Exception {
+    void createQuestionTest() throws Exception {
         this.mockMvc.perform(get("/questionManager/createQuestion"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("question/createQuestion"))
@@ -50,7 +50,7 @@ public class QuestionManagerControllerTest {
     }
 
     @Test
-    void saveQuestion() throws Exception {
+    void saveQuestionTest() throws Exception {
         long outcome = 5;
         when(questionManagerRepository.createQuestion(any(Question.class))).thenReturn(outcome);
 
@@ -80,7 +80,7 @@ public class QuestionManagerControllerTest {
     }
 
     @Test
-    void deleteQuestion() throws Exception {
+    void deleteQuestionTest() throws Exception {
         long questionId = 1;
 
         when(questionManagerRepository.deleteQuestion(questionId)).thenReturn(true);

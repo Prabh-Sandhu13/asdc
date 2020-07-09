@@ -1,5 +1,6 @@
 package CSCI5308.GroupFormationTool.Security;
 
+import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    ISecurityAbstractFactory securityAbstractFactory = FactoryProducer.getFactory().createSecurityAbstractFactory();
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -25,6 +28,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
-        return new CustomAuthenticationManager();
+        return securityAbstractFactory.createCustomAuthenticationManager();
     }
 }

@@ -1,24 +1,27 @@
 package CSCI5308.GroupFormationTool.Password;
 
+import CSCI5308.GroupFormationTool.Common.FactoryProducer;
+import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
-import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ForgotPasswordRepository implements IForgotPasswordRepository {
-
     private IUserAbstractFactory userAbstractFactory = FactoryProducer.
         getFactory().createUserAbstractFactory();
+    private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
+            createDatabaseAbstractFactory();
+
     @Override
     public boolean addToken(IUser user, String token) {
 
         boolean tokenAdded = false;
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_addToken(?,?,?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_addToken(?,?,?)");
             storedProcedure.setInputStringParameter(1, Long.toString(user.getId()));
             storedProcedure.setInputStringParameter(2, user.getEmailId());
             storedProcedure.setInputStringParameter(3, token);
@@ -44,7 +47,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
         String token = "";
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_getTokenByEmailId(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getTokenByEmailId(?)");
             storedProcedure.setInputStringParameter(1, user.getEmailId());
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
@@ -72,7 +75,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
         boolean passwordUpdated = false;
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_updatePassword(?,?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_updatePassword(?,?)");
             storedProcedure.setInputStringParameter(1, user.getEmailId());
             storedProcedure.setInputStringParameter(2, password);
             storedProcedure.execute();
@@ -94,7 +97,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
         boolean tokenDeleted = false;
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_deleteToken(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_deleteToken(?)");
             storedProcedure.setInputStringParameter(1, token);
             storedProcedure.execute();
             tokenDeleted = true;
@@ -115,7 +118,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
         boolean tokenUpdated = false;
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_updateToken(?,?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_updateToken(?,?)");
             storedProcedure.setInputStringParameter(1, user.getEmailId());
             storedProcedure.setInputStringParameter(2, token);
             storedProcedure.execute();
@@ -137,7 +140,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
         IUser userByEmailId = null;
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_getUserId(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getUserId(?)");
             storedProcedure.setInputStringParameter(1, user.getEmailId());
             ResultSet results = storedProcedure.executeWithResults();
 
@@ -174,7 +177,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
         IUser userByEmailId = null;
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_getEmailByToken(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getEmailByToken(?)");
             storedProcedure.setInputStringParameter(1, token);
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
