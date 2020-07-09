@@ -1,6 +1,6 @@
 package CSCI5308.GroupFormationTool.User;
 
-import CSCI5308.GroupFormationTool.FactoryProducerTest;
+import CSCI5308.GroupFormationTool.TestsInjector;
 
 public class UserDBMock implements IUserRepository {
 
@@ -18,8 +18,7 @@ public class UserDBMock implements IUserRepository {
 
     private String confirmPassword;
 
-    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createUserAbstractFactoryTest();
+    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
 
     public UserDBMock() {
         setToDefaults();
