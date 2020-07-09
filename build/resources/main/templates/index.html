@@ -14,10 +14,6 @@
 <body style="background-color: #e7ebee">
 <div class="d-flex align-items-center text-center">
 
-<<<<<<< HEAD
-    <!-- I got the idea for how to do this from https://www.thymeleaf.org/doc/articles/springsecurity.html -->
-=======
->>>>>>> hotfix
     <div sec:authorize="isAuthenticated()">
         <h4 th:inline="text" class="text-right" style="margin-right: 20px;">Email
             Id: [[${#httpServletRequest.remoteUser}]]</h4>
@@ -39,10 +35,6 @@
         </div>
     </div>
     <div sec:authorize="!isAuthenticated()">
-<<<<<<< HEAD
-        <!-- Send them to login. -->
-=======
->>>>>>> hotfix
         <p>You have not logged in to the application. Please login to
             continue...</p>
         <a th:href="@{/login}">Click here to log in!</a>
