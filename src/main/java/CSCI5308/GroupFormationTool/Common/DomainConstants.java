@@ -63,5 +63,6 @@ public final class DomainConstants {
     public static final String tARole = "TA";
     public static final String instructorRole = "Instructor";
     public static final String studentRole = "Student";
-
+    public static final String AdminRole = "ADMIN";
+    public static final String UserRole = "USER";
 }

@@ -1,5 +1,7 @@
 package CSCI5308.GroupFormationTool.User;
 
+import CSCI5308.GroupFormationTool.Common.FactoryProducer;
+import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
 import java.sql.ResultSet;
@@ -7,12 +9,16 @@ import java.sql.SQLException;
 
 public class UserRepository implements IUserRepository {
 
+    private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
+            createDatabaseAbstractFactory();
+
     @Override
     public boolean createUser(IUser user) {
 
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_create_user(?,?,?,?,?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance(
+                    "sp_create_user(?,?,?,?,?)");
             storedProcedure.setInputStringParameter(1, user.getBannerId());
             storedProcedure.setInputStringParameter(2, user.getFirstName());
             storedProcedure.setInputStringParameter(3, user.getLastName());
@@ -36,7 +42,7 @@ public class UserRepository implements IUserRepository {
         User userWithUserId = null;
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_getUserId(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getUserId(?)");
             storedProcedure.setInputStringParameter(1, user.getEmailId());
             ResultSet results = storedProcedure.executeWithResults();
 
@@ -64,7 +70,7 @@ public class UserRepository implements IUserRepository {
         IUser userByEmailId = null;
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_getUserByEmailId(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getUserByEmailId(?)");
             storedProcedure.setInputStringParameter(1, user.getEmailId());
             ResultSet results = storedProcedure.executeWithResults();
 
@@ -97,7 +103,7 @@ public class UserRepository implements IUserRepository {
         StoredProcedure storedProcedure = null;
         IUser adminDetails = null;
         try {
-            storedProcedure = new StoredProcedure("sp_getAdminDetails");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getAdminDetails");
             ResultSet results = storedProcedure.executeWithResults();
 
             if (results != null) {

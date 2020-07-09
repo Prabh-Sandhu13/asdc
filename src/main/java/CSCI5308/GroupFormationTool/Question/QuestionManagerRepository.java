@@ -2,11 +2,16 @@ package CSCI5308.GroupFormationTool.Question;
 
 import java.sql.SQLException;
 
+import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import CSCI5308.GroupFormationTool.Common.Injector;
+import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
 public class QuestionManagerRepository implements IQuestionManagerRepository {
 
+    private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
+            createDatabaseAbstractFactory();
+    
     @Override
     public long createQuestion(IQuestion question) {
 
@@ -14,7 +19,8 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
         long questionId = -1;
 
         try {
-            storedProcedure = new StoredProcedure("sp_createQuestion(?,?,?,?,?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_createQuestion(?,?,?,?,?)");
             storedProcedure.setInputStringParameter(1, question.getTitle());
             storedProcedure.setInputStringParameter(2, question.getText());
             storedProcedure.setInputStringParameter(3, question.getInstructor().getEmailId());
@@ -45,7 +51,7 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
         StoredProcedure storedProcedure = null;
 
         try {
-            storedProcedure = new StoredProcedure("sp_saveOptions(?,?,?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_saveOptions(?,?,?)");
 
             storedProcedure.setInputStringParameter(1, choice.getText());
             storedProcedure.setInputIntParameter(2, choice.getValue());
@@ -63,21 +69,21 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
     }
     public boolean deleteQuestion(long questionId) {
 
-        StoredProcedure proc = null;
+        StoredProcedure storedProcedure = null;
         boolean status = true;
         try {
-            proc = new StoredProcedure("sp_deleteAQuestion(?,?)");
-            proc.setInputIntParameter(1, questionId);
-            proc.registerOutputParameterBoolean(2);
-            proc.execute();
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_deleteAQuestion(?,?)");
+            storedProcedure.setInputIntParameter(1, questionId);
+            storedProcedure.registerOutputParameterBoolean(2);
+            storedProcedure.execute();
 
-            status = proc.getParameter(2);
+            status = storedProcedure.getParameter(2);
 
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
-            if (null != proc) {
-                proc.removeConnections();
+            if (null != storedProcedure) {
+                storedProcedure.removeConnections();
             }
         }
         return status;

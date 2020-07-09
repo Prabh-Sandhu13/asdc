@@ -2,10 +2,14 @@ package CSCI5308.GroupFormationTool.Common;
 
 import CSCI5308.GroupFormationTool.Course.CourseAbstractFactory;
 import CSCI5308.GroupFormationTool.Course.ICourseAbstractFactory;
+import CSCI5308.GroupFormationTool.Database.DatabaseAbstractFactory;
+import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Password.IPasswordAbstractFactory;
 import CSCI5308.GroupFormationTool.Password.PasswordAbstractFactory;
 import CSCI5308.GroupFormationTool.Question.IQuestionAbstractFactory;
 import CSCI5308.GroupFormationTool.Question.QuestionAbstractFactory;
+import CSCI5308.GroupFormationTool.Security.ISecurityAbstractFactory;
+import CSCI5308.GroupFormationTool.Security.SecurityAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.UserAbstractFactory;
 
@@ -30,4 +34,16 @@ public class AbstractFactory implements IAbstractFactory{
     public IUserAbstractFactory createUserAbstractFactory() {
         return new UserAbstractFactory();
     }
+
+    @Override
+    public ISecurityAbstractFactory createSecurityAbstractFactory() {
+        return new SecurityAbstractFactory();
+    }
+
+    @Override
+    public IDatabaseAbstractFactory createDatabaseAbstractFactory() {
+        return new DatabaseAbstractFactory();
+    }
+
+
 }

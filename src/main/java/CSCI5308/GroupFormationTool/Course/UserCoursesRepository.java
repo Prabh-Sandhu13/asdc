@@ -1,5 +1,7 @@
 package CSCI5308.GroupFormationTool.Course;
 
+import CSCI5308.GroupFormationTool.Common.FactoryProducer;
+import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import CSCI5308.GroupFormationTool.User.User;
@@ -10,12 +12,16 @@ import java.util.ArrayList;
 
 public class UserCoursesRepository implements IUserCoursesRepository {
 
+    private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
+            createDatabaseAbstractFactory();
+
     @Override
     public String getUserRoleByEmailId(String emailId) {
         StoredProcedure storedProcedure = null;
         String role = "Guest";
         try {
-            storedProcedure = new StoredProcedure("sp_getUserRoleByEmailId(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getUserRoleByEmailId(?)");
             storedProcedure.setInputStringParameter(1, emailId);
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
@@ -47,7 +53,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         StoredProcedure storedProcedure = null;
         ArrayList<ICourse> studentCourseList = new ArrayList<ICourse>();
         try {
-            storedProcedure = new StoredProcedure("sp_getStudentCoursesByEmailId(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getStudentCoursesByEmailId(?)");
             storedProcedure.setInputStringParameter(1, emailId);
 
             ResultSet results = storedProcedure.executeWithResults();
@@ -77,7 +84,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         StoredProcedure storedProcedure = null;
         ArrayList<IUser> userList = new ArrayList<IUser>();
         try {
-            storedProcedure = new StoredProcedure("sp_getUsersCurrentlyNotInstructorsForCourse(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getUsersCurrentlyNotInstructorsForCourse(?)");
             storedProcedure.setInputStringParameter(1, courseId);
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
@@ -109,7 +117,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         StoredProcedure storedProcedure = null;
         ArrayList<ICourse> taCourseList = new ArrayList<ICourse>();
         try {
-            storedProcedure = new StoredProcedure("sp_getTACoursesByEmailId(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getTACoursesByEmailId(?)");
             storedProcedure.setInputStringParameter(1, emailId);
             ResultSet results = storedProcedure.executeWithResults();
 
@@ -141,7 +150,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         StoredProcedure storedProcedure = null;
         ArrayList<ICourse> instructorCourseList = new ArrayList<ICourse>();
         try {
-            storedProcedure = new StoredProcedure("sp_getInstructorCoursesByEmailId(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getInstructorCoursesByEmailId(?)");
             storedProcedure.setInputStringParameter(1, emailId);
             ResultSet results = storedProcedure.executeWithResults();
 
@@ -172,7 +182,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         StoredProcedure storedProcedure = null;
         ArrayList<IUser> taList = new ArrayList<IUser>();
         try {
-            storedProcedure = new StoredProcedure("sp_getTAForCourse(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getTAForCourse(?)");
             storedProcedure.setInputStringParameter(1, courseId);
             ResultSet results = storedProcedure.executeWithResults();
 
@@ -205,7 +215,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_addInstructorsToCourse(?,?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_addInstructorsToCourse(?,?)");
             storedProcedure.setInputIntParameter(1, instructor);
             storedProcedure.setInputStringParameter(2, courseId);
             storedProcedure.execute();
@@ -225,7 +236,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         StoredProcedure storedProcedure = null;
         String emailId = user.getEmailId();
         try {
-            storedProcedure = new StoredProcedure("sp_getUserIdByEmailId(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getUserIdByEmailId(?)");
             storedProcedure.setInputStringParameter(1, emailId);
 
             ResultSet results = storedProcedure.executeWithResults();
@@ -257,7 +269,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     private boolean assignUserAsTA(String userId, String courseId) {
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_addTAToCourse(?,?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_addTAToCourse(?,?)");
             storedProcedure.setInputStringParameter(1, userId);
             storedProcedure.setInputStringParameter(2, courseId);
             storedProcedure.execute();
@@ -276,7 +289,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     public boolean getUserRoleForCourse(String userId, String courseId) {
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_getUserRoleForCourse(?,?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getUserRoleForCourse(?,?)");
             storedProcedure.setInputStringParameter(1, userId);
             storedProcedure.setInputStringParameter(2, courseId);
             ResultSet results = storedProcedure.executeWithResults();
@@ -304,7 +318,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         StoredProcedure storedProcedure = null;
         ArrayList<IUser> instructorList = new ArrayList<IUser>();
         try {
-            storedProcedure = new StoredProcedure("sp_getInstructorsForCourse(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getInstructorsForCourse(?)");
             storedProcedure.setInputStringParameter(1, courseId);
 
             ResultSet results = storedProcedure.executeWithResults();

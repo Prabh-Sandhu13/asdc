@@ -34,7 +34,7 @@ public class CourseController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        userInstance = Injector.instance().getUser();
+        userInstance = new User();
         String emailId = authentication.getPrincipal().toString();
         ICourse course = new Course();
 
@@ -87,7 +87,7 @@ public class CourseController {
     }
 
     @PostMapping("/enrollTA")
-    public String addTA(@RequestParam(value = "courseId") String courseId, @ModelAttribute User user, Model model) {
+    public String addTA(@RequestParam(value = "courseId") String courseId, @ModelAttribute("user") User user, Model model) {
         IUserCourses userCourses = new UserCourses();
         boolean success = userCourses.enrollTAForCourseUsingEmailId(user, courseId);
         ArrayList<IUser> taList = null;
@@ -110,8 +110,8 @@ public class CourseController {
 
     @GetMapping("/admin/allAdminCourses")
     public String allCourses(Model model) {
-        ICourseRepository courseDB = Injector.instance().getCourseRepository();
-        List<ICourse> allCourses = courseDB.getAllCourses();
+        ICourse course = new Course();
+        List<ICourse> allCourses = course.getAllCourses();
         model.addAttribute("courses", allCourses);
         return "course/allCourses";
     }
@@ -123,7 +123,7 @@ public class CourseController {
     }
 
     @PostMapping("/admin/addCourse")
-    public String addCourse(@ModelAttribute Course course, Model model) {
+    public String addCourse(@ModelAttribute("course") Course course, Model model) {
         boolean status = course.createCourse();
         List<ICourse> allCourses = course.getAllCourses();
 
@@ -137,8 +137,8 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/admin/deleteCourse", method = {RequestMethod.GET, RequestMethod.POST})
-    public String deleteCourse(@RequestParam String id, Model model) {
-        ICourse course= new Course();
+    public String deleteCourse(@RequestParam(value = "id") String id, Model model) {
+        ICourse course = new Course();
         boolean status = course.deleteCourse(id);
         List<ICourse> allCourses = course.getAllCourses();
 

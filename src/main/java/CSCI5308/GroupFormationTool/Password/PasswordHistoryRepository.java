@@ -1,5 +1,7 @@
 package CSCI5308.GroupFormationTool.Password;
 
+import CSCI5308.GroupFormationTool.Common.FactoryProducer;
+import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
@@ -11,12 +13,15 @@ import java.util.Date;
 
 public class PasswordHistoryRepository implements IPasswordHistoryRepository {
 
+    private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
+            createDatabaseAbstractFactory();
+    
     @Override
     public String getSettingValue(String settingName) {
         String settingValue = null;
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_getSettingvalue(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getSettingvalue(?)");
             storedProcedure.setInputStringParameter(1, settingName);
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
@@ -42,7 +47,7 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
         ArrayList<String> nPasswords = new ArrayList<String>();
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_getNPasswords(?,?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getNPasswords(?,?)");
             storedProcedure.setInputStringParameter(1, "" + user.getId());
             storedProcedure.setInputStringParameter(2, "" + num);
             ResultSet results = storedProcedure.executeWithResults();
@@ -73,7 +78,8 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
         SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         try {
-            storedProcedure = new StoredProcedure("sp_addPasswordHistory(?,?,?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_addPasswordHistory(?,?,?)");
             storedProcedure.setInputStringParameter(1, Long.toString(user.getId()));
             storedProcedure.setInputStringParameter(2, dateTimeFormat.format(currentDate));
             storedProcedure.setInputStringParameter(3, password);

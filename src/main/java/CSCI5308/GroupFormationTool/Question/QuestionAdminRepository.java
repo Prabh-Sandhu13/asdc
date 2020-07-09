@@ -1,17 +1,20 @@
 package CSCI5308.GroupFormationTool.Question;
 
+import CSCI5308.GroupFormationTool.Common.FactoryProducer;
+import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
+import CSCI5308.GroupFormationTool.Database.StoredProcedure;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import CSCI5308.GroupFormationTool.Common.FactoryProducer;
-import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.Database.StoredProcedure;
-
-public class QuestionAdminRepository implements IQuestionAdminRepository{
+public class QuestionAdminRepository implements IQuestionAdminRepository {
 
     private IQuestionAbstractFactory questionAbstractFactory = FactoryProducer.
             getFactory().createQuestionAbstractFactory();
+
+    private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
+            createDatabaseAbstractFactory();
 
     @Override
     public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
@@ -19,7 +22,8 @@ public class QuestionAdminRepository implements IQuestionAdminRepository{
         StoredProcedure storedProcedure = null;
         ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
         try {
-            storedProcedure = new StoredProcedure("sp_getQuestionsForInstructor(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getQuestionsForInstructor(?)");
             storedProcedure.setInputStringParameter(1, emailId);
 
             ResultSet results = storedProcedure.executeWithResults();
@@ -52,7 +56,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository{
         StoredProcedure storedProcedure = null;
         IQuestion question = questionAbstractFactory.createQuestionInstance();
         try {
-            storedProcedure = new StoredProcedure("sp_getQuestionById(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getQuestionById(?)");
             storedProcedure.setInputIntParameter(1, questionId);
             ResultSet results = storedProcedure.executeWithResults();
 
@@ -83,7 +87,8 @@ public class QuestionAdminRepository implements IQuestionAdminRepository{
         StoredProcedure storedProcedure = null;
         ArrayList<IChoice> choiceList = questionAbstractFactory.createChoiceListInstance();
         try {
-            storedProcedure = new StoredProcedure("sp_getOptionsForQuestion(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getOptionsForQuestion(?)");
             storedProcedure.setInputIntParameter(1, questionId);
             ResultSet results = storedProcedure.executeWithResults();
 
@@ -108,14 +113,15 @@ public class QuestionAdminRepository implements IQuestionAdminRepository{
     }
 
 
-	@Override
+    @Override
 
     public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy) {
 
         StoredProcedure storedProcedure = null;
         ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
         try {
-            storedProcedure = new StoredProcedure("sp_getSortedQuestionsForInstructor(?,?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getSortedQuestionsForInstructor(?,?)");
             storedProcedure.setInputStringParameter(1, emailId);
             storedProcedure.setInputStringParameter(2, sortBy);
 

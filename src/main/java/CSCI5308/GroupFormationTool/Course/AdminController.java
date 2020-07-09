@@ -18,8 +18,8 @@ public class AdminController {
     @GetMapping("/admin/allCourses")
     public String adminCourses(Model model) {
 
-        ICourseRepository courseDB = Injector.instance().getCourseRepository();
-        List<ICourse> allCourses = courseDB.getAllCourses();
+        ICourse course = new Course();
+        List<ICourse> allCourses = course.getAllCourses();
         model.addAttribute("courses", allCourses);
         return "course/allCourses";
     }
