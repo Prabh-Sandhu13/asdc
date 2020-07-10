@@ -1,165 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Course.CourseControllerTest" tests="9" skipped="0" failures="1" errors="0" timestamp="2020-07-10T05:03:25" hostname="Prabhjots-MacBook-Pro.local" time="1.661">
+<testsuite name="CSCI5308.GroupFormationTool.Course.CourseControllerTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2020-07-09T16:37:32" hostname="Prabhjots-MacBook-Pro.local" time="0.432">
   <properties/>
-  <testcase name="addCourseTest()" classname="CSCI5308.GroupFormationTool.Course.CourseControllerTest" time="0.316"/>
+  <testcase name="addCourseTest()" classname="CSCI5308.GroupFormationTool.Course.CourseControllerTest" time="0.308"/>
   <testcase name="uploadCSVFileTest()" classname="CSCI5308.GroupFormationTool.Course.CourseControllerTest" time="0.01"/>
   <testcase name="enrollTATest()" classname="CSCI5308.GroupFormationTool.Course.CourseControllerTest" time="0.025"/>
   <testcase name="allCoursesTest()" classname="CSCI5308.GroupFormationTool.Course.CourseControllerTest" time="0.006"/>
-  <testcase name="addTATest()" classname="CSCI5308.GroupFormationTool.Course.CourseControllerTest" time="0.022"/>
+  <testcase name="addTATest()" classname="CSCI5308.GroupFormationTool.Course.CourseControllerTest" time="0.017"/>
   <testcase name="courseDetailTest()" classname="CSCI5308.GroupFormationTool.Course.CourseControllerTest" time="0.007"/>
-  <testcase name="courseListTest()" classname="CSCI5308.GroupFormationTool.Course.CourseControllerTest" time="1.241">
-    <failure message="org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NullPointerException" type="org.springframework.web.util.NestedServletException">org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NullPointerException
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
-	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:167)
-	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:134)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
-	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:134)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:134)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:134)
-	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:183)
-	at CSCI5308.GroupFormationTool.Course.CourseControllerTest.courseListTest(CourseControllerTest.java:58)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
-	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:675)
-	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:117)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:184)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:180)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:127)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:135)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1507)
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1507)
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:220)
-	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:188)
-	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:202)
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:181)
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
-	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:99)
-	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:79)
-	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:75)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:61)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
-	at com.sun.proxy.$Proxy2.stop(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.stop(TestWorker.java:132)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:182)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:164)
-	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:412)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
-	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
-	at java.base/java.lang.Thread.run(Thread.java:830)
-Caused by: java.lang.NullPointerException
-	at CSCI5308.GroupFormationTool.Course.CourseController.courseList(CourseController.java:48)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
-	... 124 more
-</failure>
-  </testcase>
-  <testcase name="deleteCourseTest()" classname="CSCI5308.GroupFormationTool.Course.CourseControllerTest" time="0.021"/>
-  <testcase name="addCourseFormTest()" classname="CSCI5308.GroupFormationTool.Course.CourseControllerTest" time="0.008"/>
-  <system-out><![CDATA[2020-07-10 02:03:25.147  INFO 10909 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [CSCI5308.GroupFormationTool.Course.CourseControllerTest], using SpringBootContextLoader
-2020-07-10 02:03:25.148  INFO 10909 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [CSCI5308.GroupFormationTool.Course.CourseControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2020-07-10 02:03:25.148  INFO 10909 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [CSCI5308.GroupFormationTool.Course.CourseControllerTest]: CourseControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2020-07-10 02:03:25.155  INFO 10909 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration CSCI5308.GroupFormationTool.GroupFormationToolApplication for test class CSCI5308.GroupFormationTool.Course.CourseControllerTest
-2020-07-10 02:03:25.155  INFO 10909 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2020-07-10 02:03:25.156  INFO 10909 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@2d73b089, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@60043d98, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@214b8932, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@fb76b52, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3ff075d5, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@7ed9674e, org.springframework.test.context.event.EventPublishingTestExecutionListener@3a663be, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@377f6563, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@b9df084, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@3e4b05ae, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@e402a4a, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@4258129c, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@26a5c383]
+  <testcase name="courseListTest()" classname="CSCI5308.GroupFormationTool.Course.CourseControllerTest" time="0.031"/>
+  <testcase name="deleteCourseTest()" classname="CSCI5308.GroupFormationTool.Course.CourseControllerTest" time="0.018"/>
+  <testcase name="addCourseFormTest()" classname="CSCI5308.GroupFormationTool.Course.CourseControllerTest" time="0.006"/>
+  <system-out><![CDATA[2020-07-09 13:37:31.624  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [CSCI5308.GroupFormationTool.Course.CourseControllerTest], using SpringBootContextLoader
+2020-07-09 13:37:31.625  INFO 7318 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [CSCI5308.GroupFormationTool.Course.CourseControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2020-07-09 13:37:31.625  INFO 7318 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [CSCI5308.GroupFormationTool.Course.CourseControllerTest]: CourseControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2020-07-09 13:37:31.632  INFO 7318 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration CSCI5308.GroupFormationTool.GroupFormationToolApplication for test class CSCI5308.GroupFormationTool.Course.CourseControllerTest
+2020-07-09 13:37:31.633  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2020-07-09 13:37:31.633  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@7ed9674e, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@3a663be, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@377f6563, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@b9df084, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3e4b05ae, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@e402a4a, org.springframework.test.context.event.EventPublishingTestExecutionListener@4258129c, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@26a5c383, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@40a5d48c, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@4f38b4a8, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@4df69321, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@4547e8c7, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@2b284557]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -169,21 +25,21 @@ Caused by: java.lang.NullPointerException
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-10 02:03:25.172  INFO 10909 --- [    Test worker] C.G.Course.CourseControllerTest          : Starting CourseControllerTest on Prabhjots-MacBook-Pro.local with PID 10909 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-10 02:03:25.173  INFO 10909 --- [    Test worker] C.G.Course.CourseControllerTest          : No active profile set, falling back to default profiles: default
-2020-07-10 02:03:25.353  INFO 10909 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
-2020-07-10 02:03:25.401  INFO 10909 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6f3b39bc, org.springframework.security.web.context.SecurityContextPersistenceFilter@4975d2ba, org.springframework.security.web.header.HeaderWriterFilter@36d73598, org.springframework.security.web.csrf.CsrfFilter@1f7c5cd8, org.springframework.security.web.authentication.logout.LogoutFilter@226c6e58, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@f7db36e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@68bc3880, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6748abfa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2f1b4a38, org.springframework.security.web.session.SessionManagementFilter@3412c27c, org.springframework.security.web.access.ExceptionTranslationFilter@2f4739f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4bd75d5e]
-2020-07-10 02:03:25.478  INFO 10909 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-07-10 02:03:25.499  INFO 10909 --- [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2020-07-10 02:03:25.599  INFO 10909 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2020-07-10 02:03:25.599  INFO 10909 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2020-07-10 02:03:25.606  INFO 10909 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 7 ms
-2020-07-10 02:03:25.615  INFO 10909 --- [    Test worker] C.G.Course.CourseControllerTest          : Started CourseControllerTest in 0.458 seconds (JVM running for 4.065)
+2020-07-09 13:37:31.649  INFO 7318 --- [    Test worker] C.G.Course.CourseControllerTest          : Starting CourseControllerTest on Prabhjots-MacBook-Pro.local with PID 7318 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-09 13:37:31.650  INFO 7318 --- [    Test worker] C.G.Course.CourseControllerTest          : No active profile set, falling back to default profiles: default
+2020-07-09 13:37:31.824  INFO 7318 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
+2020-07-09 13:37:31.871  INFO 7318 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7f2c0850, org.springframework.security.web.context.SecurityContextPersistenceFilter@2b1d3aad, org.springframework.security.web.header.HeaderWriterFilter@456b844d, org.springframework.security.web.csrf.CsrfFilter@68bc3880, org.springframework.security.web.authentication.logout.LogoutFilter@132dc5f9, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@a93d9b0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@928434f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1078f7cb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1f62b602, org.springframework.security.web.session.SessionManagementFilter@226c6e58, org.springframework.security.web.access.ExceptionTranslationFilter@6748abfa, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3c53e15f]
+2020-07-09 13:37:31.947  INFO 7318 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-09 13:37:31.968  INFO 7318 --- [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-07-09 13:37:32.069  INFO 7318 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2020-07-09 13:37:32.069  INFO 7318 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2020-07-09 13:37:32.077  INFO 7318 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 8 ms
+2020-07-09 13:37:32.088  INFO 7318 --- [    Test worker] C.G.Course.CourseControllerTest          : Started CourseControllerTest in 0.453 seconds (JVM running for 4.316)
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /admin/addCourse
-       Parameters = {_csrf=[0e85dd2e-ef75-43ea-9914-f4f2608e67f2]}
+       Parameters = {_csrf=[3dc7c911-75bd-4c3d-97a5-823d4981c820]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}
@@ -203,7 +59,7 @@ ModelAndView:
         View name = course/allCourses
              View = null
         Attribute = course
-            value = CSCI5308.GroupFormationTool.Course.Course@2467668d
+            value = CSCI5308.GroupFormationTool.Course.Course@1cf5cf9f
            errors = []
         Attribute = failureMessage
             value = The course could not be added since the course already exists!
@@ -252,7 +108,7 @@ MockHttpServletResponse:
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /admin/addCourse
-       Parameters = {_csrf=[07524b4c-62d2-4415-a219-f00b048e38df]}
+       Parameters = {_csrf=[4651edbd-6f0e-4d7f-be65-5c9a4d944625]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}
@@ -272,7 +128,7 @@ ModelAndView:
         View name = course/allCourses
              View = null
         Attribute = course
-            value = CSCI5308.GroupFormationTool.Course.Course@60e64406
+            value = CSCI5308.GroupFormationTool.Course.Course@3d69505f
            errors = []
         Attribute = failureMessage
             value = The course could not be added since the course already exists!
@@ -324,7 +180,7 @@ MockHttpServletRequest:
        Parameters = {courseId=[CSCI5308]}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@34046f0b}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@6a7d7a2e}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -388,7 +244,7 @@ MockHttpServletRequest:
        Parameters = {courseId=[CSCI5308]}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@5fa649b}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@4d3470ee}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -405,7 +261,7 @@ ModelAndView:
         View name = course/enrollTA
              View = null
         Attribute = user
-            value = CSCI5308.GroupFormationTool.User.User@7bed6088
+            value = CSCI5308.GroupFormationTool.User.User@5e66f7ba
            errors = []
         Attribute = taList
             value = []
@@ -440,7 +296,7 @@ MockHttpServletResponse:
 <div class="container" style="padding:20px;">
     <form autocomplete="off" action="/enrollTA?courseId=CSCI5308"
           method="post" class="m-t col-md-4 col-md-offset-4" role="form"
-          data-toggle="validator"><input type="hidden" name="_csrf" value="e00aa00c-f5e8-417f-9275-084de5bb0f14"/>
+          data-toggle="validator"><input type="hidden" name="_csrf" value="0cf23cac-78e9-40d9-a9ef-dddaabe123ca"/>
         
         
         <br>
@@ -490,7 +346,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@727c37ad}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@7b0b6597}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -551,7 +407,7 @@ MockHttpServletResponse:
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /enrollTA
-       Parameters = {courseId=[CSCI5308], _csrf=[00015bb4-cbaf-4441-b835-24ade4b571d5]}
+       Parameters = {courseId=[CSCI5308], _csrf=[cbee2731-5ad3-4dd5-a36a-6dd90191014a]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}
@@ -571,7 +427,7 @@ ModelAndView:
         View name = course/enrollTA
              View = null
         Attribute = user
-            value = CSCI5308.GroupFormationTool.User.User@287e8790
+            value = CSCI5308.GroupFormationTool.User.User@5ceccc9a
            errors = []
         Attribute = error
             value = not added
@@ -608,7 +464,7 @@ MockHttpServletResponse:
 <div class="container" style="padding:20px;">
     <form autocomplete="off" action="/enrollTA?courseId=CSCI5308"
           method="post" class="m-t col-md-4 col-md-offset-4" role="form"
-          data-toggle="validator"><input type="hidden" name="_csrf" value="00015bb4-cbaf-4441-b835-24ade4b571d5"/>
+          data-toggle="validator"><input type="hidden" name="_csrf" value="cbee2731-5ad3-4dd5-a36a-6dd90191014a"/>
         <div class="validation-message alert alert-danger"
              role="alert">TA not added!!
         </div>
@@ -657,7 +513,7 @@ MockHttpServletResponse:
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /enrollTA
-       Parameters = {courseId=[CSCI5308], _csrf=[7f5ff09e-f9ef-4a08-998c-5a97bf14e372]}
+       Parameters = {courseId=[CSCI5308], _csrf=[623be3bf-4480-487d-9e18-ba5e23a83bd2]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}
@@ -677,7 +533,7 @@ ModelAndView:
         View name = course/enrollTA
              View = null
         Attribute = user
-            value = CSCI5308.GroupFormationTool.User.User@6f03e086
+            value = CSCI5308.GroupFormationTool.User.User@10f4af56
            errors = []
         Attribute = error
             value = not added
@@ -714,7 +570,7 @@ MockHttpServletResponse:
 <div class="container" style="padding:20px;">
     <form autocomplete="off" action="/enrollTA?courseId=CSCI5308"
           method="post" class="m-t col-md-4 col-md-offset-4" role="form"
-          data-toggle="validator"><input type="hidden" name="_csrf" value="7f5ff09e-f9ef-4a08-998c-5a97bf14e372"/>
+          data-toggle="validator"><input type="hidden" name="_csrf" value="623be3bf-4480-487d-9e18-ba5e23a83bd2"/>
         <div class="validation-message alert alert-danger"
              role="alert">TA not added!!
         </div>
@@ -766,7 +622,7 @@ MockHttpServletRequest:
        Parameters = {courseName=[CSCI5308 name]}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@4a051305}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@2da7ff8d}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -834,9 +690,370 @@ MockHttpServletResponse:
           Cookies = []
 
 MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /courseList
+       Parameters = {}
+          Headers = []
+             Body = <no character encoding set>
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@447b3129}
+
+Handler:
+             Type = CSCI5308.GroupFormationTool.Course.CourseController
+           Method = CSCI5308.GroupFormationTool.Course.CourseController#courseList(Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = course/allCourses
+             View = null
+        Attribute = courses
+            value = []
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="favicon.ico"/>
+    <title>Admin Course List</title>
+    <link
+            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous"/>
+
+</head>
+<body style="background-color: #e7ebee">
+<div class="container">
+    <div>
+        <p>You have not logged in to the application. Please login to
+            continue...</p>
+        <a href="/login">Click here to log in!</a>
+    </div>
+
+    
+</div>
+</body>
+</html>
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /courseList
+       Parameters = {}
+          Headers = []
+             Body = <no character encoding set>
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@76c68084}
+
+Handler:
+             Type = CSCI5308.GroupFormationTool.Course.CourseController
+           Method = CSCI5308.GroupFormationTool.Course.CourseController#courseList(Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = course/guestCourses
+             View = null
+        Attribute = courses
+            value = []
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="favicon.ico"/>
+    <title>Guest Course List</title>
+    <link
+            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous"/>
+
+</head>
+<body style="background-color: #e7ebee">
+<div class="container">
+    <div>
+        <p>You have not logged in to the application. Please login to
+            continue...</p>
+        <a href="/login">Click here to log in!</a>
+    </div>
+
+    
+</div>
+</body>
+</html>
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /courseList
+       Parameters = {}
+          Headers = []
+             Body = <no character encoding set>
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@18f7db4c}
+
+Handler:
+             Type = CSCI5308.GroupFormationTool.Course.CourseController
+           Method = CSCI5308.GroupFormationTool.Course.CourseController#courseList(Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = course/studentCourses
+             View = null
+        Attribute = courses
+            value = []
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="favicon.ico"/>
+    <title>Student Course List</title>
+    <link
+            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous"/>
+
+</head>
+<body style="background-color: #e7ebee">
+<div class="container">
+    <h3 class="text-center">Registered Courses</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Course Id</th>
+                <th scope="col">Course Name</th>
+                <th scope="col">Course Details</th>
+                <th scope="col">Course Credits</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /courseList
+       Parameters = {}
+          Headers = []
+             Body = <no character encoding set>
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@1d510aae}
+
+Handler:
+             Type = CSCI5308.GroupFormationTool.Course.CourseController
+           Method = CSCI5308.GroupFormationTool.Course.CourseController#courseList(Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = course/taCourses
+             View = null
+        Attribute = studentCourses
+            value = []
+        Attribute = taCourses
+            value = []
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="favicon.ico"/>
+    <title>TA Course List</title>
+    <link
+            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous"/>
+
+</head>
+<body style="background-color: #e7ebee">
+<div class="container">
+    <h3 class="text-center">Registered Courses(Student)</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Course Id</th>
+                <th scope="col">Course Name</th>
+                <th scope="col">Course Details</th>
+                <th scope="col">Course Credits</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            </tbody>
+        </table>
+    </div>
+    <div></div>
+</div>
+<div class="container">
+    <h3 class="text-center">Registered Courses(TA)</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Course Id</th>
+                <th scope="col">Course Name</th>
+                <th scope="col">Course Details</th>
+                <th scope="col">Course Credits</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /courseList
+       Parameters = {}
+          Headers = []
+             Body = <no character encoding set>
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@45b5c83b}
+
+Handler:
+             Type = CSCI5308.GroupFormationTool.Course.CourseController
+           Method = CSCI5308.GroupFormationTool.Course.CourseController#courseList(Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = course/instructorCourses
+             View = null
+        Attribute = courses
+            value = []
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="favicon.ico"/>
+    <title>Instructor Course List</title>
+    <link
+            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous"/>
+
+</head>
+<body style="background-color: #e7ebee">
+<div class="container">
+    <div>
+        <p>You have not logged in to the application. Please login to
+            continue...</p>
+        <a href="/login">Click here to log in!</a>
+    </div>
+
+    
+</div>
+</body>
+</html>
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /admin/deleteCourse
-       Parameters = {id=[CSCI5308], _csrf=[5b4f02fa-0917-49d0-a4de-bd460d6eda6a]}
+       Parameters = {id=[CSCI5308], _csrf=[53f5928c-36d2-4429-ace8-bb4d5306cece]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}
@@ -902,7 +1119,7 @@ MockHttpServletResponse:
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /admin/deleteCourse
-       Parameters = {id=[CSCI5308], _csrf=[ef66c81b-c33e-49b5-ac76-98c39f22db22]}
+       Parameters = {id=[CSCI5308], _csrf=[6d696864-0701-4254-bfe3-abc4f468005b]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}
@@ -971,7 +1188,7 @@ MockHttpServletRequest:
        Parameters = {id=[CSCI5308]}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@2da157d7}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@6b6243c8}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -1037,7 +1254,7 @@ MockHttpServletRequest:
        Parameters = {id=[CSCI5308]}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@78705d62}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@316f8dc5}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -1103,7 +1320,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@5f48a254}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@131d3655}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -1120,7 +1337,7 @@ ModelAndView:
         View name = course/addCourse
              View = null
         Attribute = course
-            value = CSCI5308.GroupFormationTool.Course.Course@7f2363b2
+            value = CSCI5308.GroupFormationTool.Course.Course@3ea070c9
            errors = []
 
 FlashMap:
