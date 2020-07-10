@@ -2,8 +2,6 @@ package CSCI5308.GroupFormationTool.User;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
-import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
 import CSCI5308.GroupFormationTool.Password.IPasswordAbstractFactory;
 import CSCI5308.GroupFormationTool.Password.IPasswordHistoryManager;
 import CSCI5308.GroupFormationTool.Password.IPolicy;
@@ -120,36 +118,36 @@ public class User implements IUser {
     }
 
     @Override
-    public boolean createUser(IUser user) {
+    public String createUser(IUser user) {
         IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         IPasswordAbstractFactory passwordAbstractFactory = Injector.instance().getPasswordAbstractFactory();
+        String errorMessage = null;
         if (!checkForValues(user)) {
-            return false;
+            errorMessage = DomainConstants.signupInvalidDetails;
         }
         policyInstance = passwordAbstractFactory.createPolicyInstance();
         String password = user.getPassword();
         String passwordSecurityError = policyInstance.passwordSPolicyCheck(password);
         if (passwordSecurityError != null) {
-            throw new PasswordException(passwordSecurityError);
+            errorMessage = passwordSecurityError;
         }
         if (!(user.getPassword().equals(user.getConfirmPassword()))) {
-            throw new PasswordException(DomainConstants.passwordsDontMatch);
+            errorMessage = DomainConstants.passwordsDontMatch;
         }
         userRepository = Injector.instance().getUserRepository();
         passwordHistoryManager = Injector.instance().getPasswordHistoryManager();
-        boolean success = false;
         encryptor = Injector.instance().getPasswordEncryptor();
         user.setPassword(encryptor.encoder(user.getPassword()));
         IUser userByEmailId = userRepository.getUserByEmailId(user);
         if (userByEmailId == null) {
-            success = userRepository.createUser(user);
+            userRepository.createUser(user);
             IUser userWithUserId = userRepository.getUserIdByEmailId(user);
             passwordHistoryManager.addPasswordHistory(userWithUserId, user.getPassword());
         } else {
-            throw new UserAlreadyExistsException(DomainConstants.userAlreadyExists
-                    .replace("[[emailId]]", user.getEmailId()));
+            errorMessage = DomainConstants.userAlreadyExists
+                    .replace("[[emailId]]", user.getEmailId());
         }
-        return success;
+        return errorMessage;
     }
 
     @Override

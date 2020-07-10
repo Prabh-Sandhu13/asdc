@@ -2,10 +2,6 @@ package CSCI5308.GroupFormationTool.Password;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
-import CSCI5308.GroupFormationTool.ErrorHandling.PasswordHistoryException;
-import CSCI5308.GroupFormationTool.ErrorHandling.TokenExpiredException;
-import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
 import CSCI5308.GroupFormationTool.Mail.IMailManager;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.User.IUser;
@@ -20,11 +16,12 @@ public class ForgotPasswordManager implements IForgotPasswordManager {
     private IPolicy policyInstance;
 
     @Override
-    public boolean notifyUser(IUser user) {
+    public String notifyUser(IUser user) {
         forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
         tokenGenerator = Injector.instance().getTokenGenerator();
         mailManager = Injector.instance().getMailManager();
         encryptor = Injector.instance().getPasswordEncryptor();
+        String errorMessage = null;
         IUser userByEmailId = forgotPasswordRepository.getUserId(user);
         if (userByEmailId != null) {
             String token = forgotPasswordRepository.getToken(userByEmailId);
@@ -37,42 +34,41 @@ public class ForgotPasswordManager implements IForgotPasswordManager {
             }
             mailManager.sendForgotPasswordMail(userByEmailId, token);
         } else {
-            throw new UserAlreadyExistsException(DomainConstants.userDoesNotExists
-                    .replace("[[emailId]]", user.getEmailId()));
+            errorMessage = DomainConstants.userDoesNotExists
+                    .replace("[[emailId]]", user.getEmailId());
         }
-        return true;
+        return errorMessage;
     }
 
     @Override
-    public boolean updatePassword(IUser user, String token) {
+    public String updatePassword(IUser user, String token) {
         IPasswordAbstractFactory passwordAbstractFactory = Injector.instance().getPasswordAbstractFactory();
         policyInstance = passwordAbstractFactory.createPolicyInstance();
         String password = user.getPassword();
         String passwordSecurityError = policyInstance.passwordSPolicyCheck(password);
+        String errorMessage = null;
         if (passwordSecurityError != null) {
-            throw new PasswordException(passwordSecurityError);
+            errorMessage = passwordSecurityError;
         }
         if (!(user.getPassword().equals(user.getConfirmPassword()))) {
-            throw new PasswordException(DomainConstants.passwordsDontMatch);
+        	errorMessage = DomainConstants.passwordsDontMatch;
         }
-        boolean updated = false;
         boolean isHistoryViolated = false;
         forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
         passwordHistoryManager = Injector.instance().getPasswordHistoryManager();
         encryptor = Injector.instance().getPasswordEncryptor();
         IUser userByEmailId = forgotPasswordRepository.getEmailByToken(user, token);
         if (userByEmailId == null) {
-            throw new TokenExpiredException(DomainConstants.tokenExpiredMessage);
+            errorMessage = DomainConstants.tokenExpiredMessage;
         }
         isHistoryViolated = passwordHistoryManager.isHistoryViolated(userByEmailId, user.getPassword());
         if (isHistoryViolated) {
-            throw new PasswordHistoryException(DomainConstants.passwordHistoryMessage
-                    .replace("[[history]]", passwordHistoryManager.getSettingValue(DomainConstants.passwordHistory)));
+            errorMessage = DomainConstants.passwordHistoryMessage
+                    .replace("[[history]]", passwordHistoryManager.getSettingValue(DomainConstants.passwordHistory));
         }
         String encrypted_password = encryptor.encoder(user.getPassword());
         forgotPasswordRepository.updatePassword(userByEmailId, encrypted_password);
         passwordHistoryManager.addPasswordHistory(userByEmailId, encrypted_password);
-        updated = forgotPasswordRepository.deleteToken(user, token);
-        return updated;
+        return errorMessage;
     }
 }

@@ -2,8 +2,7 @@ package CSCI5308.GroupFormationTool.Security;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
-import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
+
 import CSCI5308.GroupFormationTool.Password.IPasswordAbstractFactory;
 import CSCI5308.GroupFormationTool.Password.IPolicy;
 import CSCI5308.GroupFormationTool.User.IUser;
@@ -26,23 +25,27 @@ public class UserRegistrationController implements WebMvcConfigurer {
         IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         IUser userInstance = userAbstractFactory.createUserInstance();
         ModelAndView modelAndView = null;
-        boolean success = false;
-        try {
-            success = userInstance.createUser(user);
-            if (success) {
-                modelAndView = new ModelAndView("login");
-            } else {
-                modelAndView = new ModelAndView("signup");
-                modelAndView.addObject("invalidDetails", DomainConstants.signupInvalidDetails);
+        String errorMessage = null;
+        
+            errorMessage = userInstance.createUser(user);
+            if (null == errorMessage) {
+                modelAndView = new ModelAndView("user/login");
+            } 
+            else {
+            	if(errorMessage.equals(DomainConstants.signupInvalidDetails)) {
+                modelAndView = new ModelAndView("user/signup");
+                modelAndView.addObject("invalidDetails", errorMessage);
+            	}
+            	else if (errorMessage.equals(DomainConstants.userAlreadyExists
+                        .replace("[[emailId]]", user.getEmailId()))) {
+                    modelAndView = new ModelAndView("user/signup");
+                    modelAndView.addObject("userAlreadyExists", errorMessage);
+            	}
+            	else{
+                    modelAndView = new ModelAndView("user/signup");
+                    modelAndView.addObject("passwordError", errorMessage);
+            	}
             }
-        } catch (UserAlreadyExistsException uaex) {
-            modelAndView = new ModelAndView("user/signup");
-            modelAndView.addObject("userAlreadyExists", DomainConstants.userAlreadyExists
-                    .replace("[[emailId]]", user.getEmailId()));
-        } catch (PasswordException pex) {
-            modelAndView = new ModelAndView("user/signup");
-            modelAndView.addObject("passwordError", pex.getMessage());
-        }
         return modelAndView;
     }
 

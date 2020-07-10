@@ -2,10 +2,6 @@ package CSCI5308.GroupFormationTool.Password;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
-import CSCI5308.GroupFormationTool.ErrorHandling.PasswordHistoryException;
-import CSCI5308.GroupFormationTool.ErrorHandling.TokenExpiredException;
-import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
 import CSCI5308.GroupFormationTool.User.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,18 +27,19 @@ public class ForgotPasswordController {
     @PostMapping("/forgotPassword")
     public ModelAndView sendMail(User user) {
         ModelAndView modelAndView = null;
-        try {
+        String errorMessage = null;
             forgotPasswordManager = Injector.instance().getForgotPasswordManager();
-            forgotPasswordManager.notifyUser(user);
+            errorMessage = forgotPasswordManager.notifyUser(user);
+            if(null == errorMessage) {
             modelAndView = new ModelAndView("password/MailSentSuccess");
             modelAndView.addObject("Success", DomainConstants.mailSentSuccess);
-        } catch (UserAlreadyExistsException uaex) {
+            }
+            else {
             modelAndView = new ModelAndView("password/forgotPassword");
             modelAndView.addObject("userAlreadyExists", DomainConstants.userDoesNotExists
                     .replace("[[emailId]]", user.getEmailId()));
-        } catch (Exception e) {
-        }
-        return modelAndView;
+            }
+            return modelAndView;
     }
 
     @GetMapping("/resetPassword")
@@ -58,26 +55,24 @@ public class ForgotPasswordController {
     @PostMapping("/resetPassword")
     public ModelAndView updatePassword(User user) {
         ModelAndView modelAndView = null;
-        try {
+        String errorMessage = null;
             forgotPasswordManager = Injector.instance().getForgotPasswordManager();
-            forgotPasswordManager.updatePassword(user, receivedToken);
+           errorMessage = forgotPasswordManager.updatePassword(user, receivedToken);
+           if(null == errorMessage) {
             modelAndView = new ModelAndView("password/passwordResetSuccess");
             modelAndView.addObject("Success", DomainConstants.passwordResetMessage);
-        } catch (TokenExpiredException tee) {
+           } 
+           else {
+        	if(errorMessage.equals(DomainConstants.tokenExpiredMessage)) {
             modelAndView = new ModelAndView("password/resetPassword");
-            modelAndView.addObject("Error", DomainConstants.tokenExpiredMessage);
-        } catch (PasswordException pex) {
-            modelAndView = new ModelAndView("redirect:/resetPassword");
-            modelAndView.addObject("token", receivedToken);
-            modelAndView.addObject("passwordError", pex.getMessage());
-        } catch (PasswordHistoryException phe) {
-            modelAndView = new ModelAndView("redirect:/resetPassword");
-            modelAndView.addObject("token", receivedToken);
-            modelAndView.addObject("passwordError", phe.getMessage());
-        } catch (Exception e) {
-            modelAndView = new ModelAndView("password/resetPassword");
-            modelAndView.addObject("Error", DomainConstants.error);
-        }
+            modelAndView.addObject("Error", errorMessage);
+        	}
+        	else {
+        		modelAndView = new ModelAndView("redirect:/resetPassword");
+                modelAndView.addObject("token", receivedToken);
+                modelAndView.addObject("passwordError", errorMessage);
+        	}
+           }
         return modelAndView;
     }
 }
