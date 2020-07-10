@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.Security;
 
-import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,11 +7,13 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import CSCI5308.GroupFormationTool.Common.Injector;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    ISecurityAbstractFactory securityAbstractFactory = FactoryProducer.getFactory().createSecurityAbstractFactory();
+	private ISecurityAbstractFactory securityAbstractFactory = Injector.instance().getSecurityAbstractFactory();
 
     @Override
     public void configure(WebSecurity web) throws Exception {

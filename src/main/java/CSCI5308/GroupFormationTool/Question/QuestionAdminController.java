@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.Question;
 
-import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -8,13 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import CSCI5308.GroupFormationTool.Common.Injector;
+
 import java.util.ArrayList;
 
 @Controller
 public class QuestionAdminController {
 
-    private IQuestionAbstractFactory questionAbstractFactory = FactoryProducer.
-            getFactory().createQuestionAbstractFactory();
+    private IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
 
     @GetMapping("/questionManager/questionManager")
     public String questionList(Model model) {

@@ -1,6 +1,6 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.Common.FactoryProducer;
+import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Course.ICourseRepository;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
@@ -11,8 +11,7 @@ import java.util.ArrayList;
 
 public class CourseRepository implements ICourseRepository {
 
-    private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
-            createDatabaseAbstractFactory();
+    private IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
 
     @Override
     public ArrayList<ICourse> getAllCourses() {

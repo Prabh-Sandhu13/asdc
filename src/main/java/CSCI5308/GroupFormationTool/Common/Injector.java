@@ -2,16 +2,22 @@ package CSCI5308.GroupFormationTool.Common;
 
 import CSCI5308.GroupFormationTool.Course.*;
 import CSCI5308.GroupFormationTool.Database.DBConfiguration;
+import CSCI5308.GroupFormationTool.Database.DatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.IDBConfiguration;
+import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Mail.IMailManager;
 import CSCI5308.GroupFormationTool.Mail.MailManager;
 import CSCI5308.GroupFormationTool.Password.*;
+import CSCI5308.GroupFormationTool.Question.IQuestionAbstractFactory;
 import CSCI5308.GroupFormationTool.Question.IQuestionAdminRepository;
 import CSCI5308.GroupFormationTool.Question.IQuestionManagerRepository;
+import CSCI5308.GroupFormationTool.Question.QuestionAbstractFactory;
 import CSCI5308.GroupFormationTool.Question.QuestionAdminRepository;
 import CSCI5308.GroupFormationTool.Question.QuestionManagerRepository;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
+import CSCI5308.GroupFormationTool.Security.ISecurityAbstractFactory;
+import CSCI5308.GroupFormationTool.Security.SecurityAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUserRepository;
@@ -24,6 +30,9 @@ public class Injector {
     private static Injector instance = null;
     
     private IUserAbstractFactory userAbstractFactory;
+    private IDatabaseAbstractFactory databaseAbstractFactory;
+    private IQuestionAbstractFactory questionAbstractFactory;
+    private ISecurityAbstractFactory securityAbstractFactory;
     private IDBConfiguration dbConfiguration;
     private IUserRepository userRepository;
     private IUser user;
@@ -48,6 +57,9 @@ public class Injector {
     private Injector() {
 
         userAbstractFactory = new UserAbstractFactory();
+        databaseAbstractFactory = new DatabaseAbstractFactory();
+        questionAbstractFactory = new QuestionAbstractFactory();
+        securityAbstractFactory = new SecurityAbstractFactory();
         dbConfiguration = new DBConfiguration();
         userRepository = userAbstractFactory.createUserRepositoryInstance();
         user = userAbstractFactory.createUserInstance();
@@ -70,12 +82,44 @@ public class Injector {
         questionAdminRepository = new QuestionAdminRepository();
     }
 
-     public static Injector instance() {
+    public static Injector instance() {
 
         if (instance == null) {
             instance = new Injector();
         }
         return instance;
+    }
+
+    public IUserAbstractFactory getUserAbstractFactory() {
+        return userAbstractFactory;
+     }
+
+    public void setUserAbstractFactory(IUserAbstractFactory userAbstractFactory) {
+        this.userAbstractFactory = userAbstractFactory;
+    }
+    
+    public IDatabaseAbstractFactory getDatabaseAbstractFactory() {
+        return databaseAbstractFactory;
+     }
+
+    public void setDatabaseAbstractFactory(IDatabaseAbstractFactory databaseAbstractFactory) {
+        this.databaseAbstractFactory = databaseAbstractFactory;
+    }
+    
+    public IQuestionAbstractFactory getQuestionAbstractFactory() {
+        return questionAbstractFactory;
+     }
+
+    public void setQuestionAbstractFactory(IQuestionAbstractFactory questionAbstractFactory) {
+        this.questionAbstractFactory = questionAbstractFactory;
+    }
+    
+    public ISecurityAbstractFactory getSecurityAbstractFactory() {
+       return securityAbstractFactory;
+    }
+
+    public void setSecurityAbstractFactory(ISecurityAbstractFactory securityAbstractFactory) {
+       this.securityAbstractFactory = securityAbstractFactory;
     }
 
     public IUserCoursesRepository getUserCoursesRepository() {

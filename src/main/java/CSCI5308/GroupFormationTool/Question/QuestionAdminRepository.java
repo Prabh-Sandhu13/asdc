@@ -1,6 +1,6 @@
 package CSCI5308.GroupFormationTool.Question;
 
-import CSCI5308.GroupFormationTool.Common.FactoryProducer;
+import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
@@ -10,11 +10,9 @@ import java.util.ArrayList;
 
 public class QuestionAdminRepository implements IQuestionAdminRepository {
 
-    private IQuestionAbstractFactory questionAbstractFactory = FactoryProducer.
-            getFactory().createQuestionAbstractFactory();
+    private IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
 
-    private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
-            createDatabaseAbstractFactory();
+    private IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
 
     @Override
     public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {

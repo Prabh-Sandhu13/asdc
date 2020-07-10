@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool.Security;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
@@ -17,11 +16,8 @@ import java.util.List;
 public class CustomAuthenticationManager implements AuthenticationManager {
 
     private static final String Admin_banner_id = "B00000000";
-    private IUserAbstractFactory userAbstractFactory = FactoryProducer.
-            getFactory().createUserAbstractFactory();
-
-    private ISecurityAbstractFactory securityAbstractFactory = FactoryProducer.getFactory().
-            createSecurityAbstractFactory();
+    private IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
+    private ISecurityAbstractFactory securityAbstractFactory = Injector.instance().getSecurityAbstractFactory();
 
     private Authentication checkUser(String password, IUser user, Authentication authentication)
             throws AuthenticationException {

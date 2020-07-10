@@ -2,15 +2,13 @@ package CSCI5308.GroupFormationTool.Question;
 
 import java.sql.SQLException;
 
-import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
 public class QuestionManagerRepository implements IQuestionManagerRepository {
 
-    private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
-            createDatabaseAbstractFactory();
+    private IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
     
     @Override
     public long createQuestion(IQuestion question) {

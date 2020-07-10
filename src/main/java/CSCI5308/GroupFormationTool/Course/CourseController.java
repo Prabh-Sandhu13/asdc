@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
@@ -23,8 +22,7 @@ public class CourseController {
 
     private IUser userInstance;
     private IStudentCSV studentCSV;
-    private IUserAbstractFactory userAbstractFactory = FactoryProducer.
-            getFactory().createUserAbstractFactory();
+    private IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
 
     @GetMapping("/courseList")
     public String courseList(Model model) {

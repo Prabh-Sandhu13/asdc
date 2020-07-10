@@ -1,6 +1,6 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.Common.FactoryProducer;
+import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
@@ -12,10 +12,8 @@ import java.util.ArrayList;
 
 public class UserCoursesRepository implements IUserCoursesRepository {
 
-    private IUserAbstractFactory userAbstractFactory = FactoryProducer.
-       getFactory().createUserAbstractFactory();
-    private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
-            createDatabaseAbstractFactory();
+    private IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
+    private IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
 
     @Override
     public String getUserRoleByEmailId(String emailId) {

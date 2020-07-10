@@ -27,9 +27,7 @@ public class Question implements IQuestion {
 
     private IQuestionAdminRepository questionAdminRepository;
 
-    private IQuestionAbstractFactory questionAbstractFactory = Injector.instance().
-            getAbstractFactory().createQuestionAbstractFactory();
-
+    private IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
     public Question() {
         this.id = -1;
         this.instructor = null;

@@ -1,7 +1,7 @@
 package CSCI5308.GroupFormationTool.Question;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.FactoryProducer;
+import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import org.springframework.security.core.Authentication;
@@ -18,10 +18,8 @@ import java.util.List;
 @Controller
 public class QuestionManagerController {
 
-    private IQuestionAbstractFactory questionAbstractFactory = FactoryProducer.
-            getFactory().createQuestionAbstractFactory();
-    private IUserAbstractFactory userAbstractFactory = FactoryProducer.
-            getFactory().createUserAbstractFactory();
+	private IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
+	private IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
 
     @GetMapping("/questionManager/createQuestion")
     public String createQuestion(Model model) {

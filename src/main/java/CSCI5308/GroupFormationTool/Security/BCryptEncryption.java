@@ -1,14 +1,14 @@
 package CSCI5308.GroupFormationTool.Security;
 
-import CSCI5308.GroupFormationTool.Common.FactoryProducer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import CSCI5308.GroupFormationTool.Common.Injector;
 
 public class BCryptEncryption implements IPasswordEncryptor {
 
     private BCryptPasswordEncoder encode;
 
-    private ISecurityAbstractFactory securityAbstractFactory = FactoryProducer.getFactory().
-            createSecurityAbstractFactory();
+    private ISecurityAbstractFactory securityAbstractFactory = Injector.instance().getSecurityAbstractFactory();
 
     public BCryptEncryption() {
         this.encode = securityAbstractFactory.createBCryptPasswordEncoder();
