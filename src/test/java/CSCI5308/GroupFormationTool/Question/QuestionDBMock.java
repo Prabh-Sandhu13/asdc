@@ -36,7 +36,7 @@ public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdmi
         title = "Sample";
         text = "Sample question";
         type = 1;
-        createdDate = new Date(0);
+        createdDate = questionAbstractFactoryTest.createDateInstance(0);
         choices = questionAbstractFactoryTest.createChoiceListInstance();
         IChoice choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Amateur");
@@ -57,11 +57,7 @@ public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdmi
 
     @Override
     public boolean deleteQuestion(long questionId) {
-        if (questionId == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return questionId == 1;
     }
 
     @Override

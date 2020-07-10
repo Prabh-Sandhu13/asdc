@@ -1,11 +1,11 @@
 package CSCI5308.GroupFormationTool.Password;
 
+import CSCI5308.GroupFormationTool.Common.DomainConstants;
+import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordHistoryException;
 import CSCI5308.GroupFormationTool.ErrorHandling.TokenExpiredException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
-import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,17 +31,15 @@ public class ForgotPasswordController {
     @PostMapping("/forgotPassword")
     public ModelAndView sendMail(User user) {
         ModelAndView modelAndView = null;
-
         try {
             forgotPasswordManager = Injector.instance().getForgotPasswordManager();
             forgotPasswordManager.notifyUser(user);
             modelAndView = new ModelAndView("password/MailSentSuccess");
             modelAndView.addObject("Success", DomainConstants.mailSentSuccess);
-
         } catch (UserAlreadyExistsException uaex) {
             modelAndView = new ModelAndView("password/forgotPassword");
             modelAndView.addObject("userAlreadyExists", DomainConstants.userDoesNotExists
-            		.replace("[[emailId]]", user.getEmailId()));
+                    .replace("[[emailId]]", user.getEmailId()));
         } catch (Exception e) {
         }
         return modelAndView;
@@ -49,8 +47,9 @@ public class ForgotPasswordController {
 
     @GetMapping("/resetPassword")
     public String reset(User user, @RequestParam(name = "token", required = false) String token, Model model) {
+        IPasswordAbstractFactory passwordAbstractFactory = Injector.instance().getPasswordAbstractFactory();
         receivedToken = token;
-        policyInstance = Injector.instance().getPolicy();
+        policyInstance = passwordAbstractFactory.createPolicyInstance();
         ArrayList<IPolicy> policies = policyInstance.getPolicies();
         model.addAttribute("policies", policies);
         return "password/resetPassword";

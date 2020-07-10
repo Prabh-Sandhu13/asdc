@@ -27,5 +27,5 @@ public interface ISecurityAbstractFactory {
 
     AuthenticationServiceException createAuthenticationServiceExceptionInstance(String value);
 
-	BCryptEncryption createBCryptEncryptionInstance();
+    BCryptEncryption createBCryptEncryptionInstance();
 }

@@ -8,24 +8,21 @@ import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
 import org.apache.commons.text.RandomStringGenerator;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class StudentRepository implements IStudentRepository {
 
-    private IPasswordEncryptor encryptor;
-
     @Override
     public Map<Integer, List<StudentCSV>> createStudent(List<StudentCSV> studentCSVList, String courseId) {
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-        List<StudentCSV> newStudents = new ArrayList<StudentCSV>();
-        List<StudentCSV> oldStudents = new ArrayList<StudentCSV>();
-        encryptor = Injector.instance().getPasswordEncryptor();
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        List<StudentCSV> newStudents = courseAbstractFactory.createStudentCSVListInstance();
+        List<StudentCSV> oldStudents = courseAbstractFactory.createStudentCSVListInstance();
+        IPasswordEncryptor encryptor = Injector.instance().getPasswordEncryptor();
+        RandomStringGenerator pwdGenerator = courseAbstractFactory.createRandomStringGeneratorInstance();
+        Map<Integer, List<StudentCSV>> studentLists = courseAbstractFactory.createStudentHashMapInstance();
         StoredProcedure storedProcedure = null;
-        RandomStringGenerator pwdGenerator = new RandomStringGenerator.Builder().withinRange(33, 45).build();
-        Map<Integer, List<StudentCSV>> studentLists = new HashMap<Integer, List<StudentCSV>>();
 
         for (StudentCSV studentCSV : studentCSVList) {
             try {
@@ -42,13 +39,11 @@ public class StudentRepository implements IStudentRepository {
                 storedProcedure.registerOutputParameterBoolean(7);
                 storedProcedure.execute();
                 Boolean studentStatus = storedProcedure.getParameter(7);
-
                 if (studentStatus) {
                     newStudents.add(studentCSV);
                 } else {
                     oldStudents.add(studentCSV);
                 }
-
             } catch (SQLException ex) {
                 ex.printStackTrace();
             } finally {
@@ -56,11 +51,9 @@ public class StudentRepository implements IStudentRepository {
                     storedProcedure.removeConnections();
                 }
             }
-
         }
         studentLists.put(DomainConstants.newStudents, newStudents);
         studentLists.put(DomainConstants.oldStudents, oldStudents);
-
         return studentLists;
     }
 

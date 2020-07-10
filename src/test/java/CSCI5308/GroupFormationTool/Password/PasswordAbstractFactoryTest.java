@@ -1,7 +1,5 @@
 package CSCI5308.GroupFormationTool.Password;
 
-import org.springframework.security.core.parameters.P;
-
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.mock;
@@ -55,5 +53,10 @@ public class PasswordAbstractFactoryTest implements IPasswordAbstractFactoryTest
     @Override
     public PasswordHistoryManager createPasswordHistoryManagerInstance() {
         return new PasswordHistoryManager();
+    }
+
+    @Override
+    public ArrayList<String> createListInstance() {
+        return new ArrayList<String>();
     }
 }

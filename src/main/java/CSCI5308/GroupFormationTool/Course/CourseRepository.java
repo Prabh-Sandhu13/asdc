@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.Course.ICourseRepository;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
@@ -13,18 +12,17 @@ public class CourseRepository implements ICourseRepository {
 
     @Override
     public ArrayList<ICourse> getAllCourses() {
-
         StoredProcedure storedProcedure = null;
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-        ArrayList<ICourse> courseList = new ArrayList<ICourse>();
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ArrayList<ICourse> courseList = courseAbstractFactory.createCourseListInstance();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getAllCourseDetails");
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
-                        ICourse course = new Course();
+                        ICourse course = courseAbstractFactory.createCourseInstance();
                         course.setId(results.getString("course_id"));
                         course.setName(results.getString("course_name"));
                         course.setDescription(results.getString("course_details"));
@@ -49,7 +47,6 @@ public class CourseRepository implements ICourseRepository {
         StoredProcedure storedProcedure = null;
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         boolean status = true;
-
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_createCourse(?,?,?,?,?)");
@@ -60,7 +57,6 @@ public class CourseRepository implements ICourseRepository {
             storedProcedure.registerOutputParameterBoolean(5);
             storedProcedure.execute();
             status = storedProcedure.getParameter(5);
-
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
@@ -82,7 +78,6 @@ public class CourseRepository implements ICourseRepository {
             storedProcedure.registerOutputParameterBoolean(2);
             storedProcedure.execute();
             status = storedProcedure.getParameter(2);
-
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
@@ -96,12 +91,12 @@ public class CourseRepository implements ICourseRepository {
     public ICourse getCourseById(String courseId) {
         StoredProcedure storedProcedure = null;
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-        ICourse course = new Course();
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ICourse course = courseAbstractFactory.createCourseInstance();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getCourseById(?)");
             storedProcedure.setInputStringParameter(1, courseId);
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
@@ -112,7 +107,6 @@ public class CourseRepository implements ICourseRepository {
                     }
                 }
             }
-
         } catch (SQLException ex) {
 
         } finally {

@@ -30,8 +30,8 @@ public interface IUser {
 
     void setConfirmPassword(String confirmPassword);
 
-	boolean createUser(IUser user);
+    boolean createUser(IUser user);
 
-	boolean checkCurrentUserIsAdmin(String emailId);
+    boolean checkCurrentUserIsAdmin(String emailId);
 
 }

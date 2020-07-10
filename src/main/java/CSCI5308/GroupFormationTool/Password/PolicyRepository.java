@@ -10,22 +10,21 @@ import java.util.ArrayList;
 
 public class PolicyRepository implements IPolicyRepository {
 
-
     @Override
     public ArrayList<IPolicy> passwordSPolicyCheck(String password) {
-        ArrayList<IPolicy> policies = new ArrayList<IPolicy>();
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IPasswordAbstractFactory passwordAbstractFactory = Injector.instance().getPasswordAbstractFactory();
+        ArrayList<IPolicy> policies = passwordAbstractFactory.createPolicyListInstance();
         StoredProcedure storedProcedure = null;
         IPolicy policy = null;
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getPasswordConfigSettings");
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
-                        policy = new Policy();
+                        policy = passwordAbstractFactory.createPolicyInstance();
                         policy.setId(results.getInt("pSetting_id"));
                         policy.setSetting(results.getString("pSetting"));
                         policy.setValue(results.getString("pSetting_value"));
@@ -45,18 +44,18 @@ public class PolicyRepository implements IPolicyRepository {
 
     @Override
     public ArrayList<IPolicy> getPolicies() {
-        ArrayList<IPolicy> policies = new ArrayList<IPolicy>();
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IPasswordAbstractFactory passwordAbstractFactory = Injector.instance().getPasswordAbstractFactory();
+        ArrayList<IPolicy> policies = passwordAbstractFactory.createPolicyListInstance();
         StoredProcedure storedProcedure = null;
         IPolicy policy = null;
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getPolicies");
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
-                        policy = new Policy();
+                        policy = passwordAbstractFactory.createPolicyInstance();
                         policy.setId(results.getInt("pSetting_id"));
                         policy.setSetting(results.getString("pSetting"));
                         policy.setValue(results.getString("pSetting_value"));
@@ -64,7 +63,6 @@ public class PolicyRepository implements IPolicyRepository {
                     }
                 }
             }
-
         } catch (SQLException ex) {
         } finally {
             if (storedProcedure != null) {

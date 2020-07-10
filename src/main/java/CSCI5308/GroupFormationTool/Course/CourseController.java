@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,19 +24,19 @@ public class CourseController {
 
     @GetMapping("/courseList")
     public String courseList(Model model) {
-
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         ArrayList<ICourse> courseList = null;
         String userRole = null;
         ArrayList<ICourse> studentCourseList = null;
         ArrayList<ICourse> taCourseList = null;
         ArrayList<ICourse> instructorCourseList = null;
-        IUserCourses userCourses = new UserCourses();
+        IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        userInstance = new User();
+        userInstance = userAbstractFactory.createUserInstance();
         String emailId = authentication.getPrincipal().toString();
-        ICourse course = new Course();
+        ICourse course = courseAbstractFactory.createCourseInstance();
 
         if (userInstance.checkCurrentUserIsAdmin(emailId)) {
             courseList = course.getAllCourses();
@@ -77,8 +76,9 @@ public class CourseController {
     @GetMapping(value = "/enrollTA")
     public String enrollTA(@RequestParam(value = "courseId") String courseId, Model model) {
         IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
         ArrayList<IUser> taList = null;
-        IUserCourses userCourses = new UserCourses();
+        IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
         taList = userCourses.getTAForCourse(courseId);
         IUser user = userAbstractFactory.createUserInstance();
         model.addAttribute("user", user);
@@ -89,7 +89,8 @@ public class CourseController {
 
     @PostMapping("/enrollTA")
     public String addTA(@RequestParam(value = "courseId") String courseId, @ModelAttribute("user") User user, Model model) {
-        IUserCourses userCourses = new UserCourses();
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
         boolean success = userCourses.enrollTAForCourseUsingEmailId(user, courseId);
         ArrayList<IUser> taList = null;
         if (success) {
@@ -111,7 +112,8 @@ public class CourseController {
 
     @GetMapping("/admin/allAdminCourses")
     public String allCourses(Model model) {
-        ICourse course = new Course();
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ICourse course = courseAbstractFactory.createCourseInstance();
         List<ICourse> allCourses = course.getAllCourses();
         model.addAttribute("courses", allCourses);
         return "course/allCourses";
@@ -119,7 +121,8 @@ public class CourseController {
 
     @GetMapping("/admin/addCourse")
     public String addCourseForm(Model model) {
-        model.addAttribute("course", new Course());
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        model.addAttribute("course", courseAbstractFactory.createCourseInstance());
         return "course/addCourse";
     }
 
@@ -127,7 +130,6 @@ public class CourseController {
     public String addCourse(@ModelAttribute("course") Course course, Model model) {
         boolean status = course.createCourse();
         List<ICourse> allCourses = course.getAllCourses();
-
         if (status) {
             model.addAttribute("successMessage", DomainConstants.addCourseSuccess);
         } else {
@@ -139,10 +141,10 @@ public class CourseController {
 
     @RequestMapping(value = "/admin/deleteCourse", method = {RequestMethod.GET, RequestMethod.POST})
     public String deleteCourse(@RequestParam(value = "id") String id, Model model) {
-        ICourse course = new Course();
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ICourse course = courseAbstractFactory.createCourseInstance();
         boolean status = course.deleteCourse(id);
         List<ICourse> allCourses = course.getAllCourses();
-
         if (status) {
             model.addAttribute("successMessage", DomainConstants.deleteCourseSuccess);
         } else {
@@ -157,15 +159,14 @@ public class CourseController {
     public String uploadCSVFile(@RequestParam("file") MultipartFile file, Model model,
                                 @RequestParam(name = "courseId") String courseId) {
 
-        Map<Integer, List<StudentCSV>> studentLists = new HashMap<Integer, List<StudentCSV>>();
-
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        Map<Integer, List<StudentCSV>> studentLists = courseAbstractFactory.createStudentHashMapInstance();
         if (file.isEmpty()) {
             model.addAttribute("message", DomainConstants.invalidFile);
             model.addAttribute("status", false);
         } else {
-            studentCSV = Injector.instance().getStudentCSV();
+            studentCSV = courseAbstractFactory.createStudentCSVInstance();
             studentLists = studentCSV.createStudent(file, courseId);
-
             if (studentLists != null) {
                 model.addAttribute("newStudentList", studentLists.get(DomainConstants.newStudents));
                 model.addAttribute("oldStudentList", studentLists.get(DomainConstants.oldStudents));

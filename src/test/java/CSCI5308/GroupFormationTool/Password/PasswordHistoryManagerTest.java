@@ -49,7 +49,7 @@ public class PasswordHistoryManagerTest {
         user.setPassword("pswd12345");
         String num = "5";
         String encryptedPassword = "encrypted12345";
-        ArrayList<String> passwords = new ArrayList<>();
+        ArrayList<String> passwords = passwordAbstractFactoryTest.createListInstance();
         passwords.add("Password");
         passwords.add("qwerty");
         when(bCryptEncryption.encoder(user.getPassword())).thenReturn(encryptedPassword);

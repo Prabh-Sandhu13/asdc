@@ -1,20 +1,18 @@
 package CSCI5308.GroupFormationTool.Question;
 
-import java.sql.SQLException;
-
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
+
+import java.sql.SQLException;
 
 public class QuestionManagerRepository implements IQuestionManagerRepository {
 
     @Override
     public long createQuestion(IQuestion question) {
-
-    	IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         long questionId = -1;
-
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_createQuestion(?,?,?,?,?)");
@@ -25,7 +23,6 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
             storedProcedure.registerOutputParameterLong(5);
             storedProcedure.execute();
             questionId = storedProcedure.getParameterLong(5);
-
         } catch (SQLException ex) {
             return -1;
         } finally {
@@ -45,10 +42,8 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
     }
 
     private boolean saveChoice(IChoice choice, long questionId) {
-
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
-
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_saveOptions(?,?,?)");
 
@@ -66,10 +61,9 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
         }
         return true;
     }
+
     public boolean deleteQuestion(long questionId) {
-
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-
         StoredProcedure storedProcedure = null;
         boolean status = true;
         try {

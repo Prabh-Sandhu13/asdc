@@ -19,7 +19,7 @@ public interface ICourse {
     String getDescription();
 
     void setDescription(String description);
-    
+
     ArrayList<ICourse> getAllCourses();
 
     ICourse getCourseById(String courseId);

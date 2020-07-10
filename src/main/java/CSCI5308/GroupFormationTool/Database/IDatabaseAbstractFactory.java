@@ -6,5 +6,5 @@ public interface IDatabaseAbstractFactory {
 
     StoredProcedure createStoredProcedureInstance(String name) throws SQLException;
 
-	IDBConfiguration getDBConfiguration();
+    IDBConfiguration createDBConfigurationInstance();
 }

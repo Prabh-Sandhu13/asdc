@@ -2,9 +2,9 @@ package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
+import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
-import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,7 +36,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                     }
                 }
             }
-
         } catch (SQLException ex) {
         } finally {
             if (storedProcedure != null) {
@@ -50,18 +49,17 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     public ArrayList<ICourse> getStudentCourses(String emailId) {
         StoredProcedure storedProcedure = null;
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-        ArrayList<ICourse> studentCourseList = new ArrayList<ICourse>();
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ArrayList<ICourse> studentCourseList = courseAbstractFactory.createCourseListInstance();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getStudentCoursesByEmailId(?)");
             storedProcedure.setInputStringParameter(1, emailId);
-
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
-                        ICourse course = new Course();
+                        ICourse course = courseAbstractFactory.createCourseInstance();
                         course.setId(results.getString("course_id"));
                         course.setName(results.getString("course_name"));
                         course.setDescription(results.getString("course_details"));
@@ -102,7 +100,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                     }
                 }
             }
-
         } catch (SQLException ex) {
 
         } finally {
@@ -117,7 +114,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     public ArrayList<ICourse> getTACourses(String emailId) {
         StoredProcedure storedProcedure = null;
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-        ArrayList<ICourse> taCourseList = new ArrayList<ICourse>();
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ArrayList<ICourse> taCourseList = courseAbstractFactory.createCourseListInstance();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getTACoursesByEmailId(?)");
@@ -127,7 +125,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             if (results != null) {
                 while (results.next()) {
                     {
-                        ICourse course = new Course();
+                        ICourse course = courseAbstractFactory.createCourseInstance();
                         course.setId(results.getString("course_id"));
                         course.setName(results.getString("course_name"));
                         course.setDescription(results.getString("course_details"));
@@ -136,7 +134,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                     }
                 }
             }
-
         } catch (SQLException ex) {
 
         } finally {
@@ -151,7 +148,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     public ArrayList<ICourse> getInstructorCourses(String emailId) {
         StoredProcedure storedProcedure = null;
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-        ArrayList<ICourse> instructorCourseList = new ArrayList<ICourse>();
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ArrayList<ICourse> instructorCourseList = courseAbstractFactory.createCourseListInstance();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getInstructorCoursesByEmailId(?)");
@@ -161,7 +159,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             if (results != null) {
                 while (results.next()) {
                     {
-                        ICourse course = new Course();
+                        ICourse course = courseAbstractFactory.createCourseInstance();
                         course.setId(results.getString("course_id"));
                         course.setName(results.getString("course_name"));
                         course.setDescription(results.getString("course_details"));
@@ -200,7 +198,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                         user.setFirstName(results.getString("first_name"));
                         user.setLastName(results.getString("last_name"));
                         user.setId(results.getLong("user_id"));
-
                         taList.add(user);
                     }
                 }
@@ -305,11 +302,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             ResultSet results = storedProcedure.executeWithResults();
 
             if (results != null) {
-                if (!(results.next())) {
-                    return false;
-                } else {
-                    return true;
-                }
+                return results.next();
             }
 
         } catch (SQLException ex) {

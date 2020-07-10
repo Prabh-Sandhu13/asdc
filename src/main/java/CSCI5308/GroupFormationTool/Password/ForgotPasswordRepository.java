@@ -2,9 +2,9 @@ package CSCI5308.GroupFormationTool.Password;
 
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
+import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
-import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,25 +20,20 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
             storedProcedure.setInputStringParameter(1, Long.toString(user.getId()));
             storedProcedure.setInputStringParameter(2, user.getEmailId());
             storedProcedure.setInputStringParameter(3, token);
-
             storedProcedure.execute();
             tokenAdded = true;
-
         } catch (SQLException ex) {
             System.out.println("" + ex.getMessage());
-
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
         }
         return tokenAdded;
-
     }
 
     @Override
     public String getToken(IUser user) {
-
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         String token = "";
         StoredProcedure storedProcedure = null;
@@ -47,14 +42,12 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
             storedProcedure.setInputStringParameter(1, user.getEmailId());
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
-
                 while (results.next()) {
                     {
                         token = (results.getString("temporary_lik"));
                     }
                 }
             }
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
@@ -67,7 +60,6 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
 
     @Override
     public boolean updatePassword(IUser user, String password) {
-
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         boolean passwordUpdated = false;
         StoredProcedure storedProcedure = null;
@@ -77,7 +69,6 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
             storedProcedure.setInputStringParameter(2, password);
             storedProcedure.execute();
             passwordUpdated = true;
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
@@ -86,12 +77,10 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
             }
         }
         return passwordUpdated;
-
     }
 
     @Override
     public boolean deleteToken(IUser user, String token) {
-
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         boolean tokenDeleted = false;
         StoredProcedure storedProcedure = null;
@@ -100,7 +89,6 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
             storedProcedure.setInputStringParameter(1, token);
             storedProcedure.execute();
             tokenDeleted = true;
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
 
@@ -123,7 +111,6 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
             storedProcedure.setInputStringParameter(2, token);
             storedProcedure.execute();
             tokenUpdated = true;
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
@@ -136,7 +123,6 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
 
     @Override
     public IUser getUserId(IUser user) {
-
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         IUser userByEmailId = null;
@@ -145,9 +131,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getUserId(?)");
             storedProcedure.setInputStringParameter(1, user.getEmailId());
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
-
                 while (results.next()) {
                     {
                         userByEmailId = userAbstractFactory.createUserInstance();
@@ -160,7 +144,6 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
                     }
                 }
             }
-
         } catch (SQLException ex) {
 
             System.out.println(ex.getMessage());
@@ -171,7 +154,6 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
             }
         }
         return userByEmailId;
-
     }
 
     @Override
@@ -185,15 +167,14 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
             storedProcedure.setInputStringParameter(1, token);
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
-
                 while (results.next()) {
                     {
-                        userByEmailId = userAbstractFactory.createUserInstance();                        userByEmailId.setId(Long.parseLong(results.getString("user_id")));
+                        userByEmailId = userAbstractFactory.createUserInstance();
+                        userByEmailId.setId(Long.parseLong(results.getString("user_id")));
                         userByEmailId.setEmailId(results.getString("email"));
                     }
                 }
             }
-
         } catch (SQLException ex) {
 
             System.out.println(ex.getMessage());
@@ -204,7 +185,5 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
             }
         }
         return userByEmailId;
-
     }
-
 }

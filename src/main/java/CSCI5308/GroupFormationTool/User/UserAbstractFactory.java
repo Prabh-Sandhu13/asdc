@@ -8,11 +8,12 @@ public class UserAbstractFactory implements IUserAbstractFactory {
     public IUser createUserInstance() {
         return new User();
     }
-    
+
     @Override
     public ArrayList<IUser> createUserListInstance() {
         return new ArrayList<IUser>();
     }
+
     @Override
     public IUserRepository createUserRepositoryInstance() {
         return new UserRepository();

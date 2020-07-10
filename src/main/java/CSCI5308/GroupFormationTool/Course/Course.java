@@ -1,9 +1,8 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import java.util.ArrayList;
-
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.Course.ICourse;
+
+import java.util.ArrayList;
 
 public class Course implements ICourse {
 
@@ -14,7 +13,7 @@ public class Course implements ICourse {
     private int credits;
 
     private String description;
-    
+
     private ICourseRepository courseRepository;
 
     public Course() {

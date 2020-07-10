@@ -55,9 +55,7 @@ public class CourseDBMock implements ICourseRepository {
 
     @Override
     public boolean deleteCourse(String id) {
-        if (id.equals("1"))
-            return true;
-        return false;
+        return id.equals("1");
     }
 
     @Override

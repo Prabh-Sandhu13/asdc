@@ -1,17 +1,12 @@
 package CSCI5308.GroupFormationTool.Password;
 
-import CSCI5308.GroupFormationTool.Password.IForgotPasswordRepository;
 import CSCI5308.GroupFormationTool.User.IUser;
 
 public class ForgotPasswordDBMock implements IForgotPasswordRepository {
 
     @Override
     public boolean addToken(IUser user, String token) {
-        if (user == null || token.equals("") || token.equals(null)) {
-            return false;
-        } else {
-            return true;
-        }
+        return user != null && !token.equals("") && !token.equals(null);
     }
 
     @Override
@@ -25,11 +20,7 @@ public class ForgotPasswordDBMock implements IForgotPasswordRepository {
 
     @Override
     public boolean updateToken(IUser user, String token) {
-        if (user == null || token.equals("") || token.equals(null)) {
-            return false;
-        } else {
-            return true;
-        }
+        return user != null && !token.equals("") && !token.equals(null);
     }
 
     @Override
@@ -44,11 +35,7 @@ public class ForgotPasswordDBMock implements IForgotPasswordRepository {
 
     @Override
     public boolean deleteToken(IUser user, String token) {
-        if (user == null || token.equals("") || token.equals(null)) {
-            return false;
-        } else {
-            return true;
-        }
+        return user != null && !token.equals("") && !token.equals(null);
     }
 
     @Override

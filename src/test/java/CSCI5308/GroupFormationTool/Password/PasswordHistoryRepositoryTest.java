@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class PasswordHistoryRepositoryTest {
@@ -40,7 +39,7 @@ public class PasswordHistoryRepositoryTest {
 
     @Test
     public void getNPasswordsTest() {
-        ArrayList<String> nPasswords = new ArrayList<String>();
+        ArrayList<String> nPasswords = passwordAbstractFactoryTest.createListInstance();
         nPasswords.add("hostory1");
         nPasswords.add("hostory2");
         nPasswords.add("hostory3");

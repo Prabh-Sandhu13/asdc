@@ -12,7 +12,6 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
 
     @Override
     public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
-
         IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
@@ -21,9 +20,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getQuestionsForInstructor(?)");
             storedProcedure.setInputStringParameter(1, emailId);
-
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
@@ -46,7 +43,6 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
         return questionList;
     }
 
-
     @Override
     public IQuestion getQuestionById(long questionId) {
         StoredProcedure storedProcedure = null;
@@ -57,7 +53,6 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getQuestionById(?)");
             storedProcedure.setInputIntParameter(1, questionId);
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
@@ -81,7 +76,6 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
 
     @Override
     public ArrayList<IChoice> getOptionsForTheQuestion(long questionId) {
-
         StoredProcedure storedProcedure = null;
         IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
@@ -91,7 +85,6 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
                     ("sp_getOptionsForQuestion(?)");
             storedProcedure.setInputIntParameter(1, questionId);
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
@@ -102,7 +95,6 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
                     }
                 }
             }
-
         } catch (SQLException ex) {
         } finally {
             if (storedProcedure != null) {
@@ -116,7 +108,6 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
     @Override
 
     public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy) {
-
         StoredProcedure storedProcedure = null;
         IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
@@ -126,9 +117,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
                     ("sp_getSortedQuestionsForInstructor(?,?)");
             storedProcedure.setInputStringParameter(1, emailId);
             storedProcedure.setInputStringParameter(2, sortBy);
-
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
@@ -142,7 +131,6 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
                     }
                 }
             }
-
         } catch (SQLException ex) {
 
         } finally {
@@ -152,5 +140,4 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
         }
         return questionList;
     }
-
 }

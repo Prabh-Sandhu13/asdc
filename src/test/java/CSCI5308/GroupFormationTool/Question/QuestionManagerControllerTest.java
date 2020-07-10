@@ -10,8 +10,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
-import java.util.ArrayList;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -82,10 +80,9 @@ public class QuestionManagerControllerTest {
     @Test
     void deleteQuestionTest() throws Exception {
         long questionId = 1;
-
         when(questionManagerRepository.deleteQuestion(questionId)).thenReturn(true);
         when(questionAdminRepository.getQuestionListForInstructor("sample@gmail.com")).
-                thenReturn(new ArrayList<>());
+                thenReturn(questionAbstractFactoryTest.createQuestionListInstance());
         this.mockMvc.perform(get("/questionManager/deleteQuestion")
                 .param("questionId", String.valueOf(questionId)))
                 .andExpect(status().isOk())

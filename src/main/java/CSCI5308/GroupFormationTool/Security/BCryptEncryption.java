@@ -5,7 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class BCryptEncryption implements IPasswordEncryptor {
 
     private BCryptPasswordEncoder encode;
-    
+
     public BCryptEncryption() {
         ISecurityAbstractFactory securityAbstractFactory = new SecurityAbstractFactory();
         this.encode = securityAbstractFactory.createBCryptPasswordEncoder();

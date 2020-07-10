@@ -1,5 +1,6 @@
 package CSCI5308.GroupFormationTool.Question;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.mock;
@@ -44,6 +45,16 @@ public class QuestionAbstractFactoryTest implements IQuestionAbstractFactoryTest
     @Override
     public QuestionManagerRepository createQuestionManagerRepositoryMock() {
         return mock(QuestionManagerRepository.class);
+    }
+
+    @Override
+    public Date createDateInstance(long date) {
+        return new Date(date);
+    }
+
+    @Override
+    public ArrayList<String> createListInstance() {
+        return new ArrayList<String>();
     }
 
 }

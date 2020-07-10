@@ -75,7 +75,6 @@ public class QuestionAdminControllerTest {
         questions.add(question);
 
         when(questionAdminRepository.getQuestionListForInstructor(emailId)).thenReturn(questions);
-
         this.mockMvc.perform(get("/questionManager/questionManager"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("question/questionManager"))
@@ -96,7 +95,6 @@ public class QuestionAdminControllerTest {
         question.setChoices(null);
 
         when(questionAdminRepository.getQuestionById(questionId)).thenReturn(question);
-
         this.mockMvc.perform(get("/questionManager/viewQuestion")
                 .param("questionId", String.valueOf(questionId)))
                 .andExpect(status().isOk())
@@ -140,7 +138,6 @@ public class QuestionAdminControllerTest {
         questions.add(question);
         when(questionAdminRepository.getSortedQuestionListForInstructor(sortField, user.getEmailId())).
                 thenReturn(questions);
-
         this.mockMvc.perform(get("/questionManager/sortQuestion")
                 .param("sortby", sortField))
                 .andExpect(status().isOk())

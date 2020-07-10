@@ -148,10 +148,7 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
     @Override
     public boolean enrollTAForCourseUsingEmailId(IUser user, String courseId) {
-        if (courseId == "1") {
-            return true;
-        }
-        return false;
+        return courseId == "1";
     }
 
     @Override

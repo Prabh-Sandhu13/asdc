@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 public class UserCourses implements IUserCourses {
 
+    IUserCoursesRepository userCoursesRepository;
+
     private String courseId;
 
     private String bannerId;
@@ -16,8 +18,6 @@ public class UserCourses implements IUserCourses {
     private String courseDescription;
 
     private String userRole;
-
-    IUserCoursesRepository userCoursesRepository;
 
     public UserCourses() {
         courseId = null;
