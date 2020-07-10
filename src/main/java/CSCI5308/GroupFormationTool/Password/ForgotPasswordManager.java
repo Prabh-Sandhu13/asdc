@@ -49,9 +49,11 @@ public class ForgotPasswordManager implements IForgotPasswordManager {
         String errorMessage = null;
         if (passwordSecurityError != null) {
             errorMessage = passwordSecurityError;
+            return errorMessage;
         }
         if (!(user.getPassword().equals(user.getConfirmPassword()))) {
         	errorMessage = DomainConstants.passwordsDontMatch;
+            return errorMessage;
         }
         boolean isHistoryViolated = false;
         forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
@@ -60,15 +62,18 @@ public class ForgotPasswordManager implements IForgotPasswordManager {
         IUser userByEmailId = forgotPasswordRepository.getEmailByToken(user, token);
         if (userByEmailId == null) {
             errorMessage = DomainConstants.tokenExpiredMessage;
+            return errorMessage;
         }
         isHistoryViolated = passwordHistoryManager.isHistoryViolated(userByEmailId, user.getPassword());
         if (isHistoryViolated) {
             errorMessage = DomainConstants.passwordHistoryMessage
-                    .replace("[[history]]", passwordHistoryManager.getSettingValue(DomainConstants.passwordHistory));
+                    .replace("[[history]]", passwordHistoryManager.
+                            getSettingValue(DomainConstants.passwordHistory));
+            return errorMessage;
         }
         String encrypted_password = encryptor.encoder(user.getPassword());
         forgotPasswordRepository.updatePassword(userByEmailId, encrypted_password);
         passwordHistoryManager.addPasswordHistory(userByEmailId, encrypted_password);
-        return errorMessage;
+        return null;
     }
 }

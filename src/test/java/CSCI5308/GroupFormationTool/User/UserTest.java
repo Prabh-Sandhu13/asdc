@@ -142,8 +142,7 @@ public class UserTest {
         user.setConfirmPassword("password");
         assertEquals("password", user.getConfirmPassword());
     }
-    
-/*
+
     @Test
     void createUserTest() {
         IUser user = userAbstractFactoryTest.createUserInstance();
@@ -172,28 +171,25 @@ public class UserTest {
         String passwordErrorMessage = DomainConstants.passwordMinimumLength + policy.getValue();
         when(policyRepository.passwordSPolicyCheck(user.getPassword())).
                 thenReturn(policyList);
-        PasswordException passwordException = assertThrows(PasswordException.class, () -> {
-            userInstance.createUser(user);
-        });
-        assertTrue(passwordException.getMessage().equals(passwordErrorMessage));
+        assertTrue(userInstance.createUser(user).equals(passwordErrorMessage));
         user.setPassword("Padmesh1$");
         user.setConfirmPassword("Padmesh1");
-        passwordErrorMessage = "The passwords do not match. Please try again!";
-        passwordException = assertThrows(PasswordException.class, () -> {
-            userInstance.createUser(user);
-        });
-        assertTrue(passwordException.getMessage().equals(passwordErrorMessage));
+        passwordErrorMessage = DomainConstants.passwordsDontMatch;
+        assertTrue(userInstance.createUser(user).equals(passwordErrorMessage));
         user.setConfirmPassword("Padmesh1$");
         when(policyRepository.passwordSPolicyCheck(user.getPassword())).
                 thenReturn(passwordAbstractFactoryTest.createPolicyListInstance());
         when(userRepository.getUserByEmailId(user)).thenReturn(user);
-        UserAlreadyExistsException userAlreadyExistsException = assertThrows(UserAlreadyExistsException.class, () -> {
-            userInstance.createUser(user);
-        });
-        String userAlreadyExistsErrorMessage = "An account with " + user.getEmailId() + " already exists.";
-        assertTrue(userAlreadyExistsException.getMessage().equals(userAlreadyExistsErrorMessage));
+        String userAlreadyExistsErrorMessage = DomainConstants.userAlreadyExists
+                .replace("[[emailId]]", user.getEmailId());
+        user.setPassword("Padmesh1$");
+        user.setConfirmPassword("Padmesh1$");
+        assertTrue(userInstance.createUser(user).equals(userAlreadyExistsErrorMessage));
         user.setEmailId("");
-        assertNotNull(userInstance.createUser(user));
+        user.setPassword("Padmesh1$");
+        user.setConfirmPassword("Padmesh1$");
+        when(userRepository.getUserByEmailId(user)).thenReturn(null);
+        assertTrue(userInstance.createUser(user).equals(DomainConstants.signupInvalidDetails));
     }
 
     @Test
@@ -210,5 +206,4 @@ public class UserTest {
         when(userRepository.getAdminDetails()).thenReturn(admin);
         assertTrue(userInstance.checkCurrentUserIsAdmin(emailId));
     }
-*/
 }

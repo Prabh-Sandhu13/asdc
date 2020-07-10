@@ -14,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
@@ -73,15 +72,11 @@ public class ForgotPasswordManagerTest {
         when(mailManager.sendForgotPasswordMail(user, token)).thenReturn(true);
         assertNull(forgotPasswordManager.notifyUser(user));
         when(forgotPasswordRepository.getUserId(user)).thenReturn(null);
-   /*     UserAlreadyExistsException exception = assertThrows(UserAlreadyExistsException.class, () -> {
-            forgotPasswordManager.notifyUser(user);
-        });
-        String expectedMsg = "An account with " + user.getEmailId() + " not found";
-        String actualMsg = exception.getMessage();
-        assertTrue(expectedMsg.equals(actualMsg)); */
+        String expectedMessage = DomainConstants.userDoesNotExists
+                .replace("[[emailId]]", user.getEmailId());
+        assertTrue(forgotPasswordManager.notifyUser(user).equals(expectedMessage));
     }
 
-    /*
     @Test
     void updatePasswordTest() {
         IUser user = userAbstractFactoryTest.createUserInstance();
@@ -112,41 +107,29 @@ public class ForgotPasswordManagerTest {
         user.setPassword("pa");
         user.setConfirmPassword(user.getPassword());
         when(policyRepository.passwordSPolicyCheck(user.getPassword())).thenReturn(policyList);
-        PasswordException passwordException = assertThrows(PasswordException.class, () -> {
-            forgotPasswordManager.updatePassword(user, token);
-        }); 
-        String expectedMsg = DomainConstants.passwordMinimumLength + policy.getValue();
-        String actualMsg = passwordException.getMessage();
-        assertTrue(expectedMsg.equals(actualMsg));
+        String expectedMessage = DomainConstants.passwordMinimumLength + policy.getValue();
+        String actualMessage = forgotPasswordManager.updatePassword(user, token);
+        assertTrue(expectedMessage.equals(actualMessage));
         when(policyRepository.passwordSPolicyCheck(user.getPassword())).
                 thenReturn(passwordAbstractFactoryTest.createPolicyListInstance());
         when(forgotPasswordRepository.getEmailByToken(user, token)).thenReturn(null);
-        TokenExpiredException tokenExpiredException = assertThrows(TokenExpiredException.class, () -> {
-            forgotPasswordManager.updatePassword(user, token);
-        });
-        expectedMsg = "The renew password link has expired, please renew it again";
-        actualMsg = tokenExpiredException.getMessage();
-        assertTrue(expectedMsg.equals(actualMsg));
+        expectedMessage = DomainConstants.tokenExpiredMessage;
+        actualMessage = forgotPasswordManager.updatePassword(user, token);
+        assertTrue(expectedMessage.equals(actualMessage));
         when(policyRepository.passwordSPolicyCheck(user.getPassword())).
                 thenReturn(passwordAbstractFactoryTest.createPolicyListInstance());
         when(forgotPasswordRepository.getEmailByToken(user, token)).thenReturn(user);
         when(passwordHistoryManager.getSettingValue("Password History")).thenReturn("5");
         when(passwordHistoryManager.isHistoryViolated(user, user.getPassword())).thenReturn(true);
-        PasswordHistoryException passwordHistoryException = assertThrows(PasswordHistoryException.class, () -> {
-            forgotPasswordManager.updatePassword(user, token);
-        });
-        expectedMsg = "Your new password cannot be same as previous 5 passwords!";
-        actualMsg = passwordHistoryException.getMessage();
-        assertTrue(expectedMsg.equals(actualMsg));
+        expectedMessage = "Your new password cannot be same as previous 5 passwords!";
+        actualMessage = forgotPasswordManager.updatePassword(user, token);
+        assertTrue(expectedMessage.equals(actualMessage));
         user.setConfirmPassword("somethingelse");
         when(policyRepository.passwordSPolicyCheck(user.getPassword())).
                 thenReturn(passwordAbstractFactoryTest.createPolicyListInstance());
-        passwordException = assertThrows(PasswordException.class, () -> {
-            forgotPasswordManager.updatePassword(user, token);
-        });
-        expectedMsg = "The passwords do not match. Please try again!";
-        actualMsg = passwordException.getMessage();
-        assertTrue(expectedMsg.equals(actualMsg));
+        when(passwordHistoryManager.isHistoryViolated(user, user.getPassword())).thenReturn(false);
+        expectedMessage = DomainConstants.passwordsDontMatch;
+        actualMessage = forgotPasswordManager.updatePassword(user, token);
+        assertTrue(expectedMessage.equals(actualMessage));
     }
-    */
 }

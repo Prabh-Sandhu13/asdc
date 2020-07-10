@@ -130,9 +130,11 @@ public class User implements IUser {
         String passwordSecurityError = policyInstance.passwordSPolicyCheck(password);
         if (passwordSecurityError != null) {
             errorMessage = passwordSecurityError;
+            return errorMessage;
         }
         if (!(user.getPassword().equals(user.getConfirmPassword()))) {
             errorMessage = DomainConstants.passwordsDontMatch;
+            return errorMessage;
         }
         userRepository = Injector.instance().getUserRepository();
         passwordHistoryManager = Injector.instance().getPasswordHistoryManager();

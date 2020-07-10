@@ -2,7 +2,6 @@ package CSCI5308.GroupFormationTool.Security;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
-
 import CSCI5308.GroupFormationTool.Password.IPasswordAbstractFactory;
 import CSCI5308.GroupFormationTool.Password.IPolicy;
 import CSCI5308.GroupFormationTool.User.IUser;
@@ -26,26 +25,22 @@ public class UserRegistrationController implements WebMvcConfigurer {
         IUser userInstance = userAbstractFactory.createUserInstance();
         ModelAndView modelAndView = null;
         String errorMessage = null;
-        
-            errorMessage = userInstance.createUser(user);
-            if (null == errorMessage) {
-                modelAndView = new ModelAndView("user/login");
-            } 
-            else {
-            	if(errorMessage.equals(DomainConstants.signupInvalidDetails)) {
+        errorMessage = userInstance.createUser(user);
+        if (null == errorMessage) {
+            modelAndView = new ModelAndView("user/login");
+        } else {
+            if (errorMessage.equals(DomainConstants.signupInvalidDetails)) {
                 modelAndView = new ModelAndView("user/signup");
                 modelAndView.addObject("invalidDetails", errorMessage);
-            	}
-            	else if (errorMessage.equals(DomainConstants.userAlreadyExists
-                        .replace("[[emailId]]", user.getEmailId()))) {
-                    modelAndView = new ModelAndView("user/signup");
-                    modelAndView.addObject("userAlreadyExists", errorMessage);
-            	}
-            	else{
-                    modelAndView = new ModelAndView("user/signup");
-                    modelAndView.addObject("passwordError", errorMessage);
-            	}
+            } else if (errorMessage.equals(DomainConstants.userAlreadyExists
+                    .replace("[[emailId]]", user.getEmailId()))) {
+                modelAndView = new ModelAndView("user/signup");
+                modelAndView.addObject("userAlreadyExists", errorMessage);
+            } else {
+                modelAndView = new ModelAndView("user/signup");
+                modelAndView.addObject("passwordError", errorMessage);
             }
+        }
         return modelAndView;
     }
 
