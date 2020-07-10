@@ -13,16 +13,17 @@ import CSCI5308.GroupFormationTool.Question.QuestionManagerRepository;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUserRepository;
-import CSCI5308.GroupFormationTool.User.User;
-import CSCI5308.GroupFormationTool.User.UserRepository;
+import CSCI5308.GroupFormationTool.User.UserAbstractFactory;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 public class Injector {
 
     private static Injector instance = null;
-
+    
+    private IUserAbstractFactory userAbstractFactory;
     private IDBConfiguration dbConfiguration;
     private IUserRepository userRepository;
     private IUser user;
@@ -43,13 +44,13 @@ public class Injector {
     private IPolicy policy;
     private IQuestionManagerRepository questionManagerRepository;
     private IQuestionAdminRepository questionAdminRepository;
-    private IAbstractFactory abstractFactory;
 
     private Injector() {
 
+        userAbstractFactory = new UserAbstractFactory();
         dbConfiguration = new DBConfiguration();
-        userRepository = new UserRepository();
-        user = new User();
+        userRepository = userAbstractFactory.createUserRepositoryInstance();
+        user = userAbstractFactory.createUserInstance();
         passwordEncryptor = new BCryptEncryption();
         forgotPasswordManager = new ForgotPasswordManager();
         forgotPasswordRepository = new ForgotPasswordRepository();
@@ -67,10 +68,9 @@ public class Injector {
         policy = new Policy();
         questionManagerRepository = new QuestionManagerRepository();
         questionAdminRepository = new QuestionAdminRepository();
-        abstractFactory = new AbstractFactory();
     }
 
-    public static Injector instance() {
+     public static Injector instance() {
 
         if (instance == null) {
             instance = new Injector();
@@ -210,7 +210,4 @@ public class Injector {
         this.questionAdminRepository = questionAdminRepository;
     }
 
-    public IAbstractFactory getAbstractFactory() {
-        return abstractFactory;
-    }
 }

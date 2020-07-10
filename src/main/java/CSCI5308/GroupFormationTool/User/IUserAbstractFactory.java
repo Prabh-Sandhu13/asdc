@@ -7,4 +7,6 @@ public interface IUserAbstractFactory {
 	IUser createUserInstance();
 
 	ArrayList<IUser> createUserListInstance();
+
+	IUserRepository createUserRepositoryInstance();
 }
