@@ -17,10 +17,9 @@ public class StudentRepository implements IStudentRepository {
 
     private IPasswordEncryptor encryptor;
 
-    private IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-
     @Override
     public Map<Integer, List<StudentCSV>> createStudent(List<StudentCSV> studentCSVList, String courseId) {
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         List<StudentCSV> newStudents = new ArrayList<StudentCSV>();
         List<StudentCSV> oldStudents = new ArrayList<StudentCSV>();
         encryptor = Injector.instance().getPasswordEncryptor();

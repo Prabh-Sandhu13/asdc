@@ -13,8 +13,6 @@ import CSCI5308.GroupFormationTool.Common.Injector;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	private ISecurityAbstractFactory securityAbstractFactory = Injector.instance().getSecurityAbstractFactory();
-
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/resources/**");
@@ -29,6 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
+        ISecurityAbstractFactory securityAbstractFactory = Injector.instance().getSecurityAbstractFactory();
         return securityAbstractFactory.createCustomAuthenticationManager();
     }
 }

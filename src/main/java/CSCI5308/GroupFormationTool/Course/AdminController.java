@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

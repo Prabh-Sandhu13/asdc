@@ -11,12 +11,11 @@ import java.util.ArrayList;
 
 public class CourseRepository implements ICourseRepository {
 
-    private IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-
     @Override
     public ArrayList<ICourse> getAllCourses() {
 
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         ArrayList<ICourse> courseList = new ArrayList<ICourse>();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getAllCourseDetails");
@@ -48,6 +47,7 @@ public class CourseRepository implements ICourseRepository {
     @Override
     public boolean createCourse(ICourse course) {
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         boolean status = true;
 
         try {
@@ -74,6 +74,7 @@ public class CourseRepository implements ICourseRepository {
     @Override
     public boolean deleteCourse(String id) {
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         boolean status = true;
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_deleteACourse(?,?)");
@@ -94,6 +95,7 @@ public class CourseRepository implements ICourseRepository {
 
     public ICourse getCourseById(String courseId) {
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         ICourse course = new Course();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getCourseById(?)");

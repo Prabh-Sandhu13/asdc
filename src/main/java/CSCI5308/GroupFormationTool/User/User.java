@@ -120,6 +120,8 @@ public class User implements IUser {
     
     @Override
     public boolean createUser(IUser user) {
+
+       IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         if (!checkForValues(user)) {
             return false;
         }
@@ -136,7 +138,7 @@ public class User implements IUser {
             throw new PasswordException(DomainConstants.passwordsDontMatch);
         }
 
-        userRepository = Injector.instance().getUserRepository();
+        userRepository = userAbstractFactory.createUserRepositoryInstance();
         passwordHistoryManager = Injector.instance().getPasswordHistoryManager();
         boolean success = false;
         encryptor = Injector.instance().getPasswordEncryptor();
@@ -157,7 +159,8 @@ public class User implements IUser {
 
     @Override
     public boolean checkCurrentUserIsAdmin(String emailId) {
-        userRepository = Injector.instance().getUserRepository();
+        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
+        userRepository = userAbstractFactory.createUserRepositoryInstance();
         IUser adminDetails = userRepository.getAdminDetails();
         boolean outcome = adminDetails.getEmailId().equalsIgnoreCase(emailId);
         return outcome;

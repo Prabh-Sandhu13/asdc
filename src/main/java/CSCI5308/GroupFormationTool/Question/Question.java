@@ -27,7 +27,6 @@ public class Question implements IQuestion {
 
     private IQuestionAdminRepository questionAdminRepository;
 
-    private IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
     public Question() {
         this.id = -1;
         this.instructor = null;
@@ -97,6 +96,7 @@ public class Question implements IQuestion {
     @Override
     public long createQuestion(List<String> optionText, List<String> optionValue) {
         int type = this.type;
+        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
         Set<String> optionTextSet = new HashSet<>();
         Set<String> optionValueSet = new HashSet<>();
 

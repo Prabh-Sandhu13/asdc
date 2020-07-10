@@ -16,13 +16,11 @@ import java.util.List;
 public class CustomAuthenticationManager implements AuthenticationManager {
 
     private static final String Admin_banner_id = "B00000000";
-    private IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
-    private ISecurityAbstractFactory securityAbstractFactory = Injector.instance().getSecurityAbstractFactory();
 
     private Authentication checkUser(String password, IUser user, Authentication authentication)
             throws AuthenticationException {
         IPasswordEncryptor passwordEncryptor = Injector.instance().getPasswordEncryptor();
-
+        ISecurityAbstractFactory securityAbstractFactory = Injector.instance().getSecurityAbstractFactory();
         if (passwordEncryptor.passwordMatch(password, user.getPassword())) {
 
             List<GrantedAuthority> rights = securityAbstractFactory.createGrantedAuthorityListInstance();
@@ -42,10 +40,11 @@ public class CustomAuthenticationManager implements AuthenticationManager {
     }
 
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+        ISecurityAbstractFactory securityAbstractFactory = Injector.instance().getSecurityAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         String emailId = authentication.getPrincipal().toString();
         String password = authentication.getCredentials().toString();
-        IUserRepository userRepository = Injector.instance().getUserRepository();
-
+        IUserRepository userRepository = userAbstractFactory.createUserRepositoryInstance();
         IUser user = userAbstractFactory.createUserInstance();
         user.setEmailId(emailId);
         try {

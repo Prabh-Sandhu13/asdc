@@ -8,11 +8,10 @@ import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
 public class QuestionManagerRepository implements IQuestionManagerRepository {
 
-    private IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-    
     @Override
     public long createQuestion(IQuestion question) {
 
+    	IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         long questionId = -1;
 
@@ -46,6 +45,8 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
     }
 
     private boolean saveChoice(IChoice choice, long questionId) {
+
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
 
         try {
@@ -66,6 +67,8 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
         return true;
     }
     public boolean deleteQuestion(long questionId) {
+
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
 
         StoredProcedure storedProcedure = null;
         boolean status = true;

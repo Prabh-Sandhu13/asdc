@@ -22,7 +22,6 @@ public class CourseController {
 
     private IUser userInstance;
     private IStudentCSV studentCSV;
-    private IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
 
     @GetMapping("/courseList")
     public String courseList(Model model) {
@@ -77,7 +76,7 @@ public class CourseController {
 
     @GetMapping(value = "/enrollTA")
     public String enrollTA(@RequestParam(value = "courseId") String courseId, Model model) {
-
+        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         ArrayList<IUser> taList = null;
         IUserCourses userCourses = new UserCourses();
         taList = userCourses.getTAForCourse(courseId);

@@ -61,8 +61,8 @@ public class Injector {
         questionAbstractFactory = new QuestionAbstractFactory();
         securityAbstractFactory = new SecurityAbstractFactory();
         dbConfiguration = new DBConfiguration();
-        userRepository = userAbstractFactory.createUserRepositoryInstance();
-        user = userAbstractFactory.createUserInstance();
+        userRepository = this.userAbstractFactory.createUserRepositoryInstance();
+        user = this.userAbstractFactory.createUserInstance();
         passwordEncryptor = new BCryptEncryption();
         forgotPasswordManager = new ForgotPasswordManager();
         forgotPasswordRepository = new ForgotPasswordRepository();

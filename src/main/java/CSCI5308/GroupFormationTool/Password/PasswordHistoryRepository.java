@@ -13,11 +13,11 @@ import java.util.Date;
 
 public class PasswordHistoryRepository implements IPasswordHistoryRepository {
 
-    private IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
     
     @Override
     public String getSettingValue(String settingName) {
         String settingValue = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getSettingvalue(?)");
@@ -44,6 +44,7 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
     public ArrayList<String> getNPasswords(IUser user, String num) {
 
         ArrayList<String> nPasswords = new ArrayList<String>();
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getNPasswords(?,?)");
@@ -72,6 +73,7 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
     @Override
     public boolean addPasswordHistory(IUser user, String password) {
         boolean historyAdded = false;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         Date currentDate = new Date();
         SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

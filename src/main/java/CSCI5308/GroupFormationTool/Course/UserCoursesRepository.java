@@ -12,12 +12,10 @@ import java.util.ArrayList;
 
 public class UserCoursesRepository implements IUserCoursesRepository {
 
-    private IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
-    private IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-
     @Override
     public String getUserRoleByEmailId(String emailId) {
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         String role = "Guest";
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
@@ -51,6 +49,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     @Override
     public ArrayList<ICourse> getStudentCourses(String emailId) {
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         ArrayList<ICourse> studentCourseList = new ArrayList<ICourse>();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
@@ -82,6 +81,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 
     public ArrayList<IUser> usersCurrentlyNotInstructorsForCourse(String courseId) {
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         ArrayList<IUser> userList = userAbstractFactory.createUserListInstance();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
@@ -115,6 +116,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     @Override
     public ArrayList<ICourse> getTACourses(String emailId) {
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         ArrayList<ICourse> taCourseList = new ArrayList<ICourse>();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
@@ -148,6 +150,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     @Override
     public ArrayList<ICourse> getInstructorCourses(String emailId) {
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         ArrayList<ICourse> instructorCourseList = new ArrayList<ICourse>();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
@@ -180,6 +183,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     @Override
     public ArrayList<IUser> getTAForCourse(String courseId) {
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         ArrayList<IUser> taList = userAbstractFactory.createUserListInstance();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getTAForCourse(?)");
@@ -214,6 +219,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     public boolean addInstructorsToCourse(Long instructor, String courseId) {
 
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_addInstructorsToCourse(?,?)");
@@ -234,6 +240,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     @Override
     public boolean enrollTAForCourseUsingEmailId(IUser user, String courseId) {
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         String emailId = user.getEmailId();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
@@ -268,6 +275,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 
     private boolean assignUserAsTA(String userId, String courseId) {
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_addTAToCourse(?,?)");
@@ -288,6 +296,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     @Override
     public boolean getUserRoleForCourse(String userId, String courseId) {
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getUserRoleForCourse(?,?)");
@@ -316,6 +325,8 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     @Override
     public ArrayList<IUser> getInstructorsForCourse(String courseId) {
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         ArrayList<IUser> instructorList = userAbstractFactory.createUserListInstance();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance

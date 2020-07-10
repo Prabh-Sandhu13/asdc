@@ -2,6 +2,7 @@ package CSCI5308.GroupFormationTool.Security;
 
 import CSCI5308.GroupFormationTool.Password.IPolicy;
 import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
@@ -24,10 +25,11 @@ public class UserRegistrationController implements WebMvcConfigurer {
 
     @PostMapping("/register")
     public ModelAndView createUser(User user) {
+        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         ModelAndView modelAndView = null;
         boolean success = false;
         try {
-        	userInstance = Injector.instance().getUser();
+        	userInstance = userAbstractFactory.createUserInstance();
             success = userInstance.createUser(user);
 
             if (success) {

@@ -10,13 +10,11 @@ import java.util.ArrayList;
 
 public class QuestionAdminRepository implements IQuestionAdminRepository {
 
-    private IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
-
-    private IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-
     @Override
     public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
 
+        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
         try {
@@ -52,6 +50,8 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
     @Override
     public IQuestion getQuestionById(long questionId) {
         StoredProcedure storedProcedure = null;
+        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         IQuestion question = questionAbstractFactory.createQuestionInstance();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getQuestionById(?)");
@@ -83,6 +83,8 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
     public ArrayList<IChoice> getOptionsForTheQuestion(long questionId) {
 
         StoredProcedure storedProcedure = null;
+        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         ArrayList<IChoice> choiceList = questionAbstractFactory.createChoiceListInstance();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
@@ -116,6 +118,8 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
     public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy) {
 
         StoredProcedure storedProcedure = null;
+        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance

@@ -10,11 +10,11 @@ import java.util.ArrayList;
 
 public class PolicyRepository implements IPolicyRepository {
 
-    private IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
 
     @Override
     public ArrayList<IPolicy> passwordSPolicyCheck(String password) {
         ArrayList<IPolicy> policies = new ArrayList<IPolicy>();
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         IPolicy policy = null;
         try {
@@ -46,6 +46,7 @@ public class PolicyRepository implements IPolicyRepository {
     @Override
     public ArrayList<IPolicy> getPolicies() {
         ArrayList<IPolicy> policies = new ArrayList<IPolicy>();
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         IPolicy policy = null;
         try {

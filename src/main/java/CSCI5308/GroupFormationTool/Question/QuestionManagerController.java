@@ -18,9 +18,6 @@ import java.util.List;
 @Controller
 public class QuestionManagerController {
 
-	private IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
-	private IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
-
     @GetMapping("/questionManager/createQuestion")
     public String createQuestion(Model model) {
         return "question/createQuestion";
@@ -34,6 +31,8 @@ public class QuestionManagerController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         long outcome;
+        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         IQuestion question = questionAbstractFactory.createQuestionInstance();
         IUser instructor = userAbstractFactory.createUserInstance();
         question.setText(text);
@@ -55,6 +54,7 @@ public class QuestionManagerController {
     @GetMapping("/questionManager/deleteQuestion")
     public String deleteQuestion(@RequestParam("questionId") long questionId, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
         IQuestion question = questionAbstractFactory.createQuestionInstance();
         boolean status = question.deleteQuestion(questionId);
         if (status) {

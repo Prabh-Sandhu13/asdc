@@ -10,12 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ForgotPasswordRepository implements IForgotPasswordRepository {
-    private IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
-    private IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-
     @Override
     public boolean addToken(IUser user, String token) {
-
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         boolean tokenAdded = false;
         StoredProcedure storedProcedure = null;
         try {
@@ -42,6 +39,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
     @Override
     public String getToken(IUser user) {
 
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         String token = "";
         StoredProcedure storedProcedure = null;
         try {
@@ -70,6 +68,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
     @Override
     public boolean updatePassword(IUser user, String password) {
 
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         boolean passwordUpdated = false;
         StoredProcedure storedProcedure = null;
         try {
@@ -92,6 +91,8 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
 
     @Override
     public boolean deleteToken(IUser user, String token) {
+
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         boolean tokenDeleted = false;
         StoredProcedure storedProcedure = null;
         try {
@@ -113,6 +114,7 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
 
     @Override
     public boolean updateToken(IUser user, String token) {
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         boolean tokenUpdated = false;
         StoredProcedure storedProcedure = null;
         try {
@@ -135,6 +137,8 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
     @Override
     public IUser getUserId(IUser user) {
 
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         IUser userByEmailId = null;
         StoredProcedure storedProcedure = null;
         try {
@@ -174,6 +178,8 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
     public IUser getEmailByToken(IUser user, String token) {
         IUser userByEmailId = null;
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getEmailByToken(?)");
             storedProcedure.setInputStringParameter(1, token);
