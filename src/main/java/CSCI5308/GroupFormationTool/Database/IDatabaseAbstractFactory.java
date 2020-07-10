@@ -5,4 +5,6 @@ import java.sql.SQLException;
 public interface IDatabaseAbstractFactory {
 
     StoredProcedure createStoredProcedureInstance(String name) throws SQLException;
+
+	IDBConfiguration getDBConfiguration();
 }

@@ -26,4 +26,6 @@ public interface ISecurityAbstractFactory {
     BadCredentialsException createBadCredentialsExceptionInstance(String value);
 
     AuthenticationServiceException createAuthenticationServiceExceptionInstance(String value);
+
+	BCryptEncryption createBCryptEncryptionInstance();
 }

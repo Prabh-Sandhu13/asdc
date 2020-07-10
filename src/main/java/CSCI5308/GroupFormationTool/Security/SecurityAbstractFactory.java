@@ -46,4 +46,9 @@ public class SecurityAbstractFactory implements ISecurityAbstractFactory {
     public AuthenticationServiceException createAuthenticationServiceExceptionInstance(String value) {
         return new AuthenticationServiceException(value);
     }
+
+    @Override
+    public BCryptEncryption createBCryptEncryptionInstance() {
+        return new BCryptEncryption();
+    }
 }

@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool.Common;
 
 import CSCI5308.GroupFormationTool.Course.*;
-import CSCI5308.GroupFormationTool.Database.DBConfiguration;
 import CSCI5308.GroupFormationTool.Database.DatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.IDBConfiguration;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
@@ -14,7 +13,6 @@ import CSCI5308.GroupFormationTool.Question.IQuestionManagerRepository;
 import CSCI5308.GroupFormationTool.Question.QuestionAbstractFactory;
 import CSCI5308.GroupFormationTool.Question.QuestionAdminRepository;
 import CSCI5308.GroupFormationTool.Question.QuestionManagerRepository;
-import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.Security.ISecurityAbstractFactory;
 import CSCI5308.GroupFormationTool.Security.SecurityAbstractFactory;
@@ -60,10 +58,10 @@ public class Injector {
         databaseAbstractFactory = new DatabaseAbstractFactory();
         questionAbstractFactory = new QuestionAbstractFactory();
         securityAbstractFactory = new SecurityAbstractFactory();
-        dbConfiguration = new DBConfiguration();
-        userRepository = this.userAbstractFactory.createUserRepositoryInstance();
-        user = this.userAbstractFactory.createUserInstance();
-        passwordEncryptor = new BCryptEncryption();
+        dbConfiguration = databaseAbstractFactory.getDBConfiguration();
+        userRepository = userAbstractFactory.createUserRepositoryInstance();
+        user = userAbstractFactory.createUserInstance();
+        passwordEncryptor = securityAbstractFactory.createBCryptEncryptionInstance();
         forgotPasswordManager = new ForgotPasswordManager();
         forgotPasswordRepository = new ForgotPasswordRepository();
         tokenGenerator = new TokenGenerator();
