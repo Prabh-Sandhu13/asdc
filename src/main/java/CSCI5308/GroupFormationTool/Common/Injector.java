@@ -1,17 +1,20 @@
 package CSCI5308.GroupFormationTool.Common;
 
 import CSCI5308.GroupFormationTool.Course.*;
-import CSCI5308.GroupFormationTool.Database.DBConfiguration;
+import CSCI5308.GroupFormationTool.Database.DatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.IDBConfiguration;
+import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
+import CSCI5308.GroupFormationTool.Mail.IMailAbstractFactory;
 import CSCI5308.GroupFormationTool.Mail.IMailManager;
-import CSCI5308.GroupFormationTool.Mail.MailManager;
+import CSCI5308.GroupFormationTool.Mail.MailAbstractFactory;
 import CSCI5308.GroupFormationTool.Password.*;
+import CSCI5308.GroupFormationTool.Question.IQuestionAbstractFactory;
 import CSCI5308.GroupFormationTool.Question.IQuestionAdminRepository;
 import CSCI5308.GroupFormationTool.Question.IQuestionManagerRepository;
-import CSCI5308.GroupFormationTool.Question.QuestionAdminRepository;
-import CSCI5308.GroupFormationTool.Question.QuestionManagerRepository;
-import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
+import CSCI5308.GroupFormationTool.Question.QuestionAbstractFactory;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
+import CSCI5308.GroupFormationTool.Security.ISecurityAbstractFactory;
+import CSCI5308.GroupFormationTool.Security.SecurityAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUserRepository;
@@ -22,11 +25,15 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 public class Injector {
 
     private static Injector instance = null;
-    
     private IUserAbstractFactory userAbstractFactory;
+    private IDatabaseAbstractFactory databaseAbstractFactory;
+    private IQuestionAbstractFactory questionAbstractFactory;
+    private ISecurityAbstractFactory securityAbstractFactory;
+    private ICourseAbstractFactory courseAbstractFactory;
+    private IMailAbstractFactory mailAbstractFactory;
+    private IPasswordAbstractFactory passwordAbstractFactory;
     private IDBConfiguration dbConfiguration;
     private IUserRepository userRepository;
-    private IUser user;
     private IPasswordEncryptor passwordEncryptor;
     private ITokenGenerator tokenGenerator;
     private IForgotPasswordManager forgotPasswordManager;
@@ -39,43 +46,82 @@ public class Injector {
     private ICourseRepository courseRepository;
     private IUserCoursesRepository userCoursesRepository;
     private IStudentRepository studentRepository;
-    private IStudentCSV studentCSV;
     private IPolicyRepository policyRepository;
-    private IPolicy policy;
     private IQuestionManagerRepository questionManagerRepository;
     private IQuestionAdminRepository questionAdminRepository;
 
     private Injector() {
-
         userAbstractFactory = new UserAbstractFactory();
-        dbConfiguration = new DBConfiguration();
+        databaseAbstractFactory = new DatabaseAbstractFactory();
+        questionAbstractFactory = new QuestionAbstractFactory();
+        securityAbstractFactory = new SecurityAbstractFactory();
+        courseAbstractFactory = new CourseAbstractFactory();
+        mailAbstractFactory = new MailAbstractFactory();
+        passwordAbstractFactory = new PasswordAbstractFactory();
+        dbConfiguration = databaseAbstractFactory.createDBConfigurationInstance();
         userRepository = userAbstractFactory.createUserRepositoryInstance();
-        user = userAbstractFactory.createUserInstance();
-        passwordEncryptor = new BCryptEncryption();
-        forgotPasswordManager = new ForgotPasswordManager();
-        forgotPasswordRepository = new ForgotPasswordRepository();
-        tokenGenerator = new TokenGenerator();
-        passwordHistoryManager = new PasswordHistoryManager();
-        passwordHistoryRepository = new PasswordHistoryRepository();
-        mailManager = new MailManager();
-        mailMessage = new SimpleMailMessage();
-        mailSender = new JavaMailSenderImpl();
-        courseRepository = new CourseRepository();
-        userCoursesRepository = new UserCoursesRepository();
-        studentRepository = new StudentRepository();
-        studentCSV = new StudentCSV();
-        policyRepository = new PolicyRepository();
-        policy = new Policy();
-        questionManagerRepository = new QuestionManagerRepository();
-        questionAdminRepository = new QuestionAdminRepository();
+        passwordEncryptor = securityAbstractFactory.createBCryptEncryptionInstance();
+        forgotPasswordManager = passwordAbstractFactory.createForgotPasswordManagerInstance();
+        forgotPasswordRepository = passwordAbstractFactory.createForgotPasswordRepositoryInstance();
+        tokenGenerator = passwordAbstractFactory.createTokenGeneratorInstance();
+        passwordHistoryManager = passwordAbstractFactory.createPasswordHistoryManagerInstance();
+        passwordHistoryRepository = passwordAbstractFactory.createPasswordHistoryRepositoryInstance();
+        mailManager = mailAbstractFactory.createMailManagerInstance();
+        mailMessage = mailAbstractFactory.createSimpleMailMessageInstance();
+        mailSender = mailAbstractFactory.createJavaMailSenderInstance();
+        courseRepository = courseAbstractFactory.createCourseRepository();
+        userCoursesRepository = courseAbstractFactory.createUserCoursesRepository();
+        studentRepository = courseAbstractFactory.createStudentRepository();
+        policyRepository = passwordAbstractFactory.createPolicyRepository();
+        questionManagerRepository = questionAbstractFactory.createQuestionManagerRepository();
+        questionAdminRepository = questionAbstractFactory.createQuestionAdminRepository();
     }
 
-     public static Injector instance() {
-
+    public static Injector instance() {
         if (instance == null) {
             instance = new Injector();
         }
         return instance;
+    }
+
+    public IUserAbstractFactory getUserAbstractFactory() {
+        return userAbstractFactory;
+    }
+
+    public void setUserAbstractFactory(IUserAbstractFactory userAbstractFactory) {
+        this.userAbstractFactory = userAbstractFactory;
+    }
+
+    public IDatabaseAbstractFactory getDatabaseAbstractFactory() {
+        return databaseAbstractFactory;
+    }
+
+    public void setDatabaseAbstractFactory(IDatabaseAbstractFactory databaseAbstractFactory) {
+        this.databaseAbstractFactory = databaseAbstractFactory;
+    }
+
+    public IQuestionAbstractFactory getQuestionAbstractFactory() {
+        return questionAbstractFactory;
+    }
+
+    public void setQuestionAbstractFactory(IQuestionAbstractFactory questionAbstractFactory) {
+        this.questionAbstractFactory = questionAbstractFactory;
+    }
+
+    public ISecurityAbstractFactory getSecurityAbstractFactory() {
+        return securityAbstractFactory;
+    }
+
+    public void setSecurityAbstractFactory(ISecurityAbstractFactory securityAbstractFactory) {
+        this.securityAbstractFactory = securityAbstractFactory;
+    }
+
+    public ICourseAbstractFactory getCourseAbstractFactory() {
+        return courseAbstractFactory;
+    }
+
+    public IPasswordAbstractFactory getPasswordAbstractFactory() {
+        return passwordAbstractFactory;
     }
 
     public IUserCoursesRepository getUserCoursesRepository() {
@@ -104,10 +150,6 @@ public class Injector {
 
     public IDBConfiguration getDbConfiguration() {
         return dbConfiguration;
-    }
-
-    public IUser getUser() {
-        return user;
     }
 
     public IForgotPasswordManager getForgotPasswordManager() {
@@ -158,10 +200,6 @@ public class Injector {
         this.studentRepository = studentRepository;
     }
 
-    public IStudentCSV getStudentCSV() {
-        return studentCSV;
-    }
-
     public IPasswordHistoryRepository getPasswordHistoryRepository() {
         return passwordHistoryRepository;
     }
@@ -184,14 +222,6 @@ public class Injector {
 
     public void setPolicyRepository(IPolicyRepository policyRepository) {
         this.policyRepository = policyRepository;
-    }
-
-    public IPolicy getPolicy() {
-        return policy;
-    }
-
-    public void setPolicy(IPolicy policy) {
-        this.policy = policy;
     }
 
     public IQuestionManagerRepository getQuestionManagerRepository() {

@@ -17,8 +17,8 @@ public class AdminController {
 
     @GetMapping("/admin/allCourses")
     public String adminCourses(Model model) {
-
-        ICourse course = new Course();
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ICourse course = courseAbstractFactory.createCourseInstance();
         List<ICourse> allCourses = course.getAllCourses();
         model.addAttribute("courses", allCourses);
         return "course/allCourses";
@@ -26,9 +26,9 @@ public class AdminController {
 
     @GetMapping("/admin/assignInstructor")
     public String assignInstructor(Model model, @RequestParam(name = "courseId") String courseId) {
-
-        IUserCourses userCourses = new UserCourses();
-        ICourse course = new Course();
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
+        ICourse course = courseAbstractFactory.createCourseInstance();
 
         ICourse courseById = course.getCourseById(courseId);
 
@@ -47,18 +47,14 @@ public class AdminController {
     public String assignInstructorToCourse(@RequestParam(name = "instructor") Long instructor,
                                            @RequestParam(name = "id") String courseId, Model model) {
 
-        IUserCourses userCourses = new UserCourses();
-        ICourse course = new Course();
-
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
+        ICourse course = courseAbstractFactory.createCourseInstance();
         ICourse courseById = course.getCourseById(courseId);
-
         boolean success = userCourses.addInstructorsToCourse(instructor, courseId);
-
         ArrayList<IUser> instructorList = userCourses.getInstructorsForCourse(courseId);
-
         model.addAttribute("instructorList", instructorList);
         model.addAttribute("course", courseById);
-
         if (success) {
             model.addAttribute("success", DomainConstants.instructorAddSuccess);
         } else {

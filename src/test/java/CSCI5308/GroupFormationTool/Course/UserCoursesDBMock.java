@@ -1,9 +1,8 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.FactoryProducerTest;
+import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
-import CSCI5308.GroupFormationTool.User.User;
 
 import java.util.ArrayList;
 
@@ -27,11 +26,10 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
     private String description;
 
-    private ICourseAbstractFactoryTest courseAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createCourseAbstractFactoryTest();
+    private ICourseAbstractFactoryTest courseAbstractFactoryTest = TestsInjector.instance().
+            getCourseAbstractFactoryTest();
 
-    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createUserAbstractFactoryTest();
+    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
 
     public UserCoursesDBMock() {
         courseId = "CSCI5308";
@@ -150,10 +148,7 @@ public class UserCoursesDBMock implements IUserCoursesRepository {
 
     @Override
     public boolean enrollTAForCourseUsingEmailId(IUser user, String courseId) {
-        if (courseId == "1") {
-            return true;
-        }
-        return false;
+        return courseId == "1";
     }
 
     @Override

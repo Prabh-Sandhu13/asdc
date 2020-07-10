@@ -1,12 +1,7 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.Course.IStudentCSV;
-import CSCI5308.GroupFormationTool.Course.IStudentRepository;
-import CSCI5308.GroupFormationTool.Course.StudentCSV;
-import CSCI5308.GroupFormationTool.FactoryProducerTest;
+import CSCI5308.GroupFormationTool.TestsInjector;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,8 +17,8 @@ public class StudentDBMock implements IStudentRepository {
 
     private String password;
 
-    private ICourseAbstractFactoryTest courseAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createCourseAbstractFactoryTest();
+    private ICourseAbstractFactoryTest courseAbstractFactoryTest = TestsInjector.instance().
+            getCourseAbstractFactoryTest();
 
     public StudentDBMock() {
         firstName = "Tanu";

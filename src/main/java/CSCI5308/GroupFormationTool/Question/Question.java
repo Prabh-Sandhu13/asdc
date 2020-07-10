@@ -5,7 +5,10 @@ import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.IUser;
 
 import java.sql.Date;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 public class Question implements IQuestion {
 
@@ -26,9 +29,6 @@ public class Question implements IQuestion {
     private IQuestionManagerRepository questionManagerRepository;
 
     private IQuestionAdminRepository questionAdminRepository;
-
-    private IQuestionAbstractFactory questionAbstractFactory = Injector.instance().
-            getAbstractFactory().createQuestionAbstractFactory();
 
     public Question() {
         this.id = -1;
@@ -99,8 +99,9 @@ public class Question implements IQuestion {
     @Override
     public long createQuestion(List<String> optionText, List<String> optionValue) {
         int type = this.type;
-        Set<String> optionTextSet = new HashSet<>();
-        Set<String> optionValueSet = new HashSet<>();
+        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
+        Set<String> optionTextSet = questionAbstractFactory.createSetInstance();
+        Set<String> optionValueSet = questionAbstractFactory.createSetInstance();
 
         if (checkIfInvalid(optionText, optionValue)) {
             return DomainConstants.invalidData;
@@ -114,7 +115,6 @@ public class Question implements IQuestion {
             }
 
             if (type == DomainConstants.MCQMultiple || type == DomainConstants.MCQOne) {
-
                 if (optionTextSet.size() == optionValueSet.size()) {
                     Iterator<String> optionTextIterator = optionTextSet.iterator();
                     Iterator<String> optionValueIterator = optionValueSet.iterator();
@@ -165,7 +165,6 @@ public class Question implements IQuestion {
         questionAdminRepository = Injector.instance().getQuestionAdminRepository();
         IQuestion question = questionAdminRepository.getQuestionById(questionId);
         ArrayList<IChoice> choiceList = null;
-
         if (question.getType() == DomainConstants.MCQMultiple || question.getType() == DomainConstants.MCQOne) {
             choiceList = questionAdminRepository.getOptionsForTheQuestion(questionId);
         }
@@ -179,10 +178,8 @@ public class Question implements IQuestion {
             return true;
         }
         if (this.type == DomainConstants.MCQMultiple || this.type == DomainConstants.MCQOne) {
-            if (optionText == null || optionText.isEmpty() || optionText.contains("") || optionValue == null
-                    || optionValue.isEmpty() || optionValue.contains("")) {
-                return true;
-            }
+            return optionText == null || optionText.isEmpty() || optionText.contains("") || optionValue == null
+                    || optionValue.isEmpty() || optionValue.contains("");
         }
         return false;
     }

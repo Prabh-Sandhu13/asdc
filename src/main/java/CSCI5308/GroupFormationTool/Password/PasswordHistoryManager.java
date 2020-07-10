@@ -1,9 +1,9 @@
 package CSCI5308.GroupFormationTool.Password;
 
-import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
+import CSCI5308.GroupFormationTool.User.IUser;
 
 import java.util.ArrayList;
 
@@ -18,17 +18,13 @@ public class PasswordHistoryManager implements IPasswordHistoryManager {
         passwordHistoryRepository = Injector.instance().getPasswordHistoryRepository();
         encryptor = Injector.instance().getPasswordEncryptor();
         boolean violation = false;
-
         encryptor = Injector.instance().getPasswordEncryptor();
         String settingValue = passwordHistoryRepository.getSettingValue(DomainConstants.passwordHistory);
-
         if (settingValue == null) {
             return false;
         } else {
             ArrayList<String> nPasswords = passwordHistoryRepository.getNPasswords(user, settingValue);
-
             for (int listIndex = 0; listIndex < nPasswords.size(); listIndex++) {
-
                 if (encryptor.passwordMatch(enteredPassword, nPasswords.get(listIndex))) {
                     violation = true;
                     break;
@@ -49,5 +45,4 @@ public class PasswordHistoryManager implements IPasswordHistoryManager {
         passwordHistoryRepository = Injector.instance().getPasswordHistoryRepository();
         return passwordHistoryRepository.getSettingValue(settingName);
     }
-
 }

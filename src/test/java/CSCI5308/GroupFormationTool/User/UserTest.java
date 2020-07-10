@@ -1,41 +1,45 @@
 package CSCI5308.GroupFormationTool.User;
 
+import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
-import CSCI5308.GroupFormationTool.FactoryProducerTest;
 import CSCI5308.GroupFormationTool.Password.IPasswordAbstractFactoryTest;
+import CSCI5308.GroupFormationTool.Password.IPolicy;
 import CSCI5308.GroupFormationTool.Password.PasswordHistoryManager;
-import CSCI5308.GroupFormationTool.Password.Policy;
+import CSCI5308.GroupFormationTool.Password.PolicyRepository;
+import CSCI5308.GroupFormationTool.TestsInjector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 public class UserTest {
 
     IUser userInstance;
     UserRepository userRepository;
-    Policy policyInstance;
     PasswordHistoryManager passwordHistoryManager;
-    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createUserAbstractFactoryTest();
+    PolicyRepository policyRepository;
+    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
 
-    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createPasswordAbstractFactoryTest();
+    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = TestsInjector.instance().
+            getPasswordAbstractFactoryTest();
 
     @BeforeEach
     public void init() {
         userInstance = userAbstractFactoryTest.createUserInstance();
         userRepository = userAbstractFactoryTest.createUserRepositoryMock();
         Injector.instance().setUserRepository(userRepository);
-        policyInstance = passwordAbstractFactoryTest.createPolicyMock();
-        Injector.instance().setPolicy(policyInstance);
+        policyRepository = passwordAbstractFactoryTest.createPolicyRepositoryMock();
         passwordHistoryManager = passwordAbstractFactoryTest.createPasswordHistoryManagerMock();
         Injector.instance().setPasswordHistoryManager(passwordHistoryManager);
+        Injector.instance().setPolicyRepository(policyRepository);
     }
 
     private IUser createDefaultUser() {
@@ -151,7 +155,14 @@ public class UserTest {
         user.setPassword("Padmesh1$");
         user.setConfirmPassword("Padmesh1$");
         String encryptedPassword = "encryptedPadmesh1$";
-        when(policyInstance.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
+        ArrayList<IPolicy> policyList = passwordAbstractFactoryTest.createPolicyListInstance();
+        IPolicy policy = passwordAbstractFactoryTest.createPolicyInstance();
+        policy.setEnabled(1);
+        policy.setId(0);
+        policy.setValue("10");
+        policyList.add(policy);
+        when(policyRepository.passwordSPolicyCheck(user.getPassword())).
+                thenReturn(passwordAbstractFactoryTest.createPolicyListInstance());
         when(userRepository.getUserByEmailId(user)).thenReturn(null);
         when(userRepository.createUser(user)).thenReturn(true);
         when(userRepository.getUserIdByEmailId(user)).thenReturn(user);
@@ -159,8 +170,9 @@ public class UserTest {
         assertTrue(userInstance.createUser(user));
         user.setPassword("pa");
         user.setConfirmPassword("pa");
-        String passwordErrorMessage = "Minimum number of characters is 3";
-        when(policyInstance.passwordSPolicyCheck(user.getPassword())).thenReturn(passwordErrorMessage);
+        String passwordErrorMessage = DomainConstants.passwordMinimumLength + policy.getValue();
+        when(policyRepository.passwordSPolicyCheck(user.getPassword())).
+                thenReturn(policyList);
         PasswordException passwordException = assertThrows(PasswordException.class, () -> {
             userInstance.createUser(user);
         });
@@ -173,7 +185,8 @@ public class UserTest {
         });
         assertTrue(passwordException.getMessage().equals(passwordErrorMessage));
         user.setConfirmPassword("Padmesh1$");
-        when(policyInstance.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
+        when(policyRepository.passwordSPolicyCheck(user.getPassword())).
+                thenReturn(passwordAbstractFactoryTest.createPolicyListInstance());
         when(userRepository.getUserByEmailId(user)).thenReturn(user);
         UserAlreadyExistsException userAlreadyExistsException = assertThrows(UserAlreadyExistsException.class, () -> {
             userInstance.createUser(user);

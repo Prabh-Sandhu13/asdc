@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public interface IUserAbstractFactory {
 
-	IUser createUserInstance();
+    IUser createUserInstance();
 
-	ArrayList<IUser> createUserListInstance();
+    ArrayList<IUser> createUserListInstance();
 
-	IUserRepository createUserRepositoryInstance();
+    IUserRepository createUserRepositoryInstance();
 }

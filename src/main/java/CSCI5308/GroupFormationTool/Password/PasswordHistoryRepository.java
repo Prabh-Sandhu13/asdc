@@ -1,9 +1,9 @@
 package CSCI5308.GroupFormationTool.Password;
 
-import CSCI5308.GroupFormationTool.Common.FactoryProducer;
+import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
-import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
+import CSCI5308.GroupFormationTool.User.IUser;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,12 +13,10 @@ import java.util.Date;
 
 public class PasswordHistoryRepository implements IPasswordHistoryRepository {
 
-    private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
-            createDatabaseAbstractFactory();
-    
     @Override
     public String getSettingValue(String settingName) {
         String settingValue = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getSettingvalue(?)");
@@ -43,8 +41,9 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
 
     @Override
     public ArrayList<String> getNPasswords(IUser user, String num) {
-
-        ArrayList<String> nPasswords = new ArrayList<String>();
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IPasswordAbstractFactory passwordAbstractFactory = Injector.instance().getPasswordAbstractFactory();
+        ArrayList<String> nPasswords = passwordAbstractFactory.createPasswordList();
         StoredProcedure storedProcedure = null;
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getNPasswords(?,?)");
@@ -73,9 +72,11 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
     @Override
     public boolean addPasswordHistory(IUser user, String password) {
         boolean historyAdded = false;
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IPasswordAbstractFactory passwordAbstractFactory = Injector.instance().getPasswordAbstractFactory();
         StoredProcedure storedProcedure = null;
-        Date currentDate = new Date();
-        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date currentDate = passwordAbstractFactory.createDateInstance();
+        SimpleDateFormat dateTimeFormat = passwordAbstractFactory.createSimpleDateFormatInstance();
 
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
@@ -85,7 +86,6 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
             storedProcedure.setInputStringParameter(3, password);
             storedProcedure.execute();
             historyAdded = true;
-
         } catch (SQLException ex) {
             System.out.println("" + ex.getMessage());
         } finally {
@@ -95,5 +95,4 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
         }
         return historyAdded;
     }
-
 }

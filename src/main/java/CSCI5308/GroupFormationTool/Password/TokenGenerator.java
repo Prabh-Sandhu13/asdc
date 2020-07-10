@@ -1,7 +1,5 @@
 package CSCI5308.GroupFormationTool.Password;
 
-import CSCI5308.GroupFormationTool.Password.ITokenGenerator;
-
 import java.util.UUID;
 
 public class TokenGenerator implements ITokenGenerator {
@@ -10,5 +8,4 @@ public class TokenGenerator implements ITokenGenerator {
     public String generator() {
         return UUID.randomUUID().toString();
     }
-
 }

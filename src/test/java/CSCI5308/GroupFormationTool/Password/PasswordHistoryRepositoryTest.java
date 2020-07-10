@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool.Password;
 
-import CSCI5308.GroupFormationTool.FactoryProducerTest;
-import CSCI5308.GroupFormationTool.Security.ISecurityAbstractFactoryTest;
+import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,16 +10,14 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class PasswordHistoryRepositoryTest {
 
-    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createPasswordAbstractFactoryTest();
+    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = TestsInjector.instance().
+            getPasswordAbstractFactoryTest();
 
-    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createUserAbstractFactoryTest();
+    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
 
     private PasswordHistoryRepository passwordHistoryRepository;
 
@@ -42,7 +39,7 @@ public class PasswordHistoryRepositoryTest {
 
     @Test
     public void getNPasswordsTest() {
-        ArrayList<String> nPasswords = new ArrayList<String>();
+        ArrayList<String> nPasswords = passwordAbstractFactoryTest.createListInstance();
         nPasswords.add("hostory1");
         nPasswords.add("hostory2");
         nPasswords.add("hostory3");

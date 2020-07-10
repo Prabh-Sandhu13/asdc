@@ -1,6 +1,6 @@
 package CSCI5308.GroupFormationTool.User;
 
-import CSCI5308.GroupFormationTool.Common.FactoryProducer;
+import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
@@ -9,14 +9,9 @@ import java.sql.SQLException;
 
 public class UserRepository implements IUserRepository {
 
-    private IUserAbstractFactory userAbstractFactory = FactoryProducer.
-            getFactory().createUserAbstractFactory();
-    private IDatabaseAbstractFactory databaseAbstractFactory = FactoryProducer.getFactory().
-            createDatabaseAbstractFactory();
-
     @Override
     public boolean createUser(IUser user) {
-
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance(
@@ -41,6 +36,8 @@ public class UserRepository implements IUserRepository {
     @Override
     public IUser getUserIdByEmailId(IUser user) {
 
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         IUser userWithUserId = null;
         StoredProcedure storedProcedure = null;
         try {
@@ -69,6 +66,8 @@ public class UserRepository implements IUserRepository {
     @Override
     public IUser getUserByEmailId(IUser user) {
 
+        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         IUser userByEmailId = null;
         StoredProcedure storedProcedure = null;
         try {
@@ -102,6 +101,9 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public IUser getAdminDetails() {
+
+        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         IUser adminDetails = null;
         try {

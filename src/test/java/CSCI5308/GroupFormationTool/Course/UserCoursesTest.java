@@ -1,7 +1,7 @@
 package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.FactoryProducerTest;
+import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,11 +17,10 @@ import static org.mockito.Mockito.when;
 public class UserCoursesTest {
 
     public UserCoursesRepository userCoursesRepository;
-    private ICourseAbstractFactoryTest courseAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createCourseAbstractFactoryTest();
+    private ICourseAbstractFactoryTest courseAbstractFactoryTest = TestsInjector.instance().
+            getCourseAbstractFactoryTest();
     IUserCourses userCourses = courseAbstractFactoryTest.createUserCoursesInstance();
-    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createUserAbstractFactoryTest();
+    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
 
     @BeforeEach
     public void init() {

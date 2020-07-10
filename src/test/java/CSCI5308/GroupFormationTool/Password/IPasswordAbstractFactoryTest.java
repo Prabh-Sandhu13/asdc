@@ -24,4 +24,6 @@ public interface IPasswordAbstractFactoryTest {
 
     PasswordHistoryManager createPasswordHistoryManagerInstance();
 
+    ArrayList<String> createListInstance();
+
 }

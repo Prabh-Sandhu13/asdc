@@ -1,5 +1,6 @@
 package CSCI5308.GroupFormationTool.Question;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 public interface IQuestionAbstractFactoryTest {
@@ -19,4 +20,7 @@ public interface IQuestionAbstractFactoryTest {
 
     QuestionManagerRepository createQuestionManagerRepositoryMock();
 
+    Date createDateInstance(long date);
+
+    ArrayList<String> createListInstance();
 }

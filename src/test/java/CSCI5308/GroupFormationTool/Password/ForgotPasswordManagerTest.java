@@ -1,18 +1,21 @@
 package CSCI5308.GroupFormationTool.Password;
 
+import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordException;
 import CSCI5308.GroupFormationTool.ErrorHandling.PasswordHistoryException;
 import CSCI5308.GroupFormationTool.ErrorHandling.TokenExpiredException;
 import CSCI5308.GroupFormationTool.ErrorHandling.UserAlreadyExistsException;
-import CSCI5308.GroupFormationTool.FactoryProducerTest;
 import CSCI5308.GroupFormationTool.Mail.IMailManagerAbstractFactoryTest;
 import CSCI5308.GroupFormationTool.Mail.MailManager;
+import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -25,29 +28,30 @@ public class ForgotPasswordManagerTest {
     public ForgotPasswordRepository forgotPasswordRepository;
     public IForgotPasswordManager forgotPasswordManager;
     public MailManager mailManager;
-    public Policy policyInstance;
+    public IPolicy policyInstance;
     public PasswordHistoryManager passwordHistoryManager;
+    public PolicyRepository policyRepository;
 
-    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createPasswordAbstractFactoryTest();
+    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = TestsInjector.instance().
+            getPasswordAbstractFactoryTest();
 
-    private IMailManagerAbstractFactoryTest mailManagerAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createMailManagerAbstractFactoryTest();
+    private IMailManagerAbstractFactoryTest mailManagerAbstractFactoryTest = TestsInjector.instance().
+            getMailManagerAbstractFactoryTest();
 
-    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createUserAbstractFactoryTest();
+    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
 
     @BeforeEach
     public void init() {
         forgotPasswordRepository = passwordAbstractFactoryTest.createForgotPasswordRepositoryMock();
         mailManager = mailManagerAbstractFactoryTest.createMailManagerMock();
-        policyInstance = passwordAbstractFactoryTest.createPolicyMock();
+        policyInstance = passwordAbstractFactoryTest.createPolicyInstance();
         passwordHistoryManager = passwordAbstractFactoryTest.createPasswordHistoryManagerMock();
         forgotPasswordManager = passwordAbstractFactoryTest.createForgotPasswordManagerInstance();
+        policyRepository = passwordAbstractFactoryTest.createPolicyRepositoryMock();
         Injector.instance().setForgotPasswordRepository(forgotPasswordRepository);
         Injector.instance().setMailManager(mailManager);
-        Injector.instance().setPolicy(policyInstance);
         Injector.instance().setPasswordHistoryManager(passwordHistoryManager);
+        Injector.instance().setPolicyRepository(policyRepository);
     }
 
     @Test
@@ -93,21 +97,31 @@ public class ForgotPasswordManagerTest {
         String token = "sample token";
         String passwordErrorMessage = "Error";
         String encryptedPassword = "encryptedpswd12345";
-        when(policyInstance.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
+        ArrayList<IPolicy> policyList = passwordAbstractFactoryTest.createPolicyListInstance();
+        IPolicy policy = passwordAbstractFactoryTest.createPolicyInstance();
+        policy.setEnabled(1);
+        policy.setId(0);
+        policy.setValue("10");
+        policyList.add(policy);
+        when(policyRepository.passwordSPolicyCheck(user.getPassword())).
+                thenReturn(passwordAbstractFactoryTest.createPolicyListInstance());
         when(forgotPasswordRepository.getEmailByToken(user, token)).thenReturn(user);
         when(passwordHistoryManager.isHistoryViolated(user, user.getPassword())).thenReturn(false);
         when(forgotPasswordRepository.updatePassword(user, encryptedPassword)).thenReturn(true);
         doNothing().when(passwordHistoryManager).addPasswordHistory(user, encryptedPassword);
         when(forgotPasswordRepository.deleteToken(user, token)).thenReturn(true);
         assertTrue(forgotPasswordManager.updatePassword(user, token));
-        when(policyInstance.passwordSPolicyCheck(user.getPassword())).thenReturn(passwordErrorMessage);
+        user.setPassword("pa");
+        user.setConfirmPassword(user.getPassword());
+        when(policyRepository.passwordSPolicyCheck(user.getPassword())).thenReturn(policyList);
         PasswordException passwordException = assertThrows(PasswordException.class, () -> {
             forgotPasswordManager.updatePassword(user, token);
         });
-        String expectedMsg = "Error";
+        String expectedMsg = DomainConstants.passwordMinimumLength + policy.getValue();
         String actualMsg = passwordException.getMessage();
         assertTrue(expectedMsg.equals(actualMsg));
-        when(policyInstance.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
+        when(policyRepository.passwordSPolicyCheck(user.getPassword())).
+                thenReturn(passwordAbstractFactoryTest.createPolicyListInstance());
         when(forgotPasswordRepository.getEmailByToken(user, token)).thenReturn(null);
         TokenExpiredException tokenExpiredException = assertThrows(TokenExpiredException.class, () -> {
             forgotPasswordManager.updatePassword(user, token);
@@ -115,7 +129,8 @@ public class ForgotPasswordManagerTest {
         expectedMsg = "The renew password link has expired, please renew it again";
         actualMsg = tokenExpiredException.getMessage();
         assertTrue(expectedMsg.equals(actualMsg));
-        when(policyInstance.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
+        when(policyRepository.passwordSPolicyCheck(user.getPassword())).
+                thenReturn(passwordAbstractFactoryTest.createPolicyListInstance());
         when(forgotPasswordRepository.getEmailByToken(user, token)).thenReturn(user);
         when(passwordHistoryManager.getSettingValue("Password History")).thenReturn("5");
         when(passwordHistoryManager.isHistoryViolated(user, user.getPassword())).thenReturn(true);
@@ -126,7 +141,8 @@ public class ForgotPasswordManagerTest {
         actualMsg = passwordHistoryException.getMessage();
         assertTrue(expectedMsg.equals(actualMsg));
         user.setConfirmPassword("somethingelse");
-        when(policyInstance.passwordSPolicyCheck(user.getPassword())).thenReturn(null);
+        when(policyRepository.passwordSPolicyCheck(user.getPassword())).
+                thenReturn(passwordAbstractFactoryTest.createPolicyListInstance());
         passwordException = assertThrows(PasswordException.class, () -> {
             forgotPasswordManager.updatePassword(user, token);
         });

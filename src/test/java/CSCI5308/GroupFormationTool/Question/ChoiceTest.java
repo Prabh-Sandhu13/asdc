@@ -1,6 +1,6 @@
 package CSCI5308.GroupFormationTool.Question;
 
-import CSCI5308.GroupFormationTool.FactoryProducerTest;
+import CSCI5308.GroupFormationTool.TestsInjector;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 public class ChoiceTest {
 
-    private IQuestionAbstractFactoryTest questionAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createQuestionAbstractFactoryTest();
+    private IQuestionAbstractFactoryTest questionAbstractFactoryTest = TestsInjector.instance().
+            getQuestionAbstractFactoryTest();
 
     public IChoice createDefaultChoice() {
         ChoiceDBMock choiceDBMock = questionAbstractFactoryTest.createChoiceDBMock();

@@ -1,10 +1,8 @@
 package CSCI5308.GroupFormationTool.Question;
 
-import CSCI5308.GroupFormationTool.FactoryProducerTest;
+import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
-import CSCI5308.GroupFormationTool.User.User;
-import CSCI5308.GroupFormationTool.User.UserDBMock;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -25,11 +23,11 @@ public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdmi
 
     private ArrayList<IChoice> choices;
 
-    private IQuestionAbstractFactoryTest questionAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createQuestionAbstractFactoryTest();
+    private IQuestionAbstractFactoryTest questionAbstractFactoryTest = TestsInjector.instance().
+            getQuestionAbstractFactoryTest();
 
-    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createUserAbstractFactoryTest();
+    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().
+            getUserAbstractFactoryTest();
 
     public QuestionDBMock() {
         id = 1;
@@ -38,7 +36,7 @@ public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdmi
         title = "Sample";
         text = "Sample question";
         type = 1;
-        createdDate = new Date(0);
+        createdDate = questionAbstractFactoryTest.createDateInstance(0);
         choices = questionAbstractFactoryTest.createChoiceListInstance();
         IChoice choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Amateur");
@@ -59,11 +57,7 @@ public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdmi
 
     @Override
     public boolean deleteQuestion(long questionId) {
-        if (questionId == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return questionId == 1;
     }
 
     @Override
