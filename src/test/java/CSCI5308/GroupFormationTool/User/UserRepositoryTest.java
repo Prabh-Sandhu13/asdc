@@ -1,6 +1,6 @@
 package CSCI5308.GroupFormationTool.User;
 
-import CSCI5308.GroupFormationTool.FactoryProducerTest;
+import CSCI5308.GroupFormationTool.TestsInjector;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -10,8 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 public class UserRepositoryTest {
 
-    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createUserAbstractFactoryTest();
+    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
 
     @Test
     public void createUserTest() {

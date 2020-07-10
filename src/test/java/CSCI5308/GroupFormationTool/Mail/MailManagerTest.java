@@ -3,7 +3,7 @@ package CSCI5308.GroupFormationTool.Mail;
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Course.ICourseAbstractFactoryTest;
 import CSCI5308.GroupFormationTool.Course.StudentCSV;
-import CSCI5308.GroupFormationTool.FactoryProducerTest;
+import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
 import org.junit.jupiter.api.Test;
@@ -23,14 +23,13 @@ public class MailManagerTest {
     public JavaMailSenderImpl javaMailSender;
     public SimpleMailMessage mailMessage;
 
-    private IMailManagerAbstractFactoryTest mailManagerAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createMailManagerAbstractFactoryTest();
+    private IMailManagerAbstractFactoryTest mailManagerAbstractFactoryTest = TestsInjector.instance().
+            getMailManagerAbstractFactoryTest();
 
-    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createUserAbstractFactoryTest();
+    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
 
-    private ICourseAbstractFactoryTest courseAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createCourseAbstractFactoryTest();
+    private ICourseAbstractFactoryTest courseAbstractFactoryTest = TestsInjector.instance().
+            getCourseAbstractFactoryTest();
 
     @Test
     void setupMailSenderTest() {

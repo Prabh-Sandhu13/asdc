@@ -2,7 +2,7 @@ package CSCI5308.GroupFormationTool.Question;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.FactoryProducerTest;
+import CSCI5308.GroupFormationTool.TestsInjector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +26,8 @@ public class QuestionManagerControllerTest {
     public QuestionManagerRepository questionManagerRepository;
     public QuestionAdminRepository questionAdminRepository;
 
-    private IQuestionAbstractFactoryTest questionAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createQuestionAbstractFactoryTest();
+    private IQuestionAbstractFactoryTest questionAbstractFactoryTest = TestsInjector.instance().
+            getQuestionAbstractFactoryTest();
 
     @Autowired
     private MockMvc mockMvc;

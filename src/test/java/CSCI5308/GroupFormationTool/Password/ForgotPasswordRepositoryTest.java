@@ -1,6 +1,6 @@
 package CSCI5308.GroupFormationTool.Password;
 
-import CSCI5308.GroupFormationTool.FactoryProducerTest;
+import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,12 +14,11 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class ForgotPasswordRepositoryTest {
 
-    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createPasswordAbstractFactoryTest();
+    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = TestsInjector.instance().
+            getPasswordAbstractFactoryTest();
     private ForgotPasswordRepository forgotPasswordRepository;
 
-    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createUserAbstractFactoryTest();
+    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
 
     IUser user = userAbstractFactoryTest.createUserInstance();
 

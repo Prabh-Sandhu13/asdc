@@ -1,10 +1,10 @@
 package CSCI5308.GroupFormationTool.Security;
 
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.FactoryProducerTest;
 import CSCI5308.GroupFormationTool.Password.IPasswordAbstractFactoryTest;
 import CSCI5308.GroupFormationTool.Password.PasswordHistoryManager;
 import CSCI5308.GroupFormationTool.Password.PolicyRepository;
+import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
 import CSCI5308.GroupFormationTool.User.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,14 +22,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(UserRegistrationController.class)
 public class UserRegistrationControllerTest {
 
-    private IUserAbstractFactoryTest userAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createUserAbstractFactoryTest();
+    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
 
-    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createPasswordAbstractFactoryTest();
+    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = TestsInjector.instance().
+            getPasswordAbstractFactoryTest();
 
-    private ISecurityAbstractFactoryTest securityAbstractFactoryTest = FactoryProducerTest.getFactory().
-            createSecurityAbstractFactoryTest();
+    private ISecurityAbstractFactoryTest securityAbstractFactoryTest = TestsInjector.instance().
+            getSecurityAbstractFactoryTest();
 
     private PolicyRepository policyRepository;
 
