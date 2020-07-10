@@ -26,7 +26,7 @@
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">0</div>
+<div class="counter">3</div>
 <p>failures</p>
 </div>
 </td>
@@ -38,7 +38,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1.498s</div>
+<div class="counter">3.537s</div>
 <p>duration</p>
 </div>
 </td>
@@ -47,8 +47,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox success" id="successRate">
-<div class="percent">100%</div>
+<div class="infoBox failures" id="successRate">
+<div class="percent">98%</div>
 <p>successful</p>
 </div>
 </td>
@@ -58,13 +58,33 @@
 <div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#tab0">Packages</a>
+<a href="#tab0">Failed tests</a>
 </li>
 <li>
-<a href="#tab1">Classes</a>
+<a href="#tab1">Packages</a>
+</li>
+<li>
+<a href="#tab2">Classes</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
+<h2>Failed tests</h2>
+<ul class="linkList">
+<li>
+<a href="classes/CSCI5308.GroupFormationTool.Course.CourseControllerTest.html">CourseControllerTest</a>.
+<a href="classes/CSCI5308.GroupFormationTool.Course.CourseControllerTest.html#courseListTest()">courseListTest()</a>
+</li>
+<li>
+<a href="classes/CSCI5308.GroupFormationTool.User.UserTest.html">UserTest</a>.
+<a href="classes/CSCI5308.GroupFormationTool.User.UserTest.html#checkCurrentUserIsAdminTest()">checkCurrentUserIsAdminTest()</a>
+</li>
+<li>
+<a href="classes/CSCI5308.GroupFormationTool.User.UserTest.html">UserTest</a>.
+<a href="classes/CSCI5308.GroupFormationTool.User.UserTest.html#createUserTest()">createUserTest()</a>
+</li>
+</ul>
+</div>
+<div id="tab1" class="tab">
 <h2>Packages</h2>
 <table>
 <thead>
@@ -89,14 +109,14 @@
 <td class="success">100%</td>
 </tr>
 <tr>
-<td class="success">
+<td class="failures">
 <a href="packages/CSCI5308.GroupFormationTool.Course.html">CSCI5308.GroupFormationTool.Course</a>
 </td>
 <td>68</td>
+<td>1</td>
 <td>0</td>
-<td>0</td>
-<td>0.668s</td>
-<td class="success">100%</td>
+<td>1.892s</td>
+<td class="failures">98%</td>
 </tr>
 <tr>
 <td class="success">
@@ -105,7 +125,7 @@
 <td>3</td>
 <td>0</td>
 <td>0</td>
-<td>0.003s</td>
+<td>0.002s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -115,7 +135,7 @@
 <td>28</td>
 <td>0</td>
 <td>0</td>
-<td>0.634s</td>
+<td>0.593s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -125,7 +145,7 @@
 <td>35</td>
 <td>0</td>
 <td>0</td>
-<td>0.118s</td>
+<td>0.132s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -135,23 +155,23 @@
 <td>3</td>
 <td>0</td>
 <td>0</td>
-<td>0.051s</td>
+<td>0.050s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
-<td class="success">
+<td class="failures">
 <a href="packages/CSCI5308.GroupFormationTool.User.html">CSCI5308.GroupFormationTool.User</a>
 </td>
 <td>20</td>
+<td>2</td>
 <td>0</td>
-<td>0</td>
-<td>0.023s</td>
-<td class="success">100%</td>
+<td>0.867s</td>
+<td class="failures">90%</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="tab1" class="tab">
+<div id="tab2" class="tab">
 <h2>Classes</h2>
 <table>
 <thead>
@@ -182,18 +202,18 @@
 <td>3</td>
 <td>0</td>
 <td>0</td>
-<td>0.036s</td>
+<td>0.033s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
-<td class="success">
+<td class="failures">
 <a href="classes/CSCI5308.GroupFormationTool.Course.CourseControllerTest.html">CSCI5308.GroupFormationTool.Course.CourseControllerTest</a>
 </td>
 <td>9</td>
+<td>1</td>
 <td>0</td>
-<td>0</td>
-<td>0.428s</td>
-<td class="success">100%</td>
+<td>1.656s</td>
+<td class="failures">88%</td>
 </tr>
 <tr>
 <td class="success">
@@ -202,7 +222,7 @@
 <td>4</td>
 <td>0</td>
 <td>0</td>
-<td>0.008s</td>
+<td>0.007s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -212,7 +232,7 @@
 <td>12</td>
 <td>0</td>
 <td>0</td>
-<td>0.025s</td>
+<td>0.027s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -232,7 +252,7 @@
 <td>12</td>
 <td>0</td>
 <td>0</td>
-<td>0.089s</td>
+<td>0.090s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -252,7 +272,7 @@
 <td>7</td>
 <td>0</td>
 <td>0</td>
-<td>0.010s</td>
+<td>0.009s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -262,7 +282,7 @@
 <td>19</td>
 <td>0</td>
 <td>0</td>
-<td>0.049s</td>
+<td>0.047s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -272,7 +292,7 @@
 <td>3</td>
 <td>0</td>
 <td>0</td>
-<td>0.003s</td>
+<td>0.002s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -282,7 +302,7 @@
 <td>2</td>
 <td>0</td>
 <td>0</td>
-<td>0.053s</td>
+<td>0.051s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -292,7 +312,7 @@
 <td>7</td>
 <td>0</td>
 <td>0</td>
-<td>0.505s</td>
+<td>0.480s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -302,7 +322,7 @@
 <td>3</td>
 <td>0</td>
 <td>0</td>
-<td>0.014s</td>
+<td>0.011s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -312,7 +332,7 @@
 <td>3</td>
 <td>0</td>
 <td>0</td>
-<td>0.018s</td>
+<td>0.016s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -332,7 +352,7 @@
 <td>10</td>
 <td>0</td>
 <td>0</td>
-<td>0.040s</td>
+<td>0.031s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -362,7 +382,7 @@
 <td>3</td>
 <td>0</td>
 <td>0</td>
-<td>0.027s</td>
+<td>0.028s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -372,7 +392,7 @@
 <td>4</td>
 <td>0</td>
 <td>0</td>
-<td>0.005s</td>
+<td>0.006s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -382,7 +402,7 @@
 <td>3</td>
 <td>0</td>
 <td>0</td>
-<td>0.038s</td>
+<td>0.039s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -392,7 +412,7 @@
 <td>2</td>
 <td>0</td>
 <td>0</td>
-<td>0s</td>
+<td>0.002s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -402,7 +422,7 @@
 <td>19</td>
 <td>0</td>
 <td>0</td>
-<td>0.044s</td>
+<td>0.053s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -412,7 +432,7 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.001s</td>
+<td>0.002s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -432,7 +452,7 @@
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0.029s</td>
+<td>0.027s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
@@ -442,18 +462,18 @@
 <td>4</td>
 <td>0</td>
 <td>0</td>
-<td>0.003s</td>
+<td>0.005s</td>
 <td class="success">100%</td>
 </tr>
 <tr>
-<td class="success">
+<td class="failures">
 <a href="classes/CSCI5308.GroupFormationTool.User.UserTest.html">CSCI5308.GroupFormationTool.User.UserTest</a>
 </td>
 <td>16</td>
+<td>2</td>
 <td>0</td>
-<td>0</td>
-<td>0.020s</td>
-<td class="success">100%</td>
+<td>0.862s</td>
+<td class="failures">87%</td>
 </tr>
 </tbody>
 </table>
@@ -466,7 +486,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 9, 2020, 1:37:35 p.m.</p>
+<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 10, 2020, 2:03:30 a.m.</p>
 </div>
 </div>
 </body>

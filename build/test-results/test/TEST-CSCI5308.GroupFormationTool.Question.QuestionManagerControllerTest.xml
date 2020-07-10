@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-07-09T16:37:34" hostname="Prabhjots-MacBook-Pro.local" time="0.039">
+<testsuite name="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-07-10T05:03:30" hostname="Prabhjots-MacBook-Pro.local" time="0.041">
   <properties/>
-  <testcase name="saveQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" time="0.025"/>
+  <testcase name="saveQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" time="0.027"/>
   <testcase name="deleteQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" time="0.009"/>
-  <testcase name="createQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" time="0.004"/>
-  <system-out><![CDATA[2020-07-09 13:37:34.291  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest], using SpringBootContextLoader
-2020-07-09 13:37:34.292  INFO 7318 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2020-07-09 13:37:34.292  INFO 7318 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest]: QuestionManagerControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2020-07-09 13:37:34.293  INFO 7318 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration CSCI5308.GroupFormationTool.GroupFormationToolApplication for test class CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest
-2020-07-09 13:37:34.294  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2020-07-09 13:37:34.294  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@390fdcee, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@35f3b827, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@667c55ca, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@437ffd48, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4d0a165, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@2c4a0358, org.springframework.test.context.event.EventPublishingTestExecutionListener@289cd11e, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@1435fcf8, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@15efac92, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@69c33db4, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@271905b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@1c70ff94, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@74934bb4]
+  <testcase name="createQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" time="0.003"/>
+  <system-out><![CDATA[2020-07-10 02:03:29.886  INFO 10909 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest], using SpringBootContextLoader
+2020-07-10 02:03:29.886  INFO 10909 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2020-07-10 02:03:29.886  INFO 10909 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest]: QuestionManagerControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2020-07-10 02:03:29.888  INFO 10909 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration CSCI5308.GroupFormationTool.GroupFormationToolApplication for test class CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest
+2020-07-10 02:03:29.888  INFO 10909 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2020-07-10 02:03:29.889  INFO 10909 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@bf3dd9, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2e38ccd4, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@36759e6, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@da38390, org.springframework.test.context.support.DirtiesContextTestExecutionListener@740b2608, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@1c3d0a31, org.springframework.test.context.event.EventPublishingTestExecutionListener@25acd839, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@3402701f, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@19943bf1, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6d8cd670, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2e22a6e8, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@907b9bb, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@31f440d9]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -19,21 +19,21 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-09 13:37:34.305  INFO 7318 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Starting QuestionManagerControllerTest on Prabhjots-MacBook-Pro.local with PID 7318 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-09 13:37:34.306  INFO 7318 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : No active profile set, falling back to default profiles: default
-2020-07-09 13:37:34.428  INFO 7318 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
-2020-07-09 13:37:34.472  INFO 7318 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3d2687bd, org.springframework.security.web.context.SecurityContextPersistenceFilter@50389ebd, org.springframework.security.web.header.HeaderWriterFilter@3096a9c, org.springframework.security.web.csrf.CsrfFilter@604269c7, org.springframework.security.web.authentication.logout.LogoutFilter@6be6b49a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@45244f1c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2acaecbe, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@625f2ef1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@25dd57e6, org.springframework.security.web.session.SessionManagementFilter@23c7d753, org.springframework.security.web.access.ExceptionTranslationFilter@248bd074, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3f7dc31]
-2020-07-09 13:37:34.530  INFO 7318 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-07-09 13:37:34.549  INFO 7318 --- [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2020-07-09 13:37:34.618  INFO 7318 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2020-07-09 13:37:34.618  INFO 7318 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2020-07-09 13:37:34.622  INFO 7318 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
-2020-07-09 13:37:34.629  INFO 7318 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Started QuestionManagerControllerTest in 0.333 seconds (JVM running for 6.858)
+2020-07-10 02:03:29.904  INFO 10909 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Starting QuestionManagerControllerTest on Prabhjots-MacBook-Pro.local with PID 10909 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-10 02:03:29.904  INFO 10909 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : No active profile set, falling back to default profiles: default
+2020-07-10 02:03:30.025  INFO 10909 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
+2020-07-10 02:03:30.069  INFO 10909 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@18f171e1, org.springframework.security.web.context.SecurityContextPersistenceFilter@1b97ed06, org.springframework.security.web.header.HeaderWriterFilter@12d8098c, org.springframework.security.web.csrf.CsrfFilter@297d564a, org.springframework.security.web.authentication.logout.LogoutFilter@1e7d35d7, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@278c32ad, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6980e1cb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3bc6011e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5b03877, org.springframework.security.web.session.SessionManagementFilter@581b2f49, org.springframework.security.web.access.ExceptionTranslationFilter@48f74255, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3c865761]
+2020-07-10 02:03:30.132  INFO 10909 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-10 02:03:30.149  INFO 10909 --- [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-07-10 02:03:30.215  INFO 10909 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2020-07-10 02:03:30.215  INFO 10909 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2020-07-10 02:03:30.221  INFO 10909 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2020-07-10 02:03:30.228  INFO 10909 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Started QuestionManagerControllerTest in 0.337 seconds (JVM running for 8.678)
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /questionManager/createQuestion
-       Parameters = {questionTitle=[Sample title], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[46488a9b-7f85-4ce1-8e3d-ad4467bd7010]}
+       Parameters = {questionTitle=[Sample title], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[4014f73c-0fb1-4818-9d11-8cc346f7a09c]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}
@@ -70,7 +70,7 @@ MockHttpServletResponse:
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /questionManager/createQuestion
-       Parameters = {questionTitle=[], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[7adf390a-c087-47ad-b14d-83a6907f3d64]}
+       Parameters = {questionTitle=[], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[c279dac4-210e-4dce-b429-cd555c0ea9b9]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}
@@ -182,7 +182,7 @@ MockHttpServletRequest:
        Parameters = {questionId=[1]}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@402f991d}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@1971c8b6}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
@@ -248,7 +248,7 @@ MockHttpServletRequest:
        Parameters = {questionId=[1]}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@1a881fe}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@647ce093}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
@@ -314,7 +314,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@1b0fa21e}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@65ef50f2}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
