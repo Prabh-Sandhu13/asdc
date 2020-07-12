@@ -24,12 +24,11 @@ public class CourseController {
 
     private IUser userInstance;
     private IStudentCSV studentCSV;
-    private static final Logger log = LoggerFactory.getLogger(CourseController.class);
-
+    private static final Logger Log = LoggerFactory.getLogger(CourseController.class.getName());
 
     @GetMapping("/courseList")
     public String courseList(Model model) {
-        log.info("Inside course controller");
+        Log.info("Inside course controller");
         ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
         IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         ArrayList<ICourse> courseList = null;
@@ -38,7 +37,6 @@ public class CourseController {
         ArrayList<ICourse> taCourseList = null;
         ArrayList<ICourse> instructorCourseList = null;
         IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         userInstance = userAbstractFactory.createUserInstance();
         String emailId = authentication.getPrincipal().toString();

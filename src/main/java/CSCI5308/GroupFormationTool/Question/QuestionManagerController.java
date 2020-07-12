@@ -4,6 +4,8 @@ import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,8 @@ import java.util.List;
 
 @Controller
 public class QuestionManagerController {
+
+    private static final Logger Log = LoggerFactory.getLogger(QuestionManagerController.class.getName());
 
     @GetMapping("/questionManager/createQuestion")
     public String createQuestion(Model model) {
@@ -40,13 +44,16 @@ public class QuestionManagerController {
         question.setType(Integer.parseInt(type));
         instructor.setEmailId(authentication.getPrincipal().toString());
         question.setInstructor(instructor);
+        Log.info("Saving the question created by the instructor to the database");
         outcome = question.createQuestion(optionText, optionValue);
 
         if (outcome == DomainConstants.invalidData) {
+            Log.warn("One or more input fields have invalid/empty data");
             model.addAttribute("invalidData",
                     "One or more fields have invalid/empty data! Please enter and try again");
             return "question/createQuestion";
         } else {
+            Log.info("Question is saved to the database and the instructor views the saved question");
             return "redirect:/questionManager/viewQuestion?questionId=" + outcome;
         }
     }
@@ -56,13 +63,18 @@ public class QuestionManagerController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
         IQuestion question = questionAbstractFactory.createQuestionInstance();
+        Log.info("Deleting the question created by the instructor from the database");
         boolean status = question.deleteQuestion(questionId);
         if (status) {
-            model.addAttribute("successMessage", "The question " + questionId + " is successfully deleted!");
+            Log.info("Question successfully deleted!");
+            model.addAttribute("successMessage",
+                    "The question " + questionId + " is successfully deleted!");
         } else {
+            Log.warn("The question could not be deleted");
             model.addAttribute("failureMessage", "The question can not not be deleted.");
         }
         String emailId = authentication.getPrincipal().toString();
+        Log.info("Redirecting to the instructor's question list page");
         ArrayList<IQuestion> questionList = question.getQuestionListForInstructor(emailId);
         model.addAttribute("questionList", questionList);
         return "question/questionManager";

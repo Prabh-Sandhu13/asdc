@@ -6,7 +6,7 @@ public interface IQuestionAdminRepository {
 
     ArrayList<IQuestion> getQuestionListForInstructor(String emailId);
 
-    ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy);
+    ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortField);
 
     IQuestion getQuestionById(long questionId);
 

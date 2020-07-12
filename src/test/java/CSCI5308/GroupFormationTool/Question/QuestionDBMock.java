@@ -121,7 +121,7 @@ public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdmi
 
 
     @Override
-    public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy) {
+    public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortField) {
         ArrayList<IQuestion> questionList = questionAbstractFactoryTest.createQuestionListInstance();
         IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
         IUser user = userAbstractFactoryTest.createUserInstance();

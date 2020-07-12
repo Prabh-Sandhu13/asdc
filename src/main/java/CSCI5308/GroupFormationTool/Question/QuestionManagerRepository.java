@@ -3,10 +3,14 @@ package CSCI5308.GroupFormationTool.Question;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 
 public class QuestionManagerRepository implements IQuestionManagerRepository {
+
+    private static final Logger Log = LoggerFactory.getLogger(QuestionManagerRepository.class.getName());
 
     @Override
     public long createQuestion(IQuestion question) {
@@ -14,6 +18,8 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
         StoredProcedure storedProcedure = null;
         long questionId = -1;
         try {
+            Log.info("Calling stored procedure sp_createQuestion to save a question " +
+                    "created by the instructor to the database");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_createQuestion(?,?,?,?,?)");
             storedProcedure.setInputStringParameter(1, question.getTitle());
@@ -24,6 +30,8 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
             storedProcedure.execute();
             questionId = storedProcedure.getParameterLong(5);
         } catch (SQLException ex) {
+            Log.error("Could not execute the Stored procedure sp_createQuestion" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
             return -1;
         } finally {
             if (storedProcedure != null) {
@@ -45,14 +53,16 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         try {
+            Log.info("Calling stored procedure sp_saveOptions to save the options of a question " +
+                    "created by the instructor to the database");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_saveOptions(?,?,?)");
-
             storedProcedure.setInputStringParameter(1, choice.getText());
             storedProcedure.setInputIntParameter(2, choice.getValue());
             storedProcedure.setInputIntParameter(3, questionId);
             storedProcedure.execute();
-
         } catch (SQLException ex) {
+            Log.error("Could not execute the Stored procedure sp_saveOptions" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
             return false;
         } finally {
             if (storedProcedure != null) {
@@ -67,15 +77,16 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
         StoredProcedure storedProcedure = null;
         boolean status = true;
         try {
+            Log.info("Calling stored procedure sp_deleteAQuestion to delete a question " +
+                    "of the instructor");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_deleteAQuestion(?,?)");
             storedProcedure.setInputIntParameter(1, questionId);
             storedProcedure.registerOutputParameterBoolean(2);
             storedProcedure.execute();
-
             status = storedProcedure.getParameter(2);
-
         } catch (SQLException ex) {
-            System.out.println(ex);
+            Log.error("Could not execute the Stored procedure sp_deleteAQuestion" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (null != storedProcedure) {
                 storedProcedure.removeConnections();
