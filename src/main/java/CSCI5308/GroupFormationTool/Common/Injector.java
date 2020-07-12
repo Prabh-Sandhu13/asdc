@@ -4,6 +4,8 @@ import CSCI5308.GroupFormationTool.Course.*;
 import CSCI5308.GroupFormationTool.Database.DatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.IDBConfiguration;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
+import CSCI5308.GroupFormationTool.GroupFormation.GroupFormationAbstractFactory;
+import CSCI5308.GroupFormationTool.GroupFormation.IGroupFormationAbstractFactory;
 import CSCI5308.GroupFormationTool.Mail.IMailAbstractFactory;
 import CSCI5308.GroupFormationTool.Mail.IMailManager;
 import CSCI5308.GroupFormationTool.Mail.MailAbstractFactory;
@@ -15,6 +17,8 @@ import CSCI5308.GroupFormationTool.Question.QuestionAbstractFactory;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.Security.ISecurityAbstractFactory;
 import CSCI5308.GroupFormationTool.Security.SecurityAbstractFactory;
+import CSCI5308.GroupFormationTool.Survey.ISurveyAbstractFactory;
+import CSCI5308.GroupFormationTool.Survey.SurveyAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUserRepository;
 import CSCI5308.GroupFormationTool.User.UserAbstractFactory;
@@ -31,6 +35,8 @@ public class Injector {
     private ICourseAbstractFactory courseAbstractFactory;
     private IMailAbstractFactory mailAbstractFactory;
     private IPasswordAbstractFactory passwordAbstractFactory;
+    private IGroupFormationAbstractFactory groupFormationAbstractFactory;
+    private ISurveyAbstractFactory surveyAbstractFactory;
     private IDBConfiguration dbConfiguration;
     private IUserRepository userRepository;
     private IPasswordEncryptor passwordEncryptor;
@@ -57,6 +63,8 @@ public class Injector {
         courseAbstractFactory = new CourseAbstractFactory();
         mailAbstractFactory = new MailAbstractFactory();
         passwordAbstractFactory = new PasswordAbstractFactory();
+        groupFormationAbstractFactory = new GroupFormationAbstractFactory();
+        surveyAbstractFactory = new SurveyAbstractFactory();
         dbConfiguration = databaseAbstractFactory.createDBConfigurationInstance();
         userRepository = userAbstractFactory.createUserRepositoryInstance();
         passwordEncryptor = securityAbstractFactory.createBCryptEncryptionInstance();
@@ -239,4 +247,11 @@ public class Injector {
         this.questionAdminRepository = questionAdminRepository;
     }
 
+    public ISurveyAbstractFactory getSurveyAbstractFactory() {
+        return surveyAbstractFactory;
+    }
+
+    public IGroupFormationAbstractFactory getGroupFormationAbstractFactory() {
+        return groupFormationAbstractFactory;
+    }
 }

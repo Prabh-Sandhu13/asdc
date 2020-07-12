@@ -5,6 +5,9 @@ import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.User;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -21,9 +24,12 @@ public class CourseController {
 
     private IUser userInstance;
     private IStudentCSV studentCSV;
+    private static final Logger log = LoggerFactory.getLogger(CourseController.class);
+
 
     @GetMapping("/courseList")
     public String courseList(Model model) {
+        log.info("Inside course controller");
         ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
         IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         ArrayList<ICourse> courseList = null;
