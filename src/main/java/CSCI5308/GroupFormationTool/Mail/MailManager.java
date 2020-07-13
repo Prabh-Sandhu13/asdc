@@ -3,7 +3,11 @@ package CSCI5308.GroupFormationTool.Mail;
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Course.StudentCSV;
+import CSCI5308.GroupFormationTool.Password.PasswordHistoryManager;
 import CSCI5308.GroupFormationTool.User.IUser;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -16,6 +20,7 @@ public class MailManager implements IMailManager {
 
     private JavaMailSenderImpl mailSender;
     private SimpleMailMessage message;
+    private static final Logger Log = LoggerFactory.getLogger(MailManager.class.getName());
 
     @Override
     public void sendEmail(JavaMailSender javaMailSender, SimpleMailMessage message) {
@@ -34,6 +39,7 @@ public class MailManager implements IMailManager {
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.debug", "true");
         props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        Log.info("smtp connection for mail has been setup");
         return mailSender;
     }
 

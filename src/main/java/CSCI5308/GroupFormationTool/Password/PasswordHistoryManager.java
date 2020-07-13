@@ -7,10 +7,14 @@ import CSCI5308.GroupFormationTool.User.IUser;
 
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class PasswordHistoryManager implements IPasswordHistoryManager {
 
     private IPasswordHistoryRepository passwordHistoryRepository;
     private IPasswordEncryptor encryptor;
+    private static final Logger Log = LoggerFactory.getLogger(PasswordHistoryManager.class.getName());
 
     @Override
     public boolean isHistoryViolated(IUser user, String enteredPassword) {
@@ -21,6 +25,7 @@ public class PasswordHistoryManager implements IPasswordHistoryManager {
         encryptor = Injector.instance().getPasswordEncryptor();
         String settingValue = passwordHistoryRepository.getSettingValue(DomainConstants.passwordHistory);
         if (settingValue == null) {
+        	Log.warn("Could not fetch history setting value");
             return false;
         } else {
             ArrayList<String> nPasswords = passwordHistoryRepository.getNPasswords(user, settingValue);

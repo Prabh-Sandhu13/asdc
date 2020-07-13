@@ -11,8 +11,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class PasswordHistoryRepository implements IPasswordHistoryRepository {
 
+	private static final Logger Log = LoggerFactory.getLogger(PasswordHistoryRepository.class.getName());
+	
     @Override
     public String getSettingValue(String settingName) {
         String settingValue = null;
@@ -30,7 +35,8 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
                 }
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            Log.error("Could not execute the Stored procedure sp_getsettingvalue" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -58,9 +64,10 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
                 }
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            Log.error("Could not execute the Stored procedure sp_getNPassword" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Log.error("Could not DB query due to non SQL Exception" + e.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -87,7 +94,8 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
             storedProcedure.execute();
             historyAdded = true;
         } catch (SQLException ex) {
-            System.out.println("" + ex.getMessage());
+            Log.error("Could not execute the Stored procedure sp_addPasswordHistory" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();

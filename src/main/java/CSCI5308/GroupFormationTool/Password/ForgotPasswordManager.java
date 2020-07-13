@@ -1,5 +1,8 @@
 package CSCI5308.GroupFormationTool.Password;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Mail.IMailManager;
@@ -14,7 +17,7 @@ public class ForgotPasswordManager implements IForgotPasswordManager {
     private IMailManager mailManager;
     private IPasswordEncryptor encryptor;
     private IPolicy policyInstance;
-
+    private static final Logger Log = LoggerFactory.getLogger(ForgotPasswordManager.class.getName());
     @Override
     public String notifyUser(IUser user) {
         forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
@@ -26,9 +29,11 @@ public class ForgotPasswordManager implements IForgotPasswordManager {
         if (userByEmailId != null) {
             String token = forgotPasswordRepository.getToken(userByEmailId);
             if (token.equals("")) {
+                Log.info("User is adding new token");
                 token = tokenGenerator.generator();
                 forgotPasswordRepository.addToken(userByEmailId, token);
             } else {
+            	Log.info("User is updating existing token");
                 token = tokenGenerator.generator();
                 forgotPasswordRepository.updateToken(userByEmailId, token);
             }
@@ -66,6 +71,7 @@ public class ForgotPasswordManager implements IForgotPasswordManager {
         }
         isHistoryViolated = passwordHistoryManager.isHistoryViolated(userByEmailId, user.getPassword());
         if (isHistoryViolated) {
+        	Log.info("User violated history while updating password");
             errorMessage = DomainConstants.passwordHistoryMessage
                     .replace("[[history]]", passwordHistoryManager.
                             getSettingValue(DomainConstants.passwordHistory));
