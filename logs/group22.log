@@ -392,3 +392,4 @@ org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property o
 2020-07-13 16:50:02.746 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
 2020-07-13 16:50:02.749 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
 2020-07-13 16:50:03.217 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-13 16:50:05.904 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller

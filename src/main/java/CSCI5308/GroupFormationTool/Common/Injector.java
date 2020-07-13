@@ -18,6 +18,7 @@ import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.Security.ISecurityAbstractFactory;
 import CSCI5308.GroupFormationTool.Security.SecurityAbstractFactory;
 import CSCI5308.GroupFormationTool.Survey.ISurveyAbstractFactory;
+import CSCI5308.GroupFormationTool.Survey.ISurveyRepository;
 import CSCI5308.GroupFormationTool.Survey.SurveyAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUserRepository;
@@ -54,6 +55,7 @@ public class Injector {
     private IPolicyRepository policyRepository;
     private IQuestionManagerRepository questionManagerRepository;
     private IQuestionAdminRepository questionAdminRepository;
+    private ISurveyRepository surveyRepository;
 
     private Injector() {
         userAbstractFactory = new UserAbstractFactory();
@@ -70,6 +72,7 @@ public class Injector {
         passwordEncryptor = securityAbstractFactory.createBCryptEncryptionInstance();
         forgotPasswordManager = passwordAbstractFactory.createForgotPasswordManagerInstance();
         forgotPasswordRepository = passwordAbstractFactory.createForgotPasswordRepositoryInstance();
+        surveyRepository = surveyAbstractFactory.createSurveyRepositoryInstance();
         tokenGenerator = passwordAbstractFactory.createTokenGeneratorInstance();
         passwordHistoryManager = passwordAbstractFactory.createPasswordHistoryManagerInstance();
         passwordHistoryRepository = passwordAbstractFactory.createPasswordHistoryRepositoryInstance();
@@ -245,6 +248,13 @@ public class Injector {
 
     public void setQuestionAdminRepository(IQuestionAdminRepository questionAdminRepository) {
         this.questionAdminRepository = questionAdminRepository;
+    }
+    public ISurveyRepository getSurveyRepository() {
+        return surveyRepository;
+    }
+
+    public void setSurveyRepository(ISurveyRepository surveyRepository) {
+        this.surveyRepository = surveyRepository;
     }
 
     public ISurveyAbstractFactory getSurveyAbstractFactory() {
