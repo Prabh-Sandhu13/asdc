@@ -7,13 +7,18 @@ import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class UserRepository implements IUserRepository {
 
-    @Override
+    private static final Logger log = LoggerFactory.getLogger(UserRepository.class.getName());
+
     public boolean createUser(IUser user) {
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         try {
+            log.info("Calling stored procedure sp_create_user to save the new user to the database");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance(
                     "sp_create_user(?,?,?,?,?)");
             storedProcedure.setInputStringParameter(1, user.getBannerId());
@@ -24,6 +29,8 @@ public class UserRepository implements IUserRepository {
             storedProcedure.execute();
 
         } catch (SQLException ex) {
+            log.error("Could not execute the Stored procedure sp_create_user" +
+                    "because of an SQL Exception " + ex.getLocalizedMessage());
             return false;
         } finally {
             if (storedProcedure != null) {
@@ -41,6 +48,7 @@ public class UserRepository implements IUserRepository {
         IUser userWithUserId = null;
         StoredProcedure storedProcedure = null;
         try {
+            log.info("Calling the stored procedure sp_getUserId to fetch user Id for given emailId");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getUserId(?)");
             storedProcedure.setInputStringParameter(1, user.getEmailId());
             ResultSet results = storedProcedure.executeWithResults();
@@ -54,6 +62,8 @@ public class UserRepository implements IUserRepository {
                 }
             }
         } catch (SQLException ex) {
+            log.error("Could not execute the Stored procedure sp_getUserId" +
+                    "because of an SQL Exception " + ex.getLocalizedMessage());
             System.out.println(ex.getMessage());
         } finally {
             if (storedProcedure != null) {
@@ -71,6 +81,7 @@ public class UserRepository implements IUserRepository {
         IUser userByEmailId = null;
         StoredProcedure storedProcedure = null;
         try {
+            log.info("Calling the stored procedure sp_getUserByEmailId to fetch user details for given emailId");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getUserByEmailId(?)");
             storedProcedure.setInputStringParameter(1, user.getEmailId());
             ResultSet results = storedProcedure.executeWithResults();
@@ -90,6 +101,8 @@ public class UserRepository implements IUserRepository {
             }
 
         } catch (SQLException ex) {
+            log.error("Could not execute the Stored procedure sp_getUserByEmailId" +
+                    "because of an SQL Exception " + ex.getLocalizedMessage());
             System.out.println(ex.getMessage());
         } finally {
             if (storedProcedure != null) {
@@ -107,6 +120,7 @@ public class UserRepository implements IUserRepository {
         StoredProcedure storedProcedure = null;
         IUser adminDetails = null;
         try {
+            log.info("Calling the stored procedure sp_getAdminDetails to fetch details of Admin user");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getAdminDetails");
             ResultSet results = storedProcedure.executeWithResults();
 
@@ -123,6 +137,8 @@ public class UserRepository implements IUserRepository {
             }
 
         } catch (SQLException ex) {
+            log.error("Could not execute the Stored procedure sp_getAdminDetails" +
+                    "because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
