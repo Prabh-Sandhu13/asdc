@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.027s</div>
+<div class="counter">0.028s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,17 +79,17 @@
 </thead>
 <tr>
 <td class="success">questionListTest()</td>
-<td class="success">0.003s</td>
+<td class="success">0.004s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">sortQuestionTest()</td>
-<td class="success">0.005s</td>
+<td class="success">0.006s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">viewQuestionTest()</td>
-<td class="success">0.019s</td>
+<td class="success">0.018s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -97,13 +97,7 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2020-07-09 13:37:34.670  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [CSCI5308.GroupFormationTool.Question.QuestionAdminControllerTest], using SpringBootContextLoader
-2020-07-09 13:37:34.671  INFO 7318 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [CSCI5308.GroupFormationTool.Question.QuestionAdminControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2020-07-09 13:37:34.671  INFO 7318 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [CSCI5308.GroupFormationTool.Question.QuestionAdminControllerTest]: QuestionAdminControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2020-07-09 13:37:34.672  INFO 7318 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration CSCI5308.GroupFormationTool.GroupFormationToolApplication for test class CSCI5308.GroupFormationTool.Question.QuestionAdminControllerTest
-2020-07-09 13:37:34.672  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2020-07-09 13:37:34.673  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@60e05525, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6190475, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@57832591, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@668842ac, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4237a25, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@4ad7fc78, org.springframework.test.context.event.EventPublishingTestExecutionListener@4b6f71e, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@200f5806, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@3f62ec70, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@4aa3e3d8, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@799ef395, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@238b4bc8, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@ba222a5]
-
+<pre>
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -112,16 +106,11 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-09 13:37:34.684  INFO 7318 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : Starting QuestionAdminControllerTest on Prabhjots-MacBook-Pro.local with PID 7318 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-09 13:37:34.684  INFO 7318 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : No active profile set, falling back to default profiles: default
-2020-07-09 13:37:34.808  INFO 7318 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
-2020-07-09 13:37:34.851  INFO 7318 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@76cf91c1, org.springframework.security.web.context.SecurityContextPersistenceFilter@1ebf57a7, org.springframework.security.web.header.HeaderWriterFilter@f15c2b5, org.springframework.security.web.csrf.CsrfFilter@4ed2e347, org.springframework.security.web.authentication.logout.LogoutFilter@3d153405, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@64e6e767, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4d2f486a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6c0e2b10, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6f6540c2, org.springframework.security.web.session.SessionManagementFilter@472e5cde, org.springframework.security.web.access.ExceptionTranslationFilter@1c79e755, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5a938e4f]
-2020-07-09 13:37:34.911  INFO 7318 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-07-09 13:37:34.927  INFO 7318 --- [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2020-07-09 13:37:34.997  INFO 7318 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2020-07-09 13:37:34.997  INFO 7318 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2020-07-09 13:37:35.001  INFO 7318 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
-2020-07-09 13:37:35.009  INFO 7318 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : Started QuestionAdminControllerTest in 0.334 seconds (JVM running for 7.237)
+2020-07-13 13:07:23.652  INFO 22716 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : Starting QuestionAdminControllerTest on Prabhjots-MacBook-Pro.local with PID 22716 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-13 13:07:23.652  INFO 22716 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : No active profile set, falling back to default profiles: default
+2020-07-13 13:07:23.962  INFO 22716 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : Started QuestionAdminControllerTest in 0.319 seconds (JVM running for 7.499)
+2020-07-13 13:07:23.967  INFO 22716 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching the question by its id for the current instructor to view
+2020-07-13 13:07:23.967  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionById repository function to fetch a question from the Database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -146,7 +135,7 @@ ModelAndView:
         View name = question/viewQuestion
              View = null
         Attribute = question
-            value = CSCI5308.GroupFormationTool.Question.Question@3255ae36
+            value = CSCI5308.GroupFormationTool.Question.Question@34726404
            errors = []
 
 FlashMap:
@@ -187,6 +176,8 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
+2020-07-13 13:07:23.984  INFO 22716 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching the question bank sorted based on the field like title and date for the logged in instructor
+2020-07-13 13:07:23.984  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getSortedQuestionListForInstructor repository function to fetch the question bank in a sorted order from the Database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -251,6 +242,8 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
+2020-07-13 13:07:23.989  INFO 22716 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching the question bank for the logged in instructor
+2020-07-13 13:07:23.990  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -326,7 +319,7 @@ MockHttpServletResponse:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 9, 2020, 1:37:35 p.m.</p>
+<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 13, 2020, 1:07:24 p.m.</p>
 </div>
 </div>
 </body>

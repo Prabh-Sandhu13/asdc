@@ -2,6 +2,8 @@ package CSCI5308.GroupFormationTool.Password;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 
@@ -16,6 +18,8 @@ public class Policy implements IPolicy {
     private int enabled;
 
     private IPolicyRepository policyRepository;
+
+    private static final Logger log = LoggerFactory.getLogger(Policy.class.getName());
 
     @Override
     public int getId() {
@@ -60,6 +64,7 @@ public class Policy implements IPolicy {
 
     @Override
     public String passwordSPolicyCheck(String password) {
+        log.info("Calling the Policy Repository to check if the password follows enabled security policies");
         policyRepository = Injector.instance().getPolicyRepository();
         ArrayList<IPolicy> policies = policyRepository.passwordSPolicyCheck(password);
         return checkPasswordSecurity(password, policies);
@@ -67,12 +72,14 @@ public class Policy implements IPolicy {
 
     @Override
     public ArrayList<IPolicy> getPolicies() {
+        log.info("Calling the Policy Repository to fetch all the password security policies from database");
         policyRepository = Injector.instance().getPolicyRepository();
         ArrayList<IPolicy> policies = policyRepository.getPolicies();
         return policies;
     }
 
     private String checkPasswordSecurity(String password, ArrayList<IPolicy> policies) {
+        log.info("Checking if the password follows enabled security policies");
         int passwordSettingEnabled = 1;
         String errorMessage = null;
         int upperCaseCharacters = 0;
@@ -103,32 +110,38 @@ public class Policy implements IPolicy {
                 switch (id) {
                     case 0:
                         if (password.length() < Integer.parseInt(val)) {
+                            log.error("Minimum password length security policy is violated");
                             errorMessage = DomainConstants.passwordMinimumLength + val;
                         }
                         break;
                     case 1:
                         if (password.length() > Integer.parseInt(val)) {
+                            log.error("Maximum password length security policy is violated");
                             errorMessage = DomainConstants.passwordMaximumLength + val;
                         }
                         break;
                     case 2:
                         if (upperCaseCharacters < Integer.parseInt(val)) {
+                            log.error("Minimum upper case charachters required password security policy is violated");
                             errorMessage = DomainConstants.passwordUppercaseMinimumLength + val;
                         }
                         break;
                     case 3:
                         if (lowerCaseCharacters < Integer.parseInt(val)) {
+                            log.error("Minimum lower case charachters required password security policy is violated");
                             errorMessage = DomainConstants.passwordLowercaseMinimumLength + val;
                         }
                         break;
                     case 4:
                         if (specialCharacters < Integer.parseInt(val)) {
+                            log.error("Minimum special symbols required password security policy is violated");
                             errorMessage = DomainConstants.passwordSpecialSymbolsMinimumLength + val;
                         }
                         break;
                     case 5:
                         for (int i = 0; i < val.length(); i++) {
                             if (password != null && password.indexOf(val.charAt(i)) >= 0) {
+                                log.error("Charachters not allowed in password security policy is violated");
                                 errorMessage = "" + val + DomainConstants.passwordCharactersNotAllowed;
                                 break;
                             }

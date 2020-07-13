@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.049s</div>
+<div class="counter">0.059s</div>
 <p>duration</p>
 </div>
 </td>
@@ -84,7 +84,7 @@
 </tr>
 <tr>
 <td class="success">enrollTAForCourseUsingEmailIdTest()</td>
-<td class="success">0.002s</td>
+<td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -99,27 +99,27 @@
 </tr>
 <tr>
 <td class="success">getCourseIdTest()</td>
-<td class="success">0.002s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">getCourseNameTest()</td>
 <td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
+<td class="success">getCourseNameTest()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="success">getInstructorCoursesTest()</td>
-<td class="success">0.020s</td>
+<td class="success">0.022s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">getInstructorsForCourseTest()</td>
-<td class="success">0.002s</td>
+<td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">getStudentCoursesTest()</td>
-<td class="success">0.002s</td>
+<td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -129,12 +129,12 @@
 </tr>
 <tr>
 <td class="success">getTAForCourseTest()</td>
-<td class="success">0.002s</td>
+<td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">getUserRoleByEmailIdTest()</td>
-<td class="success">0.001s</td>
+<td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -164,12 +164,12 @@
 </tr>
 <tr>
 <td class="success">setUserRoleTest()</td>
-<td class="success">0.001s</td>
+<td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">usersCurrentlyNotInstructorsForCourseTest()</td>
-<td class="success">0.002s</td>
+<td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -177,12 +177,24 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2020-07-09 13:37:31.397  INFO 7318 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [CSCI5308.GroupFormationTool.Course.UserCoursesTest], using SpringBootContextLoader
-2020-07-09 13:37:31.398  INFO 7318 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [CSCI5308.GroupFormationTool.Course.UserCoursesTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2020-07-09 13:37:31.398  INFO 7318 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [CSCI5308.GroupFormationTool.Course.UserCoursesTest]: UserCoursesTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2020-07-09 13:37:31.399  INFO 7318 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration CSCI5308.GroupFormationTool.GroupFormationToolApplication for test class CSCI5308.GroupFormationTool.Course.UserCoursesTest
-2020-07-09 13:37:31.400  INFO 7318 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2020-07-09 13:37:31.401  INFO 7318 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@7b240af1, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@518a787e, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@57e4c8e2, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@5ec5805c, org.springframework.test.context.support.DirtiesContextTestExecutionListener@56d6af7, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@726abac, org.springframework.test.context.event.EventPublishingTestExecutionListener@76f4d072, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@4c17990, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@6a95812d, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@58dc2c18, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@87b0031, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7f9f557, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@4123906c]
+<pre>2020-07-13 13:07:20.091  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get instructors for a course using email Id
+2020-07-13 13:07:20.091  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get instructors for a course using email Id
+2020-07-13 13:07:20.094  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the courses enrolled by a student using student's email Id
+2020-07-13 13:07:20.094  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the courses enrolled by a student using student's email Id
+2020-07-13 13:07:20.100  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : The function call return the users that are not enrolled as an instructor for a course
+2020-07-13 13:07:20.101  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : The function call return the users that are not enrolled as an instructor for a course
+2020-07-13 13:07:20.105  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get TA for a course using course Id
+2020-07-13 13:07:20.105  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get TA for a course using course Id
+2020-07-13 13:07:20.111  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to add an instructor for a course using course Id and email Id
+2020-07-13 13:07:20.111  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to add an instructor for a course using course Id and email Id
+2020-07-13 13:07:20.114  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to enroll a TA for the course using email id
+2020-07-13 13:07:20.114  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to enroll a TA for the course using email id
+2020-07-13 13:07:20.119  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
+2020-07-13 13:07:20.119  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
+2020-07-13 13:07:20.125  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the courses for a TA using email Id
+2020-07-13 13:07:20.126  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the courses for a TA using email Id
+2020-07-13 13:07:20.134  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get instructor for a course using course Id
+2020-07-13 13:07:20.135  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get instructor for a course using course Id
 </pre>
 </span>
 </div>
@@ -194,7 +206,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 9, 2020, 1:37:35 p.m.</p>
+<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 13, 2020, 1:07:24 p.m.</p>
 </div>
 </div>
 </body>

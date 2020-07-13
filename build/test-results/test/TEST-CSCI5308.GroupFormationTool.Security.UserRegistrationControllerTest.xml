@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Security.UserRegistrationControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-09T16:37:34" hostname="Prabhjots-MacBook-Pro.local" time="0.029">
+<testsuite name="CSCI5308.GroupFormationTool.Security.UserRegistrationControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-13T16:07:23" hostname="Prabhjots-MacBook-Pro.local" time="0.025">
   <properties/>
-  <testcase name="registerTest()" classname="CSCI5308.GroupFormationTool.Security.UserRegistrationControllerTest" time="0.029"/>
-  <system-out><![CDATA[2020-07-09 13:37:33.784  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [CSCI5308.GroupFormationTool.Security.UserRegistrationControllerTest], using SpringBootContextLoader
-2020-07-09 13:37:33.785  INFO 7318 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [CSCI5308.GroupFormationTool.Security.UserRegistrationControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2020-07-09 13:37:33.785  INFO 7318 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [CSCI5308.GroupFormationTool.Security.UserRegistrationControllerTest]: UserRegistrationControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2020-07-09 13:37:33.786  INFO 7318 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration CSCI5308.GroupFormationTool.GroupFormationToolApplication for test class CSCI5308.GroupFormationTool.Security.UserRegistrationControllerTest
-2020-07-09 13:37:33.787  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2020-07-09 13:37:33.788  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@377bf1ac, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2d6af044, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5e07d79d, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@153b9bae, org.springframework.test.context.support.DirtiesContextTestExecutionListener@7d25fe34, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@7b7d904, org.springframework.test.context.event.EventPublishingTestExecutionListener@67ec4d50, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@2ec34ce8, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7cc5d35a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@45835a3f, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@40001912, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7410b9f6, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@261dfb2d]
-
+  <testcase name="registerTest()" classname="CSCI5308.GroupFormationTool.Security.UserRegistrationControllerTest" time="0.025"/>
+  <system-out><![CDATA[
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -17,16 +11,11 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-09 13:37:33.798  INFO 7318 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : Starting UserRegistrationControllerTest on Prabhjots-MacBook-Pro.local with PID 7318 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-09 13:37:33.798  INFO 7318 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : No active profile set, falling back to default profiles: default
-2020-07-09 13:37:33.929  INFO 7318 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
-2020-07-09 13:37:33.974  INFO 7318 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@eeaced2, org.springframework.security.web.context.SecurityContextPersistenceFilter@18f68471, org.springframework.security.web.header.HeaderWriterFilter@1091cafd, org.springframework.security.web.csrf.CsrfFilter@7c4ba824, org.springframework.security.web.authentication.logout.LogoutFilter@46ac60df, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4547fa53, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@250e303b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3b56c045, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@427d7264, org.springframework.security.web.session.SessionManagementFilter@39dd11e6, org.springframework.security.web.access.ExceptionTranslationFilter@1b54d236, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@43a31d8b]
-2020-07-09 13:37:34.041  INFO 7318 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-07-09 13:37:34.057  INFO 7318 --- [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2020-07-09 13:37:34.129  INFO 7318 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2020-07-09 13:37:34.129  INFO 7318 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2020-07-09 13:37:34.133  INFO 7318 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
-2020-07-09 13:37:34.141  INFO 7318 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : Started UserRegistrationControllerTest in 0.352 seconds (JVM running for 6.37)
+2020-07-13 13:07:22.825  INFO 22716 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : Starting UserRegistrationControllerTest on Prabhjots-MacBook-Pro.local with PID 22716 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-13 13:07:22.826  INFO 22716 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : No active profile set, falling back to default profiles: default
+2020-07-13 13:07:23.139  INFO 22716 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : Started UserRegistrationControllerTest in 0.323 seconds (JVM running for 6.676)
+2020-07-13 13:07:23.143  INFO 22716 --- [    Test worker] C.G.Security.UserRegistrationController  : Fetching the password policies of the system
+2020-07-13 13:07:23.143  INFO 22716 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to fetch all the password security policies from database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -34,7 +23,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@605bca62}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@52f0cb15}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Security.UserRegistrationController
@@ -51,7 +40,7 @@ ModelAndView:
         View name = user/signup
              View = null
         Attribute = user
-            value = CSCI5308.GroupFormationTool.User.User@3b84fd4b
+            value = CSCI5308.GroupFormationTool.User.User@9ee4caa
            errors = []
         Attribute = policies
             value = []
@@ -85,7 +74,7 @@ MockHttpServletResponse:
     <div>
         <h4>Create Account</h4>
         <form autocomplete="off" action="/register" method="post" class="m-t col-md-4 col-md-offset-4" role="form"
-              data-toggle="validator"><input type="hidden" name="_csrf" value="c21fbb79-79ea-4b02-b847-1cbd0149e7ab"/>
+              data-toggle="validator"><input type="hidden" name="_csrf" value="fbc25325-09ad-46aa-8f06-895a03d94700"/>
 
             
             <br>

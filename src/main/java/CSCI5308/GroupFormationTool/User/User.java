@@ -6,6 +6,8 @@ import CSCI5308.GroupFormationTool.Password.IPasswordAbstractFactory;
 import CSCI5308.GroupFormationTool.Password.IPasswordHistoryManager;
 import CSCI5308.GroupFormationTool.Password.IPolicy;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class User implements IUser {
 
@@ -30,6 +32,8 @@ public class User implements IUser {
     private String password;
 
     private String confirmPassword;
+
+    private static final Logger log = LoggerFactory.getLogger(User.class.getName());
 
     public User() {
         id = -1;
@@ -119,20 +123,23 @@ public class User implements IUser {
 
     @Override
     public String createUser(IUser user) {
-        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
+        log.info("Creating the user and saving it to the database");
         IPasswordAbstractFactory passwordAbstractFactory = Injector.instance().getPasswordAbstractFactory();
         String errorMessage = null;
         if (!checkForValues(user)) {
+            log.warn("User cannot be created due to some invalid details");
             errorMessage = DomainConstants.signupInvalidDetails;
         }
         policyInstance = passwordAbstractFactory.createPolicyInstance();
         String password = user.getPassword();
         String passwordSecurityError = policyInstance.passwordSPolicyCheck(password);
         if (passwordSecurityError != null) {
+            log.warn("User cannot be created due to violation of password security policy");
             errorMessage = passwordSecurityError;
             return errorMessage;
         }
         if (!(user.getPassword().equals(user.getConfirmPassword()))) {
+            log.warn("User cannot be created due to mismatch of confirm password field");
             errorMessage = DomainConstants.passwordsDontMatch;
             return errorMessage;
         }
@@ -142,10 +149,12 @@ public class User implements IUser {
         user.setPassword(encryptor.encoder(user.getPassword()));
         IUser userByEmailId = userRepository.getUserByEmailId(user);
         if (userByEmailId == null) {
+            log.info("Calling the user repository function to save the new user to Database");
             userRepository.createUser(user);
             IUser userWithUserId = userRepository.getUserIdByEmailId(user);
             passwordHistoryManager.addPasswordHistory(userWithUserId, user.getPassword());
         } else {
+            log.warn("User cannot be created as the user with same details already exists");
             errorMessage = DomainConstants.userAlreadyExists
                     .replace("[[emailId]]", user.getEmailId());
         }
@@ -154,6 +163,7 @@ public class User implements IUser {
 
     @Override
     public boolean checkCurrentUserIsAdmin(String emailId) {
+        log.info("Checking if current user is admin");
         userRepository = Injector.instance().getUserRepository();
         IUser adminDetails = userRepository.getAdminDetails();
         boolean outcome = adminDetails.getEmailId().equalsIgnoreCase(emailId);
@@ -161,6 +171,7 @@ public class User implements IUser {
     }
 
     private boolean checkForValues(IUser user) {
+        log.info("Checking for invalid user data");
         boolean outcome = true;
         if (user.getFirstName().isEmpty() || user.getLastName().isEmpty() || user.getEmailId().isEmpty()
                 || user.getPassword().isEmpty() || user.getConfirmPassword().isEmpty()) {
