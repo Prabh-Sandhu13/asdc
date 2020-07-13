@@ -72,7 +72,30 @@ public class CourseController {
     }
 
     @GetMapping(value = "/courseDetails")
-    public String courseDetail(@RequestParam(value = "courseName") String courseName, Model model) {
+    public String courseDetail(@RequestParam(value = "courseName") String courseName,
+    		@RequestParam(value = "courseId") String courseId, Model model) {
+        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
+        String userRole = null;
+        userInstance = userAbstractFactory.createUserInstance();
+        String emailId = authentication.getPrincipal().toString();
+        userRole = userCourses.getUserRoleByEmailId(emailId);
+            if (userRole.equals(DomainConstants.studentRole)) {
+            	//Check here if published and add the parameter
+            	model.addAttribute("surveyPublished", "true");
+                model.addAttribute("courseName", courseName);
+                model.addAttribute("courseId", courseId);
+                return "course/courseSurveyHome";
+            } else if (userRole.equals(DomainConstants.tARole)) {
+                model.addAttribute("courseName", courseName);
+                return "course/courseDetails";
+            } else if (userRole.equals(DomainConstants.instructorRole)) {
+                model.addAttribute("courseName", courseName);
+                return "course/courseDetails";
+            }
+    	
         model.addAttribute("courseName", courseName);
         return "course/courseDetails";
     }
