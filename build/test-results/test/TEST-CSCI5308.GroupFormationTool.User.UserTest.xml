@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.User.UserTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2020-07-09T16:37:34" hostname="Prabhjots-MacBook-Pro.local" time="0.025">
+<testsuite name="CSCI5308.GroupFormationTool.User.UserTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2020-07-13T16:07:23" hostname="Prabhjots-MacBook-Pro.local" time="0.026">
   <properties/>
   <testcase name="getPasswordTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
   <testcase name="getFirstNameTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
@@ -12,17 +12,40 @@
   <testcase name="setConfirmPasswordTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
   <testcase name="getIdTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
   <testcase name="checkCurrentUserIsAdminTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.002"/>
-  <testcase name="createUserTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.004"/>
+  <testcase name="createUserTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.006"/>
   <testcase name="setFirstNameTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
   <testcase name="getEmailIdTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
   <testcase name="getLastNameTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
   <testcase name="getBannerIdTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
-  <system-out><![CDATA[2020-07-09 13:37:34.184  INFO 7318 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [CSCI5308.GroupFormationTool.User.UserTest], using SpringBootContextLoader
-2020-07-09 13:37:34.184  INFO 7318 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [CSCI5308.GroupFormationTool.User.UserTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2020-07-09 13:37:34.184  INFO 7318 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [CSCI5308.GroupFormationTool.User.UserTest]: UserTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2020-07-09 13:37:34.187  INFO 7318 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration CSCI5308.GroupFormationTool.GroupFormationToolApplication for test class CSCI5308.GroupFormationTool.User.UserTest
-2020-07-09 13:37:34.188  INFO 7318 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2020-07-09 13:37:34.189  INFO 7318 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6ed2dcaf, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@7afd2ca6, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@550783a1, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@77f91df9, org.springframework.test.context.support.DirtiesContextTestExecutionListener@fb6800d, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@1c3d0541, org.springframework.test.context.event.EventPublishingTestExecutionListener@754e97ec, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@4ae75a69, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@71ea1dd0, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@50909a1, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@4f91f1b, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@743d29ff, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@5518be35]
+  <system-out><![CDATA[2020-07-13 13:07:23.196  INFO 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking if current user is admin
+2020-07-13 13:07:23.196  INFO 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking if current user is admin
+2020-07-13 13:07:23.199  INFO 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Creating the user and saving it to the database
+2020-07-13 13:07:23.199  INFO 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking for invalid user data
+2020-07-13 13:07:23.199  INFO 22716 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-13 13:07:23.199  INFO 22716 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Checking if the password follows enabled security policies
+2020-07-13 13:07:23.199  INFO 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Calling the user repository function to save the new user to Database
+2020-07-13 13:07:23.200  INFO 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Creating the user and saving it to the database
+2020-07-13 13:07:23.200  INFO 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking for invalid user data
+2020-07-13 13:07:23.200  INFO 22716 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-13 13:07:23.200  INFO 22716 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Checking if the password follows enabled security policies
+2020-07-13 13:07:23.200 ERROR 22716 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Minimum password length security policy is violated
+2020-07-13 13:07:23.200  WARN 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : User cannot be created due to violation of password security policy
+2020-07-13 13:07:23.200  INFO 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Creating the user and saving it to the database
+2020-07-13 13:07:23.200  INFO 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking for invalid user data
+2020-07-13 13:07:23.200  INFO 22716 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-13 13:07:23.200  INFO 22716 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Checking if the password follows enabled security policies
+2020-07-13 13:07:23.200  WARN 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : User cannot be created due to mismatch of confirm password field
+2020-07-13 13:07:23.201  INFO 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Creating the user and saving it to the database
+2020-07-13 13:07:23.201  INFO 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking for invalid user data
+2020-07-13 13:07:23.201  INFO 22716 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-13 13:07:23.201  INFO 22716 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Checking if the password follows enabled security policies
+2020-07-13 13:07:23.201  WARN 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : User cannot be created as the user with same details already exists
+2020-07-13 13:07:23.202  INFO 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Creating the user and saving it to the database
+2020-07-13 13:07:23.202  INFO 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking for invalid user data
+2020-07-13 13:07:23.202  WARN 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : User cannot be created due to some invalid details
+2020-07-13 13:07:23.202  INFO 22716 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-13 13:07:23.202  INFO 22716 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Checking if the password follows enabled security policies
+2020-07-13 13:07:23.202  INFO 22716 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Calling the user repository function to save the new user to Database
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

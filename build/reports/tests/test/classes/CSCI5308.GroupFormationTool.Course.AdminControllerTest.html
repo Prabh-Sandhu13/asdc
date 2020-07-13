@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.036s</div>
+<div class="counter">0.037s</div>
 <p>duration</p>
 </div>
 </td>
@@ -89,7 +89,7 @@
 </tr>
 <tr>
 <td class="success">assignInstructorToCourseTest()</td>
-<td class="success">0.010s</td>
+<td class="success">0.011s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -97,13 +97,7 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2020-07-09 13:37:32.941  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [CSCI5308.GroupFormationTool.Course.AdminControllerTest], using SpringBootContextLoader
-2020-07-09 13:37:32.941  INFO 7318 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [CSCI5308.GroupFormationTool.Course.AdminControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2020-07-09 13:37:32.942  INFO 7318 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [CSCI5308.GroupFormationTool.Course.AdminControllerTest]: AdminControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2020-07-09 13:37:32.943  INFO 7318 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration CSCI5308.GroupFormationTool.GroupFormationToolApplication for test class CSCI5308.GroupFormationTool.Course.AdminControllerTest
-2020-07-09 13:37:32.943  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2020-07-09 13:37:32.944  INFO 7318 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@2b919d3f, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1f5e51e1, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@47e0b938, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7c3eeb9a, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5b61f947, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@36dd7a93, org.springframework.test.context.event.EventPublishingTestExecutionListener@74362c09, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@7fdf6b2e, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@2b200e53, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@76f4e046, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@33e7ccf5, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@37e547bc, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@1c9c8585]
-
+<pre>
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -112,21 +106,20 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-09 13:37:32.956  INFO 7318 --- [    Test worker] C.G.Course.AdminControllerTest           : Starting AdminControllerTest on Prabhjots-MacBook-Pro.local with PID 7318 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-09 13:37:32.957  INFO 7318 --- [    Test worker] C.G.Course.AdminControllerTest           : No active profile set, falling back to default profiles: default
-2020-07-09 13:37:33.099  INFO 7318 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
-2020-07-09 13:37:33.153  INFO 7318 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@712830c, org.springframework.security.web.context.SecurityContextPersistenceFilter@b00e06d, org.springframework.security.web.header.HeaderWriterFilter@fd5267c, org.springframework.security.web.csrf.CsrfFilter@326a3e3b, org.springframework.security.web.authentication.logout.LogoutFilter@52369e43, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7610f47f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@54283f54, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7268156b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5fe30a16, org.springframework.security.web.session.SessionManagementFilter@68f880af, org.springframework.security.web.access.ExceptionTranslationFilter@3e3c3960, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5338dee9]
-2020-07-09 13:37:33.219  INFO 7318 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-07-09 13:37:33.237  INFO 7318 --- [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2020-07-09 13:37:33.317  INFO 7318 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2020-07-09 13:37:33.318  INFO 7318 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2020-07-09 13:37:33.324  INFO 7318 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
-2020-07-09 13:37:33.332  INFO 7318 --- [    Test worker] C.G.Course.AdminControllerTest           : Started AdminControllerTest in 0.386 seconds (JVM running for 5.561)
+2020-07-13 13:07:22.042  INFO 22716 --- [    Test worker] C.G.Course.AdminControllerTest           : Starting AdminControllerTest on Prabhjots-MacBook-Pro.local with PID 22716 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-13 13:07:22.042  INFO 22716 --- [    Test worker] C.G.Course.AdminControllerTest           : No active profile set, falling back to default profiles: default
+2020-07-13 13:07:22.395  INFO 22716 --- [    Test worker] C.G.Course.AdminControllerTest           : Started AdminControllerTest in 0.366 seconds (JVM running for 5.932)
+2020-07-13 13:07:22.402  INFO 22716 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching course details by using course Id
+2020-07-13 13:07:22.402  INFO 22716 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by Id
+2020-07-13 13:07:22.402  INFO 22716 --- [    Test worker] C.G.Question.QuestionAdminController     : Assign/Add instructor to a course
+2020-07-13 13:07:22.402  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to add an instructor for a course using course Id and email Id
+2020-07-13 13:07:22.402  INFO 22716 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetch instructor for a course
+2020-07-13 13:07:22.402  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get instructor for a course using course Id
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /admin/assignInstructor
-       Parameters = {instructor=[3], id=[CSCI5308], _csrf=[cd2d8655-db38-4f26-bc47-4b7738e2163f]}
+       Parameters = {instructor=[3], id=[CSCI5308], _csrf=[33a3b638-6e25-4e85-8d0f-012fc1753dc2]}
           Headers = []
              Body = &lt;no character encoding set&gt;
     Session Attrs = {}
@@ -159,11 +152,17 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = /course/assignInstructor?courseId=CSCI5308
           Cookies = []
+2020-07-13 13:07:22.407  INFO 22716 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching course details by using course Id
+2020-07-13 13:07:22.407  INFO 22716 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by Id
+2020-07-13 13:07:22.407  INFO 22716 --- [    Test worker] C.G.Question.QuestionAdminController     : Assign/Add instructor to a course
+2020-07-13 13:07:22.407  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to add an instructor for a course using course Id and email Id
+2020-07-13 13:07:22.408  INFO 22716 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetch instructor for a course
+2020-07-13 13:07:22.408  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get instructor for a course using course Id
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /admin/assignInstructor
-       Parameters = {instructor=[3], id=[CSCI5308], _csrf=[9a42be46-f6ca-44af-b630-8630c7941a5f]}
+       Parameters = {instructor=[3], id=[CSCI5308], _csrf=[15bd01dd-c156-46ae-bbb7-57acdc2779a2]}
           Headers = []
              Body = &lt;no character encoding set&gt;
     Session Attrs = {}
@@ -196,6 +195,11 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = /course/assignInstructor?courseId=CSCI5308
           Cookies = []
+2020-07-13 13:07:22.412  INFO 22716 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching course details using courseId from the Database
+2020-07-13 13:07:22.412  INFO 22716 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by Id
+2020-07-13 13:07:22.413  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : The function call return the users that are not enrolled as an instructor for a course
+2020-07-13 13:07:22.413  INFO 22716 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching instructors list for a course using courseId
+2020-07-13 13:07:22.413  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get instructor for a course using course Id
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -203,7 +207,7 @@ MockHttpServletRequest:
        Parameters = {courseId=[CSCI5308]}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@7e240813}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@4f6d9cd0}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.AdminController
@@ -222,7 +226,7 @@ ModelAndView:
         Attribute = instructorList
             value = []
         Attribute = course
-            value = CSCI5308.GroupFormationTool.Course.Course@7f1b84b7
+            value = CSCI5308.GroupFormationTool.Course.Course@58bba171
            errors = []
         Attribute = users
             value = []
@@ -265,6 +269,8 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
+2020-07-13 13:07:22.433  INFO 22716 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching all course details from the Database
+2020-07-13 13:07:22.434  INFO 22716 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -272,7 +278,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@7c6fc025}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@1f632920}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.AdminController
@@ -340,7 +346,7 @@ MockHttpServletResponse:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 9, 2020, 1:37:35 p.m.</p>
+<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 13, 2020, 1:07:24 p.m.</p>
 </div>
 </div>
 </body>
