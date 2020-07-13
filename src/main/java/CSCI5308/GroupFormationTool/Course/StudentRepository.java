@@ -4,8 +4,11 @@ import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
+import CSCI5308.GroupFormationTool.Question.QuestionManagerRepository;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
 import org.apache.commons.text.RandomStringGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -13,6 +16,8 @@ import java.util.Map;
 
 public class StudentRepository implements IStudentRepository {
 
+	private static final Logger Log = LoggerFactory.getLogger(QuestionManagerRepository.class.getName());
+	
     @Override
     public Map<Integer, List<StudentCSV>> createStudent(List<StudentCSV> studentCSVList, String courseId) {
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
@@ -26,6 +31,8 @@ public class StudentRepository implements IStudentRepository {
 
         for (StudentCSV studentCSV : studentCSVList) {
             try {
+            	Log.info("Calling stored procedure sp_createStudentFromCSV to create a student from the CSV file " +
+                        "uploaded by the instructor to the database");
                 storedProcedure = databaseAbstractFactory.
                         createStoredProcedureInstance("sp_createStudentFromCSV(?,?,?,?,?,?,?)");
                 storedProcedure.setInputStringParameter(1, studentCSV.getBannerId());
@@ -45,7 +52,8 @@ public class StudentRepository implements IStudentRepository {
                     oldStudents.add(studentCSV);
                 }
             } catch (SQLException ex) {
-                ex.printStackTrace();
+            	Log.error("Could not execute the Stored procedure sp_createStudentFromCSV" +
+                        " because of an SQL Exception " + ex.getLocalizedMessage());
             } finally {
                 if (storedProcedure != null) {
                     storedProcedure.removeConnections();

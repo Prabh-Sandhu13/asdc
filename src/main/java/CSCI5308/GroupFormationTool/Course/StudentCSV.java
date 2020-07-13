@@ -3,8 +3,13 @@ package CSCI5308.GroupFormationTool.Course;
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Mail.IMailManager;
+import CSCI5308.GroupFormationTool.Question.QuestionManagerRepository;
+
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvToBean;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Reader;
@@ -30,6 +35,8 @@ public class StudentCSV implements IStudentCSV {
     private IStudentRepository studentRepository;
 
     private IMailManager mailManager;
+    
+    private static final Logger Log = LoggerFactory.getLogger(QuestionManagerRepository.class.getName());
 
     public StudentCSV() {
         this.firstName = null;
@@ -104,18 +111,22 @@ public class StudentCSV implements IStudentCSV {
             List<StudentCSV> students = csvToBean.parse();
             for (StudentCSV studentCSV : students) {
                 if (checkForBadData(studentCSV)) {
+                	Log.info("Added invalid students data in a bad data list");
                     badData.add(studentCSV);
                 } else {
+                	Log.info("Added valid students in a proper data list ");
                     properData.add(studentCSV);
                 }
             }
             studentLists = studentRepository.createStudent(properData, courseId);
             if (studentLists != null && studentLists.size() > 0) {
+            	Log.warn("The Bad data list is created with data from the uploaded CSV file");
                 studentLists.put(DomainConstants.badData, badData);
                 mailManager.sendBatchMail(studentLists.get(DomainConstants.newStudents), courseId);
             }
 
         } catch (Exception ex) {
+        	Log.error("Could not read data from the Input stream" + ex.getLocalizedMessage());
             return null;
         }
         return studentLists;
