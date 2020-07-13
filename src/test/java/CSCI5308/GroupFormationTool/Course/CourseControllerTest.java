@@ -4,7 +4,7 @@ import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
-import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
+import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,10 +24,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(CourseController.class)
 public class CourseControllerTest {
 
-    private ICourseAbstractFactoryTest courseAbstractFactoryTest = TestsInjector.instance().
+    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestsInjector.instance().
             getCourseAbstractFactoryTest();
 
-    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestsInjector.instance().
             getUserAbstractFactoryTest();
 
     private CourseRepository courseRepository;

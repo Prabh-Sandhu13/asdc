@@ -1,35 +1,39 @@
 package CSCI5308.GroupFormationTool;
 
-import CSCI5308.GroupFormationTool.Course.CourseAbstractFactoryTest;
-import CSCI5308.GroupFormationTool.Course.ICourseAbstractFactoryTest;
-import CSCI5308.GroupFormationTool.Mail.IMailManagerAbstractFactoryTest;
-import CSCI5308.GroupFormationTool.Mail.MailManagerAbstractFactoryTest;
-import CSCI5308.GroupFormationTool.Password.IPasswordAbstractFactoryTest;
-import CSCI5308.GroupFormationTool.Password.PasswordAbstractFactoryTest;
-import CSCI5308.GroupFormationTool.Question.IQuestionAbstractFactoryTest;
-import CSCI5308.GroupFormationTool.Question.QuestionAbstractFactoryTest;
-import CSCI5308.GroupFormationTool.Security.ISecurityAbstractFactoryTest;
-import CSCI5308.GroupFormationTool.Security.SecurityAbstractFactoryTest;
-import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
-import CSCI5308.GroupFormationTool.User.UserAbstractFactoryTest;
+import CSCI5308.GroupFormationTool.Course.ITestCourseAbstractFactory;
+import CSCI5308.GroupFormationTool.Course.TestCourseAbstractFactory;
+import CSCI5308.GroupFormationTool.GroupFormation.ITestGroupFormationAbstractFactory;
+import CSCI5308.GroupFormationTool.GroupFormation.TestGroupFormationAbstractFactory;
+import CSCI5308.GroupFormationTool.Mail.ITestMailManagerAbstractFactory;
+import CSCI5308.GroupFormationTool.Mail.TestMailManagerAbstractFactory;
+import CSCI5308.GroupFormationTool.Password.ITestPasswordAbstractFactory;
+import CSCI5308.GroupFormationTool.Password.TestPasswordAbstractFactory;
+import CSCI5308.GroupFormationTool.Question.ITestQuestionAbstractFactory;
+import CSCI5308.GroupFormationTool.Question.TestQuestionAbstractFactory;
+import CSCI5308.GroupFormationTool.Security.ITestSecurityAbstractFactory;
+import CSCI5308.GroupFormationTool.Security.TestSecurityAbstractFactory;
+import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
+import CSCI5308.GroupFormationTool.User.TestUserAbstractFactory;
 
 public class TestsInjector {
 
     private static TestsInjector instance = null;
-    private ICourseAbstractFactoryTest courseAbstractFactoryTest;
-    private IQuestionAbstractFactoryTest questionAbstractFactoryTest;
-    private IUserAbstractFactoryTest userAbstractFactoryTest;
-    private ISecurityAbstractFactoryTest securityAbstractFactoryTest;
-    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest;
-    private IMailManagerAbstractFactoryTest mailManagerAbstractFactoryTest;
+    private ITestCourseAbstractFactory courseAbstractFactoryTest;
+    private ITestQuestionAbstractFactory questionAbstractFactoryTest;
+    private ITestUserAbstractFactory userAbstractFactoryTest;
+    private ITestSecurityAbstractFactory securityAbstractFactoryTest;
+    private ITestPasswordAbstractFactory passwordAbstractFactoryTest;
+    private ITestMailManagerAbstractFactory mailManagerAbstractFactoryTest;
+    private ITestGroupFormationAbstractFactory groupFormationAbstractFactoryTest;
 
     private TestsInjector() {
-        courseAbstractFactoryTest = new CourseAbstractFactoryTest();
-        questionAbstractFactoryTest = new QuestionAbstractFactoryTest();
-        userAbstractFactoryTest = new UserAbstractFactoryTest();
-        securityAbstractFactoryTest = new SecurityAbstractFactoryTest();
-        passwordAbstractFactoryTest = new PasswordAbstractFactoryTest();
-        mailManagerAbstractFactoryTest = new MailManagerAbstractFactoryTest();
+        courseAbstractFactoryTest = new TestCourseAbstractFactory();
+        questionAbstractFactoryTest = new TestQuestionAbstractFactory();
+        userAbstractFactoryTest = new TestUserAbstractFactory();
+        securityAbstractFactoryTest = new TestSecurityAbstractFactory();
+        passwordAbstractFactoryTest = new TestPasswordAbstractFactory();
+        mailManagerAbstractFactoryTest = new TestMailManagerAbstractFactory();
+        groupFormationAbstractFactoryTest = new TestGroupFormationAbstractFactory();
     }
 
     public static TestsInjector instance() {
@@ -40,27 +44,36 @@ public class TestsInjector {
         return instance;
     }
 
-    public ICourseAbstractFactoryTest getCourseAbstractFactoryTest() {
+    public ITestGroupFormationAbstractFactory getGroupFormationAbstractFactoryTest() {
+        return groupFormationAbstractFactoryTest;
+    }
+
+    public void setGroupFormationAbstractFactoryTest(ITestGroupFormationAbstractFactory
+                                                             groupFormationAbstractFactoryTest) {
+        this.groupFormationAbstractFactoryTest = groupFormationAbstractFactoryTest;
+    }
+
+    public ITestCourseAbstractFactory getCourseAbstractFactoryTest() {
         return courseAbstractFactoryTest;
     }
 
-    public IQuestionAbstractFactoryTest getQuestionAbstractFactoryTest() {
+    public ITestQuestionAbstractFactory getQuestionAbstractFactoryTest() {
         return questionAbstractFactoryTest;
     }
 
-    public IUserAbstractFactoryTest getUserAbstractFactoryTest() {
+    public ITestUserAbstractFactory getUserAbstractFactoryTest() {
         return userAbstractFactoryTest;
     }
 
-    public ISecurityAbstractFactoryTest getSecurityAbstractFactoryTest() {
+    public ITestSecurityAbstractFactory getSecurityAbstractFactoryTest() {
         return securityAbstractFactoryTest;
     }
 
-    public IPasswordAbstractFactoryTest getPasswordAbstractFactoryTest() {
+    public ITestPasswordAbstractFactory getPasswordAbstractFactoryTest() {
         return passwordAbstractFactoryTest;
     }
 
-    public IMailManagerAbstractFactoryTest getMailManagerAbstractFactoryTest() {
+    public ITestMailManagerAbstractFactory getMailManagerAbstractFactoryTest() {
         return mailManagerAbstractFactoryTest;
     }
 

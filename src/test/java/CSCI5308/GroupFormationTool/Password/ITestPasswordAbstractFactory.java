@@ -2,7 +2,7 @@ package CSCI5308.GroupFormationTool.Password;
 
 import java.util.ArrayList;
 
-public interface IPasswordAbstractFactoryTest {
+public interface ITestPasswordAbstractFactory {
 
     PasswordHistoryManager createPasswordHistoryManagerMock();
 

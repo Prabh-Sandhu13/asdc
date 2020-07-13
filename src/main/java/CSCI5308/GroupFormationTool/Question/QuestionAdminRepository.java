@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class QuestionAdminRepository implements IQuestionAdminRepository {
 
-    private static final Logger Log = LoggerFactory.getLogger(QuestionAdminRepository.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(QuestionAdminRepository.class.getName());
 
     @Override
     public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
@@ -21,7 +21,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
         StoredProcedure storedProcedure = null;
         ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
         try {
-            Log.info("Calling stored procedure sp_getQuestionsForInstructor to fetch the question bank " +
+            log.info("Calling stored procedure sp_getQuestionsForInstructor to fetch the question bank " +
                     "of the instructor");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getQuestionsForInstructor(?)");
@@ -41,7 +41,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
                 }
             }
         } catch (SQLException ex) {
-            Log.error("Could not execute the Stored procedure sp_getQuestionsForInstructor" +
+            log.error("Could not execute the Stored procedure sp_getQuestionsForInstructor" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
@@ -58,7 +58,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         IQuestion question = questionAbstractFactory.createQuestionInstance();
         try {
-            Log.info("Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id");
+            log.info("Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getQuestionById(?)");
             storedProcedure.setInputIntParameter(1, questionId);
             ResultSet results = storedProcedure.executeWithResults();
@@ -75,7 +75,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
             }
 
         } catch (SQLException ex) {
-            Log.error("Could not execute the Stored procedure sp_getQuestionById" +
+            log.error("Could not execute the Stored procedure sp_getQuestionById" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
@@ -92,7 +92,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         ArrayList<IChoice> choiceList = questionAbstractFactory.createChoiceListInstance();
         try {
-            Log.info("Calling the stored procedure sp_getOptionsForQuestion to fetch" +
+            log.info("Calling the stored procedure sp_getOptionsForQuestion to fetch" +
                     " the option list for a multiple choice question");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getOptionsForQuestion(?)");
@@ -109,7 +109,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
                 }
             }
         } catch (SQLException ex) {
-            Log.error("Could not execute the Stored procedure sp_getOptionsForQuestion" +
+            log.error("Could not execute the Stored procedure sp_getOptionsForQuestion" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
@@ -128,7 +128,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
         try {
-            Log.info("Calling stored procedure sp_getSortedQuestionsForInstructor to fetch the question bank " +
+            log.info("Calling stored procedure sp_getSortedQuestionsForInstructor to fetch the question bank " +
                     "of the instructor sorted by title or created date");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getSortedQuestionsForInstructor(?,?)");
@@ -149,7 +149,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
                 }
             }
         } catch (SQLException ex) {
-            Log.error("Could not execute the Stored procedure sp_getSortedQuestionsForInstructor" +
+            log.error("Could not execute the Stored procedure sp_getSortedQuestionsForInstructor" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {

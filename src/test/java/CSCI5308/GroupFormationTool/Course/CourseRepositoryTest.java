@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 public class CourseRepositoryTest {
 
-    private ICourseAbstractFactoryTest courseAbstractFactoryTest = TestsInjector.instance().
+    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestsInjector.instance().
             getCourseAbstractFactoryTest();
 
     @Test

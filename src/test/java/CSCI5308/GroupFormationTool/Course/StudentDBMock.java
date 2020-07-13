@@ -17,7 +17,7 @@ public class StudentDBMock implements IStudentRepository {
 
     private String password;
 
-    private ICourseAbstractFactoryTest courseAbstractFactoryTest = TestsInjector.instance().
+    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestsInjector.instance().
             getCourseAbstractFactoryTest();
 
     public StudentDBMock() {

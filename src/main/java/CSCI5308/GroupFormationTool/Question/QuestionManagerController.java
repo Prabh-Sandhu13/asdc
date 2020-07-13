@@ -20,7 +20,7 @@ import java.util.List;
 @Controller
 public class QuestionManagerController {
 
-    private static final Logger Log = LoggerFactory.getLogger(QuestionManagerController.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(QuestionManagerController.class.getName());
 
     @GetMapping("/questionManager/createQuestion")
     public String createQuestion(Model model) {
@@ -44,16 +44,16 @@ public class QuestionManagerController {
         question.setType(Integer.parseInt(type));
         instructor.setEmailId(authentication.getPrincipal().toString());
         question.setInstructor(instructor);
-        Log.info("Saving the question created by the instructor to the database");
+        log.info("Saving the question created by the instructor to the database");
         outcome = question.createQuestion(optionText, optionValue);
 
         if (outcome == DomainConstants.invalidData) {
-            Log.warn("One or more input fields have invalid/empty data");
+            log.info("One or more input fields have invalid/empty data");
             model.addAttribute("invalidData",
                     "One or more fields have invalid/empty data! Please enter and try again");
             return "question/createQuestion";
         } else {
-            Log.info("Question is saved to the database and the instructor views the saved question");
+            log.info("Question is saved to the database and the instructor views the saved question");
             return "redirect:/questionManager/viewQuestion?questionId=" + outcome;
         }
     }
@@ -63,18 +63,18 @@ public class QuestionManagerController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
         IQuestion question = questionAbstractFactory.createQuestionInstance();
-        Log.info("Deleting the question created by the instructor from the database");
+        log.info("Deleting the question created by the instructor from the database");
         boolean status = question.deleteQuestion(questionId);
         if (status) {
-            Log.info("Question successfully deleted!");
+            log.info("Question successfully deleted!");
             model.addAttribute("successMessage",
                     "The question " + questionId + " is successfully deleted!");
         } else {
-            Log.warn("The question could not be deleted");
+            log.info("The question could not be deleted");
             model.addAttribute("failureMessage", "The question can not not be deleted.");
         }
         String emailId = authentication.getPrincipal().toString();
-        Log.info("Redirecting to the instructor's question list page");
+        log.info("Redirecting to the instructor's question list page");
         ArrayList<IQuestion> questionList = question.getQuestionListForInstructor(emailId);
         model.addAttribute("questionList", questionList);
         return "question/questionManager";

@@ -15,7 +15,7 @@ import static org.mockito.Mockito.when;
 public class CourseTest {
 
     public CourseRepository courseRepository;
-    private ICourseAbstractFactoryTest courseAbstractFactoryTest = TestsInjector.instance().
+    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestsInjector.instance().
             getCourseAbstractFactoryTest();
 
     @BeforeEach

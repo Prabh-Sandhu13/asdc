@@ -2,7 +2,7 @@ package CSCI5308.GroupFormationTool.User;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.Password.IPasswordAbstractFactoryTest;
+import CSCI5308.GroupFormationTool.Password.ITestPasswordAbstractFactory;
 import CSCI5308.GroupFormationTool.Password.IPolicy;
 import CSCI5308.GroupFormationTool.Password.PasswordHistoryManager;
 import CSCI5308.GroupFormationTool.Password.PolicyRepository;
@@ -24,9 +24,9 @@ public class UserTest {
     UserRepository userRepository;
     PasswordHistoryManager passwordHistoryManager;
     PolicyRepository policyRepository;
-    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
 
-    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = TestsInjector.instance().
+    private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestsInjector.instance().
             getPasswordAbstractFactoryTest();
 
     @BeforeEach

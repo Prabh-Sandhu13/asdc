@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 public class PolicyRepositoryTest {
 
-    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = TestsInjector.instance().
+    private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestsInjector.instance().
             getPasswordAbstractFactoryTest();
 
     @Test

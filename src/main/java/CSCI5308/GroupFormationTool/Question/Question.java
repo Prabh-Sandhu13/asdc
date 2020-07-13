@@ -32,7 +32,7 @@ public class Question implements IQuestion {
 
     private IQuestionAdminRepository questionAdminRepository;
 
-    private static final Logger Log = LoggerFactory.getLogger(Question.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(Question.class.getName());
 
     public Question() {
         this.id = -1;
@@ -106,11 +106,11 @@ public class Question implements IQuestion {
         IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
         Set<String> optionTextSet = questionAbstractFactory.createSetInstance();
         Set<String> optionValueSet = questionAbstractFactory.createSetInstance();
-        Log.info("Creating the question and saving it to the database");
+        log.info("Creating the question and saving it to the database");
         if (checkIfInvalid(optionText, optionValue)) {
             return DomainConstants.invalidData;
         } else {
-            Log.info("Creating the options for question if applicable (Multiple Choice only)");
+            log.info("Creating the options for question if applicable (Multiple Choice only)");
             ArrayList<IChoice> choices = questionAbstractFactory.createChoiceListInstance();
             for (String text : optionText) {
                 optionTextSet.add(text);
@@ -142,7 +142,7 @@ public class Question implements IQuestion {
             } else {
                 this.setChoices(null);
             }
-            Log.info("Calling the createQuestion repository function to save the question to Database");
+            log.info("Calling the createQuestion repository function to save the question to Database");
             questionManagerRepository = Injector.instance().getQuestionManagerRepository();
             return questionManagerRepository.createQuestion(this);
         }
@@ -150,14 +150,14 @@ public class Question implements IQuestion {
 
     @Override
     public boolean deleteQuestion(long questionId) {
-        Log.info("Calling the deleteQuestion repository function to delete the question from the Database");
+        log.info("Calling the deleteQuestion repository function to delete the question from the Database");
         questionManagerRepository = Injector.instance().getQuestionManagerRepository();
         return questionManagerRepository.deleteQuestion(questionId);
     }
 
     @Override
     public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
-        Log.info("Calling the getQuestionListForInstructor" +
+        log.info("Calling the getQuestionListForInstructor" +
                 " repository function to fetch the question bank from the Database");
         questionAdminRepository = Injector.instance().getQuestionAdminRepository();
         return questionAdminRepository.getQuestionListForInstructor(emailId);
@@ -165,7 +165,7 @@ public class Question implements IQuestion {
 
     @Override
     public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortField) {
-        Log.info("Calling the getSortedQuestionListForInstructor" +
+        log.info("Calling the getSortedQuestionListForInstructor" +
                 " repository function to fetch the question bank in a sorted order from the Database");
         questionAdminRepository = Injector.instance().getQuestionAdminRepository();
         return questionAdminRepository.getSortedQuestionListForInstructor(emailId, sortField);
@@ -173,12 +173,12 @@ public class Question implements IQuestion {
 
     @Override
     public IQuestion getQuestionById(long questionId) {
-        Log.info("Calling the getQuestionById repository function to fetch a question from the Database");
+        log.info("Calling the getQuestionById repository function to fetch a question from the Database");
         questionAdminRepository = Injector.instance().getQuestionAdminRepository();
         IQuestion question = questionAdminRepository.getQuestionById(questionId);
         ArrayList<IChoice> choiceList = null;
         if (question.getType() == DomainConstants.MCQMultiple || question.getType() == DomainConstants.MCQOne) {
-            Log.info("Calling the getOptionsForTheQuestion repository function to fetch " +
+            log.info("Calling the getOptionsForTheQuestion repository function to fetch " +
                     "the options of a multiple choice question from the Database");
             choiceList = questionAdminRepository.getOptionsForTheQuestion(questionId);
         }
@@ -187,7 +187,7 @@ public class Question implements IQuestion {
     }
 
     private boolean checkIfInvalid(List<String> optionText, List<String> optionValue) {
-        Log.info("Checking for invalid data");
+        log.info("Checking for invalid data");
         if (this.title == null || this.title.isEmpty() || this.text == null || this.text.isEmpty()) {
             return true;
         }

@@ -14,7 +14,7 @@ public class CourseDBMock implements ICourseRepository {
 
     private String description;
 
-    private ICourseAbstractFactoryTest courseAbstractFactoryTest = TestsInjector.instance().
+    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestsInjector.instance().
             getCourseAbstractFactoryTest();
 
     public CourseDBMock() {

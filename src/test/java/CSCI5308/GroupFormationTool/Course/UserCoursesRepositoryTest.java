@@ -2,7 +2,7 @@ package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
-import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
+import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -15,10 +15,10 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class UserCoursesRepositoryTest {
 
-    private ICourseAbstractFactoryTest courseAbstractFactoryTest = TestsInjector.instance().
+    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestsInjector.instance().
             getCourseAbstractFactoryTest();
 
-    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
 
     @Test
     public void getUserRoleByEmailIdTest() {

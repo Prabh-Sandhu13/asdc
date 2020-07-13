@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import static org.mockito.Mockito.mock;
 
-public class UserAbstractFactoryTest implements IUserAbstractFactoryTest {
+public class TestUserAbstractFactory implements ITestUserAbstractFactory {
     @Override
     public IUser createUserInstance() {
         return new User();

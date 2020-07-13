@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class QuestionManagerRepository implements IQuestionManagerRepository {
 
-    private static final Logger Log = LoggerFactory.getLogger(QuestionManagerRepository.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(QuestionManagerRepository.class.getName());
 
     @Override
     public long createQuestion(IQuestion question) {
@@ -18,7 +18,7 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
         StoredProcedure storedProcedure = null;
         long questionId = -1;
         try {
-            Log.info("Calling stored procedure sp_createQuestion to save a question " +
+            log.info("Calling stored procedure sp_createQuestion to save a question " +
                     "created by the instructor to the database");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_createQuestion(?,?,?,?,?)");
@@ -30,7 +30,7 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
             storedProcedure.execute();
             questionId = storedProcedure.getParameterLong(5);
         } catch (SQLException ex) {
-            Log.error("Could not execute the Stored procedure sp_createQuestion" +
+            log.error("Could not execute the Stored procedure sp_createQuestion" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
             return -1;
         } finally {
@@ -53,7 +53,7 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         try {
-            Log.info("Calling stored procedure sp_saveOptions to save the options of a question " +
+            log.info("Calling stored procedure sp_saveOptions to save the options of a question " +
                     "created by the instructor to the database");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_saveOptions(?,?,?)");
             storedProcedure.setInputStringParameter(1, choice.getText());
@@ -61,7 +61,7 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
             storedProcedure.setInputIntParameter(3, questionId);
             storedProcedure.execute();
         } catch (SQLException ex) {
-            Log.error("Could not execute the Stored procedure sp_saveOptions" +
+            log.error("Could not execute the Stored procedure sp_saveOptions" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
             return false;
         } finally {
@@ -77,7 +77,7 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
         StoredProcedure storedProcedure = null;
         boolean status = true;
         try {
-            Log.info("Calling stored procedure sp_deleteAQuestion to delete a question " +
+            log.info("Calling stored procedure sp_deleteAQuestion to delete a question " +
                     "of the instructor");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_deleteAQuestion(?,?)");
             storedProcedure.setInputIntParameter(1, questionId);
@@ -85,7 +85,7 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
             storedProcedure.execute();
             status = storedProcedure.getParameter(2);
         } catch (SQLException ex) {
-            Log.error("Could not execute the Stored procedure sp_deleteAQuestion" +
+            log.error("Could not execute the Stored procedure sp_deleteAQuestion" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (null != storedProcedure) {

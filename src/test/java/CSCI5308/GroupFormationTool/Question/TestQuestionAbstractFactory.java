@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import static org.mockito.Mockito.mock;
 
-public class QuestionAbstractFactoryTest implements IQuestionAbstractFactoryTest {
+public class TestQuestionAbstractFactory implements ITestQuestionAbstractFactory {
 
     @Override
     public IQuestion createQuestionInstance() {

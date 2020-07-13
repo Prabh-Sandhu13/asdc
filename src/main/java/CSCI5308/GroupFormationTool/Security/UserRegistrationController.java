@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @Controller
 public class UserRegistrationController implements WebMvcConfigurer {
 
-    private static final Logger Log = LoggerFactory.getLogger(UserRegistrationController.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(UserRegistrationController.class.getName());
 
     @PostMapping("/register")
     public ModelAndView createUser(User user) {
@@ -29,23 +29,23 @@ public class UserRegistrationController implements WebMvcConfigurer {
         IUser userInstance = userAbstractFactory.createUserInstance();
         ModelAndView modelAndView = null;
         String errorMessage = null;
-        Log.info("Creating the user and saving the new user to the database");
+        log.info("Creating the user and saving the new user to the database");
         errorMessage = userInstance.createUser(user);
         if (null == errorMessage) {
-            Log.info("Redirecting to user login page after successful registration");
+            log.info("Redirecting to user login page after successful registration");
             modelAndView = new ModelAndView("user/login");
         } else {
             if (errorMessage.equals(DomainConstants.signupInvalidDetails)) {
-                Log.warn("One or more fields are not filled by the user during registration!");
+                log.warn("One or more fields are not filled by the user during registration!");
                 modelAndView = new ModelAndView("user/signup");
                 modelAndView.addObject("invalidDetails", errorMessage);
             } else if (errorMessage.equals(DomainConstants.userAlreadyExists
                     .replace("[[emailId]]", user.getEmailId()))) {
-                Log.error("The user trying to register already exists!");
+                log.error("The user trying to register already exists!");
                 modelAndView = new ModelAndView("user/signup");
                 modelAndView.addObject("userAlreadyExists", errorMessage);
             } else {
-                Log.warn("The password entered does not satisfy the password policies!");
+                log.warn("The password entered does not satisfy the password policies!");
                 modelAndView = new ModelAndView("user/signup");
                 modelAndView.addObject("passwordError", errorMessage);
             }
@@ -57,7 +57,7 @@ public class UserRegistrationController implements WebMvcConfigurer {
     public String register(User user, Model model) {
         IPasswordAbstractFactory passwordAbstractFactory = Injector.instance().getPasswordAbstractFactory();
         IPolicy policyInstance = passwordAbstractFactory.createPolicyInstance();
-        Log.info("Fetching the password policies of the system");
+        log.info("Fetching the password policies of the system");
         ArrayList<IPolicy> policies = policyInstance.getPolicies();
         model.addAttribute("policies", policies);
         return "user/signup";

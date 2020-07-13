@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 public class ChoiceTest {
 
-    private IQuestionAbstractFactoryTest questionAbstractFactoryTest = TestsInjector.instance().
+    private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestsInjector.instance().
             getQuestionAbstractFactoryTest();
 
     public IChoice createDefaultChoice() {
