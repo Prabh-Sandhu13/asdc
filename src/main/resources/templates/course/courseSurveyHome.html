@@ -29,7 +29,7 @@
 		<br />
 		<h4>Survey is now available!</h4><br /><br />
 		<h4>Responses of the survey would be used to form groups</h4><br /><br />
-        <h4><a th:href="@{/courseSurvey?courseName={courseName}&courseId={courseId} (courseName=${courseName},courseId=${courseId})}"
+        <h4><a th:href="@{/courseSurveyResponse?courseName={courseName}&courseId={courseId} (courseName=${courseName},courseId=${courseId})}"
         class="btn btn-primary btn-md">Take the survey >></a></h4>
     </div>
 	<div th:if="${surveyPublished == null}">

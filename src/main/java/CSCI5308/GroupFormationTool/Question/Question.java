@@ -25,7 +25,7 @@ public class Question implements IQuestion {
     private int type;
 
     private Date createdDate;
-
+    
     private ArrayList<IChoice> choices;
 
     private IQuestionManagerRepository questionManagerRepository;
