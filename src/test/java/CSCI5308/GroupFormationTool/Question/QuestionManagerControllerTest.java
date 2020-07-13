@@ -24,7 +24,7 @@ public class QuestionManagerControllerTest {
     public QuestionManagerRepository questionManagerRepository;
     public QuestionAdminRepository questionAdminRepository;
 
-    private IQuestionAbstractFactoryTest questionAbstractFactoryTest = TestsInjector.instance().
+    private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestsInjector.instance().
             getQuestionAbstractFactoryTest();
 
     @Autowired

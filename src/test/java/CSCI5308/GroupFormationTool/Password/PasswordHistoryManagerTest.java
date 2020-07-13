@@ -2,10 +2,10 @@ package CSCI5308.GroupFormationTool.Password;
 
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
-import CSCI5308.GroupFormationTool.Security.ISecurityAbstractFactoryTest;
+import CSCI5308.GroupFormationTool.Security.ITestSecurityAbstractFactory;
 import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
-import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
+import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,13 +21,13 @@ public class PasswordHistoryManagerTest {
     public PasswordHistoryRepository passwordHistoryRepository;
     public BCryptEncryption bCryptEncryption;
 
-    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = TestsInjector.instance().
+    private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestsInjector.instance().
             getPasswordAbstractFactoryTest();
 
-    private ISecurityAbstractFactoryTest securityAbstractFactoryTest = TestsInjector.instance().
+    private ITestSecurityAbstractFactory securityAbstractFactoryTest = TestsInjector.instance().
             getSecurityAbstractFactoryTest();
 
-    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
 
     @BeforeEach
     public void init() {

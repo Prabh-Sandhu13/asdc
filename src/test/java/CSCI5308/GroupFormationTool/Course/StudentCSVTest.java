@@ -25,7 +25,7 @@ public class StudentCSVTest {
     public StudentCSV studentCSV;
     public StudentRepository studentRepository;
 
-    private ICourseAbstractFactoryTest courseAbstractFactoryTest = TestsInjector.instance().
+    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestsInjector.instance().
             getCourseAbstractFactoryTest();
 
     @BeforeEach

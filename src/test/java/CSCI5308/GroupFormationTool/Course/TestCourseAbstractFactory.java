@@ -6,7 +6,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.mock;
 
-public class CourseAbstractFactoryTest implements ICourseAbstractFactoryTest {
+public class TestCourseAbstractFactory implements ITestCourseAbstractFactory {
     @Override
     public StudentCSV createStudentCSVInstance() {
         return new StudentCSV();

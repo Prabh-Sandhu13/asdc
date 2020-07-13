@@ -18,7 +18,7 @@ public class UserDBMock implements IUserRepository {
 
     private String confirmPassword;
 
-    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
 
     public UserDBMock() {
         setToDefaults();

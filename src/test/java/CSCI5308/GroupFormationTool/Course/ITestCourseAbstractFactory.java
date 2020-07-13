@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public interface ICourseAbstractFactoryTest {
+public interface ITestCourseAbstractFactory {
 
     StudentCSV createStudentCSVInstance();
 

@@ -17,7 +17,7 @@ public class PolicyTest {
     private IPolicy policyInstance;
     private PolicyRepository policyRepository;
 
-    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = TestsInjector.instance().
+    private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestsInjector.instance().
             getPasswordAbstractFactoryTest();
 
     @Test

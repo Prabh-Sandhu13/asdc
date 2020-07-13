@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class PasswordHistoryDBMock implements IPasswordHistoryRepository {
 
-    IPasswordAbstractFactoryTest passwordAbstractFactoryTest = TestsInjector.instance().
+    ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestsInjector.instance().
             getPasswordAbstractFactoryTest();
 
     @Override

@@ -2,7 +2,7 @@ package CSCI5308.GroupFormationTool.Question;
 
 import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
-import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
+import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -23,10 +23,10 @@ public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdmi
 
     private ArrayList<IChoice> choices;
 
-    private IQuestionAbstractFactoryTest questionAbstractFactoryTest = TestsInjector.instance().
+    private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestsInjector.instance().
             getQuestionAbstractFactoryTest();
 
-    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestsInjector.instance().
             getUserAbstractFactoryTest();
 
     public QuestionDBMock() {
@@ -121,7 +121,7 @@ public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdmi
 
 
     @Override
-    public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy) {
+    public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortField) {
         ArrayList<IQuestion> questionList = questionAbstractFactoryTest.createQuestionListInstance();
         IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
         IUser user = userAbstractFactoryTest.createUserInstance();

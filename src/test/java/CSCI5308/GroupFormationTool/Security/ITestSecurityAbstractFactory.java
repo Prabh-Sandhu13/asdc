@@ -1,6 +1,6 @@
 package CSCI5308.GroupFormationTool.Security;
 
-public interface ISecurityAbstractFactoryTest {
+public interface ITestSecurityAbstractFactory {
 
     BCryptEncryption createBCryptEncryptionMock();
 }

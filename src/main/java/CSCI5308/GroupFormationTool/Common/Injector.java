@@ -6,6 +6,8 @@ import CSCI5308.GroupFormationTool.Database.IDBConfiguration;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.GroupFormation.GroupFormationAbstractFactory;
 import CSCI5308.GroupFormationTool.GroupFormation.IGroupFormationAbstractFactory;
+import CSCI5308.GroupFormationTool.GroupFormation.IGroupFormationManager;
+import CSCI5308.GroupFormationTool.GroupFormation.IGroupFormationRepository;
 import CSCI5308.GroupFormationTool.Mail.IMailAbstractFactory;
 import CSCI5308.GroupFormationTool.Mail.IMailManager;
 import CSCI5308.GroupFormationTool.Mail.MailAbstractFactory;
@@ -54,6 +56,8 @@ public class Injector {
     private IPolicyRepository policyRepository;
     private IQuestionManagerRepository questionManagerRepository;
     private IQuestionAdminRepository questionAdminRepository;
+    private IGroupFormationRepository groupFormationRepository;
+    private IGroupFormationManager groupFormationManager;
 
     private Injector() {
         userAbstractFactory = new UserAbstractFactory();
@@ -82,6 +86,8 @@ public class Injector {
         policyRepository = passwordAbstractFactory.createPolicyRepository();
         questionManagerRepository = questionAbstractFactory.createQuestionManagerRepository();
         questionAdminRepository = questionAbstractFactory.createQuestionAdminRepository();
+        groupFormationRepository = groupFormationAbstractFactory.createGroupFormationRepositoryInstance();
+        groupFormationManager = groupFormationAbstractFactory.createGroupFormationManagerInstance();
     }
 
     public static Injector instance() {
@@ -254,4 +260,21 @@ public class Injector {
     public IGroupFormationAbstractFactory getGroupFormationAbstractFactory() {
         return groupFormationAbstractFactory;
     }
+
+    public IGroupFormationRepository getGroupFormationRepository() {
+        return groupFormationRepository;
+    }
+
+    public void setGroupFormationRepository(IGroupFormationRepository groupFormationRepository) {
+        this.groupFormationRepository = groupFormationRepository;
+    }
+
+    public IGroupFormationManager getGroupFormationManager() {
+        return groupFormationManager;
+    }
+
+    public void setGroupFormationManager(IGroupFormationManager groupFormationManager) {
+        this.groupFormationManager = groupFormationManager;
+    }
+
 }

@@ -2,7 +2,7 @@ package CSCI5308.GroupFormationTool.User;
 
 import java.util.ArrayList;
 
-public interface IUserAbstractFactoryTest {
+public interface ITestUserAbstractFactory {
 
     IUser createUserInstance();
 

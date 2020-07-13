@@ -2,11 +2,11 @@ package CSCI5308.GroupFormationTool.Password;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.Mail.IMailManagerAbstractFactoryTest;
+import CSCI5308.GroupFormationTool.Mail.ITestMailManagerAbstractFactory;
 import CSCI5308.GroupFormationTool.Mail.MailManager;
 import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
-import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
+import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,13 +28,13 @@ public class ForgotPasswordManagerTest {
     public PasswordHistoryManager passwordHistoryManager;
     public PolicyRepository policyRepository;
 
-    private IPasswordAbstractFactoryTest passwordAbstractFactoryTest = TestsInjector.instance().
+    private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestsInjector.instance().
             getPasswordAbstractFactoryTest();
 
-    private IMailManagerAbstractFactoryTest mailManagerAbstractFactoryTest = TestsInjector.instance().
+    private ITestMailManagerAbstractFactory mailManagerAbstractFactoryTest = TestsInjector.instance().
             getMailManagerAbstractFactoryTest();
 
-    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
 
     @BeforeEach
     public void init() {

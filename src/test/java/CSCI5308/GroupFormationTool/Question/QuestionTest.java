@@ -4,7 +4,7 @@ import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
-import CSCI5308.GroupFormationTool.User.IUserAbstractFactoryTest;
+import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,10 +21,10 @@ public class QuestionTest {
     public QuestionAdminRepository questionAdminRepository;
     public QuestionManagerRepository questionManagerRepository;
 
-    private IQuestionAbstractFactoryTest questionAbstractFactoryTest = TestsInjector.instance().
+    private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestsInjector.instance().
             getQuestionAbstractFactoryTest();
 
-    private IUserAbstractFactoryTest userAbstractFactoryTest = TestsInjector.instance().
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestsInjector.instance().
             getUserAbstractFactoryTest();
 
     @BeforeEach

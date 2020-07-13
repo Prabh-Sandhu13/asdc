@@ -1,8 +1,0 @@
-2020-07-11 23:06:31.214 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on LAPTOP-2N9QPVCQ with PID 244 (C:\Users\tanug\OneDrive\Desktop\MACS\MACS Term 2\Advance SDC\11th July develop\group22\bin\main started by tanug in C:\Users\tanug\OneDrive\Desktop\MACS\MACS Term 2\Advance SDC\11th July develop\group22)
-2020-07-11 23:06:31.224 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
-2020-07-11 23:06:33.644 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
-2020-07-11 23:06:33.645 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
-2020-07-11 23:06:33.817 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
-2020-07-11 23:06:34.838 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 4.39 seconds (JVM running for 6.993)
-2020-07-11 23:07:02.964 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-07-11 23:07:06.040 [http-nio-8080-exec-5] WARN  o.a.c.util.SessionIdGeneratorBase: Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [525] milliseconds.
