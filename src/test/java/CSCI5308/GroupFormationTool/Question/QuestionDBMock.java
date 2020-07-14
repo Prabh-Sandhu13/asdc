@@ -1,8 +1,8 @@
 package CSCI5308.GroupFormationTool.Question;
 
-import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
+import CSCI5308.GroupFormationTool.User.TestUserInjector;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -23,11 +23,11 @@ public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdmi
 
     private ArrayList<IChoice> choices;
 
-    private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestsInjector.instance().
-            getQuestionAbstractFactoryTest();
+    private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestQuestionInjector.instance().
+            getQuestionAbstractFactory();
 
-    private ITestUserAbstractFactory userAbstractFactoryTest = TestsInjector.instance().
-            getUserAbstractFactoryTest();
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().
+            getUserAbstractFactory();
 
     public QuestionDBMock() {
         id = 1;

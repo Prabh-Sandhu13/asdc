@@ -1,7 +1,5 @@
 package CSCI5308.GroupFormationTool.GroupFormation;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.TestsInjector;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -18,8 +16,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(GroupFormationController.class)
 public class GroupFormationControllerTest {
 
-    private ITestGroupFormationAbstractFactory groupFormationAbstractFactory = TestsInjector.instance().
-            getGroupFormationAbstractFactoryTest();
+    private ITestGroupFormationAbstractFactory groupFormationAbstractFactory = TestGroupFormationInjector.instance().
+            getGroupFormationAbstractFactory();
     private GroupFormationManager groupFormationManager;
 
     @Autowired
@@ -39,7 +37,7 @@ public class GroupFormationControllerTest {
     @Test
     void saveGroups() throws Exception {
         groupFormationManager = groupFormationAbstractFactory.createGroupFormationMock();
-        Injector.instance().setGroupFormationManager(groupFormationManager);
+        GroupFormationInjector.instance().setGroupFormationManager(groupFormationManager);
         String courseId = "CSCI 5308";
         String courseName = "SDC";
         when(groupFormationManager.getGroupsForCourse(courseId)).thenReturn(groupFormationAbstractFactory.

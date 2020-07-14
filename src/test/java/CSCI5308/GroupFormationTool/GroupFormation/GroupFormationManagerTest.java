@@ -1,7 +1,5 @@
 package CSCI5308.GroupFormationTool.GroupFormation;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.TestsInjector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,8 +8,8 @@ import static org.mockito.Mockito.when;
 
 public class GroupFormationManagerTest {
 
-    private ITestGroupFormationAbstractFactory testGroupFormationAbstractFactory = TestsInjector.instance().
-            getGroupFormationAbstractFactoryTest();
+    private ITestGroupFormationAbstractFactory testGroupFormationAbstractFactory = TestGroupFormationInjector.
+            instance().getGroupFormationAbstractFactory();
 
     private GroupFormationRepository groupFormationRepository;
 
@@ -20,7 +18,7 @@ public class GroupFormationManagerTest {
     @BeforeEach
     void init() {
         groupFormationRepository = testGroupFormationAbstractFactory.createGroupFormationRepositoryMock();
-        Injector.instance().setGroupFormationRepository(groupFormationRepository);
+        GroupFormationInjector.instance().setGroupFormationRepository(groupFormationRepository);
         groupFormationManager = testGroupFormationAbstractFactory.createGroupFormationManagerInstance();
     }
 

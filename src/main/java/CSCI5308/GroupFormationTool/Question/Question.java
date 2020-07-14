@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool.Question;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,25 +13,16 @@ import java.util.Set;
 
 public class Question implements IQuestion {
 
-    private long id;
-
-    private IUser instructor;
-
-    private String title;
-
-    private String text;
-
-    private int type;
-
-    private Date createdDate;
-
-    private ArrayList<IChoice> choices;
-
-    private IQuestionManagerRepository questionManagerRepository;
-
-    private IQuestionAdminRepository questionAdminRepository;
-
     private static final Logger log = LoggerFactory.getLogger(Question.class.getName());
+    private long id;
+    private IUser instructor;
+    private String title;
+    private String text;
+    private int type;
+    private Date createdDate;
+    private ArrayList<IChoice> choices;
+    private IQuestionManagerRepository questionManagerRepository;
+    private IQuestionAdminRepository questionAdminRepository;
 
     public Question() {
         this.id = -1;
@@ -103,7 +93,7 @@ public class Question implements IQuestion {
     @Override
     public long createQuestion(List<String> optionText, List<String> optionValue) {
         int type = this.type;
-        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
+        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
         Set<String> optionTextSet = questionAbstractFactory.createSetInstance();
         Set<String> optionValueSet = questionAbstractFactory.createSetInstance();
         log.info("Creating the question and saving it to the database");
@@ -143,7 +133,7 @@ public class Question implements IQuestion {
                 this.setChoices(null);
             }
             log.info("Calling the createQuestion repository function to save the question to Database");
-            questionManagerRepository = Injector.instance().getQuestionManagerRepository();
+            questionManagerRepository = QuestionInjector.instance().getQuestionManagerRepository();
             return questionManagerRepository.createQuestion(this);
         }
     }
@@ -151,7 +141,7 @@ public class Question implements IQuestion {
     @Override
     public boolean deleteQuestion(long questionId) {
         log.info("Calling the deleteQuestion repository function to delete the question from the Database");
-        questionManagerRepository = Injector.instance().getQuestionManagerRepository();
+        questionManagerRepository = QuestionInjector.instance().getQuestionManagerRepository();
         return questionManagerRepository.deleteQuestion(questionId);
     }
 
@@ -159,7 +149,7 @@ public class Question implements IQuestion {
     public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
         log.info("Calling the getQuestionListForInstructor" +
                 " repository function to fetch the question bank from the Database");
-        questionAdminRepository = Injector.instance().getQuestionAdminRepository();
+        questionAdminRepository = QuestionInjector.instance().getQuestionAdminRepository();
         return questionAdminRepository.getQuestionListForInstructor(emailId);
     }
 
@@ -167,14 +157,14 @@ public class Question implements IQuestion {
     public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortField) {
         log.info("Calling the getSortedQuestionListForInstructor" +
                 " repository function to fetch the question bank in a sorted order from the Database");
-        questionAdminRepository = Injector.instance().getQuestionAdminRepository();
+        questionAdminRepository = QuestionInjector.instance().getQuestionAdminRepository();
         return questionAdminRepository.getSortedQuestionListForInstructor(emailId, sortField);
     }
 
     @Override
     public IQuestion getQuestionById(long questionId) {
         log.info("Calling the getQuestionById repository function to fetch a question from the Database");
-        questionAdminRepository = Injector.instance().getQuestionAdminRepository();
+        questionAdminRepository = QuestionInjector.instance().getQuestionAdminRepository();
         IQuestion question = questionAdminRepository.getQuestionById(questionId);
         ArrayList<IChoice> choiceList = null;
         if (question.getType() == DomainConstants.MCQMultiple || question.getType() == DomainConstants.MCQOne) {

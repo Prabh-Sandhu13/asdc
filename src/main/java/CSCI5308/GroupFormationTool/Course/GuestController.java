@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Question.QuestionManagerRepository;
 
 import org.slf4j.Logger;
@@ -18,7 +17,7 @@ public class GuestController {
 	
     @GetMapping("/guest/guestCourses")
     public String guestCourses(Model model) {
-        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         ICourse course = courseAbstractFactory.createCourseInstance();
         ArrayList<ICourse> courseList = null;
         Log.info("Function call to fetch all course details for a Guest user");

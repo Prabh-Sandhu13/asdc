@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.Password;
 
-import CSCI5308.GroupFormationTool.TestsInjector;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -12,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 public class PolicyRepositoryTest {
 
-    private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestsInjector.instance().
-            getPasswordAbstractFactoryTest();
+    private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestPasswordInjector.instance().
+            getPasswordAbstractFactory();
 
     @Test
     public void passwordSPolicyCheckTest() {

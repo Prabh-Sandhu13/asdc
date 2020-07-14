@@ -1,8 +1,8 @@
 package CSCI5308.GroupFormationTool.GroupFormation;
 
-import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.TestUserInjector;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -13,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GroupFormationRepositoryTest {
 
-    private ITestGroupFormationAbstractFactory testGroupFormationAbstractFactory = TestsInjector.instance().
-            getGroupFormationAbstractFactoryTest();
+    private ITestGroupFormationAbstractFactory testGroupFormationAbstractFactory = TestGroupFormationInjector.instance().
+            getGroupFormationAbstractFactory();
 
-    private ITestUserAbstractFactory testUserAbstractFactory = TestsInjector.instance().getUserAbstractFactoryTest();
+    private ITestUserAbstractFactory testUserAbstractFactory = TestUserInjector.instance().getUserAbstractFactory();
 
     @Test
     void getGroupsForCourse() {

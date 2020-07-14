@@ -1,7 +1,5 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.TestsInjector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,14 +23,14 @@ public class StudentCSVTest {
     public StudentCSV studentCSV;
     public StudentRepository studentRepository;
 
-    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestsInjector.instance().
-            getCourseAbstractFactoryTest();
+    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestCourseInjector.instance().
+            getCourseAbstractFactory();
 
     @BeforeEach
     public void init() {
         studentCSV = courseAbstractFactoryTest.createStudentCSVInstance();
         studentRepository = courseAbstractFactoryTest.createStudentRepositoryMock();
-        Injector.instance().setStudentRepository(studentRepository);
+        CourseInjector.instance().setStudentRepository(studentRepository);
     }
 
     private IStudentCSV createDefaultStudentCSV() {

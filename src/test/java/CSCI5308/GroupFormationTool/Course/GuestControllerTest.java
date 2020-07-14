@@ -1,7 +1,5 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.TestsInjector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +15,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(GuestController.class)
 public class GuestControllerTest {
 
-    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestsInjector.instance().
-            getCourseAbstractFactoryTest();
+    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestCourseInjector.instance().
+            getCourseAbstractFactory();
 
     private CourseRepository courseRepository;
 
@@ -28,7 +26,7 @@ public class GuestControllerTest {
     @BeforeEach
     void init() {
         courseRepository = courseAbstractFactoryTest.createCourseRepositoryMock();
-        Injector.instance().setCourseRepository(courseRepository);
+        CourseInjector.instance().setCourseRepository(courseRepository);
     }
 
     @Test

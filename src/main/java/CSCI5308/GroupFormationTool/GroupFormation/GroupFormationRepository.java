@@ -1,10 +1,11 @@
 package CSCI5308.GroupFormationTool.GroupFormation;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
+import CSCI5308.GroupFormationTool.Database.DatabaseInjector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
+import CSCI5308.GroupFormationTool.User.UserInjector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,10 +20,10 @@ public class GroupFormationRepository implements IGroupFormationRepository {
 
     @Override
     public TreeMap<Integer, ArrayList<IUser>> getGroupsForCourse(String courseId) {
-        IGroupFormationAbstractFactory groupFormationAbstractFactory = Injector.instance().
+        IGroupFormationAbstractFactory groupFormationAbstractFactory = GroupFormationInjector.instance().
                 getGroupFormationAbstractFactory();
-        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
-        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = UserInjector.instance().getUserAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         TreeMap<Integer, ArrayList<IUser>> groups = groupFormationAbstractFactory.createGroupsForCourseInstance();
         ArrayList<IUser> userList = userAbstractFactory.createUserListInstance();
         StoredProcedure storedProcedure = null;

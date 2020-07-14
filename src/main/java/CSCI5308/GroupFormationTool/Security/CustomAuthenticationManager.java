@@ -1,10 +1,10 @@
 package CSCI5308.GroupFormationTool.Security;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUserRepository;
+import CSCI5308.GroupFormationTool.User.UserInjector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,8 +22,8 @@ public class CustomAuthenticationManager implements AuthenticationManager {
 
     private Authentication checkUser(String password, IUser user, Authentication authentication)
             throws AuthenticationException {
-        IPasswordEncryptor passwordEncryptor = Injector.instance().getPasswordEncryptor();
-        ISecurityAbstractFactory securityAbstractFactory = Injector.instance().getSecurityAbstractFactory();
+        IPasswordEncryptor passwordEncryptor = SecurityInjector.instance().getPasswordEncryptor();
+        ISecurityAbstractFactory securityAbstractFactory = SecurityInjector.instance().getSecurityAbstractFactory();
         if (passwordEncryptor.passwordMatch(password, user.getPassword())) {
             List<GrantedAuthority> rights = securityAbstractFactory.createGrantedAuthorityListInstance();
             log.info("Assigning rights to the user based on the type");
@@ -43,8 +43,8 @@ public class CustomAuthenticationManager implements AuthenticationManager {
     }
 
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        ISecurityAbstractFactory securityAbstractFactory = Injector.instance().getSecurityAbstractFactory();
-        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
+        ISecurityAbstractFactory securityAbstractFactory = SecurityInjector.instance().getSecurityAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = UserInjector.instance().getUserAbstractFactory();
         String emailId = authentication.getPrincipal().toString();
         String password = authentication.getCredentials().toString();
         IUserRepository userRepository = userAbstractFactory.createUserRepositoryInstance();

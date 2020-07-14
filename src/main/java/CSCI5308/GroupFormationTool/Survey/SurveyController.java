@@ -12,7 +12,6 @@ public class SurveyController {
     @GetMapping(value = "/survey/createSurvey")
     public String createSurvey(@RequestParam(value = "courseName") String courseName,
                                @RequestParam(value = "courseId") String courseId, Model model) {
-
         model.addAttribute("courseId", courseId);
         model.addAttribute("courseName", courseName);
         return "survey/createSurvey";

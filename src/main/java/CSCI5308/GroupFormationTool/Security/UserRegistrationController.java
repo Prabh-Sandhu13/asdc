@@ -1,12 +1,13 @@
 package CSCI5308.GroupFormationTool.Security;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Password.IPasswordAbstractFactory;
 import CSCI5308.GroupFormationTool.Password.IPolicy;
+import CSCI5308.GroupFormationTool.Password.PasswordInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.User;
+import CSCI5308.GroupFormationTool.User.UserInjector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ public class UserRegistrationController implements WebMvcConfigurer {
 
     @PostMapping("/register")
     public ModelAndView createUser(User user) {
-        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = UserInjector.instance().getUserAbstractFactory();
         IUser userInstance = userAbstractFactory.createUserInstance();
         ModelAndView modelAndView = null;
         String errorMessage = null;
@@ -55,7 +56,7 @@ public class UserRegistrationController implements WebMvcConfigurer {
 
     @GetMapping("/register")
     public String register(User user, Model model) {
-        IPasswordAbstractFactory passwordAbstractFactory = Injector.instance().getPasswordAbstractFactory();
+        IPasswordAbstractFactory passwordAbstractFactory = PasswordInjector.instance().getPasswordAbstractFactory();
         IPolicy policyInstance = passwordAbstractFactory.createPolicyInstance();
         log.info("Fetching the password policies of the system");
         ArrayList<IPolicy> policies = policyInstance.getPolicies();

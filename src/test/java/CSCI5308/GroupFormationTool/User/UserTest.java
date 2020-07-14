@@ -1,12 +1,7 @@
 package CSCI5308.GroupFormationTool.User;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.Password.ITestPasswordAbstractFactory;
-import CSCI5308.GroupFormationTool.Password.IPolicy;
-import CSCI5308.GroupFormationTool.Password.PasswordHistoryManager;
-import CSCI5308.GroupFormationTool.Password.PolicyRepository;
-import CSCI5308.GroupFormationTool.TestsInjector;
+import CSCI5308.GroupFormationTool.Password.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,20 +19,20 @@ public class UserTest {
     UserRepository userRepository;
     PasswordHistoryManager passwordHistoryManager;
     PolicyRepository policyRepository;
-    private ITestUserAbstractFactory userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().getUserAbstractFactory();
 
-    private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestsInjector.instance().
-            getPasswordAbstractFactoryTest();
+    private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestPasswordInjector.instance().
+            getPasswordAbstractFactory();
 
     @BeforeEach
     public void init() {
         userInstance = userAbstractFactoryTest.createUserInstance();
         userRepository = userAbstractFactoryTest.createUserRepositoryMock();
-        Injector.instance().setUserRepository(userRepository);
+        UserInjector.instance().setUserRepository(userRepository);
         policyRepository = passwordAbstractFactoryTest.createPolicyRepositoryMock();
         passwordHistoryManager = passwordAbstractFactoryTest.createPasswordHistoryManagerMock();
-        Injector.instance().setPasswordHistoryManager(passwordHistoryManager);
-        Injector.instance().setPolicyRepository(policyRepository);
+        PasswordInjector.instance().setPasswordHistoryManager(passwordHistoryManager);
+        PasswordInjector.instance().setPolicyRepository(policyRepository);
     }
 
     private IUser createDefaultUser() {

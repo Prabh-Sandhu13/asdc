@@ -1,11 +1,8 @@
 package CSCI5308.GroupFormationTool.Mail;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Course.StudentCSV;
-import CSCI5308.GroupFormationTool.Password.PasswordHistoryManager;
 import CSCI5308.GroupFormationTool.User.IUser;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.SimpleMailMessage;
@@ -18,9 +15,9 @@ import java.util.Properties;
 
 public class MailManager implements IMailManager {
 
+    private static final Logger Log = LoggerFactory.getLogger(MailManager.class.getName());
     private JavaMailSenderImpl mailSender;
     private SimpleMailMessage message;
-    private static final Logger Log = LoggerFactory.getLogger(MailManager.class.getName());
 
     @Override
     public void sendEmail(JavaMailSender javaMailSender, SimpleMailMessage message) {
@@ -45,8 +42,8 @@ public class MailManager implements IMailManager {
 
     @Override
     public boolean sendForgotPasswordMail(IUser userByEmailId, String token) {
-        mailSender = setupMailSender(Injector.instance().getJavaMailSender());
-        message = Injector.instance().getMailMessage();
+        mailSender = setupMailSender(MailInjector.instance().getMailSender());
+        message = MailInjector.instance().getMailMessage();
         String URL = DomainConstants.domainUrl + "/resetPassword?token=" + token;
         message.setTo(userByEmailId.getEmailId());
         message.setSubject(DomainConstants.forgotPasswordSubject);
@@ -59,8 +56,8 @@ public class MailManager implements IMailManager {
     @Override
     @Async
     public boolean sendBatchMail(List<StudentCSV> users, String courseID) {
-        mailSender = setupMailSender(Injector.instance().getJavaMailSender());
-        message = Injector.instance().getMailMessage();
+        mailSender = setupMailSender(MailInjector.instance().getMailSender());
+        message = MailInjector.instance().getMailMessage();
         message.setSubject(DomainConstants.registrationSubject);
         message.setFrom(DomainConstants.mailUserName);
         for (int userCount = 0; userCount < users.size(); userCount++) {

@@ -1,11 +1,10 @@
 package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.User;
-
+import CSCI5308.GroupFormationTool.User.UserInjector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -22,14 +21,14 @@ import java.util.Map;
 @Controller
 public class CourseController {
 
+    private static final Logger Log = LoggerFactory.getLogger(CourseController.class.getName());
     private IUser userInstance;
     private IStudentCSV studentCSV;
-    private static final Logger Log = LoggerFactory.getLogger(CourseController.class.getName());
 
     @GetMapping("/courseList")
     public String courseList(Model model) {
-        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
-        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = UserInjector.instance().getUserAbstractFactory();
         ArrayList<ICourse> courseList = null;
         String userRole = null;
         ArrayList<ICourse> studentCourseList = null;
@@ -46,23 +45,23 @@ public class CourseController {
             model.addAttribute("courses", courseList);
             return "course/allCourses";
         } else {
-        	Log.info("Fetch user role based on th email Id");
+            Log.info("Fetch user role based on th email Id");
             userRole = userCourses.getUserRoleByEmailId(emailId);
             if (userRole.equals(DomainConstants.guestRole)) {
-            	Log.info("User is a Guest User");
-            	Log.info("Function call to fetch all courses details for a guest user");
+                Log.info("User is a Guest User");
+                Log.info("Function call to fetch all courses details for a guest user");
                 courseList = course.getAllCourses();
                 model.addAttribute("courses", courseList);
                 return "course/guestCourses";
             } else if (userRole.equals(DomainConstants.studentRole)) {
-            	Log.info("User is a Student");
-            	Log.info("Function call to fetch enrolled courses for a student");
+                Log.info("User is a Student");
+                Log.info("Function call to fetch enrolled courses for a student");
                 studentCourseList = userCourses.getStudentCourses(emailId);
                 model.addAttribute("courses", studentCourseList);
                 return "course/studentCourses";
             } else if (userRole.equals(DomainConstants.tARole)) {
-            	Log.info("User is a TA");
-            	Log.info("Function call to get TA courses");
+                Log.info("User is a TA");
+                Log.info("Function call to get TA courses");
                 taCourseList = userCourses.getTACourses(emailId);
                 Log.info("Function call to fetch student courses");
                 studentCourseList = userCourses.getStudentCourses(emailId);
@@ -70,7 +69,7 @@ public class CourseController {
                 model.addAttribute("taCourses", taCourseList);
                 return "course/taCourses";
             } else if (userRole.equals(DomainConstants.instructorRole)) {
-            	Log.info("User is an Instructor");
+                Log.info("User is an Instructor");
                 instructorCourseList = userCourses.getInstructorCourses(emailId);
                 model.addAttribute("courses", instructorCourseList);
                 return "course/instructorCourses";
@@ -87,8 +86,8 @@ public class CourseController {
 
     @GetMapping(value = "/enrollTA")
     public String enrollTA(@RequestParam(value = "courseId") String courseId, Model model) {
-        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
-        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = UserInjector.instance().getUserAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         ArrayList<IUser> taList = null;
         IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
         Log.info("Fetch TA for a course using course Id");
@@ -102,15 +101,15 @@ public class CourseController {
 
     @PostMapping("/enrollTA")
     public String addTA(@RequestParam(value = "courseId") String courseId, @ModelAttribute("user") User user, Model model) {
-        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
         boolean success = userCourses.enrollTAForCourseUsingEmailId(user, courseId);
         ArrayList<IUser> taList = null;
         if (success) {
-        	Log.info("TA added successfully");
+            Log.info("TA added successfully");
             model.addAttribute("success", DomainConstants.taAddSuccess);
         } else {
-        	Log.warn("TA is not successfully added to the course");
+            Log.warn("TA is not successfully added to the course");
             model.addAttribute("error", DomainConstants.taAddFailure);
         }
         taList = userCourses.getTAForCourse(courseId);
@@ -127,7 +126,7 @@ public class CourseController {
 
     @GetMapping("/admin/allAdminCourses")
     public String allCourses(Model model) {
-        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         ICourse course = courseAbstractFactory.createCourseInstance();
         Log.info("Function call to fetch all the courses details");
         List<ICourse> allCourses = course.getAllCourses();
@@ -137,7 +136,7 @@ public class CourseController {
 
     @GetMapping("/admin/addCourse")
     public String addCourseForm(Model model) {
-        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         model.addAttribute("course", courseAbstractFactory.createCourseInstance());
         return "course/addCourse";
     }
@@ -147,10 +146,10 @@ public class CourseController {
         boolean status = course.createCourse();
         List<ICourse> allCourses = course.getAllCourses();
         if (status) {
-        	Log.info("A Course is successfully added");
+            Log.info("A Course is successfully added");
             model.addAttribute("successMessage", DomainConstants.addCourseSuccess);
         } else {
-        	Log.warn("Course is not added successfully");
+            Log.warn("Course is not added successfully");
             model.addAttribute("failureMessage", DomainConstants.addCourseFailure);
         }
         model.addAttribute("courses", allCourses);
@@ -159,15 +158,15 @@ public class CourseController {
 
     @RequestMapping(value = "/admin/deleteCourse", method = {RequestMethod.GET, RequestMethod.POST})
     public String deleteCourse(@RequestParam(value = "id") String id, Model model) {
-        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         ICourse course = courseAbstractFactory.createCourseInstance();
         boolean status = course.deleteCourse(id);
         List<ICourse> allCourses = course.getAllCourses();
         if (status) {
-        	Log.info("Course is deleted successfully");
+            Log.info("Course is deleted successfully");
             model.addAttribute("successMessage", DomainConstants.deleteCourseSuccess);
         } else {
-        	Log.info("Course is not deleted successfully");
+            Log.info("Course is not deleted successfully");
             model.addAttribute("failureMessage", DomainConstants.deleteCourseFailure);
         }
         model.addAttribute("courses", allCourses);
@@ -179,24 +178,24 @@ public class CourseController {
     public String uploadCSVFile(@RequestParam("file") MultipartFile file, Model model,
                                 @RequestParam(name = "courseId") String courseId) {
 
-        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         Map<Integer, List<StudentCSV>> studentLists = courseAbstractFactory.createStudentHashMapInstance();
         if (file.isEmpty()) {
-        	Log.warn("Uploaded file does not contain any data");
+            Log.warn("Uploaded file does not contain any data");
             model.addAttribute("message", DomainConstants.invalidFile);
             model.addAttribute("status", false);
         } else {
             studentCSV = courseAbstractFactory.createStudentCSVInstance();
             studentLists = studentCSV.createStudent(file, courseId);
             if (studentLists != null) {
-            	Log.info("If Student list is not empty then create different lists with new students, existing students and bad data if any");
+                Log.info("If Student list is not empty then create different lists with new students, existing students and bad data if any");
                 model.addAttribute("newStudentList", studentLists.get(DomainConstants.newStudents));
                 model.addAttribute("oldStudentList", studentLists.get(DomainConstants.oldStudents));
                 model.addAttribute("badData", studentLists.get(DomainConstants.badData));
                 model.addAttribute("course", courseId);
                 model.addAttribute("status", true);
             } else {
-            	Log.warn("An Error occured in CSV file Processing");
+                Log.warn("An Error occured in CSV file Processing");
                 model.addAttribute("course", courseId);
                 model.addAttribute("message", DomainConstants.csvFileProcessingError);
                 model.addAttribute("status", false);

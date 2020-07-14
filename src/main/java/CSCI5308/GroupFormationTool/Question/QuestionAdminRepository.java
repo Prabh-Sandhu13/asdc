@@ -1,6 +1,6 @@
 package CSCI5308.GroupFormationTool.Question;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
+import CSCI5308.GroupFormationTool.Database.DatabaseInjector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import org.slf4j.Logger;
@@ -16,8 +16,8 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
 
     @Override
     public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
-        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
-        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
         try {
@@ -54,8 +54,8 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
     @Override
     public IQuestion getQuestionById(long questionId) {
         StoredProcedure storedProcedure = null;
-        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
-        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         IQuestion question = questionAbstractFactory.createQuestionInstance();
         try {
             log.info("Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id");
@@ -88,8 +88,8 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
     @Override
     public ArrayList<IChoice> getOptionsForTheQuestion(long questionId) {
         StoredProcedure storedProcedure = null;
-        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
-        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         ArrayList<IChoice> choiceList = questionAbstractFactory.createChoiceListInstance();
         try {
             log.info("Calling the stored procedure sp_getOptionsForQuestion to fetch" +
@@ -124,8 +124,8 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
 
     public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortField) {
         StoredProcedure storedProcedure = null;
-        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
-        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
         try {
             log.info("Calling stored procedure sp_getSortedQuestionsForInstructor to fetch the question bank " +

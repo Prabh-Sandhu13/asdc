@@ -1,9 +1,9 @@
 package CSCI5308.GroupFormationTool.Question;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
+import CSCI5308.GroupFormationTool.User.UserInjector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -35,8 +35,8 @@ public class QuestionManagerController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         long outcome;
-        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
-        IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
+        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = UserInjector.instance().getUserAbstractFactory();
         IQuestion question = questionAbstractFactory.createQuestionInstance();
         IUser instructor = userAbstractFactory.createUserInstance();
         question.setText(text);
@@ -61,7 +61,7 @@ public class QuestionManagerController {
     @GetMapping("/questionManager/deleteQuestion")
     public String deleteQuestion(@RequestParam("questionId") long questionId, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
+        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
         IQuestion question = questionAbstractFactory.createQuestionInstance();
         log.info("Deleting the question created by the instructor from the database");
         boolean status = question.deleteQuestion(questionId);

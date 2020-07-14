@@ -1,11 +1,7 @@
 package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.TestsInjector;
-import CSCI5308.GroupFormationTool.User.IUser;
-import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
-import CSCI5308.GroupFormationTool.User.UserRepository;
+import CSCI5308.GroupFormationTool.User.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +20,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(CourseController.class)
 public class CourseControllerTest {
 
-    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestsInjector.instance().
-            getCourseAbstractFactoryTest();
+    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestCourseInjector.instance().
+            getCourseAbstractFactory();
 
-    private ITestUserAbstractFactory userAbstractFactoryTest = TestsInjector.instance().
-            getUserAbstractFactoryTest();
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().
+            getUserAbstractFactory();
 
     private CourseRepository courseRepository;
     private UserCoursesRepository userCoursesRepository;
@@ -42,9 +38,9 @@ public class CourseControllerTest {
         courseRepository = courseAbstractFactoryTest.createCourseRepositoryMock();
         userCoursesRepository = courseAbstractFactoryTest.createUserCoursesRepositoryMock();
         userRepository = userAbstractFactoryTest.createUserRepositoryMock();
-        Injector.instance().setCourseRepository(courseRepository);
-        Injector.instance().setUserCoursesRepository(userCoursesRepository);
-        Injector.instance().setUserRepository(userRepository);
+        CourseInjector.instance().setCourseRepository(courseRepository);
+        CourseInjector.instance().setUserCoursesRepository(userCoursesRepository);
+        UserInjector.instance().setUserRepository(userRepository);
     }
 
     @Test
@@ -98,7 +94,6 @@ public class CourseControllerTest {
                 .andExpect(view().name("course/instructorCourses"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
     }
 
     @Test

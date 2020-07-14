@@ -1,7 +1,5 @@
 package CSCI5308.GroupFormationTool.Password;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.TestsInjector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,8 +15,8 @@ public class PolicyTest {
     private IPolicy policyInstance;
     private PolicyRepository policyRepository;
 
-    private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestsInjector.instance().
-            getPasswordAbstractFactoryTest();
+    private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestPasswordInjector.instance().
+            getPasswordAbstractFactory();
 
     @Test
     public void getIdTest() {
@@ -81,7 +79,7 @@ public class PolicyTest {
     @BeforeEach
     public void init() {
         policyRepository = passwordAbstractFactoryTest.createPolicyRepositoryMock();
-        Injector.instance().setPolicyRepository(policyRepository);
+        PasswordInjector.instance().setPolicyRepository(policyRepository);
     }
 
     @Test

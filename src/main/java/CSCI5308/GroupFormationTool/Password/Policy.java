@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool.Password;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,17 +8,12 @@ import java.util.ArrayList;
 
 public class Policy implements IPolicy {
 
-    private int id;
-
-    private String setting;
-
-    private String value;
-
-    private int enabled;
-
-    private IPolicyRepository policyRepository;
-
     private static final Logger log = LoggerFactory.getLogger(Policy.class.getName());
+    private int id;
+    private String setting;
+    private String value;
+    private int enabled;
+    private IPolicyRepository policyRepository;
 
     @Override
     public int getId() {
@@ -65,7 +59,7 @@ public class Policy implements IPolicy {
     @Override
     public String passwordSPolicyCheck(String password) {
         log.info("Calling the Policy Repository to check if the password follows enabled security policies");
-        policyRepository = Injector.instance().getPolicyRepository();
+        policyRepository = PasswordInjector.instance().getPolicyRepository();
         ArrayList<IPolicy> policies = policyRepository.passwordSPolicyCheck(password);
         return checkPasswordSecurity(password, policies);
     }
@@ -73,7 +67,7 @@ public class Policy implements IPolicy {
     @Override
     public ArrayList<IPolicy> getPolicies() {
         log.info("Calling the Policy Repository to fetch all the password security policies from database");
-        policyRepository = Injector.instance().getPolicyRepository();
+        policyRepository = PasswordInjector.instance().getPolicyRepository();
         ArrayList<IPolicy> policies = policyRepository.getPolicies();
         return policies;
     }

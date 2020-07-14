@@ -1,9 +1,8 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
+import CSCI5308.GroupFormationTool.Database.DatabaseInjector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
-import CSCI5308.GroupFormationTool.Question.QuestionManagerRepository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,8 +18,8 @@ public class CourseRepository implements ICourseRepository {
     @Override
     public ArrayList<ICourse> getAllCourses() {
         StoredProcedure storedProcedure = null;
-        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         ArrayList<ICourse> courseList = courseAbstractFactory.createCourseListInstance();
         try {
         	Log.info("Calling stored procedure sp_getAllCourseDetails to get all course details");
@@ -53,7 +52,7 @@ public class CourseRepository implements ICourseRepository {
     @Override
     public boolean createCourse(ICourse course) {
         StoredProcedure storedProcedure = null;
-        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         boolean status = true;
         try {
         	Log.info("Calling stored procedure sp_createCourse to create a course");
@@ -80,7 +79,7 @@ public class CourseRepository implements ICourseRepository {
     @Override
     public boolean deleteCourse(String id) {
         StoredProcedure storedProcedure = null;
-        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         boolean status = true;
         try {
         	Log.info("Calling stored procedure sp_deleteACourse to delete a course");
@@ -102,8 +101,8 @@ public class CourseRepository implements ICourseRepository {
 
     public ICourse getCourseById(String courseId) {
         StoredProcedure storedProcedure = null;
-        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         ICourse course = courseAbstractFactory.createCourseInstance();
         try {
         	Log.info("Calling stored procedure sp_getCourseById to get a course details by Course Id");

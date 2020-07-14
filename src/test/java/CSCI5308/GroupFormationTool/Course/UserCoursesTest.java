@@ -1,9 +1,8 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.TestsInjector;
-import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
+import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.TestUserInjector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,15 +16,15 @@ import static org.mockito.Mockito.when;
 public class UserCoursesTest {
 
     public UserCoursesRepository userCoursesRepository;
-    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestsInjector.instance().
-            getCourseAbstractFactoryTest();
+    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestCourseInjector.instance().
+            getCourseAbstractFactory();
     IUserCourses userCourses = courseAbstractFactoryTest.createUserCoursesInstance();
-    private ITestUserAbstractFactory userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().getUserAbstractFactory();
 
     @BeforeEach
     public void init() {
         userCoursesRepository = courseAbstractFactoryTest.createUserCoursesRepositoryMock();
-        Injector.instance().setUserCoursesRepository(userCoursesRepository);
+        CourseInjector.instance().setUserCoursesRepository(userCoursesRepository);
     }
 
     public IUserCourses createDefaultUserCourses() {

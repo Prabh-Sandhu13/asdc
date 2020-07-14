@@ -1,11 +1,12 @@
 package CSCI5308.GroupFormationTool.Password;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Security.BCryptEncryption;
 import CSCI5308.GroupFormationTool.Security.ITestSecurityAbstractFactory;
-import CSCI5308.GroupFormationTool.TestsInjector;
-import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.Security.SecurityInjector;
+import CSCI5308.GroupFormationTool.Security.TestSecurityInjector;
 import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
+import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.TestUserInjector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,21 +22,21 @@ public class PasswordHistoryManagerTest {
     public PasswordHistoryRepository passwordHistoryRepository;
     public BCryptEncryption bCryptEncryption;
 
-    private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestsInjector.instance().
-            getPasswordAbstractFactoryTest();
+    private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestPasswordInjector.instance().
+            getPasswordAbstractFactory();
 
-    private ITestSecurityAbstractFactory securityAbstractFactoryTest = TestsInjector.instance().
-            getSecurityAbstractFactoryTest();
+    private ITestSecurityAbstractFactory securityAbstractFactoryTest = TestSecurityInjector.instance().
+            getSecurityAbstractFactory();
 
-    private ITestUserAbstractFactory userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().getUserAbstractFactory();
 
     @BeforeEach
     public void init() {
         passwordHistoryManager = passwordAbstractFactoryTest.createPasswordHistoryManagerInstance();
         passwordHistoryRepository = passwordAbstractFactoryTest.createPasswordHistoryRepositoryMock();
         bCryptEncryption = securityAbstractFactoryTest.createBCryptEncryptionMock();
-        Injector.instance().setPasswordHistoryRepository(passwordHistoryRepository);
-        Injector.instance().setPasswordEncryptor(bCryptEncryption);
+        PasswordInjector.instance().setPasswordHistoryRepository(passwordHistoryRepository);
+        SecurityInjector.instance().setPasswordEncryptor(bCryptEncryption);
     }
 
     @Test

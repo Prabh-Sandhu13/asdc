@@ -1,7 +1,5 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.TestsInjector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,13 +13,13 @@ import static org.mockito.Mockito.when;
 public class CourseTest {
 
     public CourseRepository courseRepository;
-    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestsInjector.instance().
-            getCourseAbstractFactoryTest();
+    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestCourseInjector.instance().
+            getCourseAbstractFactory();
 
     @BeforeEach
     public void init() {
         courseRepository = courseAbstractFactoryTest.createCourseRepositoryMock();
-        Injector.instance().setCourseRepository(courseRepository);
+        CourseInjector.instance().setCourseRepository(courseRepository);
     }
 
     public ICourse createDefaultCourse() {

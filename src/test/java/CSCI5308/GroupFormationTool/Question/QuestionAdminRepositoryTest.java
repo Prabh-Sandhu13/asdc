@@ -1,9 +1,9 @@
 package CSCI5308.GroupFormationTool.Question;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
+import CSCI5308.GroupFormationTool.User.TestUserInjector;
 import CSCI5308.GroupFormationTool.User.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,11 +17,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 public class QuestionAdminRepositoryTest {
 
-    private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestsInjector.instance().
-            getQuestionAbstractFactoryTest();
+    private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestQuestionInjector.instance().
+            getQuestionAbstractFactory();
 
-    private ITestUserAbstractFactory userAbstractFactoryTest = TestsInjector.instance().
-            getUserAbstractFactoryTest();
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().
+            getUserAbstractFactory();
 
     @Test
     void getOptionsForTheQuestionTest() {

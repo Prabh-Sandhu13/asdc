@@ -1,12 +1,13 @@
 package CSCI5308.GroupFormationTool.Password;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Mail.ITestMailManagerAbstractFactory;
+import CSCI5308.GroupFormationTool.Mail.MailInjector;
 import CSCI5308.GroupFormationTool.Mail.MailManager;
-import CSCI5308.GroupFormationTool.TestsInjector;
-import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.Mail.TestMailInjector;
 import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
+import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.TestUserInjector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,13 +29,13 @@ public class ForgotPasswordManagerTest {
     public PasswordHistoryManager passwordHistoryManager;
     public PolicyRepository policyRepository;
 
-    private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestsInjector.instance().
-            getPasswordAbstractFactoryTest();
+    private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestPasswordInjector.instance().
+            getPasswordAbstractFactory();
 
-    private ITestMailManagerAbstractFactory mailManagerAbstractFactoryTest = TestsInjector.instance().
-            getMailManagerAbstractFactoryTest();
+    private ITestMailManagerAbstractFactory mailManagerAbstractFactoryTest = TestMailInjector.instance().
+            getMailManagerAbstractFactory();
 
-    private ITestUserAbstractFactory userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().getUserAbstractFactory();
 
     @BeforeEach
     public void init() {
@@ -44,10 +45,10 @@ public class ForgotPasswordManagerTest {
         passwordHistoryManager = passwordAbstractFactoryTest.createPasswordHistoryManagerMock();
         forgotPasswordManager = passwordAbstractFactoryTest.createForgotPasswordManagerInstance();
         policyRepository = passwordAbstractFactoryTest.createPolicyRepositoryMock();
-        Injector.instance().setForgotPasswordRepository(forgotPasswordRepository);
-        Injector.instance().setMailManager(mailManager);
-        Injector.instance().setPasswordHistoryManager(passwordHistoryManager);
-        Injector.instance().setPolicyRepository(policyRepository);
+        PasswordInjector.instance().setForgotPasswordRepository(forgotPasswordRepository);
+        MailInjector.instance().setMailManager(mailManager);
+        PasswordInjector.instance().setPasswordHistoryManager(passwordHistoryManager);
+        PasswordInjector.instance().setPolicyRepository(policyRepository);
     }
 
     @Test

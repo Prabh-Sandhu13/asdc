@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.Question;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -19,7 +18,7 @@ public class QuestionAdminController {
 
     @GetMapping("/questionManager/questionManager")
     public String questionList(Model model) {
-        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
+        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
         IQuestion question = questionAbstractFactory.createQuestionInstance();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String emailId = authentication.getPrincipal().toString();
@@ -31,7 +30,7 @@ public class QuestionAdminController {
 
     @GetMapping("/questionManager/viewQuestion")
     public String viewQuestion(@RequestParam("questionId") long questionId, Model model) {
-        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
+        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
         IQuestion question = questionAbstractFactory.createQuestionInstance();
         log.info("Fetching the question by its id for the current instructor to view");
         question = question.getQuestionById(questionId);
@@ -41,7 +40,7 @@ public class QuestionAdminController {
 
     @GetMapping("/questionManager/sortQuestion")
     public String sortQuestion(@RequestParam("sortby") String sortField, Model model) {
-        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
+        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
         IQuestion question = questionAbstractFactory.createQuestionInstance();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String emailId = authentication.getPrincipal().toString();

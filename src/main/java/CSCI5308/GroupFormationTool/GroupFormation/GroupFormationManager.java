@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.GroupFormation;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +15,7 @@ public class GroupFormationManager implements IGroupFormationManager {
     @Override
     public TreeMap<Integer, ArrayList<IUser>> getGroupsForCourse(String courseId) {
         log.info("Fetching the groups for the course from the repository");
-        groupFormationRepository = Injector.instance().getGroupFormationRepository();
+        groupFormationRepository = GroupFormationInjector.instance().getGroupFormationRepository();
         return groupFormationRepository.getGroupsForCourse(courseId);
     }
 }

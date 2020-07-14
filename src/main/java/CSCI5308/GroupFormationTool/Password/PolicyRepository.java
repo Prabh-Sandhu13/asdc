@@ -1,6 +1,6 @@
 package CSCI5308.GroupFormationTool.Password;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
+import CSCI5308.GroupFormationTool.Database.DatabaseInjector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import org.slf4j.Logger;
@@ -16,8 +16,8 @@ public class PolicyRepository implements IPolicyRepository {
 
     @Override
     public ArrayList<IPolicy> passwordSPolicyCheck(String password) {
-        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-        IPasswordAbstractFactory passwordAbstractFactory = Injector.instance().getPasswordAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        IPasswordAbstractFactory passwordAbstractFactory = PasswordInjector.instance().getPasswordAbstractFactory();
         ArrayList<IPolicy> policies = passwordAbstractFactory.createPolicyListInstance();
         StoredProcedure storedProcedure = null;
         IPolicy policy = null;
@@ -51,8 +51,8 @@ public class PolicyRepository implements IPolicyRepository {
 
     @Override
     public ArrayList<IPolicy> getPolicies() {
-        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-        IPasswordAbstractFactory passwordAbstractFactory = Injector.instance().getPasswordAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        IPasswordAbstractFactory passwordAbstractFactory = PasswordInjector.instance().getPasswordAbstractFactory();
         ArrayList<IPolicy> policies = passwordAbstractFactory.createPolicyListInstance();
         StoredProcedure storedProcedure = null;
         IPolicy policy = null;

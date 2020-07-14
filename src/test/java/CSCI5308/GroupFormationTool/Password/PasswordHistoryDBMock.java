@@ -1,14 +1,13 @@
 package CSCI5308.GroupFormationTool.Password;
 
-import CSCI5308.GroupFormationTool.TestsInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
 
 import java.util.ArrayList;
 
 public class PasswordHistoryDBMock implements IPasswordHistoryRepository {
 
-    ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestsInjector.instance().
-            getPasswordAbstractFactoryTest();
+    ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestPasswordInjector.instance().
+            getPasswordAbstractFactory();
 
     @Override
     public String getSettingValue(String settingName) {

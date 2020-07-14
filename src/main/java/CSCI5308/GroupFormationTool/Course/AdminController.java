@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Question.QuestionAdminController;
 import CSCI5308.GroupFormationTool.User.IUser;
 
@@ -23,7 +22,7 @@ public class AdminController {
 
     @GetMapping("/admin/allCourses")
     public String adminCourses(Model model) {
-        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         ICourse course = courseAbstractFactory.createCourseInstance();
         Log.info("Fetching all course details from the Database");
         List<ICourse> allCourses = course.getAllCourses();
@@ -33,7 +32,7 @@ public class AdminController {
 
     @GetMapping("/admin/assignInstructor")
     public String assignInstructor(Model model, @RequestParam(name = "courseId") String courseId) {
-        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
         ICourse course = courseAbstractFactory.createCourseInstance();
         
@@ -56,7 +55,7 @@ public class AdminController {
     public String assignInstructorToCourse(@RequestParam(name = "instructor") Long instructor,
                                            @RequestParam(name = "id") String courseId, Model model) {
 
-        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
         ICourse course = courseAbstractFactory.createCourseInstance();
         Log.info("Fetching course details by using course Id");

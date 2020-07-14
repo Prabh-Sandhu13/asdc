@@ -1,9 +1,8 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.TestsInjector;
-import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
+import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.TestUserInjector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +22,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(AdminController.class)
 public class AdminControllerTest {
 
-    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestsInjector.instance().
-            getCourseAbstractFactoryTest();
+    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestCourseInjector.instance().
+            getCourseAbstractFactory();
 
-    private ITestUserAbstractFactory userAbstractFactoryTest = TestsInjector.instance().getUserAbstractFactoryTest();
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().getUserAbstractFactory();
 
     private CourseRepository courseRepository;
     private UserCoursesRepository userCoursesRepository;
@@ -38,8 +37,8 @@ public class AdminControllerTest {
     void init() {
         courseRepository = courseAbstractFactoryTest.createCourseRepositoryMock();
         userCoursesRepository = courseAbstractFactoryTest.createUserCoursesRepositoryMock();
-        Injector.instance().setCourseRepository(courseRepository);
-        Injector.instance().setUserCoursesRepository(userCoursesRepository);
+        CourseInjector.instance().setCourseRepository(courseRepository);
+        CourseInjector.instance().setUserCoursesRepository(userCoursesRepository);
     }
 
     @Test
@@ -55,15 +54,12 @@ public class AdminControllerTest {
 
     @Test
     void assignInstructorTest() throws Exception {
-
         String courseId = "CSCI5308";
-
         when(courseRepository.getCourseById(courseId)).thenReturn(courseAbstractFactoryTest.createCourseInstance());
         when(userCoursesRepository.usersCurrentlyNotInstructorsForCourse(courseId)).
                 thenReturn(userAbstractFactoryTest.createUserListInstance());
         when(userCoursesRepository.getInstructorsForCourse(courseId)).
                 thenReturn(userAbstractFactoryTest.createUserListInstance());
-
         this.mockMvc.perform(get("/admin/assignInstructor")
                 .param("courseId", courseId))
                 .andExpect(status().isOk())
@@ -74,25 +70,20 @@ public class AdminControllerTest {
 
     @Test
     void assignInstructorToCourseTest() throws Exception {
-
         long instructorId = 3;
         String courseId = "CSCI5308";
         ICourse course = courseAbstractFactoryTest.createCourseInstance();
         ArrayList<IUser> userList = userAbstractFactoryTest.createUserListInstance();
         IUser user = userAbstractFactoryTest.createUserInstance();
-
         user.setFirstName("Padmesh");
         user.setId(instructorId);
         user.setLastName("Donthu");
         userList.add(user);
-
         course.setName("ASDC");
         course.setId(courseId);
-
         when(courseRepository.getCourseById(courseId)).thenReturn(course);
         when(userCoursesRepository.addInstructorsToCourse(instructorId, courseId)).thenReturn(true);
         when(userCoursesRepository.getInstructorsForCourse(courseId)).thenReturn(userList);
-
         this.mockMvc.perform(post("/admin/assignInstructor")
                 .param("instructor", String.valueOf(instructorId))
                 .param("id", courseId)

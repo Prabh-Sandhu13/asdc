@@ -1,7 +1,5 @@
 package CSCI5308.GroupFormationTool.Database;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,7 +13,7 @@ public class ConnectionManager {
     private String password;
 
     private ConnectionManager() {
-        dbConfiguration = Injector.instance().getDbConfiguration();
+        dbConfiguration = DatabaseInjector.instance().getDbConfiguration();
         url = dbConfiguration.getDBURL();
         userName = dbConfiguration.getDBUserName();
         password = dbConfiguration.getDBPassword();

@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.GroupFormation;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +30,7 @@ public class GroupFormationController {
     public String saveGroups(@RequestParam(value = "courseName") String courseName,
                              @RequestParam(value = "courseId") String courseId, Model model) {
         log.info("Fetching the groups for the course from the Group Formation Manager");
-        groupFormationManager = Injector.instance().getGroupFormationManager();
+        groupFormationManager = GroupFormationInjector.instance().getGroupFormationManager();
         TreeMap<Integer, ArrayList<IUser>> groups = groupFormationManager.getGroupsForCourse(courseId);
         model.addAttribute("groups", groups);
         model.addAttribute("courseId", courseId);

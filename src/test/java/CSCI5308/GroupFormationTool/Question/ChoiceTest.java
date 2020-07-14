@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.Question;
 
-import CSCI5308.GroupFormationTool.TestsInjector;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -9,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 public class ChoiceTest {
 
-    private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestsInjector.instance().
-            getQuestionAbstractFactoryTest();
+    private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestQuestionInjector.instance().
+            getQuestionAbstractFactory();
 
     public IChoice createDefaultChoice() {
         ChoiceDBMock choiceDBMock = questionAbstractFactoryTest.createChoiceDBMock();

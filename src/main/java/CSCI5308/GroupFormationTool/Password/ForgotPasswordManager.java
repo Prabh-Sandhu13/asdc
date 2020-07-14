@@ -1,29 +1,30 @@
 package CSCI5308.GroupFormationTool.Password;
 
+import CSCI5308.GroupFormationTool.Common.DomainConstants;
+import CSCI5308.GroupFormationTool.Mail.IMailManager;
+import CSCI5308.GroupFormationTool.Mail.MailInjector;
+import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
+import CSCI5308.GroupFormationTool.Security.SecurityInjector;
+import CSCI5308.GroupFormationTool.User.IUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.Mail.IMailManager;
-import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
-import CSCI5308.GroupFormationTool.User.IUser;
-
 public class ForgotPasswordManager implements IForgotPasswordManager {
 
+    private static final Logger Log = LoggerFactory.getLogger(ForgotPasswordManager.class.getName());
     private IForgotPasswordRepository forgotPasswordRepository;
     private ITokenGenerator tokenGenerator;
     private IPasswordHistoryManager passwordHistoryManager;
     private IMailManager mailManager;
     private IPasswordEncryptor encryptor;
     private IPolicy policyInstance;
-    private static final Logger Log = LoggerFactory.getLogger(ForgotPasswordManager.class.getName());
+
     @Override
     public String notifyUser(IUser user) {
-        forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
-        tokenGenerator = Injector.instance().getTokenGenerator();
-        mailManager = Injector.instance().getMailManager();
-        encryptor = Injector.instance().getPasswordEncryptor();
+        forgotPasswordRepository = PasswordInjector.instance().getForgotPasswordRepository();
+        tokenGenerator = PasswordInjector.instance().getTokenGenerator();
+        mailManager = MailInjector.instance().getMailManager();
+        encryptor = SecurityInjector.instance().getPasswordEncryptor();
         String errorMessage = null;
         IUser userByEmailId = forgotPasswordRepository.getUserId(user);
         if (userByEmailId != null) {
@@ -33,7 +34,7 @@ public class ForgotPasswordManager implements IForgotPasswordManager {
                 token = tokenGenerator.generator();
                 forgotPasswordRepository.addToken(userByEmailId, token);
             } else {
-            	Log.info("User is updating existing token");
+                Log.info("User is updating existing token");
                 token = tokenGenerator.generator();
                 forgotPasswordRepository.updateToken(userByEmailId, token);
             }
@@ -47,7 +48,7 @@ public class ForgotPasswordManager implements IForgotPasswordManager {
 
     @Override
     public String updatePassword(IUser user, String token) {
-        IPasswordAbstractFactory passwordAbstractFactory = Injector.instance().getPasswordAbstractFactory();
+        IPasswordAbstractFactory passwordAbstractFactory = PasswordInjector.instance().getPasswordAbstractFactory();
         policyInstance = passwordAbstractFactory.createPolicyInstance();
         String password = user.getPassword();
         String passwordSecurityError = policyInstance.passwordSPolicyCheck(password);
@@ -57,13 +58,13 @@ public class ForgotPasswordManager implements IForgotPasswordManager {
             return errorMessage;
         }
         if (!(user.getPassword().equals(user.getConfirmPassword()))) {
-        	errorMessage = DomainConstants.passwordsDontMatch;
+            errorMessage = DomainConstants.passwordsDontMatch;
             return errorMessage;
         }
         boolean isHistoryViolated = false;
-        forgotPasswordRepository = Injector.instance().getForgotPasswordRepository();
-        passwordHistoryManager = Injector.instance().getPasswordHistoryManager();
-        encryptor = Injector.instance().getPasswordEncryptor();
+        forgotPasswordRepository = PasswordInjector.instance().getForgotPasswordRepository();
+        passwordHistoryManager = PasswordInjector.instance().getPasswordHistoryManager();
+        encryptor = SecurityInjector.instance().getPasswordEncryptor();
         IUser userByEmailId = forgotPasswordRepository.getEmailByToken(user, token);
         if (userByEmailId == null) {
             errorMessage = DomainConstants.tokenExpiredMessage;
@@ -71,7 +72,7 @@ public class ForgotPasswordManager implements IForgotPasswordManager {
         }
         isHistoryViolated = passwordHistoryManager.isHistoryViolated(userByEmailId, user.getPassword());
         if (isHistoryViolated) {
-        	Log.info("User violated history while updating password");
+            Log.info("User violated history while updating password");
             errorMessage = DomainConstants.passwordHistoryMessage
                     .replace("[[history]]", passwordHistoryManager.
                             getSettingValue(DomainConstants.passwordHistory));

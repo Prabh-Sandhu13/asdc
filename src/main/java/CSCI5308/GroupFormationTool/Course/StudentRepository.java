@@ -1,11 +1,12 @@
 package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
+import CSCI5308.GroupFormationTool.Database.DatabaseInjector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import CSCI5308.GroupFormationTool.Question.QuestionManagerRepository;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
+import CSCI5308.GroupFormationTool.Security.SecurityInjector;
 import org.apache.commons.text.RandomStringGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,11 +21,11 @@ public class StudentRepository implements IStudentRepository {
 	
     @Override
     public Map<Integer, List<StudentCSV>> createStudent(List<StudentCSV> studentCSVList, String courseId) {
-        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
-        ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         List<StudentCSV> newStudents = courseAbstractFactory.createStudentCSVListInstance();
         List<StudentCSV> oldStudents = courseAbstractFactory.createStudentCSVListInstance();
-        IPasswordEncryptor encryptor = Injector.instance().getPasswordEncryptor();
+        IPasswordEncryptor encryptor = SecurityInjector.instance().getPasswordEncryptor();
         RandomStringGenerator pwdGenerator = courseAbstractFactory.createRandomStringGeneratorInstance();
         Map<Integer, List<StudentCSV>> studentLists = courseAbstractFactory.createStudentHashMapInstance();
         StoredProcedure storedProcedure = null;

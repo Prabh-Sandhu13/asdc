@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.Security;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,7 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
-        ISecurityAbstractFactory securityAbstractFactory = Injector.instance().getSecurityAbstractFactory();
+        ISecurityAbstractFactory securityAbstractFactory = SecurityInjector.instance().getSecurityAbstractFactory();
         return securityAbstractFactory.createCustomAuthenticationManager();
     }
 }

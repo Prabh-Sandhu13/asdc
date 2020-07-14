@@ -1,7 +1,5 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.TestsInjector;
-
 import java.util.ArrayList;
 
 public class CourseDBMock implements ICourseRepository {
@@ -14,8 +12,8 @@ public class CourseDBMock implements ICourseRepository {
 
     private String description;
 
-    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestsInjector.instance().
-            getCourseAbstractFactoryTest();
+    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestCourseInjector.instance().
+            getCourseAbstractFactory();
 
     public CourseDBMock() {
         id = "CSCI5308";
