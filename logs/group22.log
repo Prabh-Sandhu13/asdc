@@ -213,3 +213,952 @@ org.thymeleaf.exceptions.TemplateProcessingException: Could not parse as express
 2020-07-14 00:01:19.927 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
 2020-07-14 00:01:24.762 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
 2020-07-14 00:01:24.934 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 00:16:31.261 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 15416 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 00:16:31.265 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 00:16:32.844 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 00:16:32.845 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 00:16:33.068 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 00:16:33.876 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.148 seconds (JVM running for 4.346)
+2020-07-14 00:16:54.812 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 00:17:12.221 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 00:17:12.754 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 00:17:12.755 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 00:17:12.867 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 00:17:14.631 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 00:17:20.122 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 00:17:20.288 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 00:19:21.698 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 10124 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 00:19:21.703 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 00:19:23.433 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 00:19:23.438 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 00:19:23.713 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 00:19:24.734 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.557 seconds (JVM running for 4.688)
+2020-07-14 00:19:30.586 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 00:19:53.568 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 00:19:54.107 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 00:19:54.109 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 00:19:54.231 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 00:19:56.914 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 00:20:01.836 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 00:20:02.003 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 00:26:05.876 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 6940 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 00:26:05.883 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 00:26:07.995 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 00:26:07.996 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 00:26:08.300 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 00:26:09.233 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 4.165 seconds (JVM running for 5.838)
+2020-07-14 00:26:11.361 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 00:26:24.686 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 00:26:25.216 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 00:26:25.217 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 00:26:25.336 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 00:26:27.323 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 00:26:32.177 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 00:26:32.362 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 00:29:13.134 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 14976 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 00:29:13.139 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 00:29:15.034 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 00:29:15.037 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 00:29:15.435 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 00:29:16.507 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 4.089 seconds (JVM running for 5.674)
+2020-07-14 00:29:50.442 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 00:30:04.187 [http-nio-8080-exec-5] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 00:30:04.739 [http-nio-8080-exec-5] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 00:30:04.741 [http-nio-8080-exec-5] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 00:30:04.865 [http-nio-8080-exec-5] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 00:30:06.532 [http-nio-8080-exec-7] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 00:30:12.032 [http-nio-8080-exec-9] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 00:30:12.209 [http-nio-8080-exec-9] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 00:30:27.107 [http-nio-8080-exec-10] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 00:31:27.903 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 11168 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 00:31:27.907 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 00:31:29.428 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 00:31:29.433 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 00:31:29.653 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 00:31:30.442 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.053 seconds (JVM running for 4.195)
+2020-07-14 00:32:06.258 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 00:32:18.988 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 00:32:19.531 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 00:32:19.533 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 00:32:19.669 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 00:32:21.410 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 00:32:26.122 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 00:32:26.289 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 00:34:00.744 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 14444 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 00:34:00.750 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 00:34:02.310 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 00:34:02.314 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 00:34:02.539 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 00:34:03.382 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.152 seconds (JVM running for 4.311)
+2020-07-14 00:34:15.419 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 00:34:27.456 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 00:34:28.011 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 00:34:28.013 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 00:34:28.129 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 00:34:29.959 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 00:34:34.391 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 00:34:34.564 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 00:37:24.547 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 16776 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 00:37:24.551 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 00:37:27.102 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 00:37:27.104 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 00:37:27.738 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 00:37:29.282 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 5.782 seconds (JVM running for 7.276)
+2020-07-14 00:37:32.826 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 00:37:48.510 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 00:37:49.074 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 00:37:49.075 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 00:37:49.197 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 00:37:50.793 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 00:37:55.204 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 00:37:55.372 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:30:12.096 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 13408 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 01:30:12.101 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 01:30:13.860 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 01:30:13.862 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 01:30:14.098 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 01:30:15.226 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.726 seconds (JVM running for 4.96)
+2020-07-14 01:30:28.782 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 01:30:43.824 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 01:30:44.371 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 01:30:44.372 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 01:30:44.491 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 01:30:46.180 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 01:30:50.976 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:30:51.152 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:37:52.850 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 9460 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 01:37:52.854 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 01:37:54.390 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 01:37:54.391 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 01:37:54.604 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 01:37:55.412 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.102 seconds (JVM running for 4.374)
+2020-07-14 01:38:04.436 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 01:38:20.160 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 01:38:20.698 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 01:38:20.700 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 01:38:20.825 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 01:38:22.587 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 01:38:27.038 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:38:27.357 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:39:19.572 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 13760 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 01:39:19.576 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 01:39:21.290 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 01:39:21.291 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 01:39:21.506 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 01:39:22.542 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.521 seconds (JVM running for 4.824)
+2020-07-14 01:39:31.891 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 01:39:44.209 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 01:39:44.397 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 01:39:44.397 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 01:39:44.528 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 01:39:46.186 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 01:39:50.825 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:39:50.993 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:40:49.215 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 17988 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 01:40:49.220 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 01:40:50.944 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 01:40:50.949 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 01:40:51.196 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 01:40:52.456 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.75 seconds (JVM running for 4.901)
+2020-07-14 01:40:55.922 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 01:41:12.063 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 01:41:12.256 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 01:41:12.258 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 01:41:12.377 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 01:41:14.048 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 01:41:18.028 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:41:18.202 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:44:18.007 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 3792 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 01:44:18.011 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 01:44:19.563 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 01:44:19.567 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 01:44:19.887 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 01:44:21.122 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.635 seconds (JVM running for 4.812)
+2020-07-14 01:44:31.804 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 01:44:43.631 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 01:44:43.822 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 01:44:43.823 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 01:44:43.946 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 01:44:47.047 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 01:44:54.518 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:44:54.729 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:51:27.424 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 17692 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 01:51:27.428 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 01:51:28.951 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 01:51:28.953 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 01:51:29.163 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 01:51:29.967 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.077 seconds (JVM running for 4.231)
+2020-07-14 01:51:38.785 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 01:51:43.500 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 01:51:43.679 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 01:51:43.682 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 01:51:43.828 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 01:51:45.944 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 01:51:50.757 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:51:50.932 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:51:51.181 [http-nio-8080-exec-7] ERROR org.thymeleaf.TemplateEngine: [THYMELEAF][http-nio-8080-exec-7] Exception processing template "course/courseSurveyResponse": Exception evaluating SpringEL expression: "iterstat.index+1" (template: "course/courseSurveyResponse" - line 94, col 12)
+org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "iterstat.index+1" (template: "course/courseSurveyResponse" - line 94, col 12)
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:290)
+	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166)
+	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138)
+	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144)
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74)
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95)
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314)
+	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205)
+	at org.thymeleaf.engine.Model.process(Model.java:282)
+	at org.thymeleaf.engine.Model.process(Model.java:290)
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367)
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:221)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640)
+	at org.thymeleaf.engine.CloseElementTag.beHandled(CloseElementTag.java:139)
+	at org.thymeleaf.engine.TemplateModel.process(TemplateModel.java:136)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:661)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1373)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1118)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'index' cannot be found on null
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406)
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92)
+	at org.springframework.expression.spel.ast.OpPlus.getValueInternal(OpPlus.java:83)
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112)
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337)
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263)
+	... 100 common frames omitted
+2020-07-14 01:51:51.197 [http-nio-8080-exec-7] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet]: Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "iterstat.index+1" (template: "course/courseSurveyResponse" - line 94, col 12)] with root cause
+org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'index' cannot be found on null
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406)
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92)
+	at org.springframework.expression.spel.ast.OpPlus.getValueInternal(OpPlus.java:83)
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112)
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337)
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263)
+	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166)
+	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138)
+	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144)
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74)
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95)
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314)
+	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205)
+	at org.thymeleaf.engine.Model.process(Model.java:282)
+	at org.thymeleaf.engine.Model.process(Model.java:290)
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367)
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:221)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640)
+	at org.thymeleaf.engine.CloseElementTag.beHandled(CloseElementTag.java:139)
+	at org.thymeleaf.engine.TemplateModel.process(TemplateModel.java:136)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:661)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1373)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1118)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+2020-07-14 01:52:21.781 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 5952 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 01:52:21.787 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 01:52:23.638 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 01:52:23.639 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 01:52:23.935 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 01:52:24.995 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 4.012 seconds (JVM running for 6.467)
+2020-07-14 01:52:27.480 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 01:52:31.531 [http-nio-8080-exec-2] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 01:52:36.644 [http-nio-8080-exec-4] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 01:52:36.811 [http-nio-8080-exec-4] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 01:52:36.812 [http-nio-8080-exec-4] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 01:52:36.931 [http-nio-8080-exec-4] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 01:52:38.830 [http-nio-8080-exec-6] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 01:52:43.921 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:52:44.110 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:53:24.616 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 17940 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 01:53:24.622 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 01:53:26.179 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 01:53:26.180 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 01:53:26.404 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 01:53:27.253 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.152 seconds (JVM running for 4.272)
+2020-07-14 01:53:34.572 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 01:53:38.331 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 01:53:38.504 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 01:53:38.505 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 01:53:38.634 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 01:53:40.474 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 01:53:47.739 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:53:47.904 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:54:24.568 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 17600 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 01:54:24.574 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 01:54:26.095 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 01:54:26.099 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 01:54:26.305 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 01:54:27.123 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.074 seconds (JVM running for 4.216)
+2020-07-14 01:54:38.909 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 01:54:41.783 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 01:54:41.955 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 01:54:41.957 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 01:54:42.086 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 01:54:44.245 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 01:54:49.243 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:54:49.422 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 01:55:04.355 [http-nio-8080-exec-8] ERROR org.thymeleaf.TemplateEngine: [THYMELEAF][http-nio-8080-exec-8] Exception processing template "": Error resolving template [], template might not exist or might not be accessible by any of the configured Template Resolvers
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1373)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1118)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:141)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+2020-07-14 01:55:04.360 [http-nio-8080-exec-8] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet]: Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: Error resolving template [], template might not exist or might not be accessible by any of the configured Template Resolvers] with root cause
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1373)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1118)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:141)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+2020-07-14 02:03:13.260 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 15756 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 02:03:13.264 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 02:03:14.982 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 02:03:14.984 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 02:03:15.214 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 02:03:16.055 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.312 seconds (JVM running for 4.461)
+2020-07-14 02:03:27.198 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 02:03:30.566 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 02:03:30.739 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 02:03:30.740 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 02:03:30.866 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 02:03:33.331 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 02:03:38.957 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 02:03:39.133 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 02:03:39.348 [http-nio-8080-exec-7] ERROR org.thymeleaf.TemplateEngine: [THYMELEAF][http-nio-8080-exec-7] Exception processing template "course/courseSurveyResponse": Exception evaluating SpringEL expression: "question.index+1" (template: "course/courseSurveyResponse" - line 78, col 17)
+org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "question.index+1" (template: "course/courseSurveyResponse" - line 78, col 17)
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:290)
+	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166)
+	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109)
+	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:89)
+	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112)
+	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:89)
+	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138)
+	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144)
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74)
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95)
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleStandaloneElement(ProcessorTemplateHandler.java:918)
+	at org.thymeleaf.engine.StandaloneElementTag.beHandled(StandaloneElementTag.java:228)
+	at org.thymeleaf.engine.Model.process(Model.java:282)
+	at org.thymeleaf.engine.Model.process(Model.java:290)
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367)
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:221)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640)
+	at org.thymeleaf.engine.CloseElementTag.beHandled(CloseElementTag.java:139)
+	at org.thymeleaf.engine.Model.process(Model.java:282)
+	at org.thymeleaf.engine.Model.process(Model.java:290)
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367)
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:293)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640)
+	at org.thymeleaf.engine.CloseElementTag.beHandled(CloseElementTag.java:139)
+	at org.thymeleaf.engine.TemplateModel.process(TemplateModel.java:136)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:661)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1373)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1118)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property or field 'index' cannot be found on object of type 'CSCI5308.GroupFormationTool.Question.Question' - maybe not public or not valid?
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:217)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406)
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92)
+	at org.springframework.expression.spel.ast.OpPlus.getValueInternal(OpPlus.java:83)
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112)
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337)
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263)
+	... 112 common frames omitted
+2020-07-14 02:03:39.356 [http-nio-8080-exec-7] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet]: Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "question.index+1" (template: "course/courseSurveyResponse" - line 78, col 17)] with root cause
+org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property or field 'index' cannot be found on object of type 'CSCI5308.GroupFormationTool.Question.Question' - maybe not public or not valid?
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:217)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406)
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92)
+	at org.springframework.expression.spel.ast.OpPlus.getValueInternal(OpPlus.java:83)
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112)
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337)
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263)
+	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166)
+	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109)
+	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:89)
+	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112)
+	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:89)
+	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138)
+	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144)
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74)
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95)
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleStandaloneElement(ProcessorTemplateHandler.java:918)
+	at org.thymeleaf.engine.StandaloneElementTag.beHandled(StandaloneElementTag.java:228)
+	at org.thymeleaf.engine.Model.process(Model.java:282)
+	at org.thymeleaf.engine.Model.process(Model.java:290)
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367)
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:221)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640)
+	at org.thymeleaf.engine.CloseElementTag.beHandled(CloseElementTag.java:139)
+	at org.thymeleaf.engine.Model.process(Model.java:282)
+	at org.thymeleaf.engine.Model.process(Model.java:290)
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367)
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:293)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640)
+	at org.thymeleaf.engine.CloseElementTag.beHandled(CloseElementTag.java:139)
+	at org.thymeleaf.engine.TemplateModel.process(TemplateModel.java:136)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:661)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1373)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1118)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+2020-07-14 02:04:52.049 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 13716 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 02:04:52.053 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 02:04:53.581 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 02:04:53.582 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 02:04:53.771 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 02:04:54.636 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.107 seconds (JVM running for 4.23)
+2020-07-14 02:05:03.941 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 02:05:09.049 [http-nio-8080-exec-2] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 02:05:15.293 [http-nio-8080-exec-4] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 02:05:15.466 [http-nio-8080-exec-4] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 02:05:15.469 [http-nio-8080-exec-4] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 02:05:15.634 [http-nio-8080-exec-4] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 02:05:17.332 [http-nio-8080-exec-6] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 02:05:22.383 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 02:05:22.564 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 02:05:39.775 [http-nio-8080-exec-10] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 02:12:57.212 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 9568 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 02:12:57.217 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 02:12:58.785 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 02:12:58.788 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 02:12:58.984 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 02:12:59.814 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.104 seconds (JVM running for 4.242)
+2020-07-14 02:14:06.395 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 02:14:06.464 [http-nio-8080-exec-1] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 02:14:12.547 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 02:14:13.085 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 02:14:13.086 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 02:14:13.209 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 02:14:14.992 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 02:14:20.184 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 02:14:20.352 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 02:14:33.849 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 02:18:50.002 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 16228 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 02:18:50.008 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 02:18:51.520 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 02:18:51.524 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 02:18:51.753 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 02:18:52.579 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.103 seconds (JVM running for 4.295)
+2020-07-14 02:19:13.744 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 02:19:17.780 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 02:19:17.940 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 02:19:17.942 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 02:19:18.061 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 02:19:20.012 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 02:19:25.465 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 02:19:25.634 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 02:19:39.244 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 02:22:59.764 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 2776 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 02:22:59.769 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 02:23:01.488 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 02:23:01.489 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 02:23:01.727 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 02:23:02.569 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.294 seconds (JVM running for 4.431)
+2020-07-14 02:23:13.430 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 02:23:13.493 [http-nio-8080-exec-1] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 02:23:19.647 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 02:23:22.981 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 02:23:22.983 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 02:23:23.151 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 02:23:25.839 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 02:23:31.200 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 02:23:31.370 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 02:23:48.890 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: Inside course controller

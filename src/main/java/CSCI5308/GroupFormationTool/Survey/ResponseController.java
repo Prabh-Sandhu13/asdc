@@ -1,12 +1,14 @@
 package CSCI5308.GroupFormationTool.Survey;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
@@ -35,23 +37,24 @@ public class ResponseController {
             if (userRole.equals(DomainConstants.studentRole)) {
             	String surveyId = surveyInstance.getSurveyId(courseId);
             	ArrayList<IQuestion> surveyQuestions = surveyInstance.getSurveyQuestions(surveyId);
-            /*	for(IQuestion q: surveyQuestions) {
-            		System.out.println("======================================");
-            		System.out.println(q.getTitle());
-            		System.out.println(q.getText());
-            		if(q.getType() == 2 || q.getType() == 3) {
-            			for (IChoice choice:q.getChoices() ) {
-            				System.out.println("Text : "+choice.getText());
-            				System.out.println("Value : "+choice.getValue());
-            			}
-            		}
-            	} */
             	model.addAttribute("surveyQuestions", surveyQuestions);
             	model.addAttribute("courseName", courseName);
+            	model.addAttribute("courseId", courseId);
             	return "course/courseSurveyResponse";
             }
             else {
             	return "redirect:login";
             }
+    }
+    
+    @PostMapping("/courseSurveyResponse")
+    public String submitSurvey(
+    		@RequestParam Map<String,String> searchParams, Model model){
+    	for (Map.Entry<String,String> entry : searchParams.entrySet()) {  
+            System.out.println("Key = " + entry.getKey() + 
+                             ", Value = " + entry.getValue()); }
+    	
+				return "redirect:courseList";
+    	
     }
 }
