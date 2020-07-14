@@ -62,4 +62,18 @@ public class SurveyTest {
         assertTrue(survey.checkIfGroupsCanBeFormedForSurvey(courseId)
                 == DomainConstants.surveyNotHavingAlgorithm);
     }
+
+    @Test
+    void publishSurvey() {
+        String courseId = "1";
+        when(surveyRepository.publishSurvey(courseId)).thenReturn(true);
+        assertTrue(survey.publishSurvey(courseId));
+    }
+
+    @Test
+    void getSurveyIdByCourseId() {
+        String courseId = "1";
+        when(surveyRepository.getSurveyIdByCourseId(courseId)).thenReturn(2);
+        assertTrue(survey.getSurveyIdByCourseId(courseId) == 2);
+    }
 }

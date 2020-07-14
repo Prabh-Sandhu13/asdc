@@ -43,4 +43,18 @@ public class Survey implements ISurvey {
         }
         return DomainConstants.surveyGroupFormationPossible;
     }
+
+    @Override
+    public boolean publishSurvey(String courseId) {
+        log.info("Publishing the survey");
+        ISurveyRepository surveyRepository = SurveyInjector.instance().getSurveyRepository();
+        return surveyRepository.publishSurvey(courseId);
+    }
+
+    @Override
+    public int getSurveyIdByCourseId(String courseId) {
+        log.info("Getting survey id based on course id");
+        ISurveyRepository surveyRepository = SurveyInjector.instance().getSurveyRepository();
+        return surveyRepository.getSurveyIdByCourseId(courseId);
+    }
 }

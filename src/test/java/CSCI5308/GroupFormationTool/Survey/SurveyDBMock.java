@@ -15,4 +15,14 @@ public class SurveyDBMock implements ISurveyRepository {
     public boolean checkIfSurveyHasFormula(String courseId) {
         return true;
     }
+
+    @Override
+    public boolean publishSurvey(String courseId) {
+        return true;
+    }
+
+    @Override
+    public int getSurveyIdByCourseId(String courseId) {
+        return 1;
+    }
 }

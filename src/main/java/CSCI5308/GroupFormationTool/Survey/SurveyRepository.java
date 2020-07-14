@@ -6,6 +6,7 @@ import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SurveyRepository implements ISurveyRepository {
@@ -80,6 +81,59 @@ public class SurveyRepository implements ISurveyRepository {
             log.error("Could not execute the Stored procedure checkIfSurveyHasFormula" +
                     " because of an SQL Exception " + exception.getLocalizedMessage());
             return false;
+        } finally {
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+        return status;
+    }
+
+    @Override
+    public boolean publishSurvey(String courseId) {
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        StoredProcedure storedProcedure = null;
+        boolean status = false;
+        try {
+            log.info("Calling stored procedure sp_publishSurvey to fetch the groups for the course");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_publishSurvey(?,?)");
+            storedProcedure.setInputStringParameter(1, courseId);
+            storedProcedure.registerOutputParameterBoolean(2);
+            storedProcedure.execute();
+            status = storedProcedure.getParameter(2);
+        } catch (SQLException exception) {
+            log.error("Could not execute the Stored procedure sp_publishSurvey" +
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
+            return false;
+        } finally {
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+        return status;
+    }
+
+    @Override
+    public int getSurveyIdByCourseId(String courseId) {
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        StoredProcedure storedProcedure = null;
+        int status = -1;
+        try {
+            log.info("Calling stored procedure sp_getSurveyId to fetch the groups for the course");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getSurveyId(?)");
+            storedProcedure.setInputStringParameter(1, courseId);
+            ResultSet results = storedProcedure.executeWithResults();
+            if (results != null) {
+                while (results.next()) {
+                    status = (int) results.getLong("survey_id");
+                }
+            }
+        } catch (SQLException exception) {
+            log.error("Could not execute the Stored procedure sp_getSurveyId" +
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
+            return -1;
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();

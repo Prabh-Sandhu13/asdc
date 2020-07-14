@@ -10,4 +10,7 @@ public interface ISurvey {
 
     int checkIfGroupsCanBeFormedForSurvey(String courseId);
 
+    boolean publishSurvey(String courseId);
+
+    int getSurveyIdByCourseId(String courseId);
 }
