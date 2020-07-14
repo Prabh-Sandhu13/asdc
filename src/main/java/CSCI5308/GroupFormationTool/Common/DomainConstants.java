@@ -65,4 +65,8 @@ public final class DomainConstants {
     public static final String studentRole = "Student";
     public static final String AdminRole = "ADMIN";
     public static final String UserRole = "USER";
+    public static int surveyNotCreated = 1;
+    public static int surveyNotPublished = 2;
+    public static int surveyNotHavingAlgorithm = 3;
+    public static int surveyGroupFormationPossible = 4;
 }
