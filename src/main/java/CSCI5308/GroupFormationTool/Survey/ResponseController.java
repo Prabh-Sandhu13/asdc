@@ -51,11 +51,20 @@ public class ResponseController {
     		@RequestParam Map<String,String> searchParams, Model model){
 		ISurveyAbstractFactory surveyAbstractFactory = Injector.instance().getSurveyAbstractFactory();
 		responseInstance = surveyAbstractFactory.createResponseInstance();
-		
-    	for (Map.Entry<String,String> entry : searchParams.entrySet()) {  
-            System.out.println("Key = " + entry.getKey() + 
-                             ", Value = " + entry.getValue()); }
-    	
-				return "redirect:courseList";
+		ArrayList<IResponse> responseList= responseInstance.createResponseList(searchParams);
+	/*	for(IResponse resp: responseList) {
+			System.out.println("===========Response=========");
+			System.out.println("UserID: "+resp.getUserId());
+			System.out.println("SurveyID: "+resp.getSurveyId());
+			System.out.println("QuestionId: "+resp.getQuestionId());
+			if(resp.getQuestionType() == DomainConstants.MCQMultiple || resp.getQuestionType() == DomainConstants.MCQOne) {
+				System.out.println("Option: "+resp.getOptionId());
+			}
+			else {
+				System.out.println("Answer: "+resp.getAnswerText());
+			}
+		} */
+	    return "redirect:courseList";				
     }
+
 }

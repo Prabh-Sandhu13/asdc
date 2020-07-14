@@ -17,6 +17,7 @@ import CSCI5308.GroupFormationTool.Question.QuestionAbstractFactory;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.Security.ISecurityAbstractFactory;
 import CSCI5308.GroupFormationTool.Security.SecurityAbstractFactory;
+import CSCI5308.GroupFormationTool.Survey.IResponseRepository;
 import CSCI5308.GroupFormationTool.Survey.ISurveyAbstractFactory;
 import CSCI5308.GroupFormationTool.Survey.ISurveyRepository;
 import CSCI5308.GroupFormationTool.Survey.SurveyAbstractFactory;
@@ -56,6 +57,7 @@ public class Injector {
     private IQuestionManagerRepository questionManagerRepository;
     private IQuestionAdminRepository questionAdminRepository;
     private ISurveyRepository surveyRepository;
+    private IResponseRepository responseRepository;
 
     private Injector() {
         userAbstractFactory = new UserAbstractFactory();
@@ -73,6 +75,7 @@ public class Injector {
         forgotPasswordManager = passwordAbstractFactory.createForgotPasswordManagerInstance();
         forgotPasswordRepository = passwordAbstractFactory.createForgotPasswordRepositoryInstance();
         surveyRepository = surveyAbstractFactory.createSurveyRepositoryInstance();
+        responseRepository = surveyAbstractFactory.createResponseRepositoryInstance();
         tokenGenerator = passwordAbstractFactory.createTokenGeneratorInstance();
         passwordHistoryManager = passwordAbstractFactory.createPasswordHistoryManagerInstance();
         passwordHistoryRepository = passwordAbstractFactory.createPasswordHistoryRepositoryInstance();
@@ -255,6 +258,14 @@ public class Injector {
 
     public void setSurveyRepository(ISurveyRepository surveyRepository) {
         this.surveyRepository = surveyRepository;
+    }
+    
+    public IResponseRepository getResponseRepository() {
+        return responseRepository;
+    }
+
+    public void setResponseRepository(IResponseRepository responseRepository) {
+        this.responseRepository = responseRepository;
     }
 
     public ISurveyAbstractFactory getSurveyAbstractFactory() {
