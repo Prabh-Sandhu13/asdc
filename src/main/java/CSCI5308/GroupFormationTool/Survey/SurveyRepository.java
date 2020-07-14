@@ -2,23 +2,26 @@ package CSCI5308.GroupFormationTool.Survey;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.Course.ICourse;
-import CSCI5308.GroupFormationTool.Course.ICourseAbstractFactory;
+
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
+import CSCI5308.GroupFormationTool.Question.IChoice;
 import CSCI5308.GroupFormationTool.Question.IQuestion;
 import CSCI5308.GroupFormationTool.Question.IQuestionAbstractFactory;
+import CSCI5308.GroupFormationTool.Question.IQuestionAdminRepository;
 
 public class SurveyRepository implements ISurveyRepository {
 	private static final Logger Log = LoggerFactory.getLogger(SurveyRepository.class.getName());
+	private IQuestionAdminRepository questionAdminRepository;
+	
 	@Override
     public String getSurveyId(String courseId) {
 		String surveyId = null;
@@ -55,7 +58,6 @@ public class SurveyRepository implements ISurveyRepository {
         ISurveyAbstractFactory surveyAbstractFactory = Injector.instance().getSurveyAbstractFactory();
         ArrayList<IQuestion> surveyQuestions = surveyAbstractFactory.createSurveyQuestionListInstance();
         StoredProcedure storedProcedure = null;
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getSurveyQuestions(?)");
@@ -65,13 +67,16 @@ public class SurveyRepository implements ISurveyRepository {
                 while (results.next()) {
                     {
                     	IQuestion question = questionAbstractFactory.createQuestionInstance();
-                    	question.setId(Long.parseLong(results.getString("survey_id")));
+                    	question.setId(Long.parseLong(results.getString("question_id")));
                     	question.setTitle(results.getString("title"));
                     	question.setText(results.getString("question_text"));
-                    	question.setCreatedDate(new java.sql.Date(formatter.parse(
-                    			results.getString("added_date_time")).getTime()));
                     	question.setType(Integer.parseInt(results.getString("qtype_id")));
-                        surveyId = (results.getString("survey_id"));
+                    	if(question.getType() == DomainConstants.MCQOne||
+                    			question.getType() == DomainConstants.MCQMultiple) {
+                            questionAdminRepository = Injector.instance().getQuestionAdminRepository();
+                    		ArrayList<IChoice> choices= questionAdminRepository.getOptionsForTheQuestion(question.getId());
+                    		question.setChoices(choices);
+                    	}
                         surveyQuestions.add(question);
                     }
                 }
@@ -80,10 +85,7 @@ public class SurveyRepository implements ISurveyRepository {
             Log.error("Could not execute the Stored procedure sp_getSurveyQuestions" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
         } 
-        catch(ParseException parseExc) {
-        	Log.error("Could not execute the Stored procedure sp_getSurveyQuestions" +
-                    " because of an SQL Exception " + parseExc.getLocalizedMessage());
-        }
+        
         finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -91,4 +93,5 @@ public class SurveyRepository implements ISurveyRepository {
         }
 		return surveyQuestions;
 	}
+	
 }

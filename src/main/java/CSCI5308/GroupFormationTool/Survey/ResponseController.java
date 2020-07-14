@@ -15,6 +15,7 @@ import CSCI5308.GroupFormationTool.Course.ICourseAbstractFactory;
 import CSCI5308.GroupFormationTool.Course.IUserCourses;
 import CSCI5308.GroupFormationTool.Password.IPasswordAbstractFactory;
 import CSCI5308.GroupFormationTool.Password.IPolicy;
+import CSCI5308.GroupFormationTool.Question.IChoice;
 import CSCI5308.GroupFormationTool.Question.IQuestion;
 
 @Controller
@@ -32,16 +33,21 @@ public class ResponseController {
         String emailId = authentication.getPrincipal().toString();
         userRole = userCourses.getUserRoleByEmailId(emailId);
             if (userRole.equals(DomainConstants.studentRole)) {
-            	//Get all questions and send them
             	String surveyId = surveyInstance.getSurveyId(courseId);
             	ArrayList<IQuestion> surveyQuestions = surveyInstance.getSurveyQuestions(surveyId);
-            	for(IQuestion q: surveyQuestions) {
+            /*	for(IQuestion q: surveyQuestions) {
             		System.out.println("======================================");
             		System.out.println(q.getTitle());
             		System.out.println(q.getText());
-            		System.out.println(q.getCreatedDate());
-            	}
-            	model.addAttribute("surveyquestions", surveyQuestions);
+            		if(q.getType() == 2 || q.getType() == 3) {
+            			for (IChoice choice:q.getChoices() ) {
+            				System.out.println("Text : "+choice.getText());
+            				System.out.println("Value : "+choice.getValue());
+            			}
+            		}
+            	} */
+            	model.addAttribute("surveyQuestions", surveyQuestions);
+            	model.addAttribute("courseName", courseName);
             	return "course/courseSurveyResponse";
             }
             else {
