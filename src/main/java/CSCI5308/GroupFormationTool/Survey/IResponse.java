@@ -29,4 +29,6 @@ public interface IResponse {
 	public void setQuestionType(int qusetionType);
 	
 	public ArrayList<IResponse> createResponseList(Map<String,String> studentResponse);
+	
+	public boolean storeResponses(ArrayList<IResponse> responseList);
 }

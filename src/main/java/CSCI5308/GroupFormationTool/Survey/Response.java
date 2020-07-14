@@ -118,7 +118,11 @@ public class Response implements IResponse {
 		}
 
 		return responseList;
-
+	}
+	public boolean storeResponses(ArrayList<IResponse> responseList) {
+		responseRepository = Injector.instance().getResponseRepository();
+		return responseRepository.storeResponses(responseList);
+		
 	}
 
 }

@@ -52,19 +52,9 @@ public class ResponseController {
 		ISurveyAbstractFactory surveyAbstractFactory = Injector.instance().getSurveyAbstractFactory();
 		responseInstance = surveyAbstractFactory.createResponseInstance();
 		ArrayList<IResponse> responseList= responseInstance.createResponseList(searchParams);
-	/*	for(IResponse resp: responseList) {
-			System.out.println("===========Response=========");
-			System.out.println("UserID: "+resp.getUserId());
-			System.out.println("SurveyID: "+resp.getSurveyId());
-			System.out.println("QuestionId: "+resp.getQuestionId());
-			if(resp.getQuestionType() == DomainConstants.MCQMultiple || resp.getQuestionType() == DomainConstants.MCQOne) {
-				System.out.println("Option: "+resp.getOptionId());
-			}
-			else {
-				System.out.println("Answer: "+resp.getAnswerText());
-			}
-		} */
-	    return "redirect:courseList";				
+		responseInstance.storeResponses(responseList);
+		model.addAttribute("Success",DomainConstants.surveySuccess);
+	    return "course/courseSurveySubmitted";				
     }
 
 }
