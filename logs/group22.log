@@ -1162,3 +1162,64 @@ org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property o
 2020-07-14 02:23:31.200 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
 2020-07-14 02:23:31.370 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
 2020-07-14 02:23:48.890 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 14:26:00.990 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 12208 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 14:26:01.003 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 14:26:04.017 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 14:26:04.019 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 14:26:04.459 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 14:26:06.104 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 6.469 seconds (JVM running for 7.81)
+2020-07-14 14:26:08.015 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 14:26:16.676 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 14:26:17.235 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 14:26:17.236 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 14:26:17.342 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 14:26:20.278 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 14:26:27.782 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 14:26:27.969 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 14:26:42.860 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 14:31:32.150 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 13408 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 14:31:32.155 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 14:31:33.789 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 14:31:33.790 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 14:31:34.091 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 14:31:35.157 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.583 seconds (JVM running for 4.749)
+2020-07-14 14:31:38.656 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 14:31:42.747 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 14:31:43.017 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 14:31:43.020 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 14:31:43.157 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 14:31:44.886 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 14:31:51.074 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 14:31:51.378 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 14:32:05.336 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 14:33:47.420 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 11692 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 14:33:47.425 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 14:33:49.417 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 14:33:49.419 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 14:33:49.648 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 14:33:50.892 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 4.619 seconds (JVM running for 5.913)
+2020-07-14 14:33:51.032 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 14:33:54.830 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 14:33:55.196 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 14:33:55.196 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 14:33:55.318 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 14:33:56.837 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 14:34:03.650 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 14:34:03.975 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 14:34:18.372 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 14:35:39.175 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 17592 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 14:35:39.186 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 14:35:42.640 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 14:35:42.641 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 14:35:43.158 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 14:35:44.837 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 6.76 seconds (JVM running for 9.397)
+2020-07-14 14:38:38.862 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 14:38:43.708 [http-nio-8080-exec-2] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 14:38:49.026 [http-nio-8080-exec-4] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 14:38:49.405 [http-nio-8080-exec-4] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 14:38:49.407 [http-nio-8080-exec-4] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 14:38:49.575 [http-nio-8080-exec-4] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 14:38:51.475 [http-nio-8080-exec-6] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 14:38:57.859 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 14:38:58.142 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 14:39:12.820 [http-nio-8080-exec-10] INFO  C.G.Course.CourseController: Inside course controller

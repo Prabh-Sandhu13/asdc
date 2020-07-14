@@ -26,24 +26,29 @@
 		<div sec:authorize="isAuthenticated()">
 			<h3>
 				Survey for course : <label th:text="${courseName}"></label>
-				 
+
 			</h3>
-			<form action="#" id="createQuestionForm" th:action="@{/courseSurveyResponse}"
-				method="post" role="form" data-toggle="validator">
+			<form action="#" id="createQuestionForm"
+				th:action="@{/courseSurveyResponse}" method="post" role="form"
+				data-toggle="validator">
 				<table class="table table-bordered">
 					<tbody>
+						
 						<tr th:each="question, iter : ${surveyQuestions}">
 							<td><label th:text="${iter.index} + ${1}"></label><label>.
-							</label> <label th:text="${question.title}"></label>
+							</label> <label th:text="${question.title}"></label> 
+							<input type="hidden"
+								th:id="${courseId}" th:name="|CourseId|" name="response"
+								placeholder="Enter your response here" class="form-control" th:value="${courseId}"/>
 								<div th:if="${question !=null && question.type == 1}">
 									<div class="form-group input-group has-feedback"
 										style="width: 100%;">
-										<label for="response" th:text="${question.text}"></label> 
-										<input th:id="${iter.index+1}" th:name="|${iter.index+1}_${question.id}|"
-											type="number" name="response"
-											placeholder="Enter your response here" class="form-control"
-											required /> <span class="form-control-feedback"
-											aria-hidden="true"></span>
+										<label for="response" th:text="${question.text}"></label> <input
+											th:id="${iter.index+1}"
+											th:name="|${iter.index+1}_${question.id}|" type="number"
+											name="response" placeholder="Enter your response here"
+											class="form-control" required /> <span
+											class="form-control-feedback" aria-hidden="true"></span>
 									</div>
 								</div>
 								<div class="table-responsive"
@@ -55,7 +60,7 @@
 												<td>
 													<div class="radio">
 														<label> <input type="radio" name="option"
-															th:id="|td${iterinner.index}|" 
+															th:id="|td${iterinner.index}|"
 															th:name="|${iter.index+1}_${question.id}_${data.value}_${data.text}|" />
 														</label> <span th:text="${data.text}"></span>
 													</div>
@@ -75,7 +80,7 @@
 														<div class="checkbox">
 															<label> <input type="checkbox" name="option"
 																th:id="|td${iterinner.index}|"
-																th:name="|${iter.index+1}_${question.id}_${data.value}_${data.text}|"/>
+																th:name="|${iter.index+1}_${question.id}_${data.value}_${data.text}|" />
 															</label> <span th:text="${data.text}"></span>
 														</div>
 													</td>
@@ -90,20 +95,18 @@
 										<label th:text="${question.text}"></label>
 										<textarea name="response" id="response" rows="4"
 											placeholder="Enter your response here" class="form-control"
-											required
-											th:name="|${iter.index+1}_${question.id}|"></textarea>
+											required th:name="|${iter.index+1}_${question.id}|"></textarea>
 										<span class="form-control-feedback" aria-hidden="true"></span>
 									</div>
 								</div> <br /> <br /></td>
 						</tr>
 					</tbody>
 				</table>
+
 				<div class="text-center">
-				<input type="hidden" th:id="courseId" th:name="courseId" th:field="${courseId}" />
-					<a th:href="@{/courseList}" class="btn btn-primary btn-md"> Back</a>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-					<button type="submit"
-						class="btn btn-primary btn-md">Complete</button>
+					<a th:href="@{/courseList}" class="btn btn-primary btn-md">
+						Back</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="submit" class="btn btn-primary btn-md">Complete</button>
 				</div>
 			</form>
 

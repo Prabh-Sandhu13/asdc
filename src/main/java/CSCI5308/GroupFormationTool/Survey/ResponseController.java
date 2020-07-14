@@ -15,20 +15,19 @@ import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Course.ICourseAbstractFactory;
 import CSCI5308.GroupFormationTool.Course.IUserCourses;
-import CSCI5308.GroupFormationTool.Password.IPasswordAbstractFactory;
-import CSCI5308.GroupFormationTool.Password.IPolicy;
-import CSCI5308.GroupFormationTool.Question.IChoice;
+
 import CSCI5308.GroupFormationTool.Question.IQuestion;
 
 @Controller
 public class ResponseController {
 	private ISurvey surveyInstance;
+	private IResponse responseInstance;
     @GetMapping("/courseSurveyResponse")
     public String takeSurvey(@RequestParam(value = "courseName") String courseName,
     		@RequestParam(value = "courseId") String courseId,Model model) {
         ICourseAbstractFactory courseAbstractFactory = Injector.instance().getCourseAbstractFactory();
-		ISurveyAbstractFactory passwordAbstractFactory = Injector.instance().getSurveyAbstractFactory();
-		surveyInstance = passwordAbstractFactory.createSurveyInstance();
+		ISurveyAbstractFactory surveyAbstractFactory = Injector.instance().getSurveyAbstractFactory();
+		surveyInstance = surveyAbstractFactory.createSurveyInstance();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
         String userRole = null;
@@ -50,11 +49,13 @@ public class ResponseController {
     @PostMapping("/courseSurveyResponse")
     public String submitSurvey(
     		@RequestParam Map<String,String> searchParams, Model model){
+		ISurveyAbstractFactory surveyAbstractFactory = Injector.instance().getSurveyAbstractFactory();
+		responseInstance = surveyAbstractFactory.createResponseInstance();
+		
     	for (Map.Entry<String,String> entry : searchParams.entrySet()) {  
             System.out.println("Key = " + entry.getKey() + 
                              ", Value = " + entry.getValue()); }
     	
 				return "redirect:courseList";
-    	
     }
 }
