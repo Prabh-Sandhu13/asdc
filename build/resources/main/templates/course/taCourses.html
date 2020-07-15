@@ -58,7 +58,7 @@
             <tr th:each="course : ${taCourses}">
                 <td th:text="${course.id}"></td>
                 <td><a th:text="${course.name}"
-                       th:href="@{/courseDetails?courseName={courseName} (courseName=${course.name})}">
+                       th:href="@{/taCourseDetails(courseName=${course.name},courseId=${course.id})}">
                 </a></td>
                 <td th:text="${course.description}"></td>
                 <td th:text="${course.credits}"></td>

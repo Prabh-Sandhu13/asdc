@@ -26,27 +26,69 @@
         <h3 class="text-center"
             th:text="'The groups for the course ' + ${courseName} + ' are '"></h3>
         <br/> <br/>
-        <div class="col md-3 sm-6">
-            <div class="table-responsive" th:each="entry: ${groups}">
-                <h4 th:text="'Group ' + ${entry.key}"></h4>
-                <table class="table table-bordered">
-                    <thead>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Banner Id</th>
-                    <th>Email Id</th>
-                    </thead>
-                    <tbody>
-                    <tr th:each="group:${entry.value}">
-                        <td th:text="${group.firstName}"></td>
-                        <td th:text="${group.lastName}"></td>
-                        <td th:text="${group.bannerId}"></td>
-                        <td th:text="${group.emailId}"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+
+        <div th:if="${surveyNotCreated}" class="text-center">
+            <div class="validation-message alert alert-danger" role="alert"
+                 th:text="${surveyNotCreated}"></div>
+            <a th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}"
+               class="btn primary btn-md"> Create your survey here!!</a>
         </div>
+
+        <div th:if="${surveyNotPublished}" class="text-center">
+            <div class="validation-message alert alert-danger" role="alert"
+                 th:text="${surveyNotPublished}">
+            </div>
+            <form th:action="@{/survey/publishSurvey(courseId=${courseId},courseName=${courseName})}"
+                  method="post" role="form" data-toggle="validator">
+                <button type="submit" class="btn primary btn-md">
+                    Publish your survey here!
+                </button>
+            </form>
+        </div>
+
+        <div th:if="${surveyNotHavingAlgorithm}" class="text-center">
+            <div class="validation-message alert alert-danger" role="alert"
+                 th:text="${surveyNotHavingAlgorithm}"></div>
+            <a th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}"
+               class="btn primary btn-md"> Choose your algorithm here!</a>
+        </div>
+
+        <div class="table-responsive" th:if="${showGroups}">
+            <table class="table table-bordered">
+                <tr class="bg-primary">
+                    <th>Group</th>
+                    <th>Allocated Students</th>
+                </tr>
+                <tr th:each="entry, stat: ${groups}">
+                    <td th:text="'Group ' + ${stat.index + 1}"></td>
+                    <td>
+                        <table class="table table-bordered">
+                            <tr class="bg-primary">
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Banner Id</th>
+                                <th>Email Id</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr th:each="student: ${entry.value}">
+                                <td th:text="${student.firstName}"></td>
+                                <td th:text="${student.lastName}"></td>
+                                <td th:text="${student.bannerId}"></td>
+                                <td th:text="${student.emailId}"></td>
+                                <td><a
+                                        th:href="@{/viewResponse(courseName=${courseName},courseId=${courseId},
+                                        surveyId=${surveyId},userId=${student.Id})}">
+                                    View Survey Response
+                                </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+        <br/>
         <div class="text-center">
             <a th:href="@{/courseList}">
                 <button type="submit" class="btn btn-success btn-sm">Back
