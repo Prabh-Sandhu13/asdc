@@ -11,4 +11,5 @@ public interface IQuestionAdminRepository {
     IQuestion getQuestionById(long questionId);
 
     ArrayList<IChoice> getOptionsForTheQuestion(long questionId);
+
 }

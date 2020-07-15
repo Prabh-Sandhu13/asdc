@@ -1,7 +1,7 @@
 package CSCI5308.GroupFormationTool.Question;
 
-import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
+import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.TestUserInjector;
 
 import java.sql.Date;
@@ -118,7 +118,6 @@ public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdmi
         question.setChoices(choices);
         return question.getChoices();
     }
-
 
     @Override
     public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortField) {

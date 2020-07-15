@@ -368,6 +368,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                         user.setLastName(results.getString("last_name"));
                         user.setEmailId(results.getString("email"));
                         user.setBannerId(results.getString("banner_id"));
+                        user.setId(results.getLong("user_id"));
                         instructorList.add(user);
                     }
                 }
