@@ -25,12 +25,13 @@ public class SurveyController {
     @GetMapping(value = "/survey/createSurvey")
     public String createSurvey(@RequestParam(value = "courseName") String courseName,
                                @RequestParam(value = "courseId") String courseId, Model model) {
-        model.addAttribute("courseId", courseId);
-        model.addAttribute("courseName", courseName);
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
         ISurvey survey = surveyAbstractFactory.createSurveyInstance();
+        log.info("Creating survey for course " + courseId);
         int surveyId = survey.createSurvey(courseId);
+        log.info("Survey created with id " + surveyId);
         ArrayList<IQuestion> surveyQuestionList = survey.getQuestionsForSurvey(courseId);
+        log.info("There are" + surveyQuestionList.size() + " questions in the database for the survey " + surveyId);
         model.addAttribute("questionList", null);
         model.addAttribute("surveyQuestionList", surveyQuestionList);
         model.addAttribute("surveyId", surveyId);
@@ -47,8 +48,9 @@ public class SurveyController {
         ModelAndView modelAndView;
         log.info("Getting survey id for the course");
         int surveyId = survey.getSurveyIdByCourseId(courseId);
-        log.info("Checking if the survey is published");
+        log.info("Survey id for the course" + courseName + "is " +surveyId);
         boolean outcome = survey.publishSurvey(courseId);
+        log.info("Check condition for survey published or not result value " + outcome);
         modelAndView = new ModelAndView("course/instructorCourseDetails");
         if (outcome) {
             modelAndView.addObject("published", true);
@@ -72,7 +74,9 @@ public class SurveyController {
         boolean status;
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
         ISurvey survey = surveyAbstractFactory.createSurveyInstance();
+        log.info("Adding question " + questionId + "to the survey" + surveyId);
         status = survey.addQuestionToSurvey(questionId, surveyId);
+        log.info("Get question list for the survey based on the course Id" + courseId);
         ArrayList<IQuestion> surveyQuestionList = survey.getQuestionsForSurvey(courseId);
         model.addAttribute("surveyId", surveyId);
         model.addAttribute("courseId", courseId);
@@ -90,7 +94,9 @@ public class SurveyController {
         boolean status;
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
         ISurvey survey = surveyAbstractFactory.createSurveyInstance();
+        log.info("Delete question " + questionId + "from the survey " + surveyId);
         status = survey.deleteQuestionFromSurvey(questionId, surveyId);
+        log.info("Get question list for the survey based on the course Id" + courseId);
         ArrayList<IQuestion> surveyQuestionList = survey.getQuestionsForSurvey(courseId);
         model.addAttribute("surveyId", surveyId);
         model.addAttribute("courseId", courseId);
@@ -111,7 +117,9 @@ public class SurveyController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String emailId = authentication.getPrincipal().toString();
         ArrayList<IQuestion> questionList = null;
+        log.info("Get question list for the course " + courseId +"with survey " +surveyId + "and question title " + questionTitle);
         questionList = survey.getQuestionListForSurvey(emailId, surveyId, courseId, questionTitle);
+        log.info("Get question list for the survey based on the course Id" + courseId);
         ArrayList<IQuestion> surveyQuestionList = survey.getQuestionsForSurvey(courseId);
         model.addAttribute("surveyQuestionList", surveyQuestionList);
         model.addAttribute("surveyId", surveyId);

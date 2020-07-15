@@ -13,7 +13,8 @@ import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.UserInjector;
 
 public class ResponseRepository implements IResponseRepository {
-	private static final Logger Log = LoggerFactory.getLogger(ResponseRepository.class.getName());
+	private static final Logger log = LoggerFactory.getLogger(ResponseRepository.class.getName());
+	
     @Override
     public IUser getResponseUser(String emailId) {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
@@ -21,6 +22,7 @@ public class ResponseRepository implements IResponseRepository {
         IUser userByEmailId = null;
         StoredProcedure storedProcedure = null;
         try {
+        	log.info("Calling stored procedure sp_getUserId to get user details by email Id" + emailId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getUserId(?)");
             storedProcedure.setInputStringParameter(1,emailId);
             ResultSet results = storedProcedure.executeWithResults();
@@ -38,7 +40,7 @@ public class ResponseRepository implements IResponseRepository {
                 }
             }
         } catch (SQLException ex) {
-            Log.error("Could not execute the Stored procedure sp_getUserId" +
+            log.error("Could not execute the Stored procedure sp_getUserId" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
 
         } finally {
@@ -55,6 +57,7 @@ public class ResponseRepository implements IResponseRepository {
         StoredProcedure storedProcedure = null;
         long optionId = 0;
         try {
+        	log.info("Calling stored procedure sp_getResponseOptionId to get response optionId for question " + questionId + "and option text " + optionText);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getResponseOptionId(?,?)");
             storedProcedure.setInputStringParameter(1,""+questionId);
             storedProcedure.setInputStringParameter(2,optionText);
@@ -67,7 +70,7 @@ public class ResponseRepository implements IResponseRepository {
                 }
             }
         } catch (SQLException ex) {
-            Log.error("Could not execute the Stored procedure sp_getResponseOptionId" +
+            log.error("Could not execute the Stored procedure sp_getResponseOptionId" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
@@ -84,6 +87,7 @@ public class ResponseRepository implements IResponseRepository {
 
         for (IResponse singleResponse : responseList) {
             try {
+            	log.info("Calling stored procedure sp_addResponse to add/save response to the database");
                 storedProcedure = databaseAbstractFactory.
                         createStoredProcedureInstance("sp_addResponse(?,?,?,?,?)");
                 storedProcedure.setInputStringParameter(1, singleResponse.getUserId()+"");
@@ -99,7 +103,7 @@ public class ResponseRepository implements IResponseRepository {
                 }
                 storedProcedure.execute();
             } catch (SQLException ex) {
-                Log.error("Could not execute the Stored procedure sp_addResponse" +
+                log.error("Could not execute the Stored procedure sp_addResponse" +
                         " because of an SQL Exception " + ex.getLocalizedMessage());
             } finally {
                 if (storedProcedure != null) {

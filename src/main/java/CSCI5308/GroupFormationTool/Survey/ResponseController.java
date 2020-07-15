@@ -22,7 +22,8 @@ import CSCI5308.GroupFormationTool.Question.IQuestion;
 public class ResponseController {
 	private ISurvey surveyInstance;
 	private IResponse responseInstance;
-	private static final Logger Log = LoggerFactory.getLogger(ResponseController.class.getName());
+	private static final Logger log = LoggerFactory.getLogger(ResponseController.class.getName());
+	
     @GetMapping("/courseSurveyResponse")
     public String takeSurvey(@RequestParam(value = "courseName") String courseName,
     		@RequestParam(value = "courseId") String courseId,Model model) {
@@ -35,7 +36,10 @@ public class ResponseController {
         String emailId = authentication.getPrincipal().toString();
         userRole = userCourses.getUserRoleByEmailId(emailId);
             if (userRole.equals(DomainConstants.studentRole)) {
+            	log.info("User role is Student");
             	String surveyId = surveyInstance.getSurveyId(courseId);
+            	log.info("Survey Id is " + surveyId);
+            	log.info("Call to get the survey question for the survey " + surveyId);
             	ArrayList<IQuestion> surveyQuestions = surveyInstance.getSurveyQuestions(surveyId);
             	model.addAttribute("surveyQuestions", surveyQuestions);
             	model.addAttribute("courseName", courseName);
@@ -43,7 +47,7 @@ public class ResponseController {
             	return "course/courseSurveyResponse";
             }
             else {
-            	Log.warn("Other type of user tried directly accessing response page");
+            	log.warn("Unauthorized user tried to access the response page");
             	return "redirect:login";
             }
     }
@@ -53,6 +57,7 @@ public class ResponseController {
     		@RequestParam Map<String,String> searchParams, Model model){
 		ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
 		responseInstance = surveyAbstractFactory.createResponseInstance();
+		log.info("Creating a response list");
 		ArrayList<IResponse> responseList= responseInstance.createResponseList(searchParams);
 		responseInstance.storeResponses(responseList);
 		model.addAttribute("Success",DomainConstants.surveySuccess);
