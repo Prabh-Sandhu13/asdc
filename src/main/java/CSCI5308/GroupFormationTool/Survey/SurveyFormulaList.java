@@ -3,15 +3,15 @@ package CSCI5308.GroupFormationTool.Survey;
 import java.util.ArrayList;
 
 public class SurveyFormulaList {
-		  public ArrayList<SurveyFormula> surveyRules;
 
-		public ArrayList<SurveyFormula> getSurveyRules() {
-			return surveyRules;
-		}
+    public ArrayList<SurveyFormula> surveyRules;
 
-		public void setSurveyRules(ArrayList<SurveyFormula> surveyRules) {
-			this.surveyRules = surveyRules;
-		}
-		  
+    public ArrayList<SurveyFormula> getSurveyRules() {
+        return surveyRules;
+    }
+
+    public void setSurveyRules(ArrayList<SurveyFormula> surveyRules) {
+        this.surveyRules = surveyRules;
+    }
 
 }

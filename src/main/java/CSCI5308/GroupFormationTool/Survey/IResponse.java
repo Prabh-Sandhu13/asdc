@@ -7,46 +7,46 @@ import java.util.List;
 import java.util.Map;
 
 public interface IResponse {
-    public long getUserId();
+    long getUserId();
 
-    public void setUserId(long userId);
+    void setUserId(long userId);
 
-    public long getSurveyId();
+    long getSurveyId();
 
-    public void setSurveyId(long surveyId);
+    void setSurveyId(long surveyId);
 
-    public long getQuestionId();
+    long getQuestionId();
 
-    public void setQuestionId(long questionId);
+    void setQuestionId(long questionId);
 
-    public String getOptionId();
+    String getOptionId();
 
-    public void setOptionId(String optionId);
+    void setOptionId(String optionId);
 
-    public List<String> getOptions();
+    List<String> getOptions();
 
-    public void setOptions(List<String> options);
+    void setOptions(List<String> options);
 
-    public String getAnswerText();
+    String getAnswerText();
 
-    public void setAnswerText(String answerText);
+    void setAnswerText(String answerText);
 
-    public int getQuestionType();
+    int getQuestionType();
 
-    public void setQuestionType(int qusetionType);
+    void setQuestionType(int qusetionType);
 
-    public ArrayList<IResponse> createResponseList(Map<String, String> studentResponse);
+    ArrayList<IResponse> createResponseList(Map<String, String> studentResponse);
 
-    public boolean storeResponses(ArrayList<IResponse> responseList);
+    boolean storeResponses(ArrayList<IResponse> responseList);
 
-    public IUser getResponseUser(String emailId);
+    IUser getResponseUser(String emailId);
 
-    public String getQuestionTitle();
+    String getQuestionTitle();
 
-    public void setQuestionTitle(String questionTitle);
+    void setQuestionTitle(String questionTitle);
 
-    public String getQuestionText();
+    String getQuestionText();
 
-    public void setQuestionText(String questionText);
+    void setQuestionText(String questionText);
 
 }

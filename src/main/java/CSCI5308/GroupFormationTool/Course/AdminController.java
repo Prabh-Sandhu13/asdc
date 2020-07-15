@@ -3,7 +3,6 @@ package CSCI5308.GroupFormationTool.Course;
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Question.QuestionAdminController;
 import CSCI5308.GroupFormationTool.User.IUser;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -17,8 +16,8 @@ import java.util.List;
 
 @Controller
 public class AdminController {
-	
-	private static final Logger Log = LoggerFactory.getLogger(QuestionAdminController.class.getName());
+
+    private static final Logger Log = LoggerFactory.getLogger(QuestionAdminController.class.getName());
 
     @GetMapping("/admin/allCourses")
     public String adminCourses(Model model) {
@@ -35,7 +34,7 @@ public class AdminController {
         ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
         ICourse course = courseAbstractFactory.createCourseInstance();
-        
+
         Log.info("Fetching course details using courseId from the Database");
         ICourse courseById = course.getCourseById(courseId);
 

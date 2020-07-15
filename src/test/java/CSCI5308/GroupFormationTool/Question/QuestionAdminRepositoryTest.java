@@ -1,8 +1,8 @@
 package CSCI5308.GroupFormationTool.Question;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
+import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.TestUserInjector;
 import CSCI5308.GroupFormationTool.User.User;
 import org.junit.jupiter.api.Test;

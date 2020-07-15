@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" href="favicon.ico"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="favicon.ico" rel="icon"/>
     <title>Assign Instructor to course</title>
     <link
+            crossorigin="anonymous"
             href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            rel="stylesheet"
             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous"/>
+            rel="stylesheet"/>
 
 </head>
 <body style="background-color: #e7ebee">
@@ -29,8 +29,8 @@
             th:text="'Choose a user from the list of users to assign as the instructor for ' + ${course.name} + ':'">
             Choose from these users to assign as the instructor:</h3>
         <br/>
-        <form th:action="@{/admin/assignInstructor(id=${course.id})}"
-              method="post" role="form" data-toggle="validator">
+        <form data-toggle="validator"
+              method="post" role="form" th:action="@{/admin/assignInstructor(id=${course.id})}">
             <div class="table-responsive"
                  style="position: relative; height: 200px; overflow: auto; display: block;">
                 <table class="table table-bordered table-hover">
@@ -40,20 +40,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="user : ${users}" class="form-check">
-                        <td><input type="radio" class="form-check-input"
-                                   name="instructor" th:value="${user.id}"><label
+                    <tr class="form-check" th:each="user : ${users}">
+                        <td><input class="form-check-input" name="instructor"
+                                   th:value="${user.id}" type="radio"><label
                                 class="form-check-label"
                                 th:text="'&nbsp;&nbsp;' + ${user.firstName} + ' ' + ${user.lastName}"></label></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Assign
+            <button class="btn btn-primary btn-block" type="submit">Assign
                 Instructor
             </button>
-            <br/> <a th:href="@{/courseList}"
-                     class="btn btn-danger btn-sm btn-block">Cancel</a>
+            <br/> <a class="btn btn-danger btn-sm btn-block"
+                     th:href="@{/courseList}">Cancel</a>
         </form>
 
         <div th:if="${instructorList !=null and !instructorList.empty} ">
@@ -82,8 +82,8 @@
                 </table>
             </div>
             <br/>
-            <form th:action="@{/logout}" method="post" class="text-center">
-                <button type="submit" class="btn btn-danger btn-sm">
+            <form class="text-center" method="post" th:action="@{/logout}">
+                <button class="btn btn-danger btn-sm" type="submit">
                     Sign Out
                 </button>
             </form>

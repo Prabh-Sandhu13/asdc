@@ -2,10 +2,9 @@ package CSCI5308.GroupFormationTool.GroupFormation;
 
 import CSCI5308.GroupFormationTool.Question.IQuestion;
 import CSCI5308.GroupFormationTool.User.IUser;
+import org.apache.commons.text.similarity.LevenshteinDetailedDistance;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.TreeMap;
+import java.util.*;
 
 public interface IGroupFormationAbstractFactory {
 
@@ -29,5 +28,25 @@ public interface IGroupFormationAbstractFactory {
 
     IGroupFormula createGroupFormulaInstance();
 
-    public HashMap<Long, IGroupFormula> createGroupLogicInstance();
+    HashMap<Long, IGroupFormula> createGroupLogicInstance();
+
+    HashMap<Integer, Integer> createXValuesInstance();
+
+    HashMap<Integer, ArrayList<Integer>> getTeamsInstance();
+
+    HashMap<Integer, ArrayList<Long>> getFormedGroupsInstance();
+
+    ArrayList<Long> getTeamSize(Integer teamSize);
+
+    ArrayList<Double> createRowInstance(int students);
+
+    LevenshteinDetailedDistance createLevenshteinInstance();
+
+    ArrayList<Integer> createStudentListInstance();
+
+    HashMap<Integer, Double> getMapForSorting();
+
+    List<Map.Entry<Integer, Double>> createLinkedList(Set<Map.Entry<Integer, Double>> entrySet);
+
+    HashMap<Integer, Double> createLinkedListHashMap();
 }

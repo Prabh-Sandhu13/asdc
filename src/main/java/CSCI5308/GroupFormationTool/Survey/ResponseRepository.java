@@ -1,9 +1,5 @@
 package CSCI5308.GroupFormationTool.Survey;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Database.DatabaseInjector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
@@ -11,10 +7,16 @@ import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.UserInjector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ResponseRepository implements IResponseRepository {
-	private static final Logger log = LoggerFactory.getLogger(ResponseRepository.class.getName());
-	
+    private static final Logger log = LoggerFactory.getLogger(ResponseRepository.class.getName());
+
     @Override
     public IUser getResponseUser(String emailId) {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
@@ -22,9 +24,9 @@ public class ResponseRepository implements IResponseRepository {
         IUser userByEmailId = null;
         StoredProcedure storedProcedure = null;
         try {
-        	log.info("Calling stored procedure sp_getUserId to get user details by email Id" + emailId);
+            log.info("Calling stored procedure sp_getUserId to get user details by email Id" + emailId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getUserId(?)");
-            storedProcedure.setInputStringParameter(1,emailId);
+            storedProcedure.setInputStringParameter(1, emailId);
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
                 while (results.next()) {
@@ -51,21 +53,21 @@ public class ResponseRepository implements IResponseRepository {
         return userByEmailId;
     }
 
-	@Override
-	public long getResponseOptionId(long questionId, String optionText) {
+    @Override
+    public long getResponseOptionId(long questionId, String optionText) {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         long optionId = 0;
         try {
-        	log.info("Calling stored procedure sp_getResponseOptionId to get response optionId for question " + questionId + "and option text " + optionText);
+            log.info("Calling stored procedure sp_getResponseOptionId to get response optionId for question " + questionId + "and option text " + optionText);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getResponseOptionId(?,?)");
-            storedProcedure.setInputStringParameter(1,""+questionId);
-            storedProcedure.setInputStringParameter(2,optionText);
+            storedProcedure.setInputStringParameter(1, "" + questionId);
+            storedProcedure.setInputStringParameter(2, optionText);
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
                 while (results.next()) {
                     {
-                    	optionId = Integer.parseInt(results.getString("option_id"));
+                        optionId = Integer.parseInt(results.getString("option_id"));
                     }
                 }
             }
@@ -77,29 +79,28 @@ public class ResponseRepository implements IResponseRepository {
                 storedProcedure.removeConnections();
             }
         }
-		return optionId;
-	}
-	
-	@Override
+        return optionId;
+    }
+
+    @Override
     public boolean storeResponses(ArrayList<IResponse> responseList) {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
 
         for (IResponse singleResponse : responseList) {
             try {
-            	log.info("Calling stored procedure sp_addResponse to add/save response to the database");
+                log.info("Calling stored procedure sp_addResponse to add/save response to the database");
                 storedProcedure = databaseAbstractFactory.
                         createStoredProcedureInstance("sp_addResponse(?,?,?,?,?)");
-                storedProcedure.setInputStringParameter(1, singleResponse.getUserId()+"");
-                storedProcedure.setInputStringParameter(2, singleResponse.getSurveyId()+"");
-                storedProcedure.setInputStringParameter(3, singleResponse.getQuestionId()+"");
+                storedProcedure.setInputStringParameter(1, singleResponse.getUserId() + "");
+                storedProcedure.setInputStringParameter(2, singleResponse.getSurveyId() + "");
+                storedProcedure.setInputStringParameter(3, singleResponse.getQuestionId() + "");
                 storedProcedure.setInputStringParameter(4, singleResponse.getOptionId());
-                if(singleResponse.getQuestionType() == DomainConstants.MCQMultiple ||
-                		singleResponse.getQuestionType() == DomainConstants.MCQOne) {
-                	storedProcedure.setInputStringParameter(5, "");
-                }
-                else {
-                	storedProcedure.setInputStringParameter(5, singleResponse.getAnswerText());
+                if (singleResponse.getQuestionType() == DomainConstants.MCQMultiple ||
+                        singleResponse.getQuestionType() == DomainConstants.MCQOne) {
+                    storedProcedure.setInputStringParameter(5, "");
+                } else {
+                    storedProcedure.setInputStringParameter(5, singleResponse.getAnswerText());
                 }
                 storedProcedure.execute();
             } catch (SQLException ex) {

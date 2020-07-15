@@ -54,7 +54,7 @@ public class SurveyRepository implements ISurveyRepository {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         try {
-        	log.info("Calling stored procedure sp_getSurveyId to fetch the surveyId for the course " + courseId);
+            log.info("Calling stored procedure sp_getSurveyId to fetch the surveyId for the course " + courseId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getSurveyId(?)");
             storedProcedure.setInputStringParameter(1, courseId);
@@ -83,14 +83,14 @@ public class SurveyRepository implements ISurveyRepository {
         StoredProcedure storedProcedure = null;
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         try {
-        	log.info("Calling stored procedure sp_deleteSurveyQuestion to delete a survey question by passing  " + questionId + "and" + surveyId);
+            log.info("Calling stored procedure sp_deleteSurveyQuestion to delete a survey question by passing  " + questionId + "and" + surveyId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_deleteSurveyQuestion(?,?)");
             storedProcedure.setInputIntParameter(1, surveyId);
             storedProcedure.setInputIntParameter(2, questionId);
             storedProcedure.execute();
         } catch (SQLException ex) {
-        	log.error("Could not execute the Stored procedure sp_deleteSurveyQuestion" +
+            log.error("Could not execute the Stored procedure sp_deleteSurveyQuestion" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
             return false;
         } finally {
@@ -108,7 +108,7 @@ public class SurveyRepository implements ISurveyRepository {
         StoredProcedure storedProcedure = null;
         ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
         try {
-        	log.info("Calling stored procedure sp_getSurveyQuestionsForInstructor to get a list of survey questions for the instructor by  " + emailId + " , " + surveyId + " and " + questionTitle);
+            log.info("Calling stored procedure sp_getSurveyQuestionsForInstructor to get a list of survey questions for the instructor by  " + emailId + " , " + surveyId + " and " + questionTitle);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getSurveyQuestionsForInstructor(?,?,?)");
             storedProcedure.setInputStringParameter(1, emailId);
@@ -146,7 +146,7 @@ public class SurveyRepository implements ISurveyRepository {
         StoredProcedure storedProcedure = null;
         ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
         try {
-        	log.info("Calling stored procedure sp_getSurveyQuestionsForTA to get a list of survey questions for the TA for survey " +surveyId + " and question title "+ questionTitle);
+            log.info("Calling stored procedure sp_getSurveyQuestionsForTA to get a list of survey questions for the TA for survey " + surveyId + " and question title " + questionTitle);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getSurveyQuestionsForTA(?,?,?)");
             storedProcedure.setInputStringParameter(1, StringUtils.join(instructorIds, ','));
@@ -183,7 +183,7 @@ public class SurveyRepository implements ISurveyRepository {
         int surveyId = -1;
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         try {
-        	log.info("create a survey for the course "+ courseId);
+            log.info("create a survey for the course " + courseId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_createSurvey(?,?)");
             storedProcedure.setInputStringParameter(1, courseId);
@@ -191,7 +191,7 @@ public class SurveyRepository implements ISurveyRepository {
             storedProcedure.execute();
             surveyId = (int) storedProcedure.getParameterLong(2);
         } catch (SQLException ex) {
-        	log.error("Could not execute the Stored procedure sp_createSurvey" +
+            log.error("Could not execute the Stored procedure sp_createSurvey" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
             return -1;
         } finally {
@@ -208,7 +208,8 @@ public class SurveyRepository implements ISurveyRepository {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         boolean status = true;
         try {
-        	log.info("Calling stored procedure sp_addQuestionToSurvey Adding a question " + questionId + " to the survey "+ surveyId);
+            log.info("Calling stored procedure sp_addQuestionToSurvey Adding a question "
+                    + questionId + " to the survey " + surveyId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_addQuestionToSurvey(?,?,?)");
             storedProcedure.setInputIntParameter(1, surveyId);
@@ -217,7 +218,7 @@ public class SurveyRepository implements ISurveyRepository {
             storedProcedure.execute();
             status = storedProcedure.getParameter(3);
         } catch (SQLException ex) {
-        	log.error("Could not execute the Stored procedure sp_addQuestionToSurvey" +
+            log.error("Could not execute the Stored procedure sp_addQuestionToSurvey" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
             return false;
         } finally {
@@ -234,7 +235,7 @@ public class SurveyRepository implements ISurveyRepository {
         StoredProcedure storedProcedure = null;
         boolean published = false;
         try {
-        	log.info("Calling stored procedure sp_checkSurveyPublished to check if survey " + surveyId + " is published or not ");
+            log.info("Calling stored procedure sp_checkSurveyPublished to check if survey " + surveyId + " is published or not ");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_checkSurveyPublished(?)");
             storedProcedure.setInputStringParameter(1, surveyId);
@@ -363,7 +364,7 @@ public class SurveyRepository implements ISurveyRepository {
         StoredProcedure storedProcedure = null;
         boolean completed = false;
         try {
-        	log.info("Calling stored procedure sp_checkSurveyCompleted to check if survey " + surveyId + "is completed or not by the user " + userId);
+            log.info("Calling stored procedure sp_checkSurveyCompleted to check if survey " + surveyId + "is completed or not by the user " + userId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_checkSurveyCompleted(?,?)");
             storedProcedure.setInputStringParameter(1, surveyId);
@@ -393,7 +394,7 @@ public class SurveyRepository implements ISurveyRepository {
         ArrayList<IQuestion> surveyQuestions = surveyAbstractFactory.createSurveyQuestionListInstance();
         StoredProcedure storedProcedure = null;
         try {
-        	log.info("Calling stored procedure sp_getSurveyQuestions to get questions for the survey " + surveyId);
+            log.info("Calling stored procedure sp_getSurveyQuestions to get questions for the survey " + surveyId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getSurveyQuestions(?)");
             storedProcedure.setInputStringParameter(1, surveyId);
@@ -436,7 +437,7 @@ public class SurveyRepository implements ISurveyRepository {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
         try {
-        	log.info("Calling stored procedure sp_getSurveyQuestionsForCourse to get questions for the survey by course Id" + courseId);
+            log.info("Calling stored procedure sp_getSurveyQuestionsForCourse to get questions for the survey by course Id" + courseId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getSurveyQuestionsForCourse(?)");
             storedProcedure.setInputStringParameter(1, courseId);
@@ -463,7 +464,7 @@ public class SurveyRepository implements ISurveyRepository {
                 }
             }
         } catch (SQLException ex) {
-        	log.error("Could not execute the Stored procedure sp_getSurveyQuestionsForCourse" +
+            log.error("Could not execute the Stored procedure sp_getSurveyQuestionsForCourse" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
@@ -511,6 +512,7 @@ public class SurveyRepository implements ISurveyRepository {
                 createAllStudentResponsesInstance();
         HashMap<Long, IResponse> questionResponse = surveyAbstractFactory.createQuestionResponseInstance();
         IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
+        log.info("Calling stored procedure sp_getAllStudentResponses to get all students' responses for a survey");
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getAllStudentResponses(?)");
@@ -562,7 +564,7 @@ public class SurveyRepository implements ISurveyRepository {
                 }
             }
         } catch (SQLException ex) {
-            log.error("Could not execute the Stored procedure sp_getSurveyQuestionsForTA" +
+            log.error("Could not execute the Stored procedure sp_getAllStudentResponses" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
@@ -579,6 +581,7 @@ public class SurveyRepository implements ISurveyRepository {
         StoredProcedure storedProcedure = null;
         HashMap<Long, IResponse> studentResponse = surveyAbstractFactory.createQuestionResponseInstance();
         IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
+        log.info("Calling stored procedure sp_getUserResponses to get a students' response for a survey");
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getUserResponses(?,?,?)");

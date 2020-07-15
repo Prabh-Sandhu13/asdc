@@ -69,11 +69,11 @@ public class ResponseController {
                                    Model model) {
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
         ISurvey survey = surveyAbstractFactory.createSurveyInstance();
+        log.info("Getting responses of the student for the course survey");
         HashMap<Long, IResponse> questionAndAnswers = survey.getUserResponses(userId, surveyId, courseId);
         model.addAttribute("courseName", courseName);
         model.addAttribute("courseId", courseId);
         model.addAttribute("responses", questionAndAnswers);
-        System.out.println(questionAndAnswers);
         return "survey/userResponse";
     }
 }

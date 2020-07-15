@@ -1,11 +1,13 @@
 package CSCI5308.GroupFormationTool.Survey;
 
-import java.util.ArrayList;
-
 import CSCI5308.GroupFormationTool.User.IUser;
 
+import java.util.ArrayList;
+
 public interface IResponseRepository {
-	public IUser getResponseUser(String emailId);
-	public long getResponseOptionId(long questionId, String optionText);
-	public boolean storeResponses(ArrayList<IResponse> responseList);
+    IUser getResponseUser(String emailId);
+
+    long getResponseOptionId(long questionId, String optionText);
+
+    boolean storeResponses(ArrayList<IResponse> responseList);
 }

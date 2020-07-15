@@ -1,9 +1,9 @@
 package CSCI5308.GroupFormationTool.Survey;
 
+import CSCI5308.GroupFormationTool.Question.IQuestion;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import CSCI5308.GroupFormationTool.Question.IQuestion;
 
 public interface ISurveyAbstractFactory {
 
@@ -16,7 +16,7 @@ public interface ISurveyAbstractFactory {
     SurveyRepository createSurveyRepositoryInstance();
 
     ResponseRepository createResponseRepositoryInstance();
-    
+
     ArrayList<IQuestion> createSurveyQuestionListInstance();
 
     HashMap<Long, HashMap<Long, IResponse>> createAllStudentResponsesInstance();

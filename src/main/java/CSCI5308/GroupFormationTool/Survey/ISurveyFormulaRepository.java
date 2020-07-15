@@ -6,14 +6,14 @@ public interface ISurveyFormulaRepository {
 
     ArrayList<SurveyFormula> getSurveyDetailsToSetAlgo(String courseId);
 
-	String getAlgoIdBySurveyId(int surveyId);
+    String getAlgoIdBySurveyId(int surveyId);
 
-	void updateSurveyGroupSize(int groupSize, int surveyId, String courseId);
+    void updateSurveyGroupSize(int groupSize, int surveyId, String courseId);
 
-	Boolean createAlgo(SurveyFormulaList surveyFormulaList, String generatedAlgoId, int surveyId);
-	
-	Boolean deleteExistingAlgo(String algoId);
+    Boolean createAlgo(SurveyFormulaList surveyFormulaList, String generatedAlgoId, int surveyId);
 
-	Boolean updateAlgoId(String generatedAlgoId, int surveyId);
+    Boolean deleteExistingAlgo(String algoId);
+
+    Boolean updateAlgoId(String generatedAlgoId, int surveyId);
 
 }

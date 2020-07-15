@@ -116,7 +116,6 @@ public class Response implements IResponse {
                 IResponse response = surveyAbstractFactory.createResponseInstance();
                 String[] responseValues = entry.getKey().split("_");
                 IQuestion question = questionAdminRepository.getQuestionById(Long.parseLong(responseValues[1]));
-
                 response.setQuestionId(Long.parseLong(responseValues[1]));
                 response.setSurveyId(Long.parseLong(surveyId));
                 response.setQuestionType(question.getType());

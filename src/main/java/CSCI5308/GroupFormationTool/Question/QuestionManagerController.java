@@ -79,5 +79,5 @@ public class QuestionManagerController {
         model.addAttribute("questionList", questionList);
         return "question/questionManager";
     }
-    
+
 }

@@ -3,17 +3,16 @@ package CSCI5308.GroupFormationTool.Course;
 import CSCI5308.GroupFormationTool.Database.DatabaseInjector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class CourseRepository implements ICourseRepository {
-	
-	private static final Logger Log = LoggerFactory.getLogger(CourseRepository.class.getName());
+
+    private static final Logger Log = LoggerFactory.getLogger(CourseRepository.class.getName());
 
     @Override
     public ArrayList<ICourse> getAllCourses() {
@@ -22,7 +21,7 @@ public class CourseRepository implements ICourseRepository {
         ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         ArrayList<ICourse> courseList = courseAbstractFactory.createCourseListInstance();
         try {
-        	Log.info("Calling stored procedure sp_getAllCourseDetails to get all course details");
+            Log.info("Calling stored procedure sp_getAllCourseDetails to get all course details");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getAllCourseDetails");
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
@@ -39,7 +38,7 @@ public class CourseRepository implements ICourseRepository {
             }
 
         } catch (SQLException ex) {
-        	Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
+            Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
@@ -55,7 +54,7 @@ public class CourseRepository implements ICourseRepository {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         boolean status = true;
         try {
-        	Log.info("Calling stored procedure sp_createCourse to create a course");
+            Log.info("Calling stored procedure sp_createCourse to create a course");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_createCourse(?,?,?,?,?)");
             storedProcedure.setInputStringParameter(1, course.getId());
@@ -66,7 +65,7 @@ public class CourseRepository implements ICourseRepository {
             storedProcedure.execute();
             status = storedProcedure.getParameter(5);
         } catch (SQLException ex) {
-        	Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
+            Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (null != storedProcedure) {
@@ -82,14 +81,14 @@ public class CourseRepository implements ICourseRepository {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         boolean status = true;
         try {
-        	Log.info("Calling stored procedure sp_deleteACourse to delete a course");
+            Log.info("Calling stored procedure sp_deleteACourse to delete a course");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_deleteACourse(?,?)");
             storedProcedure.setInputStringParameter(1, id);
             storedProcedure.registerOutputParameterBoolean(2);
             storedProcedure.execute();
             status = storedProcedure.getParameter(2);
         } catch (SQLException ex) {
-        	Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
+            Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (null != storedProcedure) {
@@ -105,7 +104,7 @@ public class CourseRepository implements ICourseRepository {
         ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         ICourse course = courseAbstractFactory.createCourseInstance();
         try {
-        	Log.info("Calling stored procedure sp_getCourseById to get a course details by Course Id");
+            Log.info("Calling stored procedure sp_getCourseById to get a course details by Course Id");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getCourseById(?)");
             storedProcedure.setInputStringParameter(1, courseId);
             ResultSet results = storedProcedure.executeWithResults();
@@ -120,7 +119,7 @@ public class CourseRepository implements ICourseRepository {
                 }
             }
         } catch (SQLException ex) {
-        	Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
+            Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {

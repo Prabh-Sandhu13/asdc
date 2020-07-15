@@ -2,27 +2,27 @@ package CSCI5308.GroupFormationTool.GroupFormation;
 
 public interface IGroupFormula {
 
-    public long getQuestionId();
+    long getQuestionId();
 
-    public void setQuestionId(long questionId);
+    void setQuestionId(long questionId);
 
-    public int getSimilarity();
+    int getSimilarity();
 
-    public void setSimilarity(int similarity);
+    void setSimilarity(int similarity);
 
-    public int getMatchWords();
+    int getMatchWords();
 
-    public void setMatchWords(int matchWords);
+    void setMatchWords(int matchWords);
 
-    public int getGreaterThan();
+    int getGreaterThan();
 
-    public void setGreaterThan(int greaterThan);
+    void setGreaterThan(int greaterThan);
 
-    public int getLesserThan();
+    int getLesserThan();
 
-    public void setLesserThan(int lesserThan);
+    void setLesserThan(int lesserThan);
 
-    public int getGroupSize();
+    int getGroupSize();
 
-    public void setGroupSize(int groupSize);
+    void setGroupSize(int groupSize);
 }

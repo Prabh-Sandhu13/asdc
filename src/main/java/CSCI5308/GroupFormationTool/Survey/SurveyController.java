@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 @Controller
 public class SurveyController {
@@ -41,20 +40,20 @@ public class SurveyController {
         model.addAttribute("courseName", courseName);
         return "survey/createSurvey";
     }
-    
+
     @GetMapping(value = "/survey/createSurveyFormula")
     public String createSurveyFormula(@RequestParam(value = "courseName") String courseName,
-                               @RequestParam(value = "courseId") String courseId, Model model) {
+                                      @RequestParam(value = "courseId") String courseId, Model model) {
         model.addAttribute("courseId", courseId);
         model.addAttribute("courseName", courseName);
         ISurveyFormula surveyFormula = new SurveyFormula();
-        ArrayList<SurveyFormula> surveyFormulaList = new  ArrayList<SurveyFormula>();
+        ArrayList<SurveyFormula> surveyFormulaList = new ArrayList<SurveyFormula>();
         surveyFormulaList = surveyFormula.getSurveyDetailsToSetAlgo(courseId);
         System.out.println(surveyFormulaList);
         int surveyId = 0;
-        for (SurveyFormula s:surveyFormulaList) {
-        	surveyId = s.getSurveyId();
-        	break;
+        for (SurveyFormula s : surveyFormulaList) {
+            surveyId = s.getSurveyId();
+            break;
         }
         model.addAttribute("surveyId", surveyId);
         SurveyFormulaList formulaList = new SurveyFormulaList();
@@ -71,7 +70,7 @@ public class SurveyController {
         ModelAndView modelAndView;
         log.info("Getting survey id for the course");
         int surveyId = survey.getSurveyIdByCourseId(courseId);
-        log.info("Survey id for the course" + courseName + "is " +surveyId);
+        log.info("Survey id for the course" + courseName + "is " + surveyId);
         boolean outcome = survey.publishSurvey(courseId);
         log.info("Check condition for survey published or not result value " + outcome);
         modelAndView = new ModelAndView("course/instructorCourseDetails");
@@ -87,16 +86,17 @@ public class SurveyController {
         modelAndView.addObject("created", surveyId);
         return modelAndView;
     }
+
     @PostMapping(value = "/survey/saveSurveyFormula")
     public String saveSurveyFormula(@RequestParam(value = "courseName") String courseName,
-                             @RequestParam(value = "courseId") String courseId,
-                             @RequestParam(value = "surveyId") int surveyId,
-    		                 @RequestParam int groupSize,
-                             Model model,
-                             @ModelAttribute("surveyFormulaList") SurveyFormulaList surveyFormulaList) {
-    	System.out.println(surveyFormulaList);
-    	ISurveyFormula surveyFormula = new SurveyFormula();
-    	surveyFormula.createSurveyFormula(courseId, surveyId, groupSize, surveyFormulaList);
+                                    @RequestParam(value = "courseId") String courseId,
+                                    @RequestParam(value = "surveyId") int surveyId,
+                                    @RequestParam int groupSize,
+                                    Model model,
+                                    @ModelAttribute("surveyFormulaList") SurveyFormulaList surveyFormulaList) {
+        System.out.println(surveyFormulaList);
+        ISurveyFormula surveyFormula = new SurveyFormula();
+        surveyFormula.createSurveyFormula(courseId, surveyId, groupSize, surveyFormulaList);
         return "redirect:/instructorCourseDetails?courseId=" + courseId + "&courseName=" + courseName;
     }
 
@@ -152,8 +152,8 @@ public class SurveyController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String emailId = authentication.getPrincipal().toString();
         ArrayList<IQuestion> questionList = null;
-        log.info("Get question list for the course " + courseId +"with survey " +surveyId + "and question title " + questionTitle);
-        questionList = survey.getQuestionListForSurvey(emailId, surveyId, courseId, questionTitle);
+        log.info("Get question list for the course " + courseId + "with survey " + surveyId + "and question title " + questionTitle);
+        questionList = survey.getSearchedQuestionListForSurvey(emailId, surveyId, courseId, questionTitle);
         log.info("Get question list for the survey based on the course Id" + courseId);
         ArrayList<IQuestion> surveyQuestionList = survey.getQuestionsForSurvey(courseId);
         model.addAttribute("surveyQuestionList", surveyQuestionList);

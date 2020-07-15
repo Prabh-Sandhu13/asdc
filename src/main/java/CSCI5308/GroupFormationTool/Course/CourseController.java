@@ -87,42 +87,41 @@ public class CourseController {
 
     @GetMapping(value = "/courseDetails")
     public String courseDetail(@RequestParam(value = "courseName") String courseName,
-    		@RequestParam(value = "courseId") String courseId, Model model) {
+                               @RequestParam(value = "courseId") String courseId, Model model) {
         ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         IUserAbstractFactory userAbstractFactory = UserInjector.instance().getUserAbstractFactory();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
-		ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
-		surveyInstance = surveyAbstractFactory.createSurveyInstance();
-		responseInstance = surveyAbstractFactory.createResponseInstance();
+        ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
+        surveyInstance = surveyAbstractFactory.createSurveyInstance();
+        responseInstance = surveyAbstractFactory.createResponseInstance();
         String userRole = null;
         userInstance = userAbstractFactory.createUserInstance();
         String emailId = authentication.getPrincipal().toString();
         userRole = userCourses.getUserRoleByEmailId(emailId);
-            if (userRole.equals(DomainConstants.studentRole)) {
-            	if(surveyInstance.isSurveyPublished(courseId)) {
-            		model.addAttribute("surveyPublished", "true");
-            		if(surveyInstance.isSurveyCompleted(courseId,responseInstance.getResponseUser(emailId).getId()+"")) {
-            			model.addAttribute("surveyCompleted", null);
-            		}
-            		else {
-            			model.addAttribute("surveyCompleted", "true");
-            		}
-            	}
-            	else {
-            		model.addAttribute("surveyPublished", null);
-            	}
-                model.addAttribute("courseName", courseName);
-                model.addAttribute("courseId", courseId);
-                return "course/courseSurveyHome";
-            } else if (userRole.equals(DomainConstants.tARole)) {
-                model.addAttribute("courseName", courseName);
-                return "course/courseDetails";
-            } else if (userRole.equals(DomainConstants.instructorRole)) {
-                model.addAttribute("courseName", courseName);
-                return "course/courseDetails";
+        if (userRole.equals(DomainConstants.studentRole)) {
+            if (surveyInstance.isSurveyPublished(courseId)) {
+                model.addAttribute("surveyPublished", "true");
+                if (surveyInstance.isSurveyCompleted(courseId,
+                        responseInstance.getResponseUser(emailId).getId() + "")) {
+                    model.addAttribute("surveyCompleted", null);
+                } else {
+                    model.addAttribute("surveyCompleted", "true");
+                }
+            } else {
+                model.addAttribute("surveyPublished", null);
             }
-    	
+            model.addAttribute("courseName", courseName);
+            model.addAttribute("courseId", courseId);
+            return "course/courseSurveyHome";
+        } else if (userRole.equals(DomainConstants.tARole)) {
+            model.addAttribute("courseName", courseName);
+            return "course/courseDetails";
+        } else if (userRole.equals(DomainConstants.instructorRole)) {
+            model.addAttribute("courseName", courseName);
+            return "course/courseDetails";
+        }
+
         model.addAttribute("courseName", courseName);
         return "course/courseDetails";
     }

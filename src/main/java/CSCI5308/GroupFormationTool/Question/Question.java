@@ -1,8 +1,6 @@
 package CSCI5308.GroupFormationTool.Question;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Course.CourseInjector;
-import CSCI5308.GroupFormationTool.Course.IUserCoursesRepository;
 import CSCI5308.GroupFormationTool.User.IUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

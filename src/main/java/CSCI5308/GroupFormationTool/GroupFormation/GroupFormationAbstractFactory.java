@@ -2,10 +2,9 @@ package CSCI5308.GroupFormationTool.GroupFormation;
 
 import CSCI5308.GroupFormationTool.Question.IQuestion;
 import CSCI5308.GroupFormationTool.User.IUser;
+import org.apache.commons.text.similarity.LevenshteinDetailedDistance;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.TreeMap;
+import java.util.*;
 
 public class GroupFormationAbstractFactory implements IGroupFormationAbstractFactory {
 
@@ -63,4 +62,55 @@ public class GroupFormationAbstractFactory implements IGroupFormationAbstractFac
     public HashMap<Long, IGroupFormula> createGroupLogicInstance() {
         return new HashMap<Long, IGroupFormula>();
     }
+
+    @Override
+    public HashMap<Integer, Integer> createXValuesInstance() {
+        return new HashMap<Integer, Integer>();
+    }
+
+    @Override
+    public HashMap<Integer, ArrayList<Integer>> getTeamsInstance() {
+        return new HashMap<Integer, ArrayList<Integer>>();
+    }
+
+    @Override
+    public HashMap<Integer, ArrayList<Long>> getFormedGroupsInstance() {
+        return new HashMap<Integer, ArrayList<Long>>();
+    }
+
+    @Override
+    public ArrayList<Long> getTeamSize(Integer teamSize) {
+        return new ArrayList<Long>(teamSize);
+    }
+
+    @Override
+    public ArrayList<Double> createRowInstance(int students) {
+        return new ArrayList<Double>();
+    }
+
+    @Override
+    public LevenshteinDetailedDistance createLevenshteinInstance() {
+        return new LevenshteinDetailedDistance();
+    }
+
+    @Override
+    public ArrayList<Integer> createStudentListInstance() {
+        return new ArrayList<Integer>();
+    }
+
+    @Override
+    public HashMap<Integer, Double> getMapForSorting() {
+        return new HashMap<Integer, Double>();
+    }
+
+    @Override
+    public List<Map.Entry<Integer, Double>> createLinkedList(Set<Map.Entry<Integer, Double>> entrySet) {
+        return new LinkedList<Map.Entry<Integer, Double>>();
+    }
+
+    @Override
+    public HashMap<Integer, Double> createLinkedListHashMap() {
+        return new LinkedHashMap<Integer, Double>();
+    }
+
 }

@@ -1,14 +1,14 @@
 package CSCI5308.GroupFormationTool.Survey;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 import CSCI5308.GroupFormationTool.Database.DatabaseInjector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
-public class SurveyFormulaRepository implements ISurveyFormulaRepository{
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class SurveyFormulaRepository implements ISurveyFormulaRepository {
 
     @Override
     public ArrayList<SurveyFormula> getSurveyDetailsToSetAlgo(String courseId) {
@@ -48,43 +48,43 @@ public class SurveyFormulaRepository implements ISurveyFormulaRepository{
         return surveyDetails;
     }
 
-	@Override
-	public String getAlgoIdBySurveyId(int surveyId) {
-		IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
-		StoredProcedure storedProcedure = null;
-		String algoId = null;
+    @Override
+    public String getAlgoIdBySurveyId(int surveyId) {
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        StoredProcedure storedProcedure = null;
+        String algoId = null;
         try {
 //          log.info("Calling the stored procedure sp_getUserByEmailId to fetch user details for given emailId");
-          storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getAlgoIdBySurveyId(?)");
-          storedProcedure.setInputIntParameter(1, surveyId);;
-          ResultSet results = storedProcedure.executeWithResults();
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getAlgoIdBySurveyId(?)");
+            storedProcedure.setInputIntParameter(1, surveyId);
+            ResultSet results = storedProcedure.executeWithResults();
 
-          if (results != null) {
+            if (results != null) {
 
-              while (results.next()) {
-                  {
-                	  algoId = (results.getString("algo_id"));
-                  }
-              }
-          }
+                while (results.next()) {
+                    {
+                        algoId = (results.getString("algo_id"));
+                    }
+                }
+            }
 
-      } catch (SQLException ex) {
+        } catch (SQLException ex) {
 //          log.error("Could not execute the Stored procedure sp_getUserByEmailId" +
 //                  "because of an SQL Exception " + ex.getLocalizedMessage());
-          System.out.println(ex.getMessage());
-      } finally {
-          if (storedProcedure != null) {
-              storedProcedure.removeConnections();
-          }
-      
+            System.out.println(ex.getMessage());
+        } finally {
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
 
-	}
-		return algoId;
-	}
 
-	@Override
-	public void updateSurveyGroupSize(int groupSize, int surveyId, String courseId) {
-		IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        }
+        return algoId;
+    }
+
+    @Override
+    public void updateSurveyGroupSize(int groupSize, int surveyId, String courseId) {
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_updateGroupSizeBySurveyId(?,?,?)");
@@ -99,50 +99,50 @@ public class SurveyFormulaRepository implements ISurveyFormulaRepository{
                 storedProcedure.removeConnections();
             }
         }
-		
-	}
 
-	@Override
-	public Boolean createAlgo(SurveyFormulaList surveyFormulaList, String generatedAlgoId, int surveyId) {
-		IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+    }
+
+    @Override
+    public Boolean createAlgo(SurveyFormulaList surveyFormulaList, String generatedAlgoId, int surveyId) {
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
-		for (SurveyFormula surveyFormula : surveyFormulaList.getSurveyRules()) {
-			try {
-				storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_createAlgo(?, ?, ?, ?, ?, ?, ?, ?)");
-				storedProcedure.setInputStringParameter(1, generatedAlgoId);
-				storedProcedure.setInputIntParameter(2, surveyId);
-				storedProcedure.setInputIntParameter(3, surveyFormula.getQuestionId());
-				if(surveyFormula.isCompareSimilarity()) {
-					storedProcedure.setInputIntParameter(4, 1);
-				} else {
-					storedProcedure.setInputIntParameter(4, 0);
-				}
-				storedProcedure.setInputIntParameter(5, 0);
-				if(surveyFormula.isFreeTextSimilarity()) {
-					storedProcedure.setInputIntParameter(6, 1);
-				} else {
-					storedProcedure.setInputIntParameter(6, 0);
-				}
-				storedProcedure.setInputIntParameter(7, surveyFormula.getNumericLessThan());
-				storedProcedure.setInputIntParameter(8, surveyFormula.getNumericGreaterThan());
-				storedProcedure.execute();
-			} catch (SQLException e) {
-				System.out.println(e);
-				// Logging needed
-				return false;
-			} finally {
-				if (null != storedProcedure) {
-					storedProcedure.removeConnections();
-				}
-			}
+        for (SurveyFormula surveyFormula : surveyFormulaList.getSurveyRules()) {
+            try {
+                storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_createAlgo(?, ?, ?, ?, ?, ?, ?, ?)");
+                storedProcedure.setInputStringParameter(1, generatedAlgoId);
+                storedProcedure.setInputIntParameter(2, surveyId);
+                storedProcedure.setInputIntParameter(3, surveyFormula.getQuestionId());
+                if (surveyFormula.isCompareSimilarity()) {
+                    storedProcedure.setInputIntParameter(4, 1);
+                } else {
+                    storedProcedure.setInputIntParameter(4, 0);
+                }
+                storedProcedure.setInputIntParameter(5, 0);
+                if (surveyFormula.isFreeTextSimilarity()) {
+                    storedProcedure.setInputIntParameter(6, 1);
+                } else {
+                    storedProcedure.setInputIntParameter(6, 0);
+                }
+                storedProcedure.setInputIntParameter(7, surveyFormula.getNumericLessThan());
+                storedProcedure.setInputIntParameter(8, surveyFormula.getNumericGreaterThan());
+                storedProcedure.execute();
+            } catch (SQLException e) {
+                System.out.println(e);
+                // Logging needed
+                return false;
+            } finally {
+                if (null != storedProcedure) {
+                    storedProcedure.removeConnections();
+                }
+            }
 
-		}
-		return true;
-	}
+        }
+        return true;
+    }
 
-	@Override
-	public Boolean deleteExistingAlgo(String algoId) {
-		StoredProcedure storedProcedure = null;
+    @Override
+    public Boolean deleteExistingAlgo(String algoId) {
+        StoredProcedure storedProcedure = null;
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         boolean status = true;
         try {
@@ -151,18 +151,18 @@ public class SurveyFormulaRepository implements ISurveyFormulaRepository{
             storedProcedure.execute();
             status = storedProcedure.getParameter(2);
         } catch (SQLException ex) {
-        	status = false;
+            status = false;
         } finally {
             if (null != storedProcedure) {
                 storedProcedure.removeConnections();
             }
         }
         return status;
-	}
+    }
 
-	@Override
-	public Boolean updateAlgoId(String generatedAlgoId, int surveyId) {
-		IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+    @Override
+    public Boolean updateAlgoId(String generatedAlgoId, int surveyId) {
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_updateAlgoIdBySurveyId(?,?)");
@@ -170,12 +170,12 @@ public class SurveyFormulaRepository implements ISurveyFormulaRepository{
             storedProcedure.setInputIntParameter(2, surveyId);
             storedProcedure.execute();
         } catch (SQLException ex) {
-        	return false;
+            return false;
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
         }
-		return true;
-	}
+        return true;
+    }
 }

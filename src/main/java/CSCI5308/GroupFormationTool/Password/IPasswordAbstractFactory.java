@@ -1,8 +1,8 @@
 package CSCI5308.GroupFormationTool.Password;
 
-import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public interface IPasswordAbstractFactory {
 

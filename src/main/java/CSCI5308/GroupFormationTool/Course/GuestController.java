@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Question.QuestionManagerRepository;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,8 +12,8 @@ import java.util.ArrayList;
 @Controller
 public class GuestController {
 
-	private static final Logger Log = LoggerFactory.getLogger(QuestionManagerRepository.class.getName());
-	
+    private static final Logger Log = LoggerFactory.getLogger(QuestionManagerRepository.class.getName());
+
     @GetMapping("/guest/guestCourses")
     public String guestCourses(Model model) {
         ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();

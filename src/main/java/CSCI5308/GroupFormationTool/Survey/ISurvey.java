@@ -19,13 +19,13 @@ public interface ISurvey {
 
     int getSurveyIdByCourseId(String courseId);
 
-    public String getSurveyId(String courseId);
+    String getSurveyId(String courseId);
 
-    public ArrayList<IQuestion> getSurveyQuestions(String surveyId);
+    ArrayList<IQuestion> getSurveyQuestions(String surveyId);
 
-    public boolean isSurveyPublished(String courseId);
+    boolean isSurveyPublished(String courseId);
 
-    public boolean isSurveyCompleted(String courseId, String userId);
+    boolean isSurveyCompleted(String courseId, String userId);
 
     String getSurveyId();
 
@@ -41,13 +41,13 @@ public interface ISurvey {
 
     int createSurvey(String courseId);
 
-    public boolean addQuestionToSurvey(long questionId, long surveyId);
+    boolean addQuestionToSurvey(long questionId, long surveyId);
 
     ArrayList<IQuestion> getQuestionsForSurvey(String courseId);
 
-    public boolean deleteQuestionFromSurvey(long questionId, long surveyId);
+    boolean deleteQuestionFromSurvey(long questionId, long surveyId);
 
-    ArrayList<IQuestion> getQuestionListForSurvey(String emailId, int surveyId, String courseId, String questionTitle);
+    ArrayList<IQuestion> getSearchedQuestionListForSurvey(String emailId, int surveyId, String courseId, String questionTitle);
 
     ArrayList<Long> getUsersWhoTookSurvey(String courseId);
 

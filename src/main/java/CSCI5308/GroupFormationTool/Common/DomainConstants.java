@@ -71,4 +71,8 @@ public final class DomainConstants {
     public static int surveyNotPublished = 2;
     public static int surveyNotHavingAlgorithm = 3;
     public static int surveyGroupFormationPossible = 4;
+    public static String lessThanX = "lessThanX";
+    public static String greaterThanX = "greaterThanX";
+    public static Double maximumDistance = 999.0;
+    public static Double minimumDistance = -999.0;
 }

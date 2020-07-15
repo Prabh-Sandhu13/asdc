@@ -17,8 +17,8 @@ import java.util.Map;
 
 public class StudentRepository implements IStudentRepository {
 
-	private static final Logger Log = LoggerFactory.getLogger(QuestionManagerRepository.class.getName());
-	
+    private static final Logger Log = LoggerFactory.getLogger(QuestionManagerRepository.class.getName());
+
     @Override
     public Map<Integer, List<StudentCSV>> createStudent(List<StudentCSV> studentCSVList, String courseId) {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
@@ -32,7 +32,7 @@ public class StudentRepository implements IStudentRepository {
 
         for (StudentCSV studentCSV : studentCSVList) {
             try {
-            	Log.info("Calling stored procedure sp_createStudentFromCSV to create a student from the CSV file " +
+                Log.info("Calling stored procedure sp_createStudentFromCSV to create a student from the CSV file " +
                         "uploaded by the instructor to the database");
                 storedProcedure = databaseAbstractFactory.
                         createStoredProcedureInstance("sp_createStudentFromCSV(?,?,?,?,?,?,?)");
@@ -53,7 +53,7 @@ public class StudentRepository implements IStudentRepository {
                     oldStudents.add(studentCSV);
                 }
             } catch (SQLException ex) {
-            	Log.error("Could not execute the Stored procedure sp_createStudentFromCSV" +
+                Log.error("Could not execute the Stored procedure sp_createStudentFromCSV" +
                         " because of an SQL Exception " + ex.getLocalizedMessage());
             } finally {
                 if (storedProcedure != null) {

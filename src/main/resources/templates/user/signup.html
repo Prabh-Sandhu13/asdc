@@ -2,15 +2,15 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" href="favicon.ico"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="favicon.ico" rel="icon"/>
     <title>User Registration Page</title>
     <link
+            crossorigin="anonymous"
             href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            rel="stylesheet"
             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous"/>
+            rel="stylesheet"/>
 
 </head>
 <body style="background-color: #e7ebee">
@@ -18,108 +18,108 @@
     <br/>
     <div>
         <h4>Create Account</h4>
-        <form autocomplete="off" action="#" th:action="@{/register}"
-              method="post" th:object="${user}"
-              class="m-t col-md-4 col-md-offset-4" role="form"
-              data-toggle="validator">
+        <form action="#" autocomplete="off" class="m-t col-md-4 col-md-offset-4"
+              data-toggle="validator" method="post"
+              role="form" th:action="@{/register}"
+              th:object="${user}">
 
-            <div th:if="${#fields.hasErrors('firstName')}"
-                 th:errors="*{firstName}"
-                 class="validation-message alert alert-danger" role="alert"></div>
+            <div class="validation-message alert alert-danger"
+                 role="alert"
+                 th:errors="*{firstName}" th:if="${#fields.hasErrors('firstName')}"></div>
             <br>
 
-            <div th:if="${#fields.hasErrors('lastName')}"
-                 th:errors="*{lastName}"
-                 class="validation-message alert alert-danger" role="alert"></div>
+            <div class="validation-message alert alert-danger"
+                 role="alert"
+                 th:errors="*{lastName}" th:if="${#fields.hasErrors('lastName')}"></div>
 
-            <div th:if="${#fields.hasErrors('emailId')}" th:errors="*{emailId}"
-                 class="validation-message alert alert-danger" role="alert"></div>
+            <div class="validation-message alert alert-danger" role="alert"
+                 th:errors="*{emailId}" th:if="${#fields.hasErrors('emailId')}"></div>
 
-            <div th:if="${#fields.hasErrors('password')}"
-                 th:errors="*{password}"
-                 class="validation-message alert alert-danger" role="alert"></div>
+            <div class="validation-message alert alert-danger"
+                 role="alert"
+                 th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></div>
 
-            <div th:if="${#fields.hasErrors('confirmPassword')}"
-                 th:errors="*{confirmPassword}"
-                 class="validation-message alert alert-danger" role="alert"></div>
+            <div class="validation-message alert alert-danger"
+                 role="alert"
+                 th:errors="*{confirmPassword}" th:if="${#fields.hasErrors('confirmPassword')}"></div>
 
-            <div th:if="${userAlreadyExists}"
-                 class="validation-message alert alert-danger" role="alert"
+            <div class="validation-message alert alert-danger"
+                 role="alert" th:if="${userAlreadyExists}"
                  th:text="${userAlreadyExists}"></div>
 
-            <div th:if="${passwordError}"
-                 class="validation-message alert alert-danger" role="alert"
+            <div class="validation-message alert alert-danger"
+                 role="alert" th:if="${passwordError}"
                  th:text="${passwordError}"></div>
 
             <div class="form-group input-group has-feedback">
-                <label th:if="${#fields.hasErrors('firstName')}"
-                       th:errors="*{firstName}" class="validation-message"></label> <span
+                <label class="validation-message"
+                       th:errors="*{firstName}" th:if="${#fields.hasErrors('firstName')}"></label> <span
                     class="input-group-addon"> <span
                     class="glyphicon glyphicon-user"></span>
-					</span> <input type="text" th:field="*{firstName}"
-                                   placeholder="First Name" class="form-control" required/> <span
-                    class="glyphicon form-control-feedback" aria-hidden="true"></span>
+					</span> <input class="form-control" placeholder="First Name"
+                                   required th:field="*{firstName}" type="text"/> <span
+                    aria-hidden="true" class="glyphicon form-control-feedback"></span>
             </div>
 
 
             <div class="form-group input-group has-feedback">
-                <label th:if="${#fields.hasErrors('lastName')}"
-                       th:errors="*{lastName}" class="validation-message"></label> <span
+                <label class="validation-message"
+                       th:errors="*{lastName}" th:if="${#fields.hasErrors('lastName')}"></label> <span
                     class="input-group-addon"> <span
                     class="glyphicon glyphicon-user"></span>
-					</span> <input type="text" th:field="*{lastName}" placeholder="Last Name"
-                                   class="form-control" required/> <span
-                    class="glyphicon form-control-feedback" aria-hidden="true"></span>
+					</span> <input class="form-control" placeholder="Last Name" required
+                                   th:field="*{lastName}" type="text"/> <span
+                    aria-hidden="true" class="glyphicon form-control-feedback"></span>
             </div>
 
 
             <div class="form-group input-group has-feedback">
-                <label th:if="${#fields.hasErrors('emailId')}"
-                       th:errors="*{emailId}" class="validation-message"></label> <span
+                <label class="validation-message"
+                       th:errors="*{emailId}" th:if="${#fields.hasErrors('emailId')}"></label> <span
                     class="input-group-addon"> <span
                     class="glyphicon glyphicon-envelope"></span>
-					</span> <input type="email" th:field="*{emailId}"
-                                   placeholder="Email address" class="form-control" required/> <span
-                    class="glyphicon form-control-feedback" aria-hidden="true"></span>
+					</span> <input class="form-control" placeholder="Email address"
+                                   required th:field="*{emailId}" type="email"/> <span
+                    aria-hidden="true" class="glyphicon form-control-feedback"></span>
             </div>
 
             <div class="form-group input-group has-feedback">
 					<span class="input-group-addon"> <span
                             class="glyphicon glyphicon-file"></span>
-					</span> <input type="text" th:field="*{bannerId}" placeholder="Banner Id"
-                                   class="form-control"/> <span
-                    class="glyphicon form-control-feedback" aria-hidden="true"></span>
+					</span> <input class="form-control" placeholder="Banner Id" th:field="*{bannerId}"
+                                   type="text"/> <span
+                    aria-hidden="true" class="glyphicon form-control-feedback"></span>
             </div>
 
             <div class="form-group input-group has-feedback">
-                <label th:if="${#fields.hasErrors('password')}"
-                       th:errors="*{password}" class="validation-message"></label> <span
+                <label class="validation-message"
+                       th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></label> <span
                     class="input-group-addon"> <span
                     class="glyphicon glyphicon-lock"></span>
-					</span> <input type="password" th:field="*{password}"
-                                   placeholder="Password" class="form-control" required/> <span
-                    class="glyphicon form-control-feedback" aria-hidden="true"></span>
+					</span> <input class="form-control" placeholder="Password"
+                                   required th:field="*{password}" type="password"/> <span
+                    aria-hidden="true" class="glyphicon form-control-feedback"></span>
             </div>
 
             <div class="form-group input-group has-feedback">
-                <label th:if="${#fields.hasErrors('confirmPassword')}"
-                       th:errors="*{confirmPassword}" class="validation-message"></label>
+                <label class="validation-message"
+                       th:errors="*{confirmPassword}" th:if="${#fields.hasErrors('confirmPassword')}"></label>
                 <span class="input-group-addon"> <span
                         class="glyphicon glyphicon-lock"></span>
-					</span> <input type="password" th:field="*{confirmPassword}"
-                                   placeholder="Confirm Password" class="form-control" required/> <span
-                    class="glyphicon form-control-feedback" aria-hidden="true"></span>
+					</span> <input class="form-control" placeholder="Confirm Password"
+                                   required th:field="*{confirmPassword}" type="password"/> <span
+                    aria-hidden="true" class="glyphicon form-control-feedback"></span>
             </div>
 
             <div class="text-center">
-                <button type="submit" class="btn btn-primary btn-sm btn-block">Register</button>
+                <button class="btn btn-primary btn-sm btn-block" type="submit">Register</button>
                 <br/>
-                <button type="reset" class="btn btn-danger btn-sm btn-block">Cancel</button>
+                <button class="btn btn-danger btn-sm btn-block" type="reset">Cancel</button>
             </div>
 
             <br/>
             <div>
-                <a th:href="@{/login}" class="text-primary">Are you an existing
+                <a class="text-primary" th:href="@{/login}">Are you an existing
                     user? Click here to log in!</a>
             </div>
         </form>

@@ -36,12 +36,16 @@ public class GroupFormationManager implements IGroupFormationManager {
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
         IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
         ISurvey survey = surveyAbstractFactory.createSurveyInstance();
+        groupFormationRepository = GroupFormationInjector.instance().getGroupFormationRepository();
+        log.info("Fetching the survey questions");
         ArrayList<IQuestion> questions = survey.getQuestionsForSurvey(courseId);
+        log.info("Fetching the list of students who took the survey");
         ArrayList<Long> userAnsweredSurveyBasedOnCourseId = survey.getUsersWhoTookSurvey(courseId);
+        log.info("Fetching the group formation logic to form groups");
         HashMap<Long, IGroupFormula> groupLogic = groupFormationRepository.getGroupFormationLogic(courseId);
+        log.info("Fetching all the student responses for the survey");
         HashMap<Long, HashMap<Long, IResponse>> studentWithQuestionAndAnswer = survey.
                 getAllStudentResponses(courseId);
-
         HashMap<Long, Integer> indexUserIdToIndex = groupFormationAbstractFactory.createIndexUserIdToIndexInstance();
         HashMap<Integer, Long> indexUserIndexToUserID = groupFormationAbstractFactory.
                 createIndexUserIndexToUserIdInstance();
@@ -51,27 +55,21 @@ public class GroupFormationManager implements IGroupFormationManager {
             indexUserIndexToUserID.put(index, userId);
             index++;
         }
-
         HashMap<Integer, ArrayList<IQuestion>> questionsBasedOnType = groupFormationAbstractFactory.
                 createQuestionsBasedOnTypeInstance();
-
         for (IQuestion question : questions) {
             if (questionsBasedOnType.containsKey(question.getType())) {
                 questionsBasedOnType.get(question.getType()).add(question);
-
             } else {
                 ArrayList<IQuestion> eachTypeQuestions = questionAbstractFactory.createQuestionListInstance();
                 eachTypeQuestions.add(question);
                 questionsBasedOnType.put(question.getType(), eachTypeQuestions);
             }
         }
-
         HashMap<Long, ArrayList<ArrayList<Double>>> finalMatrices = groupFormationAbstractFactory.
                 finalMatricesInstance();
-
         HashMap<String, HashMap<Integer, Integer>> additionalMappings = groupFormationAbstractFactory.
                 additionalMappingsInstance();
-
         for (Map.Entry<Integer, ArrayList<IQuestion>> entry : questionsBasedOnType.entrySet()) {
             if (entry.getKey() == DomainConstants.freeText) {
                 HashMap<Long, ArrayList<ArrayList<Double>>> typeMatrices = formTextMatrixForAllStudents(
@@ -107,7 +105,6 @@ public class GroupFormationManager implements IGroupFormationManager {
                 userAnsweredSurveyBasedOnCourseId.size());
         Map.Entry<Long, IGroupFormula> entry = groupLogic.entrySet().iterator().next();
         Integer teamSize = entry.getValue().getGroupSize();
-        System.out.println(finalTotalMatrices);
         return groupFormationAlgorithm(finalTotalMatrices, additionalMappings, teamSize,
                 userAnsweredSurveyBasedOnCourseId.size(), indexUserIndexToUserID);
     }
@@ -117,8 +114,7 @@ public class GroupFormationManager implements IGroupFormationManager {
         log.info("Inserting into the groups for the course from the repository");
         groupFormationRepository = GroupFormationInjector.instance().getGroupFormationRepository();
         for (Map.Entry<Integer, ArrayList<Long>> team : teams.entrySet()) {
-            for (Long student :
-                    team.getValue()) {
+            for (Long student : team.getValue()) {
                 groupFormationRepository.insertUserToGroups(team.getKey(), courseId, student);
             }
         }
@@ -134,13 +130,15 @@ public class GroupFormationManager implements IGroupFormationManager {
     private ArrayList<ArrayList<Double>> AddMatrices(HashMap<Long, ArrayList<ArrayList<Double>>> typeMatrices,
                                                      boolean considerMean, int students) {
 
-        ArrayList<ArrayList<Double>> totalMatrix = new ArrayList<ArrayList<Double>>(students);
+        IGroupFormationAbstractFactory groupFormationAbstractFactory = GroupFormationInjector.instance()
+                .getGroupFormationAbstractFactory();
+        ArrayList<ArrayList<Double>> totalMatrix = groupFormationAbstractFactory.getMatrixInstance(students);
         for (int i = 0; i < students; i++) {
-            ArrayList<Double> col = new ArrayList<Double>(students);
+            ArrayList<Double> studentCount = groupFormationAbstractFactory.createRowInstance(students);
             for (int j = 0; j < students; j++) {
-                col.add(0.0);
+                studentCount.add(0.0);
             }
-            totalMatrix.add(col);
+            totalMatrix.add(studentCount);
         }
         for (Map.Entry<Long, ArrayList<ArrayList<Double>>> questionMatrix : typeMatrices.entrySet()) {
             for (int row = 0; row < students; row++)
@@ -165,28 +163,27 @@ public class GroupFormationManager implements IGroupFormationManager {
         HashMap<Long, ArrayList<ArrayList<Double>>> questionMatrix =
                 groupFormationAbstractFactory.finalMatricesInstance();
         for (IQuestion question : questions) {
-            ArrayList<ArrayList<Double>> matrix = new ArrayList<>(students);
-
+            ArrayList<ArrayList<Double>> matrix = groupFormationAbstractFactory.getMatrixInstance(students);
             for (Map.Entry<Long, HashMap<Long, IResponse>> student : studentWithQuestionAndAnswer
                     .entrySet()) {
-                ArrayList<Double> row = new ArrayList<Double>(students);
+                ArrayList<Double> row = groupFormationAbstractFactory.createRowInstance(students);
                 for (Map.Entry<Long, HashMap<Long, IResponse>> secondStudent : studentWithQuestionAndAnswer
                         .entrySet()) {
                     if (student.getKey() == secondStudent.getKey()) {
-                        row.add(-999.9);
+                        row.add(DomainConstants.minimumDistance);
                     } else {
                         List<String> studentOptions = student.getValue().get(question.getId())
                                 .getOptions();
                         List<String> secondStudentOptions = secondStudent.getValue().get(question.getId())
                                 .getOptions();
-                        List<String> intersect = studentOptions.stream().filter(secondStudentOptions::contains)
+                        List<String> intersectOptions = studentOptions.stream().filter(secondStudentOptions::contains)
                                 .collect(Collectors.toList());
-                        double probabiltyValue = (double) (2 * intersect.size())
+                        double probabilityValue = (double) (2 * intersectOptions.size())
                                 / (double) (studentOptions.size() + secondStudentOptions.size());
                         if (groupLogic.get(question.getId()).getSimilarity() == 1) {
-                            row.add(probabiltyValue);
+                            row.add(probabilityValue);
                         } else {
-                            row.add(1 - probabiltyValue);
+                            row.add(1 - probabilityValue);
                         }
                     }
                 }
@@ -201,12 +198,11 @@ public class GroupFormationManager implements IGroupFormationManager {
             ArrayList<IQuestion> numericTypeMatrix, HashMap<Long, IGroupFormula> groupLogic,
             HashMap<Long, HashMap<Long, IResponse>> studentWithQuestionAndAnswer,
             HashMap<Long, Integer> indexUserIdToIndex) {
-
         IGroupFormationAbstractFactory groupFormationAbstractFactory = GroupFormationInjector.instance().
                 getGroupFormationAbstractFactory();
         HashMap<String, HashMap<Integer, Integer>> mappings = groupFormationAbstractFactory.additionalMappingsInstance();
-        HashMap<Integer, Integer> lessthanXValues = new HashMap<Integer, Integer>();
-        HashMap<Integer, Integer> greaterthanXValues = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> lessthanXValues = groupFormationAbstractFactory.createXValuesInstance();
+        HashMap<Integer, Integer> greaterthanXValues = groupFormationAbstractFactory.createXValuesInstance();
         for (Map.Entry<Long, Integer> user : indexUserIdToIndex.entrySet()) {
             lessthanXValues.put(user.getValue(), 0);
             greaterthanXValues.put(user.getValue(), 0);
@@ -230,21 +226,21 @@ public class GroupFormationManager implements IGroupFormationManager {
                 }
             }
         }
-        for (Map.Entry<Integer, Integer> lessXvalue : lessthanXValues.entrySet()) {
-            double avglessXvalue = lessXvalue.getValue() * 0.1 / (double) (numericTypeMatrix.size());
-            if (avglessXvalue > 0.5) {
-                lessXvalue.setValue(1);
+        for (Map.Entry<Integer, Integer> lessThanXValue : lessthanXValues.entrySet()) {
+            double averageLessThanXValue = lessThanXValue.getValue() * 0.1 / (double) (numericTypeMatrix.size());
+            if (averageLessThanXValue > 0.5) {
+                lessThanXValue.setValue(1);
             } else {
-                lessXvalue.setValue(0);
+                lessThanXValue.setValue(0);
             }
         }
         mappings.put("lessThanX", lessthanXValues);
-        for (Map.Entry<Integer, Integer> greaterXvalue : greaterthanXValues.entrySet()) {
-            double avggreatXvalue = greaterXvalue.getValue() * 0.1 / (double) (numericTypeMatrix.size());
-            if (avggreatXvalue > 0.5) {
-                greaterXvalue.setValue(1);
+        for (Map.Entry<Integer, Integer> greaterThanXValue : greaterthanXValues.entrySet()) {
+            double averageGreaterThanXValue = greaterThanXValue.getValue() * 0.1 / (double) (numericTypeMatrix.size());
+            if (averageGreaterThanXValue > 0.5) {
+                greaterThanXValue.setValue(1);
             } else {
-                greaterXvalue.setValue(0);
+                greaterThanXValue.setValue(0);
             }
         }
         mappings.put("greaterThanX", greaterthanXValues);
@@ -254,22 +250,19 @@ public class GroupFormationManager implements IGroupFormationManager {
     private HashMap<Long, ArrayList<ArrayList<Double>>> formNumericMatrixForAllStudents(
             ArrayList<IQuestion> questions, int students, HashMap<Long,
             HashMap<Long, IResponse>> studentWithQuestionAndAnswer, HashMap<Long, IGroupFormula> groupLogic) {
-
         IGroupFormationAbstractFactory groupFormationAbstractFactory = GroupFormationInjector.instance().
                 getGroupFormationAbstractFactory();
         HashMap<Long, ArrayList<ArrayList<Double>>> questionMatrix = groupFormationAbstractFactory.
                 finalMatricesInstance();
         for (IQuestion question : questions) {
-            ArrayList<ArrayList<Double>> matrix = new ArrayList<>(students);
-
+            ArrayList<ArrayList<Double>> matrix = groupFormationAbstractFactory.getMatrixInstance(students);
             for (Map.Entry<Long, HashMap<Long, IResponse>> student : studentWithQuestionAndAnswer
                     .entrySet()) {
-                ArrayList<Double> row = new ArrayList<Double>(students);
+                ArrayList<Double> row = groupFormationAbstractFactory.createRowInstance(students);
                 for (Map.Entry<Long, HashMap<Long, IResponse>> secondStudent : studentWithQuestionAndAnswer
                         .entrySet()) {
-
                     if (student.getKey() == secondStudent.getKey()) {
-                        row.add(-999.9);
+                        row.add(DomainConstants.minimumDistance);
                     } else if (student.getValue().get(question.getId()).getAnswerText().equals(
                             secondStudent.getValue().get(question.getId()).getAnswerText())) {
                         if (groupLogic.get(question.getId()).getSimilarity() == 1) {
@@ -303,21 +296,22 @@ public class GroupFormationManager implements IGroupFormationManager {
             ArrayList<ArrayList<Double>> matrix = groupFormationAbstractFactory.getMatrixInstance(students);
             for (Map.Entry<Long, HashMap<Long, IResponse>> student : studentWithQuestionAndAnswer
                     .entrySet()) {
-                ArrayList<Double> row = new ArrayList<Double>(students);
+                ArrayList<Double> row = groupFormationAbstractFactory.createRowInstance(students);
                 for (Map.Entry<Long, HashMap<Long, IResponse>> secondStudent : studentWithQuestionAndAnswer
                         .entrySet()) {
                     if (student.getKey() == secondStudent.getKey()) {
-                        row.add(-999.9);
+                        row.add(DomainConstants.minimumDistance);
                     } else {
-                        LevenshteinDetailedDistance distance = new LevenshteinDetailedDistance();
+                        LevenshteinDetailedDistance distance = groupFormationAbstractFactory.
+                                createLevenshteinInstance();
                         String studentText = student.getValue().get(question.getId()).getAnswerText();
                         String secondStudentText = secondStudent.getValue().get(question.getId()).getAnswerText();
-                        LevenshteinResults calcualtedDistance = distance.apply(studentText, secondStudentText);
-                        double probabiltyValue = calcualtedDistance.getDistance() * 1.0 / (double) 10.0;
+                        LevenshteinResults calculatedDistance = distance.apply(studentText, secondStudentText);
+                        double probabilityValue = calculatedDistance.getDistance() * 1.0 / 10.0;
                         if (groupLogic.get(question.getId()).getMatchWords() > 0) {
-                            row.add(probabiltyValue);
+                            row.add(probabilityValue);
                         } else {
-                            row.add(1 - probabiltyValue);
+                            row.add(1 - probabilityValue);
                         }
                     }
                 }
@@ -329,42 +323,42 @@ public class GroupFormationManager implements IGroupFormationManager {
     }
 
     private HashMap<Integer, ArrayList<Long>> groupFormationAlgorithm(ArrayList<ArrayList<Double>> finalTotalMatrices,
-                                                                      HashMap<String, HashMap<Integer, Integer>> additionalMappings,
+                                                                      HashMap<String, HashMap<Integer, Integer>>
+                                                                              additionalMappings,
                                                                       Integer teamSize, int students,
                                                                       HashMap<Integer, Long> indexUserIndexToUserId) {
-        HashMap<Integer, ArrayList<Integer>> teams = new HashMap();
-        HashMap<Integer, ArrayList<Long>> teamsWithUserId = new HashMap();
-
+        IGroupFormationAbstractFactory groupFormationAbstractFactory = GroupFormationInjector.instance().
+                getGroupFormationAbstractFactory();
+        HashMap<Integer, ArrayList<Integer>> teams = groupFormationAbstractFactory.getTeamsInstance();
+        HashMap<Integer, ArrayList<Long>> teamsWithUserId = groupFormationAbstractFactory.getFormedGroupsInstance();
         int count = 0;
-
-        HashMap<Integer, Integer> studentLessThanX = new HashMap<>();
-        HashMap<Integer, Integer> studentGreaterthanX = new HashMap<>();
-        if (additionalMappings.containsKey("lessThanX")) {
-            studentLessThanX = additionalMappings.get("lessThanX");
+        HashMap<Integer, Integer> studentLessThanX = groupFormationAbstractFactory.createXValuesInstance();
+        HashMap<Integer, Integer> studentGreaterthanX = groupFormationAbstractFactory.createXValuesInstance();
+        if (additionalMappings.containsKey(DomainConstants.lessThanX)) {
+            studentLessThanX = additionalMappings.get(DomainConstants.lessThanX);
         }
-        if (additionalMappings.containsKey("greaterThanX")) {
-            studentGreaterthanX = additionalMappings.get("greaterThanX");
+        if (additionalMappings.containsKey(DomainConstants.greaterThanX)) {
+            studentGreaterthanX = additionalMappings.get(DomainConstants.greaterThanX);
         }
-        ArrayList<Integer> selected_students = new ArrayList<>();
+        ArrayList<Integer> selected_students = groupFormationAbstractFactory.createStudentListInstance();
         for (int x = 0; x < finalTotalMatrices.size(); x++) {
             if (!selected_students.contains(x)) {
-                ArrayList<Integer> selected_students_1 = this.generate_team(finalTotalMatrices.get(x), teamSize,
+                ArrayList<Integer> selected_students_1 = this.generateTeam(finalTotalMatrices.get(x), teamSize,
                         studentLessThanX, studentGreaterthanX, true, true);
                 for (Integer i : selected_students_1) {
                     studentLessThanX.remove(i);
                     for (int row = 0; row < finalTotalMatrices.get(i).size(); row++) {
-                        finalTotalMatrices.get(i).set(row, 999.0);
-                        finalTotalMatrices.get(row).set(i, 999.0);
+                        finalTotalMatrices.get(i).set(row, DomainConstants.maximumDistance);
+                        finalTotalMatrices.get(row).set(i, DomainConstants.maximumDistance);
                     }
                 }
                 selected_students.addAll(selected_students_1);
                 teams.put(count, selected_students_1);
             }
             count++;
-
         }
         for (Map.Entry<Integer, ArrayList<Integer>> team : teams.entrySet()) {
-            ArrayList<Long> listTeam = new ArrayList<Long>(teamSize);
+            ArrayList<Long> listTeam = groupFormationAbstractFactory.getTeamSize(teamSize);
             for (Integer id : team.getValue()) {
                 listTeam.add(indexUserIndexToUserId.get(id));
             }
@@ -373,60 +367,62 @@ public class GroupFormationManager implements IGroupFormationManager {
         return teamsWithUserId;
     }
 
-    private ArrayList<Integer> generate_team(ArrayList<Double> arrayList, int team_size,
-                                             HashMap<Integer, Integer> studentLessThanX,
-                                             HashMap<Integer, Integer> studentGreaterthanX,
-                                             Boolean useLessthanX, Boolean useGreaterthanX) {
-        HashMap<Integer, Double> map = new HashMap<Integer, Double>();
+    private ArrayList<Integer> generateTeam(ArrayList<Double> arrayList, int team_size,
+                                            HashMap<Integer, Integer> studentLessThanX,
+                                            HashMap<Integer, Integer> studentGreaterthanX,
+                                            boolean useLessthanX, boolean useGreaterthanX) {
+        IGroupFormationAbstractFactory groupFormationAbstractFactory = GroupFormationInjector.instance().
+                getGroupFormationAbstractFactory();
+        HashMap<Integer, Double> map = groupFormationAbstractFactory.getMapForSorting();
         for (int i = 0; i < arrayList.size(); ++i) {
             map.put(i, arrayList.get(i));
         }
         HashMap<Integer, Double> sortedValues = sortByValue(map);
         Set<Integer> indices = sortedValues.keySet();
-        ArrayList<Integer> top3 = new ArrayList<Integer>();
-        Boolean notUsedLessthanX = true;
-        Boolean notUsedgreaterthanX = true;
+        ArrayList<Integer> topStudents = groupFormationAbstractFactory.createStudentListInstance();
+        boolean notUsedLessthanX = true;
+        boolean notUsedGreaterthanX = true;
         for (Integer i : indices) {
-            if (useGreaterthanX && notUsedgreaterthanX) {
+            if (useGreaterthanX && notUsedGreaterthanX) {
                 if (studentGreaterthanX.containsKey(i)) {
                     if (studentGreaterthanX.get(i) == 0) {
-                        top3.add(i);
-                        notUsedgreaterthanX = false;
+                        topStudents.add(i);
+                        notUsedGreaterthanX = false;
                     }
-
                 }
-
             }
             if (useLessthanX && notUsedLessthanX) {
                 if (studentLessThanX.containsKey(i)) {
                     if (studentLessThanX.get(i) == 1) {
-                        top3.add(i);
+                        topStudents.add(i);
                         notUsedLessthanX = false;
                     }
                 }
             }
-            if (top3.size() == 2) {
+            if (topStudents.size() == 2) {
                 break;
             } else if (!(useLessthanX && useGreaterthanX)) {
-                if (top3.size() == 1) {
+                if (topStudents.size() == 1) {
                     break;
                 }
             }
         }
         for (Integer i : indices) {
-            if (top3.size() == team_size) {
+            if (topStudents.size() == team_size) {
                 break;
-            } else if (!top3.contains(i) && sortedValues.get(i) != 999.0) {
-                top3.add(i);
+            } else if (!topStudents.contains(i) && sortedValues.get(i) != DomainConstants.maximumDistance) {
+                topStudents.add(i);
             }
         }
-        return top3;
+        return topStudents;
     }
 
-    public HashMap<Integer, Double> sortByValue(HashMap<Integer, Double> hm) {
-        List<Map.Entry<Integer, Double>> list = new LinkedList<Map.Entry<Integer, Double>>(hm.entrySet());
+    public HashMap<Integer, Double> sortByValue(HashMap<Integer, Double> map) {
+        IGroupFormationAbstractFactory groupFormationAbstractFactory = GroupFormationInjector.instance().
+                getGroupFormationAbstractFactory();
+        List<Map.Entry<Integer, Double>> list = new LinkedList<Map.Entry<Integer, Double>>(map.entrySet());
         Collections.sort(list, Comparator.comparing(Map.Entry::getValue));
-        HashMap<Integer, Double> sortedHashMap = new LinkedHashMap<Integer, Double>();
+        HashMap<Integer, Double> sortedHashMap = groupFormationAbstractFactory.createLinkedListHashMap();
         for (Map.Entry<Integer, Double> item : list) {
             sortedHashMap.put(item.getKey(), item.getValue());
         }
@@ -436,22 +432,19 @@ public class GroupFormationManager implements IGroupFormationManager {
     private HashMap<Long, ArrayList<ArrayList<Double>>> formSingleChoiceMatrixForAllStudents(
             ArrayList<IQuestion> questions, int students, HashMap<Long,
             HashMap<Long, IResponse>> studentWithQuestionAndAnswer, HashMap<Long, IGroupFormula> groupLogic) {
-
         IGroupFormationAbstractFactory groupFormationAbstractFactory = GroupFormationInjector.instance().
                 getGroupFormationAbstractFactory();
         HashMap<Long, ArrayList<ArrayList<Double>>> questionMatrix = groupFormationAbstractFactory.
                 finalMatricesInstance();
         for (IQuestion question : questions) {
-            ArrayList<ArrayList<Double>> matrix = new ArrayList<>(students);
-
+            ArrayList<ArrayList<Double>> matrix = groupFormationAbstractFactory.getMatrixInstance(students);
             for (Map.Entry<Long, HashMap<Long, IResponse>> student : studentWithQuestionAndAnswer
                     .entrySet()) {
-                ArrayList<Double> row = new ArrayList<Double>(students);
+                ArrayList<Double> row = groupFormationAbstractFactory.createRowInstance(students);
                 for (Map.Entry<Long, HashMap<Long, IResponse>> secondStudent : studentWithQuestionAndAnswer
                         .entrySet()) {
-
                     if (student.getKey() == secondStudent.getKey()) {
-                        row.add(-999.9);
+                        row.add(DomainConstants.minimumDistance);
                     } else if (student.getValue().get(question.getId()).getOptions().get(0).equals(
                             secondStudent.getValue().get(question.getId()).getOptions().get(0))) {
                         if (groupLogic.get(question.getId()).getSimilarity() == 1) {
