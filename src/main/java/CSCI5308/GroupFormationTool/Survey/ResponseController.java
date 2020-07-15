@@ -22,6 +22,7 @@ import java.util.Map;
 @Controller
 public class ResponseController {
     private static final Logger Log = LoggerFactory.getLogger(ResponseController.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(ResponseController.class.getName());
     private ISurvey surveyInstance;
     private IResponse responseInstance;
 
@@ -50,10 +51,10 @@ public class ResponseController {
     }
 
     @PostMapping("/courseSurveyResponse")
-    public String submitSurvey(
-            @RequestParam Map<String, String> searchParams, Model model) {
+    public String submitSurvey(@RequestParam Map<String, String> searchParams, Model model) {
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
         responseInstance = surveyAbstractFactory.createResponseInstance();
+        log.info("Creating a response list");
         ArrayList<IResponse> responseList = responseInstance.createResponseList(searchParams);
         responseInstance.storeResponses(responseList);
         model.addAttribute("Success", DomainConstants.surveySuccess);
@@ -75,5 +76,4 @@ public class ResponseController {
         System.out.println(questionAndAnswers);
         return "survey/userResponse";
     }
-
 }

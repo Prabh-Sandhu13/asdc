@@ -39,7 +39,6 @@ public class GroupFormationManager implements IGroupFormationManager {
         ArrayList<IQuestion> questions = survey.getQuestionsForSurvey(courseId);
         ArrayList<Long> userAnsweredSurveyBasedOnCourseId = survey.getUsersWhoTookSurvey(courseId);
         HashMap<Long, IGroupFormula> groupLogic = groupFormationRepository.getGroupFormationLogic(courseId);
-
         HashMap<Long, HashMap<Long, IResponse>> studentWithQuestionAndAnswer = survey.
                 getAllStudentResponses(courseId);
 
