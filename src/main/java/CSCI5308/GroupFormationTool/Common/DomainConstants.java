@@ -69,4 +69,5 @@ public final class DomainConstants {
     public static int surveyNotPublished = 2;
     public static int surveyNotHavingAlgorithm = 3;
     public static int surveyGroupFormationPossible = 4;
+    public static final String surveySuccess = "The survey has been submitted successfully!";
 }

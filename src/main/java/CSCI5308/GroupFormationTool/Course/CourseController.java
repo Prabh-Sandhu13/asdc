@@ -1,6 +1,10 @@
 package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
+import CSCI5308.GroupFormationTool.Survey.IResponse;
+import CSCI5308.GroupFormationTool.Survey.ISurvey;
+import CSCI5308.GroupFormationTool.Survey.ISurveyAbstractFactory;
+import CSCI5308.GroupFormationTool.Survey.SurveyInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.User;
@@ -24,6 +28,9 @@ public class CourseController {
     private static final Logger Log = LoggerFactory.getLogger(CourseController.class.getName());
     private IUser userInstance;
     private IStudentCSV studentCSV;
+    private ISurvey surveyInstance;
+    private IResponse responseInstance;
+
 
     @GetMapping("/courseList")
     public String courseList(Model model) {
@@ -79,7 +86,43 @@ public class CourseController {
     }
 
     @GetMapping(value = "/courseDetails")
-    public String courseDetail(@RequestParam(value = "courseName") String courseName, Model model) {
+    public String courseDetail(@RequestParam(value = "courseName") String courseName,
+    		@RequestParam(value = "courseId") String courseId, Model model) {
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
+        IUserAbstractFactory userAbstractFactory = UserInjector.instance().getUserAbstractFactory();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
+		ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
+		surveyInstance = surveyAbstractFactory.createSurveyInstance();
+		responseInstance = surveyAbstractFactory.createResponseInstance();
+        String userRole = null;
+        userInstance = userAbstractFactory.createUserInstance();
+        String emailId = authentication.getPrincipal().toString();
+        userRole = userCourses.getUserRoleByEmailId(emailId);
+            if (userRole.equals(DomainConstants.studentRole)) {
+            	if(surveyInstance.isSurveyPublished(courseId)) {
+            		model.addAttribute("surveyPublished", "true");
+            		if(surveyInstance.isSurveyCompleted(courseId,responseInstance.getResponseUser(emailId).getId()+"")) {
+            			model.addAttribute("surveyCompleted", null);
+            		}
+            		else {
+            			model.addAttribute("surveyCompleted", "true");
+            		}
+            	}
+            	else {
+            		model.addAttribute("surveyPublished", null);
+            	}
+                model.addAttribute("courseName", courseName);
+                model.addAttribute("courseId", courseId);
+                return "course/courseSurveyHome";
+            } else if (userRole.equals(DomainConstants.tARole)) {
+                model.addAttribute("courseName", courseName);
+                return "course/courseDetails";
+            } else if (userRole.equals(DomainConstants.instructorRole)) {
+                model.addAttribute("courseName", courseName);
+                return "course/courseDetails";
+            }
+    	
         model.addAttribute("courseName", courseName);
         return "course/courseDetails";
     }
