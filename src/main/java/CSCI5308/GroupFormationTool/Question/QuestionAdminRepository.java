@@ -158,4 +158,41 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
         }
         return questionList;
     }
+
+    @Override
+    public ArrayList<IQuestion> getSurveyQuestionListForInstructor(String emailId, int surveyId, String questionTitle) {
+        IQuestionAbstractFactory questionAbstractFactory = Injector.instance().getQuestionAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        StoredProcedure storedProcedure = null;
+        ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
+        try {
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getSurveyQuestionsForInstructor(?,?,?)");
+            storedProcedure.setInputStringParameter(1, emailId);
+            storedProcedure.setInputIntParameter(2, surveyId);
+            storedProcedure.setInputStringParameter(3, questionTitle);
+            ResultSet results = storedProcedure.executeWithResults();
+            if (results != null) {
+                while (results.next()) {
+                    {
+                        IQuestion question = questionAbstractFactory.createQuestionInstance();
+                        question.setId(results.getLong("question_id"));
+                        question.setText(results.getString("question_text"));
+                        question.setType(results.getInt("qtype_id"));
+                        question.setTitle(results.getString("title"));
+                        question.setCreatedDate(results.getDate("created_date"));
+                        questionList.add(question);
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            log.error("Could not execute the Stored procedure sp_getQuestionsForInstructor" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
+        } finally {
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+        return questionList;
+    }
 }

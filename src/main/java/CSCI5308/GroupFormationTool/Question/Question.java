@@ -2,6 +2,7 @@ package CSCI5308.GroupFormationTool.Question;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
+import CSCI5308.GroupFormationTool.Course.IUserCoursesRepository;
 import CSCI5308.GroupFormationTool.User.IUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,9 @@ import java.util.Set;
 
 public class Question implements IQuestion {
 
-    private long id;
+	ArrayList<IQuestion> questionList = null;
+	  
+	private long id;
 
     private IUser instructor;
 
@@ -31,6 +34,8 @@ public class Question implements IQuestion {
     private IQuestionManagerRepository questionManagerRepository;
 
     private IQuestionAdminRepository questionAdminRepository;
+    
+    private IUserCoursesRepository userCoursesRepository;
 
     private static final Logger log = LoggerFactory.getLogger(Question.class.getName());
 
@@ -197,5 +202,29 @@ public class Question implements IQuestion {
         }
         return false;
     }
+    
+    public ArrayList<IQuestion> getQuestionListForSurvey(String emailId, int surveyId, String courseId, String questionTitle)
+    {
+    	userCoursesRepository = Injector.instance().getUserCoursesRepository();
+    	
+    	String userType = userCoursesRepository.getUserRoleByEmailId(emailId);
+    	questionAdminRepository = Injector.instance().getQuestionAdminRepository();
+    	
+    	if(userType.equals(DomainConstants.instructorRole))
+    	{
+    		questionList = questionAdminRepository.getSurveyQuestionListForInstructor(emailId, surveyId, questionTitle);
+    	}
+    	else if(userType == "TA")
+    	{
+    		ArrayList<IUser> instructorsList = userCoursesRepository.getInstructorsForCourse(courseId);
+    	
+    		
+    		//get questions from all the instructors 
+    	
+    		questionList = questionAdminRepository.getQuestionListForInstructor(emailId);
+    	}
+    	
+    	return questionList;
+     }
 
 }

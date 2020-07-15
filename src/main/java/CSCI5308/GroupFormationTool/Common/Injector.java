@@ -20,6 +20,7 @@ import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.Security.ISecurityAbstractFactory;
 import CSCI5308.GroupFormationTool.Security.SecurityAbstractFactory;
 import CSCI5308.GroupFormationTool.Survey.ISurveyAbstractFactory;
+import CSCI5308.GroupFormationTool.Survey.ISurveyRepository;
 import CSCI5308.GroupFormationTool.Survey.SurveyAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUserRepository;
@@ -51,6 +52,7 @@ public class Injector {
     private SimpleMailMessage mailMessage;
     private JavaMailSenderImpl mailSender;
     private ICourseRepository courseRepository;
+    private ISurveyRepository surveyRepository;
     private IUserCoursesRepository userCoursesRepository;
     private IStudentRepository studentRepository;
     private IPolicyRepository policyRepository;
@@ -81,6 +83,7 @@ public class Injector {
         mailMessage = mailAbstractFactory.createSimpleMailMessageInstance();
         mailSender = mailAbstractFactory.createJavaMailSenderInstance();
         courseRepository = courseAbstractFactory.createCourseRepository();
+        surveyRepository = surveyAbstractFactory.createSurveyRepositoryInstance();
         userCoursesRepository = courseAbstractFactory.createUserCoursesRepository();
         studentRepository = courseAbstractFactory.createStudentRepository();
         policyRepository = passwordAbstractFactory.createPolicyRepository();
@@ -255,6 +258,14 @@ public class Injector {
 
     public ISurveyAbstractFactory getSurveyAbstractFactory() {
         return surveyAbstractFactory;
+    }
+    
+    public ISurveyRepository getSurveyRepository() {
+        return surveyRepository;
+    }
+
+    public void setSurveyRepository(ISurveyRepository surveyRepository) {
+        this.surveyRepository = surveyRepository;
     }
 
     public IGroupFormationAbstractFactory getGroupFormationAbstractFactory() {

@@ -11,4 +11,6 @@ public interface IQuestionAdminRepository {
     IQuestion getQuestionById(long questionId);
 
     ArrayList<IChoice> getOptionsForTheQuestion(long questionId);
+
+	ArrayList<IQuestion> getSurveyQuestionListForInstructor(String emailId, int surveyId, String questionTitle);
 }

@@ -45,5 +45,7 @@ public interface IQuestion {
     IQuestion getQuestionById(long questionId);
 
     ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy);
+    
+    ArrayList<IQuestion> getQuestionListForSurvey(String emailId, int surveyId, String courseId, String questionTitle);
 
 }
