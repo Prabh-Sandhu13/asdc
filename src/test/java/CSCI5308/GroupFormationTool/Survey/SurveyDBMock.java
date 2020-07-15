@@ -1,8 +1,8 @@
 package CSCI5308.GroupFormationTool.Survey;
 
-import java.util.ArrayList;
-
 import CSCI5308.GroupFormationTool.Question.IQuestion;
+
+import java.util.ArrayList;
 
 public class SurveyDBMock implements ISurveyRepository {
     @Override
@@ -30,27 +30,48 @@ public class SurveyDBMock implements ISurveyRepository {
         return 1;
     }
 
-	@Override
-	public String getSurveyId(String courseId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public String getSurveyId(String courseId) {
+        return "1";
+    }
 
-	@Override
-	public ArrayList<IQuestion> getSurveyQuestions(String surveyId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public ArrayList<IQuestion> getSurveyQuestions(String surveyId) {
+        return null;
+    }
 
-	@Override
-	public boolean isSurveyPublished(String surveyId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean isSurveyPublished(String surveyId) {
+        return false;
+    }
 
-	@Override
-	public boolean isSurveyCompleted(String surveyId, String userId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean isSurveyCompleted(String surveyId, String userId) {
+        return false;
+    }
+
+    @Override
+    public int createSurvey(String courseId) {
+        return 0;
+    }
+
+    @Override
+    public boolean addQuestionToSurvey(long questionId, long surveyId) {
+        return false;
+    }
+
+    @Override
+    public ArrayList<IQuestion> getQuestionsForSurvey(String courseId) {
+        return null;
+    }
+
+    @Override
+    public boolean deleteQuestionFromSurvey(long questionId, long surveyId) {
+        return false;
+    }
+
+    @Override
+    public ArrayList<IQuestion> getSurveyQuestionListForInstructor(String emailId, int surveyId, String questionTitle) {
+        return null;
+    }
 }

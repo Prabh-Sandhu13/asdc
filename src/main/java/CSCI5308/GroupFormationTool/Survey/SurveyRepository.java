@@ -1,20 +1,16 @@
 package CSCI5308.GroupFormationTool.Survey;
 
-
+import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Database.DatabaseInjector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
+import CSCI5308.GroupFormationTool.Question.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Question.IChoice;
-import CSCI5308.GroupFormationTool.Question.IQuestion;
-import CSCI5308.GroupFormationTool.Question.IQuestionAbstractFactory;
-import CSCI5308.GroupFormationTool.Question.IQuestionAdminRepository;
-import CSCI5308.GroupFormationTool.Question.QuestionInjector;
 
 public class SurveyRepository implements ISurveyRepository {
 
@@ -46,10 +42,10 @@ public class SurveyRepository implements ISurveyRepository {
         }
         return status;
     }
-	
-	@Override
+
+    @Override
     public String getSurveyId(String courseId) {
-		String surveyId = null;
+        String surveyId = null;
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         try {
@@ -73,57 +69,113 @@ public class SurveyRepository implements ISurveyRepository {
                 storedProcedure.removeConnections();
             }
         }
-
         return surveyId;
     }
-	
-	@Override
-	public ArrayList<IQuestion> getSurveyQuestions(String surveyId) {
-        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
-        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
-        ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
-        ArrayList<IQuestion> surveyQuestions = surveyAbstractFactory.createSurveyQuestionListInstance();
+
+    @Override
+    public boolean deleteQuestionFromSurvey(long questionId, long surveyId) {
         StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
-                    ("sp_getSurveyQuestions(?)");
-            storedProcedure.setInputStringParameter(1, surveyId);
+                    ("sp_deleteSurveyQuestion(?,?)");
+            storedProcedure.setInputIntParameter(1, surveyId);
+            storedProcedure.setInputIntParameter(2, questionId);
+            storedProcedure.execute();
+        } catch (SQLException ex) {
+            return false;
+        } finally {
+            if (null != storedProcedure) {
+                storedProcedure.removeConnections();
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public ArrayList<IQuestion> getSurveyQuestionListForInstructor(String emailId, int surveyId, String questionTitle) {
+        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        StoredProcedure storedProcedure = null;
+        ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
+        try {
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getSurveyQuestionsForInstructor(?,?,?)");
+            storedProcedure.setInputStringParameter(1, emailId);
+            storedProcedure.setInputIntParameter(2, surveyId);
+            storedProcedure.setInputStringParameter(3, questionTitle);
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
                 while (results.next()) {
                     {
-                    	IQuestion question = questionAbstractFactory.createQuestionInstance();
-                    	question.setId(Long.parseLong(results.getString("question_id")));
-                    	question.setTitle(results.getString("title"));
-                    	question.setText(results.getString("question_text"));
-                    	question.setType(Integer.parseInt(results.getString("qtype_id")));
-                    	if(question.getType() == DomainConstants.MCQOne||
-                    			question.getType() == DomainConstants.MCQMultiple) {
-                            questionAdminRepository = QuestionInjector.instance().getQuestionAdminRepository();
-                    		ArrayList<IChoice> choices= questionAdminRepository.getOptionsForTheQuestion(question.getId());
-                    		question.setChoices(choices);
-                    	}
-                        surveyQuestions.add(question);
+                        IQuestion question = questionAbstractFactory.createQuestionInstance();
+                        question.setId(results.getLong("question_id"));
+                        question.setText(results.getString("question_text"));
+                        question.setType(results.getInt("qtype_id"));
+                        question.setTitle(results.getString("title"));
+                        question.setCreatedDate(results.getDate("created_date"));
+                        questionList.add(question);
                     }
                 }
             }
         } catch (SQLException ex) {
-            log.error("Could not execute the Stored procedure sp_getSurveyQuestions" +
+            log.error("Could not execute the Stored procedure sp_getSurveyQuestionsForInstructor" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
-        } 
-        
-        finally {
-
+        } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
         }
-
-        return surveyQuestions;
+        return questionList;
     }
-	
-	@Override
-	public boolean isSurveyPublished(String surveyId) {
+
+    @Override
+    public int createSurvey(String courseId) {
+        StoredProcedure storedProcedure = null;
+        int surveyId = -1;
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        try {
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_createSurvey(?,?)");
+            storedProcedure.setInputStringParameter(1, courseId);
+            storedProcedure.registerOutputParameterLong(2);
+            storedProcedure.execute();
+            surveyId = (int) storedProcedure.getParameterLong(2);
+        } catch (SQLException ex) {
+            return -1;
+        } finally {
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+        return surveyId;
+    }
+
+    @Override
+    public boolean addQuestionToSurvey(long questionId, long surveyId) {
+        StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        boolean status = true;
+        try {
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_addQuestionToSurvey(?,?,?)");
+            storedProcedure.setInputIntParameter(1, surveyId);
+            storedProcedure.setInputIntParameter(2, questionId);
+            storedProcedure.registerOutputParameterBoolean(3);
+            storedProcedure.execute();
+            status = storedProcedure.getParameter(3);
+        } catch (SQLException ex) {
+            return false;
+        } finally {
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+        return status;
+    }
+
+    @Override
+    public boolean isSurveyPublished(String surveyId) {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         boolean published = false;
@@ -132,15 +184,13 @@ public class SurveyRepository implements ISurveyRepository {
                     ("sp_checkSurveyPublished(?)");
             storedProcedure.setInputStringParameter(1, surveyId);
             ResultSet results = storedProcedure.executeWithResults();
-            if(results.next()) {
-            	published = true;
+            if (results.next()) {
+                published = true;
             }
         } catch (SQLException ex) {
             log.error("Could not execute the Stored procedure sp_getSurveyQuestions" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
-        } 
-        
-        finally {
+        } finally {
 
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -148,51 +198,50 @@ public class SurveyRepository implements ISurveyRepository {
         }
         return published;
     }
-	
-	@Override
-	public boolean isSurveyCompleted(String surveyId, String userId) {
+
+    @Override
+    public int getSurveyIdByCourseId(String courseId) {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
-        boolean completed = false;
+        int status = -1;
         try {
+            log.info("Calling stored procedure sp_getSurveyId to fetch the groups for the course");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
-                    ("sp_checkSurveyCompleted(?,?)");
-            storedProcedure.setInputStringParameter(1, surveyId);
-            storedProcedure.setInputStringParameter(2, userId);
+                    ("sp_getSurveyId(?)");
+            storedProcedure.setInputStringParameter(1, courseId);
             ResultSet results = storedProcedure.executeWithResults();
-            if(results.next()) {
-            	completed = true;
+            if (results != null) {
+                while (results.next()) {
+                    status = (int) results.getLong("survey_id");
+                }
             }
-        } catch (SQLException ex) {
-            log.error("Could not execute the Stored procedure sp_checkSurveyCompleted" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
-        } 
-        
-        finally {
-
+        } catch (SQLException exception) {
+            log.error("Could not execute the Stored procedure sp_getSurveyId" +
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
+            return -1;
+        } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
         }
-
-		return completed;
-	}
+        return status;
+    }
 
     @Override
-    public boolean checkIfSurveyPublished(String courseId) {
+    public boolean publishSurvey(String courseId) {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         boolean status = false;
         try {
-            log.info("Calling stored procedure sp_checkIfSurveyPublished to fetch the groups for the course");
+            log.info("Calling stored procedure sp_publishSurvey to fetch the groups for the course");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
-                    ("sp_checkIfSurveyPublished(?,?)");
+                    ("sp_publishSurvey(?,?)");
             storedProcedure.setInputStringParameter(1, courseId);
             storedProcedure.registerOutputParameterBoolean(2);
             storedProcedure.execute();
             status = storedProcedure.getParameter(2);
         } catch (SQLException exception) {
-            log.error("Could not execute the Stored procedure sp_checkIfSurveyPublished" +
+            log.error("Could not execute the Stored procedure sp_publishSurvey" +
                     " because of an SQL Exception " + exception.getLocalizedMessage());
             return false;
         } finally {
@@ -229,20 +278,20 @@ public class SurveyRepository implements ISurveyRepository {
     }
 
     @Override
-    public boolean publishSurvey(String courseId) {
+    public boolean checkIfSurveyPublished(String courseId) {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         boolean status = false;
         try {
-            log.info("Calling stored procedure sp_publishSurvey to fetch the groups for the course");
+            log.info("Calling stored procedure sp_checkIfSurveyPublished to fetch the groups for the course");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
-                    ("sp_publishSurvey(?,?)");
+                    ("sp_checkIfSurveyPublished(?,?)");
             storedProcedure.setInputStringParameter(1, courseId);
             storedProcedure.registerOutputParameterBoolean(2);
             storedProcedure.execute();
             status = storedProcedure.getParameter(2);
         } catch (SQLException exception) {
-            log.error("Could not execute the Stored procedure sp_publishSurvey" +
+            log.error("Could not execute the Stored procedure sp_checkIfSurveyPublished" +
                     " because of an SQL Exception " + exception.getLocalizedMessage());
             return false;
         } finally {
@@ -254,32 +303,115 @@ public class SurveyRepository implements ISurveyRepository {
     }
 
     @Override
-    public int getSurveyIdByCourseId(String courseId) {
+    public boolean isSurveyCompleted(String surveyId, String userId) {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
-        int status = -1;
+        boolean completed = false;
         try {
-            log.info("Calling stored procedure sp_getSurveyId to fetch the groups for the course");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
-                    ("sp_getSurveyId(?)");
+                    ("sp_checkSurveyCompleted(?,?)");
+            storedProcedure.setInputStringParameter(1, surveyId);
+            storedProcedure.setInputStringParameter(2, userId);
+            ResultSet results = storedProcedure.executeWithResults();
+            if (results.next()) {
+                completed = true;
+            }
+        } catch (SQLException ex) {
+            log.error("Could not execute the Stored procedure sp_checkSurveyCompleted" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
+        } finally {
+
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+
+        return completed;
+    }
+
+    @Override
+    public ArrayList<IQuestion> getSurveyQuestions(String surveyId) {
+        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
+        ArrayList<IQuestion> surveyQuestions = surveyAbstractFactory.createSurveyQuestionListInstance();
+        StoredProcedure storedProcedure = null;
+        try {
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getSurveyQuestions(?)");
+            storedProcedure.setInputStringParameter(1, surveyId);
+            ResultSet results = storedProcedure.executeWithResults();
+            if (results != null) {
+                while (results.next()) {
+                    {
+                        IQuestion question = questionAbstractFactory.createQuestionInstance();
+                        question.setId(Long.parseLong(results.getString("question_id")));
+                        question.setTitle(results.getString("title"));
+                        question.setText(results.getString("question_text"));
+                        question.setType(Integer.parseInt(results.getString("qtype_id")));
+                        if (question.getType() == DomainConstants.MCQOne ||
+                                question.getType() == DomainConstants.MCQMultiple) {
+                            questionAdminRepository = QuestionInjector.instance().getQuestionAdminRepository();
+                            ArrayList<IChoice> choices = questionAdminRepository.getOptionsForTheQuestion(question.getId());
+                            question.setChoices(choices);
+                        }
+                        surveyQuestions.add(question);
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            log.error("Could not execute the Stored procedure sp_getSurveyQuestions" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
+        } finally {
+
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+
+        return surveyQuestions;
+    }
+
+    @Override
+    public ArrayList<IQuestion> getQuestionsForSurvey(String courseId) {
+        StoredProcedure storedProcedure = null;
+        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
+        try {
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getSurveyQuestionsForCourse(?)");
             storedProcedure.setInputStringParameter(1, courseId);
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
                 while (results.next()) {
-                    status = (int) results.getLong("survey_id");
+                    {
+                        IQuestion question = questionAbstractFactory.createQuestionInstance();
+                        question.setId(results.getLong("question_id"));
+                        question.setText(results.getString("question_text"));
+                        question.setType(results.getInt("qtype_id"));
+                        question.setTitle(results.getString("title"));
+                        questionList.add(question);
+                    }
                 }
             }
-        } catch (SQLException exception) {
-            log.error("Could not execute the Stored procedure sp_getSurveyId" +
-                    " because of an SQL Exception " + exception.getLocalizedMessage());
-            return -1;
+        } catch (SQLException ex) {
+
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
         }
-        return status;
+        return questionList;
     }
-
-	
 }
+
+
+
+
+
+
+
+
+
+

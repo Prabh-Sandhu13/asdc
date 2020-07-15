@@ -121,7 +121,6 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
 
 
     @Override
-
     public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortField) {
         StoredProcedure storedProcedure = null;
         IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
