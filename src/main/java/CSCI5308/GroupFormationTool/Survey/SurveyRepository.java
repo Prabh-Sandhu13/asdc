@@ -94,4 +94,57 @@ public class SurveyRepository implements ISurveyRepository {
 		return surveyQuestions;
 	}
 	
+	@Override
+	public boolean isSurveyPublished(String surveyId) {
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        StoredProcedure storedProcedure = null;
+        boolean published = false;
+        try {
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_checkSurveyPublished(?)");
+            storedProcedure.setInputStringParameter(1, surveyId);
+            ResultSet results = storedProcedure.executeWithResults();
+            if(results.next()) {
+            	published = true;
+            }
+        } catch (SQLException ex) {
+            Log.error("Could not execute the Stored procedure sp_getSurveyQuestions" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
+        } 
+        
+        finally {
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+		return published;
+	}
+	
+	@Override
+	public boolean isSurveyCompleted(String surveyId, String userId) {
+        IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
+        StoredProcedure storedProcedure = null;
+        boolean completed = false;
+        try {
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_checkSurveyCompleted(?,?)");
+            storedProcedure.setInputStringParameter(1, surveyId);
+            storedProcedure.setInputStringParameter(2, userId);
+            ResultSet results = storedProcedure.executeWithResults();
+            if(results.next()) {
+            	completed = true;
+            }
+        } catch (SQLException ex) {
+            Log.error("Could not execute the Stored procedure sp_checkSurveyCompleted" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
+        } 
+        
+        finally {
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+		return completed;
+	}
+	
 }

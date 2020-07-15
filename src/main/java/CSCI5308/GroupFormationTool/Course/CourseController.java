@@ -2,6 +2,9 @@ package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
+import CSCI5308.GroupFormationTool.Survey.IResponse;
+import CSCI5308.GroupFormationTool.Survey.ISurvey;
+import CSCI5308.GroupFormationTool.Survey.ISurveyAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.User;
@@ -24,6 +27,8 @@ public class CourseController {
 
     private IUser userInstance;
     private IStudentCSV studentCSV;
+    private ISurvey surveyInstance;
+    private IResponse responseInstance;
     private static final Logger Log = LoggerFactory.getLogger(CourseController.class.getName());
 
     @GetMapping("/courseList")
@@ -78,13 +83,26 @@ public class CourseController {
         IUserAbstractFactory userAbstractFactory = Injector.instance().getUserAbstractFactory();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
+		ISurveyAbstractFactory surveyAbstractFactory = Injector.instance().getSurveyAbstractFactory();
+		surveyInstance = surveyAbstractFactory.createSurveyInstance();
+		responseInstance = surveyAbstractFactory.createResponseInstance();
         String userRole = null;
         userInstance = userAbstractFactory.createUserInstance();
         String emailId = authentication.getPrincipal().toString();
         userRole = userCourses.getUserRoleByEmailId(emailId);
             if (userRole.equals(DomainConstants.studentRole)) {
-            	//Check here if published and add the parameter
-            	model.addAttribute("surveyPublished", "true");
+            	if(surveyInstance.isSurveyPublished(courseId)) {
+            		model.addAttribute("surveyPublished", "true");
+            		if(surveyInstance.isSurveyCompleted(courseId,responseInstance.getResponseUser(emailId).getId()+"")) {
+            			model.addAttribute("surveyCompleted", null);
+            		}
+            		else {
+            			model.addAttribute("surveyCompleted", "true");
+            		}
+            	}
+            	else {
+            		model.addAttribute("surveyPublished", null);
+            	}
                 model.addAttribute("courseName", courseName);
                 model.addAttribute("courseId", courseId);
                 return "course/courseSurveyHome";

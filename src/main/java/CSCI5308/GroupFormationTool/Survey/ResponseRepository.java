@@ -3,22 +3,19 @@ package CSCI5308.GroupFormationTool.Survey;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
-import org.apache.commons.text.RandomStringGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.Course.ICourseAbstractFactory;
-import CSCI5308.GroupFormationTool.Course.StudentCSV;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
-import CSCI5308.GroupFormationTool.Security.IPasswordEncryptor;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 
 public class ResponseRepository implements IResponseRepository {
+	private static final Logger Log = LoggerFactory.getLogger(ResponseRepository.class.getName());
     @Override
     public IUser getResponseUser(String emailId) {
         IDatabaseAbstractFactory databaseAbstractFactory = Injector.instance().getDatabaseAbstractFactory();
@@ -43,6 +40,8 @@ public class ResponseRepository implements IResponseRepository {
                 }
             }
         } catch (SQLException ex) {
+            Log.error("Could not execute the Stored procedure sp_getUserId" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
 
         } finally {
             if (storedProcedure != null) {
@@ -70,7 +69,8 @@ public class ResponseRepository implements IResponseRepository {
                 }
             }
         } catch (SQLException ex) {
-
+            Log.error("Could not execute the Stored procedure sp_getResponseOptionId" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -101,7 +101,8 @@ public class ResponseRepository implements IResponseRepository {
                 }
                 storedProcedure.execute();
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                Log.error("Could not execute the Stored procedure sp_addResponse" +
+                        " because of an SQL Exception " + ex.getLocalizedMessage());
             } finally {
                 if (storedProcedure != null) {
                     storedProcedure.removeConnections();

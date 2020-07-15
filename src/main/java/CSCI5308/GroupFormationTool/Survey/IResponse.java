@@ -3,6 +3,8 @@ package CSCI5308.GroupFormationTool.Survey;
 import java.util.ArrayList;
 import java.util.Map;
 
+import CSCI5308.GroupFormationTool.User.IUser;
+
 public interface IResponse {
 	public long getUserId();
 
@@ -31,4 +33,6 @@ public interface IResponse {
 	public ArrayList<IResponse> createResponseList(Map<String,String> studentResponse);
 	
 	public boolean storeResponses(ArrayList<IResponse> responseList);
+	
+	public IUser getResponseUser(String emailId);
 }

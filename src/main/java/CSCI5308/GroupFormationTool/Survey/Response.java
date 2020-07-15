@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool.Survey;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.security.core.Authentication;
@@ -9,7 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.Course.StudentCSV;
 import CSCI5308.GroupFormationTool.Question.IQuestion;
 import CSCI5308.GroupFormationTool.Question.IQuestionAdminRepository;
 import CSCI5308.GroupFormationTool.User.IUser;
@@ -123,6 +121,11 @@ public class Response implements IResponse {
 		responseRepository = Injector.instance().getResponseRepository();
 		return responseRepository.storeResponses(responseList);
 		
+	}
+	
+	public IUser getResponseUser(String emailId) {
+		responseRepository = Injector.instance().getResponseRepository();
+		return responseRepository.getResponseUser(emailId);
 	}
 
 }

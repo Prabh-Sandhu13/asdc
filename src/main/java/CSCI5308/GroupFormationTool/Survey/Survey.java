@@ -74,5 +74,17 @@ public class Survey implements ISurvey {
 		surveyRepository = Injector.instance().getSurveyRepository();
 		return surveyRepository.getSurveyQuestions(surveyId);
 	}
+	@Override
+	public boolean isSurveyPublished(String courseId) {
+		surveyRepository = Injector.instance().getSurveyRepository();
+		String surveyId = surveyRepository.getSurveyId(courseId);
+		return surveyRepository.isSurveyPublished(surveyId);
+	}
+	@Override
+	public boolean isSurveyCompleted(String courseId, String userId) {
+		surveyRepository = Injector.instance().getSurveyRepository();
+		String surveyId = surveyRepository.getSurveyId(courseId);
+		return surveyRepository.isSurveyCompleted(surveyId, userId);
+	}
 	
 }

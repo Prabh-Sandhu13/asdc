@@ -1533,3 +1533,64 @@ org.thymeleaf.exceptions.TemplateProcessingException: Could not parse as express
 2020-07-14 18:51:43.791 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id
 2020-07-14 18:51:44.592 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id
 2020-07-14 18:51:52.680 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 22:17:42.261 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 12804 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 22:17:42.279 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 22:17:43.824 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 22:17:43.832 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 22:17:44.049 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 22:17:44.867 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.145 seconds (JVM running for 4.359)
+2020-07-14 22:25:00.069 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 14956 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 22:25:00.107 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 22:25:06.077 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 22:25:06.086 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 22:25:06.314 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 22:25:07.137 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 8.768 seconds (JVM running for 13.047)
+2020-07-14 22:25:23.486 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 22:25:26.640 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 22:25:26.815 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 22:25:26.817 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 22:25:26.939 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 22:25:28.622 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 22:25:32.297 [http-nio-8080-exec-6] ERROR C.G.Survey.SurveyRepository: Could not execute the Stored procedure sp_checkSurveyCompleted because of an SQL Exception No value specified for parameter 2
+2020-07-14 22:25:39.159 [http-nio-8080-exec-7] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 22:27:15.476 [http-nio-8080-exec-10] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 22:28:16.491 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 14460 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 22:28:16.515 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 22:28:18.151 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 22:28:18.160 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 22:28:18.379 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 22:28:19.229 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.398 seconds (JVM running for 5.284)
+2020-07-14 22:28:33.679 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 22:28:37.134 [http-nio-8080-exec-2] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 22:28:40.807 [http-nio-8080-exec-4] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 22:28:40.990 [http-nio-8080-exec-4] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 22:28:40.998 [http-nio-8080-exec-4] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 22:28:41.121 [http-nio-8080-exec-4] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 22:28:42.692 [http-nio-8080-exec-6] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 22:28:50.585 [http-nio-8080-exec-8] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 22:29:09.711 [http-nio-8080-exec-9] ERROR C.G.Survey.SurveyRepository: Could not execute the Stored procedure sp_checkSurveyCompleted because of an SQL Exception No value specified for parameter 2
+2020-07-14 22:46:41.281 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 6984 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-14 22:46:41.299 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-14 22:46:42.891 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-14 22:46:42.893 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-14 22:46:43.103 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-14 22:46:43.955 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.213 seconds (JVM running for 4.436)
+2020-07-14 22:46:50.609 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-14 22:46:50.845 [http-nio-8080-exec-1] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 22:46:57.375 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-14 22:46:57.715 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-14 22:46:57.724 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-14 22:46:57.871 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-14 22:47:00.223 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 22:47:05.412 [http-nio-8080-exec-6] ERROR C.G.Survey.ResponseRepository: Could not execute the Stored procedure sp_getUserId because of an SQL Exception Column 'password' not found.
+2020-07-14 22:47:10.762 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 22:47:11.027 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-14 22:48:02.666 [http-nio-8080-exec-8] ERROR C.G.Survey.ResponseRepository: Could not execute the Stored procedure sp_getUserId because of an SQL Exception Column 'password' not found.
+2020-07-14 22:48:02.917 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id
+2020-07-14 22:48:03.212 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id
+2020-07-14 22:48:03.796 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id
+2020-07-14 22:48:04.554 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id
+2020-07-14 22:48:04.845 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id
+2020-07-14 22:48:10.661 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: Inside course controller
+2020-07-14 22:48:14.236 [http-nio-8080-exec-10] ERROR C.G.Survey.ResponseRepository: Could not execute the Stored procedure sp_getUserId because of an SQL Exception Column 'password' not found.
+2020-07-14 22:48:17.364 [http-nio-8080-exec-1] INFO  C.G.Course.CourseController: Inside course controller

@@ -3,6 +3,8 @@ package CSCI5308.GroupFormationTool.Survey;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,13 +17,13 @@ import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Common.Injector;
 import CSCI5308.GroupFormationTool.Course.ICourseAbstractFactory;
 import CSCI5308.GroupFormationTool.Course.IUserCourses;
-
 import CSCI5308.GroupFormationTool.Question.IQuestion;
 
 @Controller
 public class ResponseController {
 	private ISurvey surveyInstance;
 	private IResponse responseInstance;
+	private static final Logger Log = LoggerFactory.getLogger(ResponseController.class.getName());
     @GetMapping("/courseSurveyResponse")
     public String takeSurvey(@RequestParam(value = "courseName") String courseName,
     		@RequestParam(value = "courseId") String courseId,Model model) {
@@ -42,6 +44,7 @@ public class ResponseController {
             	return "course/courseSurveyResponse";
             }
             else {
+            	Log.warn("Other type of user tried directly accessing response page");
             	return "redirect:login";
             }
     }
