@@ -6,6 +6,8 @@ import CSCI5308.GroupFormationTool.Course.ICourse;
 import CSCI5308.GroupFormationTool.Course.IUserCoursesRepository;
 import CSCI5308.GroupFormationTool.Question.IQuestion;
 import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
+import CSCI5308.GroupFormationTool.User.UserInjector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -211,6 +213,7 @@ public class Survey implements ISurvey {
     public ArrayList<IQuestion> getQuestionListForSurvey(String emailId, int surveyId, String courseId,
                                                          String questionTitle) {
         IUserCoursesRepository userCoursesRepository;
+        IUserAbstractFactory userAbstractFactory = UserInjector.instance().getUserAbstractFactory();
         userCoursesRepository = CourseInjector.instance().getUserCoursesRepository();
         String userType = userCoursesRepository.getUserRoleByEmailId(emailId);
         surveyRepository = SurveyInjector.instance().getSurveyRepository();
@@ -219,7 +222,11 @@ public class Survey implements ISurvey {
             questionList = surveyRepository.getSurveyQuestionListForInstructor(emailId, surveyId, questionTitle);
         } else if (userType == "TA") {
             ArrayList<IUser> instructorsList = userCoursesRepository.getInstructorsForCourse(courseId);
-            //get questions from all the instructors
+            ArrayList<Long> instructorIds = userAbstractFactory.createUserIdList();
+            for (IUser user : instructorsList) {
+                instructorIds.add(user.getId());
+            }
+            questionList = surveyRepository.getSurveyQuestionListForTA(instructorIds, surveyId, questionTitle);
         }
         return questionList;
     }

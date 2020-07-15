@@ -74,4 +74,10 @@ public class SurveyDBMock implements ISurveyRepository {
     public ArrayList<IQuestion> getSurveyQuestionListForInstructor(String emailId, int surveyId, String questionTitle) {
         return null;
     }
+
+    @Override
+    public ArrayList<IQuestion> getSurveyQuestionListForTA(ArrayList<Long> instructorIds, int surveyId,
+                                                           String questionTitle) {
+        return null;
+    }
 }

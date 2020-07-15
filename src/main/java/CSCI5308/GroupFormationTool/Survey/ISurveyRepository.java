@@ -34,4 +34,5 @@ public interface ISurveyRepository {
 
     ArrayList<IQuestion> getSurveyQuestionListForInstructor(String emailId, int surveyId, String questionTitle);
 
+    ArrayList<IQuestion> getSurveyQuestionListForTA(ArrayList<Long> instructorIds, int surveyId, String questionTitle);
 }

@@ -39,12 +39,17 @@
             </table>
         </div>
         <br/>
-        <div class="text-center">
+        <div class="text-center" th:if="${!published and created ==-1}">
             <a th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}"
                class="btn btn-primary btn-md">Create your Course Survey
             </a>
         </div>
-        <br/> <br/>
+        <div class="text-center" th:if="${!published and created !=-1}">
+            <a th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}"
+               class="btn btn-primary btn-md">Edit your Course Survey
+            </a>
+        </div>
+        <br/>
         <div class="text-center">
             <a th:href="@{/courseList}">
                 <button type="submit" class="btn btn-success btn-sm">Back

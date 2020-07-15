@@ -5,6 +5,7 @@ import CSCI5308.GroupFormationTool.Database.DatabaseInjector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import CSCI5308.GroupFormationTool.Question.*;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -120,6 +121,43 @@ public class SurveyRepository implements ISurveyRepository {
             }
         } catch (SQLException ex) {
             log.error("Could not execute the Stored procedure sp_getSurveyQuestionsForInstructor" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
+        } finally {
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+        return questionList;
+    }
+
+    @Override
+    public ArrayList<IQuestion> getSurveyQuestionListForTA(ArrayList<Long> instructorIds, int surveyId, String questionTitle) {
+        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        StoredProcedure storedProcedure = null;
+        ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
+        try {
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getSurveyQuestionsForTA(?,?,?)");
+            storedProcedure.setInputStringParameter(1, StringUtils.join(instructorIds, ','));
+            storedProcedure.setInputIntParameter(2, surveyId);
+            storedProcedure.setInputStringParameter(3, questionTitle);
+            ResultSet results = storedProcedure.executeWithResults();
+            if (results != null) {
+                while (results.next()) {
+                    {
+                        IQuestion question = questionAbstractFactory.createQuestionInstance();
+                        question.setId(results.getLong("question_id"));
+                        question.setText(results.getString("question_text"));
+                        question.setType(results.getInt("qtype_id"));
+                        question.setTitle(results.getString("title"));
+                        question.setCreatedDate(results.getDate("created_date"));
+                        questionList.add(question);
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            log.error("Could not execute the Stored procedure sp_getSurveyQuestionsForTA" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {

@@ -9,4 +9,6 @@ public interface IUserAbstractFactory {
     ArrayList<IUser> createUserListInstance();
 
     IUserRepository createUserRepositoryInstance();
+
+    ArrayList<Long> createUserIdList();
 }
