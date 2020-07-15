@@ -55,8 +55,20 @@
             <a th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}"
                class="btn btn-primary btn-md">Edit your Course Survey
             </a>
+<<<<<<< HEAD
         </div>
         <br/>
+=======
+        </div>
+        <br/>
+        <div class="text-center">
+            <a th:href="@{/survey/createSurveyFormula(courseId=${courseId},courseName=${courseName})}"
+               class="btn btn-primary btn-md">Create Course Group Creation Formula
+            </a>
+        </div>
+        <br/>
+        <div class="text-center">
+>>>>>>> e4244dc6a1f622a9dcf8eb08525fc021cf464ec6
         <div class="text-center" th:if="${!published}">
             <form th:action="@{/survey/publishSurvey(courseId=${courseId},courseName=${courseName})}"
                   method="post" role="form" data-toggle="validator">

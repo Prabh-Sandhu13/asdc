@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.GroupFormation.GroupFormationRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-13T16:07:24" hostname="Prabhjots-MacBook-Pro.local" time="0.0">
+<testsuite name="CSCI5308.GroupFormationTool.GroupFormation.GroupFormationRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-15T20:11:54" hostname="Prabhjots-MacBook-Pro.local" time="0.001">
   <properties/>
-  <testcase name="getGroupsForCourse()" classname="CSCI5308.GroupFormationTool.GroupFormation.GroupFormationRepositoryTest" time="0.0"/>
+  <testcase name="getGroupsForCourse()" classname="CSCI5308.GroupFormationTool.GroupFormation.GroupFormationRepositoryTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
