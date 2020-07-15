@@ -9,17 +9,7 @@ import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 
 public class SurveyFormulaRepository implements ISurveyFormulaRepository{
-    @Override
-    public ArrayList<ISurveyFormula> getSurveyFormulaForCourse(String courseId){
-        return null;
-    }
-    
-    @Override
-    public boolean CreateSurveyFormulaForCourse(ArrayList<ISurveyFormula> surveyAlgo){
-        return false;
-    }
-    
-    
+
     @Override
     public ArrayList<SurveyFormula> getSurveyDetailsToSetAlgo(String courseId) {
         StoredProcedure storedProcedure = null;

@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Course.CourseTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2020-07-13T16:07:20" hostname="Prabhjots-MacBook-Pro.local" time="0.035">
+<testsuite name="CSCI5308.GroupFormationTool.Course.CourseTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2020-07-15T20:11:50" hostname="Prabhjots-MacBook-Pro.local" time="0.032">
   <properties/>
-  <testcase name="getAllCoursesTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.014"/>
+  <testcase name="getAllCoursesTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.011"/>
   <testcase name="getCreditsTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.001"/>
-  <testcase name="setNameTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.001"/>
+  <testcase name="setNameTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.002"/>
   <testcase name="getNameTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.001"/>
-  <testcase name="createCourseTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.002"/>
+  <testcase name="createCourseTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.003"/>
   <testcase name="getCourseByIdTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.003"/>
   <testcase name="setIdTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.001"/>
   <testcase name="getIdTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.001"/>
-  <testcase name="getDescriptionTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.002"/>
-  <testcase name="deleteCourseTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.002"/>
+  <testcase name="getDescriptionTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.001"/>
+  <testcase name="deleteCourseTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.003"/>
   <testcase name="setDescriptionTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.001"/>
   <testcase name="setCreditsTest()" classname="CSCI5308.GroupFormationTool.Course.CourseTest" time="0.001"/>
-  <system-out><![CDATA[2020-07-13 13:07:20.262  INFO 22716 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
-2020-07-13 13:07:20.262  INFO 22716 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
-2020-07-13 13:07:20.263  INFO 22716 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
-2020-07-13 13:07:20.263  INFO 22716 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
-2020-07-13 13:07:20.270  INFO 22716 --- [    Test worker] C.GroupFormationTool.Course.Course       : Creating a new course and storing it in the database
-2020-07-13 13:07:20.271  INFO 22716 --- [    Test worker] C.GroupFormationTool.Course.Course       : Creating a new course and storing it in the database
-2020-07-13 13:07:20.273  INFO 22716 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by Id
-2020-07-13 13:07:20.273  INFO 22716 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by Id
-2020-07-13 13:07:20.274  INFO 22716 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by Id
-2020-07-13 13:07:20.274  INFO 22716 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by Id
-2020-07-13 13:07:20.281  INFO 22716 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the deleteCourse repository function to delete the course from the Database
-2020-07-13 13:07:20.282  INFO 22716 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the deleteCourse repository function to delete the course from the Database
+  <system-out><![CDATA[2020-07-15 17:11:50.657  INFO 37430 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
+2020-07-15 17:11:50.657  INFO 37430 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
+2020-07-15 17:11:50.657  INFO 37430 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
+2020-07-15 17:11:50.658  INFO 37430 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
+2020-07-15 17:11:50.665  INFO 37430 --- [    Test worker] C.GroupFormationTool.Course.Course       : Creating a new course and storing it in the database
+2020-07-15 17:11:50.665  INFO 37430 --- [    Test worker] C.GroupFormationTool.Course.Course       : Creating a new course and storing it in the database
+2020-07-15 17:11:50.667  INFO 37430 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by Id
+2020-07-15 17:11:50.668  INFO 37430 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by Id
+2020-07-15 17:11:50.668  INFO 37430 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by Id
+2020-07-15 17:11:50.668  INFO 37430 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by Id
+2020-07-15 17:11:50.675  INFO 37430 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the deleteCourse repository function to delete the course from the Database
+2020-07-15 17:11:50.676  INFO 37430 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the deleteCourse repository function to delete the course from the Database
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

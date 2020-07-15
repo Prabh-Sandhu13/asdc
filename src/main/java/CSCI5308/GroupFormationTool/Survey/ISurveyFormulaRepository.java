@@ -4,10 +4,6 @@ import java.util.ArrayList;
 
 public interface ISurveyFormulaRepository {
 
-    ArrayList<ISurveyFormula> getSurveyFormulaForCourse(String courseId);
-
-    boolean CreateSurveyFormulaForCourse(ArrayList<ISurveyFormula> surveyAlgo);
-
     ArrayList<SurveyFormula> getSurveyDetailsToSetAlgo(String courseId);
 
 	String getAlgoIdBySurveyId(int surveyId);

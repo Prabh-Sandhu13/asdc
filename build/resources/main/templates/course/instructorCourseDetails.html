@@ -39,9 +39,21 @@
             </table>
         </div>
         <br/>
-        <div class="text-center">
+        <div th:if="${!published and questionError !=null}" class="text-center">
+            <div class="validation-message alert alert-danger" role="alert"
+                 th:text="${questionError}"></div>
+            <br/>
+        </div>
+        <br/>
+        <div class="text-center" th:if="${!published and created==-1}">
             <a th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}"
                class="btn btn-primary btn-md">Create your Course Survey
+            </a>
+            <br/>
+        </div>
+        <div class="text-center" th:if="${!published and created!=-1}">
+            <a th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}"
+               class="btn btn-primary btn-md">Edit your Course Survey
             </a>
         </div>
         <br/>
@@ -52,6 +64,7 @@
         </div>
         <br/>
         <div class="text-center">
+        <div class="text-center" th:if="${!published}">
             <form th:action="@{/survey/publishSurvey(courseId=${courseId},courseName=${courseName})}"
                   method="post" role="form" data-toggle="validator">
                 <button type="submit" class="btn primary btn-md">
@@ -61,8 +74,8 @@
         </div>
         <br/>
         <div class="text-center">
-            <a th:href="@{/groupFormation/createGroup(courseId=${courseId},courseName=${courseName})}"
-               class="btn btn-primary btn-md">Create groups
+            <a th:href="@{/groupFormation/getGroups(courseId=${courseId},courseName=${courseName})}"
+               class="btn btn-primary btn-md">Form groups
             </a>
         </div>
         <br/> <br/>

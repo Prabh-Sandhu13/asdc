@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CSCI5308.GroupFormationTool.Survey.SurveyControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-15T20:11:54" hostname="Prabhjots-MacBook-Pro.local" time="0.019">
+  <properties/>
+  <testcase name="publishSurveyTest()" classname="CSCI5308.GroupFormationTool.Survey.SurveyControllerTest" time="0.019"/>
+  <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.7.RELEASE)
+
+2020-07-15 17:11:54.457  INFO 37430 --- [    Test worker] C.G.Survey.SurveyControllerTest          : Starting SurveyControllerTest on Prabhjots-MacBook-Pro.local with PID 37430 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 17:11:54.458  INFO 37430 --- [    Test worker] C.G.Survey.SurveyControllerTest          : No active profile set, falling back to default profiles: default
+2020-07-15 17:11:54.763  INFO 37430 --- [    Test worker] C.G.Survey.SurveyControllerTest          : Started SurveyControllerTest in 0.316 seconds (JVM running for 8.81)
+2020-07-15 17:11:54.767  INFO 37430 --- [    Test worker] C.G.Course.InstructorCourseController    : Getting survey id for the course
+2020-07-15 17:11:54.767  INFO 37430 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id
+2020-07-15 17:11:54.767  INFO 37430 --- [    Test worker] C.G.Course.InstructorCourseController    : Survey id for the courseSDCis 0
+2020-07-15 17:11:54.767  INFO 37430 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Publishing the survey
+2020-07-15 17:11:54.768  INFO 37430 --- [    Test worker] C.G.Course.InstructorCourseController    : Check condition for survey published or not result value true
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /survey/publishSurvey
+       Parameters = {courseName=[SDC], courseId=[CSCI3901], _csrf=[d2b96d9a-cab6-4103-8ae3-df71080e3dbb]}
+          Headers = []
+             Body = <no character encoding set>
+    Session Attrs = {}
+
+Handler:
+             Type = CSCI5308.GroupFormationTool.Survey.SurveyController
+           Method = CSCI5308.GroupFormationTool.Survey.SurveyController#publishSurvey(String, String, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = course/instructorCourseDetails
+             View = null
+        Attribute = published
+            value = true
+        Attribute = courseId
+            value = CSCI3901
+        Attribute = courseName
+            value = SDC
+        Attribute = created
+            value = 0
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="favicon.ico"/>
+    <title>Instructor Course Details</title>
+    <link
+            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous"/>
+
+</head>
+<body style="background-color: #e7ebee">
+<div class="container">
+    <div>
+        <p>You have not yet logged in to the application. Please login to
+            continue...</p>
+        <a href="/login">Click here to log in!</a>
+    </div>
+    
+</body>
+</html>
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2020-07-15 17:11:54.780  INFO 37430 --- [    Test worker] C.G.Course.InstructorCourseController    : Getting survey id for the course
+2020-07-15 17:11:54.781  INFO 37430 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id
+2020-07-15 17:11:54.781  INFO 37430 --- [    Test worker] C.G.Course.InstructorCourseController    : Survey id for the courseSDCis 0
+2020-07-15 17:11:54.781  INFO 37430 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Publishing the survey
+2020-07-15 17:11:54.781  INFO 37430 --- [    Test worker] C.G.Course.InstructorCourseController    : Check condition for survey published or not result value false
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /survey/publishSurvey
+       Parameters = {courseName=[SDC], courseId=[CSCI3901], _csrf=[ea618dcc-06ca-48ab-990c-2e2879a0b4b2]}
+          Headers = []
+             Body = <no character encoding set>
+    Session Attrs = {}
+
+Handler:
+             Type = CSCI5308.GroupFormationTool.Survey.SurveyController
+           Method = CSCI5308.GroupFormationTool.Survey.SurveyController#publishSurvey(String, String, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = course/instructorCourseDetails
+             View = null
+        Attribute = published
+            value = false
+        Attribute = questionError
+            value = Add atleast one question to the survey to publish the survey!!
+        Attribute = courseId
+            value = CSCI3901
+        Attribute = courseName
+            value = SDC
+        Attribute = created
+            value = 0
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="favicon.ico"/>
+    <title>Instructor Course Details</title>
+    <link
+            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous"/>
+
+</head>
+<body style="background-color: #e7ebee">
+<div class="container">
+    <div>
+        <p>You have not yet logged in to the application. Please login to
+            continue...</p>
+        <a href="/login">Click here to log in!</a>
+    </div>
+    
+</body>
+</html>
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

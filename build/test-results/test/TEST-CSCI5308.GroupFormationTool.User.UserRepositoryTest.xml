@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.User.UserRepositoryTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-07-13T16:07:23" hostname="Prabhjots-MacBook-Pro.local" time="0.005">
+<testsuite name="CSCI5308.GroupFormationTool.User.UserRepositoryTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-07-15T20:11:53" hostname="Prabhjots-MacBook-Pro.local" time="0.004">
   <properties/>
   <testcase name="createUserTest()" classname="CSCI5308.GroupFormationTool.User.UserRepositoryTest" time="0.001"/>
   <testcase name="getUserByBannerIdTest()" classname="CSCI5308.GroupFormationTool.User.UserRepositoryTest" time="0.001"/>
-  <testcase name="getUserByEmailIdTest()" classname="CSCI5308.GroupFormationTool.User.UserRepositoryTest" time="0.002"/>
+  <testcase name="getUserByEmailIdTest()" classname="CSCI5308.GroupFormationTool.User.UserRepositoryTest" time="0.001"/>
   <testcase name="getAdminDetailsTest()" classname="CSCI5308.GroupFormationTool.User.UserRepositoryTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
