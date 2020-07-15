@@ -2,6 +2,8 @@ package CSCI5308.GroupFormationTool.Survey;
 
 import java.util.ArrayList;
 
+import CSCI5308.GroupFormationTool.Question.IQuestion;
+
 public class SurveyAbstractFactory implements ISurveyAbstractFactory {
     @Override
     public ISurvey createSurveyInstance() {
@@ -26,5 +28,10 @@ public class SurveyAbstractFactory implements ISurveyAbstractFactory {
     @Override
     public ResponseRepository createResponseRepositoryInstance() {
         return new ResponseRepository();
+    }
+    
+    @Override
+    public ArrayList<IQuestion> createSurveyQuestionListInstance() {
+        return new ArrayList<IQuestion>();
     }
 }

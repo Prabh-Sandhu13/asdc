@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">2</div>
+<div class="counter">1</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.027s</div>
+<div class="counter">0.034s</div>
 <p>duration</p>
 </div>
 </td>
@@ -78,13 +78,8 @@
 </tr>
 </thead>
 <tr>
-<td class="success">formGroups()</td>
-<td class="success">0.016s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">saveGroups()</td>
-<td class="success">0.011s</td>
+<td class="success">formGroupsTest()</td>
+<td class="success">0.034s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -101,21 +96,26 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-13 13:07:24.032  INFO 22716 --- [    Test worker] C.G.G.GroupFormationControllerTest       : Starting GroupFormationControllerTest on Prabhjots-MacBook-Pro.local with PID 22716 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-13 13:07:24.033  INFO 22716 --- [    Test worker] C.G.G.GroupFormationControllerTest       : No active profile set, falling back to default profiles: default
-2020-07-13 13:07:24.335  INFO 22716 --- [    Test worker] C.G.G.GroupFormationControllerTest       : Started GroupFormationControllerTest in 0.312 seconds (JVM running for 7.872)
+2020-07-15 17:11:54.082  INFO 37430 --- [    Test worker] C.G.G.GroupFormationControllerTest       : Starting GroupFormationControllerTest on Prabhjots-MacBook-Pro.local with PID 37430 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 17:11:54.082  INFO 37430 --- [    Test worker] C.G.G.GroupFormationControllerTest       : No active profile set, falling back to default profiles: default
+2020-07-15 17:11:54.403  INFO 37430 --- [    Test worker] C.G.G.GroupFormationControllerTest       : Started GroupFormationControllerTest in 0.33 seconds (JVM running for 8.45)
+2020-07-15 17:11:54.413  INFO 37430 --- [    Test worker] C.G.G.GroupFormationController           : Checking if the survey can be used to form groups
+2020-07-15 17:11:54.413  INFO 37430 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course from the database
+2020-07-15 17:11:54.413  INFO 37430 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course from the database
+2020-07-15 17:11:54.413  INFO 37430 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey has an algorithm for group formation for the course from the database
+2020-07-15 17:11:54.414  INFO 37430 --- [    Test worker] C.G.G.GroupFormationController           : Getting the list of groups formed on the instructor's algorithm
 
 MockHttpServletRequest:
       HTTP Method = GET
-      Request URI = /groupFormation/createGroup
-       Parameters = {courseName=[SDC], courseId=[CSCI3901]}
+      Request URI = /groupFormation/getGroups
+       Parameters = {courseId=[CSCI 5308], courseName=[SDC]}
           Headers = []
              Body = &lt;no character encoding set&gt;
     Session Attrs = {}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.GroupFormation.GroupFormationController
-           Method = CSCI5308.GroupFormationTool.GroupFormation.GroupFormationController#formGroups(String, String, Model)
+           Method = CSCI5308.GroupFormationTool.GroupFormation.GroupFormationController#getGroups(String, String, Model)
 
 Async:
     Async started = false
@@ -125,10 +125,14 @@ Resolved Exception:
              Type = null
 
 ModelAndView:
-        View name = group/createGroup
+        View name = group/groupDetails
              View = null
+        Attribute = groups
+            value = {}
+        Attribute = showGroups
+            value = true
         Attribute = courseId
-            value = CSCI3901
+            value = CSCI 5308
         Attribute = courseName
             value = SDC
 
@@ -147,7 +151,7 @@ MockHttpServletResponse:
     &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
     &lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;/&gt;
-    &lt;title&gt;Create Group&lt;/title&gt;
+    &lt;title&gt;Groups Details&lt;/title&gt;
     &lt;link
             href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;
             rel=&quot;stylesheet&quot;
@@ -169,19 +173,20 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-13 13:07:24.360  INFO 22716 --- [    Test worker] C.G.G.GroupFormationController           : Fetching the groups for the course from the Group Formation Manager
+2020-07-15 17:11:54.427  INFO 37430 --- [    Test worker] C.G.G.GroupFormationController           : Checking if the survey can be used to form groups
+2020-07-15 17:11:54.427  INFO 37430 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course from the database
 
 MockHttpServletRequest:
-      HTTP Method = POST
-      Request URI = /groupFormation/saveGroup
-       Parameters = {courseId=[CSCI 5308], courseName=[SDC], _csrf=[3eb56e1b-33ee-4adb-9f8a-610f1abb786c]}
+      HTTP Method = GET
+      Request URI = /groupFormation/getGroups
+       Parameters = {courseId=[CSCI 5308], courseName=[SDC]}
           Headers = []
              Body = &lt;no character encoding set&gt;
     Session Attrs = {}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.GroupFormation.GroupFormationController
-           Method = CSCI5308.GroupFormationTool.GroupFormation.GroupFormationController#saveGroups(String, String, Model)
+           Method = CSCI5308.GroupFormationTool.GroupFormation.GroupFormationController#getGroups(String, String, Model)
 
 Async:
     Async started = false
@@ -193,8 +198,155 @@ Resolved Exception:
 ModelAndView:
         View name = group/groupDetails
              View = null
-        Attribute = groups
-            value = {}
+        Attribute = surveyNotCreated
+            value = Survey not created yet!
+        Attribute = showGroups
+            value = false
+        Attribute = courseId
+            value = CSCI 5308
+        Attribute = courseName
+            value = SDC
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:&quot;en&quot;, Content-Type:&quot;text/html;charset=UTF-8&quot;, X-Content-Type-Options:&quot;nosniff&quot;, X-XSS-Protection:&quot;1; mode=block&quot;, Cache-Control:&quot;no-cache, no-store, max-age=0, must-revalidate&quot;, Pragma:&quot;no-cache&quot;, Expires:&quot;0&quot;, X-Frame-Options:&quot;DENY&quot;]
+     Content type = text/html;charset=UTF-8
+             Body = &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;/&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
+    &lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;/&gt;
+    &lt;title&gt;Groups Details&lt;/title&gt;
+    &lt;link
+            href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;
+            rel=&quot;stylesheet&quot;
+            integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot;
+            crossorigin=&quot;anonymous&quot;/&gt;
+
+&lt;/head&gt;
+&lt;body style=&quot;background-color: #e7ebee&quot;&gt;
+&lt;div class=&quot;container&quot;&gt;
+    &lt;div&gt;
+        &lt;p&gt;You have not yet logged in to the application. Please login to
+            continue...&lt;/p&gt;
+        &lt;a href=&quot;/login&quot;&gt;Click here to log in!&lt;/a&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2020-07-15 17:11:54.431  INFO 37430 --- [    Test worker] C.G.G.GroupFormationController           : Checking if the survey can be used to form groups
+2020-07-15 17:11:54.431  INFO 37430 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course from the database
+2020-07-15 17:11:54.431  INFO 37430 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course from the database
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /groupFormation/getGroups
+       Parameters = {courseId=[CSCI 5308], courseName=[SDC]}
+          Headers = []
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = CSCI5308.GroupFormationTool.GroupFormation.GroupFormationController
+           Method = CSCI5308.GroupFormationTool.GroupFormation.GroupFormationController#getGroups(String, String, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = group/groupDetails
+             View = null
+        Attribute = surveyNotPublished
+            value = Survey not published yet!
+        Attribute = showGroups
+            value = false
+        Attribute = courseId
+            value = CSCI 5308
+        Attribute = courseName
+            value = SDC
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:&quot;en&quot;, Content-Type:&quot;text/html;charset=UTF-8&quot;, X-Content-Type-Options:&quot;nosniff&quot;, X-XSS-Protection:&quot;1; mode=block&quot;, Cache-Control:&quot;no-cache, no-store, max-age=0, must-revalidate&quot;, Pragma:&quot;no-cache&quot;, Expires:&quot;0&quot;, X-Frame-Options:&quot;DENY&quot;]
+     Content type = text/html;charset=UTF-8
+             Body = &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;/&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
+    &lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;/&gt;
+    &lt;title&gt;Groups Details&lt;/title&gt;
+    &lt;link
+            href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;
+            rel=&quot;stylesheet&quot;
+            integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot;
+            crossorigin=&quot;anonymous&quot;/&gt;
+
+&lt;/head&gt;
+&lt;body style=&quot;background-color: #e7ebee&quot;&gt;
+&lt;div class=&quot;container&quot;&gt;
+    &lt;div&gt;
+        &lt;p&gt;You have not yet logged in to the application. Please login to
+            continue...&lt;/p&gt;
+        &lt;a href=&quot;/login&quot;&gt;Click here to log in!&lt;/a&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2020-07-15 17:11:54.435  INFO 37430 --- [    Test worker] C.G.G.GroupFormationController           : Checking if the survey can be used to form groups
+2020-07-15 17:11:54.435  INFO 37430 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course from the database
+2020-07-15 17:11:54.435  INFO 37430 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course from the database
+2020-07-15 17:11:54.435  INFO 37430 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey has an algorithm for group formation for the course from the database
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /groupFormation/getGroups
+       Parameters = {courseId=[CSCI 5308], courseName=[SDC]}
+          Headers = []
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = CSCI5308.GroupFormationTool.GroupFormation.GroupFormationController
+           Method = CSCI5308.GroupFormationTool.GroupFormation.GroupFormationController#getGroups(String, String, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = group/groupDetails
+             View = null
+        Attribute = surveyNotHavingAlgorithm
+            value = Survey does not have any group formation algorithm yet!
+        Attribute = showGroups
+            value = false
         Attribute = courseId
             value = CSCI 5308
         Attribute = courseName
@@ -248,7 +400,7 @@ MockHttpServletResponse:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 13, 2020, 1:07:24 p.m.</p>
+<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 15, 2020, 5:11:54 p.m.</p>
 </div>
 </div>
 </body>

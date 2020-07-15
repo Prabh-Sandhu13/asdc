@@ -1,5 +1,6 @@
 package CSCI5308.GroupFormationTool.GroupFormation;
 
+import CSCI5308.GroupFormationTool.Survey.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -7,9 +8,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import static org.mockito.Mockito.when;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -18,38 +17,74 @@ public class GroupFormationControllerTest {
 
     private ITestGroupFormationAbstractFactory groupFormationAbstractFactory = TestGroupFormationInjector.instance().
             getGroupFormationAbstractFactory();
+    private ITestSurveyAbstractFactory surveyAbstractFactory = TestSurveyInjector.instance().getSurveyAbstractFactory();
     private GroupFormationManager groupFormationManager;
+    private SurveyRepository surveyRepository;
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    void formGroups() throws Exception {
-        this.mockMvc.perform(get("/groupFormation/createGroup")
-                .param("courseName", "SDC")
-                .param("courseId", "CSCI3901"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("group/createGroup"))
-                .andDo(MockMvcResultHandlers.print())
-                .andReturn();
-    }
-
-    @Test
-    void saveGroups() throws Exception {
+    void formGroupsTest() throws Exception {
         groupFormationManager = groupFormationAbstractFactory.createGroupFormationMock();
+        ISurvey survey = surveyAbstractFactory.createSurveyInstance();
         GroupFormationInjector.instance().setGroupFormationManager(groupFormationManager);
+        surveyRepository = surveyAbstractFactory.createSurveyRepositoryMock();
+        SurveyInjector.instance().setSurveyRepository(surveyRepository);
         String courseId = "CSCI 5308";
         String courseName = "SDC";
+        when(surveyRepository.checkIfSurveyCreated(courseId)).thenReturn(true);
+        when(surveyRepository.checkIfSurveyPublished(courseId)).thenReturn(true);
+        when(surveyRepository.checkIfSurveyHasFormula(courseId)).thenReturn(true);
         when(groupFormationManager.getGroupsForCourse(courseId)).thenReturn(groupFormationAbstractFactory.
                 createGroupsInstance());
-        this.mockMvc.perform(post("/groupFormation/saveGroup")
+        this.mockMvc.perform(get("/groupFormation/getGroups")
                 .param("courseId", courseId)
-                .param("courseName", courseName)
-                .with(csrf()))
-                .andExpect(status().isOk())
+                .param("courseName", courseName))
+                .andExpect(status().is(200))
                 .andExpect(view().name("group/groupDetails"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
+
+        when(surveyRepository.checkIfSurveyCreated(courseId)).thenReturn(false);
+        when(surveyRepository.checkIfSurveyPublished(courseId)).thenReturn(true);
+        when(surveyRepository.checkIfSurveyHasFormula(courseId)).thenReturn(true);
+        when(groupFormationManager.getGroupsForCourse(courseId)).thenReturn(groupFormationAbstractFactory.
+                createGroupsInstance());
+        this.mockMvc.perform(get("/groupFormation/getGroups")
+                .param("courseId", courseId)
+                .param("courseName", courseName))
+                .andExpect(status().is(200))
+                .andExpect(view().name("group/groupDetails"))
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+
+        when(surveyRepository.checkIfSurveyCreated(courseId)).thenReturn(true);
+        when(surveyRepository.checkIfSurveyPublished(courseId)).thenReturn(false);
+        when(surveyRepository.checkIfSurveyHasFormula(courseId)).thenReturn(true);
+        when(groupFormationManager.getGroupsForCourse(courseId)).thenReturn(groupFormationAbstractFactory.
+                createGroupsInstance());
+        this.mockMvc.perform(get("/groupFormation/getGroups")
+                .param("courseId", courseId)
+                .param("courseName", courseName))
+                .andExpect(status().is(200))
+                .andExpect(view().name("group/groupDetails"))
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+
+        when(surveyRepository.checkIfSurveyCreated(courseId)).thenReturn(true);
+        when(surveyRepository.checkIfSurveyPublished(courseId)).thenReturn(true);
+        when(surveyRepository.checkIfSurveyHasFormula(courseId)).thenReturn(false);
+        when(groupFormationManager.getGroupsForCourse(courseId)).thenReturn(groupFormationAbstractFactory.
+                createGroupsInstance());
+        this.mockMvc.perform(get("/groupFormation/getGroups")
+                .param("courseId", courseId)
+                .param("courseName", courseName))
+                .andExpect(status().is(200))
+                .andExpect(view().name("group/groupDetails"))
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+
     }
 
 }

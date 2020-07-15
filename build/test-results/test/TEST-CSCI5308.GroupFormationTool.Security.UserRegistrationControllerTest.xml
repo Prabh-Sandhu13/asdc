@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Security.UserRegistrationControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-13T16:07:23" hostname="Prabhjots-MacBook-Pro.local" time="0.025">
+<testsuite name="CSCI5308.GroupFormationTool.Security.UserRegistrationControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-15T20:11:53" hostname="Prabhjots-MacBook-Pro.local" time="0.024">
   <properties/>
-  <testcase name="registerTest()" classname="CSCI5308.GroupFormationTool.Security.UserRegistrationControllerTest" time="0.025"/>
+  <testcase name="registerTest()" classname="CSCI5308.GroupFormationTool.Security.UserRegistrationControllerTest" time="0.024"/>
   <system-out><![CDATA[
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -11,11 +11,11 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-13 13:07:22.825  INFO 22716 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : Starting UserRegistrationControllerTest on Prabhjots-MacBook-Pro.local with PID 22716 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-13 13:07:22.826  INFO 22716 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : No active profile set, falling back to default profiles: default
-2020-07-13 13:07:23.139  INFO 22716 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : Started UserRegistrationControllerTest in 0.323 seconds (JVM running for 6.676)
-2020-07-13 13:07:23.143  INFO 22716 --- [    Test worker] C.G.Security.UserRegistrationController  : Fetching the password policies of the system
-2020-07-13 13:07:23.143  INFO 22716 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to fetch all the password security policies from database
+2020-07-15 17:11:52.864  INFO 37430 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : Starting UserRegistrationControllerTest on Prabhjots-MacBook-Pro.local with PID 37430 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 17:11:52.865  INFO 37430 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : No active profile set, falling back to default profiles: default
+2020-07-15 17:11:53.172  INFO 37430 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : Started UserRegistrationControllerTest in 0.317 seconds (JVM running for 7.22)
+2020-07-15 17:11:53.179  INFO 37430 --- [    Test worker] C.G.Security.UserRegistrationController  : Fetching the password policies of the system
+2020-07-15 17:11:53.179  INFO 37430 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to fetch all the password security policies from database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -23,7 +23,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@52f0cb15}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@5e458b7e}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Security.UserRegistrationController
@@ -40,7 +40,7 @@ ModelAndView:
         View name = user/signup
              View = null
         Attribute = user
-            value = CSCI5308.GroupFormationTool.User.User@9ee4caa
+            value = CSCI5308.GroupFormationTool.User.User@40edca8
            errors = []
         Attribute = policies
             value = []
@@ -74,7 +74,7 @@ MockHttpServletResponse:
     <div>
         <h4>Create Account</h4>
         <form autocomplete="off" action="/register" method="post" class="m-t col-md-4 col-md-offset-4" role="form"
-              data-toggle="validator"><input type="hidden" name="_csrf" value="fbc25325-09ad-46aa-8f06-895a03d94700"/>
+              data-toggle="validator"><input type="hidden" name="_csrf" value="f70712eb-146c-400c-bb04-e9d180af4e1e"/>
 
             
             <br>

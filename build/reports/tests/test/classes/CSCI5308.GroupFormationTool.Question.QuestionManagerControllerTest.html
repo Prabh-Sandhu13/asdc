@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.034s</div>
+<div class="counter">0.035s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,17 +79,17 @@
 </thead>
 <tr>
 <td class="success">createQuestionTest()</td>
-<td class="success">0.003s</td>
+<td class="success">0.004s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deleteQuestionTest()</td>
-<td class="success">0.009s</td>
+<td class="success">0.010s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">saveQuestionTest()</td>
-<td class="success">0.022s</td>
+<td class="success">0.021s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -106,20 +106,20 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-13 13:07:23.295  INFO 22716 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Starting QuestionManagerControllerTest on Prabhjots-MacBook-Pro.local with PID 22716 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-13 13:07:23.295  INFO 22716 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : No active profile set, falling back to default profiles: default
-2020-07-13 13:07:23.601  INFO 22716 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Started QuestionManagerControllerTest in 0.314 seconds (JVM running for 7.137)
-2020-07-13 13:07:23.606  INFO 22716 --- [    Test worker] C.G.Question.QuestionManagerController   : Saving the question created by the instructor to the database
-2020-07-13 13:07:23.606  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Creating the question and saving it to the database
-2020-07-13 13:07:23.606  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Checking for invalid data
-2020-07-13 13:07:23.606  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Creating the options for question if applicable (Multiple Choice only)
-2020-07-13 13:07:23.606  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the createQuestion repository function to save the question to Database
-2020-07-13 13:07:23.606  INFO 22716 --- [    Test worker] C.G.Question.QuestionManagerController   : Question is saved to the database and the instructor views the saved question
+2020-07-15 17:11:53.335  INFO 37430 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Starting QuestionManagerControllerTest on Prabhjots-MacBook-Pro.local with PID 37430 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 17:11:53.335  INFO 37430 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : No active profile set, falling back to default profiles: default
+2020-07-15 17:11:53.644  INFO 37430 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Started QuestionManagerControllerTest in 0.318 seconds (JVM running for 7.691)
+2020-07-15 17:11:53.649  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : Saving the question created by the instructor to the database
+2020-07-15 17:11:53.649  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Creating the question and saving it to the database
+2020-07-15 17:11:53.649  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Checking for invalid data
+2020-07-15 17:11:53.649  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Creating the options for question if applicable (Multiple Choice only)
+2020-07-15 17:11:53.650  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the createQuestion repository function to save the question to Database
+2020-07-15 17:11:53.650  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : Question is saved to the database and the instructor views the saved question
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /questionManager/createQuestion
-       Parameters = {questionTitle=[Sample title], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[ec686ca4-6b6a-42ad-94a9-c63ced509c96]}
+       Parameters = {questionTitle=[Sample title], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[f8af9e5f-cb0f-4405-9c91-09458912c629]}
           Headers = []
              Body = &lt;no character encoding set&gt;
     Session Attrs = {}
@@ -152,15 +152,15 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = /questionManager/viewQuestion?questionId=5
           Cookies = []
-2020-07-13 13:07:23.609  INFO 22716 --- [    Test worker] C.G.Question.QuestionManagerController   : Saving the question created by the instructor to the database
-2020-07-13 13:07:23.609  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Creating the question and saving it to the database
-2020-07-13 13:07:23.609  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Checking for invalid data
-2020-07-13 13:07:23.609  INFO 22716 --- [    Test worker] C.G.Question.QuestionManagerController   : One or more input fields have invalid/empty data
+2020-07-15 17:11:53.652  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : Saving the question created by the instructor to the database
+2020-07-15 17:11:53.653  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Creating the question and saving it to the database
+2020-07-15 17:11:53.653  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Checking for invalid data
+2020-07-15 17:11:53.653  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : One or more input fields have invalid/empty data
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /questionManager/createQuestion
-       Parameters = {questionTitle=[], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[c3779e39-64b3-4b32-887a-2940be022864]}
+       Parameters = {questionTitle=[], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[85674bed-8e89-489e-91f8-ea7d8ca76869]}
           Headers = []
              Body = &lt;no character encoding set&gt;
     Session Attrs = {}
@@ -265,11 +265,11 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-13 13:07:23.626  INFO 22716 --- [    Test worker] C.G.Question.QuestionManagerController   : Deleting the question created by the instructor from the database
-2020-07-13 13:07:23.626  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the deleteQuestion repository function to delete the question from the Database
-2020-07-13 13:07:23.627  INFO 22716 --- [    Test worker] C.G.Question.QuestionManagerController   : Question successfully deleted!
-2020-07-13 13:07:23.627  INFO 22716 --- [    Test worker] C.G.Question.QuestionManagerController   : Redirecting to the instructor's question list page
-2020-07-13 13:07:23.627  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
+2020-07-15 17:11:53.669  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : Deleting the question created by the instructor from the database
+2020-07-15 17:11:53.669  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the deleteQuestion repository function to delete the question from the Database
+2020-07-15 17:11:53.669  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : Question successfully deleted!
+2020-07-15 17:11:53.669  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : Redirecting to the instructor's question list page
+2020-07-15 17:11:53.669  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -277,7 +277,7 @@ MockHttpServletRequest:
        Parameters = {questionId=[1]}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@1e6819c9}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@5fe8c83b}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
@@ -336,11 +336,11 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-13 13:07:23.631  INFO 22716 --- [    Test worker] C.G.Question.QuestionManagerController   : Deleting the question created by the instructor from the database
-2020-07-13 13:07:23.631  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the deleteQuestion repository function to delete the question from the Database
-2020-07-13 13:07:23.632  INFO 22716 --- [    Test worker] C.G.Question.QuestionManagerController   : The question could not be deleted
-2020-07-13 13:07:23.632  INFO 22716 --- [    Test worker] C.G.Question.QuestionManagerController   : Redirecting to the instructor's question list page
-2020-07-13 13:07:23.632  INFO 22716 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
+2020-07-15 17:11:53.674  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : Deleting the question created by the instructor from the database
+2020-07-15 17:11:53.674  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the deleteQuestion repository function to delete the question from the Database
+2020-07-15 17:11:53.674  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : The question could not be deleted
+2020-07-15 17:11:53.674  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : Redirecting to the instructor's question list page
+2020-07-15 17:11:53.675  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -348,7 +348,7 @@ MockHttpServletRequest:
        Parameters = {questionId=[1]}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@62435e27}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@73fff171}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
@@ -414,7 +414,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@38baf880}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@11978b77}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
@@ -526,7 +526,7 @@ MockHttpServletResponse:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 13, 2020, 1:07:24 p.m.</p>
+<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 15, 2020, 5:11:54 p.m.</p>
 </div>
 </div>
 </body>

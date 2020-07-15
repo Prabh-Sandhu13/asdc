@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.GroupFormation.GroupFormationManagerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-13T16:07:24" hostname="Prabhjots-MacBook-Pro.local" time="0.007">
+<testsuite name="CSCI5308.GroupFormationTool.GroupFormation.GroupFormationManagerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-15T20:11:54" hostname="Prabhjots-MacBook-Pro.local" time="0.008">
   <properties/>
-  <testcase name="getGroupsForCourseTest()" classname="CSCI5308.GroupFormationTool.GroupFormation.GroupFormationManagerTest" time="0.007"/>
-  <system-out><![CDATA[2020-07-13 13:07:24.015  INFO 22716 --- [    Test worker] C.G.G.GroupFormationManager              : Fetching the groups for the course from the repository
+  <testcase name="getGroupsForCourseTest()" classname="CSCI5308.GroupFormationTool.GroupFormation.GroupFormationManagerTest" time="0.008"/>
+  <system-out><![CDATA[2020-07-15 17:11:54.065  INFO 37430 --- [    Test worker] C.G.G.GroupFormationManager              : Fetching the groups for the course from the repository
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

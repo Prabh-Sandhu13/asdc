@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="favicon.ico"/>
+    <title>Create Survey</title>
+    <link
+            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous"/>
+
+</head>
+<body style="background-color: #e7ebee">
+<div class="container">
+    <div sec:authorize="!isAuthenticated()">
+        <p>You have not yet logged in to the application. Please login to
+            continue...</p>
+        <a th:href="@{/login}">Click here to log in!</a>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <h3 class="text-center"
+            th:text="'Create a group creation formula for the course ' + ${courseName}"></h3>
+        <div class="text-center">
+            <form action="#" th:action="@{/survey/saveSurveyFormula(courseId=${courseId},courseName=${courseName},surveyId=${surveyId})}"
+                   th:object="${surveyFormulaList}" method="post" class="text-center">
+                  <label class="custom-control-label" >Enter Group Size: <input type="number" name="groupSize" required/></label>
+                <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Question Text</th>
+                    <th scope="col">Similar/Dissimilar</th>
+                    <th scope="col">Numeric Factor</th>
+                    <th scope="col">Free Text</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="surveyFormula, iterator : *{surveyRules}">
+                    <td>
+                    <div>
+                     <input th:text="*{surveyRules[__${iterator.index}__].questionText}" type="hidden" th:field="*{surveyRules[__${iterator.index}__].questionId}"
+                     th:value="${surveyFormula.questionId}">
+                     </div>
+                     </td>
+                    <td>
+                    <div class="form-group" th:if="${surveyFormula.questionType  != 4}" th:field="*{surveyRules[__${iterator.index}__].questionText}">
+			            <div class="custom-control custom-radio custom-control-inline">
+			                <input type="radio" id="similar" 
+			                th:name="${surveyFormula.questionId}" class="custom-control-input"
+			                th:field="*{surveyRules[__${iterator.index}__].compareSimilarity}"
+			                 value=true >
+			                <label class="custom-control-label" th:for="${surveyFormula.questionId}">Similar</label>
+			            </div>
+			            <div class="custom-control custom-radio custom-control-inline">
+			                <input type="radio" id="dissimilar" th:field="*{surveyRules[__${iterator.index}__].compareDisimilarity}"
+			                th:name="${surveyFormula.questionId}" class="custom-control-input"  value=true >
+			                <label class="custom-control-label" th:for="${surveyFormula.questionId}">Dissimilar</label>
+			            </div>
+			        </div>
+			        <div class="form-group" th:unless="${surveyFormula.questionType != 4}">
+			        NA
+			        </div>
+                    </td>
+                    <td >
+                    <div class="form-group" th:if="${surveyFormula.questionType == 1}">
+			            <div class="custom-control custom-radio custom-control-inline">
+			                <input type="checkbox" id="similar" th:name="${surveyFormula.questionId}" class="custom-control-input" value="1">
+			                <label class="custom-control-label" th:for="${surveyFormula.questionId}">At least one greater than 
+			                <input type="number" th:field="*{surveyRules[__${iterator.index}__].numericGreaterThan}" /></label>
+			            </div>
+			            <div class="custom-control custom-radio custom-control-inline">
+			                <input type="checkbox" id="dissimilar" th:name="${surveyFormula.questionId}" class="custom-control-input" value="2">
+			                <label class="custom-control-label" th:for="${surveyFormula.questionId}">At least one less than 
+			                <input type="number" th:field="*{surveyRules[__${iterator.index}__].numericLessThan}" /> </label>
+			            </div>
+			        </div>
+			        <div class="form-group" th:unless="${surveyFormula.questionType== 1}">
+			        	NA
+			        </div>
+                    </td>
+                    <td >
+                    <div class="form-group" th:if="${surveyFormula.questionType == 4}">
+			            <div class="custom-control custom-radio custom-control-inline">
+			                <input type="radio" id="similar" 
+			                th:name="${surveyFormula.questionId}" class="custom-control-input" 
+			                th:field="*{surveyRules[__${iterator.index}__].freeTextSimilarity}"
+			                value=true>
+			   
+			                <label class="custom-control-label" th:for="${surveyFormula.questionId}">Match Similar Text </label>
+			            </div>
+			            <div class="custom-control custom-radio custom-control-inline">
+			                <input type="radio" id="dissimilar" th:name="${surveyFormula.questionId}" 
+			                th:field="*{surveyRules[__${iterator.index}__].freeTextDisimilarity}"
+			                 class="custom-control-input" value=true>
+			                <label class="custom-control-label" th:for="${surveyFormula.questionId}">Match Dissimilar Text</label>
+			            </div>
+			        </div>
+			        <div  class="form-group" th:unless="${surveyFormula.questionType == 4}">
+			        	NA
+			        </div>
+                    </td>
+                </tbody>
+            </table>
+        </div>
+                <button type="submit" class="btn btn-success btn-sm">
+                    Save the Survey Formula
+                </button>
+            </form>
+        </div>
+        <br/> <br/>
+        <div class="text-center">
+            <a th:href="@{/courseList}">
+                <button type="submit" class="btn primary btn-md">Back
+                    to your courses
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

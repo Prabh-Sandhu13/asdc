@@ -1,6 +1,8 @@
 package CSCI5308.GroupFormationTool.Question;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
+import CSCI5308.GroupFormationTool.Course.CourseInjector;
+import CSCI5308.GroupFormationTool.Course.IUserCoursesRepository;
 import CSCI5308.GroupFormationTool.User.IUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,14 +16,23 @@ import java.util.Set;
 public class Question implements IQuestion {
 
     private static final Logger log = LoggerFactory.getLogger(Question.class.getName());
+
     private long id;
+
     private IUser instructor;
+
     private String title;
+
     private String text;
+
     private int type;
+
     private Date createdDate;
+
     private ArrayList<IChoice> choices;
+
     private IQuestionManagerRepository questionManagerRepository;
+
     private IQuestionAdminRepository questionAdminRepository;
 
     public Question() {
