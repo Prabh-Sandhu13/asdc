@@ -5,6 +5,8 @@ import CSCI5308.GroupFormationTool.Database.DatabaseInjector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
 import CSCI5308.GroupFormationTool.Question.*;
+import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
+import CSCI5308.GroupFormationTool.User.UserInjector;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class SurveyRepository implements ISurveyRepository {
 
@@ -430,6 +434,15 @@ public class SurveyRepository implements ISurveyRepository {
                         question.setType(results.getInt("qtype_id"));
                         question.setTitle(results.getString("title"));
                         questionList.add(question);
+                        if (question.getType() == DomainConstants.MCQOne ||
+                                question.getType() == DomainConstants.MCQMultiple) {
+                            questionAdminRepository = QuestionInjector.instance().getQuestionAdminRepository();
+                            ArrayList<IChoice> choices = questionAdminRepository.
+                                    getOptionsForTheQuestion(question.getId());
+                            question.setChoices(choices);
+                        } else {
+                            question.setChoices(null);
+                        }
                     }
                 }
             }
@@ -442,9 +455,162 @@ public class SurveyRepository implements ISurveyRepository {
         }
         return questionList;
     }
+
+    @Override
+    public ArrayList<Long> getUsersWhoTookSurvey(String courseId) {
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        StoredProcedure storedProcedure = null;
+        IUserAbstractFactory userAbstractFactory = UserInjector.instance().getUserAbstractFactory();
+        ArrayList<Long> userIdList = userAbstractFactory.createUserIdList();
+        try {
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getUsersWhoTookSurvey(?)");
+            storedProcedure.setInputStringParameter(1, courseId);
+            ResultSet results = storedProcedure.executeWithResults();
+            if (results != null) {
+                while (results.next()) {
+                    {
+                        userIdList.add(results.getLong("user_id"));
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            log.error("Could not execute the Stored procedure sp_getSurveyQuestionsForTA" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
+        } finally {
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+        return userIdList;
+    }
+
+    @Override
+    public HashMap<Long, HashMap<Long, IResponse>> getAllStudentResponses(String courseId) {
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
+        StoredProcedure storedProcedure = null;
+        HashMap<Long, HashMap<Long, IResponse>> allStudentResponses = surveyAbstractFactory.
+                createAllStudentResponsesInstance();
+        HashMap<Long, IResponse> questionResponse = surveyAbstractFactory.createQuestionResponseInstance();
+        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
+        try {
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getAllStudentResponses(?)");
+            storedProcedure.setInputStringParameter(1, courseId);
+            ResultSet results = storedProcedure.executeWithResults();
+            if (results != null) {
+                while (results.next()) {
+                    {
+                        IResponse response = surveyAbstractFactory.createResponseInstance();
+                        Long userId = results.getLong("user_id");
+                        response.setQuestionId(results.getLong("question_id"));
+                        response.setQuestionType(results.getInt("qtype_id"));
+                        long option = results.getLong("option_id");
+                        if (allStudentResponses.containsKey(userId)) {
+                            questionResponse = allStudentResponses.get(userId);
+                            if (option != 0) {
+                                if (questionResponse.containsKey(response.getQuestionId())) {
+                                    IResponse tempResponse = questionResponse.get(response.getQuestionId());
+                                    List<String> options = tempResponse.getOptions();
+                                    options.add(String.valueOf(option));
+                                    tempResponse.setOptions(options);
+                                    questionResponse.put(response.getQuestionId(), tempResponse);
+                                } else {
+                                    IResponse tempResponse = surveyAbstractFactory.createResponseInstance();
+                                    List<String> options = new ArrayList<>();
+                                    options.add(String.valueOf(option));
+                                    tempResponse.setOptions(options);
+                                    questionResponse.put(response.getQuestionId(), tempResponse);
+                                }
+                            } else {
+                                response.setOptions(null);
+                                response.setAnswerText(results.getString("answer_text"));
+                                questionResponse.put(response.getQuestionId(), response);
+                            }
+                        } else {
+                            questionResponse = surveyAbstractFactory.createQuestionResponseInstance();
+                            if (option != 0) {
+                                List<String> options = new ArrayList<>();
+                                options.add(String.valueOf(option));
+                                response.setOptions(options);
+                            } else {
+                                response.setOptions(null);
+                                response.setAnswerText("answer_text");
+                            }
+                            questionResponse.put(response.getQuestionId(), response);
+                        }
+                        allStudentResponses.put(userId, questionResponse);
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            log.error("Could not execute the Stored procedure sp_getSurveyQuestionsForTA" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
+        } finally {
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+        return allStudentResponses;
+    }
+
+    @Override
+    public HashMap<Long, IResponse> getUserResponses(Long userId, Long surveyId, String courseId) {
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
+        StoredProcedure storedProcedure = null;
+        HashMap<Long, IResponse> studentResponse = surveyAbstractFactory.createQuestionResponseInstance();
+        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
+        try {
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_getUserResponses(?,?,?)");
+            storedProcedure.setInputStringParameter(1, courseId);
+            storedProcedure.setInputIntParameter(2, userId);
+            storedProcedure.setInputIntParameter(3, surveyId);
+            ResultSet results = storedProcedure.executeWithResults();
+            if (results != null) {
+                while (results.next()) {
+                    {
+                        IResponse response = surveyAbstractFactory.createResponseInstance();
+                        Long questionId = results.getLong("question_id");
+                        response.setQuestionId(questionId);
+                        response.setQuestionType(results.getInt("qtype_id"));
+                        response.setQuestionText(results.getString("question_text"));
+                        response.setQuestionTitle(results.getString("question_title"));
+                        long option = results.getLong("option_id");
+                        if (option != 0) {
+                            if (studentResponse.containsKey(questionId)) {
+                                IResponse tempResponse = studentResponse.get(questionId);
+                                List<String> options = tempResponse.getOptions();
+                                options.add(results.getString("option_text"));
+                                tempResponse.setOptions(options);
+                                studentResponse.put(response.getQuestionId(), tempResponse);
+                            } else {
+                                List<String> options = new ArrayList<>();
+                                options.add(results.getString("option_text"));
+                                response.setOptions(options);
+                                studentResponse.put(response.getQuestionId(), response);
+                            }
+                        } else {
+                            response.setOptions(null);
+                            response.setAnswerText(results.getString("answer_text"));
+                            studentResponse.put(response.getQuestionId(), response);
+                        }
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            log.error("Could not execute the Stored procedure sp_getUserResponses" +
+                    " because of an SQL Exception " + ex.getLocalizedMessage());
+        } finally {
+            if (storedProcedure != null) {
+                storedProcedure.removeConnections();
+            }
+        }
+        return studentResponse;
+    }
 }
-
-
 
 
 

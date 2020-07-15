@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.Survey;
 import CSCI5308.GroupFormationTool.Question.IQuestion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface ISurvey {
 
@@ -48,4 +49,9 @@ public interface ISurvey {
 
     ArrayList<IQuestion> getQuestionListForSurvey(String emailId, int surveyId, String courseId, String questionTitle);
 
+    ArrayList<Long> getUsersWhoTookSurvey(String courseId);
+
+    HashMap<Long, HashMap<Long, IResponse>> getAllStudentResponses(String courseId);
+
+    HashMap<Long, IResponse> getUserResponses(Long userId, Long surveyId, String courseId);
 }

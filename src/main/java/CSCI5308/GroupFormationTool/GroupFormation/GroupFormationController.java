@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.TreeMap;
 
 @Controller
@@ -29,6 +30,7 @@ public class GroupFormationController {
                 getGroupFormationAbstractFactory();
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
         ISurvey survey = surveyAbstractFactory.createSurveyInstance();
+        long surveyId = survey.getSurveyIdByCourseId(courseId);
         TreeMap<Integer, ArrayList<IUser>> groups = groupFormationAbstractFactory.createGroupsForCourseInstance();
         log.info("Checking if the survey can be used to form groups");
         int outcome = survey.checkIfGroupsCanBeFormedForSurvey(courseId);
@@ -44,12 +46,16 @@ public class GroupFormationController {
             model.addAttribute("showGroups", false);
         } else {
             log.info("Getting the list of groups formed on the instructor's algorithm");
+            groupFormationManager.deleteGroups(courseId);
+            HashMap<Integer, ArrayList<Long>> teams = groupFormationManager.formGroups(courseId);
+            groupFormationManager.insertUserToGroups(courseId, teams);
             groups = groupFormationManager.getGroupsForCourse(courseId);
             model.addAttribute("groups", groups);
             model.addAttribute("showGroups", true);
         }
         model.addAttribute("courseId", courseId);
         model.addAttribute("courseName", courseName);
+        model.addAttribute("surveyId", surveyId);
         return "group/groupDetails";
     }
 }

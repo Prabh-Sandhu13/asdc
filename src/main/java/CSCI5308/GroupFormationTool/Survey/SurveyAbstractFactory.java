@@ -1,8 +1,9 @@
 package CSCI5308.GroupFormationTool.Survey;
 
-import java.util.ArrayList;
-
 import CSCI5308.GroupFormationTool.Question.IQuestion;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SurveyAbstractFactory implements ISurveyAbstractFactory {
     @Override
@@ -29,9 +30,19 @@ public class SurveyAbstractFactory implements ISurveyAbstractFactory {
     public ResponseRepository createResponseRepositoryInstance() {
         return new ResponseRepository();
     }
-    
+
     @Override
     public ArrayList<IQuestion> createSurveyQuestionListInstance() {
         return new ArrayList<IQuestion>();
+    }
+
+    @Override
+    public HashMap<Long, HashMap<Long, IResponse>> createAllStudentResponsesInstance() {
+        return new HashMap<Long, HashMap<Long, IResponse>>();
+    }
+
+    @Override
+    public HashMap<Long, IResponse> createQuestionResponseInstance() {
+        return new HashMap<Long, IResponse>();
     }
 }

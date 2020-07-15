@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Survey implements ISurvey {
 
@@ -229,5 +230,23 @@ public class Survey implements ISurvey {
             questionList = surveyRepository.getSurveyQuestionListForTA(instructorIds, surveyId, questionTitle);
         }
         return questionList;
+    }
+
+    @Override
+    public ArrayList<Long> getUsersWhoTookSurvey(String courseId) {
+        surveyRepository = SurveyInjector.instance().getSurveyRepository();
+        return surveyRepository.getUsersWhoTookSurvey(courseId);
+    }
+
+    @Override
+    public HashMap<Long, HashMap<Long, IResponse>> getAllStudentResponses(String courseId) {
+        surveyRepository = SurveyInjector.instance().getSurveyRepository();
+        return surveyRepository.getAllStudentResponses(courseId);
+    }
+
+    @Override
+    public HashMap<Long, IResponse> getUserResponses(Long userId, Long surveyId, String courseId) {
+        surveyRepository = SurveyInjector.instance().getSurveyRepository();
+        return surveyRepository.getUserResponses(userId, surveyId, courseId);
     }
 }

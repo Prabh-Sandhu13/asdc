@@ -59,8 +59,8 @@
                     <th>Group</th>
                     <th>Allocated Students</th>
                 </tr>
-                <tr th:each="entry: ${groups}">
-                    <td th:text="'Group ' + ${entry.key}"></td>
+                <tr th:each="entry, stat: ${groups}">
+                    <td th:text="'Group ' + ${stat.index + 1}"></td>
                     <td>
                         <table class="table table-bordered">
                             <tr class="bg-primary">
@@ -77,7 +77,7 @@
                                 <td th:text="${student.emailId}"></td>
                                 <td><a
                                         th:href="@{/viewResponse(courseName=${courseName},courseId=${courseId},
-                                        emailId=${student.emailId})}">
+                                        surveyId=${surveyId},userId=${student.Id})}">
                                     View Survey Response
                                 </a>
                                 </td>

@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.Survey;
 import CSCI5308.GroupFormationTool.Question.IQuestion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SurveyDBMock implements ISurveyRepository {
     @Override
@@ -78,6 +79,21 @@ public class SurveyDBMock implements ISurveyRepository {
     @Override
     public ArrayList<IQuestion> getSurveyQuestionListForTA(ArrayList<Long> instructorIds, int surveyId,
                                                            String questionTitle) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Long> getUsersWhoTookSurvey(String courseId) {
+        return null;
+    }
+
+    @Override
+    public HashMap<Long, HashMap<Long, IResponse>> getAllStudentResponses(String courseId) {
+        return null;
+    }
+
+    @Override
+    public HashMap<Long, IResponse> getUserResponses(Long userId, Long surveyId, String courseId) {
         return null;
     }
 }

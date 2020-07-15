@@ -20,6 +20,7 @@ public final class DomainConstants {
     public static final int numeric = 1;
     public static final int MCQOne = 2;
     public static final int MCQMultiple = 3;
+    public static final int freeText = 4;
     public final static long invalidData = 0;
     public final static long sqlError = -1;
     public final static String sqlErrorMessage = "There was a problem in adding your question. Please try again!";
@@ -65,9 +66,9 @@ public final class DomainConstants {
     public static final String studentRole = "Student";
     public static final String AdminRole = "ADMIN";
     public static final String UserRole = "USER";
+    public static final String surveySuccess = "The survey has been submitted successfully!";
     public static int surveyNotCreated = 1;
     public static int surveyNotPublished = 2;
     public static int surveyNotHavingAlgorithm = 3;
     public static int surveyGroupFormationPossible = 4;
-    public static final String surveySuccess = "The survey has been submitted successfully!";
 }
