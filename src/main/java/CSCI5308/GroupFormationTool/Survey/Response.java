@@ -124,6 +124,9 @@ public class Response implements IResponse {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         ArrayList<IResponse> responseList = surveyAbstractFactory.createResponseListInstance();
         IUser user = responseRepository.getResponseUser(authentication.getPrincipal().toString());
+        if (user == null) {
+            return null;
+        }
         int iteratorIndex = 0;
         String surveyId = null;
         for (Map.Entry<String, String> entry : studentResponse.entrySet()) {

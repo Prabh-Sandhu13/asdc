@@ -58,8 +58,11 @@ public class ResponseController {
     public String submitSurvey(@RequestParam Map<String, String> searchParams, Model model) {
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
         responseInstance = surveyAbstractFactory.createResponseInstance();
+        boolean success = false;
         ArrayList<IResponse> responseList = responseInstance.createResponseList(searchParams);
-        boolean success = responseInstance.storeResponses(responseList);
+        if (responseList != null) {
+            success = responseInstance.storeResponses(responseList);
+        }
         if (success) {
             model.addAttribute("Success", DomainConstants.surveySuccess);
         } else {
