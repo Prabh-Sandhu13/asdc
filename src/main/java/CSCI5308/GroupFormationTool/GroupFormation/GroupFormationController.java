@@ -20,6 +20,7 @@ import java.util.TreeMap;
 public class GroupFormationController {
 
     private static final Logger log = LoggerFactory.getLogger(GroupFormationController.class.getName());
+
     private IGroupFormationManager groupFormationManager;
 
     @GetMapping(value = "/groupFormation/getGroups")

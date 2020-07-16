@@ -46,7 +46,6 @@ public class QuestionManagerController {
         question.setInstructor(instructor);
         log.info("Saving the question created by the instructor to the database");
         outcome = question.createQuestion(optionText, optionValue);
-
         if (outcome == DomainConstants.invalidData) {
             log.info("One or more input fields have invalid/empty data");
             model.addAttribute("invalidData",

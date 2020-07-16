@@ -11,7 +11,6 @@ import CSCI5308.GroupFormationTool.User.UserInjector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,14 +21,6 @@ public class Survey implements ISurvey {
     private long id;
 
     private ICourse course;
-
-    private String surveyDescription;
-
-    private Date surveyStartDate;
-
-    private Date surveyEndDate;
-
-    private String published;
 
     private String surveyId;
 
@@ -59,38 +50,6 @@ public class Survey implements ISurvey {
 
     public void setCourse(ICourse course) {
         this.course = course;
-    }
-
-    public String getSurveyDescription() {
-        return surveyDescription;
-    }
-
-    public void setSurveyDescription(String surveyDescription) {
-        this.surveyDescription = surveyDescription;
-    }
-
-    public Date getSurveyStartDate() {
-        return surveyStartDate;
-    }
-
-    public void setSurveyStartDate(Date surveyStartDate) {
-        this.surveyStartDate = surveyStartDate;
-    }
-
-    public Date getSurveyEndDate() {
-        return surveyEndDate;
-    }
-
-    public void setSurveyEndDate(Date surveyEndDate) {
-        this.surveyEndDate = surveyEndDate;
-    }
-
-    public String getPublished() {
-        return published;
-    }
-
-    public void setPublished(String published) {
-        this.published = published;
     }
 
     public String getSurveyId() {
@@ -133,7 +92,7 @@ public class Survey implements ISurvey {
 
     @Override
     public boolean checkIfSurveyHasFormula(String courseId) {
-        log.info("Checking if the survey has an algorithm for group formation for the course " +courseId+" from the database");
+        log.info("Checking if the survey has an algorithm for group formation for the course " + courseId + " from the database");
         ISurveyRepository surveyRepository = SurveyInjector.instance().getSurveyRepository();
         return surveyRepository.checkIfSurveyHasFormula(courseId);
     }
@@ -253,12 +212,5 @@ public class Survey implements ISurvey {
         log.info("Getting the responses of all users who took the course survey for course id " + courseId);
         surveyRepository = SurveyInjector.instance().getSurveyRepository();
         return surveyRepository.getAllStudentResponses(courseId);
-    }
-
-    @Override
-    public HashMap<Long, IResponse> getUserResponses(Long userId, Long surveyId, String courseId) {
-        log.info("Getting the responses of a single users who took the course survey id: " + surveyId );
-        surveyRepository = SurveyInjector.instance().getSurveyRepository();
-        return surveyRepository.getUserResponses(userId, surveyId, courseId);
     }
 }

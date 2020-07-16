@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class SurveyAbstractFactory implements ISurveyAbstractFactory {
+
     @Override
     public ISurvey createSurveyInstance() {
         return new Survey();

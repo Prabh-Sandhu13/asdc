@@ -1,26 +1,36 @@
 package CSCI5308.GroupFormationTool.Survey;
 
-import java.util.ArrayList;
-import java.util.UUID;
+import CSCI5308.GroupFormationTool.Course.InstructorCourseController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import CSCI5308.GroupFormationTool.Course.InstructorCourseController;
+import java.util.ArrayList;
+import java.util.UUID;
 
 public class SurveyFormula implements ISurveyFormula {
-    
+
     private static final Logger log = LoggerFactory.getLogger(InstructorCourseController.class.getName());
 
     private String courseId;
+
     private int surveyId;
+
     private int questionId;
+
     private String questionText;
+
     private int questionType;
+
     private boolean compareSimilarity;
+
     private boolean compareDisimilarity;
+
     private int numericGreaterThan;
+
     private int numericLessThan;
+
     private boolean freeTextSimilarity;
+
     private boolean freeTextDisimilarity;
 
     public SurveyFormula() {
@@ -148,34 +158,33 @@ public class SurveyFormula implements ISurveyFormula {
     }
 
     @Override
-    public ArrayList<SurveyFormula> getSurveyDetailsToSetAlgo(String courseId) {
+    public ArrayList<SurveyFormula> getSurveyDetailsToSetAlgorithm(String courseId) {
         ISurveyFormulaRepository surveyFormulaDB = SurveyInjector.instance().getSurveyFormulaRepository();
-        return surveyFormulaDB.getSurveyDetailsToSetAlgo(courseId);
+        return surveyFormulaDB.getSurveyDetailsToSetAlgorithm(courseId);
     }
 
     @Override
     public boolean createSurveyFormula(String courseId, int surveyId, int groupSize,
-            SurveyFormulaList surveyFormulaList) {
+                                       SurveyFormulaList surveyFormulaList) {
         Boolean status = true;
         ISurveyFormulaRepository surveyFormulaDB = SurveyInjector.instance().getSurveyFormulaRepository();
         log.info("Checking if survey formula exists for survey:" + surveyId);
-        String algoId = surveyFormulaDB.getAlgoIdBySurveyId(surveyId);
+        String algoId = surveyFormulaDB.getAlgorithmIdBySurveyId(surveyId);
         UUID uuid = UUID.randomUUID();
         String generatedAlgoId = uuid.toString();
         if (algoId == null) {
             log.info("Adding new survey formula by calling surveyFormulaDB");
-            surveyFormulaDB.updateAlgoId(generatedAlgoId, surveyId);
+            surveyFormulaDB.updateAlgorithmId(generatedAlgoId, surveyId);
             surveyFormulaDB.updateSurveyGroupSize(groupSize, surveyId, courseId);
-            status = surveyFormulaDB.createAlgo(surveyFormulaList, generatedAlgoId, surveyId);
+            status = surveyFormulaDB.createAlgorithm(surveyFormulaList, generatedAlgoId, surveyId);
         } else {
             log.warn("Deleting the existing algo for survey:" + surveyId);
-            surveyFormulaDB.deleteExistingAlgo(algoId);
+            surveyFormulaDB.deleteExistingAlgorithm(algoId);
             log.info("Adding new survey formula by calling surveyFormulaDB");
-            surveyFormulaDB.updateAlgoId(generatedAlgoId, surveyId);
+            surveyFormulaDB.updateAlgorithmId(generatedAlgoId, surveyId);
             surveyFormulaDB.updateSurveyGroupSize(groupSize, surveyId, courseId);
-            status = surveyFormulaDB.createAlgo(surveyFormulaList, generatedAlgoId, surveyId);
+            status = surveyFormulaDB.createAlgorithm(surveyFormulaList, generatedAlgoId, surveyId);
         }
-
         return status;
     }
 

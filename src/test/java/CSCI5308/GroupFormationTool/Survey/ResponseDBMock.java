@@ -5,6 +5,7 @@ import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.TestUserInjector;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ResponseDBMock implements IResponseRepository {
@@ -69,5 +70,10 @@ public class ResponseDBMock implements IResponseRepository {
     @Override
     public boolean storeResponses(ArrayList<IResponse> responseList) {
         return true;
+    }
+
+    @Override
+    public HashMap<Long, IResponse> getUserResponses(Long userId, Long surveyId, String courseId) {
+        return null;
     }
 }

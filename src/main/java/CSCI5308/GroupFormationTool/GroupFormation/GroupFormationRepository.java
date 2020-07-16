@@ -34,7 +34,6 @@ public class GroupFormationRepository implements IGroupFormationRepository {
                     ("sp_getGroupsForCourse(?)");
             storedProcedure.setInputStringParameter(1, courseId);
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     int groupNumber = results.getInt("groupNumber");
@@ -131,7 +130,6 @@ public class GroupFormationRepository implements IGroupFormationRepository {
                     groupLogic.put(groupFormula.getQuestionId(), groupFormula);
                 }
             }
-
         } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getGroupFormationLogic" +
                     " because of an SQL Exception " + exception.getLocalizedMessage());

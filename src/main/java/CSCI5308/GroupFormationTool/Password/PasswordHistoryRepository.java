@@ -33,9 +33,9 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getsettingvalue" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -62,9 +62,9 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getNPassword" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } catch (Exception e) {
             Log.error("Could not DB query due to non SQL Exception" + e.getLocalizedMessage());
         } finally {
@@ -92,9 +92,9 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
             storedProcedure.setInputStringParameter(3, password);
             storedProcedure.execute();
             historyAdded = true;
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_addPasswordHistory" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();

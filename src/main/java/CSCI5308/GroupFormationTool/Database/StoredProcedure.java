@@ -8,7 +8,9 @@ import java.sql.SQLException;
 public class StoredProcedure {
 
     private String storedProcedureName;
+
     private Connection connection;
+
     private CallableStatement statement;
 
     public StoredProcedure(String storedProcedureName) throws SQLException {

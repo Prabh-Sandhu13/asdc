@@ -3,7 +3,9 @@ package CSCI5308.GroupFormationTool.Database;
 public class DatabaseInjector {
 
     private static DatabaseInjector instance = null;
+
     private IDatabaseAbstractFactory databaseAbstractFactory;
+
     private IDBConfiguration dbConfiguration;
 
     private DatabaseInjector() {

@@ -25,12 +25,18 @@ import static org.mockito.Mockito.when;
 public class SurveyTest {
 
     private ITestSurveyAbstractFactory surveyAbstractFactory = TestSurveyInjector.instance().getSurveyAbstractFactory();
+
     private ISurveyRepository surveyRepository;
+
     private ISurvey survey;
+
     private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestQuestionInjector.instance().
             getQuestionAbstractFactory();
+
     private ArrayList<IQuestion> questionList = null;
+
     private ITestCourseAbstractFactory courseAbstractFactory;
+
     private ITestUserAbstractFactory userAbstractFactory;
 
     @BeforeEach
@@ -106,7 +112,6 @@ public class SurveyTest {
 
     @Test
     void getSurveyQuestionsTest() {
-
         questionList = questionAbstractFactoryTest.createQuestionListInstance();
         IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
         question = questionAbstractFactoryTest.createQuestionInstance();
@@ -143,11 +148,9 @@ public class SurveyTest {
         String courseId = "1";
         when(surveyRepository.createSurvey(courseId)).thenReturn(1);
         assertTrue(survey.createSurvey(courseId) == 1);
-
         survey.setCourseId(courseId);
         survey.setDescription("This is a test survey!");
         survey.setSurveyId("1");
-
         assertFalse(survey.getDescription() == null);
         assertTrue(survey.getSurveyId().equals("1"));
         assertTrue(survey.getDescription().equals("This is a test survey!"));
@@ -205,7 +208,6 @@ public class SurveyTest {
                 ("haard.shah@dal.ca", 1, "title")).thenReturn(questions);
         assertTrue(survey.getSearchedQuestionListForSurvey
                 ("haard.shah@dal.ca", 1, "title", "title").size() == 0);
-
         when(userCoursesRepository.getUserRoleByEmailId(anyString())).thenReturn(DomainConstants.tARole);
         ArrayList<Long> userIds = userAbstractFactory.createUserIdsList();
         ArrayList<IUser> users = userAbstractFactory.createUserListInstance();

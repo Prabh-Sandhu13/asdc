@@ -20,14 +20,12 @@ public class UserRepositoryTest {
         user.setLastName("Donthu");
         user.setPassword("password");
         user.setConfirmPassword(user.getPassword());
-
         assertTrue(user.getBannerId().length() < 10);
         assertTrue(user.getEmailId().length() < 100);
         assertTrue(user.getFirstName().length() < 100);
         assertTrue(user.getLastName().length() < 100);
         assertTrue(user.getPassword().length() < 100);
         assertTrue(user.getConfirmPassword().length() < 100);
-
         assertFalse(user.getLastName().isEmpty());
         assertFalse(user.getFirstName().isEmpty());
         assertFalse(user.getEmailId().isEmpty());
@@ -46,14 +44,12 @@ public class UserRepositoryTest {
         user.setLastName("Donthu");
         user.setPassword("password");
         user.setConfirmPassword(user.getPassword());
-
         assertTrue(user.getBannerId().length() < 10);
         assertTrue(user.getEmailId().equals(emailId));
         assertTrue(user.getFirstName().length() < 100);
         assertTrue(user.getLastName().length() < 100);
         assertTrue(user.getPassword().length() < 100);
         assertTrue(user.getConfirmPassword().length() < 100);
-
         assertFalse(user.getLastName().isEmpty());
         assertFalse(user.getFirstName().isEmpty());
         assertFalse(user.getEmailId().isEmpty());
@@ -72,14 +68,12 @@ public class UserRepositoryTest {
         user.setLastName("Donthu");
         user.setPassword("password");
         user.setConfirmPassword(user.getPassword());
-
         assertTrue(user.getBannerId().equals(bannerId));
         assertTrue(user.getEmailId().length() < 100);
         assertTrue(user.getFirstName().length() < 100);
         assertTrue(user.getLastName().length() < 100);
         assertTrue(user.getPassword().length() < 100);
         assertTrue(user.getConfirmPassword().length() < 100);
-
         assertFalse(user.getLastName().isEmpty());
         assertFalse(user.getFirstName().isEmpty());
         assertFalse(user.getEmailId().isEmpty());
@@ -98,14 +92,12 @@ public class UserRepositoryTest {
         user.setLastName("AdminLname");
         user.setPassword("password");
         user.setConfirmPassword(user.getPassword());
-
         assertTrue(user.getBannerId().equals(bannerId));
         assertTrue(user.getEmailId().length() < 100);
         assertTrue(user.getFirstName().length() < 100);
         assertTrue(user.getLastName().length() < 100);
         assertTrue(user.getPassword().length() < 100);
         assertTrue(user.getConfirmPassword().length() < 100);
-
         assertFalse(user.getLastName().isEmpty());
         assertFalse(user.getFirstName().isEmpty());
         assertFalse(user.getEmailId().isEmpty());

@@ -13,6 +13,7 @@ import static org.mockito.Mockito.when;
 public class PolicyTest {
 
     private IPolicy policyInstance;
+
     private PolicyRepository policyRepository;
 
     private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestPasswordInjector.instance().

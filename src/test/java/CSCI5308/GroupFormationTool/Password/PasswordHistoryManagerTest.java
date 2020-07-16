@@ -19,7 +19,9 @@ import static org.mockito.Mockito.when;
 public class PasswordHistoryManagerTest {
 
     public PasswordHistoryManager passwordHistoryManager;
+
     public PasswordHistoryRepository passwordHistoryRepository;
+
     public BCryptEncryption bCryptEncryption;
 
     private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestPasswordInjector.instance().

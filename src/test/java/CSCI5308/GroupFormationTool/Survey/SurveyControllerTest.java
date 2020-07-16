@@ -34,9 +34,13 @@ public class SurveyControllerTest {
     private MockMvc mockMvc;
 
     private ITestSurveyAbstractFactory surveyAbstractFactory;
+
     private ITestQuestionAbstractFactory questionAbstractFactory;
+
     private ISurveyRepository surveyRepository;
+
     private ITestCourseAbstractFactory courseAbstractFactory;
+
     private ITestUserAbstractFactory userAbstractFactory;
 
     @Test
@@ -55,7 +59,6 @@ public class SurveyControllerTest {
                 .andExpect(view().name("course/instructorCourseDetails"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(surveyRepository.publishSurvey(anyString())).thenReturn(false);
         this.mockMvc.perform(post("/survey/publishSurvey")
                 .param("courseName", "SDC")
@@ -179,7 +182,6 @@ public class SurveyControllerTest {
                 .andExpect(view().name("survey/createSurvey"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(userCoursesRepository.getUserRoleByEmailId(anyString())).thenReturn(DomainConstants.tARole);
         ArrayList<Long> userIds = userAbstractFactory.createUserIdsList();
         ArrayList<IUser> users = userAbstractFactory.createUserListInstance();

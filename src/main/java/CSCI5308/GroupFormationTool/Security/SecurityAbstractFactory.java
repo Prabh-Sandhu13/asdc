@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SecurityAbstractFactory implements ISecurityAbstractFactory {
+
     @Override
     public CustomAuthenticationManager createCustomAuthenticationManager() {
         return new CustomAuthenticationManager();

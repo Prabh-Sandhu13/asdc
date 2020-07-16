@@ -5,14 +5,19 @@ import CSCI5308.GroupFormationTool.Question.IQuestion;
 import CSCI5308.GroupFormationTool.Question.IQuestionAdminRepository;
 import CSCI5308.GroupFormationTool.Question.QuestionInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Response implements IResponse {
+
+    private static Logger log = LoggerFactory.getLogger(Response.class.getName());
 
     private long userId;
 
@@ -111,6 +116,7 @@ public class Response implements IResponse {
     }
 
     public ArrayList<IResponse> createResponseList(Map<String, String> studentResponse) {
+        log.info("Storing the student survey responses to database");
         responseRepository = SurveyInjector.instance().getResponseRepository();
         surveyRepository = SurveyInjector.instance().getSurveyRepository();
         questionAdminRepository = QuestionInjector.instance().getQuestionAdminRepository();
@@ -147,14 +153,23 @@ public class Response implements IResponse {
     }
 
     public boolean storeResponses(ArrayList<IResponse> responseList) {
+        log.info("Storing the user responses to the database");
         responseRepository = SurveyInjector.instance().getResponseRepository();
         return responseRepository.storeResponses(responseList);
 
     }
 
     public IUser getResponseUser(String emailId) {
+        log.info("Getting the user details based on responded emailId");
         responseRepository = SurveyInjector.instance().getResponseRepository();
         return responseRepository.getResponseUser(emailId);
+    }
+
+    @Override
+    public HashMap<Long, IResponse> getUserResponses(Long userId, Long surveyId, String courseId) {
+        log.info("Getting the responses of a single users who took the course survey id: " + surveyId);
+        responseRepository = SurveyInjector.instance().getResponseRepository();
+        return responseRepository.getUserResponses(userId, surveyId, courseId);
     }
 
 }

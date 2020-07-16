@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class PasswordAbstractFactory implements IPasswordAbstractFactory {
+
     @Override
     public IForgotPasswordManager createForgotPasswordManagerInstance() {
         return new ForgotPasswordManager();

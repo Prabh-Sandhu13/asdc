@@ -38,9 +38,9 @@ public class PolicyRepository implements IPolicyRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getPasswordConfigSettings" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -71,9 +71,9 @@ public class PolicyRepository implements IPolicyRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getPolicies" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();

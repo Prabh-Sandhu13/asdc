@@ -16,11 +16,12 @@ public class SurveyDBMock implements ISurveyRepository {
 
     private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestQuestionInjector.instance().
             getQuestionAbstractFactory();
-    
+
     private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().
             getUserAbstractFactory();
+
     private ArrayList<IQuestion> questionList = null;
-    
+
     public SurveyDBMock() {
         questionList = questionAbstractFactoryTest.createQuestionListInstance();
         IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
@@ -36,7 +37,7 @@ public class SurveyDBMock implements ISurveyRepository {
         question.setChoices(null);
         questionList.add(question);
     }
-    
+
     @Override
     public boolean checkIfSurveyCreated(String courseId) {
         return true;
@@ -124,8 +125,4 @@ public class SurveyDBMock implements ISurveyRepository {
         return null;
     }
 
-    @Override
-    public HashMap<Long, IResponse> getUserResponses(Long userId, Long surveyId, String courseId) {
-        return null;
-    }
 }

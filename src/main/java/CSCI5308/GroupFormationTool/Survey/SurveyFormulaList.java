@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class SurveyFormulaList {
 
-    public ArrayList<SurveyFormula> surveyRules;
+    private ArrayList<SurveyFormula> surveyRules;
 
     public ArrayList<SurveyFormula> getSurveyRules() {
         return surveyRules;

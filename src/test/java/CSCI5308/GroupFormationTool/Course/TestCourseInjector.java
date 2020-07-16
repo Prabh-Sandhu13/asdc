@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.Course;
 public class TestCourseInjector {
 
     private static TestCourseInjector instance = null;
+
     private ITestCourseAbstractFactory courseAbstractFactory;
 
     private TestCourseInjector() {

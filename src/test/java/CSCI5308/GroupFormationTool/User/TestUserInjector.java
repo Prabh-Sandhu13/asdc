@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.User;
 public class TestUserInjector {
 
     private static TestUserInjector instance = null;
+
     private ITestUserAbstractFactory userAbstractFactory;
 
     private TestUserInjector() {

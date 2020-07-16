@@ -22,12 +22,17 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class ForgotPasswordManagerTest {
 
-    public ForgotPasswordRepository forgotPasswordRepository;
-    public IForgotPasswordManager forgotPasswordManager;
-    public MailManager mailManager;
-    public IPolicy policyInstance;
-    public PasswordHistoryManager passwordHistoryManager;
-    public PolicyRepository policyRepository;
+    private ForgotPasswordRepository forgotPasswordRepository;
+
+    private IForgotPasswordManager forgotPasswordManager;
+
+    private MailManager mailManager;
+
+    private IPolicy policyInstance;
+
+    private PasswordHistoryManager passwordHistoryManager;
+
+    private PolicyRepository policyRepository;
 
     private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestPasswordInjector.instance().
             getPasswordAbstractFactory();

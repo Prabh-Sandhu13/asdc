@@ -28,6 +28,7 @@ public class AdminControllerTest {
     private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().getUserAbstractFactory();
 
     private CourseRepository courseRepository;
+
     private UserCoursesRepository userCoursesRepository;
 
     @Autowired
@@ -43,7 +44,6 @@ public class AdminControllerTest {
 
     @Test
     void adminCoursesTest() throws Exception {
-
         when(courseRepository.getAllCourses()).thenReturn(courseAbstractFactoryTest.createCourseListInstance());
         this.mockMvc.perform(get("/admin/allCourses"))
                 .andExpect(status().isOk())
@@ -92,7 +92,6 @@ public class AdminControllerTest {
                 .andExpect(view().name("redirect:/assignInstructor?courseId=" + courseId))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(userCoursesRepository.addInstructorsToCourse(instructorId, courseId)).thenReturn(false);
         this.mockMvc.perform(post("/admin/assignInstructor")
                 .param("instructor", String.valueOf(instructorId))

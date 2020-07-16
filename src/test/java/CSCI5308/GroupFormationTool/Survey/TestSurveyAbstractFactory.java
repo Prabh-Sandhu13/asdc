@@ -10,6 +10,7 @@ import java.util.Map;
 import static org.mockito.Mockito.mock;
 
 public class TestSurveyAbstractFactory implements ITestSurveyAbstractFactory {
+
     @Override
     public ISurvey createSurveyInstance() {
         return new Survey();

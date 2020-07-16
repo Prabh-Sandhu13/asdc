@@ -12,7 +12,8 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class CourseTest {
 
-    public CourseRepository courseRepository;
+    private CourseRepository courseRepository;
+
     private ITestCourseAbstractFactory courseAbstractFactoryTest = TestCourseInjector.instance().
             getCourseAbstractFactory();
 

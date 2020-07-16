@@ -165,7 +165,6 @@ public class GroupFormationManagerTest {
         response.setOptions(options);
         studentQuestions.put((long) 43, response);
         studentWithQuestionAndAnswer.put((long) 75, studentQuestions);
-
         studentQuestions = testGroupFormationAbstractFactory.questionResponseInstance();
         response = testGroupFormationAbstractFactory.createResponseInstance();
         response.setQuestionId(40);
@@ -195,7 +194,6 @@ public class GroupFormationManagerTest {
         response.setOptions(options);
         studentQuestions.put((long) 43, response);
         studentWithQuestionAndAnswer.put((long) 86, studentQuestions);
-
         studentQuestions = testGroupFormationAbstractFactory.questionResponseInstance();
         response = testGroupFormationAbstractFactory.createResponseInstance();
         response.setQuestionId(40);
@@ -225,7 +223,6 @@ public class GroupFormationManagerTest {
         response.setOptions(options);
         studentQuestions.put((long) 43, response);
         studentWithQuestionAndAnswer.put((long) 88, studentQuestions);
-
         studentQuestions = testGroupFormationAbstractFactory.questionResponseInstance();
         response = testGroupFormationAbstractFactory.createResponseInstance();
         response.setQuestionId(40);
@@ -255,8 +252,6 @@ public class GroupFormationManagerTest {
         response.setOptions(options);
         studentQuestions.put((long) 43, response);
         studentWithQuestionAndAnswer.put((long) 87, studentQuestions);
-
         return studentWithQuestionAndAnswer;
     }
-
 }

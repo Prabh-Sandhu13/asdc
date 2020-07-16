@@ -21,8 +21,11 @@ public class GroupFormationControllerTest {
 
     private ITestGroupFormationAbstractFactory groupFormationAbstractFactory = TestGroupFormationInjector.instance().
             getGroupFormationAbstractFactory();
+
     private ITestSurveyAbstractFactory surveyAbstractFactory = TestSurveyInjector.instance().getSurveyAbstractFactory();
+
     private GroupFormationManager groupFormationManager;
+
     private SurveyRepository surveyRepository;
 
     @Autowired
@@ -53,7 +56,6 @@ public class GroupFormationControllerTest {
                 .andExpect(view().name("group/groupDetails"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(surveyRepository.checkIfSurveyCreated(courseId)).thenReturn(false);
         when(surveyRepository.checkIfSurveyPublished(courseId)).thenReturn(true);
         when(surveyRepository.checkIfSurveyHasFormula(courseId)).thenReturn(true);
@@ -66,7 +68,6 @@ public class GroupFormationControllerTest {
                 .andExpect(view().name("group/groupDetails"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(surveyRepository.checkIfSurveyCreated(courseId)).thenReturn(true);
         when(surveyRepository.checkIfSurveyPublished(courseId)).thenReturn(false);
         when(surveyRepository.checkIfSurveyHasFormula(courseId)).thenReturn(true);
@@ -79,7 +80,6 @@ public class GroupFormationControllerTest {
                 .andExpect(view().name("group/groupDetails"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(surveyRepository.checkIfSurveyCreated(courseId)).thenReturn(true);
         when(surveyRepository.checkIfSurveyPublished(courseId)).thenReturn(true);
         when(surveyRepository.checkIfSurveyHasFormula(courseId)).thenReturn(false);
@@ -92,7 +92,5 @@ public class GroupFormationControllerTest {
                 .andExpect(view().name("group/groupDetails"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
     }
-
 }

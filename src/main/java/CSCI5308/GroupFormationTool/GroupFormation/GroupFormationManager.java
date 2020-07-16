@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 public class GroupFormationManager implements IGroupFormationManager {
 
     private static final Logger log = LoggerFactory.getLogger(GroupFormationManager.class.getName());
+
     private IGroupFormationRepository groupFormationRepository;
 
     @Override
@@ -234,7 +235,7 @@ public class GroupFormationManager implements IGroupFormationManager {
                 lessThanXValue.setValue(0);
             }
         }
-        mappings.put("lessThanX", lessthanXValues);
+        mappings.put(DomainConstants.lessThanX, lessthanXValues);
         for (Map.Entry<Integer, Integer> greaterThanXValue : greaterthanXValues.entrySet()) {
             double averageGreaterThanXValue = greaterThanXValue.getValue() * 0.1 / (double) (numericTypeMatrix.size());
             if (averageGreaterThanXValue > 0.5) {
@@ -243,7 +244,7 @@ public class GroupFormationManager implements IGroupFormationManager {
                 greaterThanXValue.setValue(0);
             }
         }
-        mappings.put("greaterThanX", greaterthanXValues);
+        mappings.put(DomainConstants.greaterThanX, greaterthanXValues);
         return mappings;
     }
 

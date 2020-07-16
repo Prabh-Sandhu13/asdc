@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ForgotPasswordRepository implements IForgotPasswordRepository {
+
     private static final Logger Log = LoggerFactory.getLogger(ForgotPasswordRepository.class.getName());
 
     @Override
@@ -27,9 +28,9 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
             storedProcedure.setInputStringParameter(3, token);
             storedProcedure.execute();
             tokenAdded = true;
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_addToken" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -54,9 +55,9 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getTokenByEmailId" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -76,9 +77,9 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
             storedProcedure.setInputStringParameter(2, password);
             storedProcedure.execute();
             passwordUpdated = true;
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_updatePassword" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -97,11 +98,9 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
             storedProcedure.setInputStringParameter(1, token);
             storedProcedure.execute();
             tokenDeleted = true;
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_deleteToken" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
-            System.out.println(ex.getMessage());
-
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -121,10 +120,9 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
             storedProcedure.setInputStringParameter(2, token);
             storedProcedure.execute();
             tokenUpdated = true;
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_updateToken" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
-            System.out.println(ex.getMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -156,9 +154,9 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getUserId" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -186,10 +184,9 @@ public class ForgotPasswordRepository implements IForgotPasswordRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getEmailByToken" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
-
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();

@@ -36,10 +36,9 @@ public class CourseRepository implements ICourseRepository {
                     }
                 }
             }
-
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -64,9 +63,9 @@ public class CourseRepository implements ICourseRepository {
             storedProcedure.registerOutputParameterBoolean(5);
             storedProcedure.execute();
             status = storedProcedure.getParameter(5);
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (null != storedProcedure) {
                 storedProcedure.removeConnections();
@@ -87,9 +86,9 @@ public class CourseRepository implements ICourseRepository {
             storedProcedure.registerOutputParameterBoolean(2);
             storedProcedure.execute();
             status = storedProcedure.getParameter(2);
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (null != storedProcedure) {
                 storedProcedure.removeConnections();
@@ -104,7 +103,7 @@ public class CourseRepository implements ICourseRepository {
         ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         ICourse course = courseAbstractFactory.createCourseInstance();
         try {
-            Log.info("Calling stored procedure sp_getCourseById to get a course details by Course Id " +courseId);
+            Log.info("Calling stored procedure sp_getCourseById to get a course details by Course Id " + courseId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getCourseById(?)");
             storedProcedure.setInputStringParameter(1, courseId);
             ResultSet results = storedProcedure.executeWithResults();
@@ -118,9 +117,9 @@ public class CourseRepository implements ICourseRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();

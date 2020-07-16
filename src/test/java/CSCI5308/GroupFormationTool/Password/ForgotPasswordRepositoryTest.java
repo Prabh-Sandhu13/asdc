@@ -16,9 +16,12 @@ public class ForgotPasswordRepositoryTest {
 
     private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestPasswordInjector.instance().
             getPasswordAbstractFactory();
+
     private ForgotPasswordRepository forgotPasswordRepository;
+
     private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().getUserAbstractFactory();
-    IUser user = userAbstractFactoryTest.createUserInstance();
+
+    private IUser user = userAbstractFactoryTest.createUserInstance();
 
     @BeforeEach
     void init() {

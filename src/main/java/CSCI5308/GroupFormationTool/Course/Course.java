@@ -8,10 +8,15 @@ import java.util.ArrayList;
 public class Course implements ICourse {
 
     private static final Logger Log = LoggerFactory.getLogger(Course.class.getName());
+
     private String id;
+
     private String name;
+
     private int credits;
+
     private String description;
+
     private ICourseRepository courseRepository;
 
     public Course() {

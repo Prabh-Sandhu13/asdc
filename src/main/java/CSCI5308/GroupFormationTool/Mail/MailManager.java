@@ -16,7 +16,9 @@ import java.util.Properties;
 public class MailManager implements IMailManager {
 
     private static final Logger Log = LoggerFactory.getLogger(MailManager.class.getName());
+
     private JavaMailSenderImpl mailSender;
+
     private SimpleMailMessage message;
 
     @Override

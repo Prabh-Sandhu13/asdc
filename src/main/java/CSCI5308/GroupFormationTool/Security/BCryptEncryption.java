@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class BCryptEncryption implements IPasswordEncryptor {
 
     private static final Logger log = LoggerFactory.getLogger(BCryptEncryption.class.getName());
+
     private BCryptPasswordEncoder encode;
 
     public BCryptEncryption() {

@@ -21,9 +21,13 @@ import java.util.Map;
 
 @Controller
 public class ResponseController {
+
     private static final Logger Log = LoggerFactory.getLogger(ResponseController.class.getName());
+
     private static final Logger log = LoggerFactory.getLogger(ResponseController.class.getName());
+
     private ISurvey surveyInstance;
+
     private IResponse responseInstance;
 
     @GetMapping("/courseSurveyResponse")
@@ -38,34 +42,30 @@ public class ResponseController {
         String emailId = authentication.getPrincipal().toString();
         userRole = userCourses.getUserRoleByEmailId(emailId);
         if (userRole.equals(DomainConstants.studentRole)) {
-        	String surveyId = surveyInstance.getSurveyId(courseId);
+            String surveyId = surveyInstance.getSurveyId(courseId);
             ArrayList<IQuestion> surveyQuestions = surveyInstance.getSurveyQuestions(surveyId);
             model.addAttribute("surveyQuestions", surveyQuestions);
             model.addAttribute("courseName", courseName);
             model.addAttribute("courseId", courseId);
             return "course/courseSurveyResponse";
-        }
-        else {
-        	Log.warn("Other type of user tried directly accessing response page");
+        } else {
+            Log.warn("Other type of user tried directly accessing response page");
             return "redirect:login";
         }
     }
 
     @PostMapping("/courseSurveyResponse")
-
-    public String submitSurvey(@RequestParam Map<String,String> searchParams, Model model){
-		ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
-		responseInstance = surveyAbstractFactory.createResponseInstance();
-		ArrayList<IResponse> responseList= responseInstance.createResponseList(searchParams);
-		boolean success = responseInstance.storeResponses(responseList);
-		if(success) {
-			model.addAttribute("Success",DomainConstants.surveySuccess);
-		}
-		else {
-			model.addAttribute("Error", DomainConstants.dbError);
-		}
-	    return "course/courseSurveySubmitted";				
-
+    public String submitSurvey(@RequestParam Map<String, String> searchParams, Model model) {
+        ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
+        responseInstance = surveyAbstractFactory.createResponseInstance();
+        ArrayList<IResponse> responseList = responseInstance.createResponseList(searchParams);
+        boolean success = responseInstance.storeResponses(responseList);
+        if (success) {
+            model.addAttribute("Success", DomainConstants.surveySuccess);
+        } else {
+            model.addAttribute("Error", DomainConstants.dbError);
+        }
+        return "course/courseSurveySubmitted";
     }
 
     @GetMapping("/viewResponse")
@@ -75,9 +75,9 @@ public class ResponseController {
                                    @RequestParam("surveyId") Long surveyId,
                                    Model model) {
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
-        ISurvey survey = surveyAbstractFactory.createSurveyInstance();
+        IResponse response = surveyAbstractFactory.createResponseInstance();
         log.info("Getting responses of the student for the course survey");
-        HashMap<Long, IResponse> questionAndAnswers = survey.getUserResponses(userId, surveyId, courseId);
+        HashMap<Long, IResponse> questionAndAnswers = response.getUserResponses(userId, surveyId, courseId);
         model.addAttribute("courseName", courseName);
         model.addAttribute("courseId", courseId);
         model.addAttribute("responses", questionAndAnswers);

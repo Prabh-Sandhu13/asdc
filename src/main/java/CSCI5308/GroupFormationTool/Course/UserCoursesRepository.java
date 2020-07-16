@@ -1,5 +1,6 @@
 package CSCI5308.GroupFormationTool.Course;
 
+import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Database.DatabaseInjector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
@@ -22,7 +23,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
     public String getUserRoleByEmailId(String emailId) {
         StoredProcedure storedProcedure = null;
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
-        String role = "Guest";
+        String role = DomainConstants.guestRole;
         try {
             Log.info("Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id " + emailId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
@@ -32,20 +33,20 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             if (results != null) {
                 while (results.next()) {
                     {
-                        String roleRet = results.getString("role_type");
-                        role = roleRet;
-                        if (roleRet.equals("Instructor")) {
+                        String roleReturned = results.getString("role_type");
+                        role = roleReturned;
+                        if (roleReturned.equals(DomainConstants.instructorRole)) {
                             break;
                         }
-                        if (roleRet.equals("TA")) {
+                        if (roleReturned.equals(DomainConstants.tARole)) {
                             break;
                         }
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getUserRoleByEmailId" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -61,7 +62,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         ArrayList<ICourse> studentCourseList = courseAbstractFactory.createCourseListInstance();
         try {
-            Log.info("Calling stored procedure sp_getStudentCoursesByEmailId to get student courses by Email Id " +emailId);
+            Log.info("Calling stored procedure sp_getStudentCoursesByEmailId to get student courses by Email Id " + emailId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getStudentCoursesByEmailId(?)");
             storedProcedure.setInputStringParameter(1, emailId);
@@ -78,9 +79,9 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getStudentCoursesByEmailId" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -114,9 +115,9 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getUsersCurrentlyNotInstructorsForCourse" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -137,7 +138,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                     ("sp_getTACoursesByEmailId(?)");
             storedProcedure.setInputStringParameter(1, emailId);
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
@@ -150,9 +150,9 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getTACoursesByEmailId" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -168,12 +168,11 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         ArrayList<ICourse> instructorCourseList = courseAbstractFactory.createCourseListInstance();
         try {
-            Log.info("Calling stored procedure sp_getInstructorCoursesByEmailId to get courses of a Instructor using Email Id " +emailId);
+            Log.info("Calling stored procedure sp_getInstructorCoursesByEmailId to get courses of a Instructor using Email Id " + emailId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getInstructorCoursesByEmailId(?)");
             storedProcedure.setInputStringParameter(1, emailId);
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
@@ -186,9 +185,9 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getInstructorCoursesByEmailId" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -208,7 +207,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getTAForCourse(?)");
             storedProcedure.setInputStringParameter(1, courseId);
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
@@ -222,9 +220,9 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getTAForCourse" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -235,7 +233,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
 
     @Override
     public boolean addInstructorsToCourse(Long instructor, String courseId) {
-
         StoredProcedure storedProcedure = null;
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         try {
@@ -245,10 +242,9 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             storedProcedure.setInputIntParameter(1, instructor);
             storedProcedure.setInputStringParameter(2, courseId);
             storedProcedure.execute();
-
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_addInstructorsToCourse" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
             return false;
         } finally {
             if (storedProcedure != null) {
@@ -284,9 +280,9 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                 }
             }
 
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getUserIdByEmailId" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
             return false;
         } finally {
             if (storedProcedure != null) {
@@ -306,10 +302,9 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             storedProcedure.setInputStringParameter(1, userId);
             storedProcedure.setInputStringParameter(2, courseId);
             storedProcedure.execute();
-
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_addTAToCourse" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
             return false;
         } finally {
             if (storedProcedure != null) {
@@ -324,20 +319,19 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         StoredProcedure storedProcedure = null;
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         try {
-            Log.info("Calling stored procedure sp_getUserRoleForCourse to get a user role for the Course " + courseId +  "by User Id" + userId);
+            Log.info("Calling stored procedure sp_getUserRoleForCourse to get a user role for the Course " + courseId + "by User Id" + userId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getUserRoleForCourse(?,?)");
             storedProcedure.setInputStringParameter(1, userId);
             storedProcedure.setInputStringParameter(2, courseId);
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 return results.next();
             }
 
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getUserRoleForCourse" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -359,7 +353,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             storedProcedure.setInputStringParameter(1, courseId);
 
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
@@ -373,9 +366,9 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getInstructorsForCourse" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();

@@ -12,11 +12,17 @@ import org.slf4j.LoggerFactory;
 public class ForgotPasswordManager implements IForgotPasswordManager {
 
     private static final Logger Log = LoggerFactory.getLogger(ForgotPasswordManager.class.getName());
+
     private IForgotPasswordRepository forgotPasswordRepository;
+
     private ITokenGenerator tokenGenerator;
+
     private IPasswordHistoryManager passwordHistoryManager;
+
     private IMailManager mailManager;
+
     private IPasswordEncryptor encryptor;
+
     private IPolicy policyInstance;
 
     @Override

@@ -12,13 +12,13 @@ public interface ITestSurveyAbstractFactory {
 
     SurveyRepository createSurveyRepositoryMock();
 
-    public IResponse createResponseInstance();
+    IResponse createResponseInstance();
 
-    public ResponseRepository createResponseRepositoryMock();
+    ResponseRepository createResponseRepositoryMock();
 
-    public ArrayList<IResponse> createResponseListInstance();
+    ArrayList<IResponse> createResponseListInstance();
 
-    public ArrayList<IQuestion> createSurveyQuestionListInstance();
+    ArrayList<IQuestion> createSurveyQuestionListInstance();
 
     ResponseDBMock createResponseDBMockInstance();
 

@@ -11,6 +11,7 @@ import static org.mockito.Mockito.when;
 public class ResponseTest {
 
     private IResponseRepository responseRepository;
+
     private ITestSurveyAbstractFactory surveyAbstractFactory = TestSurveyInjector.instance().
             getSurveyAbstractFactory();
 
@@ -163,5 +164,12 @@ public class ResponseTest {
         IResponse response = surveyAbstractFactory.createResponseInstance();
         response.setQuestionText("3");
         assertTrue(response.getQuestionText().equals("3"));
+    }
+
+    @Test
+    void getUserResponsesTest() {
+        IResponse response = surveyAbstractFactory.createResponseInstance();
+        when(responseRepository.getUserResponses((long) 1, (long) 1, "1")).thenReturn(null);
+        assertTrue(response.getUserResponses((long) 1, (long) 1, "1") == null);
     }
 }
