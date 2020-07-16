@@ -75,4 +75,6 @@ public final class DomainConstants {
     public static String greaterThanX = "greaterThanX";
     public static Double maximumDistance = 999.0;
     public static Double minimumDistance = -999.0;
+    public static final String dbError = "There was error while submitting the survey. Please try again in an hour.";
+
 }

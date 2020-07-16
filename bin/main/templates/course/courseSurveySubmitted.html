@@ -21,7 +21,14 @@
              role="alert" th:if="${Success}"
              th:text="${Success}"></div>
         <div>
+<<<<<<< HEAD
             <a class="text-secondary" th:href="@{/courseList}">Go back to course list</a>
+=======
+                <div th:if="${Error}"
+             class="validation-message alert alert-danger" role="alert"
+             th:text="${Error}"></div>
+            <a th:href="@{/courseList}" class="text-secondary">Go back to course list</a>
+>>>>>>> refactoringTests
         </div>
     </div>
 </div>

@@ -89,7 +89,7 @@ public class AdminControllerTest {
                 .param("id", courseId)
                 .with(csrf()))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/course/assignInstructor?courseId=" + courseId))
+                .andExpect(view().name("redirect:/assignInstructor?courseId=" + courseId))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
 
@@ -99,7 +99,7 @@ public class AdminControllerTest {
                 .param("id", courseId)
                 .with(csrf()))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/course/assignInstructor?courseId=" + courseId))
+                .andExpect(view().name("redirect:/assignInstructor?courseId=" + courseId))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
     }

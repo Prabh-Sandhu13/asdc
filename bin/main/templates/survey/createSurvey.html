@@ -26,6 +26,7 @@
         <h3 class="text-center"
             th:text="'Create a survey for the course ' + ${courseName}"></h3>
 
+<<<<<<< HEAD
         <form method="post" th:action="@{/questionManager/searchQuestionForSurvey(surveyId=${surveyId},
 		courseId=${courseId}, courseName=${courseName})}">
             <div class="md-form mt-0">
@@ -34,6 +35,16 @@
                        placeholder="Search for a Question by Title" type="text">
                 <br/><br/>
                 <button class="btn btn-success btn-sm" type="submit">Search
+=======
+        <form th:action="@{/questionManager/searchQuestionForSurvey(surveyId=${surveyId},
+		courseId=${courseId}, courseName=${courseName})}" method="post">
+            <div class="md-form mt-0">
+                <label>Search for a Question by Title</label>
+                <input class="form-control" type="text" placeholder="Search for a Question by Title" aria-label="Search"
+                       id="questionTitle" name="questionTitle">
+                <br/><br/>
+                <button type="submit" class="btn btn-success btn-sm">Search
+>>>>>>> refactoringTests
                 </button>
             </div>
         </form>

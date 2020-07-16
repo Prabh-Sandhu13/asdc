@@ -70,7 +70,7 @@ public class AdminController {
         } else {
             model.addAttribute("failure", DomainConstants.instructorAddFailure);
         }
-        return "redirect:/course/assignInstructor?courseId=" + courseId;
+        return "redirect:/assignInstructor?courseId=" + courseId;
 
     }
 }
