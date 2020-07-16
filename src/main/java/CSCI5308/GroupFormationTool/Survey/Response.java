@@ -148,7 +148,6 @@ public class Response implements IResponse {
                 responseList.add(response);
             }
         }
-
         return responseList;
     }
 
@@ -156,7 +155,6 @@ public class Response implements IResponse {
         log.info("Storing the user responses to the database");
         responseRepository = SurveyInjector.instance().getResponseRepository();
         return responseRepository.storeResponses(responseList);
-
     }
 
     public IUser getResponseUser(String emailId) {
