@@ -9,7 +9,7 @@ public final class DomainConstants {
     public static final int smtpPort = 587;
     public static final String mailUserName = "noreply.group22@gmail.com";
     public static final String mailPassword = "dalhousiemacs";
-    public static final String domainUrl = "https://formgroups22-prod.herokuapp.com";
+    public static final String domainUrl = "https://formgroups22.herokuapp.com";
     public static final String forgotPasswordSubject = "Complete Password Reset!";
     public static final String forgotPasswordText = "To reset your password, follow this link: ";
     public static final String mailSentSuccess = "An email with reset link has been successfully sent!";
@@ -28,11 +28,11 @@ public final class DomainConstants {
             + "and try again";
     public final static String deleteQuestionSuccess = "The question was successfully deleted";
     public final static String deleteQuestionFailure = "The question could not be deleted";
-    public static final String URL = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_22_PRODUCTION?useSSL=false"+
+    public static final String URL = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_22_TEST?useSSL=false"+
             "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
-    public static final String USER ="CSCI5308_22_PRODUCTION_USER";
-    public static final String PASSWORD = "CSCI5308_22_PRODUCTION_22986";
+    public static final String USER ="CSCI5308_22_TEST_USER";
+    public static final String PASSWORD = "CSCI5308_22_TEST_22546";
     public static final String instructorAddSuccess = "Instructor successfully added";
     public static final String instructorAddFailure = "Instructor could not be added";
     public static final String taAddSuccess = "added";

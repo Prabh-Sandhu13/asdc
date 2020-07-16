@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.User.UserTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2020-07-16T16:40:27" hostname="Prabhjots-MacBook-Pro.local" time="0.024">
+<testsuite name="CSCI5308.GroupFormationTool.User.UserTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2020-07-16T20:11:32" hostname="Prabhjots-MacBook-Pro.local" time="0.039">
   <properties/>
-  <testcase name="getPasswordTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
-  <testcase name="getFirstNameTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
-  <testcase name="setLastNameTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
-  <testcase name="setBannerIdTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
+  <testcase name="getPasswordTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.002"/>
+  <testcase name="getFirstNameTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.002"/>
+  <testcase name="setLastNameTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.002"/>
+  <testcase name="setBannerIdTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.002"/>
   <testcase name="setPasswordTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
   <testcase name="setEmailIdTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
   <testcase name="getConfirmPasswordTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
   <testcase name="setIdTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
-  <testcase name="setConfirmPasswordTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
+  <testcase name="setConfirmPasswordTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.002"/>
   <testcase name="getIdTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
-  <testcase name="checkCurrentUserIsAdminTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.002"/>
-  <testcase name="createUserTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.005"/>
-  <testcase name="setFirstNameTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.0"/>
-  <testcase name="getEmailIdTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.0"/>
-  <testcase name="getLastNameTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
-  <testcase name="getBannerIdTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
-  <system-out><![CDATA[2020-07-16 13:40:27.716  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking if current user is admin
-2020-07-16 13:40:27.716  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking if current user is admin
-2020-07-16 13:40:27.718  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Creating the user and saving it to the database
-2020-07-16 13:40:27.719  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking for invalid user data
-2020-07-16 13:40:27.719  INFO 41246 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to check if the password follows enabled security policies
-2020-07-16 13:40:27.719  INFO 41246 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Checking if the password follows enabled security policies
-2020-07-16 13:40:27.719  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Calling the user repository function to save the new user to Database
-2020-07-16 13:40:27.719  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Creating the user and saving it to the database
-2020-07-16 13:40:27.719  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking for invalid user data
-2020-07-16 13:40:27.719  INFO 41246 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to check if the password follows enabled security policies
-2020-07-16 13:40:27.720  INFO 41246 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Checking if the password follows enabled security policies
-2020-07-16 13:40:27.720 ERROR 41246 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Minimum password length security policy is violated
-2020-07-16 13:40:27.720  WARN 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : User cannot be created due to violation of password security policy
-2020-07-16 13:40:27.720  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Creating the user and saving it to the database
-2020-07-16 13:40:27.720  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking for invalid user data
-2020-07-16 13:40:27.720  INFO 41246 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to check if the password follows enabled security policies
-2020-07-16 13:40:27.720  INFO 41246 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Checking if the password follows enabled security policies
-2020-07-16 13:40:27.720  WARN 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : User cannot be created due to mismatch of confirm password field
-2020-07-16 13:40:27.720  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Creating the user and saving it to the database
-2020-07-16 13:40:27.720  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking for invalid user data
-2020-07-16 13:40:27.720  INFO 41246 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to check if the password follows enabled security policies
-2020-07-16 13:40:27.720  INFO 41246 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Checking if the password follows enabled security policies
-2020-07-16 13:40:27.721  WARN 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : User cannot be created as the user with same details already exists
-2020-07-16 13:40:27.721  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Creating the user and saving it to the database
-2020-07-16 13:40:27.721  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking for invalid user data
-2020-07-16 13:40:27.721  WARN 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : User cannot be created due to some invalid details
-2020-07-16 13:40:27.721  INFO 41246 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to check if the password follows enabled security policies
-2020-07-16 13:40:27.721  INFO 41246 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Checking if the password follows enabled security policies
-2020-07-16 13:40:27.721  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Calling the user repository function to save the new user to Database
+  <testcase name="checkCurrentUserIsAdminTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.003"/>
+  <testcase name="createUserTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.008"/>
+  <testcase name="setFirstNameTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.002"/>
+  <testcase name="getEmailIdTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.001"/>
+  <testcase name="getLastNameTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.002"/>
+  <testcase name="getBannerIdTest()" classname="CSCI5308.GroupFormationTool.User.UserTest" time="0.002"/>
+  <system-out><![CDATA[2020-07-16 17:11:32.865  INFO 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking if current user is admin
+2020-07-16 17:11:32.866  INFO 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking if current user is admin
+2020-07-16 17:11:32.869  INFO 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Creating the user and saving it to the database
+2020-07-16 17:11:32.869  INFO 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking for invalid user data
+2020-07-16 17:11:32.869  INFO 42868 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-16 17:11:32.870  INFO 42868 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Checking if the password follows enabled security policies
+2020-07-16 17:11:32.870  INFO 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Calling the user repository function to save the new user to Database
+2020-07-16 17:11:32.870  INFO 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Creating the user and saving it to the database
+2020-07-16 17:11:32.870  INFO 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking for invalid user data
+2020-07-16 17:11:32.870  INFO 42868 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-16 17:11:32.871  INFO 42868 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Checking if the password follows enabled security policies
+2020-07-16 17:11:32.871 ERROR 42868 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Minimum password length security policy is violated
+2020-07-16 17:11:32.871  WARN 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : User cannot be created due to violation of password security policy
+2020-07-16 17:11:32.871  INFO 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Creating the user and saving it to the database
+2020-07-16 17:11:32.871  INFO 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking for invalid user data
+2020-07-16 17:11:32.871  INFO 42868 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-16 17:11:32.871  INFO 42868 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Checking if the password follows enabled security policies
+2020-07-16 17:11:32.871  WARN 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : User cannot be created due to mismatch of confirm password field
+2020-07-16 17:11:32.872  INFO 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Creating the user and saving it to the database
+2020-07-16 17:11:32.872  INFO 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking for invalid user data
+2020-07-16 17:11:32.872  INFO 42868 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-16 17:11:32.872  INFO 42868 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Checking if the password follows enabled security policies
+2020-07-16 17:11:32.873  WARN 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : User cannot be created as the user with same details already exists
+2020-07-16 17:11:32.873  INFO 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Creating the user and saving it to the database
+2020-07-16 17:11:32.873  INFO 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking for invalid user data
+2020-07-16 17:11:32.873  WARN 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : User cannot be created due to some invalid details
+2020-07-16 17:11:32.873  INFO 42868 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-16 17:11:32.873  INFO 42868 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Checking if the password follows enabled security policies
+2020-07-16 17:11:32.874  INFO 42868 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Calling the user repository function to save the new user to Database
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

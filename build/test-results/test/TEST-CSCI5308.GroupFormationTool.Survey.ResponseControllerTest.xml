@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Survey.ResponseControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-07-16T16:40:29" hostname="Prabhjots-MacBook-Pro.local" time="0.032">
+<testsuite name="CSCI5308.GroupFormationTool.Survey.ResponseControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-07-16T20:11:35" hostname="Prabhjots-MacBook-Pro.local" time="0.029">
   <properties/>
-  <testcase name="takeSurveyTest()" classname="CSCI5308.GroupFormationTool.Survey.ResponseControllerTest" time="0.026"/>
-  <testcase name="viewUserResponseTest()" classname="CSCI5308.GroupFormationTool.Survey.ResponseControllerTest" time="0.005"/>
+  <testcase name="takeSurveyTest()" classname="CSCI5308.GroupFormationTool.Survey.ResponseControllerTest" time="0.022"/>
+  <testcase name="viewUserResponseTest()" classname="CSCI5308.GroupFormationTool.Survey.ResponseControllerTest" time="0.006"/>
   <system-out><![CDATA[
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -12,17 +12,17 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-16 13:40:29.407  INFO 41246 --- [    Test worker] C.G.Survey.ResponseControllerTest        : Starting ResponseControllerTest on Prabhjots-MacBook-Pro.local with PID 41246 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-16 13:40:29.407  INFO 41246 --- [    Test worker] C.G.Survey.ResponseControllerTest        : No active profile set, falling back to default profiles: default
-2020-07-16 13:40:29.739  INFO 41246 --- [    Test worker] C.G.Survey.ResponseControllerTest        : Started ResponseControllerTest in 0.341 seconds (JVM running for 9.475)
-2020-07-16 13:40:29.745  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
-2020-07-16 13:40:29.745  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting the survey Id for a course CSCI3901
-2020-07-16 13:40:29.745  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting the survey questions for a course by survey id null
+2020-07-16 17:11:34.931  INFO 42868 --- [    Test worker] C.G.Survey.ResponseControllerTest        : Starting ResponseControllerTest on Prabhjots-MacBook-Pro.local with PID 42868 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-16 17:11:34.931  INFO 42868 --- [    Test worker] C.G.Survey.ResponseControllerTest        : No active profile set, falling back to default profiles: default
+2020-07-16 17:11:35.286  INFO 42868 --- [    Test worker] C.G.Survey.ResponseControllerTest        : Started ResponseControllerTest in 0.367 seconds (JVM running for 12.553)
+2020-07-16 17:11:35.291  INFO 42868 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
+2020-07-16 17:11:35.292  INFO 42868 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting the survey Id for a course CSCI3901
+2020-07-16 17:11:35.292  INFO 42868 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting the survey questions for a course by survey id null
 
 MockHttpServletRequest:
       HTTP Method = GET
       Request URI = /courseSurveyResponse
-       Parameters = {courseName=[SDC], courseId=[CSCI3901], _csrf=[5417eaa5-e02c-4dd3-bcba-2028ca0c805f]}
+       Parameters = {courseName=[SDC], courseId=[CSCI3901], _csrf=[86f6d292-c935-4144-858e-23f0f6140001]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}
@@ -86,13 +86,13 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:40:29.765  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
-2020-07-16 13:40:29.765  WARN 41246 --- [    Test worker] C.G.Survey.ResponseController            : Other type of user tried directly accessing response page
+2020-07-16 17:11:35.307  INFO 42868 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
+2020-07-16 17:11:35.308  WARN 42868 --- [    Test worker] C.G.Survey.ResponseController            : Other type of user tried directly accessing response page
 
 MockHttpServletRequest:
       HTTP Method = GET
       Request URI = /courseSurveyResponse
-       Parameters = {courseName=[SDC], courseId=[CSCI3901], _csrf=[f96f5115-fe53-4f0e-9d94-8797e7f6ee99]}
+       Parameters = {courseName=[SDC], courseId=[CSCI3901], _csrf=[80194569-29be-4c53-8f56-707d626f8cc3]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}
@@ -125,13 +125,13 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = login
           Cookies = []
-2020-07-16 13:40:29.770  INFO 41246 --- [    Test worker] C.G.Survey.ResponseController            : Getting responses of the student for the course survey
-2020-07-16 13:40:29.770  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Response     : Getting the responses of a single users who took the course survey id: 1
+2020-07-16 17:11:35.313  INFO 42868 --- [    Test worker] C.G.Survey.ResponseController            : Getting responses of the student for the course survey
+2020-07-16 17:11:35.314  INFO 42868 --- [    Test worker] C.GroupFormationTool.Survey.Response     : Getting the responses of a single users who took the course survey id: 1
 
 MockHttpServletRequest:
       HTTP Method = GET
       Request URI = /viewResponse
-       Parameters = {courseName=[SDC], courseId=[CSCI3901], surveyId=[1], userId=[1], _csrf=[2204b86c-2d2d-4e00-b2d9-35acebe998b2]}
+       Parameters = {courseName=[SDC], courseId=[CSCI3901], surveyId=[1], userId=[1], _csrf=[d11b7aac-c80f-4825-b5fa-17d7de714fbc]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}

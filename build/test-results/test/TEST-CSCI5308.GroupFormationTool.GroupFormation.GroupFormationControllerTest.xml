@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.GroupFormation.GroupFormationControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-16T16:40:28" hostname="Prabhjots-MacBook-Pro.local" time="0.043">
+<testsuite name="CSCI5308.GroupFormationTool.GroupFormation.GroupFormationControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-16T20:11:34" hostname="Prabhjots-MacBook-Pro.local" time="0.05">
   <properties/>
-  <testcase name="getGroupsTest()" classname="CSCI5308.GroupFormationTool.GroupFormation.GroupFormationControllerTest" time="0.043"/>
+  <testcase name="getGroupsTest()" classname="CSCI5308.GroupFormationTool.GroupFormation.GroupFormationControllerTest" time="0.05"/>
   <system-out><![CDATA[
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -11,15 +11,15 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-16 13:40:28.590  INFO 41246 --- [    Test worker] C.G.G.GroupFormationControllerTest       : Starting GroupFormationControllerTest on Prabhjots-MacBook-Pro.local with PID 41246 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-16 13:40:28.590  INFO 41246 --- [    Test worker] C.G.G.GroupFormationControllerTest       : No active profile set, falling back to default profiles: default
-2020-07-16 13:40:28.898  INFO 41246 --- [    Test worker] C.G.G.GroupFormationControllerTest       : Started GroupFormationControllerTest in 0.316 seconds (JVM running for 8.633)
-2020-07-16 13:40:28.912  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id CSCI 5308
-2020-07-16 13:40:28.912  INFO 41246 --- [    Test worker] C.G.G.GroupFormationController           : Checking if the survey can be used to form groups
-2020-07-16 13:40:28.912  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course CSCI 5308 from the database
-2020-07-16 13:40:28.913  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course CSCI 5308 from the database
-2020-07-16 13:40:28.913  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey has an algorithm for group formation for the course CSCI 5308 from the database
-2020-07-16 13:40:28.913  INFO 41246 --- [    Test worker] C.G.G.GroupFormationController           : Getting the list of groups formed on the instructor's algorithm
+2020-07-16 17:11:33.915  INFO 42868 --- [    Test worker] C.G.G.GroupFormationControllerTest       : Starting GroupFormationControllerTest on Prabhjots-MacBook-Pro.local with PID 42868 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-16 17:11:33.916  INFO 42868 --- [    Test worker] C.G.G.GroupFormationControllerTest       : No active profile set, falling back to default profiles: default
+2020-07-16 17:11:34.287  INFO 42868 --- [    Test worker] C.G.G.GroupFormationControllerTest       : Started GroupFormationControllerTest in 0.382 seconds (JVM running for 11.554)
+2020-07-16 17:11:34.305  INFO 42868 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id CSCI 5308
+2020-07-16 17:11:34.306  INFO 42868 --- [    Test worker] C.G.G.GroupFormationController           : Checking if the survey can be used to form groups
+2020-07-16 17:11:34.306  INFO 42868 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course CSCI 5308 from the database
+2020-07-16 17:11:34.306  INFO 42868 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course CSCI 5308 from the database
+2020-07-16 17:11:34.306  INFO 42868 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey has an algorithm for group formation for the course CSCI 5308 from the database
+2020-07-16 17:11:34.307  INFO 42868 --- [    Test worker] C.G.G.GroupFormationController           : Getting the list of groups formed on the instructor's algorithm
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -91,9 +91,9 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:40:28.930  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id CSCI 5308
-2020-07-16 13:40:28.931  INFO 41246 --- [    Test worker] C.G.G.GroupFormationController           : Checking if the survey can be used to form groups
-2020-07-16 13:40:28.931  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course CSCI 5308 from the database
+2020-07-16 17:11:34.324  INFO 42868 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id CSCI 5308
+2020-07-16 17:11:34.324  INFO 42868 --- [    Test worker] C.G.G.GroupFormationController           : Checking if the survey can be used to form groups
+2020-07-16 17:11:34.324  INFO 42868 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course CSCI 5308 from the database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -165,10 +165,10 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:40:28.935  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id CSCI 5308
-2020-07-16 13:40:28.935  INFO 41246 --- [    Test worker] C.G.G.GroupFormationController           : Checking if the survey can be used to form groups
-2020-07-16 13:40:28.935  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course CSCI 5308 from the database
-2020-07-16 13:40:28.935  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course CSCI 5308 from the database
+2020-07-16 17:11:34.329  INFO 42868 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id CSCI 5308
+2020-07-16 17:11:34.330  INFO 42868 --- [    Test worker] C.G.G.GroupFormationController           : Checking if the survey can be used to form groups
+2020-07-16 17:11:34.330  INFO 42868 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course CSCI 5308 from the database
+2020-07-16 17:11:34.330  INFO 42868 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course CSCI 5308 from the database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -240,11 +240,11 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:40:28.938  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id CSCI 5308
-2020-07-16 13:40:28.938  INFO 41246 --- [    Test worker] C.G.G.GroupFormationController           : Checking if the survey can be used to form groups
-2020-07-16 13:40:28.938  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course CSCI 5308 from the database
-2020-07-16 13:40:28.939  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course CSCI 5308 from the database
-2020-07-16 13:40:28.939  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey has an algorithm for group formation for the course CSCI 5308 from the database
+2020-07-16 17:11:34.334  INFO 42868 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id CSCI 5308
+2020-07-16 17:11:34.335  INFO 42868 --- [    Test worker] C.G.G.GroupFormationController           : Checking if the survey can be used to form groups
+2020-07-16 17:11:34.335  INFO 42868 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course CSCI 5308 from the database
+2020-07-16 17:11:34.335  INFO 42868 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course CSCI 5308 from the database
+2020-07-16 17:11:34.335  INFO 42868 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey has an algorithm for group formation for the course CSCI 5308 from the database
 
 MockHttpServletRequest:
       HTTP Method = GET

@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.037s</div>
+<div class="counter">0.045s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,17 +79,17 @@
 </thead>
 <tr>
 <td class="success">adminCoursesTest()</td>
-<td class="success">0.005s</td>
+<td class="success">0.008s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">assignInstructorTest()</td>
-<td class="success">0.021s</td>
+<td class="success">0.023s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">assignInstructorToCourseTest()</td>
-<td class="success">0.011s</td>
+<td class="success">0.014s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -106,20 +106,20 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-16 13:40:26.566  INFO 41246 --- [    Test worker] C.G.Course.AdminControllerTest           : Starting AdminControllerTest on Prabhjots-MacBook-Pro.local with PID 41246 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-16 13:40:26.566  INFO 41246 --- [    Test worker] C.G.Course.AdminControllerTest           : No active profile set, falling back to default profiles: default
-2020-07-16 13:40:26.918  INFO 41246 --- [    Test worker] C.G.Course.AdminControllerTest           : Started AdminControllerTest in 0.363 seconds (JVM running for 6.654)
-2020-07-16 13:40:26.923  INFO 41246 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching course details by using course Id CSCI5308
-2020-07-16 13:40:26.923  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by course id: CSCI5308
-2020-07-16 13:40:26.924  INFO 41246 --- [    Test worker] C.G.Question.QuestionAdminController     : Assign/Add instructor to a course CSCI5308
-2020-07-16 13:40:26.924  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to add an instructor for a course using course Id and email Id
-2020-07-16 13:40:26.924  INFO 41246 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetch instructor for a course by id CSCI5308
-2020-07-16 13:40:26.924  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get instructor for a course using course Id
+2020-07-16 17:11:31.429  INFO 42868 --- [    Test worker] C.G.Course.AdminControllerTest           : Starting AdminControllerTest on Prabhjots-MacBook-Pro.local with PID 42868 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-16 17:11:31.429  INFO 42868 --- [    Test worker] C.G.Course.AdminControllerTest           : No active profile set, falling back to default profiles: default
+2020-07-16 17:11:31.870  INFO 42868 --- [    Test worker] C.G.Course.AdminControllerTest           : Started AdminControllerTest in 0.453 seconds (JVM running for 9.137)
+2020-07-16 17:11:31.877  INFO 42868 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching course details by using course Id CSCI5308
+2020-07-16 17:11:31.877  INFO 42868 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by course id: CSCI5308
+2020-07-16 17:11:31.878  INFO 42868 --- [    Test worker] C.G.Question.QuestionAdminController     : Assign/Add instructor to a course CSCI5308
+2020-07-16 17:11:31.878  INFO 42868 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to add an instructor for a course using course Id and email Id
+2020-07-16 17:11:31.878  INFO 42868 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetch instructor for a course by id CSCI5308
+2020-07-16 17:11:31.878  INFO 42868 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get instructor for a course using course Id
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /admin/assignInstructor
-       Parameters = {instructor=[3], id=[CSCI5308], _csrf=[53767005-e1e5-47ad-bd51-029d88ba2922]}
+       Parameters = {instructor=[3], id=[CSCI5308], _csrf=[12689651-4231-45ba-8b5c-5e95ae3bb416]}
           Headers = []
              Body = &lt;no character encoding set&gt;
     Session Attrs = {}
@@ -152,17 +152,17 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = /assignInstructor?courseId=CSCI5308
           Cookies = []
-2020-07-16 13:40:26.929  INFO 41246 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching course details by using course Id CSCI5308
-2020-07-16 13:40:26.929  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by course id: CSCI5308
-2020-07-16 13:40:26.929  INFO 41246 --- [    Test worker] C.G.Question.QuestionAdminController     : Assign/Add instructor to a course CSCI5308
-2020-07-16 13:40:26.929  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to add an instructor for a course using course Id and email Id
-2020-07-16 13:40:26.930  INFO 41246 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetch instructor for a course by id CSCI5308
-2020-07-16 13:40:26.930  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get instructor for a course using course Id
+2020-07-16 17:11:31.883  INFO 42868 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching course details by using course Id CSCI5308
+2020-07-16 17:11:31.884  INFO 42868 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by course id: CSCI5308
+2020-07-16 17:11:31.884  INFO 42868 --- [    Test worker] C.G.Question.QuestionAdminController     : Assign/Add instructor to a course CSCI5308
+2020-07-16 17:11:31.884  INFO 42868 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to add an instructor for a course using course Id and email Id
+2020-07-16 17:11:31.884  INFO 42868 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetch instructor for a course by id CSCI5308
+2020-07-16 17:11:31.884  INFO 42868 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get instructor for a course using course Id
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /admin/assignInstructor
-       Parameters = {instructor=[3], id=[CSCI5308], _csrf=[ab382a33-10c5-4481-8c1e-7573a736b44b]}
+       Parameters = {instructor=[3], id=[CSCI5308], _csrf=[9a7dc5a0-c13a-40b1-8006-ae991b70242a]}
           Headers = []
              Body = &lt;no character encoding set&gt;
     Session Attrs = {}
@@ -195,11 +195,11 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = /assignInstructor?courseId=CSCI5308
           Cookies = []
-2020-07-16 13:40:26.934  INFO 41246 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching course details using courseId CSCI5308 from the Database
-2020-07-16 13:40:26.934  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by course id: CSCI5308
-2020-07-16 13:40:26.934  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : The function call return the users that are not enrolled as an instructor for a course
-2020-07-16 13:40:26.935  INFO 41246 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching instructors list for a course using courseId CSCI5308
-2020-07-16 13:40:26.935  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get instructor for a course using course Id
+2020-07-16 17:11:31.891  INFO 42868 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching course details using courseId CSCI5308 from the Database
+2020-07-16 17:11:31.891  INFO 42868 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get courses details by course id: CSCI5308
+2020-07-16 17:11:31.892  INFO 42868 --- [    Test worker] C.GroupFormationTool.Question.Question   : The function call return the users that are not enrolled as an instructor for a course
+2020-07-16 17:11:31.892  INFO 42868 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching instructors list for a course using courseId CSCI5308
+2020-07-16 17:11:31.892  INFO 42868 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get instructor for a course using course Id
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -207,7 +207,7 @@ MockHttpServletRequest:
        Parameters = {courseId=[CSCI5308]}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@2c0e12c0}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@4cb0021e}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.AdminController
@@ -226,7 +226,7 @@ ModelAndView:
         Attribute = instructorList
             value = []
         Attribute = course
-            value = CSCI5308.GroupFormationTool.Course.Course@7faa7a66
+            value = CSCI5308.GroupFormationTool.Course.Course@23b6c4db
            errors = []
         Attribute = users
             value = []
@@ -269,8 +269,8 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:40:26.955  INFO 41246 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching all course details from the Database
-2020-07-16 13:40:26.955  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
+2020-07-16 17:11:31.913  INFO 42868 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching all course details from the Database
+2020-07-16 17:11:31.914  INFO 42868 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -278,7 +278,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@4021a1f5}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@11b6491}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.AdminController
@@ -346,7 +346,7 @@ MockHttpServletResponse:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 16, 2020, 1:40:29 p.m.</p>
+<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 16, 2020, 5:11:35 p.m.</p>
 </div>
 </div>
 </body>
