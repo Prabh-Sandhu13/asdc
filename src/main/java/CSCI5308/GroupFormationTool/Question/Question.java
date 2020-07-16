@@ -149,7 +149,7 @@ public class Question implements IQuestion {
 
     @Override
     public boolean deleteQuestion(long questionId) {
-        log.info("Calling the deleteQuestion repository function to delete the question from the Database");
+        log.info("Calling the deleteQuestion repository function to delete the question" + questionId + "from the Database");
         questionManagerRepository = QuestionInjector.instance().getQuestionManagerRepository();
         return questionManagerRepository.deleteQuestion(questionId);
     }
@@ -157,7 +157,7 @@ public class Question implements IQuestion {
     @Override
     public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
         log.info("Calling the getQuestionListForInstructor" +
-                " repository function to fetch the question bank from the Database");
+                " repository function to fetch the question bank from the Database by email id " + emailId);
         questionAdminRepository = QuestionInjector.instance().getQuestionAdminRepository();
         return questionAdminRepository.getQuestionListForInstructor(emailId);
     }
@@ -165,20 +165,20 @@ public class Question implements IQuestion {
     @Override
     public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortField) {
         log.info("Calling the getSortedQuestionListForInstructor" +
-                " repository function to fetch the question bank in a sorted order from the Database");
+                " repository function to fetch the question bank in a sorted order from the Database by email id " + emailId);
         questionAdminRepository = QuestionInjector.instance().getQuestionAdminRepository();
         return questionAdminRepository.getSortedQuestionListForInstructor(emailId, sortField);
     }
 
     @Override
     public IQuestion getQuestionById(long questionId) {
-        log.info("Calling the getQuestionById repository function to fetch a question from the Database");
+        log.info("Calling the getQuestionById repository function to fetch a question from the Database by questionId " + questionId);
         questionAdminRepository = QuestionInjector.instance().getQuestionAdminRepository();
         IQuestion question = questionAdminRepository.getQuestionById(questionId);
         ArrayList<IChoice> choiceList = null;
         if (question.getType() == DomainConstants.MCQMultiple || question.getType() == DomainConstants.MCQOne) {
             log.info("Calling the getOptionsForTheQuestion repository function to fetch " +
-                    "the options of a multiple choice question from the Database");
+                    "the options of a multiple choice question from the Database by question id " + questionId);
             choiceList = questionAdminRepository.getOptionsForTheQuestion(questionId);
         }
         question.setChoices(choiceList);

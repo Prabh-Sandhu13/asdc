@@ -66,7 +66,7 @@ public class QuestionManagerController {
         log.info("Deleting the question created by the instructor from the database");
         boolean status = question.deleteQuestion(questionId);
         if (status) {
-            log.info("Question successfully deleted!");
+            log.info("The Question " + questionId + " is successfully deleted!");
             model.addAttribute("successMessage",
                     "The question " + questionId + " is successfully deleted!");
         } else {

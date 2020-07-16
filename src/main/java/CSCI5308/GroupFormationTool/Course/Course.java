@@ -70,7 +70,7 @@ public class Course implements ICourse {
 
     @Override
     public ICourse getCourseById(String courseId) {
-        Log.info("Calling the courseRepository function to get courses details by Id");
+        Log.info("Calling the courseRepository function to get courses details by course id: " + courseId);
         courseRepository = CourseInjector.instance().getCourseRepository();
         return courseRepository.getCourseById(courseId);
     }
@@ -83,7 +83,7 @@ public class Course implements ICourse {
 
     @Override
     public boolean deleteCourse(String courseId) {
-        Log.info("Calling the deleteCourse repository function to delete the course from the Database");
+        Log.info("Calling the deleteCourse repository function to delete the course" + courseId + "from the Database");
         courseRepository = CourseInjector.instance().getCourseRepository();
         return courseRepository.deleteCourse(courseId);
     }
