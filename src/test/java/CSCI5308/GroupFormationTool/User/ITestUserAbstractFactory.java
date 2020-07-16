@@ -12,5 +12,7 @@ public interface ITestUserAbstractFactory {
 
     UserRepository createUserRepositoryMock();
 
+    ArrayList<Long> createUserIdsList();
+
 }
 

@@ -4,6 +4,7 @@ import CSCI5308.GroupFormationTool.Question.IQuestion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class SurveyAbstractFactory implements ISurveyAbstractFactory {
     @Override
@@ -50,7 +51,7 @@ public class SurveyAbstractFactory implements ISurveyAbstractFactory {
     public ISurveyFormula createSurveyFormulaInstance() {
         return new SurveyFormula();
     }
-    
+
     @Override
     public ArrayList<SurveyFormula> createSurveyFormulaArrayList() {
         return new ArrayList<SurveyFormula>();
@@ -60,14 +61,19 @@ public class SurveyAbstractFactory implements ISurveyAbstractFactory {
     public ISurveyFormulaRepository createSurveyFormulaRepositoryInstance() {
         return new SurveyFormulaRepository();
     }
-    
+
     @Override
     public SurveyFormulaList createSurveyFormulaListInstance() {
-        return new SurveyFormulaList ();
+        return new SurveyFormulaList();
     }
-    
+
     @Override
     public SurveyFormula createSurveyFormulaObj() {
         return new SurveyFormula();
+    }
+
+    @Override
+    public List<String> createOptionList() {
+        return new ArrayList<String>();
     }
 }

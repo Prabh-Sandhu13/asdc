@@ -537,7 +537,7 @@ public class SurveyRepository implements ISurveyRepository {
                                     questionResponse.put(response.getQuestionId(), tempResponse);
                                 } else {
                                     IResponse tempResponse = surveyAbstractFactory.createResponseInstance();
-                                    List<String> options = new ArrayList<>();
+                                    List<String> options = surveyAbstractFactory.createOptionList();
                                     options.add(String.valueOf(option));
                                     tempResponse.setOptions(options);
                                     questionResponse.put(response.getQuestionId(), tempResponse);
@@ -550,7 +550,7 @@ public class SurveyRepository implements ISurveyRepository {
                         } else {
                             questionResponse = surveyAbstractFactory.createQuestionResponseInstance();
                             if (option != 0) {
-                                List<String> options = new ArrayList<>();
+                                List<String> options = surveyAbstractFactory.createOptionList();
                                 options.add(String.valueOf(option));
                                 response.setOptions(options);
                             } else {
@@ -607,7 +607,7 @@ public class SurveyRepository implements ISurveyRepository {
                                 tempResponse.setOptions(options);
                                 studentResponse.put(response.getQuestionId(), tempResponse);
                             } else {
-                                List<String> options = new ArrayList<>();
+                                List<String> options = surveyAbstractFactory.createOptionList();
                                 options.add(results.getString("option_text"));
                                 response.setOptions(options);
                                 studentResponse.put(response.getQuestionId(), response);

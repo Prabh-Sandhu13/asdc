@@ -24,4 +24,9 @@ public class TestUserAbstractFactory implements ITestUserAbstractFactory {
     public UserRepository createUserRepositoryMock() {
         return mock(UserRepository.class);
     }
+
+    @Override
+    public ArrayList<Long> createUserIdsList() {
+        return new ArrayList<>();
+    }
 }
