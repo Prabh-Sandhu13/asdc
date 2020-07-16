@@ -13,17 +13,29 @@ import java.util.List;
 import java.util.Map;
 
 public class Response implements IResponse {
+
     private long userId;
+
     private long surveyId;
+
     private long questionId;
+
     private String questionTitle;
+
     private String questionText;
+
     private String optionId;
+
     private List<String> options;
+
     private String answerText;
+
     private int questionType;
+
     private IResponseRepository responseRepository;
+
     private ISurveyRepository surveyRepository;
+
     private IQuestionAdminRepository questionAdminRepository;
 
     public String getQuestionTitle() {

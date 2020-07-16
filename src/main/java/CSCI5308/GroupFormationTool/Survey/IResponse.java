@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface IResponse {
+
     long getUserId();
 
     void setUserId(long userId);
@@ -33,7 +34,7 @@ public interface IResponse {
 
     int getQuestionType();
 
-    void setQuestionType(int qusetionType);
+    void setQuestionType(int questionType);
 
     ArrayList<IResponse> createResponseList(Map<String, String> studentResponse);
 
