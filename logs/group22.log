@@ -1329,3 +1329,34 @@
 2020-07-15 22:39:05.874 [main] INFO  C.G.Question.Question: Function call to add an instructor for a course using course Id and email Id
 2020-07-15 22:39:05.876 [main] INFO  C.G.Q.QuestionAdminController: Fetch instructor for a course
 2020-07-15 22:39:05.876 [main] INFO  C.G.Question.Question: Function call to get instructor for a course using course Id
+2020-07-15 23:02:01.490 [main] INFO  C.G.Security.BCryptEncryptionTest: Starting BCryptEncryptionTest on Haard with PID 5488 (started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-15 23:02:01.568 [main] INFO  C.G.Security.BCryptEncryptionTest: No active profile set, falling back to default profiles: default
+2020-07-15 23:02:12.343 [main] INFO  C.G.Security.BCryptEncryptionTest: Started BCryptEncryptionTest in 12.266 seconds (JVM running for 17.434)
+2020-07-15 23:02:15.005 [main] INFO  C.G.Security.LoginControllerTest: Starting LoginControllerTest on Haard with PID 5488 (started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-15 23:02:15.023 [main] INFO  C.G.Security.LoginControllerTest: No active profile set, falling back to default profiles: default
+2020-07-15 23:02:20.676 [main] INFO  C.G.Security.LoginControllerTest: Started LoginControllerTest in 6.222 seconds (JVM running for 25.766)
+2020-07-15 23:02:22.786 [main] INFO  C.G.S.UserRegistrationControllerTest: Starting UserRegistrationControllerTest on Haard with PID 5488 (started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-15 23:02:22.798 [main] INFO  C.G.S.UserRegistrationControllerTest: No active profile set, falling back to default profiles: default
+2020-07-15 23:02:26.998 [main] INFO  C.G.S.UserRegistrationControllerTest: Started UserRegistrationControllerTest in 4.342 seconds (JVM running for 32.088)
+2020-07-15 23:02:28.215 [main] INFO  C.G.S.UserRegistrationController: Fetching the password policies of the system
+2020-07-15 23:02:28.224 [main] INFO  C.G.Password.Policy: Calling the Policy Repository to fetch all the password security policies from database
+2020-07-15 23:02:28.640 [main] INFO  C.G.Survey.ResponseControllerTest: Starting ResponseControllerTest on Haard with PID 5488 (started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-15 23:02:28.649 [main] INFO  C.G.Survey.ResponseControllerTest: No active profile set, falling back to default profiles: default
+2020-07-15 23:02:36.021 [main] INFO  C.G.Survey.ResponseControllerTest: Started ResponseControllerTest in 7.48 seconds (JVM running for 41.112)
+2020-07-15 23:02:36.533 [main] INFO  C.G.C.InstructorCourseController: Getting survey id for the course
+2020-07-15 23:02:36.541 [main] INFO  C.GroupFormationTool.Survey.Survey: Getting survey id based on course id
+2020-07-15 23:02:36.543 [main] INFO  C.G.C.InstructorCourseController: Checking if the survey is published
+2020-07-15 23:02:36.548 [main] INFO  C.GroupFormationTool.Survey.Survey: Publishing the survey
+2020-07-15 23:02:36.602 [main] INFO  C.G.C.InstructorCourseController: Getting survey id for the course
+2020-07-15 23:02:36.608 [main] INFO  C.GroupFormationTool.Survey.Survey: Getting survey id based on course id
+2020-07-15 23:02:36.618 [main] INFO  C.G.C.InstructorCourseController: Checking if the survey is published
+2020-07-15 23:02:36.621 [main] INFO  C.GroupFormationTool.Survey.Survey: Publishing the survey
+2020-07-15 23:02:36.808 [main] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is created for the course from the database
+2020-07-15 23:02:36.940 [main] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is created for the course from the database
+2020-07-15 23:02:36.954 [main] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is published for the course from the database
+2020-07-15 23:02:36.956 [main] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey has an algorithm for group formation for the course from the database
+2020-07-15 23:02:36.960 [main] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is created for the course from the database
+2020-07-15 23:02:36.965 [main] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is created for the course from the database
+2020-07-15 23:02:36.967 [main] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is published for the course from the database
+2020-07-15 23:02:36.970 [main] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is created for the course from the database
+2020-07-15 23:02:36.971 [main] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is published for the course from the database

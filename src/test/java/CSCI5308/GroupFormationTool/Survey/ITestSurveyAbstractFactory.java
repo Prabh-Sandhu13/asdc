@@ -12,7 +12,7 @@ public interface ITestSurveyAbstractFactory {
     
     public IResponse createResponseInstance();
     
-    public ResponseRepository createResponseRepositoryInstance();
+    public ResponseRepository createResponseRepositoryMock();
     
     public ArrayList<IResponse> createResponseListInstance();
     

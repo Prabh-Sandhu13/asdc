@@ -16,12 +16,16 @@ public class ResponseControllerTest {
     
     @Test
     void takeSurveyTest() throws Exception {
-    	
+        surveyAbstractFactory = TestSurveyInjector.instance().getSurveyAbstractFactory();
+        responseRepository = surveyAbstractFactory.createResponseRepositoryMock();
+        SurveyInjector.instance().setResponseRepository(responseRepository);
     }
     
     @Test
     void submitSurveyTest() throws Exception {
-    	
+        surveyAbstractFactory = TestSurveyInjector.instance().getSurveyAbstractFactory();
+        responseRepository = surveyAbstractFactory.createResponseRepositoryMock();
+        SurveyInjector.instance().setResponseRepository(responseRepository);
     }
 
 }

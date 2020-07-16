@@ -23,7 +23,7 @@ public class TestSurveyAbstractFactory implements ITestSurveyAbstractFactory {
     }
     
     @Override
-    public ResponseRepository createResponseRepositoryInstance() {
+    public ResponseRepository createResponseRepositoryMock() {
         return mock(ResponseRepository.class);
     }
     

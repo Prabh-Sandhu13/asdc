@@ -34,23 +34,22 @@ public class ResponseController {
         String userRole = null;
         String emailId = authentication.getPrincipal().toString();
         userRole = userCourses.getUserRoleByEmailId(emailId);
-            if (userRole.equals(DomainConstants.studentRole)) {
-            	String surveyId = surveyInstance.getSurveyId(courseId);
-            	ArrayList<IQuestion> surveyQuestions = surveyInstance.getSurveyQuestions(surveyId);
-            	model.addAttribute("surveyQuestions", surveyQuestions);
-            	model.addAttribute("courseName", courseName);
-            	model.addAttribute("courseId", courseId);
-            	return "course/courseSurveyResponse";
-            }
-            else {
-            	Log.warn("Other type of user tried directly accessing response page");
-            	return "redirect:login";
-            }
+        if (userRole.equals(DomainConstants.studentRole)) {
+        	String surveyId = surveyInstance.getSurveyId(courseId);
+            ArrayList<IQuestion> surveyQuestions = surveyInstance.getSurveyQuestions(surveyId);
+            model.addAttribute("surveyQuestions", surveyQuestions);
+            model.addAttribute("courseName", courseName);
+            model.addAttribute("courseId", courseId);
+            return "course/courseSurveyResponse";
+        }
+        else {
+        	Log.warn("Other type of user tried directly accessing response page");
+            return "redirect:login";
+        }
     }
     
     @PostMapping("/courseSurveyResponse")
-    public String submitSurvey(
-    		@RequestParam Map<String,String> searchParams, Model model){
+    public String submitSurvey(@RequestParam Map<String,String> searchParams, Model model){
 		ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
 		responseInstance = surveyAbstractFactory.createResponseInstance();
 		ArrayList<IResponse> responseList= responseInstance.createResponseList(searchParams);
