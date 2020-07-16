@@ -132,7 +132,7 @@ public class SurveyFormulaRepository implements ISurveyFormulaRepository {
                         "because of an SQL Exception " + exception.getLocalizedMessage());
                 return false;
             } finally {
-                if (null != storedProcedure) {
+                if (storedProcedure != null) {
                     storedProcedure.removeConnections();
                 }
             }
@@ -156,7 +156,7 @@ public class SurveyFormulaRepository implements ISurveyFormulaRepository {
             log.error("Could not execute the Stored procedure sp_deleteAlgo" +
                     "because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
-            if (null != storedProcedure) {
+            if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
         }

@@ -40,11 +40,10 @@ public class StoredProcedure {
                 statement.close();
             }
             if (connection != null) {
-                if (!connection.isClosed()) {
+                if (connection.isClosed() == false) {
                     connection.close();
                 }
             }
-
         } catch (Exception exception) {
             log.error("Error in closing the connection");
         }
@@ -72,10 +71,6 @@ public class StoredProcedure {
 
     public long getParameterLong(int paramIndex) throws SQLException {
         return statement.getLong(paramIndex);
-    }
-
-    public String getParameterString(int paramIndex) throws SQLException {
-        return statement.getString(paramIndex);
     }
 
     public ResultSet executeWithResults() throws SQLException {

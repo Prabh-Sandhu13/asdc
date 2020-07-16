@@ -40,11 +40,10 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
         }
         if (question.getChoices() != null) {
             for (IChoice choice : question.getChoices()) {
-                if (!saveChoice(choice, questionId)) {
+                if (saveChoice(choice, questionId) == false) {
                     return -1;
                 }
             }
-
         }
         return questionId;
     }
@@ -88,7 +87,7 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
             log.error("Could not execute the Stored procedure sp_deleteAQuestion" +
                     " because of an SQL Exception " + ex.getLocalizedMessage());
         } finally {
-            if (null != storedProcedure) {
+            if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
         }

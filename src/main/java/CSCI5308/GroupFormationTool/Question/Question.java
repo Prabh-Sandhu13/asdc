@@ -117,12 +117,10 @@ public class Question implements IQuestion {
             for (String value : optionValue) {
                 optionValueSet.add(value);
             }
-
             if (type == DomainConstants.MCQMultiple || type == DomainConstants.MCQOne) {
                 if (optionTextSet.size() == optionValueSet.size()) {
                     Iterator<String> optionTextIterator = optionTextSet.iterator();
                     Iterator<String> optionValueIterator = optionValueSet.iterator();
-
                     while (optionTextIterator.hasNext() && optionValueIterator.hasNext()) {
                         IChoice choice = questionAbstractFactory.createChoiceInstance();
                         choice.setText(optionTextIterator.next());
@@ -149,7 +147,8 @@ public class Question implements IQuestion {
 
     @Override
     public boolean deleteQuestion(long questionId) {
-        log.info("Calling the deleteQuestion repository function to delete the question" + questionId + "from the Database");
+        log.info("Calling the deleteQuestion repository function to delete the question"
+                + questionId + "from the Database");
         questionManagerRepository = QuestionInjector.instance().getQuestionManagerRepository();
         return questionManagerRepository.deleteQuestion(questionId);
     }
@@ -165,14 +164,16 @@ public class Question implements IQuestion {
     @Override
     public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortField) {
         log.info("Calling the getSortedQuestionListForInstructor" +
-                " repository function to fetch the question bank in a sorted order from the Database by email id " + emailId);
+                " repository function to fetch the question bank in a sorted order from the " +
+                " Database by email id " + emailId);
         questionAdminRepository = QuestionInjector.instance().getQuestionAdminRepository();
         return questionAdminRepository.getSortedQuestionListForInstructor(emailId, sortField);
     }
 
     @Override
     public IQuestion getQuestionById(long questionId) {
-        log.info("Calling the getQuestionById repository function to fetch a question from the Database by questionId " + questionId);
+        log.info("Calling the getQuestionById repository function to fetch a question from the " +
+                "Database by questionId " + questionId);
         questionAdminRepository = QuestionInjector.instance().getQuestionAdminRepository();
         IQuestion question = questionAdminRepository.getQuestionById(questionId);
         ArrayList<IChoice> choiceList = null;

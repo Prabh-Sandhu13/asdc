@@ -32,8 +32,4 @@ public class DatabaseInjector {
         return dbConfiguration;
     }
 
-    public void setDbConfiguration(IDBConfiguration dbConfiguration) {
-        this.dbConfiguration = dbConfiguration;
-    }
-
 }

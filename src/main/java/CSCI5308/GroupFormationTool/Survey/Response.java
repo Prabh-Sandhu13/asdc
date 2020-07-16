@@ -131,11 +131,11 @@ public class Response implements IResponse {
         String surveyId = null;
         for (Map.Entry<String, String> entry : studentResponse.entrySet()) {
             iteratorIndex++;
-            if (iteratorIndex == 2) {
+            if (iteratorIndex == DomainConstants.iteratorThreshold) {
                 surveyId = surveyRepository.getSurveyId(entry.getValue());
-            } else if (iteratorIndex > 2) {
+            } else if (iteratorIndex > DomainConstants.iteratorThreshold) {
                 IResponse response = surveyAbstractFactory.createResponseInstance();
-                String[] responseValues = entry.getKey().split("_");
+                String[] responseValues = entry.getKey().split(DomainConstants.regexForResponse);
                 IQuestion question = questionAdminRepository.getQuestionById(Long.parseLong(responseValues[1]));
                 response.setQuestionId(Long.parseLong(responseValues[1]));
                 response.setSurveyId(Long.parseLong(surveyId));
@@ -145,7 +145,7 @@ public class Response implements IResponse {
                     response.setOptionId(responseRepository.getResponseOptionId(
                             Long.parseLong(responseValues[1]), responseValues[3]) + "");
                 } else {
-                    response.setOptionId("0");
+                    response.setOptionId(DomainConstants.defaultOptionValue);
                     response.setAnswerText(entry.getValue());
                 }
                 responseList.add(response);

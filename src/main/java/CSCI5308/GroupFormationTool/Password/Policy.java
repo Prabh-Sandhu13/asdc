@@ -83,7 +83,6 @@ public class Policy implements IPolicy {
         String errorMessage = null;
         int upperCaseCharacters = 0;
         int lowerCaseCharacters = 0;
-        int digits = 0;
         int specialCharacters = 0;
         for (int index = 0; index < password.length(); index++) {
             char character = password.charAt(index);
@@ -91,9 +90,7 @@ public class Policy implements IPolicy {
                 upperCaseCharacters++;
             } else if (character >= 'a' && character <= 'z') {
                 lowerCaseCharacters++;
-            } else if (character >= '0' && character <= '9') {
-                digits++;
-            } else {
+            } else if ((character >= '0' && character <= '9') == false) {
                 specialCharacters++;
             }
         }
@@ -121,13 +118,13 @@ public class Policy implements IPolicy {
                         break;
                     case 2:
                         if (upperCaseCharacters < Integer.parseInt(val)) {
-                            log.error("Minimum upper case charachters required password security policy is violated");
+                            log.error("Minimum upper case characters required password security policy is violated");
                             errorMessage = DomainConstants.passwordUppercaseMinimumLength + val;
                         }
                         break;
                     case 3:
                         if (lowerCaseCharacters < Integer.parseInt(val)) {
-                            log.error("Minimum lower case charachters required password security policy is violated");
+                            log.error("Minimum lower case characters required password security policy is violated");
                             errorMessage = DomainConstants.passwordLowercaseMinimumLength + val;
                         }
                         break;
@@ -140,12 +137,11 @@ public class Policy implements IPolicy {
                     case 5:
                         for (int i = 0; i < val.length(); i++) {
                             if (password != null && password.indexOf(val.charAt(i)) >= 0) {
-                                log.error("Charachters not allowed in password security policy is violated");
+                                log.error("Characters not allowed in password security policy is violated");
                                 errorMessage = "" + val + DomainConstants.passwordCharactersNotAllowed;
                                 break;
                             }
                         }
-                    default:
                 }
             }
         }

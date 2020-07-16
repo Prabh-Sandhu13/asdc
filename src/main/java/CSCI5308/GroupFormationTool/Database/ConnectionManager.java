@@ -24,7 +24,7 @@ public class ConnectionManager {
     }
 
     public static ConnectionManager instance() {
-        if (null == instance) {
+        if (instance == null) {
             instance = new ConnectionManager();
         }
         return instance;

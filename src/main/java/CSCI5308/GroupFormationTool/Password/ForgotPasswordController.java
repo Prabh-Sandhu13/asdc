@@ -35,7 +35,7 @@ public class ForgotPasswordController {
         String errorMessage = null;
         forgotPasswordManager = PasswordInjector.instance().getForgotPasswordManager();
         errorMessage = forgotPasswordManager.notifyUser(user);
-        if (null == errorMessage) {
+        if (errorMessage == null) {
             modelAndView = new ModelAndView("password/MailSentSuccess");
             modelAndView.addObject("Success", DomainConstants.mailSentSuccess);
         } else {

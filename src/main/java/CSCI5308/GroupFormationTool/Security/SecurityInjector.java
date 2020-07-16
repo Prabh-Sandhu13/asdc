@@ -24,10 +24,6 @@ public class SecurityInjector {
         return securityAbstractFactory;
     }
 
-    public void setSecurityAbstractFactory(ISecurityAbstractFactory securityAbstractFactory) {
-        this.securityAbstractFactory = securityAbstractFactory;
-    }
-
     public IPasswordEncryptor getPasswordEncryptor() {
         return passwordEncryptor;
     }

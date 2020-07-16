@@ -67,7 +67,7 @@ public class CourseRepository implements ICourseRepository {
             Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
                     " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
-            if (null != storedProcedure) {
+            if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
         }
@@ -90,7 +90,7 @@ public class CourseRepository implements ICourseRepository {
             Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
                     " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
-            if (null != storedProcedure) {
+            if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
         }

@@ -16,6 +16,7 @@ public class UserRepository implements IUserRepository {
     public boolean createUser(IUser user) {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
+        boolean status = true;
         try {
             log.info("Calling stored procedure sp_create_user to save the new user to the database");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance(
@@ -29,13 +30,13 @@ public class UserRepository implements IUserRepository {
         } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_create_user" +
                     "because of an SQL Exception " + exception.getLocalizedMessage());
-            return false;
+            status = false;
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
         }
-        return true;
+        return status;
     }
 
     @Override
