@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Security.LoginControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-16T16:22:15" hostname="Prabhjots-MacBook-Pro.local" time="0.018">
+<testsuite name="CSCI5308.GroupFormationTool.Security.LoginControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-16T16:40:27" hostname="Prabhjots-MacBook-Pro.local" time="0.02">
   <properties/>
-  <testcase name="loginTest()" classname="CSCI5308.GroupFormationTool.Security.LoginControllerTest" time="0.018"/>
+  <testcase name="loginTest()" classname="CSCI5308.GroupFormationTool.Security.LoginControllerTest" time="0.02"/>
   <system-out><![CDATA[
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -11,9 +11,9 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-16 13:22:15.182  INFO 40985 --- [    Test worker] C.G.Security.LoginControllerTest         : Starting LoginControllerTest on Prabhjots-MacBook-Pro.local with PID 40985 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-16 13:22:15.182  INFO 40985 --- [    Test worker] C.G.Security.LoginControllerTest         : No active profile set, falling back to default profiles: default
-2020-07-16 13:22:15.502  INFO 40985 --- [    Test worker] C.G.Security.LoginControllerTest         : Started LoginControllerTest in 0.329 seconds (JVM running for 7.251)
+2020-07-16 13:40:26.974  INFO 41246 --- [    Test worker] C.G.Security.LoginControllerTest         : Starting LoginControllerTest on Prabhjots-MacBook-Pro.local with PID 41246 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-16 13:40:26.975  INFO 41246 --- [    Test worker] C.G.Security.LoginControllerTest         : No active profile set, falling back to default profiles: default
+2020-07-16 13:40:27.300  INFO 41246 --- [    Test worker] C.G.Security.LoginControllerTest         : Started LoginControllerTest in 0.334 seconds (JVM running for 7.035)
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -21,7 +21,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@65539f59}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@1a59ec44}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Security.LoginController
@@ -66,7 +66,7 @@ MockHttpServletResponse:
 <div>
     <div class="flex align-items-center text-center">
         <form action="/login" autocomplete="off" class="m-t col-md-4 col-md-offset-4"
-              data-toggle="validator" method="post" role="form"><input type="hidden" name="_csrf" value="3399f149-e5a8-423d-a678-03340d24c7ca"/>
+              data-toggle="validator" method="post" role="form"><input type="hidden" name="_csrf" value="596fb9d3-e206-41f1-8687-336849805cad"/>
 
             <br/>
             <h4>Sign in to continue!</h4>

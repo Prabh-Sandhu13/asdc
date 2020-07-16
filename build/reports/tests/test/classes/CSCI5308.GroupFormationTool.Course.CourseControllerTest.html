@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.169s</div>
+<div class="counter">0.187s</div>
 <p>duration</p>
 </div>
 </td>
@@ -84,32 +84,32 @@
 </tr>
 <tr>
 <td class="success">addCourseTest()</td>
-<td class="success">0.043s</td>
+<td class="success">0.050s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">addTATest()</td>
-<td class="success">0.012s</td>
+<td class="success">0.013s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">allCoursesTest()</td>
-<td class="success">0.004s</td>
+<td class="success">0.005s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">courseDetailsTest()</td>
-<td class="success">0.033s</td>
+<td class="success">0.041s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">courseListTest()</td>
-<td class="success">0.029s</td>
+<td class="success">0.030s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">deleteCourseTest()</td>
-<td class="success">0.016s</td>
+<td class="success">0.015s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -119,7 +119,7 @@
 </tr>
 <tr>
 <td class="success">uploadCSVFileTest()</td>
-<td class="success">0.006s</td>
+<td class="success">0.007s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -136,17 +136,17 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-16 13:22:13.868  INFO 40985 --- [    Test worker] C.G.Course.CourseControllerTest          : Starting CourseControllerTest on Prabhjots-MacBook-Pro.local with PID 40985 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-16 13:22:13.870  INFO 40985 --- [    Test worker] C.G.Course.CourseControllerTest          : No active profile set, falling back to default profiles: default
-2020-07-16 13:22:14.237  INFO 40985 --- [    Test worker] C.G.Course.CourseControllerTest          : Started CourseControllerTest in 0.38 seconds (JVM running for 5.987)
-2020-07-16 13:22:14.255  INFO 40985 --- [    Test worker] C.GroupFormationTool.Course.Course       : Creating a new course and storing it in the database
-2020-07-16 13:22:14.255  INFO 40985 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
-2020-07-16 13:22:14.255  WARN 40985 --- [    Test worker] C.G.Course.CourseController              : Course is not added successfully
+2020-07-16 13:40:25.552  INFO 41246 --- [    Test worker] C.G.Course.CourseControllerTest          : Starting CourseControllerTest on Prabhjots-MacBook-Pro.local with PID 41246 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-16 13:40:25.552  INFO 41246 --- [    Test worker] C.G.Course.CourseControllerTest          : No active profile set, falling back to default profiles: default
+2020-07-16 13:40:25.952  INFO 41246 --- [    Test worker] C.G.Course.CourseControllerTest          : Started CourseControllerTest in 0.411 seconds (JVM running for 5.688)
+2020-07-16 13:40:25.976  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Creating a new course and storing it in the database
+2020-07-16 13:40:25.976  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
+2020-07-16 13:40:25.976  WARN 41246 --- [    Test worker] C.G.Course.CourseController              : Course is not added successfully
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /admin/addCourse
-       Parameters = {_csrf=[7e84f992-b056-4a12-bbfc-09dea01963d4]}
+       Parameters = {_csrf=[9d7fb558-4098-4ed1-bafe-ecf2f10fa7aa]}
           Headers = []
              Body = &lt;no character encoding set&gt;
     Session Attrs = {}
@@ -166,7 +166,7 @@ ModelAndView:
         View name = course/allCourses
              View = null
         Attribute = course
-            value = CSCI5308.GroupFormationTool.Course.Course@528b3533
+            value = CSCI5308.GroupFormationTool.Course.Course@6fd91775
            errors = []
         Attribute = failureMessage
             value = The course could not be added since the course already exists!
@@ -211,14 +211,14 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.278  INFO 40985 --- [    Test worker] C.GroupFormationTool.Course.Course       : Creating a new course and storing it in the database
-2020-07-16 13:22:14.278  INFO 40985 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
-2020-07-16 13:22:14.278  WARN 40985 --- [    Test worker] C.G.Course.CourseController              : Course is not added successfully
+2020-07-16 13:40:25.999  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Creating a new course and storing it in the database
+2020-07-16 13:40:26.000  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
+2020-07-16 13:40:26.000  WARN 41246 --- [    Test worker] C.G.Course.CourseController              : Course is not added successfully
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /admin/addCourse
-       Parameters = {_csrf=[9d203de2-8d58-4d78-939f-2a60184b5d32]}
+       Parameters = {_csrf=[c74a25df-d510-462e-b07d-312719c82556]}
           Headers = []
              Body = &lt;no character encoding set&gt;
     Session Attrs = {}
@@ -238,7 +238,7 @@ ModelAndView:
         View name = course/allCourses
              View = null
         Attribute = course
-            value = CSCI5308.GroupFormationTool.Course.Course@14301d1b
+            value = CSCI5308.GroupFormationTool.Course.Course@402f2124
            errors = []
         Attribute = failureMessage
             value = The course could not be added since the course already exists!
@@ -290,7 +290,7 @@ MockHttpServletRequest:
        Parameters = {courseId=[CSCI5308]}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@50712909}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@3edc01a3}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -347,7 +347,7 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.292  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
+2020-07-16 13:40:26.017  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -355,7 +355,7 @@ MockHttpServletRequest:
        Parameters = {courseId=[CSCI5308], courseName=[ASDC]}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@3438d5f4}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@54a9dc25}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -421,7 +421,7 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.298  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
+2020-07-16 13:40:26.025  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -429,7 +429,7 @@ MockHttpServletRequest:
        Parameters = {courseId=[CSCI5308], courseName=[ASDC]}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@f182c8b}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@542febf3}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -495,7 +495,7 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.301  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
+2020-07-16 13:40:26.029  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -503,7 +503,7 @@ MockHttpServletRequest:
        Parameters = {courseId=[CSCI5308], courseName=[ASDC]}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@598a1e33}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@5757c2bd}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -569,8 +569,8 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.312  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
-2020-07-16 13:22:14.313  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checks of the survey is published for a course
+2020-07-16 13:40:26.042  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
+2020-07-16 13:40:26.043  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checks if the survey is published for a course CSCI5308
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -578,7 +578,7 @@ MockHttpServletRequest:
        Parameters = {courseId=[CSCI5308], courseName=[ASDC]}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@20553ec}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@35e0a112}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -651,8 +651,8 @@ h4 {
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.319  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
-2020-07-16 13:22:14.319  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checks of the survey is published for a course
+2020-07-16 13:40:26.049  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
+2020-07-16 13:40:26.050  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checks if the survey is published for a course CSCI5308
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -660,7 +660,7 @@ MockHttpServletRequest:
        Parameters = {courseId=[CSCI5308], courseName=[ASDC]}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@6ab72136}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@3949f452}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -733,8 +733,8 @@ h4 {
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.325  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Fetch TA for a course using course Id
-2020-07-16 13:22:14.325  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get TA for a course using course Id
+2020-07-16 13:40:26.055  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Fetch TA for a course using course Id CSCI5308
+2020-07-16 13:40:26.055  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get TA for a course using course Id
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -742,7 +742,7 @@ MockHttpServletRequest:
        Parameters = {courseId=[CSCI5308]}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@70473c8a}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@7ace7488}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -759,7 +759,7 @@ ModelAndView:
         View name = course/enrollTA
              View = null
         Attribute = user
-            value = CSCI5308.GroupFormationTool.User.User@29261aea
+            value = CSCI5308.GroupFormationTool.User.User@24a3a558
            errors = []
         Attribute = taList
             value = []
@@ -794,7 +794,7 @@ MockHttpServletResponse:
 &lt;div class=&quot;container&quot; style=&quot;padding:20px;&quot;&gt;
     &lt;form action=&quot;/enrollTA?courseId=CSCI5308&quot; autocomplete=&quot;off&quot;
           class=&quot;m-t col-md-4 col-md-offset-4&quot;
-          data-toggle=&quot;validator&quot; method=&quot;post&quot; role=&quot;form&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;c603f36d-a3ac-46de-aea5-0904588c658a&quot;/&gt;
+          data-toggle=&quot;validator&quot; method=&quot;post&quot; role=&quot;form&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;d6d624e9-2b18-47c2-869c-52d7020c4577&quot;/&gt;
         
         
         &lt;br&gt;
@@ -838,8 +838,8 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.345  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Function call to fetch all the courses details
-2020-07-16 13:22:14.345  INFO 40985 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
+2020-07-16 13:40:26.078  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Function call to fetch all the courses details
+2020-07-16 13:40:26.078  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -847,7 +847,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@61d39d0f}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@49641c1d}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -904,14 +904,15 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.352  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to enroll a TA for the course using email id
-2020-07-16 13:22:14.352  WARN 40985 --- [    Test worker] C.G.Course.CourseController              : TA is not successfully added to the course
-2020-07-16 13:22:14.352  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get TA for a course using course Id
+2020-07-16 13:40:26.085  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Enroll a TA for the course CSCI5308
+2020-07-16 13:40:26.085  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to enroll a TA for the course using email id
+2020-07-16 13:40:26.085  WARN 41246 --- [    Test worker] C.G.Course.CourseController              : TA is not successfully added to the course
+2020-07-16 13:40:26.085  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get TA for a course using course Id
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /enrollTA
-       Parameters = {courseId=[CSCI5308], _csrf=[c563239a-29fc-4c60-b321-23df71179fb3]}
+       Parameters = {courseId=[CSCI5308], _csrf=[4e88607b-f753-48e9-8376-032d5a199ebb]}
           Headers = []
              Body = &lt;no character encoding set&gt;
     Session Attrs = {}
@@ -931,7 +932,7 @@ ModelAndView:
         View name = course/enrollTA
              View = null
         Attribute = user
-            value = CSCI5308.GroupFormationTool.User.User@45797926
+            value = CSCI5308.GroupFormationTool.User.User@12884dcb
            errors = []
         Attribute = error
             value = not added
@@ -968,7 +969,7 @@ MockHttpServletResponse:
 &lt;div class=&quot;container&quot; style=&quot;padding:20px;&quot;&gt;
     &lt;form action=&quot;/enrollTA?courseId=CSCI5308&quot; autocomplete=&quot;off&quot;
           class=&quot;m-t col-md-4 col-md-offset-4&quot;
-          data-toggle=&quot;validator&quot; method=&quot;post&quot; role=&quot;form&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;c563239a-29fc-4c60-b321-23df71179fb3&quot;/&gt;
+          data-toggle=&quot;validator&quot; method=&quot;post&quot; role=&quot;form&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;4e88607b-f753-48e9-8376-032d5a199ebb&quot;/&gt;
         &lt;div class=&quot;validation-message alert alert-danger&quot; role=&quot;alert&quot;&gt;TA not added!!
         &lt;/div&gt;
         
@@ -1013,14 +1014,15 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.357  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to enroll a TA for the course using email id
-2020-07-16 13:22:14.357  WARN 40985 --- [    Test worker] C.G.Course.CourseController              : TA is not successfully added to the course
-2020-07-16 13:22:14.357  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get TA for a course using course Id
+2020-07-16 13:40:26.090  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Enroll a TA for the course CSCI5308
+2020-07-16 13:40:26.090  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to enroll a TA for the course using email id
+2020-07-16 13:40:26.090  WARN 41246 --- [    Test worker] C.G.Course.CourseController              : TA is not successfully added to the course
+2020-07-16 13:40:26.090  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get TA for a course using course Id
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /enrollTA
-       Parameters = {courseId=[CSCI5308], _csrf=[76028cf2-a215-4dec-89ce-52ee69250083]}
+       Parameters = {courseId=[CSCI5308], _csrf=[8e69b4d4-382f-4b96-9cf6-b10f6d25bebb]}
           Headers = []
              Body = &lt;no character encoding set&gt;
     Session Attrs = {}
@@ -1040,7 +1042,7 @@ ModelAndView:
         View name = course/enrollTA
              View = null
         Attribute = user
-            value = CSCI5308.GroupFormationTool.User.User@57c5391
+            value = CSCI5308.GroupFormationTool.User.User@69de09d2
            errors = []
         Attribute = error
             value = not added
@@ -1077,7 +1079,7 @@ MockHttpServletResponse:
 &lt;div class=&quot;container&quot; style=&quot;padding:20px;&quot;&gt;
     &lt;form action=&quot;/enrollTA?courseId=CSCI5308&quot; autocomplete=&quot;off&quot;
           class=&quot;m-t col-md-4 col-md-offset-4&quot;
-          data-toggle=&quot;validator&quot; method=&quot;post&quot; role=&quot;form&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;76028cf2-a215-4dec-89ce-52ee69250083&quot;/&gt;
+          data-toggle=&quot;validator&quot; method=&quot;post&quot; role=&quot;form&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;8e69b4d4-382f-4b96-9cf6-b10f6d25bebb&quot;/&gt;
         &lt;div class=&quot;validation-message alert alert-danger&quot; role=&quot;alert&quot;&gt;TA not added!!
         &lt;/div&gt;
         
@@ -1122,9 +1124,9 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.363  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Condition check if current user is admin or not
-2020-07-16 13:22:14.363  INFO 40985 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking if current user is admin
-2020-07-16 13:22:14.363  INFO 40985 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
+2020-07-16 13:40:26.097  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Condition check if current user is admin or not
+2020-07-16 13:40:26.097  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking if current user is admin
+2020-07-16 13:40:26.097  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -1132,7 +1134,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@3081dbcd}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@7a678c0f}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -1189,13 +1191,13 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.367  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Condition check if current user is admin or not
-2020-07-16 13:22:14.367  INFO 40985 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking if current user is admin
-2020-07-16 13:22:14.367  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Fetch user role based on th email Id
-2020-07-16 13:22:14.367  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
-2020-07-16 13:22:14.368  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : User is a Guest User
-2020-07-16 13:22:14.368  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Function call to fetch all courses details for a guest user
-2020-07-16 13:22:14.368  INFO 40985 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
+2020-07-16 13:40:26.101  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Condition check if current user is admin or not
+2020-07-16 13:40:26.101  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking if current user is admin
+2020-07-16 13:40:26.101  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Fetch user role based on th email Id
+2020-07-16 13:40:26.101  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
+2020-07-16 13:40:26.101  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : User is a Guest User
+2020-07-16 13:40:26.101  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Function call to fetch all courses details for a guest user
+2020-07-16 13:40:26.101  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -1203,7 +1205,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@4b289b9e}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@67da7f13}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -1260,13 +1262,13 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.374  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Condition check if current user is admin or not
-2020-07-16 13:22:14.374  INFO 40985 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking if current user is admin
-2020-07-16 13:22:14.374  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Fetch user role based on th email Id
-2020-07-16 13:22:14.374  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
-2020-07-16 13:22:14.374  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : User is a Student
-2020-07-16 13:22:14.374  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Function call to fetch enrolled courses for a student
-2020-07-16 13:22:14.374  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the courses enrolled by a student using student's email Id
+2020-07-16 13:40:26.107  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Condition check if current user is admin or not
+2020-07-16 13:40:26.107  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking if current user is admin
+2020-07-16 13:40:26.107  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Fetch user role based on th email Id
+2020-07-16 13:40:26.108  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
+2020-07-16 13:40:26.108  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : User is a Student
+2020-07-16 13:40:26.108  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Function call to fetch enrolled courses for a student by emailId anonymousUser
+2020-07-16 13:40:26.108  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the courses enrolled by a student using student's email Id
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -1274,7 +1276,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@75c1551}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@4faaa08f}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -1322,7 +1324,7 @@ MockHttpServletResponse:
     &lt;br/&gt;
     &lt;br/&gt;
     &lt;div&gt;
-        &lt;form method=&quot;post&quot; action=&quot;/logout&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;ba1377bd-42b3-4d1a-b076-30232401fee2&quot;/&gt;
+        &lt;form method=&quot;post&quot; action=&quot;/logout&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;7b4cf45f-7b03-4481-b921-7b7395923055&quot;/&gt;
             &lt;button class=&quot;btn btn-danger btn-sm&quot; type=&quot;submit&quot;&gt;
                 Sign Out
             &lt;/button&gt;
@@ -1350,15 +1352,15 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.379  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Condition check if current user is admin or not
-2020-07-16 13:22:14.379  INFO 40985 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking if current user is admin
-2020-07-16 13:22:14.379  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Fetch user role based on th email Id
-2020-07-16 13:22:14.379  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
-2020-07-16 13:22:14.380  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : User is a TA
-2020-07-16 13:22:14.380  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Function call to get TA courses
-2020-07-16 13:22:14.380  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the courses for a TA using email Id
-2020-07-16 13:22:14.380  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Function call to fetch student courses
-2020-07-16 13:22:14.380  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the courses enrolled by a student using student's email Id
+2020-07-16 13:40:26.113  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Condition check if current user is admin or not
+2020-07-16 13:40:26.113  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking if current user is admin
+2020-07-16 13:40:26.114  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Fetch user role based on th email Id
+2020-07-16 13:40:26.114  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
+2020-07-16 13:40:26.114  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : User is a TA
+2020-07-16 13:40:26.114  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Function call to get TA courses by emailId anonymousUser
+2020-07-16 13:40:26.114  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the courses for a TA using email Id
+2020-07-16 13:40:26.114  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Function call to fetch student courses by emailId anonymousUser
+2020-07-16 13:40:26.114  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the courses enrolled by a student using student's email Id
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -1366,7 +1368,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@65c3c415}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@10cc577b}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -1454,12 +1456,12 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.385  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Condition check if current user is admin or not
-2020-07-16 13:22:14.385  INFO 40985 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking if current user is admin
-2020-07-16 13:22:14.385  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Fetch user role based on th email Id
-2020-07-16 13:22:14.385  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
-2020-07-16 13:22:14.386  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : User is an Instructor
-2020-07-16 13:22:14.386  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get instructors for a course using email Id
+2020-07-16 13:40:26.119  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Condition check if current user is admin or not
+2020-07-16 13:40:26.119  INFO 41246 --- [    Test worker] CSCI5308.GroupFormationTool.User.User    : Checking if current user is admin
+2020-07-16 13:40:26.119  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Fetch user role based on th email Id
+2020-07-16 13:40:26.119  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Get the role of a user by email Id
+2020-07-16 13:40:26.119  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : User is an Instructor and get instructor courses by emailid anonymousUser
+2020-07-16 13:40:26.120  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Function call to get instructors for a course using email Id
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -1467,7 +1469,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@1ec0a09a}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@4d44a0e9}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -1523,14 +1525,15 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.392  INFO 40985 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the deleteCourse repository function to delete the course from the Database
-2020-07-16 13:22:14.392  INFO 40985 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
-2020-07-16 13:22:14.392  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Course is deleted successfully
+2020-07-16 13:40:26.127  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Function call to delete a course with id CSCI5308
+2020-07-16 13:40:26.127  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the deleteCourse repository function to delete the courseCSCI5308from the Database
+2020-07-16 13:40:26.127  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
+2020-07-16 13:40:26.127  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Course CSCI5308 is deleted successfully
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /admin/deleteCourse
-       Parameters = {id=[CSCI5308], _csrf=[f6426090-d400-4a9e-b1f4-58410b6a89e5]}
+       Parameters = {id=[CSCI5308], _csrf=[42f80b59-48ba-43a8-88d5-696c180ae6ea]}
           Headers = []
              Body = &lt;no character encoding set&gt;
     Session Attrs = {}
@@ -1592,14 +1595,15 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.396  INFO 40985 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the deleteCourse repository function to delete the course from the Database
-2020-07-16 13:22:14.396  INFO 40985 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
-2020-07-16 13:22:14.396  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Course is not deleted successfully
+2020-07-16 13:40:26.130  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Function call to delete a course with id CSCI5308
+2020-07-16 13:40:26.130  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the deleteCourse repository function to delete the courseCSCI5308from the Database
+2020-07-16 13:40:26.130  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
+2020-07-16 13:40:26.131  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Course is not deleted successfully
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /admin/deleteCourse
-       Parameters = {id=[CSCI5308], _csrf=[bb675aec-d71f-47ef-8646-9da89ab145c6]}
+       Parameters = {id=[CSCI5308], _csrf=[9f21d408-7725-4b6b-ae71-33116924746e]}
           Headers = []
              Body = &lt;no character encoding set&gt;
     Session Attrs = {}
@@ -1661,9 +1665,10 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.400  INFO 40985 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the deleteCourse repository function to delete the course from the Database
-2020-07-16 13:22:14.400  INFO 40985 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
-2020-07-16 13:22:14.400  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Course is deleted successfully
+2020-07-16 13:40:26.133  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Function call to delete a course with id CSCI5308
+2020-07-16 13:40:26.133  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the deleteCourse repository function to delete the courseCSCI5308from the Database
+2020-07-16 13:40:26.133  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
+2020-07-16 13:40:26.134  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Course CSCI5308 is deleted successfully
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -1671,7 +1676,7 @@ MockHttpServletRequest:
        Parameters = {id=[CSCI5308]}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@113b2cb7}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@79d26cb5}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -1730,9 +1735,10 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-16 13:22:14.403  INFO 40985 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the deleteCourse repository function to delete the course from the Database
-2020-07-16 13:22:14.404  INFO 40985 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
-2020-07-16 13:22:14.404  INFO 40985 --- [    Test worker] C.G.Course.CourseController              : Course is not deleted successfully
+2020-07-16 13:40:26.136  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Function call to delete a course with id CSCI5308
+2020-07-16 13:40:26.136  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the deleteCourse repository function to delete the courseCSCI5308from the Database
+2020-07-16 13:40:26.136  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
+2020-07-16 13:40:26.137  INFO 41246 --- [    Test worker] C.G.Course.CourseController              : Course is not deleted successfully
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -1740,7 +1746,7 @@ MockHttpServletRequest:
        Parameters = {id=[CSCI5308]}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@76aa555c}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@636605d8}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -1806,7 +1812,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@db2c4f0}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@1163e140}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Course.CourseController
@@ -1823,7 +1829,7 @@ ModelAndView:
         View name = course/addCourse
              View = null
         Attribute = course
-            value = CSCI5308.GroupFormationTool.Course.Course@16ed71ac
+            value = CSCI5308.GroupFormationTool.Course.Course@7948586d
            errors = []
 
 FlashMap:
@@ -1875,7 +1881,7 @@ MockHttpServletResponse:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 16, 2020, 1:22:17 p.m.</p>
+<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 16, 2020, 1:40:29 p.m.</p>
 </div>
 </div>
 </body>

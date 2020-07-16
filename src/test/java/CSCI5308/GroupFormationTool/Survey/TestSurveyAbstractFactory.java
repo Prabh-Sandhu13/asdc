@@ -9,7 +9,6 @@ import java.util.Map;
 
 import static org.mockito.Mockito.mock;
 
-import java.util.ArrayList;
 
 public class TestSurveyAbstractFactory implements ITestSurveyAbstractFactory {
 

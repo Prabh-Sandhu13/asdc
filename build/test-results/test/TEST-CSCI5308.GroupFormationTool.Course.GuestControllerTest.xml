@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Course.GuestControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-16T16:22:14" hostname="Prabhjots-MacBook-Pro.local" time="0.018">
+<testsuite name="CSCI5308.GroupFormationTool.Course.GuestControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-16T16:40:26" hostname="Prabhjots-MacBook-Pro.local" time="0.02">
   <properties/>
-  <testcase name="guestCoursesTest()" classname="CSCI5308.GroupFormationTool.Course.GuestControllerTest" time="0.018"/>
+  <testcase name="guestCoursesTest()" classname="CSCI5308.GroupFormationTool.Course.GuestControllerTest" time="0.02"/>
   <system-out><![CDATA[
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -11,11 +11,11 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-16 13:22:14.430  INFO 40985 --- [    Test worker] C.G.Course.GuestControllerTest           : Starting GuestControllerTest on Prabhjots-MacBook-Pro.local with PID 40985 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-16 13:22:14.430  INFO 40985 --- [    Test worker] C.G.Course.GuestControllerTest           : No active profile set, falling back to default profiles: default
-2020-07-16 13:22:14.776  INFO 40985 --- [    Test worker] C.G.Course.GuestControllerTest           : Started GuestControllerTest in 0.354 seconds (JVM running for 6.526)
-2020-07-16 13:22:14.780  INFO 40985 --- [    Test worker] C.G.Question.QuestionManagerRepository   : Function call to fetch all course details for a Guest user
-2020-07-16 13:22:14.780  INFO 40985 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
+2020-07-16 13:40:26.160  INFO 41246 --- [    Test worker] C.G.Course.GuestControllerTest           : Starting GuestControllerTest on Prabhjots-MacBook-Pro.local with PID 41246 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-16 13:40:26.161  INFO 41246 --- [    Test worker] C.G.Course.GuestControllerTest           : No active profile set, falling back to default profiles: default
+2020-07-16 13:40:26.525  INFO 41246 --- [    Test worker] C.G.Course.GuestControllerTest           : Started GuestControllerTest in 0.375 seconds (JVM running for 6.261)
+2020-07-16 13:40:26.529  INFO 41246 --- [    Test worker] C.G.Question.QuestionManagerRepository   : Function call to fetch all course details for a Guest user
+2020-07-16 13:40:26.529  INFO 41246 --- [    Test worker] C.GroupFormationTool.Course.Course       : Calling the courseRepository function to get all courses
 
 MockHttpServletRequest:
       HTTP Method = GET
