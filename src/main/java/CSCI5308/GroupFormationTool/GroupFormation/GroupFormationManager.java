@@ -133,9 +133,9 @@ public class GroupFormationManager implements IGroupFormationManager {
         IGroupFormationAbstractFactory groupFormationAbstractFactory = GroupFormationInjector.instance()
                 .getGroupFormationAbstractFactory();
         ArrayList<ArrayList<Double>> totalMatrix = groupFormationAbstractFactory.getMatrixInstance(students);
-        for (int i = 0; i < students; i++) {
+        for (int rowIndex = 0; rowIndex < students; rowIndex++) {
             ArrayList<Double> studentCount = groupFormationAbstractFactory.createRowInstance(students);
-            for (int j = 0; j < students; j++) {
+            for (int columnIndex = 0; columnIndex < students; columnIndex++) {
                 studentCount.add(0.0);
             }
             totalMatrix.add(studentCount);
@@ -178,12 +178,12 @@ public class GroupFormationManager implements IGroupFormationManager {
                                 .getOptions();
                         List<String> intersectOptions = studentOptions.stream().filter(secondStudentOptions::contains)
                                 .collect(Collectors.toList());
-                        double probabilityValue = (double) (2 * intersectOptions.size())
+                        double probabilityValue = (double) (DomainConstants.factor * intersectOptions.size())
                                 / (double) (studentOptions.size() + secondStudentOptions.size());
-                        if (groupLogic.get(question.getId()).getSimilarity() == 1) {
+                        if (groupLogic.get(question.getId()).getSimilarity() == DomainConstants.isSimilar) {
                             row.add(probabilityValue);
                         } else {
-                            row.add(1 - probabilityValue);
+                            row.add(DomainConstants.maximumProbability - probabilityValue);
                         }
                     }
                 }
@@ -204,8 +204,8 @@ public class GroupFormationManager implements IGroupFormationManager {
         HashMap<Integer, Integer> lessthanXValues = groupFormationAbstractFactory.createXValuesInstance();
         HashMap<Integer, Integer> greaterthanXValues = groupFormationAbstractFactory.createXValuesInstance();
         for (Map.Entry<Long, Integer> user : indexUserIdToIndex.entrySet()) {
-            lessthanXValues.put(user.getValue(), 0);
-            greaterthanXValues.put(user.getValue(), 0);
+            lessthanXValues.put(user.getValue(), DomainConstants.initialXValues);
+            greaterthanXValues.put(user.getValue(), DomainConstants.initialXValues);
         }
         for (IQuestion question : numericTypeMatrix) {
             for (Map.Entry<Long, HashMap<Long, IResponse>> student : studentWithQuestionAndAnswer
@@ -215,32 +215,34 @@ public class GroupFormationManager implements IGroupFormationManager {
                         student.getValue().get(question.getId()).getAnswerText()) <
                         groupLogic.get(question.getId()).getLesserThan()) {
                     if (lessthanXValues.containsKey(studentKey)) {
-                        lessthanXValues.put(studentKey, lessthanXValues.get(studentKey) + 1);
+                        lessthanXValues.put(studentKey, lessthanXValues.get(studentKey) +
+                                (int) DomainConstants.maximumProbability);
                     }
                 }
                 if (Integer.parseInt(student.getValue().get(question.getId()).getAnswerText()) >
                         groupLogic.get(question.getId()).getGreaterThan()) {
                     if (greaterthanXValues.containsKey(studentKey)) {
-                        greaterthanXValues.put(studentKey, greaterthanXValues.get(studentKey) + 1);
+                        greaterthanXValues.put(studentKey, greaterthanXValues.get(studentKey) +
+                                (int) DomainConstants.maximumProbability);
                     }
                 }
             }
         }
         for (Map.Entry<Integer, Integer> lessThanXValue : lessthanXValues.entrySet()) {
-            double averageLessThanXValue = lessThanXValue.getValue() * 0.1 / (double) (numericTypeMatrix.size());
-            if (averageLessThanXValue > 0.5) {
-                lessThanXValue.setValue(1);
+            double averageLessThanXValue = lessThanXValue.getValue() * DomainConstants.probabilityFactor / (double) (numericTypeMatrix.size());
+            if (averageLessThanXValue > DomainConstants.thresholdProbability) {
+                lessThanXValue.setValue((int) DomainConstants.maximumProbability);
             } else {
-                lessThanXValue.setValue(0);
+                lessThanXValue.setValue((int) DomainConstants.minimumProbability);
             }
         }
         mappings.put(DomainConstants.lessThanX, lessthanXValues);
         for (Map.Entry<Integer, Integer> greaterThanXValue : greaterthanXValues.entrySet()) {
-            double averageGreaterThanXValue = greaterThanXValue.getValue() * 0.1 / (double) (numericTypeMatrix.size());
-            if (averageGreaterThanXValue > 0.5) {
-                greaterThanXValue.setValue(1);
+            double averageGreaterThanXValue = greaterThanXValue.getValue() * DomainConstants.probabilityFactor / (double) (numericTypeMatrix.size());
+            if (averageGreaterThanXValue > DomainConstants.thresholdProbability) {
+                greaterThanXValue.setValue((int) DomainConstants.maximumProbability);
             } else {
-                greaterThanXValue.setValue(0);
+                greaterThanXValue.setValue((int) DomainConstants.minimumProbability);
             }
         }
         mappings.put(DomainConstants.greaterThanX, greaterthanXValues);
@@ -265,16 +267,16 @@ public class GroupFormationManager implements IGroupFormationManager {
                         row.add(DomainConstants.minimumDistance);
                     } else if (student.getValue().get(question.getId()).getAnswerText().equals(
                             secondStudent.getValue().get(question.getId()).getAnswerText())) {
-                        if (groupLogic.get(question.getId()).getSimilarity() == 1) {
-                            row.add(0.0);
+                        if (groupLogic.get(question.getId()).getSimilarity() == DomainConstants.isSimilar) {
+                            row.add(DomainConstants.maximumProbability);
                         } else {
-                            row.add(1.0);
+                            row.add(DomainConstants.minimumProbability);
                         }
                     } else {
-                        if (groupLogic.get(question.getId()).getSimilarity() == 1) {
-                            row.add(1.0);
+                        if (groupLogic.get(question.getId()).getSimilarity() == DomainConstants.isSimilar) {
+                            row.add(DomainConstants.maximumProbability);
                         } else {
-                            row.add(0.0);
+                            row.add(DomainConstants.minimumProbability);
                         }
                     }
                 }
@@ -307,11 +309,12 @@ public class GroupFormationManager implements IGroupFormationManager {
                         String studentText = student.getValue().get(question.getId()).getAnswerText();
                         String secondStudentText = secondStudent.getValue().get(question.getId()).getAnswerText();
                         LevenshteinResults calculatedDistance = distance.apply(studentText, secondStudentText);
-                        double probabilityValue = calculatedDistance.getDistance() * 1.0 / 10.0;
-                        if (groupLogic.get(question.getId()).getMatchWords() > 0) {
+                        double probabilityValue = calculatedDistance.getDistance() *
+                                DomainConstants.maximumProbability / DomainConstants.distanceFactor;
+                        if (groupLogic.get(question.getId()).getMatchWords() > DomainConstants.minimumMatchWords) {
                             row.add(probabilityValue);
                         } else {
-                            row.add(1 - probabilityValue);
+                            row.add(DomainConstants.maximumProbability - probabilityValue);
                         }
                     }
                 }
@@ -340,20 +343,20 @@ public class GroupFormationManager implements IGroupFormationManager {
         if (additionalMappings.containsKey(DomainConstants.greaterThanX)) {
             studentGreaterthanX = additionalMappings.get(DomainConstants.greaterThanX);
         }
-        ArrayList<Integer> selected_students = groupFormationAbstractFactory.createStudentListInstance();
-        for (int x = 0; x < finalTotalMatrices.size(); x++) {
-            if (!selected_students.contains(x)) {
-                ArrayList<Integer> selected_students_1 = this.formTeams(finalTotalMatrices.get(x), teamSize,
+        ArrayList<Integer> selectedStudents = groupFormationAbstractFactory.createStudentListInstance();
+        for (int rowIndex = 0; rowIndex < finalTotalMatrices.size(); rowIndex++) {
+            if (!selectedStudents.contains(rowIndex)) {
+                ArrayList<Integer> eachStudent = this.formTeams(finalTotalMatrices.get(rowIndex), teamSize,
                         studentLessThanX, studentGreaterthanX, true, true);
-                for (Integer i : selected_students_1) {
-                    studentLessThanX.remove(i);
-                    for (int row = 0; row < finalTotalMatrices.get(i).size(); row++) {
-                        finalTotalMatrices.get(i).set(row, DomainConstants.maximumDistance);
-                        finalTotalMatrices.get(row).set(i, DomainConstants.maximumDistance);
+                for (Integer studentIndex : eachStudent) {
+                    studentLessThanX.remove(studentIndex);
+                    for (int row = 0; row < finalTotalMatrices.get(studentIndex).size(); row++) {
+                        finalTotalMatrices.get(studentIndex).set(row, DomainConstants.maximumDistance);
+                        finalTotalMatrices.get(row).set(studentIndex, DomainConstants.maximumDistance);
                     }
                 }
-                selected_students.addAll(selected_students_1);
-                teams.put(count, selected_students_1);
+                selectedStudents.addAll(eachStudent);
+                teams.put(count, eachStudent);
             }
             count++;
         }
@@ -367,51 +370,51 @@ public class GroupFormationManager implements IGroupFormationManager {
         return teamsWithUserId;
     }
 
-    private ArrayList<Integer> formTeams(ArrayList<Double> arrayList, int team_size,
+    private ArrayList<Integer> formTeams(ArrayList<Double> arrayList, int teamSize,
                                          HashMap<Integer, Integer> studentLessThanX,
                                          HashMap<Integer, Integer> studentGreaterthanX,
                                          boolean useLessthanX, boolean useGreaterthanX) {
         IGroupFormationAbstractFactory groupFormationAbstractFactory = GroupFormationInjector.instance().
                 getGroupFormationAbstractFactory();
         HashMap<Integer, Double> map = groupFormationAbstractFactory.getMapForSorting();
-        for (int i = 0; i < arrayList.size(); ++i) {
-            map.put(i, arrayList.get(i));
+        for (int index = 0; index < arrayList.size(); ++index) {
+            map.put(index, arrayList.get(index));
         }
         HashMap<Integer, Double> sortedValues = sortByValue(map);
         Set<Integer> indices = sortedValues.keySet();
         ArrayList<Integer> topStudents = groupFormationAbstractFactory.createStudentListInstance();
         boolean notUsedLessthanX = true;
         boolean notUsedGreaterthanX = true;
-        for (Integer i : indices) {
+        for (Integer index : indices) {
             if (useGreaterthanX && notUsedGreaterthanX) {
-                if (studentGreaterthanX.containsKey(i)) {
-                    if (studentGreaterthanX.get(i) == 0) {
-                        topStudents.add(i);
+                if (studentGreaterthanX.containsKey(index)) {
+                    if (studentGreaterthanX.get(index) == DomainConstants.initialXValues) {
+                        topStudents.add(index);
                         notUsedGreaterthanX = false;
                     }
                 }
             }
             if (useLessthanX && notUsedLessthanX) {
-                if (studentLessThanX.containsKey(i)) {
-                    if (studentLessThanX.get(i) == 1) {
-                        topStudents.add(i);
+                if (studentLessThanX.containsKey(index)) {
+                    if (studentLessThanX.get(index) == (int) DomainConstants.maximumProbability) {
+                        topStudents.add(index);
                         notUsedLessthanX = false;
                     }
                 }
             }
-            if (topStudents.size() == 2) {
+            if (topStudents.size() == DomainConstants.thresholdStudentCount) {
                 break;
             } else if (!(useLessthanX && useGreaterthanX)) {
-                if (topStudents.size() == 1) {
+                if (topStudents.size() == DomainConstants.minimumStudentCount) {
                     break;
                 }
             }
         }
-        for (Integer i : indices) {
-            if (topStudents.size() == team_size) {
+        for (Integer index : indices) {
+            if (topStudents.size() == teamSize) {
                 break;
-            } else if (!topStudents.contains(i) && sortedValues.get(i) != DomainConstants.maximumDistance) {
-                topStudents.add(i);
+            } else if (!topStudents.contains(index) && sortedValues.get(index) != DomainConstants.maximumDistance) {
+                topStudents.add(index);
             }
         }
         return topStudents;
@@ -447,16 +450,16 @@ public class GroupFormationManager implements IGroupFormationManager {
                         row.add(DomainConstants.minimumDistance);
                     } else if (student.getValue().get(question.getId()).getOptions().get(0).equals(
                             secondStudent.getValue().get(question.getId()).getOptions().get(0))) {
-                        if (groupLogic.get(question.getId()).getSimilarity() == 1) {
-                            row.add(0.0);
+                        if (groupLogic.get(question.getId()).getSimilarity() == DomainConstants.isSimilar) {
+                            row.add(DomainConstants.minimumProbability);
                         } else {
-                            row.add(1.0);
+                            row.add(DomainConstants.maximumProbability);
                         }
                     } else {
-                        if (groupLogic.get(question.getId()).getSimilarity() == 1) {
-                            row.add(1.0);
+                        if (groupLogic.get(question.getId()).getSimilarity() == DomainConstants.isSimilar) {
+                            row.add(DomainConstants.maximumProbability);
                         } else {
-                            row.add(0.0);
+                            row.add(DomainConstants.minimumProbability);
                         }
                     }
                 }
