@@ -12,4 +12,14 @@ public class TestSurveyAbstractFactory implements ITestSurveyAbstractFactory {
     public SurveyRepository createSurveyRepositoryMock() {
         return mock(SurveyRepository.class);
     }
+
+    @Override
+    public ResponseRepository createResponseRepositoryMock() {
+        return mock(ResponseRepository.class);
+    }
+
+    @Override
+    public IResponse createResponseInstance() {
+        return new Response();
+    }
 }

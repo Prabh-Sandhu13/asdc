@@ -6,4 +6,8 @@ public interface ITestSurveyAbstractFactory {
 
     SurveyRepository createSurveyRepositoryMock();
 
+    ResponseRepository createResponseRepositoryMock();
+
+    IResponse createResponseInstance();
+
 }

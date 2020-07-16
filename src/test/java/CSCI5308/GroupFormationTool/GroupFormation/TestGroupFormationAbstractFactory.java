@@ -2,6 +2,7 @@ package CSCI5308.GroupFormationTool.GroupFormation;
 
 import CSCI5308.GroupFormationTool.Survey.IResponse;
 import CSCI5308.GroupFormationTool.Survey.Response;
+import CSCI5308.GroupFormationTool.Survey.ResponseRepository;
 import CSCI5308.GroupFormationTool.User.IUser;
 
 import java.util.ArrayList;

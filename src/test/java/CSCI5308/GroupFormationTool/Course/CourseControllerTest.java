@@ -1,6 +1,7 @@
 package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
+import CSCI5308.GroupFormationTool.Survey.*;
 import CSCI5308.GroupFormationTool.User.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -232,6 +233,66 @@ public class CourseControllerTest {
                 .andExpect(view().name("course/allCourses"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
+    }
+
+    @Test
+    void courseDetailsTest() throws Exception {
+
+        when(userCoursesRepository.getUserRoleByEmailId(anyString())).thenReturn(DomainConstants.instructorRole);
+        this.mockMvc.perform(get("/courseDetails")
+                .param("courseId", "CSCI5308")
+                .param("courseName", "ASDC"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("course/courseDetails"))
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+
+        when(userCoursesRepository.getUserRoleByEmailId(anyString())).thenReturn(DomainConstants.tARole);
+        this.mockMvc.perform(get("/courseDetails")
+                .param("courseId", "CSCI5308")
+                .param("courseName", "ASDC"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("course/courseDetails"))
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+
+        when(userCoursesRepository.getUserRoleByEmailId(anyString())).thenReturn(DomainConstants.guestRole);
+        this.mockMvc.perform(get("/courseDetails")
+                .param("courseId", "CSCI5308")
+                .param("courseName", "ASDC"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("course/courseDetails"))
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+
+        String courseId = "1";
+        when(userCoursesRepository.getUserRoleByEmailId(anyString())).thenReturn(DomainConstants.studentRole);
+        ITestSurveyAbstractFactory surveyAbstractFactory = TestSurveyInjector.instance().getSurveyAbstractFactory();
+        ISurveyRepository surveyRepository = surveyAbstractFactory.createSurveyRepositoryMock();
+        SurveyInjector.instance().setSurveyRepository(surveyRepository);
+        when(surveyRepository.isSurveyPublished(anyString())).thenReturn(false);
+        IResponseRepository responseRepository = surveyAbstractFactory.createResponseRepositoryMock();
+        IUser user = userAbstractFactoryTest.createUserInstance();
+        user.setEmailId("padmeshdonthu@gmail.com");
+        when(responseRepository.getResponseUser(anyString())).thenReturn(user);
+        when(surveyRepository.getSurveyId(anyString())).thenReturn("1");
+        this.mockMvc.perform(get("/courseDetails")
+                .param("courseId", "CSCI5308")
+                .param("courseName", "ASDC"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("course/courseSurveyHome"))
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+
+        when(surveyRepository.isSurveyCompleted("1", courseId)).thenReturn(false);
+        this.mockMvc.perform(get("/courseDetails")
+                .param("courseId", "CSCI5308")
+                .param("courseName", "ASDC"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("course/courseSurveyHome"))
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+
     }
 }
 
