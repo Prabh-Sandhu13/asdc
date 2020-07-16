@@ -45,4 +45,29 @@ public class SurveyAbstractFactory implements ISurveyAbstractFactory {
     public HashMap<Long, IResponse> createQuestionResponseInstance() {
         return new HashMap<Long, IResponse>();
     }
+
+    @Override
+    public ISurveyFormula createSurveyFormulaInstance() {
+        return new SurveyFormula();
+    }
+    
+    @Override
+    public ArrayList<SurveyFormula> createSurveyFormulaArrayList() {
+        return new ArrayList<SurveyFormula>();
+    }
+
+    @Override
+    public ISurveyFormulaRepository createSurveyFormulaRepositoryInstance() {
+        return new SurveyFormulaRepository();
+    }
+    
+    @Override
+    public SurveyFormulaList createSurveyFormulaListInstance() {
+        return new SurveyFormulaList ();
+    }
+    
+    @Override
+    public SurveyFormula createSurveyFormulaObj() {
+        return new SurveyFormula();
+    }
 }

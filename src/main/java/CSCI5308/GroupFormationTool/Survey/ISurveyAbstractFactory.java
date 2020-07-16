@@ -23,4 +23,14 @@ public interface ISurveyAbstractFactory {
 
     HashMap<Long, IResponse> createQuestionResponseInstance();
 
+    ISurveyFormula createSurveyFormulaInstance();
+
+    ISurveyFormulaRepository createSurveyFormulaRepositoryInstance();
+
+    SurveyFormulaList createSurveyFormulaListInstance();
+
+    ArrayList<SurveyFormula> createSurveyFormulaArrayList();
+
+    SurveyFormula createSurveyFormulaObj();
+
 }

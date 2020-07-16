@@ -44,20 +44,23 @@ public class SurveyController {
     @GetMapping(value = "/survey/createSurveyFormula")
     public String createSurveyFormula(@RequestParam(value = "courseName") String courseName,
                                       @RequestParam(value = "courseId") String courseId, Model model) {
-        model.addAttribute("courseId", courseId);
-        model.addAttribute("courseName", courseName);
-        ISurveyFormula surveyFormula = new SurveyFormula();
-        ArrayList<SurveyFormula> surveyFormulaList = new ArrayList<SurveyFormula>();
-        surveyFormulaList = surveyFormula.getSurveyDetailsToSetAlgo(courseId);
-        System.out.println(surveyFormulaList);
         int surveyId = 0;
+        ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
+        ISurveyFormula surveyFormula = surveyAbstractFactory.createSurveyFormulaInstance();
+        ArrayList<SurveyFormula> surveyFormulaList = surveyAbstractFactory.createSurveyFormulaArrayList();
+        SurveyFormulaList formulaList = surveyAbstractFactory.createSurveyFormulaListInstance();
+        log.info("Getting survey Details for the formula setup");
+        surveyFormulaList = surveyFormula.getSurveyDetailsToSetAlgo(courseId);
+        formulaList.setSurveyRules(surveyFormulaList);
+        
         for (SurveyFormula s : surveyFormulaList) {
             surveyId = s.getSurveyId();
             break;
         }
+        log.info("Survey id for the course" + courseName + "is " + surveyId);
+        model.addAttribute("courseId", courseId);
+        model.addAttribute("courseName", courseName);
         model.addAttribute("surveyId", surveyId);
-        SurveyFormulaList formulaList = new SurveyFormulaList();
-        formulaList.setSurveyRules(surveyFormulaList);
         model.addAttribute("surveyFormulaList", formulaList);
         return "survey/createSurveyFormula";
     }
@@ -94,9 +97,17 @@ public class SurveyController {
                                     @RequestParam int groupSize,
                                     Model model,
                                     @ModelAttribute("surveyFormulaList") SurveyFormulaList surveyFormulaList) {
-        System.out.println(surveyFormulaList);
-        ISurveyFormula surveyFormula = new SurveyFormula();
-        surveyFormula.createSurveyFormula(courseId, surveyId, groupSize, surveyFormulaList);
+        ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
+        ISurveyFormula surveyFormula = surveyAbstractFactory.createSurveyFormulaInstance();
+        log.info("Passing details to business layer for creating rule for survey " + surveyId);
+        Boolean status = surveyFormula.createSurveyFormula(courseId, surveyId, groupSize, surveyFormulaList);
+        if(status) {
+            log.info("Survey formula for survey:"+surveyId+" added successfully");
+            model.addAttribute("SuccessMsg", "Survey Formula added successfully!");
+        } else {
+            log.error("Creation of survey formula for survey:"+surveyId+" failed");
+            model.addAttribute("ErrorMsg", "Creation of survey formula failed!");
+        }
         return "redirect:/instructorCourseDetails?courseId=" + courseId + "&courseName=" + courseName;
     }
 

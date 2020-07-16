@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Course.StudentCSVTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2020-07-15T20:11:50" hostname="Prabhjots-MacBook-Pro.local" time="0.094">
+<testsuite name="CSCI5308.GroupFormationTool.Course.StudentCSVTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2020-07-16T02:08:42" hostname="Prabhjots-MacBook-Pro.local" time="0.09">
   <properties/>
-  <testcase name="getPasswordTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.008"/>
+  <testcase name="getPasswordTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.006"/>
   <testcase name="getFirstNameTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
-  <testcase name="setLastNameTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
+  <testcase name="setLastNameTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.002"/>
   <testcase name="StudentCSVParameterizedTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
-  <testcase name="setBannerIdTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.002"/>
+  <testcase name="setBannerIdTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
   <testcase name="setPasswordTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
   <testcase name="setEmailIdTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
-  <testcase name="createStudent()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.07"/>
+  <testcase name="createStudent()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.067"/>
   <testcase name="setFirstNameTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
   <testcase name="getEmailIdTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
   <testcase name="getLastNameTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
   <testcase name="getBannerIdTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
-  <system-out><![CDATA[2020-07-15 17:11:50.636  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerRepository   : Added valid students in a proper data list 
+  <system-out><![CDATA[2020-07-15 23:08:42.705  INFO 38787 --- [    Test worker] C.G.Question.QuestionManagerRepository   : Added valid students in a proper data list 
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

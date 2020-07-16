@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-07-15T20:11:53" hostname="Prabhjots-MacBook-Pro.local" time="0.036">
+<testsuite name="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-07-16T02:08:45" hostname="Prabhjots-MacBook-Pro.local" time="0.037">
   <properties/>
-  <testcase name="saveQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" time="0.021"/>
-  <testcase name="deleteQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" time="0.01"/>
+  <testcase name="saveQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" time="0.023"/>
+  <testcase name="deleteQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" time="0.009"/>
   <testcase name="createQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest" time="0.004"/>
   <system-out><![CDATA[
   .   ____          _            __ _ _
@@ -13,20 +13,20 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-15 17:11:53.335  INFO 37430 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Starting QuestionManagerControllerTest on Prabhjots-MacBook-Pro.local with PID 37430 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-15 17:11:53.335  INFO 37430 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : No active profile set, falling back to default profiles: default
-2020-07-15 17:11:53.644  INFO 37430 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Started QuestionManagerControllerTest in 0.318 seconds (JVM running for 7.691)
-2020-07-15 17:11:53.649  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : Saving the question created by the instructor to the database
-2020-07-15 17:11:53.649  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Creating the question and saving it to the database
-2020-07-15 17:11:53.649  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Checking for invalid data
-2020-07-15 17:11:53.649  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Creating the options for question if applicable (Multiple Choice only)
-2020-07-15 17:11:53.650  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the createQuestion repository function to save the question to Database
-2020-07-15 17:11:53.650  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : Question is saved to the database and the instructor views the saved question
+2020-07-15 23:08:45.272  INFO 38787 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Starting QuestionManagerControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:45.273  INFO 38787 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : No active profile set, falling back to default profiles: default
+2020-07-15 23:08:45.577  INFO 38787 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Started QuestionManagerControllerTest in 0.314 seconds (JVM running for 7.404)
+2020-07-15 23:08:45.582  INFO 38787 --- [    Test worker] C.G.Question.QuestionManagerController   : Saving the question created by the instructor to the database
+2020-07-15 23:08:45.583  INFO 38787 --- [    Test worker] C.GroupFormationTool.Question.Question   : Creating the question and saving it to the database
+2020-07-15 23:08:45.583  INFO 38787 --- [    Test worker] C.GroupFormationTool.Question.Question   : Checking for invalid data
+2020-07-15 23:08:45.583  INFO 38787 --- [    Test worker] C.GroupFormationTool.Question.Question   : Creating the options for question if applicable (Multiple Choice only)
+2020-07-15 23:08:45.583  INFO 38787 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the createQuestion repository function to save the question to Database
+2020-07-15 23:08:45.583  INFO 38787 --- [    Test worker] C.G.Question.QuestionManagerController   : Question is saved to the database and the instructor views the saved question
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /questionManager/createQuestion
-       Parameters = {questionTitle=[Sample title], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[f8af9e5f-cb0f-4405-9c91-09458912c629]}
+       Parameters = {questionTitle=[Sample title], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[7cc17b3e-f8c6-4cc4-890b-b5d30198382f]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}
@@ -59,15 +59,15 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = /questionManager/viewQuestion?questionId=5
           Cookies = []
-2020-07-15 17:11:53.652  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : Saving the question created by the instructor to the database
-2020-07-15 17:11:53.653  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Creating the question and saving it to the database
-2020-07-15 17:11:53.653  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Checking for invalid data
-2020-07-15 17:11:53.653  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : One or more input fields have invalid/empty data
+2020-07-15 23:08:45.585  INFO 38787 --- [    Test worker] C.G.Question.QuestionManagerController   : Saving the question created by the instructor to the database
+2020-07-15 23:08:45.585  INFO 38787 --- [    Test worker] C.GroupFormationTool.Question.Question   : Creating the question and saving it to the database
+2020-07-15 23:08:45.585  INFO 38787 --- [    Test worker] C.GroupFormationTool.Question.Question   : Checking for invalid data
+2020-07-15 23:08:45.585  INFO 38787 --- [    Test worker] C.G.Question.QuestionManagerController   : One or more input fields have invalid/empty data
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /questionManager/createQuestion
-       Parameters = {questionTitle=[], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[85674bed-8e89-489e-91f8-ea7d8ca76869]}
+       Parameters = {questionTitle=[], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[005d1a2b-d59d-42d9-9070-4029aec29787]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}
@@ -101,16 +101,16 @@ MockHttpServletResponse:
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
-    <link rel="icon" href="favicon.ico"/>
+    <link href="favicon.ico" rel="icon"/>
     <title>Instructor Create Question</title>
     <link
+            crossorigin="anonymous"
             href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            rel="stylesheet"
             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous"/>
+            rel="stylesheet"/>
 
     <style>
 	hr {
@@ -121,6 +121,7 @@ MockHttpServletResponse:
 	textarea {
 		resize: vertical;
 	}
+
     </style>
 
 </head>
@@ -166,17 +167,18 @@ MockHttpServletResponse:
 				+ " /> <span class='glyphicon form-control-feedback'"
 				+ "aria-hidden='true'></span></div></div>";
 	}
+
 </script>
 </html>
 
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-15 17:11:53.669  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : Deleting the question created by the instructor from the database
-2020-07-15 17:11:53.669  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the deleteQuestion repository function to delete the question from the Database
-2020-07-15 17:11:53.669  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : Question successfully deleted!
-2020-07-15 17:11:53.669  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : Redirecting to the instructor's question list page
-2020-07-15 17:11:53.669  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
+2020-07-15 23:08:45.605  INFO 38787 --- [    Test worker] C.G.Question.QuestionManagerController   : Deleting the question created by the instructor from the database
+2020-07-15 23:08:45.605  INFO 38787 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the deleteQuestion repository function to delete the question from the Database
+2020-07-15 23:08:45.605  INFO 38787 --- [    Test worker] C.G.Question.QuestionManagerController   : Question successfully deleted!
+2020-07-15 23:08:45.605  INFO 38787 --- [    Test worker] C.G.Question.QuestionManagerController   : Redirecting to the instructor's question list page
+2020-07-15 23:08:45.605  INFO 38787 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -184,7 +186,7 @@ MockHttpServletRequest:
        Parameters = {questionId=[1]}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@5fe8c83b}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@dd508c6}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
@@ -217,15 +219,15 @@ MockHttpServletResponse:
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" href="favicon.ico"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="favicon.ico" rel="icon"/>
     <title>Instructor Question Manager</title>
     <link
+            crossorigin="anonymous"
             href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            rel="stylesheet"
             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous"/>
+            rel="stylesheet"/>
 
 </head>
 <body style="background-color: #e7ebee">
@@ -243,11 +245,11 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-15 17:11:53.674  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : Deleting the question created by the instructor from the database
-2020-07-15 17:11:53.674  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the deleteQuestion repository function to delete the question from the Database
-2020-07-15 17:11:53.674  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : The question could not be deleted
-2020-07-15 17:11:53.674  INFO 37430 --- [    Test worker] C.G.Question.QuestionManagerController   : Redirecting to the instructor's question list page
-2020-07-15 17:11:53.675  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
+2020-07-15 23:08:45.609  INFO 38787 --- [    Test worker] C.G.Question.QuestionManagerController   : Deleting the question created by the instructor from the database
+2020-07-15 23:08:45.609  INFO 38787 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the deleteQuestion repository function to delete the question from the Database
+2020-07-15 23:08:45.609  INFO 38787 --- [    Test worker] C.G.Question.QuestionManagerController   : The question could not be deleted
+2020-07-15 23:08:45.609  INFO 38787 --- [    Test worker] C.G.Question.QuestionManagerController   : Redirecting to the instructor's question list page
+2020-07-15 23:08:45.609  INFO 38787 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -255,7 +257,7 @@ MockHttpServletRequest:
        Parameters = {questionId=[1]}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@73fff171}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@69c88a8f}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
@@ -288,15 +290,15 @@ MockHttpServletResponse:
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" href="favicon.ico"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="favicon.ico" rel="icon"/>
     <title>Instructor Question Manager</title>
     <link
+            crossorigin="anonymous"
             href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            rel="stylesheet"
             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous"/>
+            rel="stylesheet"/>
 
 </head>
 <body style="background-color: #e7ebee">
@@ -321,7 +323,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = <no character encoding set>
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@11978b77}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@5f14fefe}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
@@ -351,16 +353,16 @@ MockHttpServletResponse:
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
-    <link rel="icon" href="favicon.ico"/>
+    <link href="favicon.ico" rel="icon"/>
     <title>Instructor Create Question</title>
     <link
+            crossorigin="anonymous"
             href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            rel="stylesheet"
             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous"/>
+            rel="stylesheet"/>
 
     <style>
 	hr {
@@ -371,6 +373,7 @@ MockHttpServletResponse:
 	textarea {
 		resize: vertical;
 	}
+
     </style>
 
 </head>
@@ -416,6 +419,7 @@ MockHttpServletResponse:
 				+ " /> <span class='glyphicon form-control-feedback'"
 				+ "aria-hidden='true'></span></div></div>";
 	}
+
 </script>
 </html>
 
