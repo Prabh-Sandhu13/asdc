@@ -32,14 +32,12 @@ public class StudentDBMock implements IStudentRepository {
         StudentCSV newUsers = courseAbstractFactoryTest.createStudentCSVInstance();
         List<StudentCSV> oldUsersList = courseAbstractFactoryTest.createStudentCSVListInstance();
         List<StudentCSV> newUsersList = courseAbstractFactoryTest.createStudentCSVListInstance();
-
         newUsers.setFirstName(firstName);
         newUsers.setLastName(lastName);
         newUsers.setEmail(email);
         newUsers.setBannerId(bannerId);
         newUsers.setPassword(password);
         newUsersList.add(newUsers);
-
         StudentCSV oldUsers = courseAbstractFactoryTest.createStudentCSVInstance();
         oldUsers.setFirstName("Padmesh");
         oldUsers.setLastName("Donthu");
@@ -47,7 +45,6 @@ public class StudentDBMock implements IStudentRepository {
         oldUsers.setBannerId("B00854462");
         oldUsers.setPassword("testsample");
         oldUsersList.add(oldUsers);
-
         Map<Integer, List<StudentCSV>> map = courseAbstractFactoryTest.createStudentListHashMap();
         map.put(0, newUsersList);
         map.put(1, oldUsersList);

@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.Mail;
 public class TestMailInjector {
 
     private static TestMailInjector instance = null;
+
     private ITestMailManagerAbstractFactory mailManagerAbstractFactory;
 
     private TestMailInjector() {

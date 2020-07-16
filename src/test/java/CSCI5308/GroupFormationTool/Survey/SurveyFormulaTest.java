@@ -197,8 +197,8 @@ public class SurveyFormulaTest {
     public void getSurveyDetailsToSetAlgoTest() {
         String courseId = "1";
         ArrayList<SurveyFormula> rules= surveyAbstractFactory.createSurveyFormulaListInstance();
-        when(surveyFormulaRepository.getSurveyDetailsToSetAlgo(courseId)).thenReturn(rules);
-        assertNotNull(surveyFormulaRepository.getSurveyDetailsToSetAlgo(courseId));
+        when(surveyFormulaRepository.getSurveyDetailsToSetAlgorithm(courseId)).thenReturn(rules);
+        assertNotNull(surveyFormulaRepository.getSurveyDetailsToSetAlgorithm(courseId));
     }
 
     @Test
@@ -206,8 +206,8 @@ public class SurveyFormulaTest {
         int surveyId = 2;
         String generatedAlgoId ="newAlgo";
         SurveyFormulaList rules= surveyAbstractFactory.createSurveyFormulaListObj();
-        when(surveyFormulaRepository.createAlgo(rules, generatedAlgoId, surveyId)).thenReturn(true);
-        assertTrue(surveyFormulaRepository.createAlgo(rules, generatedAlgoId, surveyId));
+        when(surveyFormulaRepository.createAlgorithm(rules, generatedAlgoId, surveyId)).thenReturn(true);
+        assertTrue(surveyFormulaRepository.createAlgorithm(rules, generatedAlgoId, surveyId));
 
     }
 

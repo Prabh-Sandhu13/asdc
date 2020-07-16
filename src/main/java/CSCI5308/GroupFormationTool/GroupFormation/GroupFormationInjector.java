@@ -3,8 +3,11 @@ package CSCI5308.GroupFormationTool.GroupFormation;
 public class GroupFormationInjector {
 
     private static GroupFormationInjector instance = null;
+
     private IGroupFormationAbstractFactory groupFormationAbstractFactory;
+
     private IGroupFormationRepository groupFormationRepository;
+
     private IGroupFormationManager groupFormationManager;
 
     private GroupFormationInjector() {

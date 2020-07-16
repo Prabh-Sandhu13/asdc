@@ -20,6 +20,7 @@ import java.util.List;
 public class SurveyRepository implements ISurveyRepository {
 
     private static final Logger log = LoggerFactory.getLogger(SurveyRepository.class.getName());
+
     private IQuestionAdminRepository questionAdminRepository;
 
     @Override
@@ -35,7 +36,6 @@ public class SurveyRepository implements ISurveyRepository {
             storedProcedure.registerOutputParameterBoolean(2);
             storedProcedure.execute();
             status = storedProcedure.getParameter(2);
-
         } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_checkIfSurveyCreated" +
                     " because of an SQL Exception " + exception.getLocalizedMessage());
@@ -66,10 +66,9 @@ public class SurveyRepository implements ISurveyRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getSurveyId" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
-
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -89,9 +88,9 @@ public class SurveyRepository implements ISurveyRepository {
             storedProcedure.setInputIntParameter(1, surveyId);
             storedProcedure.setInputIntParameter(2, questionId);
             storedProcedure.execute();
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_deleteSurveyQuestion" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
             return false;
         } finally {
             if (null != storedProcedure) {
@@ -128,9 +127,9 @@ public class SurveyRepository implements ISurveyRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getSurveyQuestionsForInstructor" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -166,9 +165,9 @@ public class SurveyRepository implements ISurveyRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getSurveyQuestionsForTA" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -190,9 +189,9 @@ public class SurveyRepository implements ISurveyRepository {
             storedProcedure.registerOutputParameterLong(2);
             storedProcedure.execute();
             surveyId = (int) storedProcedure.getParameterLong(2);
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_createSurvey" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
             return -1;
         } finally {
             if (storedProcedure != null) {
@@ -217,9 +216,9 @@ public class SurveyRepository implements ISurveyRepository {
             storedProcedure.registerOutputParameterBoolean(3);
             storedProcedure.execute();
             status = storedProcedure.getParameter(3);
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_addQuestionToSurvey" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
             return false;
         } finally {
             if (storedProcedure != null) {
@@ -243,9 +242,9 @@ public class SurveyRepository implements ISurveyRepository {
             if (results.next()) {
                 published = true;
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_checkSurveyPublished" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
 
             if (storedProcedure != null) {
@@ -373,11 +372,10 @@ public class SurveyRepository implements ISurveyRepository {
             if (results.next()) {
                 completed = true;
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_checkSurveyCompleted" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
-
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
@@ -417,11 +415,10 @@ public class SurveyRepository implements ISurveyRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getSurveyQuestions" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
-
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
             }
@@ -463,9 +460,9 @@ public class SurveyRepository implements ISurveyRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getSurveyQuestionsForCourse" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -492,9 +489,9 @@ public class SurveyRepository implements ISurveyRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getSurveyQuestionsForTA" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -537,7 +534,7 @@ public class SurveyRepository implements ISurveyRepository {
                                     questionResponse.put(response.getQuestionId(), tempResponse);
                                 } else {
                                     IResponse tempResponse = surveyAbstractFactory.createResponseInstance();
-                                    List<String> options = new ArrayList<>();
+                                    List<String> options = surveyAbstractFactory.createOptionList();
                                     options.add(String.valueOf(option));
                                     tempResponse.setOptions(options);
                                     questionResponse.put(response.getQuestionId(), tempResponse);
@@ -550,7 +547,7 @@ public class SurveyRepository implements ISurveyRepository {
                         } else {
                             questionResponse = surveyAbstractFactory.createQuestionResponseInstance();
                             if (option != 0) {
-                                List<String> options = new ArrayList<>();
+                                List<String> options = surveyAbstractFactory.createOptionList();
                                 options.add(String.valueOf(option));
                                 response.setOptions(options);
                             } else {
@@ -563,9 +560,9 @@ public class SurveyRepository implements ISurveyRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getAllStudentResponses" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -574,62 +571,6 @@ public class SurveyRepository implements ISurveyRepository {
         return allStudentResponses;
     }
 
-    @Override
-    public HashMap<Long, IResponse> getUserResponses(Long userId, Long surveyId, String courseId) {
-        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
-        ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
-        StoredProcedure storedProcedure = null;
-        HashMap<Long, IResponse> studentResponse = surveyAbstractFactory.createQuestionResponseInstance();
-        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
-        log.info("Calling stored procedure sp_getUserResponses to get a students' response for a survey");
-        try {
-            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
-                    ("sp_getUserResponses(?,?,?)");
-            storedProcedure.setInputStringParameter(1, courseId);
-            storedProcedure.setInputIntParameter(2, userId);
-            storedProcedure.setInputIntParameter(3, surveyId);
-            ResultSet results = storedProcedure.executeWithResults();
-            if (results != null) {
-                while (results.next()) {
-                    {
-                        IResponse response = surveyAbstractFactory.createResponseInstance();
-                        Long questionId = results.getLong("question_id");
-                        response.setQuestionId(questionId);
-                        response.setQuestionType(results.getInt("qtype_id"));
-                        response.setQuestionText(results.getString("question_text"));
-                        response.setQuestionTitle(results.getString("question_title"));
-                        long option = results.getLong("option_id");
-                        if (option != 0) {
-                            if (studentResponse.containsKey(questionId)) {
-                                IResponse tempResponse = studentResponse.get(questionId);
-                                List<String> options = tempResponse.getOptions();
-                                options.add(results.getString("option_text"));
-                                tempResponse.setOptions(options);
-                                studentResponse.put(response.getQuestionId(), tempResponse);
-                            } else {
-                                List<String> options = new ArrayList<>();
-                                options.add(results.getString("option_text"));
-                                response.setOptions(options);
-                                studentResponse.put(response.getQuestionId(), response);
-                            }
-                        } else {
-                            response.setOptions(null);
-                            response.setAnswerText(results.getString("answer_text"));
-                            studentResponse.put(response.getQuestionId(), response);
-                        }
-                    }
-                }
-            }
-        } catch (SQLException ex) {
-            log.error("Could not execute the Stored procedure sp_getUserResponses" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
-        } finally {
-            if (storedProcedure != null) {
-                storedProcedure.removeConnections();
-            }
-        }
-        return studentResponse;
-    }
 }
 
 

@@ -26,8 +26,7 @@
         <h3 class="text-center"
             th:text="'Create a survey for the course ' + ${courseName}"></h3>
 
-        <form method="post" th:action="@{/questionManager/searchQuestionForSurvey(surveyId=${surveyId},
-		courseId=${courseId}, courseName=${courseName})}">
+        <form method="post" th:action="@{/questionManager/searchQuestionForSurvey(surveyId=${surveyId},courseId=${courseId},courseName=${courseName})}">
             <div class="md-form mt-0">
                 <label>Search for a Question by Title</label>
                 <input aria-label="Search" class="form-control" id="questionTitle" name="questionTitle"
@@ -55,7 +54,7 @@
                         <td th:text="${question.title}"></td>
                         <td th:text="${question.text}"></td>
                         <td>
-                            <a th:href="@{/survey/addQuestionToSurvey(questionId=${question.id}, surveyId=${surveyId}, courseId=${courseId}, courseName=${courseName})}">
+                            <a th:href="@{/survey/addQuestionToSurvey(questionId=${question.id},surveyId=${surveyId},courseId=${courseId}, courseName=${courseName})}">
                                 <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;&nbsp;Add to Survey
                             </a></td>
                     </tr>
@@ -90,7 +89,7 @@
                         <td th:text="${question.title}"></td>
                         <td th:text="${question.text}"></td>
                         <td>
-                            <a th:href="@{/survey/deleteQuestionFromSurvey(questionId=${question.id}, surveyId=${surveyId}, courseId=${courseId}, courseName=${courseName})}">
+                            <a th:href="@{/survey/deleteQuestionFromSurvey(questionId=${question.id},surveyId=${surveyId},courseId=${courseId}, courseName=${courseName})}">
                                 <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete question from Survey
                             </a></td>
                     </tr>

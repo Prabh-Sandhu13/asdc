@@ -67,6 +67,7 @@ public final class DomainConstants {
     public static final String AdminRole = "ADMIN";
     public static final String UserRole = "USER";
     public static final String surveySuccess = "The survey has been submitted successfully!";
+    public static final String dbError = "There was error while submitting the survey. Please try again in an hour.";
     public static int surveyNotCreated = 1;
     public static int surveyNotPublished = 2;
     public static int surveyNotHavingAlgorithm = 3;
@@ -75,4 +76,15 @@ public final class DomainConstants {
     public static String greaterThanX = "greaterThanX";
     public static Double maximumDistance = 999.0;
     public static Double minimumDistance = -999.0;
+    public static int isSimilar = 1;
+    public static int factor = 2;
+    public static double maximumProbability = 1.0;
+    public static double minimumProbability = 0.0;
+    public static Integer initialXValues = 0;
+    public static double probabilityFactor = 0.1;
+    public static double thresholdProbability = 0.5;
+    public static double distanceFactor = 10.0;
+    public static int minimumMatchWords = 0;
+    public static int thresholdStudentCount = 2;
+    public static int minimumStudentCount = 1;
 }

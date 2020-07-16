@@ -21,9 +21,13 @@ import java.util.Map;
 
 @Controller
 public class ResponseController {
+
     private static final Logger Log = LoggerFactory.getLogger(ResponseController.class.getName());
+
     private static final Logger log = LoggerFactory.getLogger(ResponseController.class.getName());
+
     private ISurvey surveyInstance;
+
     private IResponse responseInstance;
 
     @GetMapping("/courseSurveyResponse")
@@ -54,10 +58,16 @@ public class ResponseController {
     public String submitSurvey(@RequestParam Map<String, String> searchParams, Model model) {
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
         responseInstance = surveyAbstractFactory.createResponseInstance();
-        log.info("Creating a response list");
+        boolean success = false;
         ArrayList<IResponse> responseList = responseInstance.createResponseList(searchParams);
-        responseInstance.storeResponses(responseList);
-        model.addAttribute("Success", DomainConstants.surveySuccess);
+        if (responseList != null) {
+            success = responseInstance.storeResponses(responseList);
+        }
+        if (success) {
+            model.addAttribute("Success", DomainConstants.surveySuccess);
+        } else {
+            model.addAttribute("Error", DomainConstants.dbError);
+        }
         return "course/courseSurveySubmitted";
     }
 
@@ -68,9 +78,9 @@ public class ResponseController {
                                    @RequestParam("surveyId") Long surveyId,
                                    Model model) {
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
-        ISurvey survey = surveyAbstractFactory.createSurveyInstance();
+        IResponse response = surveyAbstractFactory.createResponseInstance();
         log.info("Getting responses of the student for the course survey");
-        HashMap<Long, IResponse> questionAndAnswers = survey.getUserResponses(userId, surveyId, courseId);
+        HashMap<Long, IResponse> questionAndAnswers = response.getUserResponses(userId, surveyId, courseId);
         model.addAttribute("courseName", courseName);
         model.addAttribute("courseId", courseId);
         model.addAttribute("responses", questionAndAnswers);

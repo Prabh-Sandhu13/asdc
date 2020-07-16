@@ -24,7 +24,7 @@ public class QuestionAdminController {
         IQuestion question = questionAbstractFactory.createQuestionInstance();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String emailId = authentication.getPrincipal().toString();
-        log.info("Fetching the question bank for the logged in instructor");
+        log.info("Fetching the question bank for the logged in instructor with email id " + emailId);
         ArrayList<IQuestion> questionList = question.getQuestionListForInstructor(emailId);
         model.addAttribute("questionList", questionList);
         return "question/questionManager";
@@ -34,7 +34,7 @@ public class QuestionAdminController {
     public String viewQuestion(@RequestParam("questionId") long questionId, Model model) {
         IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
         IQuestion question = questionAbstractFactory.createQuestionInstance();
-        log.info("Fetching the question by its id for the current instructor to view");
+        log.info("Fetching the question by its id" + questionId + "for the current instructor to view");
         question = question.getQuestionById(questionId);
         model.addAttribute("question", question);
         return "question/viewQuestion";
@@ -46,8 +46,7 @@ public class QuestionAdminController {
         IQuestion question = questionAbstractFactory.createQuestionInstance();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String emailId = authentication.getPrincipal().toString();
-        log.info("Fetching the question bank sorted based on the field like title and date " +
-                "for the logged in instructor");
+        log.info("Fetching the question bank sorted based on " + sortField + " for the logged in instructor");
         ArrayList<IQuestion> questionList = question.getSortedQuestionListForInstructor(emailId, sortField);
         model.addAttribute("questionList", questionList);
         return "question/questionManager";

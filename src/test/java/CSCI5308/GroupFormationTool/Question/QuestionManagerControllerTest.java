@@ -20,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class QuestionManagerControllerTest {
 
     public QuestionManagerRepository questionManagerRepository;
+
     public QuestionAdminRepository questionAdminRepository;
 
     private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestQuestionInjector.instance().
@@ -49,7 +50,6 @@ public class QuestionManagerControllerTest {
     void saveQuestionTest() throws Exception {
         long outcome = 5;
         when(questionManagerRepository.createQuestion(any(Question.class))).thenReturn(outcome);
-
         this.mockMvc.perform(post("/questionManager/createQuestion")
                 .param("questionTitle", "Sample title")
                 .param("questionText", "Sample text")
@@ -61,7 +61,6 @@ public class QuestionManagerControllerTest {
                 .andExpect(view().name("redirect:/questionManager/viewQuestion?questionId=" + outcome))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         this.mockMvc.perform(post("/questionManager/createQuestion")
                 .param("questionTitle", "")
                 .param("questionText", "Sample text")
@@ -87,7 +86,6 @@ public class QuestionManagerControllerTest {
                 .andExpect(view().name("question/questionManager"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(questionManagerRepository.deleteQuestion(questionId)).thenReturn(false);
         this.mockMvc.perform(get("/questionManager/deleteQuestion")
                 .param("questionId", String.valueOf(questionId)))

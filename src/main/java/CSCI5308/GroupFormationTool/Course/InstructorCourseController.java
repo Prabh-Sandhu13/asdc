@@ -23,11 +23,11 @@ public class InstructorCourseController {
         ISurvey survey = surveyAbstractFactory.createSurveyInstance();
         ModelAndView modelAndView;
         boolean published = false;
-        log.info("Checking if instructor has created a survey for the course");
+        log.info("Checking if instructor has created a survey for the course " + courseId);
         int created = survey.getSurveyIdByCourseId(courseId);
         modelAndView = new ModelAndView("course/instructorCourseDetails");
         if (created != -1) {
-            log.info("Checking if instructor has published the survey for the course");
+            log.info("Checking if instructor has published the survey for the course " + courseId);
             published = survey.checkIfSurveyPublished(courseId);
         }
         modelAndView.addObject("published", published);

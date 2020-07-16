@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.Password;
 public class TestPasswordInjector {
 
     private static TestPasswordInjector instance = null;
+
     private ITestPasswordAbstractFactory passwordAbstractFactory;
 
     private TestPasswordInjector() {

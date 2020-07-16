@@ -20,7 +20,8 @@ public interface ISecurityAbstractFactory {
 
     ArrayList<GrantedAuthority> createGrantedAuthorityListInstance();
 
-    UsernamePasswordAuthenticationToken createUsernamePasswordAuthenticationToken(Object principal, Object credentials,
+    UsernamePasswordAuthenticationToken createUsernamePasswordAuthenticationToken(Object principal,
+                                                                                  Object credentials,
                                                                                   List<GrantedAuthority> grantedAuthorities);
 
     BadCredentialsException createBadCredentialsExceptionInstance(String value);

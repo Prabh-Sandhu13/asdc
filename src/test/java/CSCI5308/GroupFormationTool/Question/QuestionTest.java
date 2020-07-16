@@ -18,6 +18,7 @@ import static org.mockito.Mockito.when;
 public class QuestionTest {
 
     public QuestionAdminRepository questionAdminRepository;
+
     public QuestionManagerRepository questionManagerRepository;
 
     private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestQuestionInjector.instance().

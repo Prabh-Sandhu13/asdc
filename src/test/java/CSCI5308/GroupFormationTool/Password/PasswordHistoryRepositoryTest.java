@@ -16,8 +16,11 @@ public class PasswordHistoryRepositoryTest {
 
     private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestPasswordInjector.instance().
             getPasswordAbstractFactory();
+
     private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().getUserAbstractFactory();
+
     private PasswordHistoryRepository passwordHistoryRepository;
+
     private IUser user = userAbstractFactoryTest.createUserInstance();
 
     @BeforeEach

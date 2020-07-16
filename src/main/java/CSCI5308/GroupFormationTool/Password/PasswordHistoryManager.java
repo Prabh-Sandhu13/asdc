@@ -12,7 +12,9 @@ import java.util.ArrayList;
 public class PasswordHistoryManager implements IPasswordHistoryManager {
 
     private static final Logger Log = LoggerFactory.getLogger(PasswordHistoryManager.class.getName());
+
     private IPasswordHistoryRepository passwordHistoryRepository;
+
     private IPasswordEncryptor encryptor;
 
     @Override

@@ -40,7 +40,7 @@ public interface ISurveyFormula {
 
     void setFreeTextSimilarity(boolean freeTextSimilarity);
 
-    ArrayList<SurveyFormula> getSurveyDetailsToSetAlgo(String courseId);
+    ArrayList<SurveyFormula> getSurveyDetailsToSetAlgorithm(String courseId);
 
     boolean isCompareDisimilarity();
 

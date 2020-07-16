@@ -4,6 +4,7 @@ import CSCI5308.GroupFormationTool.Question.IQuestion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public interface ISurveyAbstractFactory {
 
@@ -33,4 +34,5 @@ public interface ISurveyAbstractFactory {
 
     SurveyFormula createSurveyFormulaObj();
 
+    List<String> createOptionList();
 }

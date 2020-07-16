@@ -20,9 +20,11 @@ import static org.mockito.Mockito.when;
 
 public class MailManagerTest {
 
-    public MailManager mailManager;
-    public JavaMailSenderImpl javaMailSender;
-    public SimpleMailMessage mailMessage;
+    private MailManager mailManager;
+
+    private JavaMailSenderImpl javaMailSender;
+
+    private SimpleMailMessage mailMessage;
 
     private ITestMailManagerAbstractFactory mailManagerAbstractFactoryTest = TestMailInjector.instance().
             getMailManagerAbstractFactory();

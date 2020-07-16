@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class SurveyFormulaDBMock implements ISurveyFormulaRepository{
 
     @Override
-    public ArrayList<SurveyFormula> getSurveyDetailsToSetAlgo(String courseId) {
+    public ArrayList<SurveyFormula> getSurveyDetailsToSetAlgorithm(String courseId) {
         ITestSurveyAbstractFactory surveyAbstractFactory = TestSurveyInjector.instance().getSurveyAbstractFactory();
         ArrayList<SurveyFormula> rules= surveyAbstractFactory.createSurveyFormulaListInstance();
         return rules;
     }
 
     @Override
-    public String getAlgoIdBySurveyId(int surveyId) {
+    public String getAlgorithmIdBySurveyId(int surveyId) {
         String algoId = "newAlgo";
         return algoId;
     }
@@ -26,17 +26,17 @@ public class SurveyFormulaDBMock implements ISurveyFormulaRepository{
     }
 
     @Override
-    public Boolean createAlgo(SurveyFormulaList surveyFormulaList, String generatedAlgoId, int surveyId) {
+    public Boolean createAlgorithm(SurveyFormulaList surveyFormulaList, String generatedAlgoId, int surveyId) {
         return true;
     }
 
     @Override
-    public Boolean deleteExistingAlgo(String algoId) {
+    public Boolean deleteExistingAlgorithm(String algoId) {
         return true;
     }
 
     @Override
-    public Boolean updateAlgoId(String generatedAlgoId, int surveyId) {
+    public Boolean updateAlgorithmId(String generatedAlgoId, int surveyId) {
         return true;
     }
 

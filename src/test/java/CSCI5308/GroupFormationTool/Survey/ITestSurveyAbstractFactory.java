@@ -1,6 +1,10 @@
 package CSCI5308.GroupFormationTool.Survey;
 
+import CSCI5308.GroupFormationTool.Question.IQuestion;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public interface ITestSurveyAbstractFactory {
 
@@ -8,9 +12,17 @@ public interface ITestSurveyAbstractFactory {
 
     SurveyRepository createSurveyRepositoryMock();
 
+    IResponse createResponseInstance();
+
     ResponseRepository createResponseRepositoryMock();
 
-    IResponse createResponseInstance();
+    ArrayList<IResponse> createResponseListInstance();
+
+    ArrayList<IQuestion> createSurveyQuestionListInstance();
+
+    ResponseDBMock createResponseDBMockInstance();
+
+    List<String> createOptionListInstance();
 
     ISurveyFormula createSurveyFormulaInstance();
 
@@ -19,5 +31,7 @@ public interface ITestSurveyAbstractFactory {
     ArrayList<SurveyFormula> createSurveyFormulaListInstance();
 
     SurveyFormulaList createSurveyFormulaListObj();
+
+    Map<String, String> createMapResponse();
 
 }

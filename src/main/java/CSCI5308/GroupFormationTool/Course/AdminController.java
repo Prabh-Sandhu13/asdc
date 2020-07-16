@@ -34,16 +34,12 @@ public class AdminController {
         ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
         ICourse course = courseAbstractFactory.createCourseInstance();
-
-        Log.info("Fetching course details using courseId from the Database");
+        Log.info("Fetching course details using courseId " + courseId + " from the Database");
         ICourse courseById = course.getCourseById(courseId);
-
         ArrayList<IUser> allUsersCurrentlyNotInstructors = userCourses
                 .usersCurrentlyNotInstructorsForCourse(courseId);
-
-        Log.info("Fetching instructors list for a course using courseId");
+        Log.info("Fetching instructors list for a course using courseId " + courseId);
         ArrayList<IUser> instructorList = userCourses.getInstructorsForCourse(courseId);
-
         model.addAttribute("instructorList", instructorList);
         model.addAttribute("course", courseById);
         model.addAttribute("users", allUsersCurrentlyNotInstructors);
@@ -53,15 +49,14 @@ public class AdminController {
     @PostMapping("/admin/assignInstructor")
     public String assignInstructorToCourse(@RequestParam(name = "instructor") Long instructor,
                                            @RequestParam(name = "id") String courseId, Model model) {
-
         ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
         ICourse course = courseAbstractFactory.createCourseInstance();
-        Log.info("Fetching course details by using course Id");
+        Log.info("Fetching course details by using course Id " + courseId);
         ICourse courseById = course.getCourseById(courseId);
-        Log.info("Assign/Add instructor to a course");
+        Log.info("Assign/Add instructor to a course " + courseId);
         boolean success = userCourses.addInstructorsToCourse(instructor, courseId);
-        Log.info("Fetch instructor for a course");
+        Log.info("Fetch instructor for a course by id " + courseId);
         ArrayList<IUser> instructorList = userCourses.getInstructorsForCourse(courseId);
         model.addAttribute("instructorList", instructorList);
         model.addAttribute("course", courseById);
@@ -70,7 +65,7 @@ public class AdminController {
         } else {
             model.addAttribute("failure", DomainConstants.instructorAddFailure);
         }
-        return "redirect:/course/assignInstructor?courseId=" + courseId;
+        return "redirect:/assignInstructor?courseId=" + courseId;
 
     }
 }

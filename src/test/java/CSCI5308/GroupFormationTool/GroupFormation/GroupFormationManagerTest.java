@@ -125,6 +125,7 @@ public class GroupFormationManagerTest {
         groupFormula.setGreaterThan(0);
         groupFormula.setSimilarity(0);
         groupFormula.setMatchWords(0);
+        assertTrue(groupFormula.getQuestionId() == 43);
         groupFormationLogic.put((long) 43, groupFormula);
         when(groupFormationRepository.getGroupFormationLogic(courseId)).thenReturn(groupFormationLogic);
         HashMap<Long, HashMap<Long, IResponse>> studentWithQuestionAndAnswer = formResponses();
@@ -165,7 +166,6 @@ public class GroupFormationManagerTest {
         response.setOptions(options);
         studentQuestions.put((long) 43, response);
         studentWithQuestionAndAnswer.put((long) 75, studentQuestions);
-
         studentQuestions = testGroupFormationAbstractFactory.questionResponseInstance();
         response = testGroupFormationAbstractFactory.createResponseInstance();
         response.setQuestionId(40);
@@ -195,7 +195,6 @@ public class GroupFormationManagerTest {
         response.setOptions(options);
         studentQuestions.put((long) 43, response);
         studentWithQuestionAndAnswer.put((long) 86, studentQuestions);
-
         studentQuestions = testGroupFormationAbstractFactory.questionResponseInstance();
         response = testGroupFormationAbstractFactory.createResponseInstance();
         response.setQuestionId(40);
@@ -225,7 +224,6 @@ public class GroupFormationManagerTest {
         response.setOptions(options);
         studentQuestions.put((long) 43, response);
         studentWithQuestionAndAnswer.put((long) 88, studentQuestions);
-
         studentQuestions = testGroupFormationAbstractFactory.questionResponseInstance();
         response = testGroupFormationAbstractFactory.createResponseInstance();
         response.setQuestionId(40);
@@ -255,8 +253,6 @@ public class GroupFormationManagerTest {
         response.setOptions(options);
         studentQuestions.put((long) 43, response);
         studentWithQuestionAndAnswer.put((long) 87, studentQuestions);
-
         return studentWithQuestionAndAnswer;
     }
-
 }

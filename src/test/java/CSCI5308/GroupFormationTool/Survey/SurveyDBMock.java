@@ -1,11 +1,43 @@
 package CSCI5308.GroupFormationTool.Survey;
 
+import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Question.IQuestion;
+import CSCI5308.GroupFormationTool.Question.ITestQuestionAbstractFactory;
+import CSCI5308.GroupFormationTool.Question.TestQuestionInjector;
+import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
+import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.TestUserInjector;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SurveyDBMock implements ISurveyRepository {
+
+    private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestQuestionInjector.instance().
+            getQuestionAbstractFactory();
+
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().
+            getUserAbstractFactory();
+
+    private ArrayList<IQuestion> questionList = null;
+
+    public SurveyDBMock() {
+        questionList = questionAbstractFactoryTest.createQuestionListInstance();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
+        IUser user = userAbstractFactoryTest.createUserInstance();
+        user.setEmailId("padmeshdonthu@gmail.com");
+        question = questionAbstractFactoryTest.createQuestionInstance();
+        question.setCreatedDate(new Date(System.currentTimeMillis()));
+        question.setId(2);
+        question.setInstructor(user);
+        question.setText("Sample text");
+        question.setTitle("Sample title");
+        question.setType(DomainConstants.numeric);
+        question.setChoices(null);
+        questionList.add(question);
+    }
+
     @Override
     public boolean checkIfSurveyCreated(String courseId) {
         return true;
@@ -38,7 +70,8 @@ public class SurveyDBMock implements ISurveyRepository {
 
     @Override
     public ArrayList<IQuestion> getSurveyQuestions(String surveyId) {
-        return null;
+
+        return questionList;
     }
 
     @Override
@@ -63,7 +96,7 @@ public class SurveyDBMock implements ISurveyRepository {
 
     @Override
     public ArrayList<IQuestion> getQuestionsForSurvey(String courseId) {
-        return null;
+        return questionList;
     }
 
     @Override
@@ -73,13 +106,13 @@ public class SurveyDBMock implements ISurveyRepository {
 
     @Override
     public ArrayList<IQuestion> getSurveyQuestionListForInstructor(String emailId, int surveyId, String questionTitle) {
-        return null;
+        return questionList;
     }
 
     @Override
     public ArrayList<IQuestion> getSurveyQuestionListForTA(ArrayList<Long> instructorIds, int surveyId,
                                                            String questionTitle) {
-        return null;
+        return questionList;
     }
 
     @Override
@@ -92,8 +125,4 @@ public class SurveyDBMock implements ISurveyRepository {
         return null;
     }
 
-    @Override
-    public HashMap<Long, IResponse> getUserResponses(Long userId, Long surveyId, String courseId) {
-        return null;
-    }
 }

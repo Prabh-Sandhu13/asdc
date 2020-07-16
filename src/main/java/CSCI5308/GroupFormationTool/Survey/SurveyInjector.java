@@ -3,9 +3,13 @@ package CSCI5308.GroupFormationTool.Survey;
 public class SurveyInjector {
 
     private static SurveyInjector instance = null;
+
     private ISurveyAbstractFactory surveyAbstractFactory;
+
     private ISurveyRepository surveyRepository;
+
     private IResponseRepository responseRepository;
+
     private ISurveyFormulaRepository surveyFormulaRepository;
 
     private SurveyInjector() {
@@ -14,7 +18,7 @@ public class SurveyInjector {
         responseRepository = surveyAbstractFactory.createResponseRepositoryInstance();
         surveyFormulaRepository = surveyAbstractFactory.createSurveyFormulaRepositoryInstance();
     }
-    
+
     public static SurveyInjector instance() {
         if (instance == null) {
             instance = new SurveyInjector();

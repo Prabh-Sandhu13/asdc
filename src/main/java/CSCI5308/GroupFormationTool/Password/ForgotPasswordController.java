@@ -17,8 +17,11 @@ import java.util.ArrayList;
 public class ForgotPasswordController {
 
     private static final Logger Log = LoggerFactory.getLogger(ForgotPasswordController.class.getName());
+
     private IForgotPasswordManager forgotPasswordManager;
+
     private String receivedToken;
+
     private IPolicy policyInstance;
 
     @GetMapping("/forgotPassword")

@@ -15,10 +15,13 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class UserCoursesTest {
 
-    public UserCoursesRepository userCoursesRepository;
+    private UserCoursesRepository userCoursesRepository;
+
     private ITestCourseAbstractFactory courseAbstractFactoryTest = TestCourseInjector.instance().
             getCourseAbstractFactory();
-    IUserCourses userCourses = courseAbstractFactoryTest.createUserCoursesInstance();
+
+    private IUserCourses userCourses = courseAbstractFactoryTest.createUserCoursesInstance();
+
     private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().getUserAbstractFactory();
 
     @BeforeEach

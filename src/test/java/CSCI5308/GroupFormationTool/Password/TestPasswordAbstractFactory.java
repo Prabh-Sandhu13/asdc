@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import static org.mockito.Mockito.mock;
 
 public class TestPasswordAbstractFactory implements ITestPasswordAbstractFactory {
+
     @Override
     public PasswordHistoryManager createPasswordHistoryManagerMock() {
         return mock(PasswordHistoryManager.class);

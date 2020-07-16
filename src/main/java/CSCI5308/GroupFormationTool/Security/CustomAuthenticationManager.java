@@ -18,6 +18,7 @@ import java.util.List;
 public class CustomAuthenticationManager implements AuthenticationManager {
 
     private static final String Admin_banner_id = "B00000000";
+
     private static final Logger log = LoggerFactory.getLogger(CustomAuthenticationManager.class.getName());
 
     private Authentication checkUser(String password, IUser user, Authentication authentication)

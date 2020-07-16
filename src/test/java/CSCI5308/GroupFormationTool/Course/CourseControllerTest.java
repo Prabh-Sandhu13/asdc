@@ -28,7 +28,9 @@ public class CourseControllerTest {
             getUserAbstractFactory();
 
     private CourseRepository courseRepository;
+
     private UserCoursesRepository userCoursesRepository;
+
     private UserRepository userRepository;
 
     @Autowired
@@ -49,7 +51,6 @@ public class CourseControllerTest {
         String emailId = "anonymousUser";
         IUser user = userAbstractFactoryTest.createUserInstance();
         user.setEmailId(emailId);
-
         when(userRepository.getAdminDetails()).thenReturn(user);
         when(courseRepository.getAllCourses()).thenReturn(courseAbstractFactoryTest.createCourseListInstance());
         this.mockMvc.perform(get("/courseList"))
@@ -57,7 +58,6 @@ public class CourseControllerTest {
                 .andExpect(view().name("course/allCourses"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         emailId = "padmeshdonthu@gmail.com";
         user.setEmailId(emailId);
         when(userRepository.getAdminDetails()).thenReturn(user);
@@ -68,27 +68,23 @@ public class CourseControllerTest {
         when(userCoursesRepository.getInstructorCourses(emailId)).
                 thenReturn(courseAbstractFactoryTest.createCourseListInstance());
         when(userCoursesRepository.getUserRoleByEmailId(anyString())).thenReturn(DomainConstants.guestRole);
-
         this.mockMvc.perform(get("/courseList"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("course/guestCourses"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(userCoursesRepository.getUserRoleByEmailId(anyString())).thenReturn(DomainConstants.studentRole);
         this.mockMvc.perform(get("/courseList"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("course/studentCourses"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(userCoursesRepository.getUserRoleByEmailId(anyString())).thenReturn(DomainConstants.tARole);
         this.mockMvc.perform(get("/courseList"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("course/taCourses"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(userCoursesRepository.getUserRoleByEmailId(anyString())).thenReturn(DomainConstants.instructorRole);
         this.mockMvc.perform(get("/courseList"))
                 .andExpect(status().isOk())
@@ -113,7 +109,6 @@ public class CourseControllerTest {
     @Test
     void addTATest() throws Exception {
         String courseId = "CSCI5308";
-
         when(userCoursesRepository.enrollTAForCourseUsingEmailId(userAbstractFactoryTest.createUserInstance(),
                 courseId)).thenReturn(true);
         when(userCoursesRepository.getTAForCourse(courseId)).
@@ -126,7 +121,6 @@ public class CourseControllerTest {
                 .andExpect(view().name("course/enrollTA"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(userCoursesRepository.enrollTAForCourseUsingEmailId(userAbstractFactoryTest.createUserInstance(),
                 courseId)).thenReturn(false);
         when(userCoursesRepository.getTAForCourse(courseId)).
@@ -181,7 +175,6 @@ public class CourseControllerTest {
                 .andExpect(view().name("course/allCourses"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(courseRepository.createCourse(courseAbstractFactoryTest.createCourseInstance())).thenReturn(false);
         when(courseRepository.getAllCourses()).thenReturn(courseAbstractFactoryTest.createCourseListInstance());
         this.mockMvc.perform(post("/admin/addCourse")
@@ -205,7 +198,6 @@ public class CourseControllerTest {
                 .andExpect(view().name("course/allCourses"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(courseRepository.deleteCourse(id)).thenReturn(false);
         when(courseRepository.getAllCourses()).thenReturn(courseAbstractFactoryTest.createCourseListInstance());
         this.mockMvc.perform(post("/admin/deleteCourse")
@@ -215,7 +207,6 @@ public class CourseControllerTest {
                 .andExpect(view().name("course/allCourses"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(courseRepository.deleteCourse(id)).thenReturn(true);
         when(courseRepository.getAllCourses()).thenReturn(courseAbstractFactoryTest.createCourseListInstance());
         this.mockMvc.perform(get("/admin/deleteCourse")
@@ -224,7 +215,6 @@ public class CourseControllerTest {
                 .andExpect(view().name("course/allCourses"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(courseRepository.deleteCourse(id)).thenReturn(false);
         when(courseRepository.getAllCourses()).thenReturn(courseAbstractFactoryTest.createCourseListInstance());
         this.mockMvc.perform(get("/admin/deleteCourse")
@@ -237,7 +227,6 @@ public class CourseControllerTest {
 
     @Test
     void courseDetailsTest() throws Exception {
-
         when(userCoursesRepository.getUserRoleByEmailId(anyString())).thenReturn(DomainConstants.instructorRole);
         this.mockMvc.perform(get("/courseDetails")
                 .param("courseId", "CSCI5308")
@@ -246,7 +235,6 @@ public class CourseControllerTest {
                 .andExpect(view().name("course/courseDetails"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(userCoursesRepository.getUserRoleByEmailId(anyString())).thenReturn(DomainConstants.tARole);
         this.mockMvc.perform(get("/courseDetails")
                 .param("courseId", "CSCI5308")
@@ -255,7 +243,6 @@ public class CourseControllerTest {
                 .andExpect(view().name("course/courseDetails"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(userCoursesRepository.getUserRoleByEmailId(anyString())).thenReturn(DomainConstants.guestRole);
         this.mockMvc.perform(get("/courseDetails")
                 .param("courseId", "CSCI5308")
@@ -264,7 +251,6 @@ public class CourseControllerTest {
                 .andExpect(view().name("course/courseDetails"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         String courseId = "1";
         when(userCoursesRepository.getUserRoleByEmailId(anyString())).thenReturn(DomainConstants.studentRole);
         ITestSurveyAbstractFactory surveyAbstractFactory = TestSurveyInjector.instance().getSurveyAbstractFactory();
@@ -283,7 +269,6 @@ public class CourseControllerTest {
                 .andExpect(view().name("course/courseSurveyHome"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
         when(surveyRepository.isSurveyCompleted("1", courseId)).thenReturn(false);
         this.mockMvc.perform(get("/courseDetails")
                 .param("courseId", "CSCI5308")
@@ -292,7 +277,6 @@ public class CourseControllerTest {
                 .andExpect(view().name("course/courseSurveyHome"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-
     }
 }
 

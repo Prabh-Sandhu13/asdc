@@ -13,16 +13,27 @@ import org.slf4j.LoggerFactory;
 public class User implements IUser {
 
     private static final Logger log = LoggerFactory.getLogger(User.class.getName());
+
     private IUserRepository userRepository;
+
     private IPasswordEncryptor encryptor;
+
     private IPolicy policyInstance;
+
     private IPasswordHistoryManager passwordHistoryManager;
+
     private long id;
+
     private String firstName;
+
     private String lastName;
+
     private String bannerId;
+
     private String emailId;
+
     private String password;
+
     private String confirmPassword;
 
     public User() {

@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public interface ISurveyFormulaRepository {
 
-    ArrayList<SurveyFormula> getSurveyDetailsToSetAlgo(String courseId);
+    ArrayList<SurveyFormula> getSurveyDetailsToSetAlgorithm(String courseId);
 
-    String getAlgoIdBySurveyId(int surveyId);
+    String getAlgorithmIdBySurveyId(int surveyId);
 
     void updateSurveyGroupSize(int groupSize, int surveyId, String courseId);
 
-    Boolean createAlgo(SurveyFormulaList surveyFormulaList, String generatedAlgoId, int surveyId);
+    Boolean createAlgorithm(SurveyFormulaList surveyFormulaList, String generatedAlgorithmId, int surveyId);
 
-    Boolean deleteExistingAlgo(String algoId);
+    Boolean deleteExistingAlgorithm(String algorithmId);
 
-    Boolean updateAlgoId(String generatedAlgoId, int surveyId);
+    Boolean updateAlgorithmId(String generatedAlgorithmId, int surveyId);
 
 }
