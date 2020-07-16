@@ -85,13 +85,13 @@ public class Policy implements IPolicy {
         int lowerCaseCharacters = 0;
         int digits = 0;
         int specialCharacters = 0;
-        for (int i = 0; i < password.length(); i++) {
-            char ch = password.charAt(i);
-            if (ch >= 'A' && ch <= 'Z') {
+        for (int index = 0; index < password.length(); index++) {
+            char character = password.charAt(index);
+            if (character >= 'A' && character <= 'Z') {
                 upperCaseCharacters++;
-            } else if (ch >= 'a' && ch <= 'z') {
+            } else if (character >= 'a' && character <= 'z') {
                 lowerCaseCharacters++;
-            } else if (ch >= '0' && ch <= '9') {
+            } else if (character >= '0' && character <= '9') {
                 digits++;
             } else {
                 specialCharacters++;

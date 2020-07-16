@@ -220,8 +220,6 @@ public class CourseController {
         return "course/allCourses";
     }
 
-    // Code referred from
-    // "https://attacomsian.com/blog/spring-boot-upload-parse-csv-file#"
     @PostMapping("/uploadCSVFile")
     public String uploadCSVFile(@RequestParam("file") MultipartFile file, Model model,
                                 @RequestParam(name = "courseId") String courseId) {
