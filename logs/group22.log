@@ -419,3 +419,22 @@
 2020-07-16 17:11:35.323 [Test worker] INFO  C.G.Survey.Response: Getting the user details based on responded emailId
 2020-07-16 17:11:35.324 [Test worker] INFO  C.G.Survey.Response: Getting the responses of a single users who took the course survey id: 1
 2020-07-16 17:11:35.327 [Test worker] INFO  C.G.Survey.Response: Storing the user responses to the database
+2020-07-16 18:02:17.073 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Prabhjots-MacBook-Pro.local with PID 43200 (/Users/prabhjotkaur/git/group22/build/classes/java/main started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-16 18:02:17.077 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-16 18:02:18.830 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-16 18:02:18.831 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-16 18:02:18.959 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-16 18:02:19.884 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.47 seconds (JVM running for 4.122)
+2020-07-16 18:02:19.988 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-16 18:04:12.373 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Prabhjots-MacBook-Pro.local with PID 43351 (/Users/prabhjotkaur/git/group22/build/classes/java/main started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-16 18:04:12.376 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-16 18:04:13.732 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-16 18:04:13.733 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-16 18:04:13.865 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-16 18:04:14.411 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 2.492 seconds (JVM running for 2.863)
+2020-07-16 18:04:19.231 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-16 18:04:22.868 [http-nio-8080-exec-4] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-16 18:04:22.869 [http-nio-8080-exec-4] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getUserByEmailId to fetch user details for given emailId
+2020-07-16 18:04:23.339 [http-nio-8080-exec-4] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-16 18:04:23.339 [http-nio-8080-exec-4] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-16 18:04:23.431 [http-nio-8080-exec-4] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
