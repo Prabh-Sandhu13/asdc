@@ -220,7 +220,7 @@ public class Survey implements ISurvey {
         ArrayList<IQuestion> questionList = null;
         if (userType.equals(DomainConstants.instructorRole)) {
             questionList = surveyRepository.getSurveyQuestionListForInstructor(emailId, surveyId, questionTitle);
-        } else if (userType == "TA") {
+        } else if (userType.equals(DomainConstants.tARole)) {
             ArrayList<IUser> instructorsList = userCoursesRepository.getInstructorsForCourse(courseId);
             ArrayList<Long> instructorIds = userAbstractFactory.createUserIdList();
             for (IUser user : instructorsList) {

@@ -81,6 +81,7 @@ public class ResponseRepository implements IResponseRepository {
     public boolean storeResponses(ArrayList<IResponse> responseList) {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
+        boolean success = true;
 
         for (IResponse singleResponse : responseList) {
             try {
@@ -99,6 +100,7 @@ public class ResponseRepository implements IResponseRepository {
                 }
                 storedProcedure.execute();
             } catch (SQLException ex) {
+            	success =false;
                 Log.error("Could not execute the Stored procedure sp_addResponse" +
                         " because of an SQL Exception " + ex.getLocalizedMessage());
             } finally {
@@ -107,7 +109,7 @@ public class ResponseRepository implements IResponseRepository {
                 }
             }
         }
-        return true;
+        return success;
     }
 
 }

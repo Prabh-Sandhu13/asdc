@@ -783,3 +783,196 @@
 2020-07-15 16:25:53.305 [main] INFO  C.G.Survey.SurveyRespositoryTest: Starting SurveyRespositoryTest on Haard with PID 18936 (started by shah3 in C:\Users\shah3\Desktop\group22)
 2020-07-15 16:25:53.329 [main] INFO  C.G.Survey.SurveyRespositoryTest: No active profile set, falling back to default profiles: default
 2020-07-15 16:26:10.402 [main] INFO  C.G.Survey.SurveyRespositoryTest: Started SurveyRespositoryTest in 18.331 seconds (JVM running for 22.184)
+2020-07-15 20:31:10.263 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 15804 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-15 20:31:10.280 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-15 20:31:12.199 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-15 20:31:12.202 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-15 20:31:12.501 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-15 20:31:13.359 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.789 seconds (JVM running for 5.231)
+2020-07-15 20:31:30.673 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-15 20:31:42.466 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-15 20:31:42.473 [http-nio-8080-exec-3] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getUserByEmailId to fetch user details for given emailId
+2020-07-15 20:31:42.980 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-15 20:31:42.984 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-15 20:31:43.106 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-15 20:31:44.793 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Condition check if current user is admin or not
+2020-07-15 20:31:44.794 [http-nio-8080-exec-5] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 20:31:44.795 [http-nio-8080-exec-5] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getAdminDetails to fetch details of Admin user
+2020-07-15 20:31:44.957 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Fetch user role based on th email Id
+2020-07-15 20:31:44.969 [http-nio-8080-exec-5] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 20:31:44.970 [http-nio-8080-exec-5] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id
+2020-07-15 20:31:45.135 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: User is an Instructor
+2020-07-15 20:31:45.147 [http-nio-8080-exec-5] INFO  C.G.Question.Question: Function call to get instructors for a course using email Id
+2020-07-15 20:31:45.149 [http-nio-8080-exec-5] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getInstructorCoursesByEmailId to get courses of a Instructor using Email Id
+2020-07-15 20:31:50.118 [http-nio-8080-exec-6] INFO  C.G.Course.CourseController: Fetch TA for a course using course Id
+2020-07-15 20:31:50.138 [http-nio-8080-exec-6] INFO  C.G.Question.Question: Function call to get TA for a course using course Id
+2020-07-15 20:31:50.152 [http-nio-8080-exec-6] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getTAForCourse to get TA for a course using course Id
+2020-07-15 20:32:05.314 [http-nio-8080-exec-7] INFO  C.G.Question.Question: Function call to enroll a TA for the course using email id
+2020-07-15 20:32:05.328 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserIdByEmailId to get a user by Email Id
+2020-07-15 20:32:05.509 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleForCourse to get a user role for the Course by User Id
+2020-07-15 20:32:05.683 [http-nio-8080-exec-7] WARN  C.G.Course.CourseController: TA is not successfully added to the course
+2020-07-15 20:32:05.692 [http-nio-8080-exec-7] INFO  C.G.Question.Question: Function call to get TA for a course using course Id
+2020-07-15 20:32:05.693 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getTAForCourse to get TA for a course using course Id
+2020-07-15 20:32:29.130 [http-nio-8080-exec-8] INFO  C.G.Question.Question: Function call to enroll a TA for the course using email id
+2020-07-15 20:32:29.135 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserIdByEmailId to get a user by Email Id
+2020-07-15 20:32:29.309 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleForCourse to get a user role for the Course by User Id
+2020-07-15 20:32:29.486 [http-nio-8080-exec-8] WARN  C.G.Course.CourseController: TA is not successfully added to the course
+2020-07-15 20:32:29.494 [http-nio-8080-exec-8] INFO  C.G.Question.Question: Function call to get TA for a course using course Id
+2020-07-15 20:32:29.495 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getTAForCourse to get TA for a course using course Id
+2020-07-15 20:32:53.021 [http-nio-8080-exec-9] INFO  C.G.Question.Question: Function call to enroll a TA for the course using email id
+2020-07-15 20:32:53.025 [http-nio-8080-exec-9] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserIdByEmailId to get a user by Email Id
+2020-07-15 20:32:53.186 [http-nio-8080-exec-9] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleForCourse to get a user role for the Course by User Id
+2020-07-15 20:32:53.347 [http-nio-8080-exec-9] WARN  C.G.Course.CourseController: TA is not successfully added to the course
+2020-07-15 20:32:53.355 [http-nio-8080-exec-9] INFO  C.G.Question.Question: Function call to get TA for a course using course Id
+2020-07-15 20:32:53.356 [http-nio-8080-exec-9] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getTAForCourse to get TA for a course using course Id
+2020-07-15 20:33:01.503 [http-nio-8080-exec-10] INFO  C.G.Course.CourseController: Condition check if current user is admin or not
+2020-07-15 20:33:01.512 [http-nio-8080-exec-10] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 20:33:01.527 [http-nio-8080-exec-10] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getAdminDetails to fetch details of Admin user
+2020-07-15 20:33:01.711 [http-nio-8080-exec-10] INFO  C.G.Course.CourseController: Fetch user role based on th email Id
+2020-07-15 20:33:01.720 [http-nio-8080-exec-10] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 20:33:01.721 [http-nio-8080-exec-10] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id
+2020-07-15 20:33:01.894 [http-nio-8080-exec-10] INFO  C.G.Course.CourseController: User is an Instructor
+2020-07-15 20:33:01.901 [http-nio-8080-exec-10] INFO  C.G.Question.Question: Function call to get instructors for a course using email Id
+2020-07-15 20:33:01.902 [http-nio-8080-exec-10] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getInstructorCoursesByEmailId to get courses of a Instructor using Email Id
+2020-07-15 20:33:05.535 [http-nio-8080-exec-1] INFO  C.G.Course.CourseController: Fetch TA for a course using course Id
+2020-07-15 20:33:05.538 [http-nio-8080-exec-1] INFO  C.G.Question.Question: Function call to get TA for a course using course Id
+2020-07-15 20:33:05.551 [http-nio-8080-exec-1] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getTAForCourse to get TA for a course using course Id
+2020-07-15 20:33:15.953 [http-nio-8080-exec-2] INFO  C.G.Question.Question: Function call to enroll a TA for the course using email id
+2020-07-15 20:33:15.958 [http-nio-8080-exec-2] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserIdByEmailId to get a user by Email Id
+2020-07-15 20:33:16.131 [http-nio-8080-exec-2] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleForCourse to get a user role for the Course by User Id
+2020-07-15 20:33:16.305 [http-nio-8080-exec-2] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_addTAToCourse to add TA to a Course
+2020-07-15 20:33:16.640 [http-nio-8080-exec-2] INFO  C.G.Course.CourseController: TA added successfully
+2020-07-15 20:33:16.647 [http-nio-8080-exec-2] INFO  C.G.Question.Question: Function call to get TA for a course using course Id
+2020-07-15 20:33:16.649 [http-nio-8080-exec-2] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getTAForCourse to get TA for a course using course Id
+2020-07-15 20:33:19.407 [http-nio-8080-exec-3] INFO  C.G.Course.CourseController: Condition check if current user is admin or not
+2020-07-15 20:33:19.427 [http-nio-8080-exec-3] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 20:33:19.451 [http-nio-8080-exec-3] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getAdminDetails to fetch details of Admin user
+2020-07-15 20:33:19.631 [http-nio-8080-exec-3] INFO  C.G.Course.CourseController: Fetch user role based on th email Id
+2020-07-15 20:33:19.640 [http-nio-8080-exec-3] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 20:33:19.642 [http-nio-8080-exec-3] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id
+2020-07-15 20:33:19.819 [http-nio-8080-exec-3] INFO  C.G.Course.CourseController: User is an Instructor
+2020-07-15 20:33:19.828 [http-nio-8080-exec-3] INFO  C.G.Question.Question: Function call to get instructors for a course using email Id
+2020-07-15 20:33:19.829 [http-nio-8080-exec-3] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getInstructorCoursesByEmailId to get courses of a Instructor using Email Id
+2020-07-15 20:33:30.916 [http-nio-8080-exec-6] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-15 20:33:30.922 [http-nio-8080-exec-6] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getUserByEmailId to fetch user details for given emailId
+2020-07-15 20:33:31.091 [http-nio-8080-exec-6] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-15 20:33:31.099 [http-nio-8080-exec-6] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-15 20:33:31.226 [http-nio-8080-exec-6] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-15 20:33:32.964 [http-nio-8080-exec-8] INFO  C.G.Course.CourseController: Condition check if current user is admin or not
+2020-07-15 20:33:32.967 [http-nio-8080-exec-8] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 20:33:32.981 [http-nio-8080-exec-8] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getAdminDetails to fetch details of Admin user
+2020-07-15 20:33:33.174 [http-nio-8080-exec-8] INFO  C.G.Course.CourseController: Fetch user role based on th email Id
+2020-07-15 20:33:33.182 [http-nio-8080-exec-8] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 20:33:33.184 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id
+2020-07-15 20:33:33.344 [http-nio-8080-exec-8] INFO  C.G.Course.CourseController: User is a Student
+2020-07-15 20:33:33.352 [http-nio-8080-exec-8] INFO  C.G.Course.CourseController: Function call to fetch enrolled courses for a student
+2020-07-15 20:33:33.353 [http-nio-8080-exec-8] INFO  C.G.Question.Question: Get the courses enrolled by a student using student's email Id
+2020-07-15 20:33:33.354 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getStudentCoursesByEmailId to get student courses by Email Id
+2020-07-15 20:33:35.445 [http-nio-8080-exec-9] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 20:33:35.447 [http-nio-8080-exec-9] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id
+2020-07-15 20:33:35.786 [http-nio-8080-exec-9] ERROR C.G.Survey.SurveyRepository: Could not execute the Stored procedure sp_getSurveyId because of an SQL Exception PROCEDURE CSCI5308_22_TEST.sp_getSurveyId does not exist
+2020-07-15 20:33:35.948 [http-nio-8080-exec-9] ERROR C.G.Survey.SurveyRepository: Could not execute the Stored procedure sp_getSurveyQuestions because of an SQL Exception PROCEDURE CSCI5308_22_TEST.sp_checkSurveyPublished does not exist
+2020-07-15 20:33:37.881 [http-nio-8080-exec-10] INFO  C.G.Course.CourseController: Condition check if current user is admin or not
+2020-07-15 20:33:37.907 [http-nio-8080-exec-10] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 20:33:37.921 [http-nio-8080-exec-10] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getAdminDetails to fetch details of Admin user
+2020-07-15 20:33:38.081 [http-nio-8080-exec-10] INFO  C.G.Course.CourseController: Fetch user role based on th email Id
+2020-07-15 20:33:38.089 [http-nio-8080-exec-10] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 20:33:38.090 [http-nio-8080-exec-10] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id
+2020-07-15 20:33:38.261 [http-nio-8080-exec-10] INFO  C.G.Course.CourseController: User is a Student
+2020-07-15 20:33:38.269 [http-nio-8080-exec-10] INFO  C.G.Course.CourseController: Function call to fetch enrolled courses for a student
+2020-07-15 20:33:38.270 [http-nio-8080-exec-10] INFO  C.G.Question.Question: Get the courses enrolled by a student using student's email Id
+2020-07-15 20:33:38.271 [http-nio-8080-exec-10] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getStudentCoursesByEmailId to get student courses by Email Id
+2020-07-15 22:00:07.476 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 17760 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-15 22:00:07.501 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-15 22:00:09.563 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-15 22:00:09.565 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-15 22:00:09.840 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-15 22:00:10.692 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.818 seconds (JVM running for 5.595)
+2020-07-15 22:00:22.522 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-15 22:00:43.821 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-15 22:00:43.833 [http-nio-8080-exec-3] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getUserByEmailId to fetch user details for given emailId
+2020-07-15 22:00:44.421 [http-nio-8080-exec-3] ERROR C.G.S.CustomAuthenticationManager: The user credentials do not match the database stored values!
+2020-07-15 22:00:53.197 [http-nio-8080-exec-5] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-15 22:00:53.206 [http-nio-8080-exec-5] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getUserByEmailId to fetch user details for given emailId
+2020-07-15 22:00:53.380 [http-nio-8080-exec-5] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-15 22:00:53.389 [http-nio-8080-exec-5] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-15 22:00:53.532 [http-nio-8080-exec-5] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-15 22:00:56.591 [http-nio-8080-exec-7] INFO  C.G.Course.CourseController: Condition check if current user is admin or not
+2020-07-15 22:00:56.598 [http-nio-8080-exec-7] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 22:00:56.611 [http-nio-8080-exec-7] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getAdminDetails to fetch details of Admin user
+2020-07-15 22:00:56.822 [http-nio-8080-exec-7] INFO  C.G.Course.CourseController: Fetch user role based on th email Id
+2020-07-15 22:00:56.828 [http-nio-8080-exec-7] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 22:00:56.830 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id
+2020-07-15 22:00:56.993 [http-nio-8080-exec-7] INFO  C.G.Course.CourseController: User is a Student
+2020-07-15 22:00:57.000 [http-nio-8080-exec-7] INFO  C.G.Course.CourseController: Function call to fetch enrolled courses for a student
+2020-07-15 22:00:57.001 [http-nio-8080-exec-7] INFO  C.G.Question.Question: Get the courses enrolled by a student using student's email Id
+2020-07-15 22:00:57.002 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getStudentCoursesByEmailId to get student courses by Email Id
+2020-07-15 22:00:59.065 [http-nio-8080-exec-8] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 22:00:59.078 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id
+2020-07-15 22:00:59.410 [http-nio-8080-exec-8] ERROR C.G.Survey.SurveyRepository: Could not execute the Stored procedure sp_getSurveyId because of an SQL Exception PROCEDURE CSCI5308_22_TEST.sp_getSurveyId does not exist
+2020-07-15 22:00:59.572 [http-nio-8080-exec-8] ERROR C.G.Survey.SurveyRepository: Could not execute the Stored procedure sp_getSurveyQuestions because of an SQL Exception PROCEDURE CSCI5308_22_TEST.sp_checkSurveyPublished does not exist
+2020-07-15 22:01:10.326 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: Condition check if current user is admin or not
+2020-07-15 22:01:10.340 [http-nio-8080-exec-9] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 22:01:10.341 [http-nio-8080-exec-9] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getAdminDetails to fetch details of Admin user
+2020-07-15 22:01:10.518 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: Fetch user role based on th email Id
+2020-07-15 22:01:10.525 [http-nio-8080-exec-9] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 22:01:10.525 [http-nio-8080-exec-9] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id
+2020-07-15 22:01:10.688 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: User is a Student
+2020-07-15 22:01:10.696 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: Function call to fetch enrolled courses for a student
+2020-07-15 22:01:10.697 [http-nio-8080-exec-9] INFO  C.G.Question.Question: Get the courses enrolled by a student using student's email Id
+2020-07-15 22:01:10.698 [http-nio-8080-exec-9] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getStudentCoursesByEmailId to get student courses by Email Id
+2020-07-15 22:02:18.213 [http-nio-8080-exec-1] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 22:02:18.223 [http-nio-8080-exec-1] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id
+2020-07-15 22:02:18.526 [http-nio-8080-exec-1] ERROR C.G.Survey.SurveyRepository: Could not execute the Stored procedure sp_getSurveyId because of an SQL Exception PROCEDURE CSCI5308_22_TEST.sp_getSurveyId does not exist
+2020-07-15 22:02:18.682 [http-nio-8080-exec-1] ERROR C.G.Survey.SurveyRepository: Could not execute the Stored procedure sp_getSurveyQuestions because of an SQL Exception PROCEDURE CSCI5308_22_TEST.sp_checkSurveyPublished does not exist
+2020-07-15 22:05:40.324 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 12344 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-15 22:05:40.341 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-15 22:05:41.916 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-15 22:05:41.927 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-15 22:05:42.132 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-15 22:05:42.958 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.172 seconds (JVM running for 4.355)
+2020-07-15 22:07:36.742 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Haard with PID 10204 (C:\Users\shah3\Desktop\group22\bin\main started by shah3 in C:\Users\shah3\Desktop\group22)
+2020-07-15 22:07:36.768 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-15 22:07:39.006 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-15 22:07:39.014 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-15 22:07:39.237 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-15 22:07:40.014 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 3.823 seconds (JVM running for 5.073)
+2020-07-15 22:08:36.615 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-15 22:08:45.491 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-15 22:08:45.502 [http-nio-8080-exec-3] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getUserByEmailId to fetch user details for given emailId
+2020-07-15 22:08:46.039 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-15 22:08:46.047 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-15 22:08:46.167 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-15 22:08:48.356 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Condition check if current user is admin or not
+2020-07-15 22:08:48.369 [http-nio-8080-exec-5] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 22:08:48.372 [http-nio-8080-exec-5] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getAdminDetails to fetch details of Admin user
+2020-07-15 22:08:48.545 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Fetch user role based on th email Id
+2020-07-15 22:08:48.554 [http-nio-8080-exec-5] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 22:08:48.555 [http-nio-8080-exec-5] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id
+2020-07-15 22:08:48.721 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: User is a Student
+2020-07-15 22:08:48.729 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Function call to fetch enrolled courses for a student
+2020-07-15 22:08:48.730 [http-nio-8080-exec-5] INFO  C.G.Question.Question: Get the courses enrolled by a student using student's email Id
+2020-07-15 22:08:48.731 [http-nio-8080-exec-5] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getStudentCoursesByEmailId to get student courses by Email Id
+2020-07-15 22:08:51.692 [http-nio-8080-exec-6] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 22:08:51.696 [http-nio-8080-exec-6] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id
+2020-07-15 22:08:52.381 [http-nio-8080-exec-6] ERROR C.G.Survey.ResponseRepository: Could not execute the Stored procedure sp_getUserId because of an SQL Exception Column 'password' not found.
+2020-07-15 22:08:55.505 [http-nio-8080-exec-7] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 22:08:55.518 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id
+2020-07-15 22:08:56.041 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-15 22:08:56.209 [http-nio-8080-exec-7] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getOptionsForQuestion to fetch the option list for a multiple choice question
+2020-07-15 22:09:12.284 [http-nio-8080-exec-8] ERROR C.G.Survey.ResponseRepository: Could not execute the Stored procedure sp_getUserId because of an SQL Exception Column 'password' not found.
+2020-07-15 22:09:12.460 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id
+2020-07-15 22:09:12.632 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id
+2020-07-15 22:09:12.956 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id
+2020-07-15 22:09:13.119 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id
+2020-07-15 22:09:13.465 [http-nio-8080-exec-8] INFO  C.G.Q.QuestionAdminRepository: Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id
+2020-07-15 22:09:18.689 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: Condition check if current user is admin or not
+2020-07-15 22:09:18.695 [http-nio-8080-exec-9] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 22:09:18.697 [http-nio-8080-exec-9] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getAdminDetails to fetch details of Admin user
+2020-07-15 22:09:18.899 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: Fetch user role based on th email Id
+2020-07-15 22:09:18.906 [http-nio-8080-exec-9] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 22:09:18.908 [http-nio-8080-exec-9] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id
+2020-07-15 22:09:19.076 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: User is a Student
+2020-07-15 22:09:19.083 [http-nio-8080-exec-9] INFO  C.G.Course.CourseController: Function call to fetch enrolled courses for a student
+2020-07-15 22:09:19.084 [http-nio-8080-exec-9] INFO  C.G.Question.Question: Get the courses enrolled by a student using student's email Id
+2020-07-15 22:09:19.085 [http-nio-8080-exec-9] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getStudentCoursesByEmailId to get student courses by Email Id

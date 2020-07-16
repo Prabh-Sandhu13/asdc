@@ -70,4 +70,5 @@ public final class DomainConstants {
     public static int surveyNotHavingAlgorithm = 3;
     public static int surveyGroupFormationPossible = 4;
     public static final String surveySuccess = "The survey has been submitted successfully!";
+    public static final String dbError = "There was error while submitting the survey. Please try again in an hour.";
 }

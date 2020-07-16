@@ -21,6 +21,9 @@
              class="validation-message alert alert-success" role="alert"
              th:text="${Success}"></div>
         <div>
+                <div th:if="${Error}"
+             class="validation-message alert alert-danger" role="alert"
+             th:text="${Error}"></div>
             <a th:href="@{/courseList}" class="text-secondary">Go back to course list</a>
         </div>
     </div>

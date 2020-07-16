@@ -54,8 +54,13 @@ public class ResponseController {
 		ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
 		responseInstance = surveyAbstractFactory.createResponseInstance();
 		ArrayList<IResponse> responseList= responseInstance.createResponseList(searchParams);
-		responseInstance.storeResponses(responseList);
-		model.addAttribute("Success",DomainConstants.surveySuccess);
+		boolean success = responseInstance.storeResponses(responseList);
+		if(success) {
+			model.addAttribute("Success",DomainConstants.surveySuccess);
+		}
+		else {
+			model.addAttribute("Error", DomainConstants.dbError);
+		}
 	    return "course/courseSurveySubmitted";				
     }
 
