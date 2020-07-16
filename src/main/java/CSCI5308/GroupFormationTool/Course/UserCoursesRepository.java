@@ -264,14 +264,13 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getUserIdByEmailId(?)");
             storedProcedure.setInputStringParameter(1, emailId);
-
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
-                if (!(results.next())) {
+                if ((results.next()) == false) {
                     return false;
                 } else {
                     String userId = results.getString("user_id");
-                    Boolean roleExists = getUserRoleForCourse(userId, courseId);
+                    boolean roleExists = getUserRoleForCourse(userId, courseId);
                     if (roleExists) {
                         return false;
                     } else {
@@ -279,7 +278,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
                     }
                 }
             }
-
         } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getUserIdByEmailId" +
                     " because of an SQL Exception " + exception.getLocalizedMessage());
@@ -328,7 +326,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             if (results != null) {
                 return results.next();
             }
-
         } catch (SQLException exception) {
             Log.error("Could not execute the Stored procedure sp_getUserRoleForCourse" +
                     " because of an SQL Exception " + exception.getLocalizedMessage());
@@ -351,7 +348,6 @@ public class UserCoursesRepository implements IUserCoursesRepository {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getInstructorsForCourse(?)");
             storedProcedure.setInputStringParameter(1, courseId);
-
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
                 while (results.next()) {

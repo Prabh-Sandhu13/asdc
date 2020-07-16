@@ -2,8 +2,6 @@ package CSCI5308.GroupFormationTool.Survey;
 
 import CSCI5308.GroupFormationTool.Course.InstructorCourseController;
 import CSCI5308.GroupFormationTool.Question.IQuestion;
-import CSCI5308.GroupFormationTool.Question.IQuestionAbstractFactory;
-import CSCI5308.GroupFormationTool.Question.QuestionInjector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -99,7 +97,7 @@ public class SurveyController {
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
         ISurveyFormula surveyFormula = surveyAbstractFactory.createSurveyFormulaInstance();
         log.info("Passing details to business layer for creating rule for survey " + surveyId);
-        Boolean status = surveyFormula.createSurveyFormula(courseId, surveyId, groupSize, surveyFormulaList);
+        boolean status = surveyFormula.createSurveyFormula(courseId, surveyId, groupSize, surveyFormulaList);
         if (status) {
             log.info("Survey formula for survey:" + surveyId + " added successfully");
             model.addAttribute("SuccessMsg", "Survey Formula added successfully!");
@@ -115,12 +113,10 @@ public class SurveyController {
                                       @RequestParam("surveyId") long surveyId,
                                       @RequestParam("courseId") String courseId,
                                       @RequestParam("courseName") String courseName, Model model) {
-
-        boolean status;
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
         ISurvey survey = surveyAbstractFactory.createSurveyInstance();
         log.info("Adding question " + questionId + "to the survey" + surveyId);
-        status = survey.addQuestionToSurvey(questionId, surveyId);
+        survey.addQuestionToSurvey(questionId, surveyId);
         log.info("Get question list for the survey based on the course Id" + courseId);
         ArrayList<IQuestion> surveyQuestionList = survey.getQuestionsForSurvey(courseId);
         model.addAttribute("surveyId", surveyId);
@@ -135,12 +131,10 @@ public class SurveyController {
                                            @RequestParam("surveyId") long surveyId,
                                            @RequestParam("courseId") String courseId,
                                            @RequestParam("courseName") String courseName, Model model) {
-
-        boolean status;
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
         ISurvey survey = surveyAbstractFactory.createSurveyInstance();
         log.info("Delete question " + questionId + "from the survey " + surveyId);
-        status = survey.deleteQuestionFromSurvey(questionId, surveyId);
+        survey.deleteQuestionFromSurvey(questionId, surveyId);
         log.info("Get question list for the survey based on the course Id" + courseId);
         ArrayList<IQuestion> surveyQuestionList = survey.getQuestionsForSurvey(courseId);
         model.addAttribute("surveyId", surveyId);
@@ -155,8 +149,6 @@ public class SurveyController {
                                           @RequestParam("surveyId") int surveyId,
                                           @RequestParam("courseId") String courseId,
                                           @RequestParam("courseName") String courseName, Model model) {
-        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
-        IQuestion question = questionAbstractFactory.createQuestionInstance();
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
         ISurvey survey = surveyAbstractFactory.createSurveyInstance();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

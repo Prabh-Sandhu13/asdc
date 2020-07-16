@@ -34,6 +34,6 @@ public class PasswordHistoryDBMock implements IPasswordHistoryRepository {
 
     @Override
     public boolean addPasswordHistory(IUser user, String password) {
-        return null != user && null != password && !password.equals("");
+        return user != null && password != null && (password.equals("") == false);
     }
 }

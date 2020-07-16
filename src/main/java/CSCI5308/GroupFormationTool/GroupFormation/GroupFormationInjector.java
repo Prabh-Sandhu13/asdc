@@ -27,10 +27,6 @@ public class GroupFormationInjector {
         return groupFormationAbstractFactory;
     }
 
-    public void setGroupFormationAbstractFactory(IGroupFormationAbstractFactory groupFormationAbstractFactory) {
-        this.groupFormationAbstractFactory = groupFormationAbstractFactory;
-    }
-
     public IGroupFormationRepository getGroupFormationRepository() {
         return groupFormationRepository;
     }

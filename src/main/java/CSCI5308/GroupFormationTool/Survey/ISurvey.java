@@ -47,7 +47,8 @@ public interface ISurvey {
 
     boolean deleteQuestionFromSurvey(long questionId, long surveyId);
 
-    ArrayList<IQuestion> getSearchedQuestionListForSurvey(String emailId, int surveyId, String courseId, String questionTitle);
+    ArrayList<IQuestion> getSearchedQuestionListForSurvey(
+            String emailId, int surveyId, String courseId, String questionTitle);
 
     ArrayList<Long> getUsersWhoTookSurvey(String courseId);
 

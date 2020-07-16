@@ -159,31 +159,31 @@ public class SurveyFormula implements ISurveyFormula {
 
     @Override
     public ArrayList<SurveyFormula> getSurveyDetailsToSetAlgorithm(String courseId) {
-        ISurveyFormulaRepository surveyFormulaDB = SurveyInjector.instance().getSurveyFormulaRepository();
-        return surveyFormulaDB.getSurveyDetailsToSetAlgorithm(courseId);
+        ISurveyFormulaRepository surveyFormulaRepository = SurveyInjector.instance().getSurveyFormulaRepository();
+        return surveyFormulaRepository.getSurveyDetailsToSetAlgorithm(courseId);
     }
 
     @Override
     public boolean createSurveyFormula(String courseId, int surveyId, int groupSize,
                                        SurveyFormulaList surveyFormulaList) {
-        Boolean status = true;
-        ISurveyFormulaRepository surveyFormulaDB = SurveyInjector.instance().getSurveyFormulaRepository();
+        boolean status;
+        ISurveyFormulaRepository surveyFormulaRepository = SurveyInjector.instance().getSurveyFormulaRepository();
         log.info("Checking if survey formula exists for survey:" + surveyId);
-        String algoId = surveyFormulaDB.getAlgorithmIdBySurveyId(surveyId);
+        String algorithmId = surveyFormulaRepository.getAlgorithmIdBySurveyId(surveyId);
         UUID uuid = UUID.randomUUID();
-        String generatedAlgoId = uuid.toString();
-        if (algoId == null) {
-            log.info("Adding new survey formula by calling surveyFormulaDB");
-            surveyFormulaDB.updateAlgorithmId(generatedAlgoId, surveyId);
-            surveyFormulaDB.updateSurveyGroupSize(groupSize, surveyId, courseId);
-            status = surveyFormulaDB.createAlgorithm(surveyFormulaList, generatedAlgoId, surveyId);
+        String generatedAlgorithmId = uuid.toString();
+        if (algorithmId == null) {
+            log.info("Adding new survey formula by calling surveyFormulaRepository");
+            surveyFormulaRepository.updateAlgorithmId(generatedAlgorithmId, surveyId);
+            surveyFormulaRepository.updateSurveyGroupSize(groupSize, surveyId, courseId);
+            status = surveyFormulaRepository.createAlgorithm(surveyFormulaList, generatedAlgorithmId, surveyId);
         } else {
             log.warn("Deleting the existing algo for survey:" + surveyId);
-            surveyFormulaDB.deleteExistingAlgorithm(algoId);
-            log.info("Adding new survey formula by calling surveyFormulaDB");
-            surveyFormulaDB.updateAlgorithmId(generatedAlgoId, surveyId);
-            surveyFormulaDB.updateSurveyGroupSize(groupSize, surveyId, courseId);
-            status = surveyFormulaDB.createAlgorithm(surveyFormulaList, generatedAlgoId, surveyId);
+            surveyFormulaRepository.deleteExistingAlgorithm(algorithmId);
+            log.info("Adding new survey formula by calling surveyFormulaRepository");
+            surveyFormulaRepository.updateAlgorithmId(generatedAlgorithmId, surveyId);
+            surveyFormulaRepository.updateSurveyGroupSize(groupSize, surveyId, courseId);
+            status = surveyFormulaRepository.createAlgorithm(surveyFormulaList, generatedAlgorithmId, surveyId);
         }
         return status;
     }

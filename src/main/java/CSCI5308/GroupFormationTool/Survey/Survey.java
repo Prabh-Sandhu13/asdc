@@ -92,20 +92,21 @@ public class Survey implements ISurvey {
 
     @Override
     public boolean checkIfSurveyHasFormula(String courseId) {
-        log.info("Checking if the survey has an algorithm for group formation for the course " + courseId + " from the database");
+        log.info("Checking if the survey has an algorithm for group formation for the course " +
+                courseId + " from the database");
         ISurveyRepository surveyRepository = SurveyInjector.instance().getSurveyRepository();
         return surveyRepository.checkIfSurveyHasFormula(courseId);
     }
 
     @Override
     public int checkIfGroupsCanBeFormedForSurvey(String courseId) {
-        if (!checkIfSurveyCreated(courseId)) {
+        if (checkIfSurveyCreated(courseId) == false) {
             return DomainConstants.surveyNotCreated;
         }
-        if (!checkIfSurveyPublished(courseId)) {
+        if (checkIfSurveyPublished(courseId) == false) {
             return DomainConstants.surveyNotPublished;
         }
-        if (!checkIfSurveyHasFormula(courseId)) {
+        if (checkIfSurveyHasFormula(courseId) == false) {
             return DomainConstants.surveyNotHavingAlgorithm;
         }
         return DomainConstants.surveyGroupFormationPossible;
@@ -149,7 +150,8 @@ public class Survey implements ISurvey {
     public boolean isSurveyCompleted(String courseId, String userId) {
         surveyRepository = SurveyInjector.instance().getSurveyRepository();
         String surveyId = surveyRepository.getSurveyId(courseId);
-        log.info("Checking if the survey" + surveyId + "is completed for a course " + courseId + " by the user " + userId);
+        log.info("Checking if the survey" + surveyId + "is completed for a course "
+                + courseId + " by the user " + userId);
         return surveyRepository.isSurveyCompleted(surveyId, userId);
     }
 

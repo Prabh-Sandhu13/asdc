@@ -29,14 +29,6 @@ public class MailInjector {
         return instance;
     }
 
-    public IMailAbstractFactory getMailAbstractFactory() {
-        return mailAbstractFactory;
-    }
-
-    public void setMailAbstractFactory(IMailAbstractFactory mailAbstractFactory) {
-        this.mailAbstractFactory = mailAbstractFactory;
-    }
-
     public IMailManager getMailManager() {
         return mailManager;
     }
@@ -49,16 +41,8 @@ public class MailInjector {
         return mailMessage;
     }
 
-    public void setMailMessage(SimpleMailMessage mailMessage) {
-        this.mailMessage = mailMessage;
-    }
-
     public JavaMailSenderImpl getMailSender() {
         return mailSender;
-    }
-
-    public void setMailSender(JavaMailSenderImpl mailSender) {
-        this.mailSender = mailSender;
     }
 
 }

@@ -4,7 +4,9 @@ import CSCI5308.GroupFormationTool.Question.IQuestion;
 import CSCI5308.GroupFormationTool.User.IUser;
 import org.apache.commons.text.similarity.LevenshteinDetailedDistance;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.TreeMap;
 
 public interface IGroupFormationAbstractFactory {
 
@@ -45,8 +47,6 @@ public interface IGroupFormationAbstractFactory {
     ArrayList<Integer> createStudentListInstance();
 
     HashMap<Integer, Double> getMapForSorting();
-
-    List<Map.Entry<Integer, Double>> createLinkedList(Set<Map.Entry<Integer, Double>> entrySet);
 
     HashMap<Integer, Double> createLinkedListHashMap();
 }

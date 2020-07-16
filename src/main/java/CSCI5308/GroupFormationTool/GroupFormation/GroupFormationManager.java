@@ -95,9 +95,10 @@ public class GroupFormationManager implements IGroupFormationManager {
                 finalMatrices.put((long) DomainConstants.MCQOne, formMatrices(typeMatrices, true,
                         userAnsweredSurveyBasedOnCourseId.size()));
             } else if (entry.getKey() == DomainConstants.MCQMultiple) {
-                HashMap<Long, ArrayList<ArrayList<Double>>> typeMatrices = formMultipleChoiceMultipleValueMatrixForAllStudents(
-                        entry.getValue(), userAnsweredSurveyBasedOnCourseId.size(), studentWithQuestionAndAnswer,
-                        groupLogic);
+                HashMap<Long, ArrayList<ArrayList<Double>>> typeMatrices =
+                        formMultipleChoiceMultipleValueMatrixForAllStudents(
+                                entry.getValue(), userAnsweredSurveyBasedOnCourseId.size(), studentWithQuestionAndAnswer,
+                                groupLogic);
                 finalMatrices.put((long) DomainConstants.MCQMultiple, formMatrices(typeMatrices, true,
                         userAnsweredSurveyBasedOnCourseId.size()));
             }
@@ -106,8 +107,7 @@ public class GroupFormationManager implements IGroupFormationManager {
                 userAnsweredSurveyBasedOnCourseId.size());
         Map.Entry<Long, IGroupFormula> entry = groupLogic.entrySet().iterator().next();
         Integer teamSize = entry.getValue().getGroupSize();
-        return groupFormationAlgorithm(finalTotalMatrices, additionalMappings, teamSize,
-                userAnsweredSurveyBasedOnCourseId.size(), indexUserIndexToUserID);
+        return groupFormationAlgorithm(finalTotalMatrices, additionalMappings, teamSize, indexUserIndexToUserID);
     }
 
     @Override
@@ -136,15 +136,17 @@ public class GroupFormationManager implements IGroupFormationManager {
         for (int rowIndex = 0; rowIndex < students; rowIndex++) {
             ArrayList<Double> studentCount = groupFormationAbstractFactory.createRowInstance(students);
             for (int columnIndex = 0; columnIndex < students; columnIndex++) {
-                studentCount.add(0.0);
+                studentCount.add(DomainConstants.minimumProbability);
             }
             totalMatrix.add(studentCount);
         }
         for (Map.Entry<Long, ArrayList<ArrayList<Double>>> questionMatrix : typeMatrices.entrySet()) {
-            for (int row = 0; row < students; row++)
-                for (int column = 0; column < students; column++)
+            for (int row = 0; row < students; row++) {
+                for (int column = 0; column < students; column++) {
                     totalMatrix.get(row).set(column,
                             totalMatrix.get(row).get(column) + questionMatrix.getValue().get(row).get(column));
+                }
+            }
         }
         if (considerMean) {
             for (int row = 0; row < students; row++)
@@ -328,7 +330,7 @@ public class GroupFormationManager implements IGroupFormationManager {
     private HashMap<Integer, ArrayList<Long>> groupFormationAlgorithm(ArrayList<ArrayList<Double>> finalTotalMatrices,
                                                                       HashMap<String, HashMap<Integer, Integer>>
                                                                               additionalMappings,
-                                                                      Integer teamSize, int students,
+                                                                      Integer teamSize,
                                                                       HashMap<Integer, Long> indexUserIndexToUserId) {
         IGroupFormationAbstractFactory groupFormationAbstractFactory = GroupFormationInjector.instance().
                 getGroupFormationAbstractFactory();
@@ -345,7 +347,7 @@ public class GroupFormationManager implements IGroupFormationManager {
         }
         ArrayList<Integer> selectedStudents = groupFormationAbstractFactory.createStudentListInstance();
         for (int rowIndex = 0; rowIndex < finalTotalMatrices.size(); rowIndex++) {
-            if (!selectedStudents.contains(rowIndex)) {
+            if (selectedStudents.contains(rowIndex) == false) {
                 ArrayList<Integer> eachStudent = this.formTeams(finalTotalMatrices.get(rowIndex), teamSize,
                         studentLessThanX, studentGreaterthanX, true, true);
                 for (Integer studentIndex : eachStudent) {
@@ -404,7 +406,7 @@ public class GroupFormationManager implements IGroupFormationManager {
             }
             if (topStudents.size() == DomainConstants.thresholdStudentCount) {
                 break;
-            } else if (!(useLessthanX && useGreaterthanX)) {
+            } else if ((useLessthanX && useGreaterthanX) == false) {
                 if (topStudents.size() == DomainConstants.minimumStudentCount) {
                     break;
                 }
@@ -413,7 +415,8 @@ public class GroupFormationManager implements IGroupFormationManager {
         for (Integer index : indices) {
             if (topStudents.size() == teamSize) {
                 break;
-            } else if (!topStudents.contains(index) && sortedValues.get(index) != DomainConstants.maximumDistance) {
+            } else if (topStudents.contains(index) == false
+                    && sortedValues.get(index) != DomainConstants.maximumDistance) {
                 topStudents.add(index);
             }
         }

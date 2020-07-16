@@ -63,7 +63,7 @@ public class ForgotPasswordManager implements IForgotPasswordManager {
             errorMessage = passwordSecurityError;
             return errorMessage;
         }
-        if (!(user.getPassword().equals(user.getConfirmPassword()))) {
+        if ((user.getPassword().equals(user.getConfirmPassword())) == false) {
             errorMessage = DomainConstants.passwordsDontMatch;
             return errorMessage;
         }

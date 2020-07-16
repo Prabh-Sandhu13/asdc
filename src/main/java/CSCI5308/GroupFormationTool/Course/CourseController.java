@@ -96,9 +96,9 @@ public class CourseController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         IUserCourses userCourses = courseAbstractFactory.createUserCoursesInstance();
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
+        String userRole = null;
         surveyInstance = surveyAbstractFactory.createSurveyInstance();
         responseInstance = surveyAbstractFactory.createResponseInstance();
-        String userRole = null;
         userInstance = userAbstractFactory.createUserInstance();
         String emailId = authentication.getPrincipal().toString();
         userRole = userCourses.getUserRoleByEmailId(emailId);

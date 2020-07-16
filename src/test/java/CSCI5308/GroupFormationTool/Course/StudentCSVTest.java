@@ -170,7 +170,6 @@ public class StudentCSVTest {
 
             @Override
             public void transferTo(File dest) throws IOException, IllegalStateException {
-                // not required
             }
         };
 

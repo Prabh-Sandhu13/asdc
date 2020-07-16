@@ -11,7 +11,6 @@ public class TestCourseInjector {
     }
 
     public static TestCourseInjector instance() {
-
         if (instance == null) {
             return new TestCourseInjector();
         }

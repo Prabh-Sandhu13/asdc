@@ -45,7 +45,7 @@ public class StudentRepository implements IStudentRepository {
                 storedProcedure.setInputStringParameter(6, courseId);
                 storedProcedure.registerOutputParameterBoolean(7);
                 storedProcedure.execute();
-                Boolean studentStatus = storedProcedure.getParameter(7);
+                boolean studentStatus = storedProcedure.getParameter(7);
                 if (studentStatus) {
                     newStudents.add(studentCSV);
                 } else {

@@ -4,8 +4,6 @@ import CSCI5308.GroupFormationTool.Common.DomainConstants;
 import CSCI5308.GroupFormationTool.Database.DatabaseInjector;
 import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
-import CSCI5308.GroupFormationTool.Question.IQuestionAbstractFactory;
-import CSCI5308.GroupFormationTool.Question.QuestionInjector;
 import CSCI5308.GroupFormationTool.User.IUser;
 import CSCI5308.GroupFormationTool.User.IUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.UserInjector;
@@ -128,7 +126,6 @@ public class ResponseRepository implements IResponseRepository {
         ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
         StoredProcedure storedProcedure = null;
         HashMap<Long, IResponse> studentResponse = surveyAbstractFactory.createQuestionResponseInstance();
-        IQuestionAbstractFactory questionAbstractFactory = QuestionInjector.instance().getQuestionAbstractFactory();
         log.info("Calling stored procedure sp_getUserResponses to get a students' response for a survey");
         try {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance

@@ -127,7 +127,7 @@ public class User implements IUser {
         log.info("Creating the user and saving it to the database");
         IPasswordAbstractFactory passwordAbstractFactory = PasswordInjector.instance().getPasswordAbstractFactory();
         String errorMessage = null;
-        if (!checkForValues(user)) {
+        if (checkForValues(user) == false) {
             log.warn("User cannot be created due to some invalid details");
             errorMessage = DomainConstants.signupInvalidDetails;
         }
@@ -139,7 +139,7 @@ public class User implements IUser {
             errorMessage = passwordSecurityError;
             return errorMessage;
         }
-        if (!(user.getPassword().equals(user.getConfirmPassword()))) {
+        if ((user.getPassword().equals(user.getConfirmPassword())) == false) {
             log.warn("User cannot be created due to mismatch of confirm password field");
             errorMessage = DomainConstants.passwordsDontMatch;
             return errorMessage;

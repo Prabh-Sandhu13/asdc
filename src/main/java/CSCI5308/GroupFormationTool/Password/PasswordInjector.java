@@ -39,24 +39,12 @@ public class PasswordInjector {
         return passwordAbstractFactory;
     }
 
-    public void setPasswordAbstractFactory(IPasswordAbstractFactory passwordAbstractFactory) {
-        this.passwordAbstractFactory = passwordAbstractFactory;
-    }
-
     public ITokenGenerator getTokenGenerator() {
         return tokenGenerator;
     }
 
-    public void setTokenGenerator(ITokenGenerator tokenGenerator) {
-        this.tokenGenerator = tokenGenerator;
-    }
-
     public IForgotPasswordManager getForgotPasswordManager() {
         return forgotPasswordManager;
-    }
-
-    public void setForgotPasswordManager(IForgotPasswordManager forgotPasswordManager) {
-        this.forgotPasswordManager = forgotPasswordManager;
     }
 
     public IForgotPasswordRepository getForgotPasswordRepository() {
@@ -90,6 +78,4 @@ public class PasswordInjector {
     public void setPolicyRepository(IPolicyRepository policyRepository) {
         this.policyRepository = policyRepository;
     }
-
-
 }

@@ -113,7 +113,6 @@ public class CourseRepositoryTest {
         assertTrue(course.getId().equals("CSCI 5308"));
         assertTrue(course.getCredits() == 6);
         assertTrue(course.getDescription().equals("New course description"));
-        courseId = "CSCI 222220";
         course = courseAbstractFactoryTest.createCourseInstance();
         assertTrue(course.getId() == null);
         assertTrue(course.getDescription() == null);

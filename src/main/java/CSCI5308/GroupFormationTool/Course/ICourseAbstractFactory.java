@@ -19,8 +19,6 @@ public interface ICourseAbstractFactory {
 
     IUserCourses createUserCoursesInstance();
 
-    ArrayList<IUserCourses> createUserCoursesListInstance();
-
     ICourseRepository createCourseRepository();
 
     IUserCoursesRepository createUserCoursesRepository();

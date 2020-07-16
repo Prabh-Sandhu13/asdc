@@ -30,11 +30,6 @@ public class CourseAbstractFactory implements ICourseAbstractFactory {
     }
 
     @Override
-    public ArrayList<IUserCourses> createUserCoursesListInstance() {
-        return new ArrayList<IUserCourses>();
-    }
-
-    @Override
     public ICourseRepository createCourseRepository() {
         return new CourseRepository();
     }
