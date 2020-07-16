@@ -2,19 +2,19 @@ package CSCI5308.GroupFormationTool.Survey;
 
 import java.util.ArrayList;
 
-public class SurveyFormulaDBMock implements ISurveyFormulaRepository{
+public class SurveyFormulaDBMock implements ISurveyFormulaRepository {
 
     @Override
     public ArrayList<SurveyFormula> getSurveyDetailsToSetAlgorithm(String courseId) {
         ITestSurveyAbstractFactory surveyAbstractFactory = TestSurveyInjector.instance().getSurveyAbstractFactory();
-        ArrayList<SurveyFormula> rules= surveyAbstractFactory.createSurveyFormulaListInstance();
+        ArrayList<SurveyFormula> rules = surveyAbstractFactory.createSurveyFormulaListInstance();
         return rules;
     }
 
     @Override
     public String getAlgorithmIdBySurveyId(int surveyId) {
-        String algoId = "newAlgo";
-        return algoId;
+        String algorithmId = "newAlgo";
+        return algorithmId;
     }
 
     @Override

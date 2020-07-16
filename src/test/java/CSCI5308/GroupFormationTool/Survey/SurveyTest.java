@@ -218,7 +218,6 @@ public class SurveyTest {
                 ("haard.shah@dal.ca", 1, "title")).thenReturn(questions);
         assertTrue(survey.getSearchedQuestionListForSurvey
                 ("haard.shah@dal.ca", 1, "title", "title").size() == 0);
-
     }
 
 }
