@@ -68,7 +68,7 @@ public final class DomainConstants {
     public static final String AdminRole = "ADMIN";
     public static final String UserRole = "USER";
     public static final String surveySuccess = "The survey has been submitted successfully!";
-    public static final String dbError = "There was error while submitting the survey. Please try again in an hour.";
+    public static final String dbError = "There was an error while submitting the survey. Please try again in an hour.";
     public static int surveyNotCreated = 1;
     public static int surveyNotPublished = 2;
     public static int surveyNotHavingAlgorithm = 3;

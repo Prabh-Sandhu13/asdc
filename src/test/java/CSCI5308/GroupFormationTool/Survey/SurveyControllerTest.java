@@ -27,8 +27,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import java.util.ArrayList;
-
 @WebMvcTest(SurveyController.class)
 public class SurveyControllerTest {
 
@@ -71,15 +69,15 @@ public class SurveyControllerTest {
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
     }
-    
+
     @Test
     void createSurveyFormula() throws Exception {
         String courseId = "1";
         ITestSurveyAbstractFactory surveyAbstractFactory = TestSurveyInjector.instance().getSurveyAbstractFactory();
         ISurveyFormulaRepository surveyFormulaRepository;
         surveyFormulaRepository = surveyAbstractFactory.createSurveyFormulaRepositoryMock();
-        ArrayList<SurveyFormula> rules= surveyAbstractFactory.createSurveyFormulaListInstance();
-        SurveyFormulaList rulesList= surveyAbstractFactory.createSurveyFormulaListObj();
+        ArrayList<SurveyFormula> rules = surveyAbstractFactory.createSurveyFormulaListInstance();
+        SurveyFormulaList rulesList = surveyAbstractFactory.createSurveyFormulaListObject();
         SurveyInjector.instance().setSurveyFormulaRepository(surveyFormulaRepository);
         when(surveyFormulaRepository.getSurveyDetailsToSetAlgorithm(courseId)).thenReturn(rules);
         when(surveyFormulaRepository.createAlgorithm(rulesList, "newAlgo", 1)).thenReturn(true);

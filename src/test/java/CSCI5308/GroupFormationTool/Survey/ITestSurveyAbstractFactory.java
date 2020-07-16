@@ -30,7 +30,7 @@ public interface ITestSurveyAbstractFactory {
 
     ArrayList<SurveyFormula> createSurveyFormulaListInstance();
 
-    SurveyFormulaList createSurveyFormulaListObj();
+    SurveyFormulaList createSurveyFormulaListObject();
 
     Map<String, String> createMapResponse();
 
