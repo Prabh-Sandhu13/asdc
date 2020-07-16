@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Survey.SurveyControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-16T02:08:46" hostname="Prabhjots-MacBook-Pro.local" time="0.021">
+<testsuite name="CSCI5308.GroupFormationTool.Survey.SurveyControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-07-16T16:22:11" hostname="Prabhjots-MacBook-Pro.local" time="0.789">
   <properties/>
-  <testcase name="publishSurveyTest()" classname="CSCI5308.GroupFormationTool.Survey.SurveyControllerTest" time="0.021"/>
-  <system-out><![CDATA[
+  <testcase name="createSurveyFormula()" classname="CSCI5308.GroupFormationTool.Survey.SurveyControllerTest" time="0.721"/>
+  <testcase name="publishSurveyTest()" classname="CSCI5308.GroupFormationTool.Survey.SurveyControllerTest" time="0.067"/>
+  <system-out><![CDATA[13:22:09.109 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+13:22:09.123 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+13:22:09.152 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [CSCI5308.GroupFormationTool.Survey.SurveyControllerTest] from class [org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper]
+13:22:09.168 [Test worker] INFO org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [CSCI5308.GroupFormationTool.Survey.SurveyControllerTest], using SpringBootContextLoader
+13:22:09.171 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [CSCI5308.GroupFormationTool.Survey.SurveyControllerTest]: class path resource [CSCI5308/GroupFormationTool/Survey/SurveyControllerTest-context.xml] does not exist
+13:22:09.171 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [CSCI5308.GroupFormationTool.Survey.SurveyControllerTest]: class path resource [CSCI5308/GroupFormationTool/Survey/SurveyControllerTestContext.groovy] does not exist
+13:22:09.171 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [CSCI5308.GroupFormationTool.Survey.SurveyControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+13:22:09.172 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [CSCI5308.GroupFormationTool.Survey.SurveyControllerTest]: SurveyControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+13:22:09.224 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [CSCI5308.GroupFormationTool.Survey.SurveyControllerTest]
+13:22:09.293 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/prabhjotkaur/git/group22/build/classes/java/main/CSCI5308/GroupFormationTool/GroupFormationToolApplication.class]
+13:22:09.293 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration CSCI5308.GroupFormationTool.GroupFormationToolApplication for test class CSCI5308.GroupFormationTool.Survey.SurveyControllerTest
+13:22:09.295 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - @TestExecutionListeners is not present for class [CSCI5308.GroupFormationTool.Survey.SurveyControllerTest]: using defaults.
+13:22:09.296 [Test worker] INFO org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+13:22:09.309 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
+13:22:09.310 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+13:22:09.310 [Test worker] INFO org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1d51d841, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6b7f5ad3, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@360bf153, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@52b1c73a, org.springframework.test.context.support.DirtiesContextTestExecutionListener@41b19efd, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@5009fdda, org.springframework.test.context.event.EventPublishingTestExecutionListener@39611fe1, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@65b597e0, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@283ebbdd, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@37c6742d, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@6e9fb23, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@4faa7689, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@1297dcf2]
+13:22:09.313 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@7978f256 testClass = SurveyControllerTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@1550fcd2 testClass = SurveyControllerTest, locations = '{}', classes = '{class CSCI5308.GroupFormationTool.GroupFormationToolApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@71119039, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@c10aeb9b, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@ce6c433, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@204f66ac, [ImportsContextCustomizer@793935d8 key = [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration, org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration, org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration, org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration, org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration, org.springframework.boot.autoconfigure.hateoas.HypermediaAutoConfiguration, org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration, org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration, org.springframework.boot.autoconfigure.jsonb.JsonbAutoConfiguration, org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration, org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration, org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration, org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@7e1d61a8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@428907ad, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestArgs@1], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map[[empty]]], class annotated with @DirtiesContext [false] with mode [null].
+13:22:09.321 [Test worker] DEBUG org.springframework.test.context.support.DependencyInjectionTestExecutionListener - Performing dependency injection for test context [[DefaultTestContext@7978f256 testClass = SurveyControllerTest, testInstance = CSCI5308.GroupFormationTool.Survey.SurveyControllerTest@35567974, testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@1550fcd2 testClass = SurveyControllerTest, locations = '{}', classes = '{class CSCI5308.GroupFormationTool.GroupFormationToolApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@71119039, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@c10aeb9b, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@ce6c433, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@204f66ac, [ImportsContextCustomizer@793935d8 key = [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration, org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration, org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration, org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration, org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration, org.springframework.boot.autoconfigure.hateoas.HypermediaAutoConfiguration, org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration, org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration, org.springframework.boot.autoconfigure.jsonb.JsonbAutoConfiguration, org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration, org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration, org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration, org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@7e1d61a8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@428907ad, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestArgs@1], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map[[empty]]]].
+13:22:09.416 [Test worker] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper=true, server.port=-1}
+LOGBACK: No context given for c.q.l.core.rolling.SizeAndTimeBasedRollingPolicy@819003649
+
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -11,19 +32,91 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-15 23:08:46.420  INFO 38787 --- [    Test worker] C.G.Survey.SurveyControllerTest          : Starting SurveyControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-15 23:08:46.420  INFO 38787 --- [    Test worker] C.G.Survey.SurveyControllerTest          : No active profile set, falling back to default profiles: default
-2020-07-15 23:08:46.724  INFO 38787 --- [    Test worker] C.G.Survey.SurveyControllerTest          : Started SurveyControllerTest in 0.313 seconds (JVM running for 8.55)
-2020-07-15 23:08:46.728  INFO 38787 --- [    Test worker] C.G.Course.InstructorCourseController    : Getting survey id for the course
-2020-07-15 23:08:46.728  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id
-2020-07-15 23:08:46.729  INFO 38787 --- [    Test worker] C.G.Course.InstructorCourseController    : Survey id for the courseSDCis 0
-2020-07-15 23:08:46.729  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Publishing the survey
-2020-07-15 23:08:46.729  INFO 38787 --- [    Test worker] C.G.Course.InstructorCourseController    : Check condition for survey published or not result value true
+2020-07-16 13:22:09.836  INFO 40985 --- [    Test worker] C.G.Survey.SurveyControllerTest          : Starting SurveyControllerTest on Prabhjots-MacBook-Pro.local with PID 40985 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-16 13:22:09.839  INFO 40985 --- [    Test worker] C.G.Survey.SurveyControllerTest          : No active profile set, falling back to default profiles: default
+2020-07-16 13:22:11.099  INFO 40985 --- [    Test worker] C.G.Survey.SurveyControllerTest          : Started SurveyControllerTest in 1.669 seconds (JVM running for 2.848)
+2020-07-16 13:22:11.568  INFO 40985 --- [    Test worker] C.G.Course.InstructorCourseController    : Getting survey Details for the formula setup
+2020-07-16 13:22:11.570  INFO 40985 --- [    Test worker] C.G.Course.InstructorCourseController    : Survey id for the courseadvSDCis 0
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /survey/createSurveyFormula
+       Parameters = {courseName=[advSDC], courseId=[1]}
+          Headers = []
+             Body = <no character encoding set>
+    Session Attrs = {}
+
+Handler:
+             Type = CSCI5308.GroupFormationTool.Survey.SurveyController
+           Method = CSCI5308.GroupFormationTool.Survey.SurveyController#createSurveyFormula(String, String, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = survey/createSurveyFormula
+             View = null
+        Attribute = courseId
+            value = 1
+        Attribute = courseName
+            value = advSDC
+        Attribute = surveyId
+            value = 0
+        Attribute = surveyFormulaList
+            value = CSCI5308.GroupFormationTool.Survey.SurveyFormulaList@20104ba
+           errors = []
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="favicon.ico" rel="icon"/>
+    <title>Create Survey</title>
+    <link
+            crossorigin="anonymous"
+            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            rel="stylesheet"/>
+
+</head>
+<body style="background-color: #e7ebee">
+<div class="container">
+    <div>
+        <p>You have not yet logged in to the application. Please login to
+            continue...</p>
+        <a href="/login">Click here to log in!</a>
+    </div>
+    
+</div>
+</body>
+</html>
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2020-07-16 13:22:11.874  INFO 40985 --- [    Test worker] C.G.Course.InstructorCourseController    : Getting survey id for the course
+2020-07-16 13:22:11.874  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id
+2020-07-16 13:22:11.874  INFO 40985 --- [    Test worker] C.G.Course.InstructorCourseController    : Survey id for the courseSDCis 0
+2020-07-16 13:22:11.875  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Publishing the survey
+2020-07-16 13:22:11.875  INFO 40985 --- [    Test worker] C.G.Course.InstructorCourseController    : Check condition for survey published or not result value true
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /survey/publishSurvey
-       Parameters = {courseName=[SDC], courseId=[CSCI3901], _csrf=[00e8d33e-882b-404d-8db0-e15d792f54c1]}
+       Parameters = {courseName=[SDC], courseId=[CSCI3901], _csrf=[25a8511c-b73f-43f4-b879-32f84d692348]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}
@@ -87,16 +180,16 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-15 23:08:46.743  INFO 38787 --- [    Test worker] C.G.Course.InstructorCourseController    : Getting survey id for the course
-2020-07-15 23:08:46.743  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id
-2020-07-15 23:08:46.743  INFO 38787 --- [    Test worker] C.G.Course.InstructorCourseController    : Survey id for the courseSDCis 0
-2020-07-15 23:08:46.743  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Publishing the survey
-2020-07-15 23:08:46.744  INFO 38787 --- [    Test worker] C.G.Course.InstructorCourseController    : Check condition for survey published or not result value false
+2020-07-16 13:22:11.886  INFO 40985 --- [    Test worker] C.G.Course.InstructorCourseController    : Getting survey id for the course
+2020-07-16 13:22:11.886  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id
+2020-07-16 13:22:11.887  INFO 40985 --- [    Test worker] C.G.Course.InstructorCourseController    : Survey id for the courseSDCis 0
+2020-07-16 13:22:11.887  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Publishing the survey
+2020-07-16 13:22:11.887  INFO 40985 --- [    Test worker] C.G.Course.InstructorCourseController    : Check condition for survey published or not result value false
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /survey/publishSurvey
-       Parameters = {courseName=[SDC], courseId=[CSCI3901], _csrf=[621f3f9d-e02b-430e-9095-36a04f3401fd]}
+       Parameters = {courseName=[SDC], courseId=[CSCI3901], _csrf=[9b7a153f-f141-4bf7-bcbb-715b3c41772b]}
           Headers = []
              Body = <no character encoding set>
     Session Attrs = {}

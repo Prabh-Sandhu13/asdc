@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Question.QuestionAdminControllerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-07-16T02:08:45" hostname="Prabhjots-MacBook-Pro.local" time="0.03">
+<testsuite name="CSCI5308.GroupFormationTool.Question.QuestionAdminControllerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-07-16T16:22:16" hostname="Prabhjots-MacBook-Pro.local" time="0.028">
   <properties/>
-  <testcase name="viewQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionAdminControllerTest" time="0.019"/>
+  <testcase name="viewQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionAdminControllerTest" time="0.017"/>
   <testcase name="sortQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionAdminControllerTest" time="0.006"/>
-  <testcase name="questionListTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionAdminControllerTest" time="0.005"/>
+  <testcase name="questionListTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionAdminControllerTest" time="0.004"/>
   <system-out><![CDATA[
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -13,11 +13,11 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-15 23:08:45.629  INFO 38787 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : Starting QuestionAdminControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-15 23:08:45.630  INFO 38787 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : No active profile set, falling back to default profiles: default
-2020-07-15 23:08:45.961  INFO 38787 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : Started QuestionAdminControllerTest in 0.34 seconds (JVM running for 7.787)
-2020-07-15 23:08:45.965  INFO 38787 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching the question by its id for the current instructor to view
-2020-07-15 23:08:45.965  INFO 38787 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionById repository function to fetch a question from the Database
+2020-07-16 13:22:16.372  INFO 40985 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : Starting QuestionAdminControllerTest on Prabhjots-MacBook-Pro.local with PID 40985 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-16 13:22:16.373  INFO 40985 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : No active profile set, falling back to default profiles: default
+2020-07-16 13:22:16.670  INFO 40985 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : Started QuestionAdminControllerTest in 0.306 seconds (JVM running for 8.42)
+2020-07-16 13:22:16.674  INFO 40985 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching the question by its id for the current instructor to view
+2020-07-16 13:22:16.675  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionById repository function to fetch a question from the Database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -42,7 +42,7 @@ ModelAndView:
         View name = question/viewQuestion
              View = null
         Attribute = question
-            value = CSCI5308.GroupFormationTool.Question.Question@6122f944
+            value = CSCI5308.GroupFormationTool.Question.Question@73bac162
            errors = []
 
 FlashMap:
@@ -83,8 +83,8 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-15 23:08:45.983  INFO 38787 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching the question bank sorted based on the field like title and date for the logged in instructor
-2020-07-15 23:08:45.983  INFO 38787 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getSortedQuestionListForInstructor repository function to fetch the question bank in a sorted order from the Database
+2020-07-16 13:22:16.692  INFO 40985 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching the question bank sorted based on the field like title and date for the logged in instructor
+2020-07-16 13:22:16.692  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getSortedQuestionListForInstructor repository function to fetch the question bank in a sorted order from the Database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -149,8 +149,8 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-15 23:08:45.989  INFO 38787 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching the question bank for the logged in instructor
-2020-07-15 23:08:45.989  INFO 38787 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
+2020-07-16 13:22:16.698  INFO 40985 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching the question bank for the logged in instructor
+2020-07-16 13:22:16.698  INFO 40985 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
 
 MockHttpServletRequest:
       HTTP Method = GET

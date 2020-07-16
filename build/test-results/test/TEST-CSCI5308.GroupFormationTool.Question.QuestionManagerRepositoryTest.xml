@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Question.QuestionManagerRepositoryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-07-16T02:08:45" hostname="Prabhjots-MacBook-Pro.local" time="0.002">
+<testsuite name="CSCI5308.GroupFormationTool.Question.QuestionManagerRepositoryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-07-16T16:22:16" hostname="Prabhjots-MacBook-Pro.local" time="0.003">
   <properties/>
   <testcase name="deleteQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerRepositoryTest" time="0.001"/>
   <testcase name="createQuestionTest()" classname="CSCI5308.GroupFormationTool.Question.QuestionManagerRepositoryTest" time="0.001"/>

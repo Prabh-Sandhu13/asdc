@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Survey.SurveyTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-07-16T02:08:46" hostname="Prabhjots-MacBook-Pro.local" time="0.006">
+<testsuite name="CSCI5308.GroupFormationTool.Survey.SurveyTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-07-16T16:22:17" hostname="Prabhjots-MacBook-Pro.local" time="0.005">
   <properties/>
-  <testcase name="checkIfSurveyCreatedTest()" classname="CSCI5308.GroupFormationTool.Survey.SurveyTest" time="0.001"/>
+  <testcase name="checkIfSurveyCreatedTest()" classname="CSCI5308.GroupFormationTool.Survey.SurveyTest" time="0.0"/>
   <testcase name="checkIfGroupsCanBeFormedForSurveyTest()" classname="CSCI5308.GroupFormationTool.Survey.SurveyTest" time="0.002"/>
   <testcase name="checkIfSurveyPublishedTest()" classname="CSCI5308.GroupFormationTool.Survey.SurveyTest" time="0.0"/>
   <testcase name="getSurveyIdByCourseId()" classname="CSCI5308.GroupFormationTool.Survey.SurveyTest" time="0.001"/>
   <testcase name="checkIfSurveyHasFormulaTest()" classname="CSCI5308.GroupFormationTool.Survey.SurveyTest" time="0.0"/>
-  <testcase name="publishSurvey()" classname="CSCI5308.GroupFormationTool.Survey.SurveyTest" time="0.0"/>
-  <system-out><![CDATA[2020-07-15 23:08:46.748  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course from the database
-2020-07-15 23:08:46.749  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course from the database
-2020-07-15 23:08:46.749  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course from the database
-2020-07-15 23:08:46.749  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey has an algorithm for group formation for the course from the database
-2020-07-15 23:08:46.749  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course from the database
-2020-07-15 23:08:46.750  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course from the database
-2020-07-15 23:08:46.750  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course from the database
-2020-07-15 23:08:46.750  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course from the database
-2020-07-15 23:08:46.750  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course from the database
-2020-07-15 23:08:46.751  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey has an algorithm for group formation for the course from the database
-2020-07-15 23:08:46.751  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course from the database
-2020-07-15 23:08:46.752  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id
-2020-07-15 23:08:46.752  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey has an algorithm for group formation for the course from the database
-2020-07-15 23:08:46.753  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Publishing the survey
+  <testcase name="publishSurvey()" classname="CSCI5308.GroupFormationTool.Survey.SurveyTest" time="0.001"/>
+  <system-out><![CDATA[2020-07-16 13:22:17.124  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course from the database
+2020-07-16 13:22:17.125  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course from the database
+2020-07-16 13:22:17.125  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course from the database
+2020-07-16 13:22:17.126  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey has an algorithm for group formation for the course from the database
+2020-07-16 13:22:17.126  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course from the database
+2020-07-16 13:22:17.126  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course from the database
+2020-07-16 13:22:17.126  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course from the database
+2020-07-16 13:22:17.127  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is created for the course from the database
+2020-07-16 13:22:17.127  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course from the database
+2020-07-16 13:22:17.127  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey has an algorithm for group formation for the course from the database
+2020-07-16 13:22:17.127  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course from the database
+2020-07-16 13:22:17.128  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id
+2020-07-16 13:22:17.129  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey has an algorithm for group formation for the course from the database
+2020-07-16 13:22:17.129  INFO 40985 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Publishing the survey
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

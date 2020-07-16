@@ -1,5 +1,7 @@
 package CSCI5308.GroupFormationTool.Survey;
 
+import java.util.ArrayList;
+
 public interface ITestSurveyAbstractFactory {
 
     ISurvey createSurveyInstance();
@@ -10,8 +12,12 @@ public interface ITestSurveyAbstractFactory {
 
     IResponse createResponseInstance();
 
-	ISurveyFormula createSurveyFormulaInstance();
+    ISurveyFormula createSurveyFormulaInstance();
 
-	SurveyFormulaRepository createSurveyFormulaRepositoryMock();
+    SurveyFormulaRepository createSurveyFormulaRepositoryMock();
+
+    ArrayList<SurveyFormula> createSurveyFormulaListInstance();
+
+    SurveyFormulaList createSurveyFormulaListObj();
 
 }
