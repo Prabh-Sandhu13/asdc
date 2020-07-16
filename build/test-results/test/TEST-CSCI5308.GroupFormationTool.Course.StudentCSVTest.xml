@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <<<<<<< HEAD:build/test-results/test/TEST-CSCI5308.GroupFormationTool.Model.StudentCSVTest.xml
 <testsuite name="CSCI5308.GroupFormationTool.Model.StudentCSVTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2020-07-07T17:16:50" hostname="Prabhjots-MacBook-Pro.local" time="0.014">
   <properties/>
@@ -41,6 +42,23 @@
 2020-07-07 15:40:36.486  INFO 22184 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
 2020-07-07 15:40:36.486  INFO 22184 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@42079d43, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@712d07b2, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6ed7c129, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@437b5dd7, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3de82d7e, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@2461bde6, org.springframework.test.context.event.EventPublishingTestExecutionListener@746feeca, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@6de38075, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@119cc36a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@383bc232, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@33a96241, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@42b8bc69, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@35c8a0c7]
 >>>>>>> hotfix:build/test-results/test/TEST-CSCI5308.GroupFormationTool.Course.StudentCSVTest.xml
+=======
+<testsuite name="CSCI5308.GroupFormationTool.Course.StudentCSVTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2020-07-16T16:40:24" hostname="Prabhjots-MacBook-Pro.local" time="0.098">
+  <properties/>
+  <testcase name="getPasswordTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.008"/>
+  <testcase name="getFirstNameTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
+  <testcase name="setLastNameTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
+  <testcase name="StudentCSVParameterizedTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
+  <testcase name="setBannerIdTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
+  <testcase name="setPasswordTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
+  <testcase name="setEmailIdTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.002"/>
+  <testcase name="createStudent()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.071"/>
+  <testcase name="setFirstNameTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
+  <testcase name="getEmailIdTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
+  <testcase name="getLastNameTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.001"/>
+  <testcase name="getBannerIdTest()" classname="CSCI5308.GroupFormationTool.Course.StudentCSVTest" time="0.005"/>
+  <system-out><![CDATA[2020-07-16 13:40:25.027  INFO 41246 --- [    Test worker] C.G.Question.QuestionManagerRepository   : Added valid students in a proper data list 
+>>>>>>> release/milestone-3
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

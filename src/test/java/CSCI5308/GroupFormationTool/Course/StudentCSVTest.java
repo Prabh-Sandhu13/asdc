@@ -1,19 +1,10 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.Course.IStudentCSV;
-import CSCI5308.GroupFormationTool.Course.StudentCSV;
-import CSCI5308.GroupFormationTool.Course.StudentDBMock;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.web.multipart.MultipartFile;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -23,27 +14,34 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
+
 @SpringBootTest
 public class StudentCSVTest {
 
-    public StudentCSV studentCSV;
-    public StudentRepository studentRepository;
+    private StudentCSV studentCSV;
+
+    private StudentRepository studentRepository;
+
+    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestCourseInjector.instance().
+            getCourseAbstractFactory();
 
     @BeforeEach
     public void init() {
-        studentCSV = new StudentCSV();
-        studentRepository = mock(StudentRepository.class);
-        Injector.instance().setStudentRepository(studentRepository);
+        studentCSV = courseAbstractFactoryTest.createStudentCSVInstance();
+        studentRepository = courseAbstractFactoryTest.createStudentRepositoryMock();
+        CourseInjector.instance().setStudentRepository(studentRepository);
     }
-	
+
     private IStudentCSV createDefaultStudentCSV() {
-        StudentDBMock studentDBMock = new StudentDBMock();
+        StudentDBMock studentDBMock = courseAbstractFactoryTest.createStudentDBMock();
         IStudentCSV studentCSV = loadStudentCSV(studentDBMock);
         return studentCSV;
     }
 
     private IStudentCSV loadStudentCSV(StudentDBMock studentDBMock) {
-        IStudentCSV studentCSV = new StudentCSV();
+        IStudentCSV studentCSV = courseAbstractFactoryTest.createStudentCSVInstance();
         studentCSV = studentDBMock.loadStudentCSVWithID(studentCSV);
         return studentCSV;
     }
@@ -56,7 +54,7 @@ public class StudentCSVTest {
 
     @Test
     public void setFirstNameTest() {
-        IStudentCSV studentCSV = new StudentCSV();
+        IStudentCSV studentCSV = courseAbstractFactoryTest.createStudentCSVInstance();
         studentCSV.setFirstName("Padmesh");
         assertEquals("Padmesh", studentCSV.getFirstName());
     }
@@ -69,7 +67,7 @@ public class StudentCSVTest {
 
     @Test
     public void setLastNameTest() {
-        IStudentCSV studentCSV = new StudentCSV();
+        IStudentCSV studentCSV = courseAbstractFactoryTest.createStudentCSVInstance();
         studentCSV.setLastName("Donthu");
         assertEquals("Donthu", studentCSV.getLastName());
     }
@@ -82,7 +80,7 @@ public class StudentCSVTest {
 
     @Test
     public void setBannerIdTest() {
-        IStudentCSV studentCSV = new StudentCSV();
+        IStudentCSV studentCSV = courseAbstractFactoryTest.createStudentCSVInstance();
         studentCSV.setBannerId("B0000000");
         assertEquals("B0000000", studentCSV.getBannerId());
     }
@@ -95,7 +93,7 @@ public class StudentCSVTest {
 
     @Test
     public void setEmailIdTest() {
-        IStudentCSV studentCSV = new StudentCSV();
+        IStudentCSV studentCSV = courseAbstractFactoryTest.createStudentCSVInstance();
         studentCSV.setEmail("padmeshdonthu@gmail.com");
         assertEquals("padmeshdonthu@gmail.com", studentCSV.getEmail());
     }
@@ -108,17 +106,16 @@ public class StudentCSVTest {
 
     @Test
     public void setPasswordTest() {
-        IStudentCSV studentCSV = new StudentCSV();
+        IStudentCSV studentCSV = courseAbstractFactoryTest.createStudentCSVInstance();
         studentCSV.setPassword("password");
         assertEquals("password", studentCSV.getPassword());
     }
 
     @Test
     public void StudentCSVParameterizedTest() {
-        IStudentCSV studentCSV = new StudentCSV("Padmesh",
+        IStudentCSV studentCSV = courseAbstractFactoryTest.createStudentCSVInstanceParameterized("Padmesh",
                 "Donthu", "padmeshdonthu@gmail.com",
                 "B00854462", "sample123");
-
         assertEquals("Padmesh", studentCSV.getFirstName());
         assertFalse(studentCSV.getLastName() == null);
         assertTrue(studentCSV.getEmail().equals("padmeshdonthu@gmail.com"));
@@ -173,16 +170,15 @@ public class StudentCSVTest {
 
             @Override
             public void transferTo(File dest) throws IOException, IllegalStateException {
-                // not reqd
+                // not required
             }
         };
 
         String courseId = "CSCI 5308";
-        ArrayList<StudentCSV> studentCSVs = new ArrayList<>();
-        HashMap<Integer, List<StudentCSV>> studentLists = new HashMap<>();
+        ArrayList<StudentCSV> studentCSVs = courseAbstractFactoryTest.createStudentCSVListInstance();
+        HashMap<Integer, List<StudentCSV>> studentLists = courseAbstractFactoryTest.createStudentListHashMap();
         when(studentRepository.createStudent(studentCSVs, courseId)).thenReturn(studentLists);
         assertTrue(studentCSV.createStudent(multipartFile, courseId).size() == 0);
     }
-
 
 }

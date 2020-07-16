@@ -11,5 +11,4 @@ public class IndexController {
     public String greeting(Model model) {
         return "index";
     }
-
 }

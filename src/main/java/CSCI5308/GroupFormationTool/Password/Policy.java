@@ -1,16 +1,23 @@
 package CSCI5308.GroupFormationTool.Password;
 
-import java.util.ArrayList;
-
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
 
 public class Policy implements IPolicy {
 
-	private int id;
+    private static final Logger log = LoggerFactory.getLogger(Policy.class.getName());
+
+    private int id;
+
     private String setting;
+
     private String value;
+
     private int enabled;
+
     private IPolicyRepository policyRepository;
 
     @Override
@@ -52,38 +59,39 @@ public class Policy implements IPolicy {
     public void setEnabled(int enabled) {
         this.enabled = enabled;
     }
-    
+
 
     @Override
     public String passwordSPolicyCheck(String password) {
-        policyRepository = Injector.instance().getPolicyRepository();
+        log.info("Calling the Policy Repository to check if the password follows enabled security policies");
+        policyRepository = PasswordInjector.instance().getPolicyRepository();
         ArrayList<IPolicy> policies = policyRepository.passwordSPolicyCheck(password);
         return checkPasswordSecurity(password, policies);
     }
 
     @Override
     public ArrayList<IPolicy> getPolicies() {
-        policyRepository = Injector.instance().getPolicyRepository();
+        log.info("Calling the Policy Repository to fetch all the password security policies from database");
+        policyRepository = PasswordInjector.instance().getPolicyRepository();
         ArrayList<IPolicy> policies = policyRepository.getPolicies();
         return policies;
     }
-    
-    private String checkPasswordSecurity(String password, ArrayList<IPolicy> policies) {
 
+    private String checkPasswordSecurity(String password, ArrayList<IPolicy> policies) {
+        log.info("Checking if the password follows enabled security policies");
         int passwordSettingEnabled = 1;
         String errorMessage = null;
         int upperCaseCharacters = 0;
         int lowerCaseCharacters = 0;
         int digits = 0;
         int specialCharacters = 0;
-
-        for (int i = 0; i < password.length(); i++) {
-            char ch = password.charAt(i);
-            if (ch >= 'A' && ch <= 'Z') {
+        for (int index = 0; index < password.length(); index++) {
+            char character = password.charAt(index);
+            if (character >= 'A' && character <= 'Z') {
                 upperCaseCharacters++;
-            } else if (ch >= 'a' && ch <= 'z') {
+            } else if (character >= 'a' && character <= 'z') {
                 lowerCaseCharacters++;
-            } else if (ch >= '0' && ch <= '9') {
+            } else if (character >= '0' && character <= '9') {
                 digits++;
             } else {
                 specialCharacters++;
@@ -91,56 +99,52 @@ public class Policy implements IPolicy {
         }
         for (int counter = 0; counter < policies.size(); counter++) {
             IPolicy policy = policies.get(counter);
-
             if (errorMessage != null) {
                 break;
             }
-
             int id = policy.getId();
             String val = policy.getValue();
             int enabled = policy.getEnabled();
-
             if (enabled == passwordSettingEnabled) {
                 switch (id) {
-                    // Minimum Length policy
                     case 0:
                         if (password.length() < Integer.parseInt(val)) {
+                            log.error("Minimum password length security policy is violated");
                             errorMessage = DomainConstants.passwordMinimumLength + val;
                         }
                         break;
-                    // Maximum Length policy
                     case 1:
                         if (password.length() > Integer.parseInt(val)) {
+                            log.error("Maximum password length security policy is violated");
                             errorMessage = DomainConstants.passwordMaximumLength + val;
                         }
                         break;
-                    // Minimum number of uppercase characters
                     case 2:
                         if (upperCaseCharacters < Integer.parseInt(val)) {
+                            log.error("Minimum upper case charachters required password security policy is violated");
                             errorMessage = DomainConstants.passwordUppercaseMinimumLength + val;
                         }
                         break;
-                    // Minimum number of lowercase characters
                     case 3:
                         if (lowerCaseCharacters < Integer.parseInt(val)) {
+                            log.error("Minimum lower case charachters required password security policy is violated");
                             errorMessage = DomainConstants.passwordLowercaseMinimumLength + val;
                         }
                         break;
-                    // Minimum number of symbols or special characters
                     case 4:
                         if (specialCharacters < Integer.parseInt(val)) {
+                            log.error("Minimum special symbols required password security policy is violated");
                             errorMessage = DomainConstants.passwordSpecialSymbolsMinimumLength + val;
                         }
                         break;
-                    // A set of characters that are not allowed
                     case 5:
                         for (int i = 0; i < val.length(); i++) {
                             if (password != null && password.indexOf(val.charAt(i)) >= 0) {
+                                log.error("Charachters not allowed in password security policy is violated");
                                 errorMessage = "" + val + DomainConstants.passwordCharactersNotAllowed;
                                 break;
                             }
                         }
-                        break;
                     default:
                 }
             }

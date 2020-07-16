@@ -1,23 +1,22 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import CSCI5308.GroupFormationTool.Common.DomainConstants;
+import CSCI5308.GroupFormationTool.Mail.IMailManager;
+import CSCI5308.GroupFormationTool.Mail.MailInjector;
+import CSCI5308.GroupFormationTool.Question.QuestionManagerRepository;
+import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvToBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.Reader;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.web.multipart.MultipartFile;
-
-import com.opencsv.bean.CsvBindByName;
-import com.opencsv.bean.CsvToBean;
-import com.opencsv.bean.CsvToBeanBuilder;
-
-import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.Mail.IMailManager;
-
 public class StudentCSV implements IStudentCSV {
+
+    private static final Logger Log = LoggerFactory.getLogger(QuestionManagerRepository.class.getName());
 
     @CsvBindByName
     private String firstName;
@@ -30,7 +29,12 @@ public class StudentCSV implements IStudentCSV {
 
     @CsvBindByName
     private String bannerId;
+
     private String password;
+
+    private IStudentRepository studentRepository;
+
+    private IMailManager mailManager;
 
     public StudentCSV() {
         this.firstName = null;
@@ -88,53 +92,46 @@ public class StudentCSV implements IStudentCSV {
         this.password = password;
     }
 
-
-    private IStudentRepository studentRepository;
-    private IMailManager mailManager;
-
     @Override
     public Map<Integer, List<StudentCSV>> createStudent(MultipartFile file, String courseId) {
-        studentRepository = Injector.instance().getStudentRepository();
-        mailManager = Injector.instance().getMailManager();
-
-        List<StudentCSV> badData = new ArrayList<StudentCSV>();
-        List<StudentCSV> properData = new ArrayList<StudentCSV>();
+        studentRepository = CourseInjector.instance().getStudentRepository();
+        mailManager = MailInjector.instance().getMailManager();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
+        List<StudentCSV> badData = courseAbstractFactory.createStudentCSVListInstance();
+        List<StudentCSV> properData = courseAbstractFactory.createStudentCSVListInstance();
         Map<Integer, List<StudentCSV>> studentLists = null;
+        try (Reader reader = courseAbstractFactory.createBufferedReaderInstance(
+                (courseAbstractFactory.createInputStreamInstance(file.getInputStream())))) {
 
-        try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
-
-            CsvToBean<StudentCSV> csvToBean = new CsvToBeanBuilder<StudentCSV>(reader).withType(StudentCSV.class)
-                    .withIgnoreLeadingWhiteSpace(true).build();
-
+            CsvToBean<StudentCSV> csvToBean = courseAbstractFactory.createCsvToBeanBuilderInstance(reader);
             List<StudentCSV> students = csvToBean.parse();
             for (StudentCSV studentCSV : students) {
                 if (checkForBadData(studentCSV)) {
+                    Log.info("Added invalid students data in a bad data list");
                     badData.add(studentCSV);
                 } else {
+                    Log.info("Added valid students in a proper data list ");
                     properData.add(studentCSV);
                 }
             }
             studentLists = studentRepository.createStudent(properData, courseId);
             if (studentLists != null && studentLists.size() > 0) {
+                Log.warn("The Bad data list is created with data from the uploaded CSV file");
                 studentLists.put(DomainConstants.badData, badData);
                 mailManager.sendBatchMail(studentLists.get(DomainConstants.newStudents), courseId);
             }
-
         } catch (Exception ex) {
+            Log.error("Could not read data from the Input stream" + ex.getLocalizedMessage());
             return null;
         }
         return studentLists;
     }
 
     private boolean checkForBadData(StudentCSV studentCSV) {
-        if (studentCSV.getBannerId() == null || studentCSV.getFirstName() == null
+        return studentCSV.getBannerId() == null || studentCSV.getFirstName() == null
                 || studentCSV.getLastName() == null || studentCSV.getEmail() == null
                 || studentCSV.getBannerId().equals("") || studentCSV.getFirstName().equals("")
-                || studentCSV.getLastName().equals("") || studentCSV.getEmail().equals("")) {
-            return true;
-        } else {
-            return false;
-        }
+                || studentCSV.getLastName().equals("") || studentCSV.getEmail().equals("");
     }
 
 }

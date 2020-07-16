@@ -1,7 +1,11 @@
 package CSCI5308.GroupFormationTool.Password;
 
-import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.Database.DatabaseInjector;
+import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
+import CSCI5308.GroupFormationTool.User.IUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,12 +15,15 @@ import java.util.Date;
 
 public class PasswordHistoryRepository implements IPasswordHistoryRepository {
 
+    private static final Logger Log = LoggerFactory.getLogger(PasswordHistoryRepository.class.getName());
+
     @Override
     public String getSettingValue(String settingName) {
         String settingValue = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_getSettingvalue(?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getSettingvalue(?)");
             storedProcedure.setInputStringParameter(1, settingName);
             ResultSet results = storedProcedure.executeWithResults();
             if (results != null) {
@@ -26,8 +33,9 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+        } catch (SQLException exception) {
+            Log.error("Could not execute the Stored procedure sp_getsettingvalue" +
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -38,11 +46,12 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
 
     @Override
     public ArrayList<String> getNPasswords(IUser user, String num) {
-
-        ArrayList<String> nPasswords = new ArrayList<String>();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        IPasswordAbstractFactory passwordAbstractFactory = PasswordInjector.instance().getPasswordAbstractFactory();
+        ArrayList<String> nPasswords = passwordAbstractFactory.createPasswordList();
         StoredProcedure storedProcedure = null;
         try {
-            storedProcedure = new StoredProcedure("sp_getNPasswords(?,?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getNPasswords(?,?)");
             storedProcedure.setInputStringParameter(1, "" + user.getId());
             storedProcedure.setInputStringParameter(2, "" + num);
             ResultSet results = storedProcedure.executeWithResults();
@@ -53,10 +62,11 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+        } catch (SQLException exception) {
+            Log.error("Could not execute the Stored procedure sp_getNPassword" +
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Log.error("Could not DB query due to non SQL Exception" + e.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -68,20 +78,23 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
     @Override
     public boolean addPasswordHistory(IUser user, String password) {
         boolean historyAdded = false;
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        IPasswordAbstractFactory passwordAbstractFactory = PasswordInjector.instance().getPasswordAbstractFactory();
         StoredProcedure storedProcedure = null;
-        Date currentDate = new Date();
-        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date currentDate = passwordAbstractFactory.createDateInstance();
+        SimpleDateFormat dateTimeFormat = passwordAbstractFactory.createSimpleDateFormatInstance();
 
         try {
-            storedProcedure = new StoredProcedure("sp_addPasswordHistory(?,?,?)");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_addPasswordHistory(?,?,?)");
             storedProcedure.setInputStringParameter(1, Long.toString(user.getId()));
             storedProcedure.setInputStringParameter(2, dateTimeFormat.format(currentDate));
             storedProcedure.setInputStringParameter(3, password);
             storedProcedure.execute();
             historyAdded = true;
-
-        } catch (SQLException ex) {
-            System.out.println("" + ex.getMessage());
+        } catch (SQLException exception) {
+            Log.error("Could not execute the Stored procedure sp_addPasswordHistory" +
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -89,5 +102,4 @@ public class PasswordHistoryRepository implements IPasswordHistoryRepository {
         }
         return historyAdded;
     }
-
 }

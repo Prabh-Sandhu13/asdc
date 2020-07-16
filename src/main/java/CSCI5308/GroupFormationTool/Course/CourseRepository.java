@@ -1,7 +1,10 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.Course.ICourseRepository;
+import CSCI5308.GroupFormationTool.Database.DatabaseInjector;
+import CSCI5308.GroupFormationTool.Database.IDatabaseAbstractFactory;
 import CSCI5308.GroupFormationTool.Database.StoredProcedure;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,19 +12,22 @@ import java.util.ArrayList;
 
 public class CourseRepository implements ICourseRepository {
 
+    private static final Logger Log = LoggerFactory.getLogger(CourseRepository.class.getName());
+
     @Override
     public ArrayList<ICourse> getAllCourses() {
-
         StoredProcedure storedProcedure = null;
-        ArrayList<ICourse> courseList = new ArrayList<ICourse>();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
+        ArrayList<ICourse> courseList = courseAbstractFactory.createCourseListInstance();
         try {
-            storedProcedure = new StoredProcedure("sp_getAllCourseDetails");
+            Log.info("Calling stored procedure sp_getAllCourseDetails to get all course details");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getAllCourseDetails");
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
-                        ICourse course = new Course();
+                        ICourse course = courseAbstractFactory.createCourseInstance();
                         course.setId(results.getString("course_id"));
                         course.setName(results.getString("course_name"));
                         course.setDescription(results.getString("course_details"));
@@ -30,9 +36,9 @@ public class CourseRepository implements ICourseRepository {
                     }
                 }
             }
-
-        } catch (SQLException ex) {
-
+        } catch (SQLException exception) {
+            Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -43,24 +49,26 @@ public class CourseRepository implements ICourseRepository {
 
     @Override
     public boolean createCourse(ICourse course) {
-        StoredProcedure proc = null;
+        StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         boolean status = true;
-
         try {
-            proc = new StoredProcedure("sp_createCourse(?,?,?,?,?)");
-            proc.setInputStringParameter(1, course.getId());
-            proc.setInputStringParameter(2, course.getName());
-            proc.setInputIntParameter(3, course.getCredits());
-            proc.setInputStringParameter(4, course.getDescription());
-            proc.registerOutputParameterBoolean(5);
-            proc.execute();
-            status = proc.getParameter(5);
-
-        } catch (SQLException ex) {
-            System.out.println(ex);
+            Log.info("Calling stored procedure sp_createCourse to create a course");
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
+                    ("sp_createCourse(?,?,?,?,?)");
+            storedProcedure.setInputStringParameter(1, course.getId());
+            storedProcedure.setInputStringParameter(2, course.getName());
+            storedProcedure.setInputIntParameter(3, course.getCredits());
+            storedProcedure.setInputStringParameter(4, course.getDescription());
+            storedProcedure.registerOutputParameterBoolean(5);
+            storedProcedure.execute();
+            status = storedProcedure.getParameter(5);
+        } catch (SQLException exception) {
+            Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
-            if (null != proc) {
-                proc.removeConnections();
+            if (null != storedProcedure) {
+                storedProcedure.removeConnections();
             }
         }
         return status;
@@ -68,20 +76,22 @@ public class CourseRepository implements ICourseRepository {
 
     @Override
     public boolean deleteCourse(String id) {
-        StoredProcedure proc = null;
+        StoredProcedure storedProcedure = null;
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         boolean status = true;
         try {
-            proc = new StoredProcedure("sp_deleteACourse(?,?)");
-            proc.setInputStringParameter(1, id);
-            proc.registerOutputParameterBoolean(2);
-            proc.execute();
-            status = proc.getParameter(2);
-
-        } catch (SQLException ex) {
-            System.out.println(ex);
+            Log.info("Calling stored procedure sp_deleteACourse to delete a course by courseId " + id);
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_deleteACourse(?,?)");
+            storedProcedure.setInputStringParameter(1, id);
+            storedProcedure.registerOutputParameterBoolean(2);
+            storedProcedure.execute();
+            status = storedProcedure.getParameter(2);
+        } catch (SQLException exception) {
+            Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
-            if (null != proc) {
-                proc.removeConnections();
+            if (null != storedProcedure) {
+                storedProcedure.removeConnections();
             }
         }
         return status;
@@ -89,12 +99,14 @@ public class CourseRepository implements ICourseRepository {
 
     public ICourse getCourseById(String courseId) {
         StoredProcedure storedProcedure = null;
-        ICourse course = new Course();
+        IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
+        ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
+        ICourse course = courseAbstractFactory.createCourseInstance();
         try {
-            storedProcedure = new StoredProcedure("sp_getCourseById(?)");
+            Log.info("Calling stored procedure sp_getCourseById to get a course details by Course Id " + courseId);
+            storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getCourseById(?)");
             storedProcedure.setInputStringParameter(1, courseId);
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
@@ -105,9 +117,9 @@ public class CourseRepository implements ICourseRepository {
                     }
                 }
             }
-
-        } catch (SQLException ex) {
-
+        } catch (SQLException exception) {
+            Log.error("Could not execute the Stored procedure sp_getAllCourseDetails" +
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();

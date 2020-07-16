@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.335s</div>
+<div class="counter">0.037s</div>
 <p>duration</p>
 </div>
 </td>
@@ -78,18 +78,18 @@
 </tr>
 </thead>
 <tr>
-<td class="success">createQuestion()</td>
-<td class="success">0.008s</td>
+<td class="success">createQuestionTest()</td>
+<td class="success">0.004s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">deleteQuestion()</td>
-<td class="success">0.013s</td>
+<td class="success">deleteQuestionTest()</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">saveQuestion()</td>
-<td class="success">0.314s</td>
+<td class="success">saveQuestionTest()</td>
+<td class="success">0.024s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -97,13 +97,7 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2020-07-07 15:40:36.852  INFO 22184 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest], using SpringBootContextLoader
-2020-07-07 15:40:36.853  INFO 22184 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2020-07-07 15:40:36.853  INFO 22184 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest]: QuestionManagerControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2020-07-07 15:40:36.861  INFO 22184 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration CSCI5308.GroupFormationTool.GroupFormationToolApplication for test class CSCI5308.GroupFormationTool.Question.QuestionManagerControllerTest
-2020-07-07 15:40:36.862  INFO 22184 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2020-07-07 15:40:36.863  INFO 22184 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@7e93beea, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@148bc474, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@35bf5578, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@720e7138, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1189f57d, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@5beb2b5c, org.springframework.test.context.event.EventPublishingTestExecutionListener@14b0a1cc, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@153695d3, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@4bcaa815, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@4979cbfb, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@5856add9, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@796f330d, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@677ba635]
-
+<pre>
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -112,21 +106,20 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-07 15:40:36.884  INFO 22184 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Starting QuestionManagerControllerTest on Prabhjots-MacBook-Pro.local with PID 22184 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-07 15:40:36.885  INFO 22184 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : No active profile set, falling back to default profiles: default
-2020-07-07 15:40:37.070  INFO 22184 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
-2020-07-07 15:40:37.125  INFO 22184 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4d4a63b6, org.springframework.security.web.context.SecurityContextPersistenceFilter@23ed14ae, org.springframework.security.web.header.HeaderWriterFilter@7e5f3735, org.springframework.security.web.csrf.CsrfFilter@68915d7, org.springframework.security.web.authentication.logout.LogoutFilter@568ae799, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@471dc5f5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@53be0d73, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@54df6eae, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@28102769, org.springframework.security.web.session.SessionManagementFilter@6d849364, org.springframework.security.web.access.ExceptionTranslationFilter@6ad34e1e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6a31b675]
-2020-07-07 15:40:37.227  INFO 22184 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-07-07 15:40:37.253  INFO 22184 --- [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2020-07-07 15:40:37.367  INFO 22184 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2020-07-07 15:40:37.367  INFO 22184 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2020-07-07 15:40:37.376  INFO 22184 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 8 ms
-2020-07-07 15:40:37.386  INFO 22184 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Started QuestionManagerControllerTest in 0.521 seconds (JVM running for 5.489)
+2020-07-16 13:40:27.821  INFO 41246 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Starting QuestionManagerControllerTest on Prabhjots-MacBook-Pro.local with PID 41246 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-16 13:40:27.822  INFO 41246 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : No active profile set, falling back to default profiles: default
+2020-07-16 13:40:28.143  INFO 41246 --- [    Test worker] C.G.Q.QuestionManagerControllerTest      : Started QuestionManagerControllerTest in 0.331 seconds (JVM running for 7.879)
+2020-07-16 13:40:28.148  INFO 41246 --- [    Test worker] C.G.Question.QuestionManagerController   : Saving the question created by the instructor to the database
+2020-07-16 13:40:28.149  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Creating the question and saving it to the database
+2020-07-16 13:40:28.149  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Checking for invalid data
+2020-07-16 13:40:28.149  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Creating the options for question if applicable (Multiple Choice only)
+2020-07-16 13:40:28.149  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the createQuestion repository function to save the question to Database
+2020-07-16 13:40:28.149  INFO 41246 --- [    Test worker] C.G.Question.QuestionManagerController   : Question is saved to the database and the instructor views the saved question
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /questionManager/createQuestion
-       Parameters = {questionTitle=[Sample title], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[bc77cb29-8deb-4c6a-a500-acaaa696ceae]}
+       Parameters = {questionTitle=[Sample title], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[82212a61-d553-4e18-af49-c41657a9ff19]}
           Headers = []
              Body = &lt;no character encoding set&gt;
     Session Attrs = {}
@@ -159,11 +152,15 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = /questionManager/viewQuestion?questionId=5
           Cookies = []
+2020-07-16 13:40:28.151  INFO 41246 --- [    Test worker] C.G.Question.QuestionManagerController   : Saving the question created by the instructor to the database
+2020-07-16 13:40:28.152  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Creating the question and saving it to the database
+2020-07-16 13:40:28.152  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Checking for invalid data
+2020-07-16 13:40:28.152  INFO 41246 --- [    Test worker] C.G.Question.QuestionManagerController   : One or more input fields have invalid/empty data
 
 MockHttpServletRequest:
       HTTP Method = POST
       Request URI = /questionManager/createQuestion
-       Parameters = {questionTitle=[], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[981d4bb7-958b-42c4-8a8a-d064ff2e68f9]}
+       Parameters = {questionTitle=[], questionText=[Sample text], questionType=[1], optionText=[], optionValue=[], _csrf=[b734d306-0e42-4fc9-bd5e-491bb60c5ffb]}
           Headers = []
              Body = &lt;no character encoding set&gt;
     Session Attrs = {}
@@ -197,16 +194,16 @@ MockHttpServletResponse:
 &lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;/&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
+    &lt;meta content=&quot;IE=edge&quot; http-equiv=&quot;X-UA-Compatible&quot;/&gt;
+    &lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
 
-    &lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;/&gt;
+    &lt;link href=&quot;favicon.ico&quot; rel=&quot;icon&quot;/&gt;
     &lt;title&gt;Instructor Create Question&lt;/title&gt;
     &lt;link
+            crossorigin=&quot;anonymous&quot;
             href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;
-            rel=&quot;stylesheet&quot;
             integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot;
-            crossorigin=&quot;anonymous&quot;/&gt;
+            rel=&quot;stylesheet&quot;/&gt;
 
     &lt;style&gt;
 	hr {
@@ -217,6 +214,7 @@ MockHttpServletResponse:
 	textarea {
 		resize: vertical;
 	}
+
     &lt;/style&gt;
 
 &lt;/head&gt;
@@ -262,120 +260,18 @@ MockHttpServletResponse:
 				+ &quot; /&gt; &lt;span class='glyphicon form-control-feedback'&quot;
 				+ &quot;aria-hidden='true'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&quot;;
 	}
+
 &lt;/script&gt;
 &lt;/html&gt;
 
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-
-MockHttpServletRequest:
-      HTTP Method = GET
-      Request URI = /questionManager/createQuestion
-       Parameters = {}
-          Headers = []
-             Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@333f4288}
-
-Handler:
-             Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
-           Method = CSCI5308.GroupFormationTool.Question.QuestionManagerController#createQuestion(Model)
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = null
-
-ModelAndView:
-        View name = question/createQuestion
-             View = null
-            Model = null
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 200
-    Error message = null
-          Headers = [Content-Language:&quot;en&quot;, Content-Type:&quot;text/html;charset=UTF-8&quot;, X-Content-Type-Options:&quot;nosniff&quot;, X-XSS-Protection:&quot;1; mode=block&quot;, Cache-Control:&quot;no-cache, no-store, max-age=0, must-revalidate&quot;, Pragma:&quot;no-cache&quot;, Expires:&quot;0&quot;, X-Frame-Options:&quot;DENY&quot;]
-     Content type = text/html;charset=UTF-8
-             Body = &lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;/&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
-
-    &lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;/&gt;
-    &lt;title&gt;Instructor Create Question&lt;/title&gt;
-    &lt;link
-            href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;
-            rel=&quot;stylesheet&quot;
-            integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot;
-            crossorigin=&quot;anonymous&quot;/&gt;
-
-    &lt;style&gt;
-	hr {
-		margin-top: 2rem;
-		margin-bottom: 2rem;
-		border-top: 3px solid #2e6da4;
-	}
-	textarea {
-		resize: vertical;
-	}
-    &lt;/style&gt;
-
-&lt;/head&gt;
-&lt;body style=&quot;background-color: #e7ebee&quot;&gt;
-&lt;div class=&quot;container&quot; style=&quot;padding: 10px;&quot;&gt;
-    &lt;div&gt;
-        &lt;p&gt;You have not yet logged in to the application. Please login to
-            continue...&lt;/p&gt;
-        &lt;a href=&quot;/login&quot;&gt;Click here to log in!&lt;/a&gt;
-    &lt;/div&gt;
-
-    
-&lt;/div&gt;
-
-&lt;/body&gt;
-&lt;script&gt;
-	document
-			.getElementById('questionType')
-			.addEventListener(
-					'change',
-					function(e) {
-						if (this.value == 2 || this.value == 3) {
-							document.getElementById(&quot;choices&quot;).style.display = &quot;block&quot;;
-							document.getElementById(&quot;addMoreBtn&quot;).style.display = &quot;block&quot;;
-						} else {
-							document.getElementById(&quot;choices&quot;).style.display = &quot;none&quot;;
-							document.getElementById(&quot;addMoreBtn&quot;).style.display = &quot;none&quot;;
-							document.getElementById(&quot;addedChoices&quot;).innerHTML = '';
-							document.getElementById(&quot;addedChoices&quot;).style.display = &quot;none&quot;;
-						}
-					});
-
-	function showMoreOptions() {
-		document.getElementById(&quot;addedChoices&quot;).style.display = &quot;block&quot;;
-		document.getElementById(&quot;addedChoices&quot;).innerHTML += &quot;&lt;br /&gt;&lt;div class='row' style='margin-left: -30px'&gt;&quot;
-				+ &quot;&lt;div class='col-xs-6' style='width: 35%;'&gt;&lt;label for='questionTitle'&gt;Enter the option displayed as&quot;
-				+ &quot; here&lt;/label&gt; &lt;input type='text' name='optionText'&quot;
-				+ &quot;placeholder='Option display text' class='form-control'/&gt;&quot;
-				+ &quot;&lt;span class='glyphicon form-control-feedback' aria-hidden='true'&gt;&lt;/span&gt;&lt;/div&gt;&quot;
-				+ &quot;&lt;div class='col-xs-6' style='width: 35%;'&gt;&lt;label for='questionTitle'&gt;Enter the option stored as&quot;
-				+ &quot; here&lt;/label&gt; &lt;input type='text' name='optionValue'&quot;
-				+ &quot;placeholder='Option stored as value' class='form-control'&quot;
-				+ &quot; /&gt; &lt;span class='glyphicon form-control-feedback'&quot;
-				+ &quot;aria-hidden='true'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&quot;;
-	}
-&lt;/script&gt;
-&lt;/html&gt;
-
-    Forwarded URL = null
-   Redirected URL = null
-          Cookies = []
+2020-07-16 13:40:28.171  INFO 41246 --- [    Test worker] C.G.Question.QuestionManagerController   : Deleting the question created by the instructor from the database
+2020-07-16 13:40:28.171  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the deleteQuestion repository function to delete the question1from the Database
+2020-07-16 13:40:28.171  INFO 41246 --- [    Test worker] C.G.Question.QuestionManagerController   : The Question 1 is successfully deleted!
+2020-07-16 13:40:28.171  INFO 41246 --- [    Test worker] C.G.Question.QuestionManagerController   : Redirecting to the instructor's question list page
+2020-07-16 13:40:28.171  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database by email id anonymousUser
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -383,7 +279,7 @@ MockHttpServletRequest:
        Parameters = {questionId=[1]}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@2b1a7475}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@3f4a7d92}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
@@ -416,15 +312,15 @@ MockHttpServletResponse:
 &lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;/&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
-    &lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;/&gt;
+    &lt;meta content=&quot;IE=edge&quot; http-equiv=&quot;X-UA-Compatible&quot;/&gt;
+    &lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+    &lt;link href=&quot;favicon.ico&quot; rel=&quot;icon&quot;/&gt;
     &lt;title&gt;Instructor Question Manager&lt;/title&gt;
     &lt;link
+            crossorigin=&quot;anonymous&quot;
             href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;
-            rel=&quot;stylesheet&quot;
             integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot;
-            crossorigin=&quot;anonymous&quot;/&gt;
+            rel=&quot;stylesheet&quot;/&gt;
 
 &lt;/head&gt;
 &lt;body style=&quot;background-color: #e7ebee&quot;&gt;
@@ -442,6 +338,11 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
+2020-07-16 13:40:28.175  INFO 41246 --- [    Test worker] C.G.Question.QuestionManagerController   : Deleting the question created by the instructor from the database
+2020-07-16 13:40:28.175  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the deleteQuestion repository function to delete the question1from the Database
+2020-07-16 13:40:28.175  INFO 41246 --- [    Test worker] C.G.Question.QuestionManagerController   : The question could not be deleted
+2020-07-16 13:40:28.175  INFO 41246 --- [    Test worker] C.G.Question.QuestionManagerController   : Redirecting to the instructor's question list page
+2020-07-16 13:40:28.175  INFO 41246 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database by email id anonymousUser
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -449,7 +350,7 @@ MockHttpServletRequest:
        Parameters = {questionId=[1]}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@4cd012d4}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@24a646c2}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
@@ -482,15 +383,15 @@ MockHttpServletResponse:
 &lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;/&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
-    &lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;/&gt;
+    &lt;meta content=&quot;IE=edge&quot; http-equiv=&quot;X-UA-Compatible&quot;/&gt;
+    &lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+    &lt;link href=&quot;favicon.ico&quot; rel=&quot;icon&quot;/&gt;
     &lt;title&gt;Instructor Question Manager&lt;/title&gt;
     &lt;link
+            crossorigin=&quot;anonymous&quot;
             href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;
-            rel=&quot;stylesheet&quot;
             integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot;
-            crossorigin=&quot;anonymous&quot;/&gt;
+            rel=&quot;stylesheet&quot;/&gt;
 
 &lt;/head&gt;
 &lt;body style=&quot;background-color: #e7ebee&quot;&gt;
@@ -508,6 +409,116 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /questionManager/createQuestion
+       Parameters = {}
+          Headers = []
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@3fe3c381}
+
+Handler:
+             Type = CSCI5308.GroupFormationTool.Question.QuestionManagerController
+           Method = CSCI5308.GroupFormationTool.Question.QuestionManagerController#createQuestion(Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = question/createQuestion
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:&quot;en&quot;, Content-Type:&quot;text/html;charset=UTF-8&quot;, X-Content-Type-Options:&quot;nosniff&quot;, X-XSS-Protection:&quot;1; mode=block&quot;, Cache-Control:&quot;no-cache, no-store, max-age=0, must-revalidate&quot;, Pragma:&quot;no-cache&quot;, Expires:&quot;0&quot;, X-Frame-Options:&quot;DENY&quot;]
+     Content type = text/html;charset=UTF-8
+             Body = &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;/&gt;
+    &lt;meta content=&quot;IE=edge&quot; http-equiv=&quot;X-UA-Compatible&quot;/&gt;
+    &lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+
+    &lt;link href=&quot;favicon.ico&quot; rel=&quot;icon&quot;/&gt;
+    &lt;title&gt;Instructor Create Question&lt;/title&gt;
+    &lt;link
+            crossorigin=&quot;anonymous&quot;
+            href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;
+            integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot;
+            rel=&quot;stylesheet&quot;/&gt;
+
+    &lt;style&gt;
+	hr {
+		margin-top: 2rem;
+		margin-bottom: 2rem;
+		border-top: 3px solid #2e6da4;
+	}
+	textarea {
+		resize: vertical;
+	}
+
+    &lt;/style&gt;
+
+&lt;/head&gt;
+&lt;body style=&quot;background-color: #e7ebee&quot;&gt;
+&lt;div class=&quot;container&quot; style=&quot;padding: 10px;&quot;&gt;
+    &lt;div&gt;
+        &lt;p&gt;You have not yet logged in to the application. Please login to
+            continue...&lt;/p&gt;
+        &lt;a href=&quot;/login&quot;&gt;Click here to log in!&lt;/a&gt;
+    &lt;/div&gt;
+
+    
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;script&gt;
+	document
+			.getElementById('questionType')
+			.addEventListener(
+					'change',
+					function(e) {
+						if (this.value == 2 || this.value == 3) {
+							document.getElementById(&quot;choices&quot;).style.display = &quot;block&quot;;
+							document.getElementById(&quot;addMoreBtn&quot;).style.display = &quot;block&quot;;
+						} else {
+							document.getElementById(&quot;choices&quot;).style.display = &quot;none&quot;;
+							document.getElementById(&quot;addMoreBtn&quot;).style.display = &quot;none&quot;;
+							document.getElementById(&quot;addedChoices&quot;).innerHTML = '';
+							document.getElementById(&quot;addedChoices&quot;).style.display = &quot;none&quot;;
+						}
+					});
+
+	function showMoreOptions() {
+		document.getElementById(&quot;addedChoices&quot;).style.display = &quot;block&quot;;
+		document.getElementById(&quot;addedChoices&quot;).innerHTML += &quot;&lt;br /&gt;&lt;div class='row' style='margin-left: -30px'&gt;&quot;
+				+ &quot;&lt;div class='col-xs-6' style='width: 35%;'&gt;&lt;label for='questionTitle'&gt;Enter the option displayed as&quot;
+				+ &quot; here&lt;/label&gt; &lt;input type='text' name='optionText'&quot;
+				+ &quot;placeholder='Option display text' class='form-control'/&gt;&quot;
+				+ &quot;&lt;span class='glyphicon form-control-feedback' aria-hidden='true'&gt;&lt;/span&gt;&lt;/div&gt;&quot;
+				+ &quot;&lt;div class='col-xs-6' style='width: 35%;'&gt;&lt;label for='questionTitle'&gt;Enter the option stored as&quot;
+				+ &quot; here&lt;/label&gt; &lt;input type='text' name='optionValue'&quot;
+				+ &quot;placeholder='Option stored as value' class='form-control'&quot;
+				+ &quot; /&gt; &lt;span class='glyphicon form-control-feedback'&quot;
+				+ &quot;aria-hidden='true'&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&quot;;
+	}
+
+&lt;/script&gt;
+&lt;/html&gt;
+
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
 </pre>
 </span>
 </div>
@@ -519,7 +530,7 @@ MockHttpServletResponse:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 7, 2020, 3:40:38 p.m.</p>
+<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 16, 2020, 1:40:29 p.m.</p>
 </div>
 </div>
 </body>

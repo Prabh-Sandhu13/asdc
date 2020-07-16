@@ -4,7 +4,7 @@ import CSCI5308.GroupFormationTool.User.IUser;
 
 public interface IPasswordHistoryManager {
 
-	boolean isHistoryViolated(IUser user, String enteredPassword);
+    boolean isHistoryViolated(IUser user, String enteredPassword);
 
     void addPasswordHistory(IUser user, String encrypted_password);
 

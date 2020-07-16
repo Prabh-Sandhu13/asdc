@@ -18,13 +18,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/public/**", "/**").permitAll().antMatchers("/admin/**").hasRole("ADMIN")
+        http.authorizeRequests().antMatchers("/public/**", "/**").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll().and().logout()
                 .permitAll();
     }
 
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
-        return new CustomAuthenticationManager();
+        ISecurityAbstractFactory securityAbstractFactory = SecurityInjector.instance().getSecurityAbstractFactory();
+        return securityAbstractFactory.createCustomAuthenticationManager();
     }
 }

@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool.Course;
 
 import CSCI5308.GroupFormationTool.User.IUser;
-import CSCI5308.GroupFormationTool.User.User;
 
 import java.util.ArrayList;
 
@@ -43,7 +42,6 @@ public interface IUserCourses {
 
     ArrayList<IUser> getTAForCourse(String courseId);
 
-    boolean enrollTAForCourseUsingEmailId(User user, String courseId);
-
+    boolean enrollTAForCourseUsingEmailId(IUser user, String courseId);
 
 }

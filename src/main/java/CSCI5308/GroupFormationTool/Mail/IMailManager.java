@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IMailManager {
 
-	void sendEmail(JavaMailSender javaMailSender, SimpleMailMessage msg);
+    void sendEmail(JavaMailSender javaMailSender, SimpleMailMessage msg);
 
     boolean sendForgotPasswordMail(IUser user, String token);
 

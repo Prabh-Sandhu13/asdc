@@ -1,8 +1,8 @@
 package CSCI5308.GroupFormationTool.Question;
 
-import CSCI5308.GroupFormationTool.User.UserDBMock;
+import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
 import CSCI5308.GroupFormationTool.User.IUser;
-import CSCI5308.GroupFormationTool.User.User;
+import CSCI5308.GroupFormationTool.User.TestUserInjector;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -23,15 +23,22 @@ public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdmi
 
     private ArrayList<IChoice> choices;
 
+    private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestQuestionInjector.instance().
+            getQuestionAbstractFactory();
+
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().
+            getUserAbstractFactory();
+
     public QuestionDBMock() {
         id = 1;
-        instructor = new UserDBMock().loadUserWithID(new User());
+        instructor = userAbstractFactoryTest.createUserDBMock().
+                loadUserWithID(userAbstractFactoryTest.createUserInstance());
         title = "Sample";
         text = "Sample question";
         type = 1;
-        createdDate = new Date(0);
-        choices = new ArrayList<>();
-        IChoice choice = new Choice();
+        createdDate = questionAbstractFactoryTest.createDateInstance(0);
+        choices = questionAbstractFactoryTest.createChoiceListInstance();
+        IChoice choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Amateur");
         choice.setValue(1);
         choices.add(choice);
@@ -50,19 +57,15 @@ public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdmi
 
     @Override
     public boolean deleteQuestion(long questionId) {
-        if (questionId == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return questionId == 1;
     }
 
     @Override
     public long createQuestion(IQuestion question) {
-        IUser user = new User();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         question.setCreatedDate(createdDate);
         question.setId(id);
-        question.setInstructor(new UserDBMock().getUserByEmailId(user));
+        question.setInstructor(userAbstractFactoryTest.createUserDBMock().getUserByEmailId(user));
         question.setText(text);
         question.setTitle(title);
         question.setType(type);
@@ -72,13 +75,13 @@ public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdmi
 
     @Override
     public ArrayList<IQuestion> getQuestionListForInstructor(String emailId) {
-        ArrayList<IQuestion> questionList = new ArrayList<>();
-        IQuestion question = new Question();
-        IUser user = new User();
+        ArrayList<IQuestion> questionList = questionAbstractFactoryTest.createQuestionListInstance();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setEmailId(emailId);
         question.setCreatedDate(createdDate);
         question.setId(id);
-        question.setInstructor(new UserDBMock().getUserByEmailId(user));
+        question.setInstructor(userAbstractFactoryTest.createUserDBMock().getUserByEmailId(user));
         question.setText(text);
         question.setTitle(title);
         question.setType(type);
@@ -90,11 +93,11 @@ public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdmi
 
     @Override
     public IQuestion getQuestionById(long questionId) {
-        IUser user = new User();
-        IQuestion question = new Question();
+        IUser user = userAbstractFactoryTest.createUserInstance();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
         question.setCreatedDate(createdDate);
         question.setId(questionId);
-        question.setInstructor(new UserDBMock().getUserByEmailId(user));
+        question.setInstructor(userAbstractFactoryTest.createUserDBMock().getUserByEmailId(user));
         question.setText(text);
         question.setTitle(title);
         question.setType(type);
@@ -104,11 +107,11 @@ public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdmi
 
     @Override
     public ArrayList<IChoice> getOptionsForTheQuestion(long questionId) {
-        IUser user = new User();
-        IQuestion question = new Question();
+        IUser user = userAbstractFactoryTest.createUserInstance();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
         question.setCreatedDate(createdDate);
         question.setId(questionId);
-        question.setInstructor(new UserDBMock().getUserByEmailId(user));
+        question.setInstructor(userAbstractFactoryTest.createUserDBMock().getUserByEmailId(user));
         question.setText(text);
         question.setTitle(title);
         question.setType(type);
@@ -116,16 +119,15 @@ public class QuestionDBMock implements IQuestionManagerRepository, IQuestionAdmi
         return question.getChoices();
     }
 
-
     @Override
-    public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortBy) {
-        ArrayList<IQuestion> questionList = new ArrayList<>();
-        IQuestion question = new Question();
-        IUser user = new User();
+    public ArrayList<IQuestion> getSortedQuestionListForInstructor(String emailId, String sortField) {
+        ArrayList<IQuestion> questionList = questionAbstractFactoryTest.createQuestionListInstance();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setEmailId(emailId);
         question.setCreatedDate(createdDate);
         question.setId(id);
-        question.setInstructor(new UserDBMock().getUserByEmailId(user));
+        question.setInstructor(userAbstractFactoryTest.createUserDBMock().getUserByEmailId(user));
         question.setText(text);
         question.setTitle(title);
         question.setType(type);

@@ -1,7 +1,5 @@
 package CSCI5308.GroupFormationTool.Question;
 
-import CSCI5308.GroupFormationTool.Question.IChoice;
-
 public class ChoiceDBMock {
 
     private String text;

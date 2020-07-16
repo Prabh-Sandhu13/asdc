@@ -1,8 +1,9 @@
 package CSCI5308.GroupFormationTool.Question;
 
 import CSCI5308.GroupFormationTool.Common.DomainConstants;
-import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.User.User;
+import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
+import CSCI5308.GroupFormationTool.User.IUser;
+import CSCI5308.GroupFormationTool.User.TestUserInjector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,31 +12,37 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
 public class QuestionTest {
 
     public QuestionAdminRepository questionAdminRepository;
+
     public QuestionManagerRepository questionManagerRepository;
+
+    private ITestQuestionAbstractFactory questionAbstractFactoryTest = TestQuestionInjector.instance().
+            getQuestionAbstractFactory();
+
+    private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().
+            getUserAbstractFactory();
 
     @BeforeEach
     public void init() {
-        questionAdminRepository = mock(QuestionAdminRepository.class);
-        questionManagerRepository = mock(QuestionManagerRepository.class);
-        Injector.instance().setQuestionAdminRepository(questionAdminRepository);
-        Injector.instance().setQuestionManagerRepository(questionManagerRepository);
+        questionManagerRepository = questionAbstractFactoryTest.createQuestionManagerRepositoryMock();
+        QuestionInjector.instance().setQuestionManagerRepository(questionManagerRepository);
+        questionAdminRepository = questionAbstractFactoryTest.createQuestionAdminRepositoryMock();
+        QuestionInjector.instance().setQuestionAdminRepository(questionAdminRepository);
     }
 
     public IQuestion createDefaultQuestion() {
-        QuestionDBMock questionDBMock = new QuestionDBMock();
+        QuestionDBMock questionDBMock = questionAbstractFactoryTest.createQuestionDBMock();
         IQuestion question = loadQuestion(questionDBMock);
         return question;
     }
 
     public IQuestion loadQuestion(QuestionDBMock questionDBMock) {
-        IQuestion question = new Question();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
         question = questionDBMock.loadQuestion(question);
         return question;
     }
@@ -48,7 +55,7 @@ public class QuestionTest {
 
     @Test
     public void setIdTest() {
-        IQuestion question = new Question();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
         question.setId(2);
         assertEquals(2, question.getId());
     }
@@ -61,8 +68,8 @@ public class QuestionTest {
 
     @Test
     public void setInstructorTest() {
-        IQuestion question = new Question();
-        question.setInstructor(new User());
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
+        question.setInstructor(userAbstractFactoryTest.createUserInstance());
         assertEquals(-1, question.getInstructor().getId());
     }
 
@@ -74,7 +81,7 @@ public class QuestionTest {
 
     @Test
     public void setTitleTest() {
-        IQuestion question = new Question();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
         question.setTitle("New Title");
         assertEquals("New Title", question.getTitle());
     }
@@ -87,7 +94,7 @@ public class QuestionTest {
 
     @Test
     public void setTextTest() {
-        IQuestion question = new Question();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
         question.setText("New Text");
         assertEquals("New Text", question.getText());
     }
@@ -100,7 +107,7 @@ public class QuestionTest {
 
     @Test
     public void setTypeTest() {
-        IQuestion question = new Question();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
         question.setType(2);
         assertEquals(2, question.getType());
     }
@@ -113,8 +120,8 @@ public class QuestionTest {
 
     @Test
     public void setCreatedDateTest() {
-        IQuestion question = new Question();
-        Date date = new Date(0);
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
+        Date date = questionAbstractFactoryTest.createDateInstance(0);
         question.setCreatedDate(date);
         assertEquals("1969-12-31", question.getCreatedDate().toString());
     }
@@ -127,9 +134,9 @@ public class QuestionTest {
 
     @Test
     public void setChoicesTest() {
-        IQuestion question = new Question();
-        ArrayList<IChoice> choices = new ArrayList<>();
-        IChoice choice = new Choice();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
+        ArrayList<IChoice> choices = questionAbstractFactoryTest.createChoiceListInstance();
+        IChoice choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("sample");
         choice.setValue(1);
         choices.add(choice);
@@ -139,19 +146,19 @@ public class QuestionTest {
 
     @Test
     void createQuestionTest() {
-        IQuestion question = new Question();
-        User user = new User();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setEmailId("padmeshdonthu@gmail.com");
-        question.setCreatedDate(new Date(System.currentTimeMillis()));
+        question.setCreatedDate(questionAbstractFactoryTest.createDateInstance(System.currentTimeMillis()));
         question.setId(1);
         question.setInstructor(user);
         question.setText("Spring text");
         question.setTitle("Spring title");
         question.setType(DomainConstants.MCQOne);
-        ArrayList<String> optionText = new ArrayList<>();
+        ArrayList<String> optionText = questionAbstractFactoryTest.createListInstance();
         optionText.add("Test");
         optionText.add("Sample");
-        ArrayList<String> optionValue = new ArrayList<>();
+        ArrayList<String> optionValue = questionAbstractFactoryTest.createListInstance();
         optionValue.add("1");
         optionValue.add("2");
         when(questionManagerRepository.createQuestion(question)).thenReturn((long) 1);
@@ -162,45 +169,48 @@ public class QuestionTest {
         assertFalse(question.createQuestion(optionText, optionValue) == 0);
         assertTrue(question.createQuestion(optionText, optionValue) == 1);
         when(questionManagerRepository.createQuestion(question)).thenReturn(DomainConstants.invalidData);
-        assertFalse(question.createQuestion(new ArrayList<>(), optionValue) == 1);
+        assertFalse(question.createQuestion(questionAbstractFactoryTest.createListInstance()
+                , optionValue) == 1);
         assertTrue(question.createQuestion(optionText, optionValue)
                 == DomainConstants.invalidData);
         question.setType(DomainConstants.numeric);
         when(questionManagerRepository.createQuestion(question)).thenReturn((long) 1);
-        assertFalse(question.createQuestion(new ArrayList<>(), new ArrayList<>()) == 0);
-        assertTrue(question.createQuestion(new ArrayList<>(), new ArrayList<>()) == 1);
+        assertFalse(question.createQuestion
+                (questionAbstractFactoryTest.createListInstance(), questionAbstractFactoryTest.createListInstance()) == 0);
+        assertTrue(question.createQuestion(questionAbstractFactoryTest.createListInstance()
+                , questionAbstractFactoryTest.createListInstance()) == 1);
         question.setText("");
         when(questionManagerRepository.createQuestion(question)).thenReturn(DomainConstants.invalidData);
-        assertFalse(question.createQuestion(
-                new ArrayList<>(), new ArrayList<>()) == 1);
-        assertTrue(question.createQuestion(
-                new ArrayList<>(), new ArrayList<>()) == DomainConstants.invalidData);
+        assertFalse(question.createQuestion(questionAbstractFactoryTest.createListInstance(),
+                questionAbstractFactoryTest.createListInstance()) == 1);
+        assertTrue(question.createQuestion(questionAbstractFactoryTest.createListInstance(),
+                questionAbstractFactoryTest.createListInstance()) == DomainConstants.invalidData);
     }
 
     @Test
     void deleteQuestionTest() {
         long questionId = 1;
-        IQuestion question = new Question();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
         when(questionManagerRepository.deleteQuestion(questionId)).thenReturn(true);
         assertTrue(question.deleteQuestion(questionId));
     }
 
     @Test
     void getQuestionListForInstructorTest() {
-        IQuestion question = new Question();
-        ArrayList<IChoice> choices = new ArrayList<>();
-        ArrayList<IQuestion> questions = new ArrayList<>();
-        IChoice choice = new Choice();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
+        ArrayList<IChoice> choices = questionAbstractFactoryTest.createChoiceListInstance();
+        ArrayList<IQuestion> questions = questionAbstractFactoryTest.createQuestionListInstance();
+        IChoice choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Amateur");
         choice.setValue(1);
         choices.add(choice);
-        choice = new Choice();
+        choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Beginner");
         choice.setValue(2);
         choices.add(choice);
-        User user = new User();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setEmailId("padmeshdonthu@gmail.com");
-        question.setCreatedDate(new Date(System.currentTimeMillis()));
+        question.setCreatedDate(questionAbstractFactoryTest.createDateInstance(System.currentTimeMillis()));
         question.setId(1);
         question.setInstructor(user);
         question.setText("Spring text");
@@ -208,8 +218,8 @@ public class QuestionTest {
         question.setType(DomainConstants.MCQOne);
         question.setChoices(choices);
         questions.add(question);
-        question = new Question();
-        question.setCreatedDate(new Date(System.currentTimeMillis()));
+        question = questionAbstractFactoryTest.createQuestionInstance();
+        question.setCreatedDate(questionAbstractFactoryTest.createDateInstance(System.currentTimeMillis()));
         question.setId(2);
         question.setInstructor(user);
         question.setText("Sample text");
@@ -220,25 +230,24 @@ public class QuestionTest {
         when(questionAdminRepository.getQuestionListForInstructor(user.getEmailId())).thenReturn(questions);
         assertTrue(question.getQuestionListForInstructor(user.getEmailId()) != null);
         assertTrue(question.getQuestionListForInstructor(user.getEmailId()).size() == 2);
-
     }
 
     @Test
     void getQuestionByIdTest() {
         long questionId = 1;
-        Question question = new Question();
-        ArrayList<IChoice> choices = new ArrayList<>();
-        IChoice choice = new Choice();
+        IQuestion question = questionAbstractFactoryTest.createQuestionInstance();
+        ArrayList<IChoice> choices = questionAbstractFactoryTest.createChoiceListInstance();
+        IChoice choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Amateur");
         choice.setValue(1);
         choices.add(choice);
-        choice = new Choice();
+        choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Beginner");
         choice.setValue(2);
         choices.add(choice);
-        User user = new User();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setEmailId("padmeshdonthu@gmail.com");
-        question.setCreatedDate(new Date(System.currentTimeMillis()));
+        question.setCreatedDate(questionAbstractFactoryTest.createDateInstance(System.currentTimeMillis()));
         question.setId(questionId);
         question.setInstructor(user);
         question.setText("Spring text");
@@ -253,21 +262,21 @@ public class QuestionTest {
     @Test
     void getSortedQuestionListForInstructorTest() {
         String sortByField = "title";
-        IQuestion question = new Question();
-        ArrayList<IChoice> choices = new ArrayList<>();
-        ArrayList<IQuestion> questions = new ArrayList<>();
-        IChoice choice = new Choice();
+        IQuestion question;
+        ArrayList<IChoice> choices = questionAbstractFactoryTest.createChoiceListInstance();
+        ArrayList<IQuestion> questions = questionAbstractFactoryTest.createQuestionListInstance();
+        IChoice choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Amateur");
         choice.setValue(1);
         choices.add(choice);
-        choice = new Choice();
+        choice = questionAbstractFactoryTest.createChoiceInstance();
         choice.setText("Beginner");
         choice.setValue(2);
         choices.add(choice);
-        User user = new User();
+        IUser user = userAbstractFactoryTest.createUserInstance();
         user.setEmailId("padmeshdonthu@gmail.com");
-        question = new Question();
-        question.setCreatedDate(new Date(System.currentTimeMillis()));
+        question = questionAbstractFactoryTest.createQuestionInstance();
+        question.setCreatedDate(questionAbstractFactoryTest.createDateInstance(System.currentTimeMillis()));
         question.setId(2);
         question.setInstructor(user);
         question.setText("Sample text");
@@ -275,7 +284,7 @@ public class QuestionTest {
         question.setType(DomainConstants.numeric);
         question.setChoices(null);
         questions.add(question);
-        question.setCreatedDate(new Date(System.currentTimeMillis()));
+        question.setCreatedDate(questionAbstractFactoryTest.createDateInstance(System.currentTimeMillis()));
         question.setId(1);
         question.setInstructor(user);
         question.setText("Spring text");

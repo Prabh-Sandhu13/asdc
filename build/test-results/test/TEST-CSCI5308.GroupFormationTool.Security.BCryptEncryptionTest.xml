@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <<<<<<< HEAD:build/test-results/test/TEST-CSCI5308.GroupFormationTool.SecurityTest.TokenGeneratorTest.xml
 <testsuite name="CSCI5308.GroupFormationTool.SecurityTest.TokenGeneratorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-07T17:16:50" hostname="Prabhjots-MacBook-Pro.local" time="0.001">
   <properties/>
@@ -21,5 +22,11 @@
 2020-07-07 15:40:36.678  INFO 22184 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@66d28d27, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@7726022a, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@3ad9b154, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3c4daac, org.springframework.test.context.support.DirtiesContextTestExecutionListener@710dc446, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@36fdbf1f, org.springframework.test.context.event.EventPublishingTestExecutionListener@41d9fb85, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@646d58a8, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7bdd9f97, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@2003d2b4, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2e8810e2, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@20aea583, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@3718b726]
 >>>>>>> hotfix:build/test-results/test/TEST-CSCI5308.GroupFormationTool.Security.BCryptEncryptionTest.xml
 ]]></system-out>
+=======
+<testsuite name="CSCI5308.GroupFormationTool.Security.BCryptEncryptionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-16T16:40:27" hostname="Prabhjots-MacBook-Pro.local" time="0.001">
+  <properties/>
+  <testcase name="encryptPasswordTest()" classname="CSCI5308.GroupFormationTool.Security.BCryptEncryptionTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+>>>>>>> release/milestone-3
   <system-err><![CDATA[]]></system-err>
 </testsuite>

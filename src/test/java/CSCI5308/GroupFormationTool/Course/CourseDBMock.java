@@ -1,9 +1,5 @@
 package CSCI5308.GroupFormationTool.Course;
 
-import CSCI5308.GroupFormationTool.Course.ICourse;
-import CSCI5308.GroupFormationTool.Course.ICourseRepository;
-import CSCI5308.GroupFormationTool.Course.Course;
-
 import java.util.ArrayList;
 
 public class CourseDBMock implements ICourseRepository {
@@ -16,6 +12,9 @@ public class CourseDBMock implements ICourseRepository {
 
     private String description;
 
+    private ITestCourseAbstractFactory courseAbstractFactoryTest = TestCourseInjector.instance().
+            getCourseAbstractFactory();
+
     public CourseDBMock() {
         id = "CSCI5308";
         name = "Adv SDC";
@@ -25,9 +24,8 @@ public class CourseDBMock implements ICourseRepository {
 
     @Override
     public ArrayList<ICourse> getAllCourses() {
-        ArrayList<ICourse> courseList = new ArrayList<>();
-        ICourse course = new Course();
-
+        ArrayList<ICourse> courseList = courseAbstractFactoryTest.createCourseListInstance();
+        ICourse course = courseAbstractFactoryTest.createCourseInstance();
         course.setCredits(credits);
         course.setDescription(description);
         course.setName(name);
@@ -55,14 +53,12 @@ public class CourseDBMock implements ICourseRepository {
 
     @Override
     public boolean deleteCourse(String id) {
-        if (id.equals("1"))
-            return true;
-        return false;
+        return id.equals("1");
     }
 
     @Override
     public ICourse getCourseById(String courseId) {
-        ICourse course = new Course();
+        ICourse course = courseAbstractFactoryTest.createCourseInstance();
         course.setCredits(credits);
         course.setDescription(description);
         course.setId(courseId);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <testsuite name="CSCI5308.GroupFormationTool.GroupFormationToolApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-07T17:16:50" hostname="Prabhjots-MacBook-Pro.local" time="0.007">
   <properties/>
   <testcase name="contextLoads()" classname="CSCI5308.GroupFormationTool.GroupFormationToolApplicationTests" time="0.007"/>
@@ -49,5 +50,11 @@
 2020-07-07 15:40:36.693  INFO 22184 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@4d9b9c9b, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@328f5bab, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@33a9cab0, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@ee507a2, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1f8b3da1, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@57916ff8, org.springframework.test.context.event.EventPublishingTestExecutionListener@2a90d3f0, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@c6e0917, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@4a4e4b0e, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@167c1310, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@3a5f4d7c, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@4685dd91, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@7e2be874]
 >>>>>>> hotfix
 ]]></system-out>
+=======
+<testsuite name="CSCI5308.GroupFormationTool.GroupFormationToolApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-16T16:40:27" hostname="Prabhjots-MacBook-Pro.local" time="0.001">
+  <properties/>
+  <testcase name="contextLoads()" classname="CSCI5308.GroupFormationTool.GroupFormationToolApplicationTests" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+>>>>>>> release/milestone-3
   <system-err><![CDATA[]]></system-err>
 </testsuite>

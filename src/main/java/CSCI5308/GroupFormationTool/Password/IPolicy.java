@@ -20,8 +20,8 @@ public interface IPolicy {
 
     void setEnabled(int enabled);
 
-	ArrayList<IPolicy> getPolicies();
+    ArrayList<IPolicy> getPolicies();
 
-	String passwordSPolicyCheck(String password);
+    String passwordSPolicyCheck(String password);
 
 }

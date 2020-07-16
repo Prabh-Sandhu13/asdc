@@ -20,6 +20,7 @@ public final class DomainConstants {
     public static final int numeric = 1;
     public static final int MCQOne = 2;
     public static final int MCQMultiple = 3;
+    public static final int freeText = 4;
     public final static long invalidData = 0;
     public final static long sqlError = -1;
     public final static String sqlErrorMessage = "There was a problem in adding your question. Please try again!";
@@ -27,9 +28,10 @@ public final class DomainConstants {
             + "and try again";
     public final static String deleteQuestionSuccess = "The question was successfully deleted";
     public final static String deleteQuestionFailure = "The question could not be deleted";
-    public static final String URL = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_22_PRODUCTION?useSSL=false"
-            + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    public static final String USER = "CSCI5308_22_PRODUCTION_USER";
+    public static final String URL = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_22_PRODUCTION?useSSL=false"+
+            "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+
+    public static final String USER ="CSCI5308_22_PRODUCTION_USER";
     public static final String PASSWORD = "CSCI5308_22_PRODUCTION_22986";
     public static final String instructorAddSuccess = "Instructor successfully added";
     public static final String instructorAddFailure = "Instructor could not be added";
@@ -63,5 +65,27 @@ public final class DomainConstants {
     public static final String tARole = "TA";
     public static final String instructorRole = "Instructor";
     public static final String studentRole = "Student";
-
+    public static final String AdminRole = "ADMIN";
+    public static final String UserRole = "USER";
+    public static final String surveySuccess = "The survey has been submitted successfully!";
+    public static final String dbError = "There was an error while submitting the survey. Please try again in an hour.";
+    public static int surveyNotCreated = 1;
+    public static int surveyNotPublished = 2;
+    public static int surveyNotHavingAlgorithm = 3;
+    public static int surveyGroupFormationPossible = 4;
+    public static String lessThanX = "lessThanX";
+    public static String greaterThanX = "greaterThanX";
+    public static Double maximumDistance = 999.0;
+    public static Double minimumDistance = -999.0;
+    public static int isSimilar = 1;
+    public static int factor = 2;
+    public static double maximumProbability = 1.0;
+    public static double minimumProbability = 0.0;
+    public static Integer initialXValues = 0;
+    public static double probabilityFactor = 0.1;
+    public static double thresholdProbability = 0.5;
+    public static double distanceFactor = 10.0;
+    public static int minimumMatchWords = 0;
+    public static int thresholdStudentCount = 2;
+    public static int minimumStudentCount = 1;
 }

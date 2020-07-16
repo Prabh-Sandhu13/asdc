@@ -1,11 +1,13 @@
 package CSCI5308.GroupFormationTool.Course;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 
-import CSCI5308.GroupFormationTool.Common.Injector;
-import CSCI5308.GroupFormationTool.Course.ICourse;
-
 public class Course implements ICourse {
+
+    private static final Logger Log = LoggerFactory.getLogger(Course.class.getName());
 
     private String id;
 
@@ -14,7 +16,7 @@ public class Course implements ICourse {
     private int credits;
 
     private String description;
-    
+
     private ICourseRepository courseRepository;
 
     public Course() {
@@ -66,24 +68,28 @@ public class Course implements ICourse {
 
     @Override
     public ArrayList<ICourse> getAllCourses() {
-        courseRepository = Injector.instance().getCourseRepository();
+        Log.info("Calling the courseRepository function to get all courses");
+        courseRepository = CourseInjector.instance().getCourseRepository();
         return courseRepository.getAllCourses();
     }
 
     @Override
     public ICourse getCourseById(String courseId) {
-        courseRepository = Injector.instance().getCourseRepository();
+        Log.info("Calling the courseRepository function to get courses details by course id: " + courseId);
+        courseRepository = CourseInjector.instance().getCourseRepository();
         return courseRepository.getCourseById(courseId);
     }
 
     public boolean createCourse() {
-        courseRepository = Injector.instance().getCourseRepository();
+        Log.info("Creating a new course and storing it in the database");
+        courseRepository = CourseInjector.instance().getCourseRepository();
         return courseRepository.createCourse(this);
     }
 
     @Override
     public boolean deleteCourse(String courseId) {
-        courseRepository = Injector.instance().getCourseRepository();
+        Log.info("Calling the deleteCourse repository function to delete the course" + courseId + "from the Database");
+        courseRepository = CourseInjector.instance().getCourseRepository();
         return courseRepository.deleteCourse(courseId);
     }
 
