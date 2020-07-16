@@ -24,7 +24,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         String role = "Guest";
         try {
-            Log.info("Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id");
+            Log.info("Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id " + emailId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getUserRoleByEmailId(?)");
             storedProcedure.setInputStringParameter(1, emailId);
@@ -61,7 +61,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         ArrayList<ICourse> studentCourseList = courseAbstractFactory.createCourseListInstance();
         try {
-            Log.info("Calling stored procedure sp_getStudentCoursesByEmailId to get student courses by Email Id");
+            Log.info("Calling stored procedure sp_getStudentCoursesByEmailId to get student courses by Email Id " +emailId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getStudentCoursesByEmailId(?)");
             storedProcedure.setInputStringParameter(1, emailId);
@@ -96,7 +96,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         ArrayList<IUser> userList = userAbstractFactory.createUserListInstance();
         try {
             Log.info("Calling stored procedure sp_getUsersCurrentlyNotInstructorsForCourse " +
-                    "to get users that are not instrcutors for the course");
+                    "to get users that are not instrcutors for the course " + courseId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getUsersCurrentlyNotInstructorsForCourse(?)");
             storedProcedure.setInputStringParameter(1, courseId);
@@ -132,7 +132,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         ArrayList<ICourse> taCourseList = courseAbstractFactory.createCourseListInstance();
         try {
-            Log.info("Calling stored procedure sp_getTACoursesByEmailId to get courses of a TA using Email Id");
+            Log.info("Calling stored procedure sp_getTACoursesByEmailId to get courses of a TA using Email Id " + emailId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getTACoursesByEmailId(?)");
             storedProcedure.setInputStringParameter(1, emailId);
@@ -168,7 +168,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         ArrayList<ICourse> instructorCourseList = courseAbstractFactory.createCourseListInstance();
         try {
-            Log.info("Calling stored procedure sp_getInstructorCoursesByEmailId to get courses of a Instructor using Email Id");
+            Log.info("Calling stored procedure sp_getInstructorCoursesByEmailId to get courses of a Instructor using Email Id " +emailId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getInstructorCoursesByEmailId(?)");
             storedProcedure.setInputStringParameter(1, emailId);
@@ -204,7 +204,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         IUserAbstractFactory userAbstractFactory = UserInjector.instance().getUserAbstractFactory();
         ArrayList<IUser> taList = userAbstractFactory.createUserListInstance();
         try {
-            Log.info("Calling stored procedure sp_getTAForCourse to get TA for a course using course Id");
+            Log.info("Calling stored procedure sp_getTAForCourse to get TA for a course using course Id " + courseId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getTAForCourse(?)");
             storedProcedure.setInputStringParameter(1, courseId);
             ResultSet results = storedProcedure.executeWithResults();
@@ -239,7 +239,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         StoredProcedure storedProcedure = null;
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         try {
-            Log.info("Calling stored procedure sp_addInstructorsToCourse to add instructor to a Course using Course Id");
+            Log.info("Calling stored procedure sp_addInstructorsToCourse to add instructor to a Course using Course Id " + courseId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_addInstructorsToCourse(?,?)");
             storedProcedure.setInputIntParameter(1, instructor);
@@ -300,7 +300,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         StoredProcedure storedProcedure = null;
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         try {
-            Log.info("Calling stored procedure sp_addTAToCourse to add TA to a Course");
+            Log.info("Calling stored procedure sp_addTAToCourse to add TA to a Course " + courseId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_addTAToCourse(?,?)");
             storedProcedure.setInputStringParameter(1, userId);
@@ -324,7 +324,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         StoredProcedure storedProcedure = null;
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         try {
-            Log.info("Calling stored procedure sp_getUserRoleForCourse to get a user role for the Course by User Id");
+            Log.info("Calling stored procedure sp_getUserRoleForCourse to get a user role for the Course " + courseId +  "by User Id" + userId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getUserRoleForCourse(?,?)");
             storedProcedure.setInputStringParameter(1, userId);
@@ -353,7 +353,7 @@ public class UserCoursesRepository implements IUserCoursesRepository {
         IUserAbstractFactory userAbstractFactory = UserInjector.instance().getUserAbstractFactory();
         ArrayList<IUser> instructorList = userAbstractFactory.createUserListInstance();
         try {
-            Log.info("Calling stored procedure sp_getInstructorsForCourse to get instructor for a Course");
+            Log.info("Calling stored procedure sp_getInstructorsForCourse to get instructor for a Course " + courseId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getInstructorsForCourse(?)");
             storedProcedure.setInputStringParameter(1, courseId);

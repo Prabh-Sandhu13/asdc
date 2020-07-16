@@ -81,7 +81,7 @@ public class CourseRepository implements ICourseRepository {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         boolean status = true;
         try {
-            Log.info("Calling stored procedure sp_deleteACourse to delete a course");
+            Log.info("Calling stored procedure sp_deleteACourse to delete a course by courseId " + id);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_deleteACourse(?,?)");
             storedProcedure.setInputStringParameter(1, id);
             storedProcedure.registerOutputParameterBoolean(2);
@@ -104,7 +104,7 @@ public class CourseRepository implements ICourseRepository {
         ICourseAbstractFactory courseAbstractFactory = CourseInjector.instance().getCourseAbstractFactory();
         ICourse course = courseAbstractFactory.createCourseInstance();
         try {
-            Log.info("Calling stored procedure sp_getCourseById to get a course details by Course Id");
+            Log.info("Calling stored procedure sp_getCourseById to get a course details by Course Id " +courseId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getCourseById(?)");
             storedProcedure.setInputStringParameter(1, courseId);
             ResultSet results = storedProcedure.executeWithResults();
