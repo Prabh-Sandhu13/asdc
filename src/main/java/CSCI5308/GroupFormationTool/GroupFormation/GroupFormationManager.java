@@ -76,33 +76,33 @@ public class GroupFormationManager implements IGroupFormationManager {
                 HashMap<Long, ArrayList<ArrayList<Double>>> typeMatrices = formTextMatrixForAllStudents(
                         entry.getValue(), userAnsweredSurveyBasedOnCourseId.size(),
                         studentWithQuestionAndAnswer, groupLogic);
-                finalMatrices.put((long) DomainConstants.freeText, AddMatrices(typeMatrices, true,
+                finalMatrices.put((long) DomainConstants.freeText, formMatrices(typeMatrices, true,
                         userAnsweredSurveyBasedOnCourseId.size()));
             } else if (entry.getKey() == DomainConstants.numeric) {
                 HashMap<Long, ArrayList<ArrayList<Double>>> typeMatrices =
                         formNumericMatrixForAllStudents(
                                 entry.getValue(), userAnsweredSurveyBasedOnCourseId.size(),
                                 studentWithQuestionAndAnswer, groupLogic);
-                finalMatrices.put((long) DomainConstants.numeric, AddMatrices(typeMatrices, true,
+                finalMatrices.put((long) DomainConstants.numeric, formMatrices(typeMatrices, true,
                         userAnsweredSurveyBasedOnCourseId.size()));
-                additionalMappings = GetAdditonalNumericMappings(entry.getValue(), groupLogic,
+                additionalMappings = getNumericMappings(entry.getValue(), groupLogic,
                         studentWithQuestionAndAnswer, indexUserIdToIndex);
             } else if (entry.getKey() == DomainConstants.MCQOne) {
                 HashMap<Long, ArrayList<ArrayList<Double>>> typeMatrices =
                         formSingleChoiceMatrixForAllStudents(
                                 entry.getValue(), userAnsweredSurveyBasedOnCourseId.size(),
                                 studentWithQuestionAndAnswer, groupLogic);
-                finalMatrices.put((long) DomainConstants.MCQOne, AddMatrices(typeMatrices, true,
+                finalMatrices.put((long) DomainConstants.MCQOne, formMatrices(typeMatrices, true,
                         userAnsweredSurveyBasedOnCourseId.size()));
             } else if (entry.getKey() == DomainConstants.MCQMultiple) {
-                HashMap<Long, ArrayList<ArrayList<Double>>> typeMatrices = formMultiChoiceMatrixForAllStudents(
+                HashMap<Long, ArrayList<ArrayList<Double>>> typeMatrices = formMultipleChoiceMultipleValueMatrixForAllStudents(
                         entry.getValue(), userAnsweredSurveyBasedOnCourseId.size(), studentWithQuestionAndAnswer,
                         groupLogic);
-                finalMatrices.put((long) DomainConstants.MCQMultiple, AddMatrices(typeMatrices, true,
+                finalMatrices.put((long) DomainConstants.MCQMultiple, formMatrices(typeMatrices, true,
                         userAnsweredSurveyBasedOnCourseId.size()));
             }
         }
-        ArrayList<ArrayList<Double>> finalTotalMatrices = AddMatrices(finalMatrices, false,
+        ArrayList<ArrayList<Double>> finalTotalMatrices = formMatrices(finalMatrices, false,
                 userAnsweredSurveyBasedOnCourseId.size());
         Map.Entry<Long, IGroupFormula> entry = groupLogic.entrySet().iterator().next();
         Integer teamSize = entry.getValue().getGroupSize();
@@ -128,9 +128,8 @@ public class GroupFormationManager implements IGroupFormationManager {
         groupFormationRepository.deleteGroups(courseId);
     }
 
-    private ArrayList<ArrayList<Double>> AddMatrices(HashMap<Long, ArrayList<ArrayList<Double>>> typeMatrices,
-                                                     boolean considerMean, int students) {
-
+    private ArrayList<ArrayList<Double>> formMatrices(HashMap<Long, ArrayList<ArrayList<Double>>> typeMatrices,
+                                                      boolean considerMean, int students) {
         IGroupFormationAbstractFactory groupFormationAbstractFactory = GroupFormationInjector.instance()
                 .getGroupFormationAbstractFactory();
         ArrayList<ArrayList<Double>> totalMatrix = groupFormationAbstractFactory.getMatrixInstance(students);
@@ -155,7 +154,7 @@ public class GroupFormationManager implements IGroupFormationManager {
         return totalMatrix;
     }
 
-    private HashMap<Long, ArrayList<ArrayList<Double>>> formMultiChoiceMatrixForAllStudents(
+    private HashMap<Long, ArrayList<ArrayList<Double>>> formMultipleChoiceMultipleValueMatrixForAllStudents(
             ArrayList<IQuestion> questions, int students, HashMap<Long,
             HashMap<Long, IResponse>> studentWithQuestionAndAnswer,
             HashMap<Long, IGroupFormula> groupLogic) {
@@ -195,7 +194,7 @@ public class GroupFormationManager implements IGroupFormationManager {
         return questionMatrix;
     }
 
-    private HashMap<String, HashMap<Integer, Integer>> GetAdditonalNumericMappings(
+    private HashMap<String, HashMap<Integer, Integer>> getNumericMappings(
             ArrayList<IQuestion> numericTypeMatrix, HashMap<Long, IGroupFormula> groupLogic,
             HashMap<Long, HashMap<Long, IResponse>> studentWithQuestionAndAnswer,
             HashMap<Long, Integer> indexUserIdToIndex) {
@@ -344,7 +343,7 @@ public class GroupFormationManager implements IGroupFormationManager {
         ArrayList<Integer> selected_students = groupFormationAbstractFactory.createStudentListInstance();
         for (int x = 0; x < finalTotalMatrices.size(); x++) {
             if (!selected_students.contains(x)) {
-                ArrayList<Integer> selected_students_1 = this.generateTeam(finalTotalMatrices.get(x), teamSize,
+                ArrayList<Integer> selected_students_1 = this.formTeams(finalTotalMatrices.get(x), teamSize,
                         studentLessThanX, studentGreaterthanX, true, true);
                 for (Integer i : selected_students_1) {
                     studentLessThanX.remove(i);
@@ -368,10 +367,10 @@ public class GroupFormationManager implements IGroupFormationManager {
         return teamsWithUserId;
     }
 
-    private ArrayList<Integer> generateTeam(ArrayList<Double> arrayList, int team_size,
-                                            HashMap<Integer, Integer> studentLessThanX,
-                                            HashMap<Integer, Integer> studentGreaterthanX,
-                                            boolean useLessthanX, boolean useGreaterthanX) {
+    private ArrayList<Integer> formTeams(ArrayList<Double> arrayList, int team_size,
+                                         HashMap<Integer, Integer> studentLessThanX,
+                                         HashMap<Integer, Integer> studentGreaterthanX,
+                                         boolean useLessthanX, boolean useGreaterthanX) {
         IGroupFormationAbstractFactory groupFormationAbstractFactory = GroupFormationInjector.instance().
                 getGroupFormationAbstractFactory();
         HashMap<Integer, Double> map = groupFormationAbstractFactory.getMapForSorting();

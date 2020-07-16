@@ -125,6 +125,7 @@ public class GroupFormationManagerTest {
         groupFormula.setGreaterThan(0);
         groupFormula.setSimilarity(0);
         groupFormula.setMatchWords(0);
+        assertTrue(groupFormula.getQuestionId() == 43);
         groupFormationLogic.put((long) 43, groupFormula);
         when(groupFormationRepository.getGroupFormationLogic(courseId)).thenReturn(groupFormationLogic);
         HashMap<Long, HashMap<Long, IResponse>> studentWithQuestionAndAnswer = formResponses();

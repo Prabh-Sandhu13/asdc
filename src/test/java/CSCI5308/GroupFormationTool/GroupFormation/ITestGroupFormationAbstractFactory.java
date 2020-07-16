@@ -36,4 +36,6 @@ public interface ITestGroupFormationAbstractFactory {
 
     HashMap<Integer, ArrayList<Long>> getFormedGroupsInstance();
 
+    GroupFormulaDBMock createGroupFormulaDBMockInstance();
+
 }

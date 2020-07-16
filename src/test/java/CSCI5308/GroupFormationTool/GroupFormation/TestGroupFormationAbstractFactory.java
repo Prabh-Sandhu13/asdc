@@ -77,4 +77,9 @@ public class TestGroupFormationAbstractFactory implements ITestGroupFormationAbs
     public HashMap<Integer, ArrayList<Long>> getFormedGroupsInstance() {
         return new HashMap<Integer, ArrayList<Long>>();
     }
+
+    @Override
+    public GroupFormulaDBMock createGroupFormulaDBMockInstance() {
+        return new GroupFormulaDBMock();
+    }
 }
