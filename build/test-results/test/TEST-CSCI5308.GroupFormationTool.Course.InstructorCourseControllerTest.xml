@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Course.InstructorCourseControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-16T02:08:43" hostname="Prabhjots-MacBook-Pro.local" time="0.027">
+<testsuite name="CSCI5308.GroupFormationTool.Course.InstructorCourseControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-16T16:40:25" hostname="Prabhjots-MacBook-Pro.local" time="0.035">
   <properties/>
-  <testcase name="courseDetailsTest()" classname="CSCI5308.GroupFormationTool.Course.InstructorCourseControllerTest" time="0.027"/>
+  <testcase name="courseDetailsTest()" classname="CSCI5308.GroupFormationTool.Course.InstructorCourseControllerTest" time="0.035"/>
   <system-out><![CDATA[
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -11,13 +11,13 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-15 23:08:42.765  INFO 38787 --- [    Test worker] C.G.C.InstructorCourseControllerTest     : Starting InstructorCourseControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-15 23:08:42.765  INFO 38787 --- [    Test worker] C.G.C.InstructorCourseControllerTest     : No active profile set, falling back to default profiles: default
-2020-07-15 23:08:43.115  INFO 38787 --- [    Test worker] C.G.C.InstructorCourseControllerTest     : Started InstructorCourseControllerTest in 0.361 seconds (JVM running for 4.941)
-2020-07-15 23:08:43.120  INFO 38787 --- [    Test worker] C.G.Course.InstructorCourseController    : Checking if instructor has created a survey for the course
-2020-07-15 23:08:43.120  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id
-2020-07-15 23:08:43.121  INFO 38787 --- [    Test worker] C.G.Course.InstructorCourseController    : Checking if instructor has published the survey for the course
-2020-07-15 23:08:43.121  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course from the database
+2020-07-16 13:40:25.088  INFO 41246 --- [    Test worker] C.G.C.InstructorCourseControllerTest     : Starting InstructorCourseControllerTest on Prabhjots-MacBook-Pro.local with PID 41246 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-16 13:40:25.089  INFO 41246 --- [    Test worker] C.G.C.InstructorCourseControllerTest     : No active profile set, falling back to default profiles: default
+2020-07-16 13:40:25.482  INFO 41246 --- [    Test worker] C.G.C.InstructorCourseControllerTest     : Started InstructorCourseControllerTest in 0.405 seconds (JVM running for 5.218)
+2020-07-16 13:40:25.489  INFO 41246 --- [    Test worker] C.G.Course.InstructorCourseController    : Checking if instructor has created a survey for the course CSCI3901
+2020-07-16 13:40:25.489  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id CSCI3901
+2020-07-16 13:40:25.489  INFO 41246 --- [    Test worker] C.G.Course.InstructorCourseController    : Checking if instructor has published the survey for the course CSCI3901
+2020-07-16 13:40:25.489  INFO 41246 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course CSCI3901 from the database
 
 MockHttpServletRequest:
       HTTP Method = GET

@@ -78,7 +78,7 @@ public class QuestionManagerRepository implements IQuestionManagerRepository {
         boolean status = true;
         try {
             log.info("Calling stored procedure sp_deleteAQuestion to delete a question " +
-                    "of the instructor");
+                    "of the instructor by question id " + questionId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_deleteAQuestion(?,?)");
             storedProcedure.setInputIntParameter(1, questionId);
             storedProcedure.registerOutputParameterBoolean(2);

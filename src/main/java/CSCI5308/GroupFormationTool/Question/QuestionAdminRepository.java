@@ -22,7 +22,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
         ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
         try {
             log.info("Calling stored procedure sp_getQuestionsForInstructor to fetch the question bank " +
-                    "of the instructor");
+                    "of the instructor by emailId " + emailId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getQuestionsForInstructor(?)");
             storedProcedure.setInputStringParameter(1, emailId);
@@ -40,9 +40,9 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getQuestionsForInstructor" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -58,7 +58,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         IQuestion question = questionAbstractFactory.createQuestionInstance();
         try {
-            log.info("Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id");
+            log.info("Calling the stored procedure sp_getQuestionById to fetch a particular question by its Id " + questionId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getQuestionById(?)");
             storedProcedure.setInputIntParameter(1, questionId);
             ResultSet results = storedProcedure.executeWithResults();
@@ -74,9 +74,9 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
                 }
             }
 
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getQuestionById" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -93,7 +93,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
         ArrayList<IChoice> choiceList = questionAbstractFactory.createChoiceListInstance();
         try {
             log.info("Calling the stored procedure sp_getOptionsForQuestion to fetch" +
-                    " the option list for a multiple choice question");
+                    " the option list for a multiple choice question by question id " + questionId);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getOptionsForQuestion(?)");
             storedProcedure.setInputIntParameter(1, questionId);
@@ -108,9 +108,9 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getOptionsForQuestion" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -128,7 +128,7 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
         ArrayList<IQuestion> questionList = questionAbstractFactory.createQuestionListInstance();
         try {
             log.info("Calling stored procedure sp_getSortedQuestionsForInstructor to fetch the question bank " +
-                    "of the instructor sorted by title or created date");
+                    "of the instructor sorted by " + sortField);
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance
                     ("sp_getSortedQuestionsForInstructor(?,?)");
             storedProcedure.setInputStringParameter(1, emailId);
@@ -147,9 +147,9 @@ public class QuestionAdminRepository implements IQuestionAdminRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getSortedQuestionsForInstructor" +
-                    " because of an SQL Exception " + ex.getLocalizedMessage());
+                    " because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();

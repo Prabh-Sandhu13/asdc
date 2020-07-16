@@ -29,7 +29,6 @@ public class StudentRepository implements IStudentRepository {
         RandomStringGenerator pwdGenerator = courseAbstractFactory.createRandomStringGeneratorInstance();
         Map<Integer, List<StudentCSV>> studentLists = courseAbstractFactory.createStudentHashMapInstance();
         StoredProcedure storedProcedure = null;
-
         for (StudentCSV studentCSV : studentCSVList) {
             try {
                 Log.info("Calling stored procedure sp_createStudentFromCSV to create a student from the CSV file " +
@@ -52,9 +51,9 @@ public class StudentRepository implements IStudentRepository {
                 } else {
                     oldStudents.add(studentCSV);
                 }
-            } catch (SQLException ex) {
+            } catch (SQLException exception) {
                 Log.error("Could not execute the Stored procedure sp_createStudentFromCSV" +
-                        " because of an SQL Exception " + ex.getLocalizedMessage());
+                        " because of an SQL Exception " + exception.getLocalizedMessage());
             } finally {
                 if (storedProcedure != null) {
                     storedProcedure.removeConnections();

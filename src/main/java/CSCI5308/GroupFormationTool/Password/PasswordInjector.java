@@ -3,12 +3,19 @@ package CSCI5308.GroupFormationTool.Password;
 public class PasswordInjector {
 
     private static PasswordInjector instance = null;
+
     private IPasswordAbstractFactory passwordAbstractFactory;
+
     private ITokenGenerator tokenGenerator;
+
     private IForgotPasswordManager forgotPasswordManager;
+
     private IForgotPasswordRepository forgotPasswordRepository;
+
     private IPasswordHistoryManager passwordHistoryManager;
+
     private IPasswordHistoryRepository passwordHistoryRepository;
+
     private IPolicyRepository policyRepository;
 
     private PasswordInjector() {

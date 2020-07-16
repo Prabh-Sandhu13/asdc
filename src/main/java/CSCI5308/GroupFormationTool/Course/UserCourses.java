@@ -10,11 +10,17 @@ import java.util.ArrayList;
 public class UserCourses implements IUserCourses {
 
     private static final Logger Log = LoggerFactory.getLogger(Question.class.getName());
-    IUserCoursesRepository userCoursesRepository;
+
+    private IUserCoursesRepository userCoursesRepository;
+
     private String courseId;
+
     private String bannerId;
+
     private String courseName;
+
     private String courseDescription;
+
     private String userRole;
 
     public UserCourses() {

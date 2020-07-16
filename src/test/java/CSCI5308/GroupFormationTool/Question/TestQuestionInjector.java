@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.Question;
 public class TestQuestionInjector {
 
     private static TestQuestionInjector instance = null;
+
     private ITestQuestionAbstractFactory questionAbstractFactory;
 
     private TestQuestionInjector() {

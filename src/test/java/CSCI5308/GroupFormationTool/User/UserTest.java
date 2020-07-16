@@ -16,9 +16,13 @@ import static org.mockito.Mockito.when;
 public class UserTest {
 
     IUser userInstance;
+
     UserRepository userRepository;
+
     PasswordHistoryManager passwordHistoryManager;
+
     PolicyRepository policyRepository;
+
     private ITestUserAbstractFactory userAbstractFactoryTest = TestUserInjector.instance().getUserAbstractFactory();
 
     private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestPasswordInjector.instance().

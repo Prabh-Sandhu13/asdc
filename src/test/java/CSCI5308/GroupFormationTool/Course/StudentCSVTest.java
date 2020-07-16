@@ -20,8 +20,9 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class StudentCSVTest {
 
-    public StudentCSV studentCSV;
-    public StudentRepository studentRepository;
+    private StudentCSV studentCSV;
+
+    private StudentRepository studentRepository;
 
     private ITestCourseAbstractFactory courseAbstractFactoryTest = TestCourseInjector.instance().
             getCourseAbstractFactory();
@@ -115,7 +116,6 @@ public class StudentCSVTest {
         IStudentCSV studentCSV = courseAbstractFactoryTest.createStudentCSVInstanceParameterized("Padmesh",
                 "Donthu", "padmeshdonthu@gmail.com",
                 "B00854462", "sample123");
-
         assertEquals("Padmesh", studentCSV.getFirstName());
         assertFalse(studentCSV.getLastName() == null);
         assertTrue(studentCSV.getEmail().equals("padmeshdonthu@gmail.com"));
@@ -180,6 +180,5 @@ public class StudentCSVTest {
         when(studentRepository.createStudent(studentCSVs, courseId)).thenReturn(studentLists);
         assertTrue(studentCSV.createStudent(multipartFile, courseId).size() == 0);
     }
-
 
 }

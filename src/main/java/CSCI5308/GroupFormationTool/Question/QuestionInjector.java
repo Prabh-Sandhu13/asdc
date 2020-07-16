@@ -3,8 +3,11 @@ package CSCI5308.GroupFormationTool.Question;
 public class QuestionInjector {
 
     private static QuestionInjector instance = null;
+
     private IQuestionAbstractFactory questionAbstractFactory;
+
     private IQuestionAdminRepository questionAdminRepository;
+
     private IQuestionManagerRepository questionManagerRepository;
 
     private QuestionInjector() {

@@ -26,10 +26,9 @@ public class UserRepository implements IUserRepository {
             storedProcedure.setInputStringParameter(4, user.getEmailId());
             storedProcedure.setInputStringParameter(5, user.getPassword());
             storedProcedure.execute();
-
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_create_user" +
-                    "because of an SQL Exception " + ex.getLocalizedMessage());
+                    "because of an SQL Exception " + exception.getLocalizedMessage());
             return false;
         } finally {
             if (storedProcedure != null) {
@@ -41,7 +40,6 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public IUser getUserIdByEmailId(IUser user) {
-
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         IUserAbstractFactory userAbstractFactory = UserInjector.instance().getUserAbstractFactory();
         IUser userWithUserId = null;
@@ -51,7 +49,6 @@ public class UserRepository implements IUserRepository {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getUserId(?)");
             storedProcedure.setInputStringParameter(1, user.getEmailId());
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
@@ -60,10 +57,9 @@ public class UserRepository implements IUserRepository {
                     }
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getUserId" +
-                    "because of an SQL Exception " + ex.getLocalizedMessage());
-            System.out.println(ex.getMessage());
+                    "because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -74,7 +70,6 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public IUser getUserByEmailId(IUser user) {
-
         IUserAbstractFactory userAbstractFactory = UserInjector.instance().getUserAbstractFactory();
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         IUser userByEmailId = null;
@@ -84,9 +79,7 @@ public class UserRepository implements IUserRepository {
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getUserByEmailId(?)");
             storedProcedure.setInputStringParameter(1, user.getEmailId());
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
-
                 while (results.next()) {
                     {
                         userByEmailId = userAbstractFactory.createUserInstance();
@@ -98,11 +91,9 @@ public class UserRepository implements IUserRepository {
                     }
                 }
             }
-
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getUserByEmailId" +
-                    "because of an SQL Exception " + ex.getLocalizedMessage());
-            System.out.println(ex.getMessage());
+                    "because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();
@@ -113,7 +104,6 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public IUser getAdminDetails() {
-
         IUserAbstractFactory userAbstractFactory = UserInjector.instance().getUserAbstractFactory();
         IDatabaseAbstractFactory databaseAbstractFactory = DatabaseInjector.instance().getDatabaseAbstractFactory();
         StoredProcedure storedProcedure = null;
@@ -122,7 +112,6 @@ public class UserRepository implements IUserRepository {
             log.info("Calling the stored procedure sp_getAdminDetails to fetch details of Admin user");
             storedProcedure = databaseAbstractFactory.createStoredProcedureInstance("sp_getAdminDetails");
             ResultSet results = storedProcedure.executeWithResults();
-
             if (results != null) {
                 while (results.next()) {
                     {
@@ -134,10 +123,9 @@ public class UserRepository implements IUserRepository {
                     }
                 }
             }
-
-        } catch (SQLException ex) {
+        } catch (SQLException exception) {
             log.error("Could not execute the Stored procedure sp_getAdminDetails" +
-                    "because of an SQL Exception " + ex.getLocalizedMessage());
+                    "because of an SQL Exception " + exception.getLocalizedMessage());
         } finally {
             if (storedProcedure != null) {
                 storedProcedure.removeConnections();

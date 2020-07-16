@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.Survey;
 public class TestSurveyInjector {
 
     private static TestSurveyInjector instance = null;
+
     private ITestSurveyAbstractFactory surveyAbstractFactory;
 
     private TestSurveyInjector() {

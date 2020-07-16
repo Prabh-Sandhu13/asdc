@@ -1,5 +1,8 @@
 package CSCI5308.GroupFormationTool.Database;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,8 +10,12 @@ import java.sql.SQLException;
 
 public class StoredProcedure {
 
+    private static final Logger log = LoggerFactory.getLogger(StoredProcedure.class.getName());
+
     private String storedProcedureName;
+
     private Connection connection;
+
     private CallableStatement statement;
 
     public StoredProcedure(String storedProcedureName) throws SQLException {
@@ -38,8 +45,8 @@ public class StoredProcedure {
                 }
             }
 
-        } catch (Exception e) {
-
+        } catch (Exception exception) {
+            log.error("Error in closing the connection");
         }
     }
 

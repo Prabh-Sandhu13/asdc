@@ -17,16 +17,23 @@ import java.util.Map;
 public class StudentCSV implements IStudentCSV {
 
     private static final Logger Log = LoggerFactory.getLogger(QuestionManagerRepository.class.getName());
+
     @CsvBindByName
     private String firstName;
+
     @CsvBindByName
     private String lastName;
+
     @CsvBindByName
     private String email;
+
     @CsvBindByName
     private String bannerId;
+
     private String password;
+
     private IStudentRepository studentRepository;
+
     private IMailManager mailManager;
 
     public StudentCSV() {
@@ -93,12 +100,10 @@ public class StudentCSV implements IStudentCSV {
         List<StudentCSV> badData = courseAbstractFactory.createStudentCSVListInstance();
         List<StudentCSV> properData = courseAbstractFactory.createStudentCSVListInstance();
         Map<Integer, List<StudentCSV>> studentLists = null;
-
         try (Reader reader = courseAbstractFactory.createBufferedReaderInstance(
                 (courseAbstractFactory.createInputStreamInstance(file.getInputStream())))) {
 
             CsvToBean<StudentCSV> csvToBean = courseAbstractFactory.createCsvToBeanBuilderInstance(reader);
-
             List<StudentCSV> students = csvToBean.parse();
             for (StudentCSV studentCSV : students) {
                 if (checkForBadData(studentCSV)) {
@@ -115,7 +120,6 @@ public class StudentCSV implements IStudentCSV {
                 studentLists.put(DomainConstants.badData, badData);
                 mailManager.sendBatchMail(studentLists.get(DomainConstants.newStudents), courseId);
             }
-
         } catch (Exception ex) {
             Log.error("Could not read data from the Input stream" + ex.getLocalizedMessage());
             return null;

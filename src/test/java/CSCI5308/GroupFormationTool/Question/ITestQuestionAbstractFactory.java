@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public interface ITestQuestionAbstractFactory {
+
     IQuestion createQuestionInstance();
 
     ArrayList<IQuestion> createQuestionListInstance();

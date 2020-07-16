@@ -4,6 +4,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 public class MailAbstractFactory implements IMailAbstractFactory {
+
     @Override
     public IMailManager createMailManagerInstance() {
         return new MailManager();

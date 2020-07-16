@@ -41,5 +41,4 @@ public interface ISurveyRepository {
 
     HashMap<Long, HashMap<Long, IResponse>> getAllStudentResponses(String courseId);
 
-    HashMap<Long, IResponse> getUserResponses(Long userId, Long surveyId, String courseId);
 }

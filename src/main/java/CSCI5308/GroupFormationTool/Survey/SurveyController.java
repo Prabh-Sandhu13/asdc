@@ -50,9 +50,8 @@ public class SurveyController {
         ArrayList<SurveyFormula> surveyFormulaList = surveyAbstractFactory.createSurveyFormulaArrayList();
         SurveyFormulaList formulaList = surveyAbstractFactory.createSurveyFormulaListInstance();
         log.info("Getting survey Details for the formula setup");
-        surveyFormulaList = surveyFormula.getSurveyDetailsToSetAlgo(courseId);
+        surveyFormulaList = surveyFormula.getSurveyDetailsToSetAlgorithm(courseId);
         formulaList.setSurveyRules(surveyFormulaList);
-        
         for (SurveyFormula s : surveyFormulaList) {
             surveyId = s.getSurveyId();
             break;
@@ -101,11 +100,11 @@ public class SurveyController {
         ISurveyFormula surveyFormula = surveyAbstractFactory.createSurveyFormulaInstance();
         log.info("Passing details to business layer for creating rule for survey " + surveyId);
         Boolean status = surveyFormula.createSurveyFormula(courseId, surveyId, groupSize, surveyFormulaList);
-        if(status) {
-            log.info("Survey formula for survey:"+surveyId+" added successfully");
+        if (status) {
+            log.info("Survey formula for survey:" + surveyId + " added successfully");
             model.addAttribute("SuccessMsg", "Survey Formula added successfully!");
         } else {
-            log.error("Creation of survey formula for survey:"+surveyId+" failed");
+            log.error("Creation of survey formula for survey:" + surveyId + " failed");
             model.addAttribute("ErrorMsg", "Creation of survey formula failed!");
         }
         return "redirect:/instructorCourseDetails?courseId=" + courseId + "&courseName=" + courseName;
@@ -163,7 +162,8 @@ public class SurveyController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String emailId = authentication.getPrincipal().toString();
         ArrayList<IQuestion> questionList = null;
-        log.info("Get question list for the course " + courseId + "with survey " + surveyId + "and question title " + questionTitle);
+        log.info("Get question list for the course " + courseId + "with survey " + surveyId +
+                "and question title " + questionTitle);
         questionList = survey.getSearchedQuestionListForSurvey(emailId, surveyId, courseId, questionTitle);
         log.info("Get question list for the survey based on the course Id" + courseId);
         ArrayList<IQuestion> surveyQuestionList = survey.getQuestionsForSurvey(courseId);

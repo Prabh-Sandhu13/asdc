@@ -3,9 +3,13 @@ package CSCI5308.GroupFormationTool.Course;
 public class CourseInjector {
 
     private static CourseInjector instance = null;
+
     private ICourseAbstractFactory courseAbstractFactory;
+
     private ICourseRepository courseRepository;
+
     private IUserCoursesRepository userCoursesRepository;
+
     private IStudentRepository studentRepository;
 
     private CourseInjector() {

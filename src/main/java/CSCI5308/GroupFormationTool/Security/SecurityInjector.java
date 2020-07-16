@@ -3,7 +3,9 @@ package CSCI5308.GroupFormationTool.Security;
 public class SecurityInjector {
 
     private static SecurityInjector instance = null;
+
     private ISecurityAbstractFactory securityAbstractFactory;
+
     private IPasswordEncryptor passwordEncryptor;
 
     private SecurityInjector() {

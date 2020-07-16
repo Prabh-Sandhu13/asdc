@@ -25,9 +25,6 @@ public class UserRegistrationControllerTest {
     private ITestPasswordAbstractFactory passwordAbstractFactoryTest = TestPasswordInjector.instance().
             getPasswordAbstractFactory();
 
-    private ITestSecurityAbstractFactory securityAbstractFactoryTest = TestSecurityInjector.instance().
-            getSecurityAbstractFactory();
-
     private PolicyRepository policyRepository;
 
     private UserRepository userRepository;

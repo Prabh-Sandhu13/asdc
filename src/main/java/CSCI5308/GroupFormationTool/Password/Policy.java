@@ -9,10 +9,15 @@ import java.util.ArrayList;
 public class Policy implements IPolicy {
 
     private static final Logger log = LoggerFactory.getLogger(Policy.class.getName());
+
     private int id;
+
     private String setting;
+
     private String value;
+
     private int enabled;
+
     private IPolicyRepository policyRepository;
 
     @Override

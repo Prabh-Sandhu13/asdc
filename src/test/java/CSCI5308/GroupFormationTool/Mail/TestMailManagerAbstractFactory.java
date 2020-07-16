@@ -6,6 +6,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import static org.mockito.Mockito.mock;
 
 public class TestMailManagerAbstractFactory implements ITestMailManagerAbstractFactory {
+
     @Override
     public MailManager createMailManagerMock() {
         return mock(MailManager.class);

@@ -5,11 +5,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionManager {
+
     private static ConnectionManager instance = null;
+
     private IDBConfiguration dbConfiguration;
 
     private String url;
+
     private String userName;
+
     private String password;
 
     private ConnectionManager() {

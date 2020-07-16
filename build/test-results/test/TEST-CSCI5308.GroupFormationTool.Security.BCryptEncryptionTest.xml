@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Security.BCryptEncryptionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-16T02:08:44" hostname="Prabhjots-MacBook-Pro.local" time="0.001">
+<testsuite name="CSCI5308.GroupFormationTool.Security.BCryptEncryptionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-16T16:40:27" hostname="Prabhjots-MacBook-Pro.local" time="0.001">
   <properties/>
   <testcase name="encryptPasswordTest()" classname="CSCI5308.GroupFormationTool.Security.BCryptEncryptionTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>

@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CourseAbstractFactory implements ICourseAbstractFactory {
+
     @Override
     public ICourse createCourseInstance() {
         return new Course();

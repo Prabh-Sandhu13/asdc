@@ -6,9 +6,13 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 public class MailInjector {
 
     private static MailInjector instance = null;
+
     private IMailAbstractFactory mailAbstractFactory;
+
     private IMailManager mailManager;
+
     private SimpleMailMessage mailMessage;
+
     private JavaMailSenderImpl mailSender;
 
     private MailInjector() {
