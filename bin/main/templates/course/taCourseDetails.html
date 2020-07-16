@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" href="favicon.ico"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="favicon.ico" rel="icon"/>
     <title>TA Course Details</title>
     <link
+            crossorigin="anonymous"
             href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            rel="stylesheet"
             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous"/>
+            rel="stylesheet"/>
 
 </head>
 <body style="background-color: #e7ebee">
@@ -40,19 +40,36 @@
         </div>
         <br/>
         <div class="text-center" th:if="${!published and created ==-1}">
-            <a th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}"
-               class="btn btn-primary btn-md">Create your Course Survey
+<<<<<<< HEAD
+<<<<<<< HEAD
+            <a class="btn btn-primary btn-md"
+               th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}">Create your Course Survey
             </a>
         </div>
         <div class="text-center" th:if="${!published and created !=-1}">
-            <a th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}"
-               class="btn btn-primary btn-md">Edit your Course Survey
+            <a class="btn btn-primary btn-md"
+               th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}">Edit your Course Survey
             </a>
         </div>
+=======
+            <a th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}"
+               class="btn btn-primary btn-md">Create your Course Survey
+=======
+            <a class="btn btn-primary btn-md"
+               th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}">Create your Course Survey
+>>>>>>> 6efc1cf95b97f5a40718fad570c0f973bbcc15eb
+            </a>
+        </div>
+        <div class="text-center" th:if="${!published and created !=-1}">
+            <a class="btn btn-primary btn-md"
+               th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}">Edit your Course Survey
+            </a>
+        </div>
+>>>>>>> refactoringTests
         <br/>
         <div class="text-center">
             <a th:href="@{/courseList}">
-                <button type="submit" class="btn btn-success btn-sm">Back
+                <button class="btn btn-success btn-sm" type="submit">Back
                     to your courses
                 </button>
             </a>

@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.015s</div>
+<div class="counter">0.018s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">loginTest()</td>
-<td class="success">0.015s</td>
+<td class="success">0.018s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -96,9 +96,9 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-15 17:11:52.514  INFO 37430 --- [    Test worker] C.G.Security.LoginControllerTest         : Starting LoginControllerTest on Prabhjots-MacBook-Pro.local with PID 37430 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-15 17:11:52.514  INFO 37430 --- [    Test worker] C.G.Security.LoginControllerTest         : No active profile set, falling back to default profiles: default
-2020-07-15 17:11:52.829  INFO 37430 --- [    Test worker] C.G.Security.LoginControllerTest         : Started LoginControllerTest in 0.327 seconds (JVM running for 6.876)
+2020-07-15 23:08:44.467  INFO 38787 --- [    Test worker] C.G.Security.LoginControllerTest         : Starting LoginControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:44.467  INFO 38787 --- [    Test worker] C.G.Security.LoginControllerTest         : No active profile set, falling back to default profiles: default
+2020-07-15 23:08:44.771  INFO 38787 --- [    Test worker] C.G.Security.LoginControllerTest         : Started LoginControllerTest in 0.313 seconds (JVM running for 6.597)
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -106,7 +106,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@35be05f4}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@79ea9a2e}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Security.LoginController
@@ -136,22 +136,22 @@ MockHttpServletResponse:
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;/&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
-    &lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;/&gt;
+    &lt;meta content=&quot;IE=edge&quot; http-equiv=&quot;X-UA-Compatible&quot;/&gt;
+    &lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+    &lt;link href=&quot;favicon.ico&quot; rel=&quot;icon&quot;/&gt;
     &lt;title&gt;Login Page&lt;/title&gt;
     &lt;link
+            crossorigin=&quot;anonymous&quot;
             href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;
-            rel=&quot;stylesheet&quot;
             integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot;
-            crossorigin=&quot;anonymous&quot;/&gt;
+            rel=&quot;stylesheet&quot;/&gt;
 
 &lt;/head&gt;
 &lt;body style=&quot;background-color: #e7ebee&quot;&gt;
 &lt;div&gt;
     &lt;div class=&quot;flex align-items-center text-center&quot;&gt;
-        &lt;form autocomplete=&quot;off&quot; action=&quot;/login&quot; method=&quot;post&quot; class=&quot;m-t col-md-4 col-md-offset-4&quot; role=&quot;form&quot;
-              data-toggle=&quot;validator&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;c51cc6ee-4f73-45d7-a7f5-fcb61eddcab7&quot;/&gt;
+        &lt;form action=&quot;/login&quot; autocomplete=&quot;off&quot; class=&quot;m-t col-md-4 col-md-offset-4&quot;
+              data-toggle=&quot;validator&quot; method=&quot;post&quot; role=&quot;form&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;0c68f57b-a962-42dd-a6fb-f4ce2098ecbe&quot;/&gt;
 
             &lt;br/&gt;
             &lt;h4&gt;Sign in to continue!&lt;/h4&gt;
@@ -164,32 +164,32 @@ MockHttpServletResponse:
             &lt;div class=&quot;form-group input-group has-feedback&quot;&gt;
 					&lt;span class=&quot;input-group-addon&quot;&gt; &lt;span
                             class=&quot;glyphicon glyphicon-envelope&quot;&gt;&lt;/span&gt;
-					&lt;/span&gt; &lt;input type=&quot;email&quot; name=&quot;username&quot; placeholder=&quot;Email Address&quot;
-                                   class=&quot;form-control&quot; required/&gt; &lt;span
-                    class=&quot;glyphicon form-control-feedback&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+					&lt;/span&gt; &lt;input class=&quot;form-control&quot; name=&quot;username&quot; placeholder=&quot;Email Address&quot;
+                                   required type=&quot;email&quot;/&gt; &lt;span
+                    aria-hidden=&quot;true&quot; class=&quot;glyphicon form-control-feedback&quot;&gt;&lt;/span&gt;
             &lt;/div&gt;
 
             &lt;br/&gt;
             &lt;div class=&quot;form-group input-group has-feedback&quot;&gt;
 					&lt;span class=&quot;input-group-addon&quot;&gt; &lt;span
                             class=&quot;glyphicon glyphicon-lock&quot;&gt;&lt;/span&gt;
-					&lt;/span&gt; &lt;input type=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;Password&quot;
-                                   class=&quot;form-control&quot; required/&gt; &lt;span
-                    class=&quot;glyphicon form-control-feedback&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+					&lt;/span&gt; &lt;input class=&quot;form-control&quot; name=&quot;password&quot; placeholder=&quot;Password&quot;
+                                   required type=&quot;password&quot;/&gt; &lt;span
+                    aria-hidden=&quot;true&quot; class=&quot;glyphicon form-control-feedback&quot;&gt;&lt;/span&gt;
             &lt;/div&gt;
 
 
             &lt;div class=&quot;text-center&quot;&gt;
-                &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary btn-sm btn-block&quot;&gt;Login&lt;/button&gt;
+                &lt;button class=&quot;btn btn-primary btn-sm btn-block&quot; type=&quot;submit&quot;&gt;Login&lt;/button&gt;
             &lt;/div&gt;
             &lt;br/&gt;
             &lt;div&gt;
-                &lt;a href=&quot;/register&quot; class=&quot;text-primary&quot;&gt;Are you a new
+                &lt;a class=&quot;text-primary&quot; href=&quot;/register&quot;&gt;Are you a new
                     user? Click here to register!&lt;/a&gt;
             &lt;/div&gt;
             &lt;br/&gt;
             &lt;div&gt;
-                &lt;a href=&quot;/forgotPassword&quot; class=&quot;text-secondary&quot;&gt;Forgot
+                &lt;a class=&quot;text-secondary&quot; href=&quot;/forgotPassword&quot;&gt;Forgot
                     Password?&lt;/a&gt;
             &lt;/div&gt;
         &lt;/form&gt;
@@ -213,7 +213,7 @@ MockHttpServletResponse:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 15, 2020, 5:11:54 p.m.</p>
+<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 15, 2020, 11:08:46 p.m.</p>
 </div>
 </div>
 </body>

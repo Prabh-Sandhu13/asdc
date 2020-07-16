@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CSCI5308.GroupFormationTool.Course.TAControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-15T20:11:50" hostname="Prabhjots-MacBook-Pro.local" time="0.303">
+<testsuite name="CSCI5308.GroupFormationTool.Course.TAControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-16T02:08:42" hostname="Prabhjots-MacBook-Pro.local" time="0.29">
   <properties/>
-  <testcase name="courseDetailsTest()" classname="CSCI5308.GroupFormationTool.Course.TAControllerTest" time="0.303"/>
+  <testcase name="courseDetailsTest()" classname="CSCI5308.GroupFormationTool.Course.TAControllerTest" time="0.29"/>
   <system-out><![CDATA[
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -11,13 +11,13 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-15 17:11:49.728  INFO 37430 --- [    Test worker] C.G.Course.TAControllerTest              : Starting TAControllerTest on Prabhjots-MacBook-Pro.local with PID 37430 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-15 17:11:49.729  INFO 37430 --- [    Test worker] C.G.Course.TAControllerTest              : No active profile set, falling back to default profiles: default
-2020-07-15 17:11:50.156  INFO 37430 --- [    Test worker] C.G.Course.TAControllerTest              : Started TAControllerTest in 0.443 seconds (JVM running for 4.203)
-2020-07-15 17:11:50.215  INFO 37430 --- [    Test worker] C.G.Course.TaController                  : Checking if instructor has created a survey for the course
-2020-07-15 17:11:50.215  INFO 37430 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id
-2020-07-15 17:11:50.216  INFO 37430 --- [    Test worker] C.G.Course.TaController                  : Checking if instructor has published the survey for the course
-2020-07-15 17:11:50.216  INFO 37430 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course from the database
+2020-07-15 23:08:41.800  INFO 38787 --- [    Test worker] C.G.Course.TAControllerTest              : Starting TAControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:41.801  INFO 38787 --- [    Test worker] C.G.Course.TAControllerTest              : No active profile set, falling back to default profiles: default
+2020-07-15 23:08:42.232  INFO 38787 --- [    Test worker] C.G.Course.TAControllerTest              : Started TAControllerTest in 0.447 seconds (JVM running for 4.058)
+2020-07-15 23:08:42.295  INFO 38787 --- [    Test worker] C.G.Course.TaController                  : Checking if instructor has created a survey for the course
+2020-07-15 23:08:42.296  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Getting survey id based on course id
+2020-07-15 23:08:42.296  INFO 38787 --- [    Test worker] C.G.Course.TaController                  : Checking if instructor has published the survey for the course
+2020-07-15 23:08:42.296  INFO 38787 --- [    Test worker] C.GroupFormationTool.Survey.Survey       : Checking if the survey is published for the course from the database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -62,15 +62,15 @@ MockHttpServletResponse:
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" href="favicon.ico"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="favicon.ico" rel="icon"/>
     <title>TA Course Details</title>
     <link
+            crossorigin="anonymous"
             href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            rel="stylesheet"
             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous"/>
+            rel="stylesheet"/>
 
 </head>
 <body style="background-color: #e7ebee">

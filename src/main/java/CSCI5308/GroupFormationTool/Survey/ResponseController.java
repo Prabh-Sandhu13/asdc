@@ -38,27 +38,34 @@ public class ResponseController {
         String emailId = authentication.getPrincipal().toString();
         userRole = userCourses.getUserRoleByEmailId(emailId);
         if (userRole.equals(DomainConstants.studentRole)) {
-            String surveyId = surveyInstance.getSurveyId(courseId);
+        	String surveyId = surveyInstance.getSurveyId(courseId);
             ArrayList<IQuestion> surveyQuestions = surveyInstance.getSurveyQuestions(surveyId);
             model.addAttribute("surveyQuestions", surveyQuestions);
             model.addAttribute("courseName", courseName);
             model.addAttribute("courseId", courseId);
             return "course/courseSurveyResponse";
-        } else {
-            Log.warn("Other type of user tried directly accessing response page");
+        }
+        else {
+        	Log.warn("Other type of user tried directly accessing response page");
             return "redirect:login";
         }
     }
 
     @PostMapping("/courseSurveyResponse")
-    public String submitSurvey(@RequestParam Map<String, String> searchParams, Model model) {
-        ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
-        responseInstance = surveyAbstractFactory.createResponseInstance();
-        log.info("Creating a response list");
-        ArrayList<IResponse> responseList = responseInstance.createResponseList(searchParams);
-        responseInstance.storeResponses(responseList);
-        model.addAttribute("Success", DomainConstants.surveySuccess);
-        return "course/courseSurveySubmitted";
+
+    public String submitSurvey(@RequestParam Map<String,String> searchParams, Model model){
+		ISurveyAbstractFactory surveyAbstractFactory = SurveyInjector.instance().getSurveyAbstractFactory();
+		responseInstance = surveyAbstractFactory.createResponseInstance();
+		ArrayList<IResponse> responseList= responseInstance.createResponseList(searchParams);
+		boolean success = responseInstance.storeResponses(responseList);
+		if(success) {
+			model.addAttribute("Success",DomainConstants.surveySuccess);
+		}
+		else {
+			model.addAttribute("Error", DomainConstants.dbError);
+		}
+	    return "course/courseSurveySubmitted";				
+
     }
 
     @GetMapping("/viewResponse")

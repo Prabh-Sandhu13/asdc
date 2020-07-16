@@ -1,22 +1,11 @@
 package CSCI5308.GroupFormationTool.Survey;
 
-import CSCI5308.GroupFormationTool.Question.IQuestionAdminRepository;
-import CSCI5308.GroupFormationTool.Question.ITestQuestionAbstractFactory;
-import CSCI5308.GroupFormationTool.Question.QuestionInjector;
-import CSCI5308.GroupFormationTool.Question.TestQuestionInjector;
-import CSCI5308.GroupFormationTool.User.ITestUserAbstractFactory;
-import CSCI5308.GroupFormationTool.User.IUser;
-import CSCI5308.GroupFormationTool.User.TestUserInjector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 public class ResponseTest {
@@ -24,9 +13,6 @@ public class ResponseTest {
     private IResponseRepository responseRepository;
     private ITestSurveyAbstractFactory surveyAbstractFactory = TestSurveyInjector.instance().
             getSurveyAbstractFactory();
-    private ITestUserAbstractFactory userAbstractFactory = TestUserInjector.instance().getUserAbstractFactory();
-    private ITestQuestionAbstractFactory questionAbstractFactory = TestQuestionInjector.instance().
-            getQuestionAbstractFactory();
 
     @BeforeEach
     public void init() {

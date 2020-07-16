@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" href="favicon.ico"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="favicon.ico" rel="icon"/>
     <title>Create Survey</title>
     <link
+            crossorigin="anonymous"
             href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            rel="stylesheet"
             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous"/>
+            rel="stylesheet"/>
 
 </head>
 <body style="background-color: #e7ebee">
@@ -26,14 +26,34 @@
         <h3 class="text-center"
             th:text="'Create a survey for the course ' + ${courseName}"></h3>
 
-        <form th:action="@{/questionManager/searchQuestionForSurvey(surveyId=${surveyId},
-		courseId=${courseId}, courseName=${courseName})}" method="post">
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <form method="post" th:action="@{/questionManager/searchQuestionForSurvey(surveyId=${surveyId},
+		courseId=${courseId}, courseName=${courseName})}">
             <div class="md-form mt-0">
                 <label>Search for a Question by Title</label>
-                <input class="form-control" type="text" placeholder="Search for a Question by Title" aria-label="Search"
-                       id="questionTitle" name="questionTitle">
+                <input aria-label="Search" class="form-control" id="questionTitle" name="questionTitle"
+                       placeholder="Search for a Question by Title" type="text">
                 <br/><br/>
+                <button class="btn btn-success btn-sm" type="submit">Search
+=======
+        <form th:action="@{/questionManager/searchQuestionForSurvey(surveyId=${surveyId},
+		courseId=${courseId}, courseName=${courseName})}" method="post">
+=======
+        <form method="post" th:action="@{/questionManager/searchQuestionForSurvey(surveyId=${surveyId},
+		courseId=${courseId}, courseName=${courseName})}">
+>>>>>>> 6efc1cf95b97f5a40718fad570c0f973bbcc15eb
+            <div class="md-form mt-0">
+                <label>Search for a Question by Title</label>
+                <input aria-label="Search" class="form-control" id="questionTitle" name="questionTitle"
+                       placeholder="Search for a Question by Title" type="text">
+                <br/><br/>
+<<<<<<< HEAD
                 <button type="submit" class="btn btn-success btn-sm">Search
+>>>>>>> refactoringTests
+=======
+                <button class="btn btn-success btn-sm" type="submit">Search
+>>>>>>> 6efc1cf95b97f5a40718fad570c0f973bbcc15eb
                 </button>
             </div>
         </form>
@@ -108,7 +128,7 @@
         </div>
         <div class="text-center">
             <a th:href="@{/courseList}">
-                <button type="submit" class="btn btn-success btn-sm">Back
+                <button class="btn btn-success btn-sm" type="submit">Back
                     to your courses
                 </button>
             </a>
