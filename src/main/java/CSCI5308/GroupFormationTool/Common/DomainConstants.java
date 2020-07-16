@@ -28,10 +28,11 @@ public final class DomainConstants {
             + "and try again";
     public final static String deleteQuestionSuccess = "The question was successfully deleted";
     public final static String deleteQuestionFailure = "The question could not be deleted";
-    public static final String URL = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_22_DEVINT?useSSL=false"
-            + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    public static final String USER = "CSCI5308_22_DEVINT_USER";
-    public static final String PASSWORD = "CSCI5308_22_DEVINT_22320";
+    public static final String URL = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_22_PRODUCTION?useSSL=false"+
+            "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+
+    public static final String USER ="CSCI5308_22_PRODUCTION_USER";
+    public static final String PASSWORD = "CSCI5308_22_PRODUCTION_22986";
     public static final String instructorAddSuccess = "Instructor successfully added";
     public static final String instructorAddFailure = "Instructor could not be added";
     public static final String taAddSuccess = "added";
