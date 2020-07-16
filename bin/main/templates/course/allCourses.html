@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" href="favicon.ico"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="favicon.ico" rel="icon"/>
     <title>Admin Course List</title>
     <link
+            crossorigin="anonymous"
             href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            rel="stylesheet"
             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous"/>
+            rel="stylesheet"/>
 
 </head>
 <body style="background-color: #e7ebee">
@@ -25,12 +25,12 @@
 
     <div sec:authorize="isAuthenticated()">
 
-        <div th:if="${successMessage}"
-             class="validation-message alert alert-success" role="alert"
+        <div class="validation-message alert alert-success"
+             role="alert" th:if="${successMessage}"
              th:text="${successMessage}"></div>
 
-        <div th:if="${failureMessage}"
-             class="validation-message alert alert-danger" role="alert"
+        <div class="validation-message alert alert-danger"
+             role="alert" th:if="${failureMessage}"
              th:text="${failureMessage}"></div>
 
         <h1>List of Courses</h1>
@@ -60,19 +60,19 @@
 
                     <td th:text="*{course.description}">Course Details</td>
 
-                    <td><a th:href="@{/admin/deleteCourse(id=${course.id})}"
-                           class="text-danger"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete</a>
+                    <td><a class="text-danger"
+                           th:href="@{/admin/deleteCourse(id=${course.id})}"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete</a>
                     </td>
 
                     <td><a
-                            th:href="@{/admin/assignInstructor(courseId=${course.id}) }"
-                            class="text-primary"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add
+                            class="text-primary"
+                            th:href="@{/admin/assignInstructor(courseId=${course.id}) }"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add
                     </a>
                 </tr>
             </table>
         </div>
-        <form th:action="@{/logout}" method="post" class="text-center">
-            <button type="submit" class="btn btn-danger btn-sm">
+        <form class="text-center" method="post" th:action="@{/logout}">
+            <button class="btn btn-danger btn-sm" type="submit">
                 Sign Out
             </button>
         </form>

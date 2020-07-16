@@ -7,7 +7,7 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <link href="favicon.ico" rel="icon"/>
-    <title>TA Course Details</title>
+    <title>Instructor Course Details</title>
     <link
             crossorigin="anonymous"
             href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -39,25 +39,54 @@
             </table>
         </div>
         <br/>
-        <div class="text-center" th:if="${!published and created ==-1}">
+        <div class="text-center" th:if="${!published and questionError !=null}">
+            <div class="validation-message alert alert-danger" role="alert"
+                 th:text="${questionError}"></div>
+            <br/>
+        </div>
+        <br/>
+        <div class="text-center" th:if="${!published and created==-1}">
             <a class="btn btn-primary btn-md"
                th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}">Create your Course Survey
             </a>
+            <br/>
         </div>
-        <div class="text-center" th:if="${!published and created !=-1}">
+        <div class="text-center" th:if="${!published and created!=-1}">
             <a class="btn btn-primary btn-md"
                th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}">Edit your Course Survey
             </a>
         </div>
         <br/>
         <div class="text-center">
-            <a th:href="@{/courseList}">
-                <button class="btn btn-success btn-sm" type="submit">Back
-                    to your courses
-                </button>
+            <a class="btn btn-primary btn-md"
+               th:href="@{/survey/createSurveyFormula(courseId=${courseId},courseName=${courseName})}">Create Course Group Creation Formula
             </a>
         </div>
+        <br/>
+        <div class="text-center">
+            <div class="text-center" th:if="${!published}">
+                <form data-toggle="validator"
+                      method="post" role="form" th:action="@{/survey/publishSurvey(courseId=${courseId},courseName=${courseName})}">
+                    <button class="btn primary btn-md" type="submit">
+                        Publish the Survey
+                    </button>
+                </form>
+            </div>
+            <br/>
+            <div class="text-center">
+                <a class="btn btn-primary btn-md"
+                   th:href="@{/groupFormation/getGroups(courseId=${courseId},courseName=${courseName})}">Form groups
+                </a>
+            </div>
+            <br/> <br/>
+            <div class="text-center">
+                <a th:href="@{/courseList}">
+                    <button class="btn btn-success btn-sm" type="submit">Back
+                        to your courses
+                    </button>
+                </a>
+            </div>
+        </div>
     </div>
-</div>
 </body>
 </html>
