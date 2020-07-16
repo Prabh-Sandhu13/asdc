@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.027s</div>
+<div class="counter">0.030s</div>
 <p>duration</p>
 </div>
 </td>
@@ -89,7 +89,7 @@
 </tr>
 <tr>
 <td class="success">viewQuestionTest()</td>
-<td class="success">0.016s</td>
+<td class="success">0.019s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -106,11 +106,11 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-15 17:11:53.696  INFO 37430 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : Starting QuestionAdminControllerTest on Prabhjots-MacBook-Pro.local with PID 37430 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-15 17:11:53.696  INFO 37430 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : No active profile set, falling back to default profiles: default
-2020-07-15 17:11:54.010  INFO 37430 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : Started QuestionAdminControllerTest in 0.323 seconds (JVM running for 8.057)
-2020-07-15 17:11:54.014  INFO 37430 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching the question by its id for the current instructor to view
-2020-07-15 17:11:54.014  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionById repository function to fetch a question from the Database
+2020-07-15 23:08:45.629  INFO 38787 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : Starting QuestionAdminControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:45.630  INFO 38787 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : No active profile set, falling back to default profiles: default
+2020-07-15 23:08:45.961  INFO 38787 --- [    Test worker] C.G.Q.QuestionAdminControllerTest        : Started QuestionAdminControllerTest in 0.34 seconds (JVM running for 7.787)
+2020-07-15 23:08:45.965  INFO 38787 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching the question by its id for the current instructor to view
+2020-07-15 23:08:45.965  INFO 38787 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionById repository function to fetch a question from the Database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -135,7 +135,7 @@ ModelAndView:
         View name = question/viewQuestion
              View = null
         Attribute = question
-            value = CSCI5308.GroupFormationTool.Question.Question@7d9e8a79
+            value = CSCI5308.GroupFormationTool.Question.Question@6122f944
            errors = []
 
 FlashMap:
@@ -150,15 +150,15 @@ MockHttpServletResponse:
 &lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;/&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
-    &lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;/&gt;
+    &lt;meta content=&quot;IE=edge&quot; http-equiv=&quot;X-UA-Compatible&quot;/&gt;
+    &lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+    &lt;link href=&quot;favicon.ico&quot; rel=&quot;icon&quot;/&gt;
     &lt;title&gt;View Question&lt;/title&gt;
     &lt;link
+            crossorigin=&quot;anonymous&quot;
             href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;
-            rel=&quot;stylesheet&quot;
             integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot;
-            crossorigin=&quot;anonymous&quot;/&gt;
+            rel=&quot;stylesheet&quot;/&gt;
 
 &lt;/head&gt;
 &lt;body style=&quot;background-color: #e7ebee&quot;&gt;
@@ -176,8 +176,8 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-15 17:11:54.030  INFO 37430 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching the question bank sorted based on the field like title and date for the logged in instructor
-2020-07-15 17:11:54.030  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getSortedQuestionListForInstructor repository function to fetch the question bank in a sorted order from the Database
+2020-07-15 23:08:45.983  INFO 38787 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching the question bank sorted based on the field like title and date for the logged in instructor
+2020-07-15 23:08:45.983  INFO 38787 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getSortedQuestionListForInstructor repository function to fetch the question bank in a sorted order from the Database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -216,15 +216,15 @@ MockHttpServletResponse:
 &lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;/&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
-    &lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;/&gt;
+    &lt;meta content=&quot;IE=edge&quot; http-equiv=&quot;X-UA-Compatible&quot;/&gt;
+    &lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+    &lt;link href=&quot;favicon.ico&quot; rel=&quot;icon&quot;/&gt;
     &lt;title&gt;Instructor Question Manager&lt;/title&gt;
     &lt;link
+            crossorigin=&quot;anonymous&quot;
             href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;
-            rel=&quot;stylesheet&quot;
             integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot;
-            crossorigin=&quot;anonymous&quot;/&gt;
+            rel=&quot;stylesheet&quot;/&gt;
 
 &lt;/head&gt;
 &lt;body style=&quot;background-color: #e7ebee&quot;&gt;
@@ -242,8 +242,8 @@ MockHttpServletResponse:
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
-2020-07-15 17:11:54.036  INFO 37430 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching the question bank for the logged in instructor
-2020-07-15 17:11:54.037  INFO 37430 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
+2020-07-15 23:08:45.989  INFO 38787 --- [    Test worker] C.G.Question.QuestionAdminController     : Fetching the question bank for the logged in instructor
+2020-07-15 23:08:45.989  INFO 38787 --- [    Test worker] C.GroupFormationTool.Question.Question   : Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -282,15 +282,15 @@ MockHttpServletResponse:
 &lt;html lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;/&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
-    &lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;/&gt;
+    &lt;meta content=&quot;IE=edge&quot; http-equiv=&quot;X-UA-Compatible&quot;/&gt;
+    &lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+    &lt;link href=&quot;favicon.ico&quot; rel=&quot;icon&quot;/&gt;
     &lt;title&gt;Instructor Question Manager&lt;/title&gt;
     &lt;link
+            crossorigin=&quot;anonymous&quot;
             href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;
-            rel=&quot;stylesheet&quot;
             integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot;
-            crossorigin=&quot;anonymous&quot;/&gt;
+            rel=&quot;stylesheet&quot;/&gt;
 
 &lt;/head&gt;
 &lt;body style=&quot;background-color: #e7ebee&quot;&gt;
@@ -319,7 +319,7 @@ MockHttpServletResponse:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 15, 2020, 5:11:54 p.m.</p>
+<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 15, 2020, 11:08:46 p.m.</p>
 </div>
 </div>
 </body>

@@ -41,6 +41,7 @@
         <br/>
         <div class="text-center" th:if="${!published and created ==-1}">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <a class="btn btn-primary btn-md"
                th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}">Create your Course Survey
             </a>
@@ -53,11 +54,15 @@
 =======
             <a th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}"
                class="btn btn-primary btn-md">Create your Course Survey
+=======
+            <a class="btn btn-primary btn-md"
+               th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}">Create your Course Survey
+>>>>>>> 6efc1cf95b97f5a40718fad570c0f973bbcc15eb
             </a>
         </div>
         <div class="text-center" th:if="${!published and created !=-1}">
-            <a th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}"
-               class="btn btn-primary btn-md">Edit your Course Survey
+            <a class="btn btn-primary btn-md"
+               th:href="@{/survey/createSurvey(courseId=${courseId},courseName=${courseName})}">Edit your Course Survey
             </a>
         </div>
 >>>>>>> refactoringTests

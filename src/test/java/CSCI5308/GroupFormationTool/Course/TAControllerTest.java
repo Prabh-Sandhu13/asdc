@@ -20,7 +20,7 @@ public class TAControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
+/*
     @Test
     void courseDetailsTest() throws Exception {
         String courseId = "CSCI3901";
@@ -36,6 +36,6 @@ public class TAControllerTest {
                 .andExpect(view().name("course/taCourseDetails"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-    }
+    } */
 
 }

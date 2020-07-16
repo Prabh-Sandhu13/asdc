@@ -6,13 +6,15 @@ public class SurveyInjector {
     private ISurveyAbstractFactory surveyAbstractFactory;
     private ISurveyRepository surveyRepository;
     private IResponseRepository responseRepository;
+    private ISurveyFormulaRepository surveyFormulaRepository;
 
     private SurveyInjector() {
         surveyAbstractFactory = new SurveyAbstractFactory();
         surveyRepository = surveyAbstractFactory.createSurveyRepositoryInstance();
         responseRepository = surveyAbstractFactory.createResponseRepositoryInstance();
+        surveyFormulaRepository = surveyAbstractFactory.createSurveyFormulaRepositoryInstance();
     }
-
+    
     public static SurveyInjector instance() {
         if (instance == null) {
             instance = new SurveyInjector();
@@ -42,6 +44,14 @@ public class SurveyInjector {
 
     public void setResponseRepository(IResponseRepository responseRepository) {
         this.responseRepository = responseRepository;
+    }
+
+    public ISurveyFormulaRepository getSurveyFormulaRepository() {
+        return surveyFormulaRepository;
+    }
+
+    public void setSurveyFormulaRepository(ISurveyFormulaRepository surveyFormulaRepository) {
+        this.surveyFormulaRepository = surveyFormulaRepository;
     }
 
 }
