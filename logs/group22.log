@@ -7695,3 +7695,400 @@ org.thymeleaf.exceptions.TemplateProcessingException: Could not parse as express
 2020-07-15 17:26:25.016 [http-nio-8080-exec-7] INFO  C.G.C.InstructorCourseController: Checking if instructor has published the survey for the course
 2020-07-15 17:26:25.017 [http-nio-8080-exec-7] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is published for the course from the database
 2020-07-15 17:26:25.017 [http-nio-8080-exec-7] INFO  C.G.Survey.SurveyRepository: Calling stored procedure sp_checkIfSurveyPublished to fetch the groups for the course 2
+2020-07-15 23:07:17.971 [main] INFO  C.G.GroupFormationToolApplication: Starting GroupFormationToolApplication on Prabhjots-MacBook-Pro.local with PID 38739 (/Users/prabhjotkaur/git/group22/build/classes/java/main started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:07:17.974 [main] INFO  C.G.GroupFormationToolApplication: No active profile set, falling back to default profiles: default
+2020-07-15 23:07:19.019 [main] INFO  o.a.catalina.core.StandardService: Starting service [Tomcat]
+2020-07-15 23:07:19.019 [main] INFO  o.a.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.34]
+2020-07-15 23:07:19.101 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-07-15 23:07:19.634 [main] INFO  C.G.GroupFormationToolApplication: Started GroupFormationToolApplication in 2.052 seconds (JVM running for 2.392)
+2020-07-15 23:07:21.491 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-15 23:07:24.217 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Fetching the user details by email id
+2020-07-15 23:07:24.218 [http-nio-8080-exec-3] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getUserByEmailId to fetch user details for given emailId
+2020-07-15 23:07:24.753 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Checking if the user's password is correct and assigning rights
+2020-07-15 23:07:24.753 [http-nio-8080-exec-3] INFO  C.G.Security.BCryptEncryption: Checking if the password plain text matches with its encrypted one for authentication
+2020-07-15 23:07:24.845 [http-nio-8080-exec-3] INFO  C.G.S.CustomAuthenticationManager: Assigning rights to the user based on the type
+2020-07-15 23:07:25.783 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Condition check if current user is admin or not
+2020-07-15 23:07:25.784 [http-nio-8080-exec-5] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 23:07:25.784 [http-nio-8080-exec-5] INFO  C.G.User.UserRepository: Calling the stored procedure sp_getAdminDetails to fetch details of Admin user
+2020-07-15 23:07:26.155 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: Fetch user role based on th email Id
+2020-07-15 23:07:26.156 [http-nio-8080-exec-5] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 23:07:26.156 [http-nio-8080-exec-5] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getUserRoleByEmailId to get user role by Email Id
+2020-07-15 23:07:26.388 [http-nio-8080-exec-5] INFO  C.G.Course.CourseController: User is an Instructor
+2020-07-15 23:07:26.389 [http-nio-8080-exec-5] INFO  C.G.Question.Question: Function call to get instructors for a course using email Id
+2020-07-15 23:07:26.389 [http-nio-8080-exec-5] INFO  C.G.Q.QuestionManagerRepository: Calling stored procedure sp_getInstructorCoursesByEmailId to get courses of a Instructor using Email Id
+2020-07-15 23:07:28.249 [http-nio-8080-exec-6] INFO  C.G.C.InstructorCourseController: Checking if instructor has created a survey for the course
+2020-07-15 23:07:28.249 [http-nio-8080-exec-6] INFO  C.GroupFormationTool.Survey.Survey: Getting survey id based on course id
+2020-07-15 23:07:28.249 [http-nio-8080-exec-6] INFO  C.G.Survey.SurveyRepository: Calling stored procedure sp_getSurveyId to fetch the groups for the course 1
+2020-07-15 23:07:28.493 [http-nio-8080-exec-6] INFO  C.G.C.InstructorCourseController: Checking if instructor has published the survey for the course
+2020-07-15 23:07:28.493 [http-nio-8080-exec-6] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is published for the course from the database
+2020-07-15 23:07:28.494 [http-nio-8080-exec-6] INFO  C.G.Survey.SurveyRepository: Calling stored procedure sp_checkIfSurveyPublished to fetch the groups for the course 1
+2020-07-15 23:07:32.217 [http-nio-8080-exec-8] INFO  C.G.C.InstructorCourseController: Getting survey Details for the formula setup
+2020-07-15 23:07:32.217 [http-nio-8080-exec-8] INFO  C.G.C.InstructorCourseController: Calling the stored procedure sp_getSurveyDetailsToSetAlgo to fetch survey details for a course
+2020-07-15 23:07:32.448 [http-nio-8080-exec-8] INFO  C.G.C.InstructorCourseController: Survey id for the courseCloudis 1
+2020-07-15 23:07:49.565 [http-nio-8080-exec-10] INFO  C.G.C.InstructorCourseController: Passing details to business layer for creating rule for survey 1
+2020-07-15 23:07:49.565 [http-nio-8080-exec-10] INFO  C.G.C.InstructorCourseController: Checking if survey formula exists for survey:1
+2020-07-15 23:07:49.566 [http-nio-8080-exec-10] INFO  C.G.C.InstructorCourseController: Calling the stored procedure sp_getAlgoIdBySurveyId to fetch Algo id for given survey Id
+2020-07-15 23:07:49.806 [http-nio-8080-exec-10] WARN  C.G.C.InstructorCourseController: Deleting the existing algo for survey:1
+2020-07-15 23:07:49.806 [http-nio-8080-exec-10] INFO  C.G.C.InstructorCourseController: Calling the stored procedure sp_deleteAlgo to delete the given algo by algoId
+2020-07-15 23:07:50.053 [http-nio-8080-exec-10] ERROR C.G.C.InstructorCourseController: Could not execute the Stored procedure sp_deleteAlgobecause of an SQL Exception No output parameters returned by procedure.
+2020-07-15 23:07:50.053 [http-nio-8080-exec-10] INFO  C.G.C.InstructorCourseController: Adding new survey formula by calling surveyFormulaDB
+2020-07-15 23:07:50.054 [http-nio-8080-exec-10] INFO  C.G.C.InstructorCourseController: Calling the stored procedure sp_updateAlgoIdBySurveyId to update algo id for the given survey Id
+2020-07-15 23:07:50.255 [http-nio-8080-exec-10] INFO  C.G.C.InstructorCourseController: Calling the stored procedure sp_updateGroupSizeBySurveyId to update group size for given survey Id
+2020-07-15 23:07:50.521 [http-nio-8080-exec-10] INFO  C.G.C.InstructorCourseController: Calling the stored procedure sp_createAlgo to create Survey formula for given surveyId
+2020-07-15 23:07:50.778 [http-nio-8080-exec-10] INFO  C.G.C.InstructorCourseController: Calling the stored procedure sp_createAlgo to create Survey formula for given surveyId
+2020-07-15 23:07:51.009 [http-nio-8080-exec-10] INFO  C.G.C.InstructorCourseController: Calling the stored procedure sp_createAlgo to create Survey formula for given surveyId
+2020-07-15 23:07:51.585 [http-nio-8080-exec-10] INFO  C.G.C.InstructorCourseController: Calling the stored procedure sp_createAlgo to create Survey formula for given surveyId
+2020-07-15 23:07:52.907 [http-nio-8080-exec-10] INFO  C.G.C.InstructorCourseController: Survey formula for survey:1 added successfully
+2020-07-15 23:07:52.923 [http-nio-8080-exec-1] INFO  C.G.C.InstructorCourseController: Checking if instructor has created a survey for the course
+2020-07-15 23:07:52.923 [http-nio-8080-exec-1] INFO  C.GroupFormationTool.Survey.Survey: Getting survey id based on course id
+2020-07-15 23:07:52.923 [http-nio-8080-exec-1] INFO  C.G.Survey.SurveyRepository: Calling stored procedure sp_getSurveyId to fetch the groups for the course 1
+2020-07-15 23:07:53.134 [http-nio-8080-exec-1] INFO  C.G.C.InstructorCourseController: Checking if instructor has published the survey for the course
+2020-07-15 23:07:53.134 [http-nio-8080-exec-1] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is published for the course from the database
+2020-07-15 23:07:53.135 [http-nio-8080-exec-1] INFO  C.G.Survey.SurveyRepository: Calling stored procedure sp_checkIfSurveyPublished to fetch the groups for the course 1
+2020-07-15 23:08:39.675 [Test worker] INFO  C.G.P.ForgotPasswordRepositoryTest: Starting ForgotPasswordRepositoryTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:39.677 [Test worker] INFO  C.G.P.ForgotPasswordRepositoryTest: No active profile set, falling back to default profiles: default
+2020-07-15 23:08:41.083 [Test worker] INFO  C.G.P.ForgotPasswordRepositoryTest: Started ForgotPasswordRepositoryTest in 1.832 seconds (JVM running for 2.909)
+2020-07-15 23:08:41.668 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to fetch all the password security policies from database
+2020-07-15 23:08:41.669 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to fetch all the password security policies from database
+2020-07-15 23:08:41.684 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:41.684 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:41.685 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:41.685 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:41.685 [Test worker] ERROR C.G.Password.Policy: Minimum password length security policy is violated
+2020-07-15 23:08:41.685 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:41.686 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:41.686 [Test worker] ERROR C.G.Password.Policy: Maximum password length security policy is violated
+2020-07-15 23:08:41.686 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:41.687 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:41.687 [Test worker] ERROR C.G.Password.Policy: Minimum upper case charachters required password security policy is violated
+2020-07-15 23:08:41.687 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:41.688 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:41.688 [Test worker] ERROR C.G.Password.Policy: Minimum lower case charachters required password security policy is violated
+2020-07-15 23:08:41.688 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:41.688 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:41.688 [Test worker] ERROR C.G.Password.Policy: Minimum special symbols required password security policy is violated
+2020-07-15 23:08:41.689 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:41.689 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:41.689 [Test worker] ERROR C.G.Password.Policy: Charachters not allowed in password security policy is violated
+2020-07-15 23:08:41.702 [Test worker] WARN  C.G.Password.PasswordHistoryManager: Could not fetch history setting value
+2020-07-15 23:08:41.746 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:41.746 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:41.747 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:41.747 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:41.747 [Test worker] ERROR C.G.Password.Policy: Minimum password length security policy is violated
+2020-07-15 23:08:41.748 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:41.748 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:41.749 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:41.750 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:41.750 [Test worker] INFO  C.G.Password.ForgotPasswordManager: User violated history while updating password
+2020-07-15 23:08:41.751 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:41.751 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:41.754 [Test worker] INFO  C.G.Password.ForgotPasswordManager: User is updating existing token
+2020-07-15 23:08:41.755 [Test worker] INFO  C.G.Password.ForgotPasswordManager: User is adding new token
+2020-07-15 23:08:41.800 [Test worker] INFO  C.G.Course.TAControllerTest: Starting TAControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:41.801 [Test worker] INFO  C.G.Course.TAControllerTest: No active profile set, falling back to default profiles: default
+2020-07-15 23:08:42.232 [Test worker] INFO  C.G.Course.TAControllerTest: Started TAControllerTest in 0.447 seconds (JVM running for 4.058)
+2020-07-15 23:08:42.295 [Test worker] INFO  C.G.Course.TaController: Checking if instructor has created a survey for the course
+2020-07-15 23:08:42.296 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Getting survey id based on course id
+2020-07-15 23:08:42.296 [Test worker] INFO  C.G.Course.TaController: Checking if instructor has published the survey for the course
+2020-07-15 23:08:42.296 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is published for the course from the database
+2020-07-15 23:08:42.567 [Test worker] INFO  C.G.Question.Question: Function call to get instructors for a course using email Id
+2020-07-15 23:08:42.568 [Test worker] INFO  C.G.Question.Question: Function call to get instructors for a course using email Id
+2020-07-15 23:08:42.570 [Test worker] INFO  C.G.Question.Question: Get the courses enrolled by a student using student's email Id
+2020-07-15 23:08:42.571 [Test worker] INFO  C.G.Question.Question: Get the courses enrolled by a student using student's email Id
+2020-07-15 23:08:42.578 [Test worker] INFO  C.G.Question.Question: The function call return the users that are not enrolled as an instructor for a course
+2020-07-15 23:08:42.578 [Test worker] INFO  C.G.Question.Question: The function call return the users that are not enrolled as an instructor for a course
+2020-07-15 23:08:42.580 [Test worker] INFO  C.G.Question.Question: Function call to get TA for a course using course Id
+2020-07-15 23:08:42.581 [Test worker] INFO  C.G.Question.Question: Function call to get TA for a course using course Id
+2020-07-15 23:08:42.587 [Test worker] INFO  C.G.Question.Question: Function call to add an instructor for a course using course Id and email Id
+2020-07-15 23:08:42.588 [Test worker] INFO  C.G.Question.Question: Function call to add an instructor for a course using course Id and email Id
+2020-07-15 23:08:42.590 [Test worker] INFO  C.G.Question.Question: Function call to enroll a TA for the course using email id
+2020-07-15 23:08:42.591 [Test worker] INFO  C.G.Question.Question: Function call to enroll a TA for the course using email id
+2020-07-15 23:08:42.595 [Test worker] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 23:08:42.595 [Test worker] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 23:08:42.602 [Test worker] INFO  C.G.Question.Question: Get the courses for a TA using email Id
+2020-07-15 23:08:42.602 [Test worker] INFO  C.G.Question.Question: Get the courses for a TA using email Id
+2020-07-15 23:08:42.610 [Test worker] INFO  C.G.Question.Question: Function call to get instructor for a course using course Id
+2020-07-15 23:08:42.611 [Test worker] INFO  C.G.Question.Question: Function call to get instructor for a course using course Id
+2020-07-15 23:08:42.705 [Test worker] INFO  C.G.Q.QuestionManagerRepository: Added valid students in a proper data list 
+2020-07-15 23:08:42.727 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get all courses
+2020-07-15 23:08:42.727 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get all courses
+2020-07-15 23:08:42.728 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get all courses
+2020-07-15 23:08:42.728 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get all courses
+2020-07-15 23:08:42.735 [Test worker] INFO  C.GroupFormationTool.Course.Course: Creating a new course and storing it in the database
+2020-07-15 23:08:42.735 [Test worker] INFO  C.GroupFormationTool.Course.Course: Creating a new course and storing it in the database
+2020-07-15 23:08:42.737 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get courses details by Id
+2020-07-15 23:08:42.737 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get courses details by Id
+2020-07-15 23:08:42.738 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get courses details by Id
+2020-07-15 23:08:42.738 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get courses details by Id
+2020-07-15 23:08:42.745 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the deleteCourse repository function to delete the course from the Database
+2020-07-15 23:08:42.745 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the deleteCourse repository function to delete the course from the Database
+2020-07-15 23:08:42.765 [Test worker] INFO  C.G.C.InstructorCourseControllerTest: Starting InstructorCourseControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:42.765 [Test worker] INFO  C.G.C.InstructorCourseControllerTest: No active profile set, falling back to default profiles: default
+2020-07-15 23:08:43.115 [Test worker] INFO  C.G.C.InstructorCourseControllerTest: Started InstructorCourseControllerTest in 0.361 seconds (JVM running for 4.941)
+2020-07-15 23:08:43.120 [Test worker] INFO  C.G.C.InstructorCourseController: Checking if instructor has created a survey for the course
+2020-07-15 23:08:43.120 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Getting survey id based on course id
+2020-07-15 23:08:43.121 [Test worker] INFO  C.G.C.InstructorCourseController: Checking if instructor has published the survey for the course
+2020-07-15 23:08:43.121 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is published for the course from the database
+2020-07-15 23:08:43.175 [Test worker] INFO  C.G.Course.CourseControllerTest: Starting CourseControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:43.175 [Test worker] INFO  C.G.Course.CourseControllerTest: No active profile set, falling back to default profiles: default
+2020-07-15 23:08:43.510 [Test worker] INFO  C.G.Course.CourseControllerTest: Started CourseControllerTest in 0.346 seconds (JVM running for 5.336)
+2020-07-15 23:08:43.532 [Test worker] INFO  C.GroupFormationTool.Course.Course: Creating a new course and storing it in the database
+2020-07-15 23:08:43.532 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get all courses
+2020-07-15 23:08:43.533 [Test worker] WARN  C.G.Course.CourseController: Course is not added successfully
+2020-07-15 23:08:43.556 [Test worker] INFO  C.GroupFormationTool.Course.Course: Creating a new course and storing it in the database
+2020-07-15 23:08:43.557 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get all courses
+2020-07-15 23:08:43.557 [Test worker] WARN  C.G.Course.CourseController: Course is not added successfully
+2020-07-15 23:08:43.572 [Test worker] INFO  C.G.Course.CourseController: Fetch TA for a course using course Id
+2020-07-15 23:08:43.573 [Test worker] INFO  C.G.Question.Question: Function call to get TA for a course using course Id
+2020-07-15 23:08:43.596 [Test worker] INFO  C.G.Course.CourseController: Function call to fetch all the courses details
+2020-07-15 23:08:43.596 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get all courses
+2020-07-15 23:08:43.605 [Test worker] INFO  C.G.Question.Question: Function call to enroll a TA for the course using email id
+2020-07-15 23:08:43.606 [Test worker] WARN  C.G.Course.CourseController: TA is not successfully added to the course
+2020-07-15 23:08:43.606 [Test worker] INFO  C.G.Question.Question: Function call to get TA for a course using course Id
+2020-07-15 23:08:43.611 [Test worker] INFO  C.G.Question.Question: Function call to enroll a TA for the course using email id
+2020-07-15 23:08:43.611 [Test worker] WARN  C.G.Course.CourseController: TA is not successfully added to the course
+2020-07-15 23:08:43.611 [Test worker] INFO  C.G.Question.Question: Function call to get TA for a course using course Id
+2020-07-15 23:08:43.617 [Test worker] INFO  C.G.Course.CourseController: Condition check if current user is admin or not
+2020-07-15 23:08:43.617 [Test worker] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 23:08:43.618 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get all courses
+2020-07-15 23:08:43.623 [Test worker] INFO  C.G.Course.CourseController: Condition check if current user is admin or not
+2020-07-15 23:08:43.624 [Test worker] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 23:08:43.624 [Test worker] INFO  C.G.Course.CourseController: Fetch user role based on th email Id
+2020-07-15 23:08:43.624 [Test worker] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 23:08:43.624 [Test worker] INFO  C.G.Course.CourseController: User is a Guest User
+2020-07-15 23:08:43.624 [Test worker] INFO  C.G.Course.CourseController: Function call to fetch all courses details for a guest user
+2020-07-15 23:08:43.624 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get all courses
+2020-07-15 23:08:43.631 [Test worker] INFO  C.G.Course.CourseController: Condition check if current user is admin or not
+2020-07-15 23:08:43.632 [Test worker] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 23:08:43.632 [Test worker] INFO  C.G.Course.CourseController: Fetch user role based on th email Id
+2020-07-15 23:08:43.632 [Test worker] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 23:08:43.632 [Test worker] INFO  C.G.Course.CourseController: User is a Student
+2020-07-15 23:08:43.632 [Test worker] INFO  C.G.Course.CourseController: Function call to fetch enrolled courses for a student
+2020-07-15 23:08:43.632 [Test worker] INFO  C.G.Question.Question: Get the courses enrolled by a student using student's email Id
+2020-07-15 23:08:43.638 [Test worker] INFO  C.G.Course.CourseController: Condition check if current user is admin or not
+2020-07-15 23:08:43.638 [Test worker] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 23:08:43.638 [Test worker] INFO  C.G.Course.CourseController: Fetch user role based on th email Id
+2020-07-15 23:08:43.638 [Test worker] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 23:08:43.639 [Test worker] INFO  C.G.Course.CourseController: User is a TA
+2020-07-15 23:08:43.639 [Test worker] INFO  C.G.Course.CourseController: Function call to get TA courses
+2020-07-15 23:08:43.639 [Test worker] INFO  C.G.Question.Question: Get the courses for a TA using email Id
+2020-07-15 23:08:43.639 [Test worker] INFO  C.G.Course.CourseController: Function call to fetch student courses
+2020-07-15 23:08:43.639 [Test worker] INFO  C.G.Question.Question: Get the courses enrolled by a student using student's email Id
+2020-07-15 23:08:43.644 [Test worker] INFO  C.G.Course.CourseController: Condition check if current user is admin or not
+2020-07-15 23:08:43.645 [Test worker] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 23:08:43.645 [Test worker] INFO  C.G.Course.CourseController: Fetch user role based on th email Id
+2020-07-15 23:08:43.645 [Test worker] INFO  C.G.Question.Question: Get the role of a user by email Id
+2020-07-15 23:08:43.645 [Test worker] INFO  C.G.Course.CourseController: User is an Instructor
+2020-07-15 23:08:43.645 [Test worker] INFO  C.G.Question.Question: Function call to get instructors for a course using email Id
+2020-07-15 23:08:43.652 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the deleteCourse repository function to delete the course from the Database
+2020-07-15 23:08:43.652 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get all courses
+2020-07-15 23:08:43.652 [Test worker] INFO  C.G.Course.CourseController: Course is deleted successfully
+2020-07-15 23:08:43.655 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the deleteCourse repository function to delete the course from the Database
+2020-07-15 23:08:43.655 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get all courses
+2020-07-15 23:08:43.656 [Test worker] INFO  C.G.Course.CourseController: Course is not deleted successfully
+2020-07-15 23:08:43.658 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the deleteCourse repository function to delete the course from the Database
+2020-07-15 23:08:43.659 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get all courses
+2020-07-15 23:08:43.659 [Test worker] INFO  C.G.Course.CourseController: Course is deleted successfully
+2020-07-15 23:08:43.662 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the deleteCourse repository function to delete the course from the Database
+2020-07-15 23:08:43.662 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get all courses
+2020-07-15 23:08:43.662 [Test worker] INFO  C.G.Course.CourseController: Course is not deleted successfully
+2020-07-15 23:08:43.686 [Test worker] INFO  C.G.Course.GuestControllerTest: Starting GuestControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:43.686 [Test worker] INFO  C.G.Course.GuestControllerTest: No active profile set, falling back to default profiles: default
+2020-07-15 23:08:44.027 [Test worker] INFO  C.G.Course.GuestControllerTest: Started GuestControllerTest in 0.35 seconds (JVM running for 5.853)
+2020-07-15 23:08:44.031 [Test worker] INFO  C.G.Q.QuestionManagerRepository: Function call to fetch all course details for a Guest user
+2020-07-15 23:08:44.032 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get all courses
+2020-07-15 23:08:44.067 [Test worker] INFO  C.G.Course.AdminControllerTest: Starting AdminControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:44.068 [Test worker] INFO  C.G.Course.AdminControllerTest: No active profile set, falling back to default profiles: default
+2020-07-15 23:08:44.413 [Test worker] INFO  C.G.Course.AdminControllerTest: Started AdminControllerTest in 0.354 seconds (JVM running for 6.239)
+2020-07-15 23:08:44.418 [Test worker] INFO  C.G.Q.QuestionAdminController: Fetching course details by using course Id
+2020-07-15 23:08:44.418 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get courses details by Id
+2020-07-15 23:08:44.419 [Test worker] INFO  C.G.Q.QuestionAdminController: Assign/Add instructor to a course
+2020-07-15 23:08:44.419 [Test worker] INFO  C.G.Question.Question: Function call to add an instructor for a course using course Id and email Id
+2020-07-15 23:08:44.419 [Test worker] INFO  C.G.Q.QuestionAdminController: Fetch instructor for a course
+2020-07-15 23:08:44.419 [Test worker] INFO  C.G.Question.Question: Function call to get instructor for a course using course Id
+2020-07-15 23:08:44.423 [Test worker] INFO  C.G.Q.QuestionAdminController: Fetching course details by using course Id
+2020-07-15 23:08:44.423 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get courses details by Id
+2020-07-15 23:08:44.423 [Test worker] INFO  C.G.Q.QuestionAdminController: Assign/Add instructor to a course
+2020-07-15 23:08:44.423 [Test worker] INFO  C.G.Question.Question: Function call to add an instructor for a course using course Id and email Id
+2020-07-15 23:08:44.423 [Test worker] INFO  C.G.Q.QuestionAdminController: Fetch instructor for a course
+2020-07-15 23:08:44.423 [Test worker] INFO  C.G.Question.Question: Function call to get instructor for a course using course Id
+2020-07-15 23:08:44.427 [Test worker] INFO  C.G.Q.QuestionAdminController: Fetching course details using courseId from the Database
+2020-07-15 23:08:44.427 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get courses details by Id
+2020-07-15 23:08:44.428 [Test worker] INFO  C.G.Question.Question: The function call return the users that are not enrolled as an instructor for a course
+2020-07-15 23:08:44.428 [Test worker] INFO  C.G.Q.QuestionAdminController: Fetching instructors list for a course using courseId
+2020-07-15 23:08:44.428 [Test worker] INFO  C.G.Question.Question: Function call to get instructor for a course using course Id
+2020-07-15 23:08:44.447 [Test worker] INFO  C.G.Q.QuestionAdminController: Fetching all course details from the Database
+2020-07-15 23:08:44.447 [Test worker] INFO  C.GroupFormationTool.Course.Course: Calling the courseRepository function to get all courses
+2020-07-15 23:08:44.467 [Test worker] INFO  C.G.Security.LoginControllerTest: Starting LoginControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:44.467 [Test worker] INFO  C.G.Security.LoginControllerTest: No active profile set, falling back to default profiles: default
+2020-07-15 23:08:44.771 [Test worker] INFO  C.G.Security.LoginControllerTest: Started LoginControllerTest in 0.313 seconds (JVM running for 6.597)
+2020-07-15 23:08:44.812 [Test worker] INFO  C.G.S.UserRegistrationControllerTest: Starting UserRegistrationControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:44.812 [Test worker] INFO  C.G.S.UserRegistrationControllerTest: No active profile set, falling back to default profiles: default
+2020-07-15 23:08:45.121 [Test worker] INFO  C.G.S.UserRegistrationControllerTest: Started UserRegistrationControllerTest in 0.32 seconds (JVM running for 6.947)
+2020-07-15 23:08:45.126 [Test worker] INFO  C.G.S.UserRegistrationController: Fetching the password policies of the system
+2020-07-15 23:08:45.126 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to fetch all the password security policies from database
+2020-07-15 23:08:45.150 [Test worker] INFO  C.G.Mail.MailManager: smtp connection for mail has been setup
+2020-07-15 23:08:45.150 [Test worker] INFO  C.G.Mail.MailManager: smtp connection for mail has been setup
+2020-07-15 23:08:45.150 [Test worker] INFO  C.G.Mail.MailManager: smtp connection for mail has been setup
+2020-07-15 23:08:45.178 [Test worker] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 23:08:45.178 [Test worker] INFO  C.GroupFormationTool.User.User: Checking if current user is admin
+2020-07-15 23:08:45.181 [Test worker] INFO  C.GroupFormationTool.User.User: Creating the user and saving it to the database
+2020-07-15 23:08:45.181 [Test worker] INFO  C.GroupFormationTool.User.User: Checking for invalid user data
+2020-07-15 23:08:45.181 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:45.181 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:45.181 [Test worker] INFO  C.GroupFormationTool.User.User: Calling the user repository function to save the new user to Database
+2020-07-15 23:08:45.182 [Test worker] INFO  C.GroupFormationTool.User.User: Creating the user and saving it to the database
+2020-07-15 23:08:45.182 [Test worker] INFO  C.GroupFormationTool.User.User: Checking for invalid user data
+2020-07-15 23:08:45.182 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:45.182 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:45.182 [Test worker] ERROR C.G.Password.Policy: Minimum password length security policy is violated
+2020-07-15 23:08:45.182 [Test worker] WARN  C.GroupFormationTool.User.User: User cannot be created due to violation of password security policy
+2020-07-15 23:08:45.182 [Test worker] INFO  C.GroupFormationTool.User.User: Creating the user and saving it to the database
+2020-07-15 23:08:45.182 [Test worker] INFO  C.GroupFormationTool.User.User: Checking for invalid user data
+2020-07-15 23:08:45.182 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:45.182 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:45.182 [Test worker] WARN  C.GroupFormationTool.User.User: User cannot be created due to mismatch of confirm password field
+2020-07-15 23:08:45.183 [Test worker] INFO  C.GroupFormationTool.User.User: Creating the user and saving it to the database
+2020-07-15 23:08:45.183 [Test worker] INFO  C.GroupFormationTool.User.User: Checking for invalid user data
+2020-07-15 23:08:45.183 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:45.183 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:45.183 [Test worker] WARN  C.GroupFormationTool.User.User: User cannot be created as the user with same details already exists
+2020-07-15 23:08:45.183 [Test worker] INFO  C.GroupFormationTool.User.User: Creating the user and saving it to the database
+2020-07-15 23:08:45.183 [Test worker] INFO  C.GroupFormationTool.User.User: Checking for invalid user data
+2020-07-15 23:08:45.183 [Test worker] WARN  C.GroupFormationTool.User.User: User cannot be created due to some invalid details
+2020-07-15 23:08:45.183 [Test worker] INFO  C.G.Password.Policy: Calling the Policy Repository to check if the password follows enabled security policies
+2020-07-15 23:08:45.184 [Test worker] INFO  C.G.Password.Policy: Checking if the password follows enabled security policies
+2020-07-15 23:08:45.184 [Test worker] INFO  C.GroupFormationTool.User.User: Calling the user repository function to save the new user to Database
+2020-07-15 23:08:45.223 [Test worker] INFO  C.G.Question.Question: Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
+2020-07-15 23:08:45.224 [Test worker] INFO  C.G.Question.Question: Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
+2020-07-15 23:08:45.227 [Test worker] INFO  C.G.Question.Question: Calling the deleteQuestion repository function to delete the question from the Database
+2020-07-15 23:08:45.230 [Test worker] INFO  C.G.Question.Question: Calling the getSortedQuestionListForInstructor repository function to fetch the question bank in a sorted order from the Database
+2020-07-15 23:08:45.230 [Test worker] INFO  C.G.Question.Question: Calling the getSortedQuestionListForInstructor repository function to fetch the question bank in a sorted order from the Database
+2020-07-15 23:08:45.233 [Test worker] INFO  C.G.Question.Question: Calling the getQuestionById repository function to fetch a question from the Database
+2020-07-15 23:08:45.233 [Test worker] INFO  C.G.Question.Question: Calling the getOptionsForTheQuestion repository function to fetch the options of a multiple choice question from the Database
+2020-07-15 23:08:45.245 [Test worker] INFO  C.G.Question.Question: Creating the question and saving it to the database
+2020-07-15 23:08:45.246 [Test worker] INFO  C.G.Question.Question: Checking for invalid data
+2020-07-15 23:08:45.246 [Test worker] INFO  C.G.Question.Question: Creating the options for question if applicable (Multiple Choice only)
+2020-07-15 23:08:45.246 [Test worker] INFO  C.G.Question.Question: Calling the createQuestion repository function to save the question to Database
+2020-07-15 23:08:45.246 [Test worker] INFO  C.G.Question.Question: Creating the question and saving it to the database
+2020-07-15 23:08:45.246 [Test worker] INFO  C.G.Question.Question: Checking for invalid data
+2020-07-15 23:08:45.246 [Test worker] INFO  C.G.Question.Question: Creating the options for question if applicable (Multiple Choice only)
+2020-07-15 23:08:45.246 [Test worker] INFO  C.G.Question.Question: Calling the createQuestion repository function to save the question to Database
+2020-07-15 23:08:45.246 [Test worker] INFO  C.G.Question.Question: Creating the question and saving it to the database
+2020-07-15 23:08:45.246 [Test worker] INFO  C.G.Question.Question: Checking for invalid data
+2020-07-15 23:08:45.246 [Test worker] INFO  C.G.Question.Question: Creating the options for question if applicable (Multiple Choice only)
+2020-07-15 23:08:45.246 [Test worker] INFO  C.G.Question.Question: Calling the createQuestion repository function to save the question to Database
+2020-07-15 23:08:45.246 [Test worker] INFO  C.G.Question.Question: Creating the question and saving it to the database
+2020-07-15 23:08:45.246 [Test worker] INFO  C.G.Question.Question: Checking for invalid data
+2020-07-15 23:08:45.246 [Test worker] INFO  C.G.Question.Question: Creating the options for question if applicable (Multiple Choice only)
+2020-07-15 23:08:45.246 [Test worker] INFO  C.G.Question.Question: Calling the createQuestion repository function to save the question to Database
+2020-07-15 23:08:45.247 [Test worker] INFO  C.G.Question.Question: Creating the question and saving it to the database
+2020-07-15 23:08:45.247 [Test worker] INFO  C.G.Question.Question: Checking for invalid data
+2020-07-15 23:08:45.247 [Test worker] INFO  C.G.Question.Question: Creating the question and saving it to the database
+2020-07-15 23:08:45.247 [Test worker] INFO  C.G.Question.Question: Checking for invalid data
+2020-07-15 23:08:45.247 [Test worker] INFO  C.G.Question.Question: Creating the options for question if applicable (Multiple Choice only)
+2020-07-15 23:08:45.247 [Test worker] INFO  C.G.Question.Question: Calling the createQuestion repository function to save the question to Database
+2020-07-15 23:08:45.247 [Test worker] INFO  C.G.Question.Question: Creating the question and saving it to the database
+2020-07-15 23:08:45.247 [Test worker] INFO  C.G.Question.Question: Checking for invalid data
+2020-07-15 23:08:45.247 [Test worker] INFO  C.G.Question.Question: Creating the options for question if applicable (Multiple Choice only)
+2020-07-15 23:08:45.247 [Test worker] INFO  C.G.Question.Question: Calling the createQuestion repository function to save the question to Database
+2020-07-15 23:08:45.248 [Test worker] INFO  C.G.Question.Question: Creating the question and saving it to the database
+2020-07-15 23:08:45.248 [Test worker] INFO  C.G.Question.Question: Checking for invalid data
+2020-07-15 23:08:45.248 [Test worker] INFO  C.G.Question.Question: Creating the options for question if applicable (Multiple Choice only)
+2020-07-15 23:08:45.248 [Test worker] INFO  C.G.Question.Question: Calling the createQuestion repository function to save the question to Database
+2020-07-15 23:08:45.248 [Test worker] INFO  C.G.Question.Question: Creating the question and saving it to the database
+2020-07-15 23:08:45.248 [Test worker] INFO  C.G.Question.Question: Checking for invalid data
+2020-07-15 23:08:45.248 [Test worker] INFO  C.G.Question.Question: Creating the question and saving it to the database
+2020-07-15 23:08:45.248 [Test worker] INFO  C.G.Question.Question: Checking for invalid data
+2020-07-15 23:08:45.272 [Test worker] INFO  C.G.Q.QuestionManagerControllerTest: Starting QuestionManagerControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:45.273 [Test worker] INFO  C.G.Q.QuestionManagerControllerTest: No active profile set, falling back to default profiles: default
+2020-07-15 23:08:45.577 [Test worker] INFO  C.G.Q.QuestionManagerControllerTest: Started QuestionManagerControllerTest in 0.314 seconds (JVM running for 7.404)
+2020-07-15 23:08:45.582 [Test worker] INFO  C.G.Q.QuestionManagerController: Saving the question created by the instructor to the database
+2020-07-15 23:08:45.583 [Test worker] INFO  C.G.Question.Question: Creating the question and saving it to the database
+2020-07-15 23:08:45.583 [Test worker] INFO  C.G.Question.Question: Checking for invalid data
+2020-07-15 23:08:45.583 [Test worker] INFO  C.G.Question.Question: Creating the options for question if applicable (Multiple Choice only)
+2020-07-15 23:08:45.583 [Test worker] INFO  C.G.Question.Question: Calling the createQuestion repository function to save the question to Database
+2020-07-15 23:08:45.583 [Test worker] INFO  C.G.Q.QuestionManagerController: Question is saved to the database and the instructor views the saved question
+2020-07-15 23:08:45.585 [Test worker] INFO  C.G.Q.QuestionManagerController: Saving the question created by the instructor to the database
+2020-07-15 23:08:45.585 [Test worker] INFO  C.G.Question.Question: Creating the question and saving it to the database
+2020-07-15 23:08:45.585 [Test worker] INFO  C.G.Question.Question: Checking for invalid data
+2020-07-15 23:08:45.585 [Test worker] INFO  C.G.Q.QuestionManagerController: One or more input fields have invalid/empty data
+2020-07-15 23:08:45.605 [Test worker] INFO  C.G.Q.QuestionManagerController: Deleting the question created by the instructor from the database
+2020-07-15 23:08:45.605 [Test worker] INFO  C.G.Question.Question: Calling the deleteQuestion repository function to delete the question from the Database
+2020-07-15 23:08:45.605 [Test worker] INFO  C.G.Q.QuestionManagerController: Question successfully deleted!
+2020-07-15 23:08:45.605 [Test worker] INFO  C.G.Q.QuestionManagerController: Redirecting to the instructor's question list page
+2020-07-15 23:08:45.605 [Test worker] INFO  C.G.Question.Question: Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
+2020-07-15 23:08:45.609 [Test worker] INFO  C.G.Q.QuestionManagerController: Deleting the question created by the instructor from the database
+2020-07-15 23:08:45.609 [Test worker] INFO  C.G.Question.Question: Calling the deleteQuestion repository function to delete the question from the Database
+2020-07-15 23:08:45.609 [Test worker] INFO  C.G.Q.QuestionManagerController: The question could not be deleted
+2020-07-15 23:08:45.609 [Test worker] INFO  C.G.Q.QuestionManagerController: Redirecting to the instructor's question list page
+2020-07-15 23:08:45.609 [Test worker] INFO  C.G.Question.Question: Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
+2020-07-15 23:08:45.629 [Test worker] INFO  C.G.Q.QuestionAdminControllerTest: Starting QuestionAdminControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:45.630 [Test worker] INFO  C.G.Q.QuestionAdminControllerTest: No active profile set, falling back to default profiles: default
+2020-07-15 23:08:45.961 [Test worker] INFO  C.G.Q.QuestionAdminControllerTest: Started QuestionAdminControllerTest in 0.34 seconds (JVM running for 7.787)
+2020-07-15 23:08:45.965 [Test worker] INFO  C.G.Q.QuestionAdminController: Fetching the question by its id for the current instructor to view
+2020-07-15 23:08:45.965 [Test worker] INFO  C.G.Question.Question: Calling the getQuestionById repository function to fetch a question from the Database
+2020-07-15 23:08:45.983 [Test worker] INFO  C.G.Q.QuestionAdminController: Fetching the question bank sorted based on the field like title and date for the logged in instructor
+2020-07-15 23:08:45.983 [Test worker] INFO  C.G.Question.Question: Calling the getSortedQuestionListForInstructor repository function to fetch the question bank in a sorted order from the Database
+2020-07-15 23:08:45.989 [Test worker] INFO  C.G.Q.QuestionAdminController: Fetching the question bank for the logged in instructor
+2020-07-15 23:08:45.989 [Test worker] INFO  C.G.Question.Question: Calling the getQuestionListForInstructor repository function to fetch the question bank from the Database
+2020-07-15 23:08:46.019 [Test worker] INFO  C.G.G.GroupFormationManager: Inserting into the groups for the course from the repository
+2020-07-15 23:08:46.019 [Test worker] INFO  C.G.G.GroupFormationManager: Inserting into the groups for the course from the repository
+2020-07-15 23:08:46.022 [Test worker] INFO  C.G.G.GroupFormationManager: Fetching the survey questions
+2020-07-15 23:08:46.022 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Getting the survey questions for a course
+2020-07-15 23:08:46.023 [Test worker] INFO  C.G.G.GroupFormationManager: Fetching the list of students who took the survey
+2020-07-15 23:08:46.023 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Getting the users who took the questions for a course survey
+2020-07-15 23:08:46.023 [Test worker] INFO  C.G.G.GroupFormationManager: Fetching the group formation logic to form groups
+2020-07-15 23:08:46.023 [Test worker] INFO  C.G.G.GroupFormationManager: Fetching all the student responses for the survey
+2020-07-15 23:08:46.023 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Getting the responses of all users who took the course survey
+2020-07-15 23:08:46.028 [Test worker] INFO  C.G.G.GroupFormationManager: Deleting the groups for the course from the repository
+2020-07-15 23:08:46.028 [Test worker] INFO  C.G.G.GroupFormationManager: Fetching the groups for the course from the repository
+2020-07-15 23:08:46.046 [Test worker] INFO  C.G.G.GroupFormationControllerTest: Starting GroupFormationControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:46.047 [Test worker] INFO  C.G.G.GroupFormationControllerTest: No active profile set, falling back to default profiles: default
+2020-07-15 23:08:46.362 [Test worker] INFO  C.G.G.GroupFormationControllerTest: Started GroupFormationControllerTest in 0.326 seconds (JVM running for 8.189)
+2020-07-15 23:08:46.377 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Getting survey id based on course id
+2020-07-15 23:08:46.377 [Test worker] INFO  C.G.G.GroupFormationController: Checking if the survey can be used to form groups
+2020-07-15 23:08:46.377 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is created for the course from the database
+2020-07-15 23:08:46.378 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is published for the course from the database
+2020-07-15 23:08:46.378 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey has an algorithm for group formation for the course from the database
+2020-07-15 23:08:46.378 [Test worker] INFO  C.G.G.GroupFormationController: Getting the list of groups formed on the instructor's algorithm
+2020-07-15 23:08:46.394 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Getting survey id based on course id
+2020-07-15 23:08:46.394 [Test worker] INFO  C.G.G.GroupFormationController: Checking if the survey can be used to form groups
+2020-07-15 23:08:46.394 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is created for the course from the database
+2020-07-15 23:08:46.397 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Getting survey id based on course id
+2020-07-15 23:08:46.397 [Test worker] INFO  C.G.G.GroupFormationController: Checking if the survey can be used to form groups
+2020-07-15 23:08:46.397 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is created for the course from the database
+2020-07-15 23:08:46.397 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is published for the course from the database
+2020-07-15 23:08:46.400 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Getting survey id based on course id
+2020-07-15 23:08:46.401 [Test worker] INFO  C.G.G.GroupFormationController: Checking if the survey can be used to form groups
+2020-07-15 23:08:46.401 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is created for the course from the database
+2020-07-15 23:08:46.401 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is published for the course from the database
+2020-07-15 23:08:46.401 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey has an algorithm for group formation for the course from the database
+2020-07-15 23:08:46.420 [Test worker] INFO  C.G.Survey.SurveyControllerTest: Starting SurveyControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:46.420 [Test worker] INFO  C.G.Survey.SurveyControllerTest: No active profile set, falling back to default profiles: default
+2020-07-15 23:08:46.724 [Test worker] INFO  C.G.Survey.SurveyControllerTest: Started SurveyControllerTest in 0.313 seconds (JVM running for 8.55)
+2020-07-15 23:08:46.728 [Test worker] INFO  C.G.C.InstructorCourseController: Getting survey id for the course
+2020-07-15 23:08:46.728 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Getting survey id based on course id
+2020-07-15 23:08:46.729 [Test worker] INFO  C.G.C.InstructorCourseController: Survey id for the courseSDCis 0
+2020-07-15 23:08:46.729 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Publishing the survey
+2020-07-15 23:08:46.729 [Test worker] INFO  C.G.C.InstructorCourseController: Check condition for survey published or not result value true
+2020-07-15 23:08:46.743 [Test worker] INFO  C.G.C.InstructorCourseController: Getting survey id for the course
+2020-07-15 23:08:46.743 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Getting survey id based on course id
+2020-07-15 23:08:46.743 [Test worker] INFO  C.G.C.InstructorCourseController: Survey id for the courseSDCis 0
+2020-07-15 23:08:46.743 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Publishing the survey
+2020-07-15 23:08:46.744 [Test worker] INFO  C.G.C.InstructorCourseController: Check condition for survey published or not result value false
+2020-07-15 23:08:46.748 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is created for the course from the database
+2020-07-15 23:08:46.749 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is created for the course from the database
+2020-07-15 23:08:46.749 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is published for the course from the database
+2020-07-15 23:08:46.749 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey has an algorithm for group formation for the course from the database
+2020-07-15 23:08:46.749 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is created for the course from the database
+2020-07-15 23:08:46.750 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is created for the course from the database
+2020-07-15 23:08:46.750 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is published for the course from the database
+2020-07-15 23:08:46.750 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is created for the course from the database
+2020-07-15 23:08:46.750 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is published for the course from the database
+2020-07-15 23:08:46.751 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey has an algorithm for group formation for the course from the database
+2020-07-15 23:08:46.751 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey is published for the course from the database
+2020-07-15 23:08:46.752 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Getting survey id based on course id
+2020-07-15 23:08:46.752 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Checking if the survey has an algorithm for group formation for the course from the database
+2020-07-15 23:08:46.753 [Test worker] INFO  C.GroupFormationTool.Survey.Survey: Publishing the survey

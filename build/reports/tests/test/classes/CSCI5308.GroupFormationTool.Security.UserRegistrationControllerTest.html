@@ -96,11 +96,11 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.7.RELEASE)
 
-2020-07-15 17:11:52.864  INFO 37430 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : Starting UserRegistrationControllerTest on Prabhjots-MacBook-Pro.local with PID 37430 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
-2020-07-15 17:11:52.865  INFO 37430 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : No active profile set, falling back to default profiles: default
-2020-07-15 17:11:53.172  INFO 37430 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : Started UserRegistrationControllerTest in 0.317 seconds (JVM running for 7.22)
-2020-07-15 17:11:53.179  INFO 37430 --- [    Test worker] C.G.Security.UserRegistrationController  : Fetching the password policies of the system
-2020-07-15 17:11:53.179  INFO 37430 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to fetch all the password security policies from database
+2020-07-15 23:08:44.812  INFO 38787 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : Starting UserRegistrationControllerTest on Prabhjots-MacBook-Pro.local with PID 38787 (started by prabhjotkaur in /Users/prabhjotkaur/git/group22)
+2020-07-15 23:08:44.812  INFO 38787 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : No active profile set, falling back to default profiles: default
+2020-07-15 23:08:45.121  INFO 38787 --- [    Test worker] C.G.S.UserRegistrationControllerTest     : Started UserRegistrationControllerTest in 0.32 seconds (JVM running for 6.947)
+2020-07-15 23:08:45.126  INFO 38787 --- [    Test worker] C.G.Security.UserRegistrationController  : Fetching the password policies of the system
+2020-07-15 23:08:45.126  INFO 38787 --- [    Test worker] C.GroupFormationTool.Password.Policy     : Calling the Policy Repository to fetch all the password security policies from database
 
 MockHttpServletRequest:
       HTTP Method = GET
@@ -108,7 +108,7 @@ MockHttpServletRequest:
        Parameters = {}
           Headers = []
              Body = &lt;no character encoding set&gt;
-    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@5e458b7e}
+    Session Attrs = {org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN=org.springframework.security.web.csrf.DefaultCsrfToken@51ca9aa3}
 
 Handler:
              Type = CSCI5308.GroupFormationTool.Security.UserRegistrationController
@@ -125,7 +125,7 @@ ModelAndView:
         View name = user/signup
              View = null
         Attribute = user
-            value = CSCI5308.GroupFormationTool.User.User@40edca8
+            value = CSCI5308.GroupFormationTool.User.User@6ea5349d
            errors = []
         Attribute = policies
             value = []
@@ -142,15 +142,15 @@ MockHttpServletResponse:
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;/&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
-    &lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;/&gt;
+    &lt;meta content=&quot;IE=edge&quot; http-equiv=&quot;X-UA-Compatible&quot;/&gt;
+    &lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+    &lt;link href=&quot;favicon.ico&quot; rel=&quot;icon&quot;/&gt;
     &lt;title&gt;User Registration Page&lt;/title&gt;
     &lt;link
+            crossorigin=&quot;anonymous&quot;
             href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;
-            rel=&quot;stylesheet&quot;
             integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot;
-            crossorigin=&quot;anonymous&quot;/&gt;
+            rel=&quot;stylesheet&quot;/&gt;
 
 &lt;/head&gt;
 &lt;body style=&quot;background-color: #e7ebee&quot;&gt;
@@ -158,8 +158,9 @@ MockHttpServletResponse:
     &lt;br/&gt;
     &lt;div&gt;
         &lt;h4&gt;Create Account&lt;/h4&gt;
-        &lt;form autocomplete=&quot;off&quot; action=&quot;/register&quot; method=&quot;post&quot; class=&quot;m-t col-md-4 col-md-offset-4&quot; role=&quot;form&quot;
-              data-toggle=&quot;validator&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;f70712eb-146c-400c-bb04-e9d180af4e1e&quot;/&gt;
+        &lt;form action=&quot;/register&quot; autocomplete=&quot;off&quot; class=&quot;m-t col-md-4 col-md-offset-4&quot;
+              data-toggle=&quot;validator&quot; method=&quot;post&quot;
+              role=&quot;form&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;2dee3d3f-a97e-4b2d-b4e0-0b09eb5aca9f&quot;/&gt;
 
             
             &lt;br&gt;
@@ -180,8 +181,9 @@ MockHttpServletResponse:
                  &lt;span
                     class=&quot;input-group-addon&quot;&gt; &lt;span
                     class=&quot;glyphicon glyphicon-user&quot;&gt;&lt;/span&gt;
-					&lt;/span&gt; &lt;input type=&quot;text&quot; placeholder=&quot;First Name&quot; class=&quot;form-control&quot; required id=&quot;firstName&quot; name=&quot;firstName&quot; value=&quot;&quot;/&gt; &lt;span
-                    class=&quot;glyphicon form-control-feedback&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+					&lt;/span&gt; &lt;input class=&quot;form-control&quot; placeholder=&quot;First Name&quot;
+                                   required type=&quot;text&quot; id=&quot;firstName&quot; name=&quot;firstName&quot; value=&quot;&quot;/&gt; &lt;span
+                    aria-hidden=&quot;true&quot; class=&quot;glyphicon form-control-feedback&quot;&gt;&lt;/span&gt;
             &lt;/div&gt;
 
 
@@ -189,9 +191,9 @@ MockHttpServletResponse:
                  &lt;span
                     class=&quot;input-group-addon&quot;&gt; &lt;span
                     class=&quot;glyphicon glyphicon-user&quot;&gt;&lt;/span&gt;
-					&lt;/span&gt; &lt;input type=&quot;text&quot; placeholder=&quot;Last Name&quot;
-                                   class=&quot;form-control&quot; required id=&quot;lastName&quot; name=&quot;lastName&quot; value=&quot;&quot;/&gt; &lt;span
-                    class=&quot;glyphicon form-control-feedback&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+					&lt;/span&gt; &lt;input class=&quot;form-control&quot; placeholder=&quot;Last Name&quot; required
+                                   type=&quot;text&quot; id=&quot;lastName&quot; name=&quot;lastName&quot; value=&quot;&quot;/&gt; &lt;span
+                    aria-hidden=&quot;true&quot; class=&quot;glyphicon form-control-feedback&quot;&gt;&lt;/span&gt;
             &lt;/div&gt;
 
 
@@ -199,43 +201,45 @@ MockHttpServletResponse:
                  &lt;span
                     class=&quot;input-group-addon&quot;&gt; &lt;span
                     class=&quot;glyphicon glyphicon-envelope&quot;&gt;&lt;/span&gt;
-					&lt;/span&gt; &lt;input type=&quot;email&quot; placeholder=&quot;Email address&quot; class=&quot;form-control&quot; required id=&quot;emailId&quot; name=&quot;emailId&quot; value=&quot;&quot;/&gt; &lt;span
-                    class=&quot;glyphicon form-control-feedback&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+					&lt;/span&gt; &lt;input class=&quot;form-control&quot; placeholder=&quot;Email address&quot;
+                                   required type=&quot;email&quot; id=&quot;emailId&quot; name=&quot;emailId&quot; value=&quot;&quot;/&gt; &lt;span
+                    aria-hidden=&quot;true&quot; class=&quot;glyphicon form-control-feedback&quot;&gt;&lt;/span&gt;
             &lt;/div&gt;
 
             &lt;div class=&quot;form-group input-group has-feedback&quot;&gt;
 					&lt;span class=&quot;input-group-addon&quot;&gt; &lt;span
                             class=&quot;glyphicon glyphicon-file&quot;&gt;&lt;/span&gt;
-					&lt;/span&gt; &lt;input type=&quot;text&quot; placeholder=&quot;Banner Id&quot;
-                                   class=&quot;form-control&quot; id=&quot;bannerId&quot; name=&quot;bannerId&quot; value=&quot;&quot;/&gt; &lt;span
-                    class=&quot;glyphicon form-control-feedback&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+					&lt;/span&gt; &lt;input class=&quot;form-control&quot; placeholder=&quot;Banner Id&quot; type=&quot;text&quot; id=&quot;bannerId&quot; name=&quot;bannerId&quot; value=&quot;&quot;/&gt; &lt;span
+                    aria-hidden=&quot;true&quot; class=&quot;glyphicon form-control-feedback&quot;&gt;&lt;/span&gt;
             &lt;/div&gt;
 
             &lt;div class=&quot;form-group input-group has-feedback&quot;&gt;
                  &lt;span
                     class=&quot;input-group-addon&quot;&gt; &lt;span
                     class=&quot;glyphicon glyphicon-lock&quot;&gt;&lt;/span&gt;
-					&lt;/span&gt; &lt;input type=&quot;password&quot; placeholder=&quot;Password&quot; class=&quot;form-control&quot; required id=&quot;password&quot; name=&quot;password&quot; value=&quot;&quot;/&gt; &lt;span
-                    class=&quot;glyphicon form-control-feedback&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+					&lt;/span&gt; &lt;input class=&quot;form-control&quot; placeholder=&quot;Password&quot;
+                                   required type=&quot;password&quot; id=&quot;password&quot; name=&quot;password&quot; value=&quot;&quot;/&gt; &lt;span
+                    aria-hidden=&quot;true&quot; class=&quot;glyphicon form-control-feedback&quot;&gt;&lt;/span&gt;
             &lt;/div&gt;
 
             &lt;div class=&quot;form-group input-group has-feedback&quot;&gt;
                 
                 &lt;span class=&quot;input-group-addon&quot;&gt; &lt;span
                         class=&quot;glyphicon glyphicon-lock&quot;&gt;&lt;/span&gt;
-					&lt;/span&gt; &lt;input type=&quot;password&quot; placeholder=&quot;Confirm Password&quot; class=&quot;form-control&quot; required id=&quot;confirmPassword&quot; name=&quot;confirmPassword&quot; value=&quot;&quot;/&gt; &lt;span
-                    class=&quot;glyphicon form-control-feedback&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+					&lt;/span&gt; &lt;input class=&quot;form-control&quot; placeholder=&quot;Confirm Password&quot;
+                                   required type=&quot;password&quot; id=&quot;confirmPassword&quot; name=&quot;confirmPassword&quot; value=&quot;&quot;/&gt; &lt;span
+                    aria-hidden=&quot;true&quot; class=&quot;glyphicon form-control-feedback&quot;&gt;&lt;/span&gt;
             &lt;/div&gt;
 
             &lt;div class=&quot;text-center&quot;&gt;
-                &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary btn-sm btn-block&quot;&gt;Register&lt;/button&gt;
+                &lt;button class=&quot;btn btn-primary btn-sm btn-block&quot; type=&quot;submit&quot;&gt;Register&lt;/button&gt;
                 &lt;br/&gt;
-                &lt;button type=&quot;reset&quot; class=&quot;btn btn-danger btn-sm btn-block&quot;&gt;Cancel&lt;/button&gt;
+                &lt;button class=&quot;btn btn-danger btn-sm btn-block&quot; type=&quot;reset&quot;&gt;Cancel&lt;/button&gt;
             &lt;/div&gt;
 
             &lt;br/&gt;
             &lt;div&gt;
-                &lt;a href=&quot;/login&quot; class=&quot;text-primary&quot;&gt;Are you an existing
+                &lt;a class=&quot;text-primary&quot; href=&quot;/login&quot;&gt;Are you an existing
                     user? Click here to log in!&lt;/a&gt;
             &lt;/div&gt;
         &lt;/form&gt;
@@ -259,7 +263,7 @@ MockHttpServletResponse:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 15, 2020, 5:11:54 p.m.</p>
+<a href="http://www.gradle.org">Gradle 6.3</a> at Jul. 15, 2020, 11:08:46 p.m.</p>
 </div>
 </div>
 </body>
