@@ -10,4 +10,8 @@ public interface ITestSurveyAbstractFactory {
 
     IResponse createResponseInstance();
 
+	ISurveyFormula createSurveyFormulaInstance();
+
+	SurveyFormulaRepository createSurveyFormulaRepositoryMock();
+
 }

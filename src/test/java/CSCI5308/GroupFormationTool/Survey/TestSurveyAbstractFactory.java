@@ -7,10 +7,20 @@ public class TestSurveyAbstractFactory implements ITestSurveyAbstractFactory {
     public ISurvey createSurveyInstance() {
         return new Survey();
     }
+    
+    @Override
+    public ISurveyFormula createSurveyFormulaInstance() {
+        return new SurveyFormula();
+    }
 
     @Override
     public SurveyRepository createSurveyRepositoryMock() {
         return mock(SurveyRepository.class);
+    }
+    
+    @Override
+    public SurveyFormulaRepository createSurveyFormulaRepositoryMock() {
+        return mock(SurveyFormulaRepository.class);
     }
 
     @Override
