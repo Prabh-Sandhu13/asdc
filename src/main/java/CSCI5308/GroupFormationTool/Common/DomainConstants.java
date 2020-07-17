@@ -23,14 +23,8 @@ public final class DomainConstants {
     public static final int freeText = 4;
     public final static long invalidData = 0;
     public final static long sqlError = -1;
-    public final static String sqlErrorMessage = "There was a problem in adding your question. Please try again!";
-    public final static String invalidDataMessage = "One or more fields have invalid/empty data! Please enter "
-            + "and try again";
-    public final static String deleteQuestionSuccess = "The question was successfully deleted";
-    public final static String deleteQuestionFailure = "The question could not be deleted";
     public static final String URL = "jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_22_PRODUCTION?useSSL=false" +
             "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-
     public static final String USER = "CSCI5308_22_PRODUCTION_USER";
     public static final String PASSWORD = "CSCI5308_22_PRODUCTION_22986";
     public static final String instructorAddSuccess = "Instructor successfully added";
